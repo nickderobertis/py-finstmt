@@ -61,3 +61,8 @@ class IncomeStatementData:
                     data_dict[item_config.key] = for_lookup[name]
         return cls(**data_dict)
 
+    def to_series(self) -> pd.Series:
+        data_dict = {}
+        for item_config in INCOME_STATEMENT_INPUT_ITEMS:
+            data_dict[item_config.display_name] = getattr(self, item_config.key)
+        return pd.Series(data_dict)
