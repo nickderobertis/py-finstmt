@@ -1,5 +1,11 @@
+from copy import deepcopy
 from dataclasses import dataclass
 from typing import Optional
+
+import pandas as pd
+
+from finstmt.clean.name import standardize_names_in_series_index
+from finstmt.inc.config import ALLOWED_NAMES
 
 
 @dataclass(unsafe_hash=True)
@@ -36,4 +42,19 @@ class IncomeStatementData:
     @property
     def effective_tax_rate(self) -> float:
         return self.tax_exp / self.ebt
+
+    @classmethod
+    def from_series(cls, series: pd.Series):
+        for_lookup = deepcopy(series)
+        standardize_names_in_series_index(for_lookup)
+        data_dict = {}
+        for name in for_lookup.index:
+            for data_attr, allowed_values in ALLOWED_NAMES.items():
+                if name in allowed_values:
+                    # Got a match for series name to allowed names
+                    if data_attr in data_dict:
+                        raise ValueError(f'got multiple data items for {data_attr}. Was already set to '
+                                         f'{data_dict[data_attr]} and now trying to also add {name}')
+                    data_dict[data_attr] = for_lookup[name]
+        return cls(**data_dict)
 
