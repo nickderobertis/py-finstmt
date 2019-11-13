@@ -5,7 +5,7 @@ from typing import Optional
 import pandas as pd
 
 from finstmt.clean.name import standardize_names_in_series_index
-from finstmt.inc.config import ALLOWED_NAMES
+from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
 
 
 @dataclass(unsafe_hash=True)
@@ -49,12 +49,15 @@ class IncomeStatementData:
         standardize_names_in_series_index(for_lookup)
         data_dict = {}
         for name in for_lookup.index:
-            for data_attr, allowed_values in ALLOWED_NAMES.items():
-                if name in allowed_values:
+            for item_config in INCOME_STATEMENT_INPUT_ITEMS:
+                if item_config.extract_names is None:
+                    # Not an extractable item, must be a calculated item
+                    continue
+                if name in item_config.extract_names:
                     # Got a match for series name to allowed names
-                    if data_attr in data_dict:
-                        raise ValueError(f'got multiple data items for {data_attr}. Was already set to '
-                                         f'{data_dict[data_attr]} and now trying to also add {name}')
-                    data_dict[data_attr] = for_lookup[name]
+                    if item_config.key in data_dict:
+                        raise ValueError(f'got multiple data items for {item_config.key}. Was already set to '
+                                         f'{data_dict[item_config.key]} and now trying to also add {name}')
+                    data_dict[item_config.key] = for_lookup[name]
         return cls(**data_dict)
 
