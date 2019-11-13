@@ -15,7 +15,7 @@ class IncomeStatements:
         self.df = self.to_df()
 
     def _repr_html_(self):
-        return self.df._repr_html_()
+        return self._formatted_df._repr_html_()
 
     @classmethod
     def from_df(cls, df: pd.DataFrame):
@@ -33,3 +33,9 @@ class IncomeStatements:
             series.name = date
             all_series.append(series)
         return pd.concat(all_series, axis=1)
+
+    @property
+    def _formatted_df(self) -> pd.DataFrame:
+        out_df = self.df.copy()
+        out_df.columns = [col.strftime('%m/%d/%Y') for col in out_df.columns]
+        return out_df.applymap(lambda x: f'${x:,.0f}')
