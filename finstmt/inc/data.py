@@ -19,7 +19,7 @@ class IncomeStatementData(FinDataBase):
 
     def __post_init__(self):
         if self.op_exp is None:
-            self.op_exp = self.rd_exp + self.sga  # TODO: check
+            self.op_exp = self.rd_exp + self.sga
 
     @property
     def gross_profit(self) -> float:
