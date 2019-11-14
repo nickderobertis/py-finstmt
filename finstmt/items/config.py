@@ -8,3 +8,4 @@ class ItemConfig:
     display_name: str
 
     extract_names: Optional[Sequence[str]] = None
+    force_positive: bool = True

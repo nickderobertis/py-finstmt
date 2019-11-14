@@ -727,7 +727,8 @@ ItemConfig(
             'comp income other',
             'comp inc other',
             'comprehensive inc other',
-        ]
+        ],
+        force_positive=False
     ),
     ItemConfig(
         'retained_earnings',

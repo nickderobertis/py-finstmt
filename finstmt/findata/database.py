@@ -15,6 +15,16 @@ class FinDataBase:
     """
     items_config: List[ItemConfig]
 
+    def __post_init__(self):
+        for item in self.items_config:
+            if item.force_positive and item.extract_names is not None:
+                # If extracted and need to force positive, take absolute value
+                value = getattr(self, item.key)
+                if value is None:
+                    continue
+                positive_value = abs(value)
+                setattr(self, item.key, positive_value)
+
     @classmethod
     def from_series(cls, series: pd.Series):
         for_lookup = deepcopy(series)

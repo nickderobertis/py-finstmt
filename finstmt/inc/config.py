@@ -196,7 +196,8 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'gain on sale of investments',
             'gain sale of investments',
             'gain sale investments',
-        ]
+        ],
+        force_positive=False
     ),
     ItemConfig(
         'gain_on_sale_asset',
@@ -214,7 +215,8 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'gain on sale of asset',
             'gain sale of asset',
             'gain sale asset',
-        ]
+        ],
+        force_positive=False
     ),
     ItemConfig(
         'impairment',

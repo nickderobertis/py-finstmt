@@ -50,6 +50,7 @@ class BalanceSheetData(FinDataBase):
     items_config = BALANCE_SHEET_INPUT_ITEMS
 
     def __post_init__(self):
+        super().__post_init__()
         if self.cash_and_st_invest is None:
             self.cash_and_st_invest = self.cash + self.st_invest
         if self.total_current_assets is None:

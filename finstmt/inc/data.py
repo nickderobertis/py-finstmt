@@ -28,6 +28,7 @@ class IncomeStatementData(FinDataBase):
     items_config = INCOME_STATEMENT_INPUT_ITEMS
 
     def __post_init__(self):
+        super().__post_init__()
         if self.op_exp is None:
             self.op_exp = self.rd_exp + self.dep_exp + self.sga + self.other_op_exp
         if self.ebit is None:
