@@ -61,6 +61,19 @@ class FinancialStatements:
         # in balance sheet items
         return getattr(self.balance_sheets, item)
 
+    def __getitem__(self, item):
+        if not isinstance(item, (list, tuple)):
+            inc_statement = self.income_statements[item]
+            bs = self.balance_sheets[item]
+            date_item = pd.to_datetime(item)
+            inc_statements = IncomeStatements({date_item: inc_statement})
+            b_sheets = BalanceSheets({date_item: bs})
+        else:
+            inc_statements = self.income_statements[item]
+            b_sheets = self.balance_sheets[item]
+
+        return FinancialStatements(inc_statements, b_sheets)
+
     def __dir__(self):
         normal_attrs = [
             'income_statements',

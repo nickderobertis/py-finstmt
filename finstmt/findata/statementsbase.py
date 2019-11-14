@@ -29,6 +29,24 @@ class FinStatementsBase:
             # TODO: set name of series
         return pd.Series(data_dict)
 
+    def __getitem__(self, item):
+        if not isinstance(item, (list, tuple)):
+            series = self.df[item]
+            date_item = pd.to_datetime(item)
+            series.name = date_item
+            return self.statement_cls.from_series(series)
+
+        # Got multiple dates
+        all_series = []
+        for date_str in item:
+            series = self.df[date_str]
+            date = pd.to_datetime(date_str)
+            series.name = date
+            all_series.append(series)
+        df = pd.concat(all_series, axis=1)
+
+        return self.from_df(df)
+
     def __dir__(self):
         normal_attrs = [
             'statements',
