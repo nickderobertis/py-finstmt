@@ -15,6 +15,26 @@ class FinStatementsBase:
     def _repr_html_(self):
         return self._formatted_df._repr_html_()
 
+    def __getattr__(self, item):
+        data_dict = {}
+        for date, statement in self.statements.items():
+            try:
+                statement_value = getattr(statement, item)
+            except AttributeError:
+                # Should hit here on the first loop if this is an invalid item. Raise attribute error like normal.
+                raise AttributeError(item)
+            data_dict[date] = statement_value
+            # TODO: set name of series
+        return pd.Series(data_dict)
+
+    def __dir__(self):
+        normal_attrs = [
+            'statements',
+            'to_df',
+        ]
+        item_attrs = [config.key for config in self.statement_cls.items_config]
+        return normal_attrs + item_attrs
+
     @classmethod
     def from_df(cls, df: pd.DataFrame):
         statements_dict = {}
