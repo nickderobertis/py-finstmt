@@ -60,3 +60,7 @@ class BalanceSheetData(FinDataBase):
     @property
     def cash_and_st_invest(self):
         return self.cash + self.st_invest
+
+    @property
+    def nwc(self):
+        return self.receivables + self.inventory - self.payables

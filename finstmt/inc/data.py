@@ -13,6 +13,7 @@ class IncomeStatementData(FinDataBase):
     sga: float
     int_exp: float
     tax_exp: float
+    # TODO: there's no depreciation in the stockrow data
 
     op_exp: Optional[float] = None
     items_config = INCOME_STATEMENT_INPUT_ITEMS
