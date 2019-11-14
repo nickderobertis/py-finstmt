@@ -1,0 +1,22 @@
+finstmt.combined package
+========================
+
+Submodules
+----------
+
+finstmt.combined.statements module
+----------------------------------
+
+.. automodule:: finstmt.combined.statements
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: finstmt.combined
+   :members:
+   :undoc-members:
+   :show-inheritance:

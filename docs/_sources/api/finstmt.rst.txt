@@ -1,0 +1,22 @@
+finstmt package
+===============
+
+Subpackages
+-----------
+
+.. toctree::
+
+   finstmt.bs
+   finstmt.clean
+   finstmt.combined
+   finstmt.findata
+   finstmt.inc
+   finstmt.items
+
+Module contents
+---------------
+
+.. automodule:: finstmt
+   :members:
+   :undoc-members:
+   :show-inheritance:

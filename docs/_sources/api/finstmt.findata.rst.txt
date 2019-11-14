@@ -1,0 +1,30 @@
+finstmt.findata package
+=======================
+
+Submodules
+----------
+
+finstmt.findata.database module
+-------------------------------
+
+.. automodule:: finstmt.findata.database
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.findata.statementsbase module
+-------------------------------------
+
+.. automodule:: finstmt.findata.statementsbase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: finstmt.findata
+   :members:
+   :undoc-members:
+   :show-inheritance:

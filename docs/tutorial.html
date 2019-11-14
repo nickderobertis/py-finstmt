@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting started with py_qs_example &mdash; py_qs_example 0.1.9 documentation</title>
+  <title>Getting started with finstmt &mdash; finstmt 0.1.0 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="_static/sphinx_paramlinks.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="py_qs_example" href="api/modules.html" />
-    <link rel="prev" title="Welcome to Quick Start Example documentation!" href="index.html" /> 
+    <link rel="next" title="finstmt" href="api/modules.html" />
+    <link rel="prev" title="Welcome to finstmt documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +52,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> py_qs_example
+            <a href="index.html" class="icon icon-home"> finstmt
           
 
           
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.1.9
+                0.1.0
               </div>
             
           
@@ -88,16 +88,15 @@
             
               <p class="caption"><span class="caption-text">Tutorial</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with py_qs_example</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with finstmt</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parameter-links-example">Parameter Links Example</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">API Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/modules.html">py_qs_example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">finstmt</a></li>
 </ul>
 
             
@@ -112,7 +111,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">py_qs_example</a>
+          <a href="index.html">finstmt</a>
         
       </nav>
 
@@ -143,7 +142,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Getting started with py_qs_example</li>
+      <li>Getting started with finstmt</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -162,29 +161,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="getting-started-with-py-qs-example">
-<h1>Getting started with py_qs_example<a class="headerlink" href="#getting-started-with-py-qs-example" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="getting-started-with-finstmt">
+<h1>Getting started with finstmt<a class="headerlink" href="#getting-started-with-finstmt" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>Install via:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">py_qs_example</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">finstmt</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>Some highlighted functionality from my module.</p>
-<p>This is a simple example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">py_qs_example</span>
-
-<span class="n">obj</span> <span class="o">=</span> <span class="n">py_qs_example</span><span class="o">.</span><span class="n">mymodule</span><span class="o">.</span><span class="n">ExampleClass</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">)</span>
+<p>This is a simple example to construct financial statements:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bs_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;WMT Balance Sheet.xlsx&#39;</span>
+<span class="n">inc_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;WMT Income Statement.xlsx&#39;</span>
+<span class="n">bs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">bs_path</span><span class="p">)</span>
+<span class="n">inc_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">inc_path</span><span class="p">)</span>
+<span class="n">bs_data</span> <span class="o">=</span> <span class="n">BalanceSheets</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">bs_df</span><span class="p">)</span>
+<span class="n">inc_data</span> <span class="o">=</span> <span class="n">IncomeStatements</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">inc_df</span><span class="p">)</span>
+<span class="n">stmts</span> <span class="o">=</span> <span class="n">FinancialStatements</span><span class="p">(</span><span class="n">inc_data</span><span class="p">,</span> <span class="n">bs_data</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="parameter-links-example">
-<h2>Parameter Links Example<a class="headerlink" href="#parameter-links-example" title="Permalink to this headline">¶</a></h2>
-<p>Here is an example of a parameter link: <a class="reference internal" href="api/py_qs_example.html#py_qs_example.mymodule.ExampleClass.params.num" title="py_qs_example.mymodule.ExampleClass"><code class="xref py py-paramref docutils literal notranslate"><span class="pre">ExampleClass.num</span></code></a>.</p>
 </div>
 </div>
 
@@ -196,10 +193,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api/modules.html" class="btn btn-neutral float-right" title="py_qs_example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api/modules.html" class="btn btn-neutral float-right" title="finstmt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Quick Start Example documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to finstmt documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

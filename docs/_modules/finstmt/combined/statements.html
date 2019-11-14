@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>finstmt.combined.statements &mdash; finstmt 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/sphinx_paramlinks.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> finstmt
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Getting started with finstmt</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">finstmt</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">finstmt</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>finstmt.combined.statements</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for finstmt.combined.statements</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="k">import</span> <span class="n">dataclass</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">finstmt</span> <span class="k">import</span> <span class="n">BalanceSheets</span><span class="p">,</span> <span class="n">IncomeStatements</span>
+
+
+<div class="viewcode-block" id="FinancialStatements"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">FinancialStatements</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main class that holds all the financial statements.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; bs_path = r&#39;WMT Balance Sheet.xlsx&#39;</span>
+<span class="sd">        &gt;&gt;&gt; inc_path = r&#39;WMT Income Statement.xlsx&#39;</span>
+<span class="sd">        &gt;&gt;&gt; bs_df = pd.read_excel(bs_path)</span>
+<span class="sd">        &gt;&gt;&gt; inc_df = pd.read_excel(inc_path)</span>
+<span class="sd">        &gt;&gt;&gt; bs_data = BalanceSheets.from_df(bs_df)</span>
+<span class="sd">        &gt;&gt;&gt; inc_data = IncomeStatements.from_df(inc_df)</span>
+<span class="sd">        &gt;&gt;&gt; stmts = FinancialStatements(inc_data, bs_data)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">income_statements</span><span class="p">:</span> <span class="n">IncomeStatements</span>
+    <span class="n">balance_sheets</span><span class="p">:</span> <span class="n">BalanceSheets</span>
+
+<div class="viewcode-block" id="FinancialStatements.change"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.change">[docs]</a>    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the change between this period and last for a data series</span>
+
+<span class="sd">        :param data_key: key of variable, how it would be accessed with FinancialStatements.data_key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">series</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lag</span><span class="p">(</span><span class="n">data_key</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FinancialStatements.lag"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.lag">[docs]</a>    <span class="k">def</span> <span class="nf">lag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">num_lags</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a data series lagged for a number of periods</span>
+
+<span class="sd">        :param data_key: key of variable, how it would be accessed with FinancialStatements.data_key</span>
+<span class="sd">        :param num_lags: Number of lags</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">series</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">num_lags</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        &lt;h2&gt;Income Statement&lt;/h2&gt;</span>
+<span class="s2">        {self.income_statements._repr_html_()}</span>
+<span class="s2">        &lt;h2&gt;Balance Sheet&lt;/h2&gt;</span>
+<span class="s2">        {self.balance_sheets._repr_html_()}</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">inc_items</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="p">)</span>
+        <span class="n">bs_items</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">inc_items</span> <span class="o">+</span> <span class="n">bs_items</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inc_items</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+        <span class="c1"># in balance sheet items</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="n">inc_statement</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+            <span class="n">bs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+            <span class="n">date_item</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="n">inc_statements</span> <span class="o">=</span> <span class="n">IncomeStatements</span><span class="p">({</span><span class="n">date_item</span><span class="p">:</span> <span class="n">inc_statement</span><span class="p">})</span>
+            <span class="n">b_sheets</span> <span class="o">=</span> <span class="n">BalanceSheets</span><span class="p">({</span><span class="n">date_item</span><span class="p">:</span> <span class="n">bs</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">inc_statements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+            <span class="n">b_sheets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">FinancialStatements</span><span class="p">(</span><span class="n">inc_statements</span><span class="p">,</span> <span class="n">b_sheets</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">normal_attrs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;income_statements&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;balance_sheets&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;capex&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;non_cash_expenses&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fcf&#39;</span>
+        <span class="p">]</span>
+        <span class="n">all_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span>
+        <span class="n">item_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">all_config</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">normal_attrs</span> <span class="o">+</span> <span class="n">item_attrs</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">capex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="s1">&#39;net_ppe&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dep</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">non_cash_expenses</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+        <span class="c1"># TODO: add stock-based compensation once it is in the data</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dep</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain_on_sale_invest</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain_on_sale_asset</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">impairment</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fcf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_income</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_cash_expenses</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="s1">&#39;nwc&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">capex</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nick DeRobertis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
