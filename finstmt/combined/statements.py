@@ -65,6 +65,9 @@ class FinancialStatements:
         normal_attrs = [
             'income_statements',
             'balance_sheets',
+            'capex',
+            'non_cash_expenses',
+            'fcf'
         ]
         all_config = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
         item_attrs = [config.key for config in all_config]
@@ -72,9 +75,13 @@ class FinancialStatements:
 
     @property
     def capex(self) -> pd.Series:
-        return self.change('ppe') # TODO: add depreciation when it's available
+        return self.change('net_ppe') + self.dep
+
+    @property
+    def non_cash_expenses(self) -> pd.Series:
+        # TODO: add stock-based compensation once it is in the data
+        return self.dep + self.gain_on_sale_invest + self.gain_on_sale_asset + self.impairment
 
     @property
     def fcf(self) -> pd.Series:
-        # TODO: add non-cash expenses when it's available
-        return self.net_income - self.change('nwc') - self.capex
+        return self.net_income + self.non_cash_expenses - self.change('nwc') - self.capex
