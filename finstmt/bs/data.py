@@ -18,13 +18,12 @@ class BalanceSheetData(FinDataBase):
     payables: float
     st_debt: float
     lt_debt: float
-    # TODO: next four items should be optional, but not calculated
-    deferred_rev: float
-    tax_liab: float
-    deposit_liab: float
-    other_income: float
     retained_earnings: float
 
+    deferred_rev: Optional[float] = 0
+    tax_liab: Optional[float] = 0
+    deposit_liab: Optional[float] = 0
+    other_income: Optional[float] = 0
 
     total_current_assets: Optional[float] = None
     total_non_current_assets: Optional[float] = None
