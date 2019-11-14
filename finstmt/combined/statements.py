@@ -8,6 +8,14 @@ class FinancialStatements:
     income_statements: IncomeStatements
     balance_sheets: BalanceSheets
 
+    def _repr_html_(self):
+        return f"""
+        <h2>Income Statement</h2>
+        {self.income_statements._repr_html_()}
+        <h2>Balance Sheet</h2>
+        {self.balance_sheets._repr_html_()}
+        """
+
     def __getattr__(self, item):
         inc_items = [config.key for config in self.income_statements.statement_cls.items_config]
         bs_items = [config.key for config in self.balance_sheets.statement_cls.items_config]
