@@ -16,6 +16,9 @@ class IncomeStatementData(FinDataBase):
     rd_exp: Optional[float] = 0
     dep_exp: Optional[float] = 0
     other_op_exp: Optional[float] = 0
+    gain_on_sale_invest: Optional[float] = 0
+    gain_on_sale_asset: Optional[float] = 0
+    impairment: Optional[float] = 0
 
     op_exp: Optional[float] = None
     ebit: Optional[float] = None

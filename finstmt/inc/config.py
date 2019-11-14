@@ -181,6 +181,63 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         ],
     ),
     ItemConfig(
+        'gain_on_sale_invest',
+        'Gain on Sale of Investments',
+        extract_names=[
+            'gain loss on sale of invest',
+            'gain loss sale of invest',
+            'gain loss sale invest',
+            'gain on sale of invest',
+            'gain sale of invest',
+            'gain sale invest',
+            'gain loss on sale of investments',
+            'gain loss sale of investments',
+            'gain loss sale investments',
+            'gain on sale of investments',
+            'gain sale of investments',
+            'gain sale investments',
+        ]
+    ),
+    ItemConfig(
+        'gain_on_sale_asset',
+        'Gain on Sale of Assets',
+        extract_names=[
+            'gain loss on sale of assets',
+            'gain loss sale of assets',
+            'gain loss sale assets',
+            'gain on sale of assets',
+            'gain sale of assets',
+            'gain sale assets',
+            'gain loss on sale of asset',
+            'gain loss sale of asset',
+            'gain loss sale asset',
+            'gain on sale of asset',
+            'gain sale of asset',
+            'gain sale asset',
+        ]
+    ),
+    ItemConfig(
+        'impairment',
+        'Impairment Expense',
+        extract_names=[
+            'impairment',
+            'impairment expense',
+            'impairment exp',
+            'impairments',
+            'impair',
+            'impair expense',
+            'impair exp',
+            'impairment charges',
+            'impairment charge',
+            'impair charges',
+            'impair charge',
+            'asset writedown',
+            'assets writedown',
+            'asset write down',
+            'assets write down',
+        ]
+    ),
+    ItemConfig(
         'ebt',
         'Earnings Before Tax',
         extract_names=[
