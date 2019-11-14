@@ -1,4 +1,5 @@
 from copy import deepcopy
+import warnings
 from dataclasses import dataclass
 from typing import Optional, List
 
@@ -19,6 +20,7 @@ class FinDataBase:
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
         data_dict = {}
+        extracted_name_dict = {}
         for name in for_lookup.index:
             for item_config in cls.items_config:
                 if item_config.extract_names is None:
@@ -27,9 +29,26 @@ class FinDataBase:
                 if name in item_config.extract_names:
                     # Got a match for series name to allowed names
                     if item_config.key in data_dict:
-                        raise ValueError(f'got multiple data items for {item_config.key}. Was already set to '
-                                         f'{data_dict[item_config.key]} and now trying to also add {name}')
+                        # Multiple matches for data item.
+                        # First see if data is the same, then just skip
+                        if for_lookup[name] == data_dict[item_config.key]:
+                            continue
+                        # Data is not the same, so take the one which is earliest in extract_names
+                        current_match_idx = item_config.extract_names.index(name)
+                        existing_match_idx = item_config.extract_names.index(extracted_name_dict[item_config.key])
+                        current_match_is_preferred = current_match_idx < existing_match_idx
+                        if current_match_is_preferred:
+                            warnings.warn(f'Previously had {data_dict[item_config.key]} for {item_config.key} '
+                                          f'extracted from {extracted_name_dict[item_config.key]}. Replacing with '
+                                          f'{for_lookup[name]} from {name}')
+                        else:
+                            warnings.warn(f'Got {for_lookup[name]} for {item_config.key} from {name} but already '
+                                          f'had {data_dict[item_config.key]} from '
+                                          f'{extracted_name_dict[item_config.key]} which has higher priority, '
+                                          f'keeping {data_dict[item_config.key]}')
+                            continue
                     data_dict[item_config.key] = for_lookup[name]
+                    extracted_name_dict[item_config.key] = name
         return cls(**data_dict)
 
     def to_series(self) -> pd.Series:
