@@ -25,6 +25,11 @@ class FinDataBase:
                 positive_value = abs(value)
                 setattr(self, item.key, positive_value)
 
+    def _repr_html_(self):
+        series = self.to_series()
+        df = pd.DataFrame(series)
+        return df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')._repr_html_()
+
     @classmethod
     def from_series(cls, series: pd.Series):
         for_lookup = deepcopy(series)
