@@ -37,6 +37,9 @@ class FinStatementsBase:
 
     @classmethod
     def from_df(cls, df: pd.DataFrame):
+        """
+        DataFrame must have columns as dates and index as names of financial statement items
+        """
         statements_dict = {}
         for col in df.columns:
             statement = cls.statement_cls.from_series(df[col])
