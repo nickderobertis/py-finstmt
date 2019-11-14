@@ -10,6 +10,10 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         'revenue',
         'Revenue',
         extract_names=[
+            'total revenue',
+            'total rev',
+            'total sales',
+            'total sale',
             'revenue',
             'rev',
             'sales',

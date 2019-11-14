@@ -7,7 +7,7 @@ from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
 
 @dataclass(unsafe_hash=True)
 class IncomeStatementData(FinDataBase):
-    revenue: float  # TODO: get total revenue first, then revenue if it's not there
+    revenue: float
     cogs: float
     sga: float
     int_exp: float
