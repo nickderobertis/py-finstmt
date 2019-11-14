@@ -23,7 +23,6 @@ cleandoc:
 	@rm -rf ./build
 
 github:
-	@make doctest
 	@make cleandoc
 	@make autodoc
 	@make html
