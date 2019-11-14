@@ -37,7 +37,9 @@ BALANCE_SHEET_INPUT_ITEMS = [
         'Receivables',
         extract_names=[
             'receivables',
-            'rec'
+            'rec',
+            'accounts receivable',
+            'ar'
         ]
     ),
     ItemConfig(
@@ -119,7 +121,9 @@ BALANCE_SHEET_INPUT_ITEMS = [
         'payables',
         'Payables',
         extract_names=[
-            'payables'
+            'payables',
+            'accounts payable',
+            'ap'
         ]
     ),
     ItemConfig(
