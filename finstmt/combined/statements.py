@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+import pandas as pd
+
 from finstmt import BalanceSheets, IncomeStatements
 
 
@@ -7,6 +9,25 @@ from finstmt import BalanceSheets, IncomeStatements
 class FinancialStatements:
     income_statements: IncomeStatements
     balance_sheets: BalanceSheets
+
+    def change(self, data_key: str) -> pd.Series:
+        """
+        Get the change between this period and last for a data series
+
+        :param data_key: key of variable, how it would be accessed with FinancialStatements.data_key
+        """
+        series = getattr(self, data_key)
+        return series - self.lag(data_key, 1)
+
+    def lag(self, data_key: str, num_lags: int) -> pd.Series:
+        """
+        Get a data series lagged for a number of periods
+
+        :param data_key: key of variable, how it would be accessed with FinancialStatements.data_key
+        :param num_lags: Number of lags
+        """
+        series = getattr(self, data_key)
+        return series.shift(num_lags)
 
     def _repr_html_(self):
         return f"""
