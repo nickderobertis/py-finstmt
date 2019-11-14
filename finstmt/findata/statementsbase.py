@@ -32,7 +32,7 @@ class FinStatementsBase:
             'statements',
             'to_df',
         ]
-        item_attrs = [config.key for config in self.statement_cls.items_config]
+        item_attrs = dir(list(self.statements.values())[0])
         return normal_attrs + item_attrs
 
     @classmethod

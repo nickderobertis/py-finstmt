@@ -17,8 +17,8 @@ class FinancialStatements:
         """
 
     def __getattr__(self, item):
-        inc_items = [config.key for config in self.income_statements.statement_cls.items_config]
-        bs_items = [config.key for config in self.balance_sheets.statement_cls.items_config]
+        inc_items = dir(self.income_statements)
+        bs_items = dir(self.balance_sheets)
         if item not in inc_items + bs_items:
             raise AttributeError(item)
 
