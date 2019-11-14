@@ -55,4 +55,4 @@ class FinDataBase:
         data_dict = {}
         for item_config in self.items_config:
             data_dict[item_config.display_name] = getattr(self, item_config.key)
-        return pd.Series(data_dict)
+        return pd.Series(data_dict).fillna(0)

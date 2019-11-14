@@ -23,6 +23,8 @@ class FinStatementsBase:
             except AttributeError:
                 # Should hit here on the first loop if this is an invalid item. Raise attribute error like normal.
                 raise AttributeError(item)
+            if pd.isnull(statement_value):
+                statement_value = 0
             data_dict[date] = statement_value
             # TODO: set name of series
         return pd.Series(data_dict)
@@ -59,4 +61,4 @@ class FinStatementsBase:
     def _formatted_df(self) -> pd.DataFrame:
         out_df = self.df.copy()
         out_df.columns = [col.strftime('%m/%d/%Y') for col in out_df.columns]
-        return out_df.applymap(lambda x: f'${x:,.0f}' if not pd.isnull(x) else '')
+        return out_df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')
