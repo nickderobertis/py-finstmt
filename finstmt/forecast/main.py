@@ -1,0 +1,54 @@
+from copy import deepcopy
+
+import pandas as pd
+
+from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
+
+
+class Forecast:
+
+    def __init__(self, series: pd.Series, config: ForecastConfig, item_config: ForecastItemConfig):
+        try:
+            from fbprophet import Prophet
+        except ImportError:
+            raise ImportError('need to install fbprophet to use forecasting functionality. '
+                              'see https://facebook.github.io/prophet/docs/installation.html')
+
+        self.orig_series = series
+        self.config = config
+        self.item_config = item_config
+
+        if self.item_config.method == 'auto':
+            all_kwargs = {}
+            if self.config.freq.lower() == 'y':
+                all_kwargs['yearly_seasonality'] = False
+            all_kwargs.update(self.item_config.prophet_kwargs)
+            self.model = Prophet(**all_kwargs)
+        else:
+            # TODO: add average approach
+            raise NotImplementedError(f'need to implement method {self.item_config.method}')
+
+        # Set in other methods
+        self.result_df = None
+        self.result = None
+
+    def fit(self) -> pd.Series:
+        df = pd.DataFrame(self.orig_series).reset_index()
+        df.columns = ['ds', 'y']
+        self.model.fit(df)
+        future = self.model.make_future_dataframe(**self.config.make_future_df_kwargs)
+        forecast = self.model.predict(future)
+        self.result_df = forecast
+        result = forecast[['ds', 'yhat']].set_index('ds')['yhat']
+        result = result[result.index > self.orig_series.index.max()]
+        self.result = result
+        return result
+
+    def plot(self):
+        return self.model.plot(self.result_df)
+
+    def plot_components(self):
+        return self.model.plot_components(self.result_df)
+
+
+
