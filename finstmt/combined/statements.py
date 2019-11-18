@@ -133,3 +133,18 @@ class FinancialStatements:
         obj = self.__class__(inc_df, bs_df)
         obj.forecasts = all_forecast_dict
         return obj
+
+    @property
+    def forecast_assumptions(self) -> pd.DataFrame:
+        # TODO: replace with config manager get
+        all_configs = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
+        all_series = []
+        for config in all_configs:
+            if config.extract_names is None or not config.forecast_config.make_forecast:
+                continue
+            config_series = config.forecast_config.to_series()
+            config_series.name = config.display_name
+            all_series.append(config_series)
+        return pd.concat(all_series, axis=1).T
+
+
