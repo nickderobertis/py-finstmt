@@ -1,13 +1,18 @@
 from typing import Dict
+from dataclasses import field
 
 import pandas as pd
 
 from finstmt.findata.database import FinDataBase
+from finstmt.forecast.config import ForecastConfig
+from finstmt.forecast.main import Forecast
 
 
 class FinStatementsBase:
     statement_cls = FinDataBase  # to be overridden with individual class
     statements: Dict[pd.Timestamp, FinDataBase]
+
+    forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
 
     def __post_init__(self):
         self.df = self.to_df()
@@ -80,3 +85,25 @@ class FinStatementsBase:
         out_df = self.df.copy()
         out_df.columns = [col.strftime('%m/%d/%Y') for col in out_df.columns]
         return out_df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')
+
+    def forecast(self, **kwargs) -> 'FinStatementsBase':
+        forecast_config = ForecastConfig(**kwargs)
+        forecast_dict = {}
+        results = []
+        for item in self.statement_cls.items_config:
+            if item.extract_names is None:
+                # If can't extract item, must be calculated item, no need to forecast
+                continue
+            data = getattr(self, item.key)
+            forecast = Forecast(data, forecast_config, item.forecast_config)
+            forecast.fit()
+            forecast_dict[item.key] = forecast
+            forecast.result.name = item.extract_names[0]
+            results.append(forecast.result)
+        all_results = pd.concat(results, axis=1).T
+        obj = self.__class__.from_df(all_results)
+        obj.forecasts = forecast_dict
+        return obj
+
+
+
