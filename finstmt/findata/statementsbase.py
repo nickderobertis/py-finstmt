@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Tuple
 from dataclasses import field
 
 import pandas as pd
@@ -11,8 +11,6 @@ from finstmt.forecast.main import Forecast
 class FinStatementsBase:
     statement_cls = FinDataBase  # to be overridden with individual class
     statements: Dict[pd.Timestamp, FinDataBase]
-
-    forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
 
     def __post_init__(self):
         self.df = self.to_df()
@@ -86,7 +84,7 @@ class FinStatementsBase:
         out_df.columns = [col.strftime('%m/%d/%Y') for col in out_df.columns]
         return out_df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')
 
-    def forecast(self, **kwargs) -> 'FinStatementsBase':
+    def _forecast(self, statements, **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series], Dict[str, pd.Series]]:
         forecast_config = ForecastConfig(**kwargs)
         forecast_dict = {}
         results = {}
@@ -95,8 +93,11 @@ class FinStatementsBase:
             if item.extract_names is None or not item.forecast_config.make_forecast:
                 # If can't extract item, must be calculated item, no need to forecast
                 continue
-            data = getattr(self, item.key)
-            forecast = Forecast(data, forecast_config, item.forecast_config)
+            data = getattr(statements, item.key)
+            pct_of_series = None
+            if item.forecast_config.pct_of is not None:
+                pct_of_series = getattr(statements, item.forecast_config.pct_of)
+            forecast = Forecast(data, forecast_config, item.forecast_config, pct_of_series=pct_of_series)
             forecast.fit()
             forecast_dict[item.key] = forecast
             forecast.result.name = item.extract_names[0]
@@ -105,18 +106,7 @@ class FinStatementsBase:
             else:
                 results[item.key] = forecast.result
 
-        for pct_item_key, pct_result in pct_results.items():
-            # TODO: replace with config manager get
-            item_config = [conf for conf in self.statement_cls.items_config if conf.key == pct_item_key][0]
-            # TODO: may need retry behavior here and multiple loops through items to resolve everything
-            # TODO: also taking a percentage of a calculated item won't work as they are calculated in the class
-            pct_of_series = results[item_config.forecast_config.pct_of]
-            results[pct_item_key] = pct_result * pct_of_series
-
-        all_results = pd.concat(list(results.values()), axis=1).T
-        obj = self.__class__.from_df(all_results)
-        obj.forecasts = forecast_dict
-        return obj
+        return forecast_dict, results, pct_results
 
 
 

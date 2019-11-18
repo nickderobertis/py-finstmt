@@ -1,8 +1,11 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Dict
 
 import pandas as pd
 
 from finstmt import BalanceSheets, IncomeStatements
+from finstmt.forecast.config import ForecastConfig
+from finstmt.forecast.main import Forecast
 
 
 @dataclass
@@ -21,6 +24,9 @@ class FinancialStatements:
     """
     income_statements: IncomeStatements
     balance_sheets: BalanceSheets
+
+    forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
+
 
     def change(self, data_key: str) -> pd.Series:
         """
@@ -98,3 +104,32 @@ class FinancialStatements:
     @property
     def fcf(self) -> pd.Series:
         return self.net_income + self.non_cash_expenses - self.change('nwc') - self.capex
+
+    def forecast(self, **kwargs) -> 'FinancialStatements':
+        all_forecast_dict = {}
+        all_results = {}
+        all_pct_results = {}
+        for stmt in [self.income_statements, self.balance_sheets]:
+            forecast_dict, results, pct_results = stmt._forecast(self, **kwargs)
+            all_forecast_dict.update(forecast_dict)
+            all_results.update(results)
+            all_pct_results.update(pct_results)
+
+        # Resolve pct of items
+        for pct_item_key, pct_result in all_pct_results.items():
+            # TODO: replace with config manager get
+            all_configs = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
+            item_config = [conf for conf in all_configs if conf.key == pct_item_key][0]
+            # TODO: may need retry behavior here and multiple loops through items to resolve everything
+            # TODO: also taking a percentage of a calculated item won't work as they are calculated in the class
+            pct_of_series = all_results[item_config.forecast_config.pct_of]
+            calc_series = pct_result * pct_of_series
+            calc_series.name = pct_result.name
+            all_results[pct_item_key] = calc_series
+
+        all_results = pd.concat(list(all_results.values()), axis=1).T
+        inc_df = self.income_statements.__class__.from_df(all_results)
+        bs_df = self.balance_sheets.__class__.from_df(all_results)
+        obj = self.__class__(inc_df, bs_df)
+        obj.forecasts = all_forecast_dict
+        return obj

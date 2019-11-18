@@ -295,9 +295,10 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'income tax expenses',
             'income tax exp',
         ],
-        forecast_config=ForecastItemConfig(
-            pct_of='ebt'
-        )
+        # TODO: uncomment once pct of calculated items works
+        # forecast_config=ForecastItemConfig(
+        #     pct_of='ebt'
+        # )
     ),
     ItemConfig(
         'net_income',

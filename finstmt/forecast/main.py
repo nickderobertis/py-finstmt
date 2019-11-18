@@ -26,6 +26,7 @@ class Forecast:
             if self.config.freq.lower() == 'y':
                 all_kwargs['yearly_seasonality'] = False
             all_kwargs.update(self.item_config.prophet_kwargs)
+            all_kwargs.update(self.config.prophet_kwargs)
             self.model = Prophet(**all_kwargs)
         else:
             # TODO: add average approach
@@ -58,7 +59,7 @@ class Forecast:
         else:
             series = self.orig_series / self.pct_of_series
 
-        df = pd.DataFrame(self.orig_series).reset_index()
+        df = pd.DataFrame(series).reset_index()
         df.columns = ['ds', 'y']
         return df
 
