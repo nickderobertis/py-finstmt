@@ -1,3 +1,4 @@
+from finstmt.forecast.config import ForecastItemConfig
 from finstmt.items.config import ItemConfig
 
 # TODO: use regex instead of names list
@@ -29,6 +30,9 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'cogs',
             'cor'
         ],
+        forecast_config=ForecastItemConfig(
+            pct_of='revenue'
+        )
     ),
     ItemConfig(
         'gross_profit',
@@ -138,6 +142,9 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'operating expenses',
             'operating exp',
         ],
+        forecast_config=ForecastItemConfig(
+            make_forecast=False
+        )
     ),
     ItemConfig(
         'ebit',
@@ -164,7 +171,10 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'op income',
             'op inc',
             'operating inc'
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            make_forecast=False
+        )
     ),
     ItemConfig(
         'int_exp',
@@ -179,6 +189,9 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'interest expenses',
             'interest exp',
         ],
+        forecast_config=ForecastItemConfig(
+            pct_of='total_debt'
+        )
     ),
     ItemConfig(
         'gain_on_sale_invest',
@@ -263,7 +276,10 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'earnings before tax incl unusual items',
             'earn before tax incl unusual items',
             'earn before taxes incl unusual items',
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            make_forecast=False
+        )
     ),
     ItemConfig(
         'tax_exp',
@@ -279,6 +295,9 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'income tax expenses',
             'income tax exp',
         ],
+        forecast_config=ForecastItemConfig(
+            pct_of='ebt'
+        )
     ),
     ItemConfig(
         'net_income',
@@ -288,6 +307,9 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'net inc',
             'earnings',
             'earn',
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            make_forecast=False
+        )
     ),
 ]

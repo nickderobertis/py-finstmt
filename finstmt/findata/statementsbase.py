@@ -89,9 +89,10 @@ class FinStatementsBase:
     def forecast(self, **kwargs) -> 'FinStatementsBase':
         forecast_config = ForecastConfig(**kwargs)
         forecast_dict = {}
-        results = []
+        results = {}
+        pct_results = {}
         for item in self.statement_cls.items_config:
-            if item.extract_names is None:
+            if item.extract_names is None or not item.forecast_config.make_forecast:
                 # If can't extract item, must be calculated item, no need to forecast
                 continue
             data = getattr(self, item.key)
@@ -99,8 +100,20 @@ class FinStatementsBase:
             forecast.fit()
             forecast_dict[item.key] = forecast
             forecast.result.name = item.extract_names[0]
-            results.append(forecast.result)
-        all_results = pd.concat(results, axis=1).T
+            if item.forecast_config.pct_of is not None:
+                pct_results[item.key] = forecast.result
+            else:
+                results[item.key] = forecast.result
+
+        for pct_item_key, pct_result in pct_results.items():
+            # TODO: replace with config manager get
+            item_config = [conf for conf in self.statement_cls.items_config if conf.key == pct_item_key][0]
+            # TODO: may need retry behavior here and multiple loops through items to resolve everything
+            # TODO: also taking a percentage of a calculated item won't work as they are calculated in the class
+            pct_of_series = results[item_config.forecast_config.pct_of]
+            results[pct_item_key] = pct_result * pct_of_series
+
+        all_results = pd.concat(list(results.values()), axis=1).T
         obj = self.__class__.from_df(all_results)
         obj.forecasts = forecast_dict
         return obj

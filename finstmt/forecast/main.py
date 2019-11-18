@@ -1,4 +1,5 @@
 from copy import deepcopy
+from typing import Optional
 
 import pandas as pd
 
@@ -7,7 +8,8 @@ from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 
 class Forecast:
 
-    def __init__(self, series: pd.Series, config: ForecastConfig, item_config: ForecastItemConfig):
+    def __init__(self, series: pd.Series, config: ForecastConfig, item_config: ForecastItemConfig,
+                 pct_of_series: Optional[pd.Series] = None):
         try:
             from fbprophet import Prophet
         except ImportError:
@@ -17,6 +19,7 @@ class Forecast:
         self.orig_series = series
         self.config = config
         self.item_config = item_config
+        self.pct_of_series = pct_of_series
 
         if self.item_config.method == 'auto':
             all_kwargs = {}
@@ -33,9 +36,7 @@ class Forecast:
         self.result = None
 
     def fit(self) -> pd.Series:
-        df = pd.DataFrame(self.orig_series).reset_index()
-        df.columns = ['ds', 'y']
-        self.model.fit(df)
+        self.model.fit(self._df_for_fit)
         future = self.model.make_future_dataframe(**self.config.make_future_df_kwargs)
         forecast = self.model.predict(future)
         self.result_df = forecast
@@ -49,6 +50,17 @@ class Forecast:
 
     def plot_components(self):
         return self.model.plot_components(self.result_df)
+
+    @property
+    def _df_for_fit(self) -> pd.DataFrame:
+        if self.pct_of_series is None:
+            series = self.orig_series
+        else:
+            series = self.orig_series / self.pct_of_series
+
+        df = pd.DataFrame(self.orig_series).reset_index()
+        df.columns = ['ds', 'y']
+        return df
 
 
 

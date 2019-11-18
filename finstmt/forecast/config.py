@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Union, Dict
+from typing import Union, Dict, Optional
 
 
 @dataclass
@@ -18,4 +18,6 @@ class ForecastConfig:
 @dataclass
 class ForecastItemConfig:
     method: str = 'auto'
+    pct_of: Optional[str] = None
+    make_forecast: bool = True
     prophet_kwargs: dict = field(default_factory=lambda: {})
