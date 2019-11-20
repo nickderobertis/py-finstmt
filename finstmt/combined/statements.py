@@ -4,6 +4,7 @@ from typing import Dict
 import pandas as pd
 
 from finstmt import BalanceSheets, IncomeStatements
+from finstmt.config_manage.statements import StatementsConfigManager
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
 
@@ -27,6 +28,11 @@ class FinancialStatements:
 
     forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
 
+    def __post_init__(self):
+        config_dict = {}
+        config_dict['inc'] = self.income_statements.config
+        config_dict['bs'] = self.balance_sheets.config
+        self.config = StatementsConfigManager(config_dict)
 
     def change(self, data_key: str) -> pd.Series:
         """

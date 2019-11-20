@@ -11,6 +11,9 @@ from finstmt.items.config import ItemConfig
 
 @dataclass
 class StatementsConfigManager(ConfigManagerBase):
+    """
+    Main configuration interface. Handles all of the configuration for a set of financial statements.
+    """
     config_managers: Dict[str, StatementConfigManager]
 
     def get(self, item_key: str) -> ItemConfig:
@@ -27,7 +30,7 @@ class StatementsConfigManager(ConfigManagerBase):
         for fin_statement_type, manager in self.config_managers.items():
             try:
                 return manager.get(item_key), fin_statement_type
-            except KeyError:
+            except NoSuchItemException:
                 continue
         raise NoSuchItemException(item_key)
 

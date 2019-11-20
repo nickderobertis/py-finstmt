@@ -3,6 +3,7 @@ from dataclasses import field
 
 import pandas as pd
 
+from finstmt.config_manage.statement import StatementConfigManager
 from finstmt.findata.database import FinDataBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
@@ -23,6 +24,12 @@ class FinStatementsBase:
             if i != 0:
                 self.statements[date].prior_statement = self.statements[prior_date]
             prior_date = date
+
+        # Create dictionary of individual time period configs to construct the entire statement config
+        configs_dict = {}
+        for date, statement in self.statements.items():
+            configs_dict[date] = statement.items_config
+        self.config = StatementConfigManager(configs_dict)
 
     def _repr_html_(self):
         return self._formatted_df._repr_html_()

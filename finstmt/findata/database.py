@@ -7,7 +7,7 @@ import pandas as pd
 from sympy import IndexedBase
 
 from finstmt.clean.name import standardize_names_in_series_index
-from finstmt.config_manage.statement import StatementConfigManager
+from finstmt.config_manage.data import DataConfigManager
 from finstmt.items.config import ItemConfig
 
 
@@ -19,7 +19,7 @@ class FinDataBase:
     prior_statement: Optional['FinDataBase'] = None
 
     def __post_init__(self):
-        self.items_config = StatementConfigManager(self.items_config)
+        self.items_config = DataConfigManager(self.items_config)
         for item in self.items_config:
             if item.force_positive and item.extract_names is not None:
                 # If extracted and need to force positive, take absolute value

@@ -1,47 +1,44 @@
 from dataclasses import dataclass
-from typing import Sequence, Dict
+from typing import Dict, Tuple
 
-from sympy import symbols, IndexedBase, Idx, Expr, sympify
+from sympy import IndexedBase
+import pandas as pd
 
 from finstmt.config_manage.base import ConfigManagerBase
+from finstmt.config_manage.data import DataConfigManager
+from finstmt.exc import NoSuchItemException
 from finstmt.items.config import ItemConfig
 
 
 @dataclass
 class StatementConfigManager(ConfigManagerBase):
-    configs: Sequence[ItemConfig]
-
-    def __post_init__(self):
-        self.configs = list(self.configs)
-
-    def __getitem__(self, item):
-        return self.configs[item]
+    """
+    Used for entire single financial statement, e.g. income statement or balance sheet, with multiple dates in the
+    statement.
+    """
+    config_managers: Dict[pd.Timestamp, DataConfigManager]
 
     def get(self, item_key: str) -> ItemConfig:
         """
-        Get entire configuration for item by key
+        For internal use, get the config as well as the key of the financial statement type it belongs to
         """
-        return self.config_dict[item_key]
+        for manager in self.config_managers.values():
+            try:
+                return manager.get(item_key)
+            except KeyError:
+                continue
+        raise NoSuchItemException(item_key)
 
     def set(self, item_key: str, config: ItemConfig):
         """
-        Set entire configuration for item by key
+        Set entire configuration for item by key. Needs to handle setting the value in each individual
+        data config manager
         """
-        orig_config = self.get(item_key)
-        config_idx = self.configs.index(orig_config)
-        self.configs[config_idx] = config
-
-    # TODO: make next two not properties, but recalculate any time config changes
-    @property
-    def config_dict(self) -> Dict[str, ItemConfig]:
-        return {config.key: config for config in self.configs}
+        for manager in self.config_managers.values():
+            manager.set(item_key, config)
 
     @property
     def sympy_namespace(self) -> Dict[str, IndexedBase]:
-        t = symbols('t', cls=Idx)
-        ns_dict = {'t': t}
-        for config in self.configs:
-            expr = IndexedBase(config.key)
-            ns_dict.update({config.key: expr})
-        return ns_dict
-
+        for manager in self.config_managers.values():
+            # All should be identical, so first is enough
+            return manager.sympy_namespace
