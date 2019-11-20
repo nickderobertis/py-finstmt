@@ -49,6 +49,7 @@ PACKAGE_INSTALL_REQUIRES = [
     # 'package',
     # 'otherpackage>=1,<2'
     'pandas',
+    'sympy'
 ]
 
 # Sphinx executes all the import statements as it generates the documentation. To avoid having to install all
