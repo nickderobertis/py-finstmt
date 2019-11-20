@@ -51,7 +51,8 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'cash and st invest',
             'cash and shortterm invest',
             'cash and short term invest',
-        ]
+        ],
+        expr_str='cash[t] + st_invest[t]'
     ),
     ItemConfig(
         'receivables',
@@ -125,7 +126,8 @@ BALANCE_SHEET_INPUT_ITEMS = [
         extract_names=[
             'total current assets',
             'tca',
-        ]
+        ],
+        expr_str='cash_and_st_invest[t] + receivables[t] + inventory[t] + def_tax_st[t] + other_current_assets[t]'
     ),
     ItemConfig(
         'gross_ppe',
@@ -172,7 +174,8 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'net ppe',
             'net property plant equipment',
             'net property plant and equipment',
-        ]
+        ],
+        expr_str='gross_ppe[t] - dep[t]'
     ),
     ItemConfig(
         'goodwill',
@@ -248,7 +251,8 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'total lt assets',
             'total longterm assets',
             'total long term assets'
-        ]
+        ],
+        expr_str='net_ppe[t] + goodwill[t] + lt_invest[t] + def_tax_lt[t] + other_lt_assets[t]'
     ),
     ItemConfig(
         'total_assets',
@@ -258,7 +262,8 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'total asset',
             'assets',
             'asset'
-        ]
+        ],
+        expr_str='total_current_assets[t] + total_non_current_assets[t]'
     ),
     ItemConfig(
         'payables',
@@ -465,7 +470,8 @@ ItemConfig(
         'Total Current Liabilities',
         extract_names=[
             'total current liabilities',
-        ]
+        ],
+        expr_str='payables[t] + st_debt[t] + tax_liab_st[t] + current_lt_debt[t] + other_current_liab[t]'
     ),
     ItemConfig(
         'lt_debt',
@@ -487,7 +493,8 @@ ItemConfig(
         'Total Debt',
         extract_names=[
             'total debt'
-        ]
+        ],
+        expr_str='st_debt[t] + lt_debt[t]'
     ),
     ItemConfig(
         'deferred_rev',
@@ -685,7 +692,8 @@ ItemConfig(
             'total noncurrent liability',
             'total non current liab',
             'total noncurrent liab',
-        ]
+        ],
+        expr_str='lt_debt[t] + deferred_rev[t] + tax_liab_lt[t] + deposit_liab[t] + other_lt_liab[t]'
     ),
     ItemConfig(
         'total_liab',
@@ -694,7 +702,8 @@ ItemConfig(
             'total liab',
             'total liability',
             'total liabilities',
-        ]
+        ],
+        expr_str='total_non_current_liab[t] + total_current_liab[t]'
     ),
     ItemConfig(
         'common_stock',
@@ -757,7 +766,8 @@ ItemConfig(
             'total equity',
             'total shareholders equity',
             'total stockholders equity'
-        ]
+        ],
+        expr_str='other_income[t] + retained_earnings[t] + common_stock[t] + minority_interest[t]'
     ),
     ItemConfig(
         'total_liab_and_equity',
@@ -771,6 +781,7 @@ ItemConfig(
             'liab and equity',
             'liabilities equity',
             'liab equity',
-        ]
+        ],
+        expr_str='total_liab[t] + total_equity[t]'
     )
 ]
