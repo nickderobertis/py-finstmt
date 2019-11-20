@@ -43,11 +43,15 @@ class FinDataBase:
         return df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')._repr_html_()
 
     @classmethod
-    def from_series(cls, series: pd.Series):
+    def from_series(cls, series: pd.Series, prior_statement: Optional['FinDataBase'] = None):
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
         data_dict = {}
         extracted_name_dict = {}
+
+        if prior_statement is not None:
+            data_dict['prior_statement'] = prior_statement
+
         for name in for_lookup.index:
             for item_config in cls.items_config:
                 if item_config.extract_names is None:
