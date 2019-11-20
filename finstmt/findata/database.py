@@ -1,7 +1,7 @@
 from copy import deepcopy
 import warnings
 from dataclasses import dataclass
-from typing import Optional, List
+from typing import Optional, List, Dict
 
 import pandas as pd
 
@@ -73,3 +73,12 @@ class FinDataBase:
         for item_config in self.items_config:
             data_dict[item_config.display_name] = getattr(self, item_config.key)
         return pd.Series(data_dict).fillna(0)
+
+    def as_dict(self) -> Dict[str, float]:
+        remove_keys = [
+            'items_config'
+        ]
+
+        all_dict = deepcopy(self.__dict__)
+        [all_dict.pop(key) for key in remove_keys]
+        return all_dict
