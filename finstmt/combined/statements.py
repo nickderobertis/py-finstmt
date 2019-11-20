@@ -2,9 +2,11 @@ from dataclasses import dataclass, field
 from typing import Dict
 
 import pandas as pd
+from sympy import Indexed
 
 from finstmt import BalanceSheets, IncomeStatements
 from finstmt.config_manage.statements import StatementsConfigManager
+from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
 
@@ -30,8 +32,8 @@ class FinancialStatements:
 
     def __post_init__(self):
         config_dict = {}
-        config_dict['inc'] = self.income_statements.config
-        config_dict['bs'] = self.balance_sheets.config
+        config_dict['income_statements'] = self.income_statements.config
+        config_dict['balance_sheets'] = self.balance_sheets.config
         self.config = StatementsConfigManager(config_dict)
 
     def change(self, data_key: str) -> pd.Series:
@@ -112,6 +114,9 @@ class FinancialStatements:
         return self.net_income + self.non_cash_expenses - self.change('nwc') - self.capex
 
     def forecast(self, **kwargs) -> 'FinancialStatements':
+        # TODO: seems like this whole thing is repeating a lot of logic that could maybe be removed if
+        # TODO: I could construct partial financial statements
+        # TODO: Also this code feels very messy
         all_forecast_dict = {}
         all_results = {}
         all_pct_results = {}
@@ -121,17 +126,80 @@ class FinancialStatements:
             all_results.update(results)
             all_pct_results.update(pct_results)
 
+        # Set up for creating dictionary for sympy substitutions. First extract all the results into a dict of dicts
+        # nested dict where keys are date indices, values are dicts where keys are item keys, values are item values
+        by_date_item_dict = {}
+        all_dates = list(all_results.values())[0].index.tolist()
+
+        def add_series_to_by_date_item_dict(series: pd.Series, item_key: str):
+            for date, value in series.iteritems():
+                date_idx = all_dates.index(date)
+                if date_idx not in by_date_item_dict:
+                    by_date_item_dict[date_idx] = {}
+                by_date_item_dict[date_idx][item_key] = value
+
+        [add_series_to_by_date_item_dict(result_series, item_key) for item_key, result_series in all_results.items()]
+        t = self.config.sympy_namespace['t']
+
+        def get_subs_dict(t_offset: int):
+            subs_dict = {}
+            # TODO: currently only getting current period values, need to grab previous values
+            values_dict = by_date_item_dict[t_offset]
+            for item_key, item_symbol in self.config.sympy_namespace.items():
+                if item_key in values_dict:
+                    indexed_symbol = item_symbol.__getitem__(t)  # eg cash[t] or cash[t-1]
+                    subs_dict[indexed_symbol] = values_dict[item_key]
+            return subs_dict
+
+        def get_expr_eval_create_series_and_add_to_by_date_item_dict_and_results(overall_item_key: str) -> pd.Series:
+            # TODO: rename to have nothing to do with pct
+            result_dict = {}
+            expr = self.config.expr_for(overall_item_key)
+            for i, date in enumerate(all_dates):
+                # Now create the subs dict from the dict of dicts
+                subs_dict = get_subs_dict(i)
+                substituted = expr.subs(subs_dict)
+                try:
+                    eval_expr = float(substituted)
+                except TypeError:
+                    # This means wasn't completely substituted. Must be a calculated item which has not yet
+                    # been calculated. Calculate it now.
+                    reverse_sympy_ns = {value: key for key, value in self.config.sympy_namespace.items()}
+                    for sym in substituted.free_symbols:
+                        if isinstance(sym, Indexed):
+                            # Got an uncalculated symbol
+                            uncalc_key = reverse_sympy_ns[sym.base]
+                            get_expr_eval_create_series_and_add_to_by_date_item_dict_and_results(uncalc_key)
+                    # Now try the original calculation again, now that missing items have been calculated
+                    subs_dict = get_subs_dict(i)
+                    substituted = expr.subs(subs_dict)
+                    eval_expr = float(substituted)
+                result_dict[date] = eval_expr
+            result_series = pd.Series(result_dict)
+            result_series.name = self.config.get_value(overall_item_key, 'primary_name')
+            # Add this newly calculated series to overall substitution values
+            add_series_to_by_date_item_dict(result_series, overall_item_key)
+            all_results[overall_item_key] = result_series
+            return result_series
+
         # Resolve pct of items
         for pct_item_key, pct_result in all_pct_results.items():
-            # TODO: replace with config manager get
-            all_configs = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
-            item_config = [conf for conf in all_configs if conf.key == pct_item_key][0]
-            # TODO: may need retry behavior here and multiple loops through items to resolve everything
-            # TODO: also taking a percentage of a calculated item won't work as they are calculated in the class
-            pct_of_series = all_results[item_config.forecast_config.pct_of]
+            item_config = self.config.get(pct_item_key)
+            pct_of_key = item_config.forecast_config.pct_of
+            pct_of_config, pct_of_source_key = self.config._get(pct_of_key)
+            if pct_of_key in all_results:
+                # Already have result, just get it from results
+                pct_of_series = all_results[item_config.forecast_config.pct_of]
+            elif pct_of_config.expr_str is not None:
+                # This is a calculated item, need to calculate it, add it to results, and use that series
+                pct_of_series = get_expr_eval_create_series_and_add_to_by_date_item_dict_and_results(pct_of_key)
+            else:
+                raise ValueError(f'could not get series for {pct_of_key}')
             calc_series = pct_result * pct_of_series
             calc_series.name = pct_result.name
             all_results[pct_item_key] = calc_series
+            # Add this newly calculated series to overall substitution values
+            add_series_to_by_date_item_dict(calc_series, pct_item_key)
 
         all_results = pd.concat(list(all_results.values()), axis=1).T
         inc_df = self.income_statements.__class__.from_df(all_results)

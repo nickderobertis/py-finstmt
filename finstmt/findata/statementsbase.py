@@ -114,7 +114,7 @@ class FinStatementsBase:
             forecast = Forecast(data, forecast_config, item.forecast_config, pct_of_series=pct_of_series)
             forecast.fit()
             forecast_dict[item.key] = forecast
-            forecast.result.name = item.extract_names[0]
+            forecast.result.name = item.primary_name
             if item.forecast_config.pct_of is not None:
                 pct_results[item.key] = forecast.result
             else:

@@ -13,3 +13,10 @@ class ItemConfig:
     force_positive: bool = True
     forecast_config: ForecastItemConfig = ForecastItemConfig()
     expr_str: Optional[str] = None
+
+    @property
+    def primary_name(self) -> str:
+        if self.extract_names is None:
+            return self.key
+
+        return self.extract_names[0]
