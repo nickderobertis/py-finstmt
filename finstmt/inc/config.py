@@ -37,6 +37,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
     ItemConfig(
         'gross_profit',
         'Gross Profit',
+        expr_str='revenue[t] - cogs[t]'
     ),
     ItemConfig(
         'rd_exp',
@@ -144,7 +145,8 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         ],
         forecast_config=ForecastItemConfig(
             make_forecast=False
-        )
+        ),
+        expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
     ),
     ItemConfig(
         'ebit',
@@ -174,7 +176,8 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         ],
         forecast_config=ForecastItemConfig(
             make_forecast=False
-        )
+        ),
+        expr_str='gross_profit[t] - op_exp[t]'
     ),
     ItemConfig(
         'int_exp',
@@ -279,7 +282,8 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         ],
         forecast_config=ForecastItemConfig(
             make_forecast=False
-        )
+        ),
+        expr_str='ebit[t] - int_exp[t]'
     ),
     ItemConfig(
         'tax_exp',
@@ -311,6 +315,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         ],
         forecast_config=ForecastItemConfig(
             make_forecast=False
-        )
+        ),
+        expr_str='ebt[t] - tax_exp[t]'
     ),
 ]

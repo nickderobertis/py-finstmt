@@ -12,3 +12,4 @@ class ItemConfig:
     extract_names: Optional[Sequence[str]] = None
     force_positive: bool = True
     forecast_config: ForecastItemConfig = ForecastItemConfig()
+    expr_str: Optional[str] = None
