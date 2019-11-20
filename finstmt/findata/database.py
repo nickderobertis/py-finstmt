@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import Optional, List, Dict
 
 import pandas as pd
+from sympy import IndexedBase
 
 from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.statement import StatementConfigManager
@@ -15,6 +16,7 @@ class FinDataBase:
     Base class for financial statement data. Should not be used directly.
     """
     items_config: List[ItemConfig]
+    prior_statement: Optional['FinDataBase'] = None
 
     def __post_init__(self):
         self.items_config = StatementConfigManager(self.items_config)
@@ -26,6 +28,14 @@ class FinDataBase:
                     continue
                 positive_value = abs(value)
                 setattr(self, item.key, positive_value)
+        subs_dict = self.get_sympy_subs_dict()
+        for config in self.items_config:
+            item_value = getattr(self, config.key)
+            if item_value is None and config.expr_str is not None:
+                # Got a calculated item which has no value from the data, need to calculate
+                expr = self.items_config.expr_for(config.key)
+                eval_expr = expr.subs(subs_dict)
+                setattr(self, config.key, float(eval_expr))
 
     def _repr_html_(self):
         series = self.to_series()
@@ -82,3 +92,12 @@ class FinDataBase:
         all_dict = deepcopy(self.__dict__)
         [all_dict.pop(key) for key in remove_keys]
         return all_dict
+
+    def get_sympy_subs_dict(self, t_offset: int = 0) -> Dict[IndexedBase, float]:
+        subs_dict = self.items_config.eq_subs_dict(self.as_dict(), t_offset=t_offset)
+        if self.prior_statement is not None:
+            # Recursively look up prior statements to fill out historical values
+            subs_dict.update(
+                self.prior_statement.get_sympy_subs_dict(t_offset = t_offset - 1)
+            )
+        return subs_dict
