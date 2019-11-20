@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from typing import Sequence, Dict, Any
 
+from sympy import symbols, IndexedBase, Idx
+
 from finstmt.items.config import ItemConfig
 
 
@@ -43,6 +45,17 @@ class StatementConfigManager:
         setattr(orig_config, config_key, value)
         self.set(item_key, orig_config)
 
+    # TODO: make next two not properties, but recalculate any time config changes
     @property
     def config_dict(self) -> Dict[str, ItemConfig]:
         return {config.key: config for config in self.configs}
+
+    @property
+    def sympy_namespace(self) -> Dict[str, IndexedBase]:
+        t = symbols('t', cls=Idx)
+        ns_dict = {'t': t}
+        for config in self.configs:
+            expr = IndexedBase(config.key)
+            ns_dict.update({config.key: expr})
+        return ns_dict
+
