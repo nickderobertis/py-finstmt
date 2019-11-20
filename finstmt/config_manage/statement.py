@@ -11,6 +11,9 @@ class StatementConfigManager:
     def __post_init__(self):
         self.configs = list(self.configs)
 
+    def __getitem__(self, item):
+        return self.configs[item]
+
     def get(self, item_key: str) -> ItemConfig:
         """
         Get entire configuration for item by key

@@ -6,6 +6,7 @@ from typing import Optional, List
 import pandas as pd
 
 from finstmt.clean.name import standardize_names_in_series_index
+from finstmt.config_manage.statement import StatementConfigManager
 from finstmt.items.config import ItemConfig
 
 
@@ -16,6 +17,7 @@ class FinDataBase:
     items_config: List[ItemConfig]
 
     def __post_init__(self):
+        self.items_config = StatementConfigManager(self.items_config)
         for item in self.items_config:
             if item.force_positive and item.extract_names is not None:
                 # If extracted and need to force positive, take absolute value
