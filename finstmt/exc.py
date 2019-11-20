@@ -1,0 +1,3 @@
+
+class NotACalculatedItemException(Exception):
+    pass

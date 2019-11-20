@@ -15,6 +15,15 @@ class FinStatementsBase:
     def __post_init__(self):
         self.df = self.to_df()
 
+        # Hook up prior statements to statements
+        dates = list(self.statements.keys())
+        dates.sort()
+        prior_date = None
+        for i, date in enumerate(dates):
+            if i != 0:
+                self.statements[date].prior_statement = self.statements[prior_date]
+            prior_date = date
+
     def _repr_html_(self):
         return self._formatted_df._repr_html_()
 
@@ -34,10 +43,8 @@ class FinStatementsBase:
 
     def __getitem__(self, item):
         if not isinstance(item, (list, tuple)):
-            series = self.df[item]
             date_item = pd.to_datetime(item)
-            series.name = date_item
-            return self.statement_cls.from_series(series)
+            return self.statements[date_item]
 
         # Got multiple dates
         all_series = []

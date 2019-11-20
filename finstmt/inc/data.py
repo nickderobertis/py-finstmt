@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, Dict
 
 from finstmt.findata.database import FinDataBase
 from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
@@ -26,17 +26,6 @@ class IncomeStatementData(FinDataBase):
     net_income: Optional[float] = None
 
     items_config = INCOME_STATEMENT_INPUT_ITEMS
-
-    def __post_init__(self):
-        super().__post_init__()
-        if self.op_exp is None:
-            self.op_exp = self.rd_exp + self.dep_exp + self.sga + self.other_op_exp
-        if self.ebit is None:
-            self.ebit = self.gross_profit - self.op_exp
-        if self.ebt is None:
-            self.ebt = self.ebit - self.int_exp
-        if self.net_income is None:
-            self.net_income = self.ebt - self.tax_exp
 
     @property
     def gross_profit(self) -> float:

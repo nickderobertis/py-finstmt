@@ -15,6 +15,7 @@ sphinx-rtd-theme = "*"
 twine = "*"
 jupyterlab = "*"
 pandas = "*"
+sympy = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,11 +1,13 @@
 from copy import deepcopy
 import warnings
 from dataclasses import dataclass
-from typing import Optional, List
+from typing import Optional, List, Dict
 
 import pandas as pd
+from sympy import IndexedBase
 
 from finstmt.clean.name import standardize_names_in_series_index
+from finstmt.config_manage.statement import StatementConfigManager
 from finstmt.items.config import ItemConfig
 
 
@@ -14,8 +16,10 @@ class FinDataBase:
     Base class for financial statement data. Should not be used directly.
     """
     items_config: List[ItemConfig]
+    prior_statement: Optional['FinDataBase'] = None
 
     def __post_init__(self):
+        self.items_config = StatementConfigManager(self.items_config)
         for item in self.items_config:
             if item.force_positive and item.extract_names is not None:
                 # If extracted and need to force positive, take absolute value
@@ -24,6 +28,14 @@ class FinDataBase:
                     continue
                 positive_value = abs(value)
                 setattr(self, item.key, positive_value)
+        subs_dict = self.get_sympy_subs_dict()
+        for config in self.items_config:
+            item_value = getattr(self, config.key)
+            if item_value is None and config.expr_str is not None:
+                # Got a calculated item which has no value from the data, need to calculate
+                expr = self.items_config.expr_for(config.key)
+                eval_expr = expr.subs(subs_dict)
+                setattr(self, config.key, float(eval_expr))
 
     def _repr_html_(self):
         series = self.to_series()
@@ -31,11 +43,15 @@ class FinDataBase:
         return df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')._repr_html_()
 
     @classmethod
-    def from_series(cls, series: pd.Series):
+    def from_series(cls, series: pd.Series, prior_statement: Optional['FinDataBase'] = None):
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
         data_dict = {}
         extracted_name_dict = {}
+
+        if prior_statement is not None:
+            data_dict['prior_statement'] = prior_statement
+
         for name in for_lookup.index:
             for item_config in cls.items_config:
                 if item_config.extract_names is None:
@@ -71,3 +87,21 @@ class FinDataBase:
         for item_config in self.items_config:
             data_dict[item_config.display_name] = getattr(self, item_config.key)
         return pd.Series(data_dict).fillna(0)
+
+    def as_dict(self) -> Dict[str, float]:
+        remove_keys = [
+            'items_config'
+        ]
+
+        all_dict = deepcopy(self.__dict__)
+        [all_dict.pop(key) for key in remove_keys]
+        return all_dict
+
+    def get_sympy_subs_dict(self, t_offset: int = 0) -> Dict[IndexedBase, float]:
+        subs_dict = self.items_config.eq_subs_dict(self.as_dict(), t_offset=t_offset)
+        if self.prior_statement is not None:
+            # Recursively look up prior statements to fill out historical values
+            subs_dict.update(
+                self.prior_statement.get_sympy_subs_dict(t_offset = t_offset - 1)
+            )
+        return subs_dict
