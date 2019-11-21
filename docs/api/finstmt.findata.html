@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.findata package &mdash; finstmt 0.1.0 documentation</title>
+  <title>finstmt.findata package &mdash; finstmt 0.2.0 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="finstmt.inc package" href="finstmt.inc.html" />
-    <link rel="prev" title="finstmt.combined package" href="finstmt.combined.html" /> 
+    <link rel="next" title="finstmt.forecast package" href="finstmt.forecast.html" />
+    <link rel="prev" title="finstmt.config_manage package" href="finstmt.config_manage.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.2.0
               </div>
             
           
@@ -98,11 +98,15 @@
 <li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html">finstmt.bs package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.clean.html">finstmt.clean package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html">finstmt.combined package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html">finstmt.config_manage package</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">finstmt.findata package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html">finstmt.forecast package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html">finstmt.inc package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.items.html">finstmt.items package</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt">Module contents</a></li>
 </ul>
 </li>
@@ -189,8 +193,33 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Base class for financial statement data. Should not be used directly.</p>
 <dl class="method">
+<dt id="finstmt.findata.database.FinDataBase.as_dict">
+<code class="sig-name descname">as_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/database.html#FinDataBase.as_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.database.FinDataBase.as_dict" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="finstmt.findata.database.FinDataBase.from_series">
-<em class="property">classmethod </em><code class="sig-name descname">from_series</code><span class="sig-paren">(</span><em class="sig-param">series</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/database.html#FinDataBase.from_series"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.database.FinDataBase.from_series" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">from_series</code><span class="sig-paren">(</span><em class="sig-param">series</em>, <em class="sig-param">prior_statement=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/database.html#FinDataBase.from_series"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.database.FinDataBase.from_series" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="finstmt.findata.database.FinDataBase.get_sympy_subs_dict">
+<code class="sig-name descname">get_sympy_subs_dict</code><span class="sig-paren">(</span><em class="sig-param">t_offset=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/database.html#FinDataBase.get_sympy_subs_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.database.FinDataBase.get_sympy_subs_dict" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="finstmt.findata.database.FinDataBase.prior_statement">
+<code class="sig-name descname">prior_statement</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.findata.database.FinDataBase.prior_statement" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -250,10 +279,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="finstmt.inc.html" class="btn btn-neutral float-right" title="finstmt.inc package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="finstmt.forecast.html" class="btn btn-neutral float-right" title="finstmt.forecast package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="finstmt.combined.html" class="btn btn-neutral float-left" title="finstmt.combined package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="finstmt.config_manage.html" class="btn btn-neutral float-left" title="finstmt.config_manage package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

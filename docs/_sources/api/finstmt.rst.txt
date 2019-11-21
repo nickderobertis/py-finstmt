@@ -9,9 +9,23 @@ Subpackages
    finstmt.bs
    finstmt.clean
    finstmt.combined
+   finstmt.config_manage
    finstmt.findata
+   finstmt.forecast
    finstmt.inc
    finstmt.items
+
+Submodules
+----------
+
+finstmt.exc module
+------------------
+
+.. automodule:: finstmt.exc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.combined.statements &mdash; finstmt 0.1.0 documentation</title>
+  <title>finstmt.combined.statements &mdash; finstmt 0.2.0 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.2.0
               </div>
             
           
@@ -154,11 +154,17 @@
            <div itemprop="articleBody">
             
   <h1>Source code for finstmt.combined.statements</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="k">import</span> <span class="n">dataclass</span>
+<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="k">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Indexed</span>
 
 <span class="kn">from</span> <span class="nn">finstmt</span> <span class="k">import</span> <span class="n">BalanceSheets</span><span class="p">,</span> <span class="n">IncomeStatements</span>
+<span class="kn">from</span> <span class="nn">finstmt.config_manage.statements</span> <span class="k">import</span> <span class="n">StatementsConfigManager</span>
+<span class="kn">from</span> <span class="nn">finstmt.findata.statementsbase</span> <span class="k">import</span> <span class="n">FinStatementsBase</span>
+<span class="kn">from</span> <span class="nn">finstmt.forecast.config</span> <span class="k">import</span> <span class="n">ForecastConfig</span>
+<span class="kn">from</span> <span class="nn">finstmt.forecast.main</span> <span class="k">import</span> <span class="n">Forecast</span>
 
 
 <div class="viewcode-block" id="FinancialStatements"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements">[docs]</a><span class="nd">@dataclass</span>
@@ -177,6 +183,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">income_statements</span><span class="p">:</span> <span class="n">IncomeStatements</span>
     <span class="n">balance_sheets</span><span class="p">:</span> <span class="n">BalanceSheets</span>
+
+    <span class="n">forecasts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Forecast</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{})</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">config_dict</span><span class="p">[</span><span class="s1">&#39;income_statements&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">config</span>
+        <span class="n">config_dict</span><span class="p">[</span><span class="s1">&#39;balance_sheets&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">StatementsConfigManager</span><span class="p">(</span><span class="n">config_dict</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FinancialStatements.change"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.change">[docs]</a>    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -253,7 +267,117 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">fcf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_income</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_cash_expenses</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="s1">&#39;nwc&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">capex</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_income</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_cash_expenses</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="s1">&#39;nwc&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">capex</span>
+
+<div class="viewcode-block" id="FinancialStatements.forecast"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.forecast">[docs]</a>    <span class="k">def</span> <span class="nf">forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;FinancialStatements&#39;</span><span class="p">:</span>
+        <span class="c1"># TODO: seems like this whole thing is repeating a lot of logic that could maybe be removed if</span>
+        <span class="c1"># TODO: I could construct partial financial statements</span>
+        <span class="c1"># TODO: Also this code feels very messy</span>
+        <span class="n">all_forecast_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">all_results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">all_pct_results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">stmt</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">]:</span>
+            <span class="n">forecast_dict</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">pct_results</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">_forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">all_forecast_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">forecast_dict</span><span class="p">)</span>
+            <span class="n">all_results</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+            <span class="n">all_pct_results</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pct_results</span><span class="p">)</span>
+
+        <span class="c1"># Set up for creating dictionary for sympy substitutions. First extract all the results into a dict of dicts</span>
+        <span class="c1"># nested dict where keys are date indices, values are dicts where keys are item keys, values are item values</span>
+        <span class="n">by_date_item_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">all_dates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">all_results</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">add_series_to_by_date_item_dict</span><span class="p">(</span><span class="n">series</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">item_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">series</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="n">date_idx</span> <span class="o">=</span> <span class="n">all_dates</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">date_idx</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">by_date_item_dict</span><span class="p">:</span>
+                    <span class="n">by_date_item_dict</span><span class="p">[</span><span class="n">date_idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">by_date_item_dict</span><span class="p">[</span><span class="n">date_idx</span><span class="p">][</span><span class="n">item_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="p">[</span><span class="n">add_series_to_by_date_item_dict</span><span class="p">(</span><span class="n">result_series</span><span class="p">,</span> <span class="n">item_key</span><span class="p">)</span> <span class="k">for</span> <span class="n">item_key</span><span class="p">,</span> <span class="n">result_series</span> <span class="ow">in</span> <span class="n">all_results</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">get_subs_dict</span><span class="p">(</span><span class="n">t_offset</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">subs_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="c1"># TODO: currently only getting current period values, need to grab previous values</span>
+            <span class="n">values_dict</span> <span class="o">=</span> <span class="n">by_date_item_dict</span><span class="p">[</span><span class="n">t_offset</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">item_key</span><span class="p">,</span> <span class="n">item_symbol</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">item_key</span> <span class="ow">in</span> <span class="n">values_dict</span><span class="p">:</span>
+                    <span class="n">indexed_symbol</span> <span class="o">=</span> <span class="n">item_symbol</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># eg cash[t] or cash[t-1]</span>
+                    <span class="n">subs_dict</span><span class="p">[</span><span class="n">indexed_symbol</span><span class="p">]</span> <span class="o">=</span> <span class="n">values_dict</span><span class="p">[</span><span class="n">item_key</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">subs_dict</span>
+
+        <span class="k">def</span> <span class="nf">get_expr_eval_create_series_and_add_to_by_date_item_dict_and_results</span><span class="p">(</span><span class="n">overall_item_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+            <span class="c1"># TODO: rename to have nothing to do with pct</span>
+            <span class="n">result_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">expr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">expr_for</span><span class="p">(</span><span class="n">overall_item_key</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">date</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_dates</span><span class="p">):</span>
+                <span class="c1"># Now create the subs dict from the dict of dicts</span>
+                <span class="n">subs_dict</span> <span class="o">=</span> <span class="n">get_subs_dict</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">substituted</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs_dict</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">eval_expr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">substituted</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="c1"># This means wasn&#39;t completely substituted. Must be a calculated item which has not yet</span>
+                    <span class="c1"># been calculated. Calculate it now.</span>
+                    <span class="n">reverse_sympy_ns</span> <span class="o">=</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+                    <span class="k">for</span> <span class="n">sym</span> <span class="ow">in</span> <span class="n">substituted</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">Indexed</span><span class="p">):</span>
+                            <span class="c1"># Got an uncalculated symbol</span>
+                            <span class="n">uncalc_key</span> <span class="o">=</span> <span class="n">reverse_sympy_ns</span><span class="p">[</span><span class="n">sym</span><span class="o">.</span><span class="n">base</span><span class="p">]</span>
+                            <span class="n">get_expr_eval_create_series_and_add_to_by_date_item_dict_and_results</span><span class="p">(</span><span class="n">uncalc_key</span><span class="p">)</span>
+                    <span class="c1"># Now try the original calculation again, now that missing items have been calculated</span>
+                    <span class="n">subs_dict</span> <span class="o">=</span> <span class="n">get_subs_dict</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                    <span class="n">substituted</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs_dict</span><span class="p">)</span>
+                    <span class="n">eval_expr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">substituted</span><span class="p">)</span>
+                <span class="n">result_dict</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval_expr</span>
+            <span class="n">result_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">result_dict</span><span class="p">)</span>
+            <span class="n">result_series</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">overall_item_key</span><span class="p">,</span> <span class="s1">&#39;primary_name&#39;</span><span class="p">)</span>
+            <span class="c1"># Add this newly calculated series to overall substitution values</span>
+            <span class="n">add_series_to_by_date_item_dict</span><span class="p">(</span><span class="n">result_series</span><span class="p">,</span> <span class="n">overall_item_key</span><span class="p">)</span>
+            <span class="n">all_results</span><span class="p">[</span><span class="n">overall_item_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">result_series</span>
+            <span class="k">return</span> <span class="n">result_series</span>
+
+        <span class="c1"># Resolve pct of items</span>
+        <span class="k">for</span> <span class="n">pct_item_key</span><span class="p">,</span> <span class="n">pct_result</span> <span class="ow">in</span> <span class="n">all_pct_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">item_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pct_item_key</span><span class="p">)</span>
+            <span class="n">pct_of_key</span> <span class="o">=</span> <span class="n">item_config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">pct_of</span>
+            <span class="n">pct_of_config</span><span class="p">,</span> <span class="n">pct_of_source_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">pct_of_key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pct_of_key</span> <span class="ow">in</span> <span class="n">all_results</span><span class="p">:</span>
+                <span class="c1"># Already have result, just get it from results</span>
+                <span class="n">pct_of_series</span> <span class="o">=</span> <span class="n">all_results</span><span class="p">[</span><span class="n">item_config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">pct_of</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">pct_of_config</span><span class="o">.</span><span class="n">expr_str</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># This is a calculated item, need to calculate it, add it to results, and use that series</span>
+                <span class="n">pct_of_series</span> <span class="o">=</span> <span class="n">get_expr_eval_create_series_and_add_to_by_date_item_dict_and_results</span><span class="p">(</span><span class="n">pct_of_key</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;could not get series for </span><span class="si">{pct_of_key}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">calc_series</span> <span class="o">=</span> <span class="n">pct_result</span> <span class="o">*</span> <span class="n">pct_of_series</span>
+            <span class="n">calc_series</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pct_result</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">all_results</span><span class="p">[</span><span class="n">pct_item_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">calc_series</span>
+            <span class="c1"># Add this newly calculated series to overall substitution values</span>
+            <span class="n">add_series_to_by_date_item_dict</span><span class="p">(</span><span class="n">calc_series</span><span class="p">,</span> <span class="n">pct_item_key</span><span class="p">)</span>
+
+        <span class="n">all_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_results</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">inc_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span>
+        <span class="n">bs_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">inc_df</span><span class="p">,</span> <span class="n">bs_df</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">forecasts</span> <span class="o">=</span> <span class="n">all_forecast_dict</span>
+        <span class="k">return</span> <span class="n">obj</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">forecast_assumptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="c1"># TODO: replace with config manager get</span>
+        <span class="n">all_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span>
+        <span class="n">all_series</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">all_configs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">extract_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">config_series</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">to_series</span><span class="p">()</span>
+            <span class="n">config_series</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">display_name</span>
+            <span class="n">all_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">config_series</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">all_series</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span></div>
+
+
 </pre></div>
 
            </div>

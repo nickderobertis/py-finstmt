@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.bs.data &mdash; finstmt 0.1.0 documentation</title>
+  <title>finstmt.bs.data &mdash; finstmt 0.2.0 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.2.0
               </div>
             
           
@@ -204,35 +204,6 @@
     <span class="n">total_liab_and_equity</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="n">items_config</span> <span class="o">=</span> <span class="n">BALANCE_SHEET_INPUT_ITEMS</span>
-
-    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cash_and_st_invest</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cash_and_st_invest</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cash</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">st_invest</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_current_assets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">total_current_assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cash_and_st_invest</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">receivables</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">inventory</span> <span class="o">+</span> \
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">def_tax_st</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">other_current_assets</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_ppe</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">net_ppe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gross_ppe</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">dep</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_non_current_assets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">total_non_current_assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_ppe</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">goodwill</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lt_invest</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">def_tax_lt</span> <span class="o">+</span> \
-                                            <span class="bp">self</span><span class="o">.</span><span class="n">other_lt_assets</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_assets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">total_assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_current_assets</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_non_current_assets</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_current_liab</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">total_current_liabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">payables</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">st_debt</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tax_liab_st</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_lt_debt</span> <span class="o">+</span> \
-                                             <span class="bp">self</span><span class="o">.</span><span class="n">other_current_liab</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_debt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">total_debt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">st_debt</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lt_debt</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_non_current_liab</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">total_non_current_liab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lt_debt</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">deferred_rev</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tax_liab_lt</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">deposit_liab</span> <span class="o">+</span> \
-                                          <span class="bp">self</span><span class="o">.</span><span class="n">other_lt_liab</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_liab</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">total_liab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_non_current_liab</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_current_liab</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_equity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">total_equity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">other_income</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">retained_earnings</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">common_stock</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">minority_interest</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_liab_and_equity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">total_liab_and_equity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_liab</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_equity</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">nwc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

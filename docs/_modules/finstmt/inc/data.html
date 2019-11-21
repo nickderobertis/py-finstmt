@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.inc.data &mdash; finstmt 0.1.0 documentation</title>
+  <title>finstmt.inc.data &mdash; finstmt 0.2.0 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.2.0
               </div>
             
           
@@ -155,7 +155,7 @@
             
   <h1>Source code for finstmt.inc.data</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="k">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="kn">from</span> <span class="nn">finstmt.findata.database</span> <span class="k">import</span> <span class="n">FinDataBase</span>
 <span class="kn">from</span> <span class="nn">finstmt.inc.config</span> <span class="k">import</span> <span class="n">INCOME_STATEMENT_INPUT_ITEMS</span>
@@ -182,17 +182,6 @@
     <span class="n">net_income</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="n">items_config</span> <span class="o">=</span> <span class="n">INCOME_STATEMENT_INPUT_ITEMS</span>
-
-    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_exp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">op_exp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rd_exp</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dep_exp</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sga</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">other_op_exp</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ebit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ebit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gross_profit</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_exp</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ebt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ebt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ebit</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_exp</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_income</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">net_income</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ebt</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">tax_exp</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">gross_profit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>

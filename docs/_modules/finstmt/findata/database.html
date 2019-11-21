@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.findata.database &mdash; finstmt 0.1.0 documentation</title>
+  <title>finstmt.findata.database &mdash; finstmt 0.2.0 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.2.0
               </div>
             
           
@@ -157,11 +157,13 @@
 <span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="k">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">IndexedBase</span>
 
 <span class="kn">from</span> <span class="nn">finstmt.clean.name</span> <span class="k">import</span> <span class="n">standardize_names_in_series_index</span>
+<span class="kn">from</span> <span class="nn">finstmt.config_manage.data</span> <span class="k">import</span> <span class="n">DataConfigManager</span>
 <span class="kn">from</span> <span class="nn">finstmt.items.config</span> <span class="k">import</span> <span class="n">ItemConfig</span>
 
 
@@ -170,8 +172,10 @@
 <span class="sd">    Base class for financial statement data. Should not be used directly.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">items_config</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ItemConfig</span><span class="p">]</span>
+    <span class="n">prior_statement</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;FinDataBase&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items_config</span> <span class="o">=</span> <span class="n">DataConfigManager</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items_config</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items_config</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">force_positive</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">extract_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="c1"># If extracted and need to force positive, take absolute value</span>
@@ -180,6 +184,14 @@
                     <span class="k">continue</span>
                 <span class="n">positive_value</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">positive_value</span><span class="p">)</span>
+        <span class="n">subs_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sympy_subs_dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items_config</span><span class="p">:</span>
+            <span class="n">item_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">item_value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">expr_str</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Got a calculated item which has no value from the data, need to calculate</span>
+                <span class="n">expr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items_config</span><span class="o">.</span><span class="n">expr_for</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+                <span class="n">eval_expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs_dict</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">eval_expr</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">series</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_series</span><span class="p">()</span>
@@ -187,11 +199,15 @@
         <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="s1">&#39;$</span><span class="si">{x:,.0f}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39; - &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">_repr_html_</span><span class="p">()</span>
 
 <div class="viewcode-block" id="FinDataBase.from_series"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.database.FinDataBase.from_series">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_series</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">series</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_series</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">series</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">prior_statement</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;FinDataBase&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">for_lookup</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
         <span class="n">standardize_names_in_series_index</span><span class="p">(</span><span class="n">for_lookup</span><span class="p">)</span>
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">extracted_name_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">prior_statement</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;prior_statement&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prior_statement</span>
+
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">for_lookup</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">item_config</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">items_config</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">item_config</span><span class="o">.</span><span class="n">extract_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -226,7 +242,25 @@
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">item_config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items_config</span><span class="p">:</span>
             <span class="n">data_dict</span><span class="p">[</span><span class="n">item_config</span><span class="o">.</span><span class="n">display_name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_config</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FinDataBase.as_dict"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.database.FinDataBase.as_dict">[docs]</a>    <span class="k">def</span> <span class="nf">as_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="n">remove_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;items_config&#39;</span>
+        <span class="p">]</span>
+
+        <span class="n">all_dict</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">all_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">remove_keys</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">all_dict</span></div>
+
+<div class="viewcode-block" id="FinDataBase.get_sympy_subs_dict"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.database.FinDataBase.get_sympy_subs_dict">[docs]</a>    <span class="k">def</span> <span class="nf">get_sympy_subs_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="n">subs_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items_config</span><span class="o">.</span><span class="n">eq_subs_dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">as_dict</span><span class="p">(),</span> <span class="n">t_offset</span><span class="o">=</span><span class="n">t_offset</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior_statement</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Recursively look up prior statements to fill out historical values</span>
+            <span class="n">subs_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">prior_statement</span><span class="o">.</span><span class="n">get_sympy_subs_dict</span><span class="p">(</span><span class="n">t_offset</span> <span class="o">=</span> <span class="n">t_offset</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">subs_dict</span></div></div>
 </pre></div>
 
            </div>

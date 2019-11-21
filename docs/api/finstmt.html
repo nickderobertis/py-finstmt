@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt package &mdash; finstmt 0.1.0 documentation</title>
+  <title>finstmt package &mdash; finstmt 0.2.0 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.2.0
               </div>
             
           
@@ -98,11 +98,15 @@
 <li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html">finstmt.bs package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.clean.html">finstmt.clean package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html">finstmt.combined package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html">finstmt.config_manage package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html">finstmt.findata package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html">finstmt.forecast package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html">finstmt.inc package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.items.html">finstmt.items package</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-finstmt.exc">finstmt.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-finstmt">Module contents</a></li>
 </ul>
 </li>
@@ -200,11 +204,27 @@
 <li class="toctree-l2"><a class="reference internal" href="finstmt.combined.html#module-finstmt.combined">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="finstmt.config_manage.html">finstmt.config_manage package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.base">finstmt.config_manage.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.data">finstmt.config_manage.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.statement">finstmt.config_manage.statement module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.statements">finstmt.config_manage.statements module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.findata.html">finstmt.findata package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.findata.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.findata.html#module-finstmt.findata.database">finstmt.findata.database module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.findata.html#module-finstmt.findata.statementsbase">finstmt.findata.statementsbase module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.findata.html#module-finstmt.findata">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="finstmt.forecast.html">finstmt.forecast package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.config">finstmt.forecast.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.main">finstmt.forecast.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.inc.html">finstmt.inc package</a><ul>
@@ -223,6 +243,24 @@
 </li>
 </ul>
 </div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-finstmt.exc">
+<span id="finstmt-exc-module"></span><h2>finstmt.exc module<a class="headerlink" href="#module-finstmt.exc" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="finstmt.exc.NoSuchItemException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">NoSuchItemException</code><a class="reference internal" href="../_modules/finstmt/exc.html#NoSuchItemException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.NoSuchItemException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="finstmt.exc.NotACalculatedItemException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">NotACalculatedItemException</code><a class="reference internal" href="../_modules/finstmt/exc.html#NotACalculatedItemException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.NotACalculatedItemException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
 </div>
 <div class="section" id="module-finstmt">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-finstmt" title="Permalink to this headline">¶</a></h2>
