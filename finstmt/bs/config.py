@@ -1,3 +1,4 @@
+from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 from finstmt.items.config import ItemConfig
 
 # TODO: use regex instead of names list
@@ -17,7 +18,7 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'cash cash equivalents',
             'cash equivalents',
             'cash equiv'
-        ],
+        ]
     ),
     ItemConfig(
         'st_invest',
@@ -62,7 +63,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'rec',
             'accounts receivable',
             'ar'
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            pct_of='revenue'
+        )
     ),
     ItemConfig(
         'inventory',
@@ -71,7 +75,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'inv',
             'inventory',
             'inventories'
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            pct_of='revenue'
+        )
     ),
     ItemConfig(
         'def_tax_st',
@@ -272,7 +279,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'payables',
             'accounts payable',
             'ap'
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            pct_of='revenue'
+        )
     ),
     ItemConfig(
         'st_debt',
@@ -287,7 +297,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'st borrowings',
             'short term borrowings',
             'shortterm borrowings'
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            pct_of='total_debt'
+        )
     ),
     ItemConfig(
         'current_lt_debt',
@@ -317,7 +330,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'curr portion long term debt',
             'current portion of long term debt',
             'current portion long term debt',
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            pct_of='total_debt'
+        )
     ),
 ItemConfig(
         'tax_liab_st',
@@ -486,7 +502,10 @@ ItemConfig(
             'lt borrowings',
             'long term borrowings',
             'longterm borrowings',
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            pct_of='total_debt'
+        )
     ),
     ItemConfig(
         'total_debt',
@@ -747,7 +766,8 @@ ItemConfig(
             'retained earnings',
             'retained earnings deficit',
             're deficit'
-        ]
+        ],
+        # TODO: forecast should be a calculation of retained_earnings[t-1] + net income[t] - dividends[t]
     ),
     ItemConfig(
         'minority_interest',
