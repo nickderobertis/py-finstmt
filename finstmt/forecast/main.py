@@ -7,6 +7,9 @@ from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 
 
 class Forecast:
+    """
+    The main class to represent a forecast of an individual item.
+    """
 
     def __init__(self, series: pd.Series, config: ForecastConfig, item_config: ForecastItemConfig,
                  pct_of_series: Optional[pd.Series] = None):
