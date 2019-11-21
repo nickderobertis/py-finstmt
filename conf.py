@@ -5,7 +5,7 @@
 PACKAGE_NAME = 'finstmt'
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 2, 0)
+PACKAGE_VERSION_TUPLE = (0, 2, 1)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = 'Python package for working with financial statement data'
