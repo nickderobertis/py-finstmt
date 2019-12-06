@@ -133,7 +133,7 @@ class FinancialStatements:
 
         # Set up for creating dictionary for sympy substitutions. First extract all the results into a dict of dicts
         # nested dict where keys are date indices, values are dicts where keys are item keys, values are item values
-        by_date_item_dict = {}
+        by_date_item_dict: Dict[pd.Timestamp, Dict[str, float]] = {}
         all_dates = list(all_results.values())[0].index.tolist()
 
         def add_series_to_by_date_item_dict(series: pd.Series, item_key: str):
@@ -216,7 +216,7 @@ class FinancialStatements:
 
     @property
     def forecast_assumptions(self) -> pd.DataFrame:
-        all_configs = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
+        all_configs = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config  # type: ignore
         all_series = []
         for config in all_configs:
             if config.extract_names is None or not config.forecast_config.make_forecast:
