@@ -20,6 +20,9 @@ class DataConfigManager(ConfigManagerBase):
     def __getitem__(self, item):
         return self.configs[item]
 
+    def __iter__(self):
+        yield from self.configs
+
     def get(self, item_key: str) -> ItemConfig:
         """
         Get entire configuration for item by key
