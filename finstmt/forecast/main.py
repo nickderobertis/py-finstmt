@@ -10,6 +10,8 @@ class Forecast:
     """
     The main class to represent a forecast of an individual item.
     """
+    result: Optional[pd.Series]
+    result_df: Optional[pd.DataFrame]
 
     def __init__(self, series: pd.Series, config: ForecastConfig, item_config: ForecastItemConfig,
                  pct_of_series: Optional[pd.Series] = None):

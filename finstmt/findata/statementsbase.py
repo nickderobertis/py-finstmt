@@ -13,6 +13,9 @@ class FinStatementsBase:
     statement_cls = FinDataBase  # to be overridden with individual class
     statements: Dict[pd.Timestamp, FinDataBase]
 
+    def __init__(self, *args, **kwargs):
+        raise NotImplementedError
+
     def __post_init__(self):
         self.df = self.to_df()
 
@@ -100,9 +103,9 @@ class FinStatementsBase:
 
     def _forecast(self, statements, **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series], Dict[str, pd.Series]]:
         forecast_config = ForecastConfig(**kwargs)
-        forecast_dict = {}
-        results = {}
-        pct_results = {}
+        forecast_dict: Dict[str, Forecast] = {}
+        results: Dict[str, pd.Series] = {}
+        pct_results: Dict[str, pd.Series] = {}
         for item in self.statement_cls.items_config:
             if item.extract_names is None or not item.forecast_config.make_forecast:
                 # If can't extract item, must be calculated item, no need to forecast
@@ -114,7 +117,8 @@ class FinStatementsBase:
             forecast = Forecast(data, forecast_config, item.forecast_config, pct_of_series=pct_of_series)
             forecast.fit()
             forecast_dict[item.key] = forecast
-            forecast.result.name = item.primary_name
+            if forecast.result is not None:
+                forecast.result.name = item.primary_name
             if item.forecast_config.pct_of is not None:
                 pct_results[item.key] = forecast.result
             else:
