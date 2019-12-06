@@ -4,6 +4,7 @@ from typing import Optional
 import pandas as pd
 
 from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
+from finstmt.forecast.dataframe import add_cap_and_floor_to_df
 
 
 class Forecast:
@@ -49,6 +50,7 @@ class Forecast:
     def fit(self) -> pd.Series:
         self.model.fit(self._df_for_fit)
         future = self.model.make_future_dataframe(**self.config.make_future_df_kwargs)
+        add_cap_and_floor_to_df(future, self.item_config.cap, self.item_config.floor)
         forecast = self.model.predict(future)
         self.result_df = forecast
         result = forecast[['ds', 'yhat']].set_index('ds')['yhat']
@@ -71,7 +73,11 @@ class Forecast:
 
         df = pd.DataFrame(series).reset_index()
         df.columns = ['ds', 'y']
+        add_cap_and_floor_to_df(df, self.item_config.cap, self.item_config.floor)
+
         return df
+
+
 
 
 
