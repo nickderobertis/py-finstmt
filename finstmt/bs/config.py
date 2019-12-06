@@ -1,7 +1,7 @@
 from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 from finstmt.items.config import ItemConfig
 
-# TODO [$5dea8d936b44a10007ae0e30]: Better matching of financial statement item names - Balance Sheet
+# TODO [#3]: Better matching of financial statement item names - Balance Sheet
 #
 # Would be better to use regex instead of names list. Need to first add that infrastructure,
 # then apply it to the Balance Sheet config.
@@ -770,7 +770,7 @@ ItemConfig(
             'retained earnings deficit',
             're deficit'
         ],
-        # TODO [$5dea8d936b44a10007ae0e31]: forecast of retained earnings should be calculated
+        # TODO [#4]: forecast of retained earnings should be calculated
         #
         # Should be a calculation of retained_earnings[t-1] + net income[t] - dividends[t]
     ),

@@ -37,7 +37,7 @@ class DataConfigManager(ConfigManagerBase):
         config_idx = self.configs.index(orig_config)
         self.configs[config_idx] = config
 
-    # TODO [$5dea8d936b44a10007ae0e35]: Avoid unnecessary calculations in DataConfigManager
+    # TODO [#8]: Avoid unnecessary calculations in DataConfigManager
     #
     #  Make config_dict and sympy_namespace not properties, but recalculate any time config changes
     @property

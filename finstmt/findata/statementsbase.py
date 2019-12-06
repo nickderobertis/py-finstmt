@@ -10,7 +10,7 @@ from finstmt.forecast.main import Forecast
 
 
 class FinStatementsBase:
-    # TODO [$5dea8d936b44a10007ae0e36]: rethink typing for FinStatementsBase considering invariant types
+    # TODO [#9]: rethink typing for FinStatementsBase considering invariant types
     #
     # Was trying to set generic base types in the base class FinStatementsBase
     # and then in the subclasses, set them to the specific types. But this seems to not
@@ -57,7 +57,7 @@ class FinStatementsBase:
             if pd.isnull(statement_value):
                 statement_value = 0
             data_dict[date] = statement_value
-            # TODO [$5dea8d936b44a10007ae0e37]: set name of series from statement getattr
+            # TODO [#10]: set name of series from statement getattr
         return pd.Series(data_dict)
 
     def __getitem__(self, item):
