@@ -34,7 +34,7 @@ class Forecast:
             all_kwargs.update(self.config.prophet_kwargs)
             self.model = Prophet(**all_kwargs)
         else:
-            # TODO: add other approaches to forecasting
+            # TODO [$5dea8d936b44a10007ae0e38]: add other approaches to forecasting
             #
             # Methods to add:
             # - average

@@ -106,7 +106,7 @@ class FinancialStatements:
 
     @property
     def non_cash_expenses(self) -> pd.Series:
-        # TODO: add stock-based compensation and use in non-cash expenses calculation
+        # TODO [$5dea8d936b44a10007ae0e32]: add stock-based compensation and use in non-cash expenses calculation
         return self.dep + self.gain_on_sale_invest + self.gain_on_sale_asset + self.impairment
 
     @property
@@ -114,7 +114,7 @@ class FinancialStatements:
         return self.net_income + self.non_cash_expenses - self.change('nwc') - self.capex
 
     def forecast(self, **kwargs) -> 'FinancialStatements':
-        # TODO: clean up forecast logic
+        # TODO [$5dea8d936b44a10007ae0e33]: clean up forecast logic
         #
         # Seems like this whole thing is repeating a lot of logic that could maybe be removed if
         # I could construct partial financial statements.
@@ -148,7 +148,7 @@ class FinancialStatements:
 
         def get_subs_dict(t_offset: int):
             subs_dict = {}
-            # TODO: in forecast calculation process, need to grab previous values
+            # TODO [$5dea8d936b44a10007ae0e34]: in forecast calculation process, need to grab previous values
             #
             # Currently only getting current period values.
             values_dict = by_date_item_dict[t_offset]
