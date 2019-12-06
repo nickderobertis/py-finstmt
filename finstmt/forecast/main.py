@@ -11,6 +11,8 @@ class Forecast:
     """
     The main class to represent a forecast of an individual item.
     """
+    result: Optional[pd.Series]
+    result_df: Optional[pd.DataFrame]
 
     def __init__(self, series: pd.Series, config: ForecastConfig, item_config: ForecastItemConfig,
                  pct_of_series: Optional[pd.Series] = None):
@@ -33,7 +35,12 @@ class Forecast:
             all_kwargs.update(self.config.prophet_kwargs)
             self.model = Prophet(**all_kwargs)
         else:
-            # TODO: add average approach
+            # TODO [$5dea8d936b44a10007ae0e38]: add other approaches to forecasting
+            #
+            # Methods to add:
+            # - average
+            # - trend (reg)
+            # - trend (CAGR)
             raise NotImplementedError(f'need to implement method {self.item_config.method}')
 
         # Set in other methods

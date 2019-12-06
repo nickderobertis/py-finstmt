@@ -20,6 +20,7 @@
 import os
 import sys
 import datetime
+import warnings
 import sphinx_rtd_theme
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__name__), '..')))
 
@@ -46,14 +47,17 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.autosummary',
     'sphinx.ext.doctest',
+    'sphinx.ext.intersphinx',
     'sphinx_autodoc_typehints',
-#    'sphinxcontrib.fulltoc',
     'sphinx_paramlinks',
     'sphinx_rtd_theme',
+    'sphinx_gallery.gen_gallery',
+    'sphinx_copybutton',
+    'sphinx_sitemap'
 ]
 
 # Options for sphinx_autodoc_typehints
-set_type_checking_flag = True
+set_type_checking_flag = False
 
 # Options for sphinx.ext.autosummary
 autodoc_default_flags = ['members']
@@ -96,7 +100,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = []
+exclude_patterns = ['**.ipynb_checkpoints']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -104,6 +108,41 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
+# Base URL for sitemap
+html_baseurl = conf.PACKAGE_URLS['Documentation'] + '/'
+
+sphinx_gallery_conf = {
+    'examples_dirs': '../../_examples',   # path to your example scripts
+    'gallery_dirs': 'auto_examples',  # path to where to save gallery generated output
+    'filename_pattern': '/',  # re to match examples .py files that should be run to generate output. Set as / for all
+    'reference_url': {
+        # The module you locally document uses None
+        'sphinx_gallery': None,
+    },
+    'binder': {
+         # Required keys
+         'org': conf.REPO_USERNAME,
+         'repo': conf.REPO_NAME,
+         'branch': 'gh-pages',  # Can be any branch, tag, or commit hash. Use a branch that hosts your docs.
+         'binderhub_url': 'https://mybinder.org',  # Any URL of a binderhub deployment. Must be full URL (e.g. https://mybinder.org).
+         'dependencies': './binder/requirements.txt',
+         # Optional keys
+         # 'filepath_prefix': '<prefix>', # A prefix to prepend to any filepaths in Binder links.
+         # 'notebooks_dir': '<notebooks-directory-name>', # Jupyter notebooks for Binder will be copied to this directory (relative to built documentation root).
+         'use_jupyter_lab': True, # Whether Binder links should start Jupyter Lab instead of the Jupyter Notebook interface.
+     }
+}
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+    'numpy': ('https://docs.scipy.org/doc/numpy/', None),
+    'matplotlib': ('https://matplotlib.org', None)
+}
+
+# Remove matplotlib agg warnings from generated doc when using plt.show
+warnings.filterwarnings("ignore", category=UserWarning,
+                        message='Matplotlib is currently using agg, which is a'
+                                ' non-GUI backend, so cannot show the figure.')
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -116,7 +155,9 @@ html_theme = 'sphinx_rtd_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {}
+if conf.GOOGLE_ANALYTICS_TRACKING_ID:
+    html_theme_options['analytics_id'] = conf.GOOGLE_ANALYTICS_TRACKING_ID
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

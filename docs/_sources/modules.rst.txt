@@ -1,7 +1,0 @@
-py_qs_example
-=============
-
-.. toctree::
-   :maxdepth: 4
-
-   py_qs_example

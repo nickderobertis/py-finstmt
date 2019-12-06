@@ -1,7 +1,10 @@
 from finstmt.forecast.config import ForecastItemConfig
 from finstmt.items.config import ItemConfig
 
-# TODO: use regex instead of names list
+# TODO [$5dea8d936b44a10007ae0e39]: Better matching of financial statement item names - Income Statement
+#
+# Would be better to use regex instead of names list. Need to first add that infrastructure,
+# then apply it to the Income Statement config.
 
 # Note that each possible extract_name must be unique, it cannot be included in multiple lists
 # Also note that all incoming names will be converted to lower case and stripped of punctuation,

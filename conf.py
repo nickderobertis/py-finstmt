@@ -4,17 +4,28 @@
 # Main package name
 PACKAGE_NAME = 'finstmt'
 
+# Name of Repo
+REPO_NAME = 'py-finstmt'
+
+# Github username of the user which owns the repo
+REPO_USERNAME = 'whoopnip'
+
+# List of maintainers of package, by default the same user which owns the repo
+# Pull requests raised by these maintainers without the "no auto merge" label will be automatically merged
+REPO_MAINTAINERS = [
+    REPO_USERNAME,
+]
+
 # Package version in the format (major, minor, release)
 PACKAGE_VERSION_TUPLE = (0, 2, 1)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = 'Python package for working with financial statement data'
 
-# Long description of the package
-PACKAGE_DESCRIPTION = """
-Contains classes to work with financial statement data. Can calculate free cash flows and help project
-financial statements.
-"""
+# Long description of the package for PyPI
+# Set to 'auto' to use README.md as the PyPI description
+# Any other string will be used directly as the PyPI description
+PACKAGE_DESCRIPTION = 'auto'
 
 # Author
 PACKAGE_AUTHOR = "Nick DeRobertis"
@@ -54,6 +65,26 @@ PACKAGE_INSTALL_REQUIRES = [
     'matplotlib'
 ]
 
+# Add any third party packages you use in requirements for optional features of your package here
+# Keys should be name of the optional feature and values are lists of required packages
+# E.g. {'feature1': ['pandas', 'numpy'], 'feature2': ['matplotlib']}
+OPTIONAL_PACKAGE_INSTALL_REQUIRES = {
+
+}
+
+# Packages added to Binder environment so that examples can be executed in Binder
+# By default, takes this package (PACKAGE_NAME)
+# everything the package requires (PACKAGE_INSTALL_REQUIRES) and everything
+# that the package optionally requires (OPTIONAL_PACKAGE_INSTALL_REQUIRES) and adds them all to one list
+# If a custom list is passed, it must include all the requirements for the Binder environment
+BINDER_ENVIRONMENT_REQUIRES = list(
+    set(
+        PACKAGE_INSTALL_REQUIRES + [PACKAGE_NAME] +
+        [package for package_list in OPTIONAL_PACKAGE_INSTALL_REQUIRES.values() for package in package_list]
+    )
+)
+
+
 # Sphinx executes all the import statements as it generates the documentation. To avoid having to install all
 # the necessary packages, third-party packages can be passed to mock imports to just skip the import.
 # By default, everything in PACKAGE_INSTALL_REQUIRES will be passed as mock imports, along with anything here.
@@ -71,7 +102,25 @@ CONSOLE_SCRIPTS = [],
 # SCRIPTS = ['bin/funniest-joke']
 SCRIPTS = []
 
+# Optional Google Analytics tracking ID for documentation
+# Go to https://analytics.google.com/ and set it up for your documentation URL
+# Set to None or empty string to not use this
+GOOGLE_ANALYTICS_TRACKING_ID = 'UA-154145306-1'
+
 PACKAGE_URLS = {
-    'Code': 'https://github.com/whoopnip/py-finstmt/',
-    'Documentation': 'https://whoopnip.github.io/py-finstmt/'
+    'Code': f'https://github.com/{REPO_USERNAME}/{REPO_NAME}',
+    'Documentation': f'https://{REPO_USERNAME}.github.io/{REPO_NAME}'
 }
+
+# Does not affect anything about the current package. Simply used for tracking when this repo was created off
+# of the quickstart template, so it is easier to bring over new changes to the template.
+_TEMPLATE_VERSION_TUPLE = (0, 4, 0)
+
+if __name__ == '__main__':
+    # Store config as environment variables
+    env_vars = dict(locals())
+    # Imports after getting locals so that locals are only environment variables
+    import shlex
+    for name, value in env_vars.items():
+        quoted_value = shlex.quote(str(value))
+        print(f'export {name}={quoted_value};')

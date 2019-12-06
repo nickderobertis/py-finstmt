@@ -33,5 +33,7 @@ class IncomeStatementData(FinDataBase):
 
     @property
     def effective_tax_rate(self) -> float:
+        if self.ebt is None:
+            raise ValueError('cannot calculate effective tax rate as ebt is None')
         return self.tax_exp / self.ebt
 

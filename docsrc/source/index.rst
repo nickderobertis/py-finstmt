@@ -12,10 +12,15 @@ To get started, look here.
    :caption: Tutorial
 
    tutorial
-
+   auto_examples/index
 
 An overview
 ===========
+
+Quick Links
+------------
+
+Find the source code `on Github <https://github.com/whoopnip/py-finstmt>`_.
 
 
 .. autosummarynameonly::
