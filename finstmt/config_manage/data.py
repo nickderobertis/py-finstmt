@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from typing import Sequence, Dict
+from typing import Dict, List
 
-from sympy import symbols, IndexedBase, Idx, Expr, sympify
+from sympy import symbols, IndexedBase, Idx
 
 from finstmt.config_manage.base import ConfigManagerBase
 from finstmt.items.config import ItemConfig
@@ -12,7 +12,7 @@ class DataConfigManager(ConfigManagerBase):
     """
     Used to manage the config for an individual time period of an individual statement
     """
-    configs: Sequence[ItemConfig]
+    configs: List[ItemConfig]
 
     def __post_init__(self):
         self.configs = list(self.configs)
