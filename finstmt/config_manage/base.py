@@ -3,8 +3,30 @@ from typing import Dict, Any
 from sympy import symbols, IndexedBase, Idx, Expr, sympify
 
 from finstmt.exc import NotACalculatedItemException
+from finstmt.items.config import ItemConfig
+
 
 class ConfigManagerBase:
+
+    def get(self, item_key: str) -> ItemConfig:
+        """
+        For internal use, get the config as well as the key of the financial statement type it belongs to
+        """
+        raise NotImplementedError
+
+    def set(self, item_key: str, config: ItemConfig) -> None:
+        """
+        Set entire configuration for item by key. Needs to handle setting the value in each individual
+        data config manager
+        """
+        raise NotImplementedError
+
+    @property
+    def sympy_namespace(self) -> Dict[str, IndexedBase]:
+        """
+        The sympy namespace containing all the variable definitions
+        """
+        raise NotImplementedError
 
     def get_value(self, item_key: str, config_key: str) -> Any:
         """

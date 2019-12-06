@@ -1,7 +1,7 @@
 from copy import deepcopy
 import warnings
 from dataclasses import dataclass
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Union
 
 import pandas as pd
 from sympy import IndexedBase
@@ -15,8 +15,11 @@ class FinDataBase:
     """
     Base class for financial statement data. Should not be used directly.
     """
-    items_config: List[ItemConfig]
+    items_config: Union[List[ItemConfig], DataConfigManager]
     prior_statement: Optional['FinDataBase'] = None
+
+    def __init__(self, *args, **kwargs):
+        raise NotImplementedError
 
     def __post_init__(self):
         self.items_config = DataConfigManager(self.items_config)
@@ -46,8 +49,8 @@ class FinDataBase:
     def from_series(cls, series: pd.Series, prior_statement: Optional['FinDataBase'] = None):
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
-        data_dict = {}
-        extracted_name_dict = {}
+        data_dict: Dict[str, Union[float, 'FinDataBase']] = {}
+        extracted_name_dict: Dict[str, str] = {}
 
         if prior_statement is not None:
             data_dict['prior_statement'] = prior_statement
@@ -98,7 +101,7 @@ class FinDataBase:
         return all_dict
 
     def get_sympy_subs_dict(self, t_offset: int = 0) -> Dict[IndexedBase, float]:
-        subs_dict = self.items_config.eq_subs_dict(self.as_dict(), t_offset=t_offset)
+        subs_dict = self.items_config.eq_subs_dict(self.as_dict(), t_offset=t_offset)  # type: ignore
         if self.prior_statement is not None:
             # Recursively look up prior statements to fill out historical values
             subs_dict.update(

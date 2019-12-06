@@ -29,7 +29,7 @@ class StatementConfigManager(ConfigManagerBase):
                 continue
         raise NoSuchItemException(item_key)
 
-    def set(self, item_key: str, config: ItemConfig):
+    def set(self, item_key: str, config: ItemConfig) -> None:
         """
         Set entire configuration for item by key. Needs to handle setting the value in each individual
         data config manager
@@ -42,3 +42,4 @@ class StatementConfigManager(ConfigManagerBase):
         for manager in self.config_managers.values():
             # All should be identical, so first is enough
             return manager.sympy_namespace
+        raise ValueError('no managers, could not get sympy_namespace')

@@ -1,6 +1,0 @@
-py\_qs\_example.mymodule.example\_function
-==========================================
-
-.. currentmodule:: py_qs_example.mymodule
-
-.. autofunction:: example_function

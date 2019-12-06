@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from typing import Sequence, Dict
+from typing import Dict, List
 
-from sympy import symbols, IndexedBase, Idx, Expr, sympify
+from sympy import symbols, IndexedBase, Idx
 
 from finstmt.config_manage.base import ConfigManagerBase
 from finstmt.items.config import ItemConfig
@@ -12,13 +12,16 @@ class DataConfigManager(ConfigManagerBase):
     """
     Used to manage the config for an individual time period of an individual statement
     """
-    configs: Sequence[ItemConfig]
+    configs: List[ItemConfig]
 
     def __post_init__(self):
         self.configs = list(self.configs)
 
     def __getitem__(self, item):
         return self.configs[item]
+
+    def __iter__(self):
+        yield from self.configs
 
     def get(self, item_key: str) -> ItemConfig:
         """
@@ -34,7 +37,9 @@ class DataConfigManager(ConfigManagerBase):
         config_idx = self.configs.index(orig_config)
         self.configs[config_idx] = config
 
-    # TODO: make next two not properties, but recalculate any time config changes
+    # TODO: Avoid unnecessary calculations in DataConfigManager
+    #
+    #  Make config_dict and sympy_namespace not properties, but recalculate any time config changes
     @property
     def config_dict(self) -> Dict[str, ItemConfig]:
         return {config.key: config for config in self.configs}
