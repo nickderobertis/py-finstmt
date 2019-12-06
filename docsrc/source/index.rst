@@ -12,16 +12,23 @@ Some intro text. To get started, look here.
    :caption: Tutorial
 
    tutorial
-
+   auto_examples/index
+   blocktypes
 
 An overview
 ===========
+
+Quick Links
+------------
+
+Find the source code `on Github <https://github.com/whoopnip/pypi-sphinx-quickstart>`_.
 
 
 My Module
 ------------
 
 Some highlighted functionality from my module.
+
 
 This is a simple example:
 

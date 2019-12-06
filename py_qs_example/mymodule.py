@@ -45,7 +45,15 @@ class ExampleClass:
     def __repr__(self):
         return 'example'
 
-
+# TODO [#6]: An example issue raised by todo-actions
+#
+# This message should automatically get converted into an issue. When this
+# message is removed, it should remove the issue.
+# - bullets
+# - are
+# - supported
+#
+# As well as multiple paragraphs.
 def example_function(thing: ExampleClass, arg: str) -> str:
     """
     Example for function documentation.

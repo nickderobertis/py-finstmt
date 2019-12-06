@@ -32,6 +32,7 @@ class ExampleClass2:
         """
         return arg
 
+
 def example_function2(thing: ExampleClass2, arg: str) -> str:
     """
     Example for function documentation.

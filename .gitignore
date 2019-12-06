@@ -59,3 +59,9 @@ target/
 
 # Editor files
 .idea
+
+.mypy_cache
+docs
+docsrc/source/auto_examples
+_examples
+**/.ipynb_checkpoints

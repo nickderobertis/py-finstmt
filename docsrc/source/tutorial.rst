@@ -11,7 +11,7 @@ Install via::
 Usage
 =========
 
-Some highlighted functionality from my module.
+Some highlighted functionality from my module. Check it out.
 
 This is a simple example::
 
