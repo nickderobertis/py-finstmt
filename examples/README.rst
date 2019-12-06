@@ -1,4 +1,4 @@
-This is my gallery
+Examples
 ==================
 
-Below is a gallery of examples
+Below are examples of using `finstmt`.

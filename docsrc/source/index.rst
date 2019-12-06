@@ -13,7 +13,6 @@ To get started, look here.
 
    tutorial
    auto_examples/index
-   blocktypes
 
 An overview
 ===========
