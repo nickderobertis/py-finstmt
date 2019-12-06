@@ -10,6 +10,15 @@ from finstmt.forecast.main import Forecast
 
 
 class FinStatementsBase:
+    # TODO: rethink typing for FinStatementsBase considering invariant types
+    #
+    # Was trying to set generic base types in the base class FinStatementsBase
+    # and then in the subclasses, set them to the specific types. But this seems to not
+    # work correctly with mutable collections of the types.
+    #
+    # Currently I have set type ignore for all the subclass typing
+    #
+    # See https://github.com/python/mypy/issues/2984#issuecomment-285721489 for more details
     statement_cls = FinDataBase  # to be overridden with individual class
     statements: Dict[pd.Timestamp, FinDataBase]
 
