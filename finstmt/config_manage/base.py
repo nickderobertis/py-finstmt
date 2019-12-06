@@ -14,7 +14,7 @@ class ConfigManagerBase:
         """
         raise NotImplementedError
 
-    def set(self, item_key: str, config: ItemConfig):
+    def set(self, item_key: str, config: ItemConfig) -> None:
         """
         Set entire configuration for item by key. Needs to handle setting the value in each individual
         data config manager
