@@ -20,6 +20,16 @@ class ForecastConfig:
 
 @dataclass
 class ForecastItemConfig:
+    """
+    The main configuration for a single item forecast
+
+    method: 'auto' currently only supported method, runs forecast with fbprophet
+    pct_of: key of financial statement item to forecast this as a percentage of
+    make_forecast: whether to forecast
+    prophet_kwargs: kwargs to pass to fbprophet model
+    cap: the maximum that the trend line should reach
+    floot: the minimum that the trend line should reach
+    """
     method: str = 'auto'
     pct_of: Optional[str] = None
     make_forecast: bool = True
