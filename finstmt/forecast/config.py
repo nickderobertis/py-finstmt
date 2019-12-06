@@ -24,11 +24,15 @@ class ForecastItemConfig:
     pct_of: Optional[str] = None
     make_forecast: bool = True
     prophet_kwargs: dict = field(default_factory=lambda: {})
+    cap: Optional[Union[float, pd.Series]] = None
+    floor: Optional[Union[float, pd.Series]] = None
 
     def to_series(self) -> pd.Series:
         out_dict = {
             'Method': self.method,
-            '% of': self.pct_of
+            '% of': self.pct_of,
+            'Cap': self.cap,
+            'Floor': self.floor
         }
         out_dict.update(self.prophet_kwargs)
         return pd.Series(out_dict)
