@@ -2,10 +2,10 @@
 # Sphinx configuration is in the docsrc folder
 
 # Main package name
-PACKAGE_NAME = 'py_qs_example'
+PACKAGE_NAME = 'finstmt'
 
 # Name of Repo
-REPO_NAME = 'pypi-sphinx-quickstart'
+REPO_NAME = 'py-finstmt'
 
 # Github username of the user which owns the repo
 REPO_USERNAME = 'whoopnip'
@@ -17,10 +17,10 @@ REPO_MAINTAINERS = [
 ]
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 1, 19)
+PACKAGE_VERSION_TUPLE = (0, 2, 1)
 
 # Short description of the package
-PACKAGE_SHORT_DESCRIPTION = 'Python package PyPi Sphinx quickstart example app'
+PACKAGE_SHORT_DESCRIPTION = 'Python package for working with financial statement data'
 
 # Long description of the package for PyPI
 # Set to 'auto' to use README.md as the PyPI description
@@ -31,7 +31,7 @@ PACKAGE_DESCRIPTION = 'auto'
 PACKAGE_AUTHOR = "Nick DeRobertis"
 
 # Author email
-PACKAGE_AUTHOR_EMAIL = 'mail@example.com'
+PACKAGE_AUTHOR_EMAIL = 'whoopnip@gmail.com'
 
 # Name of license for package
 PACKAGE_LICENSE = 'MIT'
@@ -59,13 +59,17 @@ PACKAGE_INSTALL_REQUIRES = [
     # e.g.
     # 'package',
     # 'otherpackage>=1,<2'
+    'pandas',
+    'sympy',
+    'xlrd',
+    'matplotlib'
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here
 # Keys should be name of the optional feature and values are lists of required packages
 # E.g. {'feature1': ['pandas', 'numpy'], 'feature2': ['matplotlib']}
 OPTIONAL_PACKAGE_INSTALL_REQUIRES = {
-    'plot': ['matplotlib']
+
 }
 
 # Packages added to Binder environment so that examples can be executed in Binder
@@ -101,7 +105,7 @@ SCRIPTS = []
 # Optional Google Analytics tracking ID for documentation
 # Go to https://analytics.google.com/ and set it up for your documentation URL
 # Set to None or empty string to not use this
-GOOGLE_ANALYTICS_TRACKING_ID = 'UA-153687598-1'
+GOOGLE_ANALYTICS_TRACKING_ID = 'UA-154145306-1'
 
 PACKAGE_URLS = {
     'Code': f'https://github.com/{REPO_USERNAME}/{REPO_NAME}',

@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Quick Start Example documentation!
+Welcome to finstmt documentation!
 *********************************************
 
-Some intro text. To get started, look here.
+To get started, look here.
 
 .. toctree::
    :caption: Tutorial
@@ -21,36 +21,14 @@ An overview
 Quick Links
 ------------
 
-Find the source code `on Github <https://github.com/whoopnip/pypi-sphinx-quickstart>`_.
+Find the source code `on Github <https://github.com/whoopnip/py-finstmt>`_.
 
-
-My Module
-------------
-
-Some highlighted functionality from my module.
-
-
-This is a simple example:
-
-.. code:: python
-
-    import py_qs_example
-
-    obj = py_qs_example.mymodule.ExampleClass(5, int)
-    print('done')
 
 .. autosummarynameonly::
 
-      py_qs_example.mymodule.ExampleClass
-      py_qs_example.mymodule.example_function
-
-My Package
-----------------
-
-.. autosummary::
-
-      py_qs_example.mypackage.module.ExampleClass2
-      py_qs_example.mypackage.module.example_function2
+      finstmt.combined.statements.FinancialStatements
+      finstmt.inc.main.IncomeStatements
+      finstmt.bs.main.BalanceSheets
 
 
 .. toctree:: api/modules

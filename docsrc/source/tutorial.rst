@@ -1,4 +1,4 @@
-Getting started with py_qs_example
+Getting started with finstmt
 **********************************
 
 Install
@@ -6,22 +6,19 @@ Install
 
 Install via::
 
-    pip install py_qs_example
+    pip install finstmt
 
 Usage
 =========
 
-Some highlighted functionality from my module. Check it out.
+This is a simple example to construct financial statements::
 
-This is a simple example::
+    bs_path = r'WMT Balance Sheet.xlsx'
+    inc_path = r'WMT Income Statement.xlsx'
+    bs_df = pd.read_excel(bs_path)
+    inc_df = pd.read_excel(inc_path)
+    bs_data = BalanceSheets.from_df(bs_df)
+    inc_data = IncomeStatements.from_df(inc_df)
+    stmts = FinancialStatements(inc_data, bs_data)
 
-    import py_qs_example
 
-    obj = py_qs_example.mymodule.ExampleClass(5, int)
-    print('done')
-
-
-Parameter Links Example
-========================
-
-Here is an example of a parameter link: :paramref:`.ExampleClass.num`.

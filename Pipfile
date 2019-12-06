@@ -20,6 +20,12 @@ pytest = "*"
 pytest-cov = "*"
 mypy = "*"
 pypandoc = "*"
+jupyterlab = "*"
+pandas = "*"
+sympy = "*"
+xlrd = "*"
+matplotlib = "*"
+fbprophet = "*"
 
 [requires]
 python_version = "3.7"
