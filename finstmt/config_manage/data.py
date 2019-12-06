@@ -34,7 +34,9 @@ class DataConfigManager(ConfigManagerBase):
         config_idx = self.configs.index(orig_config)
         self.configs[config_idx] = config
 
-    # TODO: make next two not properties, but recalculate any time config changes
+    # TODO: Avoid unnecessary calculations in DataConfigManager
+    #
+    #  Make config_dict and sympy_namespace not properties, but recalculate any time config changes
     @property
     def config_dict(self) -> Dict[str, ItemConfig]:
         return {config.key: config for config in self.configs}

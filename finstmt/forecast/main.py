@@ -32,7 +32,12 @@ class Forecast:
             all_kwargs.update(self.config.prophet_kwargs)
             self.model = Prophet(**all_kwargs)
         else:
-            # TODO: add average approach
+            # TODO: add other approaches to forecasting
+            #
+            # Methods to add:
+            # - average
+            # - trend (reg)
+            # - trend (CAGR)
             raise NotImplementedError(f'need to implement method {self.item_config.method}')
 
         # Set in other methods

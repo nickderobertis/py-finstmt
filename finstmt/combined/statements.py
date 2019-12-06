@@ -106,7 +106,7 @@ class FinancialStatements:
 
     @property
     def non_cash_expenses(self) -> pd.Series:
-        # TODO: add stock-based compensation once it is in the data
+        # TODO: add stock-based compensation and use in non-cash expenses calculation
         return self.dep + self.gain_on_sale_invest + self.gain_on_sale_asset + self.impairment
 
     @property
@@ -114,9 +114,14 @@ class FinancialStatements:
         return self.net_income + self.non_cash_expenses - self.change('nwc') - self.capex
 
     def forecast(self, **kwargs) -> 'FinancialStatements':
-        # TODO: seems like this whole thing is repeating a lot of logic that could maybe be removed if
-        # TODO: I could construct partial financial statements
-        # TODO: Also this code feels very messy
+        # TODO: clean up forecast logic
+        #
+        # Seems like this whole thing is repeating a lot of logic that could maybe be removed if
+        # I could construct partial financial statements.
+        #
+        # Restructuring the sympy variables integration into its own library could help.
+        #
+        # This code also feels very messy in general.
         all_forecast_dict = {}
         all_results = {}
         all_pct_results = {}
@@ -143,7 +148,9 @@ class FinancialStatements:
 
         def get_subs_dict(t_offset: int):
             subs_dict = {}
-            # TODO: currently only getting current period values, need to grab previous values
+            # TODO: in forecast calculation process, need to grab previous values
+            #
+            # Currently only getting current period values.
             values_dict = by_date_item_dict[t_offset]
             for item_key, item_symbol in self.config.sympy_namespace.items():
                 if item_key in values_dict:
@@ -152,7 +159,6 @@ class FinancialStatements:
             return subs_dict
 
         def get_expr_eval_create_series_and_add_to_by_date_item_dict_and_results(overall_item_key: str) -> pd.Series:
-            # TODO: rename to have nothing to do with pct
             result_dict = {}
             expr = self.config.expr_for(overall_item_key)
             for i, date in enumerate(all_dates):
@@ -210,7 +216,6 @@ class FinancialStatements:
 
     @property
     def forecast_assumptions(self) -> pd.DataFrame:
-        # TODO: replace with config manager get
         all_configs = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
         all_series = []
         for config in all_configs:

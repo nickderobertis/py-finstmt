@@ -45,7 +45,7 @@ class FinStatementsBase:
             if pd.isnull(statement_value):
                 statement_value = 0
             data_dict[date] = statement_value
-            # TODO: set name of series
+            # TODO: set name of series from statement getattr
         return pd.Series(data_dict)
 
     def __getitem__(self, item):
