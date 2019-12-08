@@ -51,11 +51,13 @@ class FinDataBase:
         standardize_names_in_series_index(for_lookup)
         data_dict: Dict[str, Union[float, 'FinDataBase']] = {}
         extracted_name_dict: Dict[str, str] = {}
+        original_name_dict: Dict[str, str] = {}
 
         if prior_statement is not None:
             data_dict['prior_statement'] = prior_statement
 
-        for name in for_lookup.index:
+        for i, name in enumerate(for_lookup.index):
+            orig_name = series.index[i]
             for item_config in cls.items_config:
                 if item_config.extract_names is None:
                     # Not an extractable item, must be a calculated item
@@ -72,17 +74,18 @@ class FinDataBase:
                         existing_match_idx = item_config.extract_names.index(extracted_name_dict[item_config.key])
                         current_match_is_preferred = current_match_idx < existing_match_idx
                         if current_match_is_preferred:
-                            warnings.warn(f'Previously had {data_dict[item_config.key]} for {item_config.key} '
-                                          f'extracted from {extracted_name_dict[item_config.key]}. Replacing with '
-                                          f'{for_lookup[name]} from {name}')
+                            warnings.warn(f'Previously had {item_config.key} '
+                                          f'extracted from "{original_name_dict[item_config.key]}". Replacing with '
+                                          f'value from "{orig_name}"')
                         else:
-                            warnings.warn(f'Got {for_lookup[name]} for {item_config.key} from {name} but already '
-                                          f'had {data_dict[item_config.key]} from '
-                                          f'{extracted_name_dict[item_config.key]} which has higher priority, '
-                                          f'keeping {data_dict[item_config.key]}')
+                            warnings.warn(f'Found {item_config.key} from "{orig_name}" but already '
+                                          f'had extracted from '
+                                          f'"{original_name_dict[item_config.key]}" which has higher priority, '
+                                          f'keeping value from "{original_name_dict[item_config.key]}"')
                             continue
                     data_dict[item_config.key] = for_lookup[name]
                     extracted_name_dict[item_config.key] = name
+                    original_name_dict[item_config.key] = orig_name
         return cls(**data_dict)
 
     def to_series(self) -> pd.Series:
