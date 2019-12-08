@@ -5,7 +5,9 @@ import re
 import pandas as pd
 import numpy as np
 
-COLUMN_NAME_PATTERN = re.compile(r'((Restated)|(Reclassified)|(12 months)|(\n))*(?P<date>\w\w\w-\d\d-\d\d\d\d)')
+COLUMN_NAME_PATTERN = re.compile(
+    r'((Restated)|(Reclassified)|(12 months)|(3 months)|(Q\d)|(\n))*(?P<date>\w\w\w-\d\d-\d\d\d\d)'
+)
 
 
 def load_capiq_df(file_path: str, sheet_name: str) -> pd.DataFrame:
