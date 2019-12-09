@@ -67,3 +67,6 @@ _examples
 **/.ipynb_checkpoints
 # Scratch files
 Scratch
+
+# Lock file for LibreOffice
+**/.~lock.*.xls#
