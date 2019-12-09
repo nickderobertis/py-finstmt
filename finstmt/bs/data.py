@@ -7,16 +7,11 @@ from finstmt.findata.database import FinDataBase
 
 @dataclass(unsafe_hash=True)
 class BalanceSheetData(FinDataBase):
-    cash: float
-    receivables: float
-    inventory: float
-    lt_invest: float
-    payables: float
-    st_debt: float
-    lt_debt: float
-    retained_earnings: float
-
+    cash: Optional[float] = 0
     st_invest: Optional[float] = 0
+    receivables: Optional[float] = 0
+    inventory: Optional[float] = 0
+    lt_invest: Optional[float] = 0
     def_tax_st: Optional[float] = 0
     other_current_assets: Optional[float] = 0
     gross_ppe: Optional[float] = 0
@@ -24,7 +19,10 @@ class BalanceSheetData(FinDataBase):
     goodwill: Optional[float] = 0
     def_tax_lt: Optional[float] = 0
     other_lt_assets: Optional[float] = 0
+    payables: Optional[float] = 0
     current_lt_debt: Optional[float] = 0
+    st_debt: Optional[float] = 0
+    lt_debt: Optional[float] = 0
     deferred_rev: Optional[float] = 0
     tax_liab_st: Optional[float] = 0
     other_current_liab: Optional[float] = 0
@@ -34,6 +32,7 @@ class BalanceSheetData(FinDataBase):
     common_stock: Optional[float] = 0
     minority_interest: Optional[float] = 0
     other_income: Optional[float] = 0
+    retained_earnings: Optional[float] = 0
 
     cash_and_st_invest: Optional[float] = None
     total_current_assets: Optional[float] = None
