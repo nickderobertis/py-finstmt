@@ -14,7 +14,7 @@ class ItemConfig:
     forecast_config: ForecastItemConfig = field(default_factory=lambda: ForecastItemConfig())
     expr_str: Optional[str] = None
 
-    # TODO [$5ded965aa47fde0008d241ba]: add config and logic for whether to take highest priority or add all of matching names
+    # TODO [#19]: add config and logic for whether to take highest priority or add all of matching names
     #
     # When extracting impairment, in Capital IQ data it has Impairment of Goodwill and Asset Writedown,
     # both of which should be included. This is in contrast to most others where only the highest priority
