@@ -316,10 +316,12 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         extract_names=[
             'taxes',
             'tax',
+            'tax provision',
             'tax expense',
             'tax expenses',
             'tax exp',
             'income tax',
+            'income tax provision',
             'income tax expense',
             'income tax expenses',
             'income tax exp',
