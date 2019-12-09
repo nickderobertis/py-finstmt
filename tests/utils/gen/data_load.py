@@ -41,7 +41,7 @@ def get_keys_for_bs_data_items() -> List[str]:
 
 def print_test_data_def(stmts: FinancialStatements, data_keys: List[str], index_name: str = 'a_index',
                          data_dict_name: str = 'a_test_data_dict') -> None:
-    _print_index_def(stmts, index_name)
+    _print_index_def(stmts, data_keys, index_name)
     _print_data_dict_def(stmts, data_keys, index_name, data_dict_name)
 
 
@@ -55,7 +55,7 @@ def _print_data_dict_def(stmts: FinancialStatements, data_keys: List[str], index
     print(')')
 
 
-def _print_index_def(stmts: FinancialStatements, index_name: str = 'a_index') -> None:
-    index_values_str = '[' + ', '.join([f'"{val}"' for val in stmts.revenue.index]) + ']'
+def _print_index_def(stmts: FinancialStatements, data_keys: List[str], index_name: str = 'a_index') -> None:
+    index_values_str = '[' + ', '.join([f'"{val}"' for val in getattr(stmts, data_keys[0]).index]) + ']'
     print(f'{index_name}_str = {index_values_str}')
     print(f'{index_name} = [pd.to_datetime(val) for val in {index_name}_str]')
