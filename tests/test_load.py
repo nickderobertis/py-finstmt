@@ -665,11 +665,11 @@ class TestLoadStockrow(LoadTest):
         ),
     )
 
-    def test_annual(self, annual_stockrow_stmts: FinancialStatements):
-        self.check_data_items(annual_stockrow_stmts, self.a_test_data_dict)
+    def test_annual(self, annual_stockrow_stmts_cat: FinancialStatements):
+        self.check_data_items(annual_stockrow_stmts_cat, self.a_test_data_dict)
 
-    def test_quarterly(self, quarterly_stockrow_stmts: FinancialStatements):
-        self.check_data_items(quarterly_stockrow_stmts, self.q_test_data_dict)
+    def test_quarterly(self, quarterly_stockrow_stmts_cat: FinancialStatements):
+        self.check_data_items(quarterly_stockrow_stmts_cat, self.q_test_data_dict)
 
 
 class TestLoadCapitalIQ(LoadTest):
