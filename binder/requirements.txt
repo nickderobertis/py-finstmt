@@ -1,0 +1,5 @@
+finstmt
+pandas
+sympy
+matplotlib
+xlrd

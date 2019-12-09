@@ -1,0 +1,22 @@
+finstmt.items package
+=====================
+
+Submodules
+----------
+
+finstmt.items.config module
+---------------------------
+
+.. automodule:: finstmt.items.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: finstmt.items
+   :members:
+   :undoc-members:
+   :show-inheritance:

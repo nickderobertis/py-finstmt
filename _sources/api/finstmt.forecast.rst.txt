@@ -1,0 +1,38 @@
+finstmt.forecast package
+========================
+
+Submodules
+----------
+
+finstmt.forecast.config module
+------------------------------
+
+.. automodule:: finstmt.forecast.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.forecast.dataframe module
+---------------------------------
+
+.. automodule:: finstmt.forecast.dataframe
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.forecast.main module
+----------------------------
+
+.. automodule:: finstmt.forecast.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: finstmt.forecast
+   :members:
+   :undoc-members:
+   :show-inheritance:

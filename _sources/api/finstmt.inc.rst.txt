@@ -1,0 +1,38 @@
+finstmt.inc package
+===================
+
+Submodules
+----------
+
+finstmt.inc.config module
+-------------------------
+
+.. automodule:: finstmt.inc.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.inc.data module
+-----------------------
+
+.. automodule:: finstmt.inc.data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.inc.main module
+-----------------------
+
+.. automodule:: finstmt.inc.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: finstmt.inc
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,22 @@
+finstmt.loaders package
+=======================
+
+Submodules
+----------
+
+finstmt.loaders.capiq module
+----------------------------
+
+.. automodule:: finstmt.loaders.capiq
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: finstmt.loaders
+   :members:
+   :undoc-members:
+   :show-inheritance:
