@@ -8,6 +8,7 @@ from sympy import IndexedBase
 
 from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
+from finstmt.exc import CouldNotParseException
 from finstmt.items.config import ItemConfig
 
 
@@ -86,6 +87,9 @@ class FinDataBase:
                     data_dict[item_config.key] = for_lookup[name]
                     extracted_name_dict[item_config.key] = name
                     original_name_dict[item_config.key] = orig_name
+        if not data_dict:
+            raise CouldNotParseException('Passed Series did not have any statement items in the index. '
+                                         'Got index:', series.index)
         return cls(**data_dict)
 
     def to_series(self) -> pd.Series:

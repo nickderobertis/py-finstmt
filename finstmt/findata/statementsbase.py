@@ -4,6 +4,7 @@ from dataclasses import field
 import pandas as pd
 
 from finstmt.config_manage.statement import StatementConfigManager
+from finstmt.exc import CouldNotParseException
 from finstmt.findata.database import FinDataBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
@@ -91,7 +92,12 @@ class FinStatementsBase:
         """
         statements_dict = {}
         for col in df.columns:
-            statement = cls.statement_cls.from_series(df[col])
+            try:
+                statement = cls.statement_cls.from_series(df[col])
+            except CouldNotParseException:
+                raise CouldNotParseException('Passed DataFrame did not have any statement items in the index. '
+                                             'Did you set the column with statement items to the index? Got index:',
+                                              df.index)
             statement_date = pd.to_datetime(col)
             statements_dict[statement_date] = statement
         return cls(statements_dict)
