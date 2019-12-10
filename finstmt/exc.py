@@ -5,3 +5,7 @@ class NotACalculatedItemException(Exception):
 
 class NoSuchItemException(Exception):
     pass
+
+
+class CouldNotParseException(Exception):
+    pass
