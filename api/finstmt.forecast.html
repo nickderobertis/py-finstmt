@@ -198,11 +198,11 @@
 <span id="finstmt-forecast-config-module"></span><h2>finstmt.forecast.config module<a class="headerlink" href="#module-finstmt.forecast.config" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="finstmt.forecast.config.ForecastConfig">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastConfig</code><span class="sig-paren">(</span><em class="sig-param">periods=5</em>, <em class="sig-param">freq='Y'</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastConfig</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="method">
 <dt id="finstmt.forecast.config.ForecastConfig.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">periods=5</em>, <em class="sig-param">freq='Y'</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -234,7 +234,7 @@
 
 <dl class="class">
 <dt id="finstmt.forecast.config.ForecastItemConfig">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastItemConfig</code><span class="sig-paren">(</span><em class="sig-param">method='auto'</em>, <em class="sig-param">pct_of=None</em>, <em class="sig-param">make_forecast=True</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">cap=None</em>, <em class="sig-param">floor=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastItemConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastItemConfig</code><span class="sig-paren">(</span><em class="sig-param">method: str = 'auto'</em>, <em class="sig-param">pct_of: Optional[str] = None</em>, <em class="sig-param">make_forecast: bool = True</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">cap: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">floor: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastItemConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The main configuration for a single item forecast</p>
 <p>method: ‘auto’ currently only supported method, runs forecast with fbprophet
@@ -245,7 +245,7 @@ cap: the maximum that the trend line should reach
 floot: the minimum that the trend line should reach</p>
 <dl class="method">
 <dt id="finstmt.forecast.config.ForecastItemConfig.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">method='auto'</em>, <em class="sig-param">pct_of=None</em>, <em class="sig-param">make_forecast=True</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">cap=None</em>, <em class="sig-param">floor=None</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">method: str = 'auto'</em>, <em class="sig-param">pct_of: Optional[str] = None</em>, <em class="sig-param">make_forecast: bool = True</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">cap: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">floor: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -361,7 +361,7 @@ floot: the minimum that the trend line should reach</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2019, Nick DeRobertis
+        &copy; Copyright 2020, Nick DeRobertis
 
     </p>
   </div>

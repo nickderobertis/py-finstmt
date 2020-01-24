@@ -1,5 +1,5 @@
-finstmt
-pandas
-sympy
 matplotlib
+pandas
 xlrd
+finstmt
+sympy

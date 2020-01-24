@@ -198,7 +198,7 @@
 <span id="finstmt-combined-statements-module"></span><h2>finstmt.combined.statements module<a class="headerlink" href="#module-finstmt.combined.statements" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="finstmt.combined.statements.FinancialStatements">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.combined.statements.</code><code class="sig-name descname">FinancialStatements</code><span class="sig-paren">(</span><em class="sig-param">income_statements</em>, <em class="sig-param">balance_sheets</em>, <em class="sig-param">forecasts=&lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.combined.statements.</code><code class="sig-name descname">FinancialStatements</code><span class="sig-paren">(</span><em class="sig-param">income_statements: finstmt.inc.main.IncomeStatements</em>, <em class="sig-param">balance_sheets: finstmt.bs.main.BalanceSheets</em>, <em class="sig-param">forecasts: Dict[str</em>, <em class="sig-param">finstmt.forecast.main.Forecast] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Main class that holds all the financial statements.</p>
 <dl>
@@ -215,7 +215,7 @@
 </dl>
 <dl class="method">
 <dt id="finstmt.combined.statements.FinancialStatements.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">income_statements</em>, <em class="sig-param">balance_sheets</em>, <em class="sig-param">forecasts=&lt;factory&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">income_statements: finstmt.inc.main.IncomeStatements</em>, <em class="sig-param">balance_sheets: finstmt.bs.main.BalanceSheets</em>, <em class="sig-param">forecasts: Dict[str</em>, <em class="sig-param">finstmt.forecast.main.Forecast] = &lt;factory&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -333,7 +333,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2019, Nick DeRobertis
+        &copy; Copyright 2020, Nick DeRobertis
 
     </p>
   </div>

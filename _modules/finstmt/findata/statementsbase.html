@@ -168,6 +168,7 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">from</span> <span class="nn">finstmt.config_manage.statement</span> <span class="kn">import</span> <span class="n">StatementConfigManager</span>
+<span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">CouldNotParseException</span>
 <span class="kn">from</span> <span class="nn">finstmt.findata.database</span> <span class="kn">import</span> <span class="n">FinDataBase</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.config</span> <span class="kn">import</span> <span class="n">ForecastConfig</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.main</span> <span class="kn">import</span> <span class="n">Forecast</span>
@@ -255,7 +256,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">statements_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-            <span class="n">statement</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">from_series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">statement</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">from_series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+            <span class="k">except</span> <span class="n">CouldNotParseException</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">CouldNotParseException</span><span class="p">(</span><span class="s1">&#39;Passed DataFrame did not have any statement items in the index. &#39;</span>
+                                             <span class="s1">&#39;Did you set the column with statement items to the index? Got index:&#39;</span><span class="p">,</span>
+                                              <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
             <span class="n">statement_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
             <span class="n">statements_dict</span><span class="p">[</span><span class="n">statement_date</span><span class="p">]</span> <span class="o">=</span> <span class="n">statement</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">statements_dict</span><span class="p">)</span></div>
@@ -314,7 +320,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2019, Nick DeRobertis
+        &copy; Copyright 2020, Nick DeRobertis
 
     </p>
   </div>

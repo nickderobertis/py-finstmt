@@ -172,6 +172,7 @@
 
 <span class="kn">from</span> <span class="nn">finstmt.clean.name</span> <span class="kn">import</span> <span class="n">standardize_names_in_series_index</span>
 <span class="kn">from</span> <span class="nn">finstmt.config_manage.data</span> <span class="kn">import</span> <span class="n">DataConfigManager</span>
+<span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">CouldNotParseException</span>
 <span class="kn">from</span> <span class="nn">finstmt.items.config</span> <span class="kn">import</span> <span class="n">ItemConfig</span>
 
 
@@ -250,6 +251,9 @@
                     <span class="n">data_dict</span><span class="p">[</span><span class="n">item_config</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">for_lookup</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
                     <span class="n">extracted_name_dict</span><span class="p">[</span><span class="n">item_config</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
                     <span class="n">original_name_dict</span><span class="p">[</span><span class="n">item_config</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">orig_name</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data_dict</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CouldNotParseException</span><span class="p">(</span><span class="s1">&#39;Passed Series did not have any statement items in the index. &#39;</span>
+                                         <span class="s1">&#39;Got index:&#39;</span><span class="p">,</span> <span class="n">series</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data_dict</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FinDataBase.to_series"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.database.FinDataBase.to_series">[docs]</a>    <span class="k">def</span> <span class="nf">to_series</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
@@ -288,7 +292,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2019, Nick DeRobertis
+        &copy; Copyright 2020, Nick DeRobertis
 
     </p>
   </div>

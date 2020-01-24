@@ -278,12 +278,12 @@ data config manager</p>
 <span id="finstmt-config-manage-data-module"></span><h2>finstmt.config_manage.data module<a class="headerlink" href="#module-finstmt.config_manage.data" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="finstmt.config_manage.data.DataConfigManager">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.data.</code><code class="sig-name descname">DataConfigManager</code><span class="sig-paren">(</span><em class="sig-param">configs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/data.html#DataConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.data.</code><code class="sig-name descname">DataConfigManager</code><span class="sig-paren">(</span><em class="sig-param">configs: List[finstmt.items.config.ItemConfig]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/data.html#DataConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#finstmt.config_manage.base.ConfigManagerBase" title="finstmt.config_manage.base.ConfigManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.config_manage.base.ConfigManagerBase</span></code></a></p>
 <p>Used to manage the config for an individual time period of an individual statement</p>
 <dl class="method">
 <dt id="finstmt.config_manage.data.DataConfigManager.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">configs</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">configs: List[finstmt.items.config.ItemConfig]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -336,13 +336,13 @@ data config manager</p>
 <span id="finstmt-config-manage-statement-module"></span><h2>finstmt.config_manage.statement module<a class="headerlink" href="#module-finstmt.config_manage.statement" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="finstmt.config_manage.statement.StatementConfigManager">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.statement.</code><code class="sig-name descname">StatementConfigManager</code><span class="sig-paren">(</span><em class="sig-param">config_managers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statement.html#StatementConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.statement.</code><code class="sig-name descname">StatementConfigManager</code><span class="sig-paren">(</span><em class="sig-param">config_managers: Dict[pandas.Timestamp, finstmt.config_manage.data.DataConfigManager]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statement.html#StatementConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#finstmt.config_manage.base.ConfigManagerBase" title="finstmt.config_manage.base.ConfigManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.config_manage.base.ConfigManagerBase</span></code></a></p>
 <p>Used for entire single financial statement, e.g. income statement or balance sheet, with multiple dates in the
 statement.</p>
 <dl class="method">
 <dt id="finstmt.config_manage.statement.StatementConfigManager.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">config_managers</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">config_managers: Dict[pandas.Timestamp, finstmt.config_manage.data.DataConfigManager]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -391,12 +391,12 @@ data config manager</p>
 <span id="finstmt-config-manage-statements-module"></span><h2>finstmt.config_manage.statements module<a class="headerlink" href="#module-finstmt.config_manage.statements" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="finstmt.config_manage.statements.StatementsConfigManager">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.statements.</code><code class="sig-name descname">StatementsConfigManager</code><span class="sig-paren">(</span><em class="sig-param">config_managers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.statements.</code><code class="sig-name descname">StatementsConfigManager</code><span class="sig-paren">(</span><em class="sig-param">config_managers: Dict[str, finstmt.config_manage.statement.StatementConfigManager]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#finstmt.config_manage.base.ConfigManagerBase" title="finstmt.config_manage.base.ConfigManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.config_manage.base.ConfigManagerBase</span></code></a></p>
 <p>Main configuration interface. Handles all of the configuration for a set of financial statements.</p>
 <dl class="method">
 <dt id="finstmt.config_manage.statements.StatementsConfigManager.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">config_managers</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">config_managers: Dict[str, finstmt.config_manage.statement.StatementConfigManager]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -461,7 +461,7 @@ data config manager</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2019, Nick DeRobertis
+        &copy; Copyright 2020, Nick DeRobertis
 
     </p>
   </div>
