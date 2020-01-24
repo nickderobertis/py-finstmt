@@ -20,7 +20,7 @@ An overview
 Quick Links
 ------------
 
-Find the source code `on Github <https://github.com/whoopnip/py-finstmt>`_.
+Find the source code `on Github <https://github.com/nickderobertis/py-finstmt>`_.
 
 
 .. autosummarynameonly::

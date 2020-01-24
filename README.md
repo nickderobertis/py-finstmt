@@ -10,5 +10,5 @@ financial statements.
 
 See the
 [documentation here.](
-https://whoopnip.github.io/py-finstmt/
+https://nickderobertis.github.io/py-finstmt/
 )
