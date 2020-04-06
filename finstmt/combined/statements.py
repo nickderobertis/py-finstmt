@@ -94,7 +94,9 @@ class FinancialStatements:
             'balance_sheets',
             'capex',
             'non_cash_expenses',
-            'fcf'
+            'fcf',
+            'forecast',
+            'forecast_assumptions',
         ]
         all_config = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
         item_attrs = [config.key for config in all_config]
