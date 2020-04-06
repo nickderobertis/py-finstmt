@@ -1,6 +1,6 @@
 {
     "template": "https://github.com/nickderobertis/cookiecutter-pypi-sphinx",
-    "commit": "7da093b946f5ce6bb8154c465401e1aba3c701c3",
+    "commit": "395785115897df0582bb9fc87af960ad3f84fda2",
     "context": {
         "cookiecutter": {
             "package_name": "finstmt",

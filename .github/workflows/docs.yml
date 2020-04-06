@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  # TODO [#49]: refactor docs workflow once Github Actions improves
+  # TODO [#2]: refactor docs workflow once Github Actions improves
   #
   # Entire jobs are getting copied between workflow files due to limitations in Github Actions
   #
@@ -44,7 +44,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pipenv run pytest --cov=./ --cov-report=xml
+        pipenv run python -m pytest --cov=./ --cov-report=xml
     - name: Upload coverage to Codecov
       if: github.ref == 'refs/heads/master'
       uses: codecov/codecov-action@v1
@@ -56,7 +56,7 @@ jobs:
         yml: ./codecov.yml
     - name: Static Typing Checks with mypy
       run: |
-        pipenv run mypy $(python name.py)
+        pipenv run mypy $(python directory.py)
 
   deploy:
     needs: test

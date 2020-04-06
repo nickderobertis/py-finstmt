@@ -53,10 +53,10 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Static Typing Checks with mypy
       run: |
-        pipenv run mypy $(python name.py)
+        pipenv run mypy $(python directory.py)
     - name: Test with pytest
       run: |
-        pipenv run pytest --cov=./ --cov-report=xml
+        pipenv run python -m pytest --cov=./ --cov-report=xml
     - name: Upload coverage to Codecov
       if: github.ref == 'refs/heads/master'
       uses: codecov/codecov-action@v1
