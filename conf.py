@@ -4,6 +4,9 @@
 # Main package name
 PACKAGE_NAME = 'finstmt'
 
+# Directory name of package
+PACKAGE_DIRECTORY = "finstmt"
+
 # Name of Repo
 REPO_NAME = 'py-finstmt'
 
@@ -17,7 +20,7 @@ REPO_MAINTAINERS = [
 ]
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 2, 2)
+PACKAGE_VERSION_TUPLE = (0, 2, 3)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = 'Python package for working with financial statement data'
@@ -114,7 +117,7 @@ PACKAGE_URLS = {
 
 # Does not affect anything about the current package. Simply used for tracking when this repo was created off
 # of the quickstart template, so it is easier to bring over new changes to the template.
-_TEMPLATE_VERSION_TUPLE = (0, 4, 0)
+_TEMPLATE_VERSION_TUPLE = (0, 6, 0)
 
 if __name__ == '__main__':
     # Store config as environment variables

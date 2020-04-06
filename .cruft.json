@@ -1,0 +1,18 @@
+{
+    "template": "https://github.com/nickderobertis/cookiecutter-pypi-sphinx",
+    "commit": "395785115897df0582bb9fc87af960ad3f84fda2",
+    "context": {
+        "cookiecutter": {
+            "package_name": "finstmt",
+            "package_directory": "finstmt",
+            "full_name": "py-finstmt",
+            "repo_name": "py-finstmt",
+            "repo_username": "nickderobertis",
+            "short_description": "Contains classes to work with financial statement data. Can calculate free cash flows and help project financial statements.",
+            "package_author": "Nick DeRobertis",
+            "author_email": "whoopnip@gmail.com",
+            "google_analytics_id": "UA-154145306-1",
+            "_template": "https://github.com/nickderobertis/cookiecutter-pypi-sphinx"
+        }
+    }
+}

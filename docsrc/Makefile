@@ -15,7 +15,7 @@ help:
 .PHONY: help Makefile
 
 autodoc:
-	@sphinx-apidoc -o ./source/api "../$(SPHINXPROJ)"
+	@sphinx-apidoc -M -o ./source/api -t ./apidoc/templates "../$(SPHINXPROJ)"
 
 cleandoc:
 	@rm -rf ./source/api
