@@ -1,17 +1,14 @@
 from typing import Optional
 
 import pandas as pd
-import matplotlib.pyplot as plt
 
 from finstmt.forecast.models.base import ForecastModel
-from finstmt.forecast.plot import plot_forecast
 
 
 class CAGRModel(ForecastModel):
     cagr: Optional[float] = None
     stderr: Optional[float] = None
     last_value: Optional[float] = None
-    orig_series: Optional[pd.Series] = None
 
     def fit(self, series: pd.Series):
         y_T = series.iloc[-1]
@@ -20,7 +17,6 @@ class CAGRModel(ForecastModel):
         self.cagr = (y_T / y_0) ** (1 / n) - 1
         self.stderr = series.pct_change().std() / (n ** 0.5)
         self.last_value = y_T
-        self.orig_series = series
         super().fit(series)
 
     def predict(self) -> pd.Series:
@@ -57,6 +53,3 @@ class CAGRModel(ForecastModel):
         self.result_df = past_df.append(future_df).sort_index()
         super().predict()
         return self.result
-
-    def plot(self) -> plt.Figure:
-        return plot_forecast(self.result_df, self.orig_series.values, self.orig_series.index)
