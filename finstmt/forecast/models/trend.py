@@ -26,7 +26,7 @@ class LinearTrendModel(ForecastModel):
 
     def predict(self) -> pd.Series:
         last_t = len(self.model.exog) - 1
-        future_X = sm.add_constant(np.arange(last_t + 1, last_t + self.config.periods))
+        future_X = sm.add_constant(np.arange(last_t + 1, last_t + self.config.periods + 1))
         future_dates = self._future_date_range
         all_X = np.concatenate((self.model.exog, future_X))
         all_dates = np.concatenate((self.orig_dates, future_dates))

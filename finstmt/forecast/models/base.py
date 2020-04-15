@@ -36,7 +36,7 @@ class ForecastModel:
             raise ForecastNotFitException('call .fit before ._future_date_range')
         return pd.date_range(
             start=self.last_historical_period,
-            periods=self.config.periods,
+            periods=self.config.periods + 1,
             freq=self.config.freq,
             closed='right'
         )
