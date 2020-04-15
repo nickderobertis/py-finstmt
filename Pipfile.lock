@@ -1083,10 +1083,10 @@
         },
         "sphinx-paramlinks": {
             "hashes": [
-                "sha256:b169454abb73c3598d6c8dfb6044e4f1d9d32d298f2f5563a08d90700fc5c1c5"
+                "sha256:b8d8b5ee100428c2af52b2b24cb842d46d161943018032a74520dea37b60e5ab"
             ],
             "index": "pypi",
-            "version": "==0.4.0"
+            "version": "==0.4.1"
         },
         "sphinx-rtd-theme": {
             "editable": true,

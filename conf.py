@@ -66,7 +66,8 @@ PACKAGE_INSTALL_REQUIRES = [
     'sympy',
     'xlrd',
     'matplotlib',
-    'tqdm'
+    'tqdm',
+    'statsmodels',
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here

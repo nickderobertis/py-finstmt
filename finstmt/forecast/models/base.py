@@ -3,7 +3,9 @@ from typing import Optional
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from pandas import DatetimeIndex
 
+from finstmt.exc import ForecastNotFitException
 from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 
 
@@ -25,5 +27,16 @@ class ForecastModel:
         self.has_prediction = True
         return pd.Series()
 
-    def plot(self) -> plt.Axes:
+    def plot(self) -> plt.Figure:
         raise NotImplementedError
+
+    @property
+    def _future_date_range(self) -> DatetimeIndex:
+        if not self.has_been_fit:
+            raise ForecastNotFitException('call .fit before ._future_date_range')
+        return pd.date_range(
+            start=self.last_historical_period,
+            periods=self.config.periods,
+            freq=self.config.freq,
+            closed='right'
+        )
