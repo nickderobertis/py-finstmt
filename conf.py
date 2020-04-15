@@ -65,14 +65,15 @@ PACKAGE_INSTALL_REQUIRES = [
     'pandas',
     'sympy',
     'xlrd',
-    'matplotlib'
+    'matplotlib',
+    'tqdm'
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here
 # Keys should be name of the optional feature and values are lists of required packages
 # E.g. {'feature1': ['pandas', 'numpy'], 'feature2': ['matplotlib']}
 OPTIONAL_PACKAGE_INSTALL_REQUIRES = {
-
+    'forecast': ['fbprophet'],
 }
 
 # Packages added to Binder environment so that examples can be executed in Binder
