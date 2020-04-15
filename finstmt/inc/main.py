@@ -20,3 +20,4 @@ class IncomeStatements(FinStatementsBase):
     statements: Dict[pd.Timestamp, IncomeStatementData]  # type: ignore
 
     statement_cls = IncomeStatementData  # type: ignore
+    statement_name = 'Income Statement'

@@ -28,6 +28,7 @@ sympy = "*"
 xlrd = "*"
 matplotlib = "*"
 fbprophet = "*"
+tqdm = "*"
 
 [requires]
 python_version = "3.7"
