@@ -1,3 +1,5 @@
+import logging
+
 from finstmt.forecast.config import ForecastItemConfig, ForecastConfig
 
 
@@ -16,7 +18,13 @@ def get_auto_model(config: ForecastConfig, item_config: ForecastItemConfig):
 def _try_import_fbprophet():
     try:
         from fbprophet import Prophet
-        return Prophet
+
     except ImportError:
         raise ImportError('need to install fbprophet to use forecasting functionality with method auto. '
                           'see https://facebook.github.io/prophet/docs/installation.html')
+
+    # Suppress excessive logging from fbprophet
+    fbprophet_logger = logging.getLogger('fbprophet')
+    fbprophet_logger.setLevel(logging.WARN)
+
+    return Prophet
