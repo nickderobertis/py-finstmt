@@ -21,3 +21,7 @@ class ForecastNotFitException(ForecastException):
 
 class ForecastNotPredictedException(ForecastException):
     pass
+
+
+class ImproperManualForecastException(ForecastException):
+    pass

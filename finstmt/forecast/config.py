@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Union, Dict, Optional, Any
+from typing import Union, Dict, Optional, Any, List
 
 import pandas as pd
 
@@ -36,6 +36,7 @@ class ForecastItemConfig:
     prophet_kwargs: dict = field(default_factory=lambda: {})
     cap: Optional[Union[float, pd.Series]] = None
     floor: Optional[Union[float, pd.Series]] = None
+    manual_forecasts: Dict[str, List[float]] = field(default_factory=lambda: {'levels': [], 'growth': []})
 
     def to_series(self) -> pd.Series:
         out_dict = {
@@ -45,5 +46,9 @@ class ForecastItemConfig:
             'Floor': self.floor
         }
         out_dict.update(self.prophet_kwargs)
+        if self.manual_forecasts['levels']:
+            out_dict.update({'Manual Levels': self.manual_forecasts['levels']})
+        if self.manual_forecasts['growth']:
+            out_dict.update({'Manual Growth': self.manual_forecasts['growth']})
         return pd.Series(out_dict)
 
