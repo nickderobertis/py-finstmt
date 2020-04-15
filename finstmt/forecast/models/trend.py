@@ -8,6 +8,7 @@ from pandas import DatetimeIndex
 from statsmodels.regression.linear_model import RegressionResults
 
 from finstmt.forecast.models.base import ForecastModel
+from finstmt.forecast.plot import plot_forecast
 
 
 class LinearTrendModel(ForecastModel):
@@ -39,14 +40,4 @@ class LinearTrendModel(ForecastModel):
         return self.result
 
     def plot(self) -> plt.Figure:
-        fig = plt.figure(facecolor='w', figsize=(10, 5))
-        ax = fig.add_subplot(111)
-        fcst_t = self.result_df.index.to_pydatetime()
-        ax.plot(self.orig_dates, self.model.endog, 'k.')
-        ax.plot(fcst_t, self.result_df['mean'], ls='-', c='#0072B2')
-        ax.fill_between(fcst_t, self.result_df['lower'], self.result_df['upper'],
-                        color='#0072B2', alpha=0.2)
-        return fig
-
-
-
+        return plot_forecast(self.result_df, self.model.endog, self.orig_dates)
