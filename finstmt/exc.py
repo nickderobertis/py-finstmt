@@ -9,3 +9,15 @@ class NoSuchItemException(Exception):
 
 class CouldNotParseException(Exception):
     pass
+
+
+class ForecastException(Exception):
+    pass
+
+
+class ForecastNotFitException(ForecastException):
+    pass
+
+
+class ForecastNotPredictedException(ForecastException):
+    pass

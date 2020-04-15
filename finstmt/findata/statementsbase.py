@@ -135,6 +135,7 @@ class FinStatementsBase:
                 pct_of_series = getattr(statements, item.forecast_config.pct_of)
             forecast = Forecast(data, forecast_config, item.forecast_config, pct_of_series=pct_of_series)
             forecast.fit()
+            forecast.predict()
             forecast_dict[item.key] = forecast
             if forecast.result is not None:
                 forecast.result.name = item.primary_name

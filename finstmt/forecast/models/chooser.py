@@ -1,11 +1,11 @@
 from finstmt.forecast.config import ForecastItemConfig, ForecastConfig
 from finstmt.forecast.models.base import ForecastModel
-from finstmt.forecast.models.prophet import get_auto_model
+from finstmt.forecast.models.prophet import FBProphetModel
 
 
 def get_model(config: ForecastConfig, item_config: ForecastItemConfig) -> ForecastModel:
     if item_config.method == 'auto':
-        return get_auto_model(config, item_config)
+        return FBProphetModel(config, item_config)
 
     # TODO [#11]: add other approaches to forecasting
     #
