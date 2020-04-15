@@ -5,6 +5,7 @@ import pandas as pd
 
 from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 from finstmt.forecast.dataframe import add_cap_and_floor_to_df
+from finstmt.forecast.models.chooser import get_model
 
 
 class Forecast:
@@ -16,32 +17,12 @@ class Forecast:
 
     def __init__(self, series: pd.Series, config: ForecastConfig, item_config: ForecastItemConfig,
                  pct_of_series: Optional[pd.Series] = None):
-        try:
-            from fbprophet import Prophet
-        except ImportError:
-            raise ImportError('need to install fbprophet to use forecasting functionality. '
-                              'see https://facebook.github.io/prophet/docs/installation.html')
-
         self.orig_series = series
         self.config = config
         self.item_config = item_config
         self.pct_of_series = pct_of_series
 
-        if self.item_config.method == 'auto':
-            all_kwargs = {}
-            if self.config.freq.lower() == 'y':
-                all_kwargs['yearly_seasonality'] = False
-            all_kwargs.update(self.item_config.prophet_kwargs)
-            all_kwargs.update(self.config.prophet_kwargs)
-            self.model = Prophet(**all_kwargs)
-        else:
-            # TODO [#11]: add other approaches to forecasting
-            #
-            # Methods to add:
-            # - average
-            # - trend (reg)
-            # - trend (CAGR)
-            raise NotImplementedError(f'need to implement method {self.item_config.method}')
+        self.model = get_model(config, item_config)
 
         # Set in other methods
         self.result_df = None

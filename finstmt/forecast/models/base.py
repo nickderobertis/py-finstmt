@@ -1,0 +1,4 @@
+
+
+class ForecastModel:
+    pass
