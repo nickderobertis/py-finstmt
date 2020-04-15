@@ -3,22 +3,23 @@ from finstmt.forecast.models.average import AverageModel
 from finstmt.forecast.models.base import ForecastModel
 from finstmt.forecast.models.cagr import CAGRModel
 from finstmt.forecast.models.prophet import FBProphetModel
+from finstmt.forecast.models.recent import RecentValueModel
 from finstmt.forecast.models.trend import LinearTrendModel
 
 
 def get_model(config: ForecastConfig, item_config: ForecastItemConfig) -> ForecastModel:
     if item_config.method == 'auto':
-        return FBProphetModel(config, item_config)
+        model_class = FBProphetModel
     elif item_config.method == 'trend':
-        return LinearTrendModel(config, item_config)
+        model_class = LinearTrendModel
     elif item_config.method == 'cagr':
-        return CAGRModel(config, item_config)
+        model_class = CAGRModel
     elif item_config.method == 'mean':
-        return AverageModel(config, item_config)
+        model_class = AverageModel
+    elif item_config.method == 'recent':
+        model_class = RecentValueModel
+    else:
+        raise NotImplementedError(f'need to implement method {item_config.method}')
 
-    # TODO [#11]: add other approaches to forecasting
-    #
-    # Methods to add:
-    # - average
-    # - trend (CAGR)
-    raise NotImplementedError(f'need to implement method {item_config.method}')
+    return model_class(config, item_config)
+
