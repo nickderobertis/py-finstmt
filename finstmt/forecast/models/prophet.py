@@ -10,7 +10,6 @@ from finstmt.forecast.dataframe import add_cap_and_floor_to_df
 
 
 class FBProphetModel(ForecastModel):
-    result_df: Optional[pd.DataFrame] = None
 
     def __init__(self, config: ForecastConfig, item_config: ForecastItemConfig):
         super().__init__(config, item_config)

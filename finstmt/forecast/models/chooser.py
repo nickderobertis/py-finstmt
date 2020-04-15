@@ -1,4 +1,5 @@
 from finstmt.forecast.config import ForecastItemConfig, ForecastConfig
+from finstmt.forecast.models.average import AverageModel
 from finstmt.forecast.models.base import ForecastModel
 from finstmt.forecast.models.cagr import CAGRModel
 from finstmt.forecast.models.prophet import FBProphetModel
@@ -12,6 +13,8 @@ def get_model(config: ForecastConfig, item_config: ForecastItemConfig) -> Foreca
         return LinearTrendModel(config, item_config)
     elif item_config.method == 'cagr':
         return CAGRModel(config, item_config)
+    elif item_config.method == 'mean':
+        return AverageModel(config, item_config)
 
     # TODO [#11]: add other approaches to forecasting
     #

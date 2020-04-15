@@ -15,7 +15,6 @@ class LinearTrendModel(ForecastModel):
     model: Optional[sm.OLS] = None
     model_result: Optional[RegressionResults] = None
     orig_dates: Optional[DatetimeIndex] = None
-    result_df: Optional[pd.DataFrame] = None
 
     def fit(self, series: pd.Series):
         X = sm.add_constant(np.arange(len(series)))

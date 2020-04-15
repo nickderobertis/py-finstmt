@@ -11,6 +11,7 @@ from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 
 class ForecastModel:
     result: Optional[pd.Series] = None
+    result_df: Optional[pd.DataFrame] = None
     last_historical_period: Optional[datetime.datetime] = None
 
     def __init__(self, config: ForecastConfig, item_config: ForecastItemConfig):
