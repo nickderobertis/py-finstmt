@@ -29,6 +29,7 @@ xlrd = "*"
 matplotlib = "*"
 fbprophet = "*"
 tqdm = "*"
+statsmodels = "*"
 
 [requires]
 python_version = "3.7"
