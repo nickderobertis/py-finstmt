@@ -3,6 +3,7 @@ from typing import Optional
 
 import pandas as pd
 
+from finstmt.exc import ForecastNotFitException
 from finstmt.forecast.models.base import ForecastModel
 
 
@@ -30,6 +31,9 @@ class CAGRModel(ForecastModel):
         super().fit(series)
 
     def predict(self) -> pd.Series:
+        if self.cagr is None or self.stderr is None or self.last_value is None or self.orig_series is None:
+            raise ForecastNotFitException('call .fit before .predict')
+
         cagr_dict = dict(
             lower=self.cagr - self.stderr * 2,
             upper=self.cagr + self.stderr * 2,

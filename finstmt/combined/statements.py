@@ -213,8 +213,10 @@ class FinancialStatements:
         all_results = pd.concat(list(all_results.values()), axis=1).T
         inc_df = self.income_statements.__class__.from_df(all_results)
         bs_df = self.balance_sheets.__class__.from_df(all_results)
-        obj = ForecastedFinancialStatements(inc_df, bs_df)
-        obj.forecasts = all_forecast_dict
+
+        # type ignore added because for some reason mypy is not picking up structure
+        # correctly since it is a dataclass
+        obj = ForecastedFinancialStatements(inc_df, bs_df, all_forecast_dict)  # type: ignore
         return obj
 
     @property

@@ -1,3 +1,5 @@
+from typing import Type
+
 from finstmt.forecast.config import ForecastItemConfig, ForecastConfig
 from finstmt.forecast.models.average import AverageModel
 from finstmt.forecast.models.base import ForecastModel
@@ -11,6 +13,7 @@ from finstmt.items.config import ItemConfig
 
 def get_model(config: ForecastConfig, item_config: ForecastItemConfig,
               base_config: ItemConfig) -> ForecastModel:
+    model_class: Type[ForecastModel]
     if item_config.method == 'auto':
         model_class = FBProphetModel
     elif item_config.method == 'trend':

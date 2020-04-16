@@ -5,6 +5,7 @@ import statsmodels.api as sm
 import numpy as np
 from statsmodels.regression.linear_model import RegressionResults
 
+from finstmt.exc import ForecastNotFitException
 from finstmt.forecast.models.base import ForecastModel
 
 
@@ -19,6 +20,8 @@ class LinearTrendModel(ForecastModel):
         super().fit(series)
 
     def predict(self) -> pd.Series:
+        if self.model is None or self.model_result is None or self.orig_series is None:
+            raise ForecastNotFitException('call .fit before .predict')
         last_t = len(self.model.exog) - 1
         future_X = sm.add_constant(np.arange(last_t + 1, last_t + self.config.periods + 1))
         future_dates = self._future_date_range

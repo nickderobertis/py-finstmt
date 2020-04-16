@@ -40,6 +40,9 @@ class ForecastModel:
         if ylabel is None:
             ylabel = self.base_config.display_name
 
+        if self.orig_series is None:
+            raise ForecastNotPredictedException('call .fit then .predict before .plot')
+
         return plot_forecast(
             self.result_df,
             self.orig_series.values,

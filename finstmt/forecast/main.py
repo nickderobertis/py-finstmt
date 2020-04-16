@@ -95,7 +95,7 @@ class Forecast:
 
     @property
     def name(self) -> str:
-        if self.pct_of_series is None:
+        if self.pct_of_config is None:
             return self.base_config.display_name
 
         # Percentage of series

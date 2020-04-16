@@ -3,6 +3,7 @@ from typing import Optional
 import pandas as pd
 import numpy as np
 
+from finstmt.exc import ForecastNotFitException
 from finstmt.forecast.models.base import ForecastModel
 
 
@@ -16,6 +17,8 @@ class AverageModel(ForecastModel):
         super().fit(series)
 
     def predict(self) -> pd.Series:
+        if self.mean is None or self.stderr is None or self.orig_series is None:
+            raise ForecastNotFitException('call .fit before .predict')
         all_dates = np.concatenate((self.orig_series.index, self._future_date_range))
         df = pd.DataFrame(index=all_dates)
         df['mean'] = self.mean
