@@ -1,3 +1,4 @@
+import warnings
 from typing import Optional
 
 import pandas as pd
@@ -12,11 +13,20 @@ class CAGRModel(ForecastModel):
 
     def fit(self, series: pd.Series):
         y_T = series.iloc[-1]
-        y_0 = series.iloc[0]
-        n = len(series)
-        self.cagr = (y_T / y_0) ** (1 / n) - 1
-        self.stderr = series.pct_change().std() / (n ** 0.5)
         self.last_value = y_T
+
+        y_0 = series.iloc[0]
+
+        if y_0 == 0:
+            message = f'CAGR not an appropriate method for {self.base_config.display_name} ' \
+                      f'as y_0 is 0. Setting to 0 growth'
+            warnings.warn(message)
+            self.cagr = 0
+            self.stderr = 0
+        else:
+            n = len(series)
+            self.cagr = (y_T / y_0) ** (1 / n) - 1
+            self.stderr = series.pct_change().std() / (n ** 0.5)
         super().fit(series)
 
     def predict(self) -> pd.Series:
