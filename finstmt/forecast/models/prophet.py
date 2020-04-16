@@ -47,7 +47,9 @@ class FBProphetModel(ForecastModel):
         if ylabel is None:
             ylabel = self.base_config.display_name
 
-        return self.model.plot(self.result_df, ax=ax, figsize=figsize, xlabel=xlabel, ylabel=ylabel)
+        fig = self.model.plot(self.result_df, ax=ax, figsize=figsize, xlabel=xlabel, ylabel=ylabel)
+        plt.close()
+        return fig
 
     def _df_for_fit(self, series: pd.Series) -> pd.DataFrame:
         df = pd.DataFrame(series).reset_index()
