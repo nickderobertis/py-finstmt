@@ -20,3 +20,4 @@ class BalanceSheets(FinStatementsBase):
     statements: Dict[pd.Timestamp, BalanceSheetData]  # type: ignore
 
     statement_cls = BalanceSheetData  # type: ignore
+    statement_name = 'Balance Sheet'

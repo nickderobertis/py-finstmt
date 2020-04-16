@@ -1,82 +1,105 @@
 from copy import deepcopy
-from typing import Optional
+from typing import Optional, Tuple, Sequence, Dict
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
+from finstmt.exc import ForecastNotFitException, ForecastNotPredictedException
 from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
-from finstmt.forecast.dataframe import add_cap_and_floor_to_df
+from finstmt.forecast.models.base import ForecastModel
+
+from finstmt.forecast.models.chooser import get_model
+from finstmt.forecast.models.manual import ManualForecastModel
+from finstmt.items.config import ItemConfig
 
 
 class Forecast:
     """
     The main class to represent a forecast of an individual item.
     """
-    result: Optional[pd.Series]
-    result_df: Optional[pd.DataFrame]
+    model: ForecastModel
 
     def __init__(self, series: pd.Series, config: ForecastConfig, item_config: ForecastItemConfig,
-                 pct_of_series: Optional[pd.Series] = None):
-        try:
-            from fbprophet import Prophet
-        except ImportError:
-            raise ImportError('need to install fbprophet to use forecasting functionality. '
-                              'see https://facebook.github.io/prophet/docs/installation.html')
-
+                 base_config: ItemConfig, pct_of_series: Optional[pd.Series] = None,
+                 pct_of_config: Optional[ItemConfig] = None):
         self.orig_series = series
         self.config = config
         self.item_config = item_config
+        self.base_config = base_config
         self.pct_of_series = pct_of_series
+        self.pct_of_config = pct_of_config
 
-        if self.item_config.method == 'auto':
-            all_kwargs = {}
-            if self.config.freq.lower() == 'y':
-                all_kwargs['yearly_seasonality'] = False
-            all_kwargs.update(self.item_config.prophet_kwargs)
-            all_kwargs.update(self.config.prophet_kwargs)
-            self.model = Prophet(**all_kwargs)
+        self.model = get_model(config, item_config, base_config)
+
+    def fit(self):
+        self.model.fit(self.series)
+
+    def predict(self) -> pd.Series:
+        if not self.model.has_been_fit:
+            raise ForecastNotFitException('call .fit before .predict')
+        return self.model.predict()
+
+    def plot(self, ax: Optional[plt.Axes] = None, figsize: Tuple[int, int] = (12, 5)) -> plt.Figure:
+        if not self.model.has_prediction:
+            raise ForecastNotPredictedException('call .predict before .plot')
+        return self.model.plot(ax=ax, figsize=figsize, ylabel=self.name)
+
+    def to_manual(self, use_levels: bool = False, adjustments: Sequence[float] = None,
+                  replacements: Dict[int, float] = None):
+        if not self.model.has_prediction:
+            raise ForecastNotPredictedException('call .fit then .predict before .to_manual')
+
+        if use_levels:
+            values = self.result.values
+            config_key = 'levels'
+            reset_key = 'growth'
         else:
-            # TODO [#11]: add other approaches to forecasting
-            #
-            # Methods to add:
-            # - average
-            # - trend (reg)
-            # - trend (CAGR)
-            raise NotImplementedError(f'need to implement method {self.item_config.method}')
+            # Growth
+            values = self.result.pct_change().values
+            # Fill in first growth
+            values[0] = (self.result.iloc[0] - self.series.iloc[-1]) / self.series.iloc[-1]
+            config_key = 'growth'
+            reset_key = 'levels'
 
-        # Set in other methods
-        self.result_df = None
-        self.result = None
+        self.item_config.method = 'manual'
 
-    def fit(self) -> pd.Series:
-        self.model.fit(self._df_for_fit)
-        future = self.model.make_future_dataframe(**self.config.make_future_df_kwargs)
-        add_cap_and_floor_to_df(future, self.item_config.cap, self.item_config.floor)
-        forecast = self.model.predict(future)
-        self.result_df = forecast
-        result = forecast[['ds', 'yhat']].set_index('ds')['yhat']
-        result = result[result.index > self.orig_series.index.max()]
-        self.result = result
-        return result
+        if adjustments is not None:
+            if len(adjustments) != len(values):
+                raise ValueError(f'must pass equal length adjustments as number of periods. '
+                                 f'Got {len(adjustments)} adjustments for {len(values)} periods')
+            for i, adj in enumerate(adjustments):
+                values[i] += adj
 
-    def plot(self):
-        return self.model.plot(self.result_df)
+        if replacements is not None:
+            for i, replace in replacements.items():
+                values[i] = replace
 
-    def plot_components(self):
-        return self.model.plot_components(self.result_df)
+        self.item_config.manual_forecasts[config_key] = list(values)
+        self.item_config.manual_forecasts[reset_key] = []
+        self.model = ManualForecastModel(self.config, self.item_config, self.base_config)
+        self.model.fit(self.series)
+        self.model.predict()
 
     @property
-    def _df_for_fit(self) -> pd.DataFrame:
+    def series(self) -> pd.Series:
         if self.pct_of_series is None:
-            series = self.orig_series
+            return self.orig_series
         else:
-            series = self.orig_series / self.pct_of_series
+            return self.orig_series / self.pct_of_series
 
-        df = pd.DataFrame(series).reset_index()
-        df.columns = ['ds', 'y']
-        add_cap_and_floor_to_df(df, self.item_config.cap, self.item_config.floor)
+    @property
+    def result(self) -> pd.Series:
+        if not self.model.has_prediction:
+            raise ForecastNotPredictedException('call .fit then .predict before .result')
+        return self.model.result
 
-        return df
+    @property
+    def name(self) -> str:
+        if self.pct_of_config is None:
+            return self.base_config.display_name
 
+        # Percentage of series
+        return f'{self.base_config.display_name} % {self.pct_of_config.display_name}'
 
 
 

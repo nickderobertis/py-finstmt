@@ -20,7 +20,7 @@ REPO_MAINTAINERS = [
 ]
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 2, 3)
+PACKAGE_VERSION_TUPLE = (0, 3, 0)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = 'Python package for working with financial statement data'
@@ -65,14 +65,16 @@ PACKAGE_INSTALL_REQUIRES = [
     'pandas',
     'sympy',
     'xlrd',
-    'matplotlib'
+    'matplotlib',
+    'tqdm',
+    'statsmodels',
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here
 # Keys should be name of the optional feature and values are lists of required packages
 # E.g. {'feature1': ['pandas', 'numpy'], 'feature2': ['matplotlib']}
 OPTIONAL_PACKAGE_INSTALL_REQUIRES = {
-
+    'forecast': ['fbprophet'],
 }
 
 # Packages added to Binder environment so that examples can be executed in Binder

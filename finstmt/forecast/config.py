@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Union, Dict, Optional, Any
+from typing import Union, Dict, Optional, Any, List
 
 import pandas as pd
 
@@ -30,12 +30,13 @@ class ForecastItemConfig:
     cap: the maximum that the trend line should reach
     floot: the minimum that the trend line should reach
     """
-    method: str = 'auto'
+    method: str = 'cagr'
     pct_of: Optional[str] = None
     make_forecast: bool = True
     prophet_kwargs: dict = field(default_factory=lambda: {})
     cap: Optional[Union[float, pd.Series]] = None
     floor: Optional[Union[float, pd.Series]] = None
+    manual_forecasts: Dict[str, List[float]] = field(default_factory=lambda: {'levels': [], 'growth': []})
 
     def to_series(self) -> pd.Series:
         out_dict = {
@@ -45,5 +46,10 @@ class ForecastItemConfig:
             'Floor': self.floor
         }
         out_dict.update(self.prophet_kwargs)
+        if self.manual_forecasts['levels']:
+            out_dict.update({'Manual Levels': self.manual_forecasts['levels']})
+        if self.manual_forecasts['growth']:
+            growth_pcts = [f'{growth:.2%}' for growth in self.manual_forecasts['growth']]
+            out_dict.update({'Manual Growth': growth_pcts})
         return pd.Series(out_dict)
 

@@ -2,12 +2,14 @@ from typing import Dict, Tuple
 from dataclasses import field
 
 import pandas as pd
+from tqdm import tqdm
 
 from finstmt.config_manage.statement import StatementConfigManager
 from finstmt.exc import CouldNotParseException
 from finstmt.findata.database import FinDataBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
+from finstmt.logger import logger
 
 
 class FinStatementsBase:
@@ -22,6 +24,7 @@ class FinStatementsBase:
     # See https://github.com/python/mypy/issues/2984#issuecomment-285721489 for more details
     statement_cls = FinDataBase  # to be overridden with individual class
     statements: Dict[pd.Timestamp, FinDataBase]
+    statement_name: str = 'Base'
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
@@ -121,16 +124,27 @@ class FinStatementsBase:
         forecast_dict: Dict[str, Forecast] = {}
         results: Dict[str, pd.Series] = {}
         pct_results: Dict[str, pd.Series] = {}
-        for item in self.statement_cls.items_config:
+        logger.info(f'Forecasting {self.statement_name}')
+        for item in tqdm(self.statement_cls.items_config):
             if item.extract_names is None or not item.forecast_config.make_forecast:
                 # If can't extract item, must be calculated item, no need to forecast
                 continue
             data = getattr(statements, item.key)
             pct_of_series = None
+            pct_of_config = None
             if item.forecast_config.pct_of is not None:
                 pct_of_series = getattr(statements, item.forecast_config.pct_of)
-            forecast = Forecast(data, forecast_config, item.forecast_config, pct_of_series=pct_of_series)
+                pct_of_config = statements.config.get(item.forecast_config.pct_of)
+            forecast = Forecast(
+                data,
+                forecast_config,
+                item.forecast_config,
+                item,
+                pct_of_series=pct_of_series,
+                pct_of_config=pct_of_config
+            )
             forecast.fit()
+            forecast.predict()
             forecast_dict[item.key] = forecast
             if forecast.result is not None:
                 forecast.result.name = item.primary_name

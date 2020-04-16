@@ -28,7 +28,6 @@ class FinancialStatements:
     income_statements: IncomeStatements
     balance_sheets: BalanceSheets
 
-    forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
 
     def __post_init__(self):
         config_dict = {}
@@ -116,6 +115,8 @@ class FinancialStatements:
         return self.net_income + self.non_cash_expenses - self.change('nwc') - self.capex
 
     def forecast(self, **kwargs) -> 'FinancialStatements':
+        from finstmt.forecast.statements import ForecastedFinancialStatements
+
         # TODO [#6]: clean up forecast logic
         #
         # Seems like this whole thing is repeating a lot of logic that could maybe be removed if
@@ -212,8 +213,10 @@ class FinancialStatements:
         all_results = pd.concat(list(all_results.values()), axis=1).T
         inc_df = self.income_statements.__class__.from_df(all_results)
         bs_df = self.balance_sheets.__class__.from_df(all_results)
-        obj = self.__class__(inc_df, bs_df)
-        obj.forecasts = all_forecast_dict
+
+        # type ignore added because for some reason mypy is not picking up structure
+        # correctly since it is a dataclass
+        obj = ForecastedFinancialStatements(inc_df, bs_df, all_forecast_dict)  # type: ignore
         return obj
 
     @property
