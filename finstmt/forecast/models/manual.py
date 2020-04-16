@@ -14,8 +14,7 @@ class ManualForecastModel(ForecastModel):
 
     def __init__(self, config: ForecastConfig, item_config: ForecastItemConfig, base_config: ItemConfig):
         super().__init__(config, item_config, base_config)
-        self.growths = self.item_config.manual_forecasts['growth']
-        self.levels = self.item_config.manual_forecasts['levels']
+        self._set_growths_levels()
         self._validate()
 
     def _validate(self):
@@ -31,6 +30,10 @@ class ManualForecastModel(ForecastModel):
         else:
             if len(self.levels) != self.config.periods:
                 raise ImproperManualForecastException(f'{len(self.levels)} levels {forecast_length_error_str}')
+
+    def _set_growths_levels(self):
+        self.growths = self.item_config.manual_forecasts['growth']
+        self.levels = self.item_config.manual_forecasts['levels']
 
     def fit(self, series: pd.Series):
         self.recent = series.iloc[-1]

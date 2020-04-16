@@ -1,11 +1,11 @@
 import datetime
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Dict, Sequence
 
 import pandas as pd
 import matplotlib.pyplot as plt
 from pandas import DatetimeIndex
 
-from finstmt.exc import ForecastNotFitException
+from finstmt.exc import ForecastNotFitException, ForecastNotPredictedException
 from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 from finstmt.forecast.plot import plot_forecast
 from finstmt.items.config import ItemConfig

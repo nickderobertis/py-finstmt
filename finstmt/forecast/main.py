@@ -1,5 +1,5 @@
 from copy import deepcopy
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Sequence, Dict
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -9,6 +9,7 @@ from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 from finstmt.forecast.models.base import ForecastModel
 
 from finstmt.forecast.models.chooser import get_model
+from finstmt.forecast.models.manual import ManualForecastModel
 from finstmt.items.config import ItemConfig
 
 
@@ -42,6 +43,42 @@ class Forecast:
         if not self.model.has_prediction:
             raise ForecastNotPredictedException('call .predict before .plot')
         return self.model.plot(ax=ax, figsize=figsize, ylabel=self.name)
+
+    def to_manual(self, use_levels: bool = False, adjustments: Sequence[float] = None,
+                  replacements: Dict[int, float] = None):
+        if not self.model.has_prediction:
+            raise ForecastNotPredictedException('call .fit then .predict before .to_manual')
+
+        if use_levels:
+            values = self.result.values
+            config_key = 'levels'
+            reset_key = 'growth'
+        else:
+            # Growth
+            values = self.result.pct_change().values
+            # Fill in first growth
+            values[0] = (self.result.iloc[0] - self.series.iloc[-1]) / self.series.iloc[-1]
+            config_key = 'growth'
+            reset_key = 'levels'
+
+        self.item_config.method = 'manual'
+
+        if adjustments is not None:
+            if len(adjustments) != len(values):
+                raise ValueError(f'must pass equal length adjustments as number of periods. '
+                                 f'Got {len(adjustments)} adjustments for {len(values)} periods')
+            for i, adj in enumerate(adjustments):
+                values[i] += adj
+
+        if replacements is not None:
+            for i, replace in replacements.items():
+                values[i] = replace
+
+        self.item_config.manual_forecasts[config_key] = list(values)
+        self.item_config.manual_forecasts[reset_key] = []
+        self.model = ManualForecastModel(self.config, self.item_config, self.base_config)
+        self.model.fit(self.series)
+        self.model.predict()
 
     @property
     def series(self) -> pd.Series:
