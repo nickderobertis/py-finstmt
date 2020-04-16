@@ -6,9 +6,11 @@ from finstmt.forecast.models.manual import ManualForecastModel
 from finstmt.forecast.models.prophet import FBProphetModel
 from finstmt.forecast.models.recent import RecentValueModel
 from finstmt.forecast.models.trend import LinearTrendModel
+from finstmt.items.config import ItemConfig
 
 
-def get_model(config: ForecastConfig, item_config: ForecastItemConfig) -> ForecastModel:
+def get_model(config: ForecastConfig, item_config: ForecastItemConfig,
+              base_config: ItemConfig) -> ForecastModel:
     if item_config.method == 'auto':
         model_class = FBProphetModel
     elif item_config.method == 'trend':
@@ -24,5 +26,5 @@ def get_model(config: ForecastConfig, item_config: ForecastItemConfig) -> Foreca
     else:
         raise NotImplementedError(f'need to implement method {item_config.method}')
 
-    return model_class(config, item_config)
+    return model_class(config, item_config, base_config)
 

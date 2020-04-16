@@ -1,18 +1,20 @@
 import logging
-from typing import Optional
+from typing import Optional, Tuple
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 from finstmt.exc import ForecastNotFitException
 from finstmt.forecast.config import ForecastItemConfig, ForecastConfig
 from finstmt.forecast.models.base import ForecastModel
 from finstmt.forecast.dataframe import add_cap_and_floor_to_df
+from finstmt.items.config import ItemConfig
 
 
 class FBProphetModel(ForecastModel):
 
-    def __init__(self, config: ForecastConfig, item_config: ForecastItemConfig):
-        super().__init__(config, item_config)
+    def __init__(self, config: ForecastConfig, item_config: ForecastItemConfig, base_config: ItemConfig):
+        super().__init__(config, item_config, base_config)
         Prophet = _try_import_fbprophet()
 
         all_kwargs = {}
@@ -38,8 +40,14 @@ class FBProphetModel(ForecastModel):
         super().predict()
         return result
 
-    def plot(self):
-        return self.model.plot(self.result_df)
+    def plot(self, ax: Optional[plt.Axes] = None, figsize: Tuple[int, int] = (12, 5),
+             xlabel: Optional[str] = None, ylabel: Optional[str] = None) -> plt.Figure:
+        if xlabel is None:
+            xlabel = 'Time'
+        if ylabel is None:
+            ylabel = self.base_config.display_name
+
+        return self.model.plot(self.result_df, ax=ax, figsize=figsize, xlabel=xlabel, ylabel=ylabel)
 
     def _df_for_fit(self, series: pd.Series) -> pd.DataFrame:
         df = pd.DataFrame(series).reset_index()

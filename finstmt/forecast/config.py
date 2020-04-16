@@ -30,7 +30,7 @@ class ForecastItemConfig:
     cap: the maximum that the trend line should reach
     floot: the minimum that the trend line should reach
     """
-    method: str = 'auto'
+    method: str = 'cagr'
     pct_of: Optional[str] = None
     make_forecast: bool = True
     prophet_kwargs: dict = field(default_factory=lambda: {})

@@ -6,13 +6,14 @@ import numpy as np
 from finstmt.exc import ImproperManualForecastException
 from finstmt.forecast.config import ForecastItemConfig, ForecastConfig
 from finstmt.forecast.models.base import ForecastModel
+from finstmt.items.config import ItemConfig
 
 
 class ManualForecastModel(ForecastModel):
     recent: Optional[float] = None
 
-    def __init__(self, config: ForecastConfig, item_config: ForecastItemConfig):
-        super().__init__(config, item_config)
+    def __init__(self, config: ForecastConfig, item_config: ForecastItemConfig, base_config: ItemConfig):
+        super().__init__(config, item_config, base_config)
         self.growths = self.item_config.manual_forecasts['growth']
         self.levels = self.item_config.manual_forecasts['levels']
         self._validate()

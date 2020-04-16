@@ -131,9 +131,18 @@ class FinStatementsBase:
                 continue
             data = getattr(statements, item.key)
             pct_of_series = None
+            pct_of_config = None
             if item.forecast_config.pct_of is not None:
                 pct_of_series = getattr(statements, item.forecast_config.pct_of)
-            forecast = Forecast(data, forecast_config, item.forecast_config, pct_of_series=pct_of_series)
+                pct_of_config = statements.config.get(item.forecast_config.pct_of)
+            forecast = Forecast(
+                data,
+                forecast_config,
+                item.forecast_config,
+                item,
+                pct_of_series=pct_of_series,
+                pct_of_config=pct_of_config
+            )
             forecast.fit()
             forecast.predict()
             forecast_dict[item.key] = forecast
