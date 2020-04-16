@@ -18,6 +18,6 @@ class RecentValueModel(ForecastModel):
         df = pd.DataFrame(index=all_dates)
         df['mean'] = self.recent
         self.result_df = df
-        self.result = df['mean']
+        self.result = df['mean'].loc[self._future_date_range]
         super().predict()
         return self.result

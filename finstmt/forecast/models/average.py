@@ -22,6 +22,6 @@ class AverageModel(ForecastModel):
         df['lower'] = self.mean - 2 * self.stderr
         df['upper'] = self.mean + 2 * self.stderr
         self.result_df = df
-        self.result = df['mean']
+        self.result = df['mean'].loc[self._future_date_range]
         super().predict()
         return self.result
