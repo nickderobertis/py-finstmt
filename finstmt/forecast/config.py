@@ -49,6 +49,7 @@ class ForecastItemConfig:
         if self.manual_forecasts['levels']:
             out_dict.update({'Manual Levels': self.manual_forecasts['levels']})
         if self.manual_forecasts['growth']:
-            out_dict.update({'Manual Growth': self.manual_forecasts['growth']})
+            growth_pcts = [f'{growth:.2%}' for growth in self.manual_forecasts['growth']]
+            out_dict.update({'Manual Growth': growth_pcts})
         return pd.Series(out_dict)
 
