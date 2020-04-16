@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict, Tuple
+from typing import Dict, Tuple, List
 
 from sympy import IndexedBase
 import pandas as pd
@@ -43,3 +43,10 @@ class StatementConfigManager(ConfigManagerBase):
             # All should be identical, so first is enough
             return manager.sympy_namespace
         raise ValueError('no managers, could not get sympy_namespace')
+
+    @property
+    def keys(self) -> List[str]:
+        all_keys = set()
+        for manager in self.config_managers.values():
+            all_keys.update(manager.keys)
+        return list(all_keys)

@@ -53,3 +53,7 @@ class DataConfigManager(ConfigManagerBase):
             ns_dict.update({config.key: expr})
         return ns_dict
 
+    @property
+    def keys(self) -> List[str]:
+        return list(self.config_dict.keys())
+
