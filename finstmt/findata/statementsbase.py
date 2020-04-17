@@ -94,7 +94,9 @@ class FinStatementsBase:
         DataFrame must have columns as dates and index as names of financial statement items
         """
         statements_dict = {}
-        for col in df.columns:
+        dates = list(df.columns)
+        dates.sort()
+        for col in dates:
             try:
                 statement = cls.statement_cls.from_series(df[col])
             except CouldNotParseException:
