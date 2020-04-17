@@ -1,5 +1,5 @@
 from copy import deepcopy
-from typing import Optional, Tuple, Sequence, Dict
+from typing import Optional, Tuple, Sequence, Dict, Union
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -44,8 +44,9 @@ class Forecast:
             raise ForecastNotPredictedException('call .predict before .plot')
         return self.model.plot(ax=ax, figsize=figsize, ylabel=self.name)
 
-    def to_manual(self, use_levels: bool = False, adjustments: Sequence[float] = None,
-                  replacements: Dict[int, float] = None):
+    def to_manual(self, use_levels: bool = False,
+                  adjustments: Optional[Union[Sequence[float], Dict[int, float]]] = None,
+                  replacements: Optional[Union[Sequence[float], Dict[int, float]]] = None):
         if not self.model.has_prediction:
             raise ForecastNotPredictedException('call .fit then .predict before .to_manual')
 
@@ -64,13 +65,18 @@ class Forecast:
         self.item_config.method = 'manual'
 
         if adjustments is not None:
-            if len(adjustments) != len(values):
+            if not isinstance(adjustments, dict) and len(adjustments) != len(values):
                 raise ValueError(f'must pass equal length adjustments as number of periods. '
                                  f'Got {len(adjustments)} adjustments for {len(values)} periods')
-            for i, adj in enumerate(adjustments):
+            adjustments = _adjust_to_dict(adjustments)
+            for i, adj in adjustments.items():
                 values[i] += adj
 
         if replacements is not None:
+            if not isinstance(replacements, dict) and len(replacements) != len(values):
+                raise ValueError(f'must pass equal length adjustments as number of periods. '
+                                 f'Got {len(replacements)} adjustments for {len(values)} periods')
+            replacements = _replace_to_dict(replacements)
             for i, replace in replacements.items():
                 values[i] = replace
 
@@ -102,5 +108,18 @@ class Forecast:
         return f'{self.base_config.display_name} % {self.pct_of_config.display_name}'
 
 
+def _adjust_to_dict(seq_or_dict: Union[Sequence[float], Dict[int, float]]) -> Dict[int, float]:
+    if isinstance(seq_or_dict, dict):
+        return seq_or_dict
+
+    # If adjustment is 0 or None, skip the entry, otherwise add to the dict
+    adjust_dict = {i: val for i, val in enumerate(seq_or_dict) if val}
+    return adjust_dict
 
 
+def _replace_to_dict(seq_or_dict: Union[Sequence[float], Dict[int, float]]) -> Dict[int, float]:
+    if isinstance(seq_or_dict, dict):
+        return seq_or_dict
+
+    replace_dict = {i: val for i, val in enumerate(seq_or_dict)}
+    return replace_dict
