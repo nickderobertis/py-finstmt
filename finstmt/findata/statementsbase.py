@@ -95,7 +95,7 @@ class FinStatementsBase:
         """
         statements_dict = {}
         dates = list(df.columns)
-        dates.sort()
+        dates.sort(key=lambda t: pd.to_datetime(t))
         for col in dates:
             try:
                 statement = cls.statement_cls.from_series(df[col])
