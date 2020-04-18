@@ -1,16 +1,21 @@
-from typing import TYPE_CHECKING, List, Dict, Tuple, Optional
+from typing import TYPE_CHECKING, List, Dict, Tuple, Optional, Sequence
 
-from sympy import Eq, sympify, IndexedBase, Idx, linsolve
+from scipy.optimize import minimize
+from sympy import Eq, sympify, IndexedBase, Idx, linsolve, Expr, nonlinsolve, solve
 import pandas as pd
+import numpy as np
 from sympy.logic.boolalg import BooleanFalse, BooleanTrue
 
 from finstmt.forecast.main import Forecast
 from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.forecast.statements import ForecastedFinancialStatements
 from finstmt.items.config import ItemConfig
+from finstmt.logger import logger
 
 if TYPE_CHECKING:
     from finstmt.combined.statements import FinancialStatements
+
+PLUG_SCALE = 1e11
 
 
 class ForecastResolver:
@@ -26,39 +31,34 @@ class ForecastResolver:
         self.set_solve_eqs_and_full_subs_dict()
 
     def set_solve_eqs_and_full_subs_dict(self):
-        solve_eqs, self.subs_dict = get_solve_eqs_and_full_subs_dict(self.all_eqs, self.sympy_subs_dict)
-        self.solve_eqs = solve_eqs + self.bs_balance_eqs
+        self.solve_eqs, self.subs_dict = get_solve_eqs_and_full_subs_dict(self.all_eqs, self.sympy_subs_dict)
 
     def resolve_balance_sheet(self):
-        plugs_dict = {}
+        logger.info('Balancing balance sheet')
+        x_arrs = []
+        plug_keys = []
         for config in self.plug_configs:
-            plugs_dict[config.key] = self.results[config.key].values
+            x_arrs.append(self.results[config.key].values)
+            plug_keys.append(config.key)
+        x0 = np.concatenate(x_arrs) / PLUG_SCALE
 
         solutions_dict = self.subs_dict.copy()
-        for key, arr in plugs_dict.items():
-            for i, val in enumerate(arr):
-                t_str = f'{key}[{i + 1}]'
-                lhs = sympify(t_str, locals=self.stmts.config.sympy_namespace)
-                solutions_dict[lhs] = val
-
-        new_solve_eqs, new_subs_dict = get_solve_eqs_and_full_subs_dict(self.solve_eqs, solutions_dict)
-        solve_exprs = []
-        to_solve_for = []
-        for eq in new_solve_eqs:
-            solve_exprs.append(eq.rhs - eq.lhs)
-            if eq.lhs not in to_solve_for:
-                to_solve_for.append(eq.lhs)
-
-        res_set = linsolve(solve_exprs, to_solve_for)
-        for all_results in res_set:
-            for sym, res in zip(to_solve_for, all_results):
-                solutions_dict[sym] = round(res, 0)
+        new_solutions = resolve_balance_sheet(
+            x0,
+            self.solve_eqs,
+            plug_keys,
+            self.subs_dict,
+            self.forecast_dates,
+            self.stmts.all_config_items,
+            self.stmts.config.sympy_namespace
+        )
+        solutions_dict.update(new_solutions)
 
         return solutions_dict
 
     def to_statements(self) -> ForecastedFinancialStatements:
         solutions_dict = self.resolve_balance_sheet()
-        new_results = sympy_dict_to_results_dict(solutions_dict, self.forecast_dates)
+        new_results = sympy_dict_to_results_dict(solutions_dict, self.forecast_dates, self.stmts.all_config_items)
 
         all_results = pd.concat(list(new_results.values()), axis=1).T
         inc_df = self.stmts.income_statements.__class__.from_df(all_results)
@@ -202,13 +202,103 @@ def get_solve_eqs_and_full_subs_dict(
 
 def sympy_dict_to_results_dict(
     s_dict: Dict[IndexedBase, float],
-    forecast_dates: pd.DatetimeIndex
+    forecast_dates: pd.DatetimeIndex,
+    item_configs: List[ItemConfig],
 ) -> Dict[str, pd.Series]:
-    new_results = {
-        str(expr.base): pd.Series(index=forecast_dates, dtype='float', name=str(expr.base)) for expr in s_dict
-    }
+    item_config_dict: Dict[str, ItemConfig] = {config.key: config for config in item_configs}
+    new_results = {}
+    for expr in s_dict:
+        key = str(expr.base)
+        try:
+            config = item_config_dict[key]
+        except KeyError:
+            # Must be pct of item, don't need in final results
+            continue
+        new_results[key] = pd.Series(index=forecast_dates, dtype='float', name=config.primary_name)
     for expr, val in s_dict.items():
         key = str(expr.base)
         t = int(expr.indices[0]) - 1
+        if key not in new_results:
+            # Pct of item, skip it, don't need in final results
+            continue
         new_results[key].iloc[t] = val
     return new_results
+
+
+def results_dict_to_sympy_dict(results_dict: Dict[str, pd.Series],
+                               sympy_namespace: Dict[str, Expr]) -> Dict[IndexedBase, float]:
+    out_dict = {}
+    for key, series in results_dict.items():
+        arr = series.values
+        for i, val in enumerate(arr):
+            t_str = f'{key}[{i + 1}]'
+            lhs = sympify(t_str, locals=sympy_namespace)
+            out_dict[lhs] = val
+    return out_dict
+
+
+def solve_equations(solve_eqs: List[Eq], subs_dict: Dict[IndexedBase, float], substitute: bool = True,
+                    round_results: bool = True):
+    solutions_dict = subs_dict.copy()
+
+    if substitute:
+        solve_eqs, solutions_dict = get_solve_eqs_and_full_subs_dict(solve_eqs, solutions_dict)
+    solve_exprs = []
+    to_solve_for = []
+    for eq in solve_eqs:
+        solve_exprs.append(eq.rhs - eq.lhs)
+        if eq.lhs not in to_solve_for:
+            to_solve_for.append(eq.lhs)
+
+    res_set = solve(solve_exprs, to_solve_for, simplify=False, rational=False)
+    if not res_set:
+        raise ValueError('could not solve equations')
+    solutions_dict.update(res_set)
+    # Following code is for linsolve
+    # for all_results in res_set:
+    #     for sym, res in zip(to_solve_for, all_results):
+    #         if round_results:
+    #             result = round(res, 0)
+    #         else:
+    #             result = res
+    #         solutions_dict[sym] = result
+
+    return solutions_dict
+
+
+def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str],
+                          subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
+                          item_configs: List[ItemConfig],
+                          sympy_namespace: Dict[str, IndexedBase]) -> Dict[IndexedBase, float]:
+    res = minimize(
+        _resolve_balance_sheet_check_diff,
+        x0,
+        args=(eqs, plug_keys, subs_dict, forecast_dates, item_configs, sympy_namespace),
+        bounds=[(0, None) for _ in range(len(x0))],  # all positive
+        method='TNC',
+    )
+    plug_solutions = _x_arr_to_plug_solutions(res.x, plug_keys, sympy_namespace)
+    return plug_solutions
+
+
+def _resolve_balance_sheet_check_diff(x: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str],
+                                     subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
+                                     item_configs: List[ItemConfig], sympy_namespace: Dict[str, IndexedBase]):
+    subs_dict = subs_dict.copy()
+    plug_solutions = _x_arr_to_plug_solutions(x, plug_keys, sympy_namespace)
+    subs_dict.update(plug_solutions)
+    sub_eqs = [Eq(lhs, rhs) for lhs, rhs in subs_dict.items()]
+    solutions_dict = solve_equations(eqs + sub_eqs, {}, substitute=False)
+    new_results = sympy_dict_to_results_dict(solutions_dict, forecast_dates, item_configs)
+    diff = abs(new_results['total_assets'] - new_results['total_liab_and_equity']).astype(float)
+    norm = np.linalg.norm(diff.values)
+    logger.debug(f'x: {x * PLUG_SCALE}, norm: {norm}')
+    return norm
+
+
+def _x_arr_to_plug_solutions(x: np.ndarray, plug_keys: Sequence[str],
+                             sympy_namespace: Dict[str, IndexedBase]) -> Dict[IndexedBase, float]:
+    x_arrs = np.split(x * PLUG_SCALE, len(plug_keys))
+    plug_dict = {key: pd.Series(x_arrs[i]) for i, key in enumerate(plug_keys)}
+    plug_solutions = results_dict_to_sympy_dict(plug_dict, sympy_namespace)
+    return plug_solutions
