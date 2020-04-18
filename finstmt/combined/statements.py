@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Dict
+from typing import Dict, List
 
 import pandas as pd
 from sympy import Indexed
@@ -9,6 +9,7 @@ from finstmt.config_manage.statements import StatementsConfigManager
 from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
+from finstmt.items.config import ItemConfig
 
 
 @dataclass
@@ -127,12 +128,14 @@ class FinancialStatements:
         # This code also feels very messy in general.
         all_forecast_dict = {}
         all_results = {}
-        all_pct_results = {}
+        all_pct_of_keys = {
+            config.forecast_config.pct_of for config in self.all_config_items
+            if config.forecast_config.pct_of is not None
+        }
         for stmt in [self.income_statements, self.balance_sheets]:
-            forecast_dict, results, pct_results = stmt._forecast(self, **kwargs)
+            forecast_dict, results = stmt._forecast(self, all_pct_of_keys, **kwargs)
             all_forecast_dict.update(forecast_dict)
             all_results.update(results)
-            all_pct_results.update(pct_results)
 
         # Set up for creating dictionary for sympy substitutions. First extract all the results into a dict of dicts
         # nested dict where keys are date indices, values are dicts where keys are item keys, values are item values
@@ -221,14 +224,17 @@ class FinancialStatements:
 
     @property
     def forecast_assumptions(self) -> pd.DataFrame:
-        all_configs = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config  # type: ignore
         all_series = []
-        for config in all_configs:
+        for config in self.all_config_items:
             if config.extract_names is None or not config.forecast_config.make_forecast:
                 continue
             config_series = config.forecast_config.to_series()
             config_series.name = config.display_name
             all_series.append(config_series)
         return pd.concat(all_series, axis=1).T
+
+    @property
+    def all_config_items(self) -> List[ItemConfig]:
+        return self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
 
 

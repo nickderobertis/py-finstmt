@@ -28,7 +28,9 @@ class ForecastItemConfig:
     make_forecast: whether to forecast
     prophet_kwargs: kwargs to pass to fbprophet model
     cap: the maximum that the trend line should reach
-    floot: the minimum that the trend line should reach
+    floor: the minimum that the trend line should reach
+    manual_forecasts: manually set values to use instead of doing a forecast
+    plug: Whether to make this item adjustable to balance the balance sheet
     """
     method: str = 'cagr'
     pct_of: Optional[str] = None
@@ -37,6 +39,7 @@ class ForecastItemConfig:
     cap: Optional[Union[float, pd.Series]] = None
     floor: Optional[Union[float, pd.Series]] = None
     manual_forecasts: Dict[str, List[float]] = field(default_factory=lambda: {'levels': [], 'growth': []})
+    plug: bool = False
 
     def to_series(self) -> pd.Series:
         out_dict = {
