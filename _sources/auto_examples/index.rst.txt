@@ -9,6 +9,26 @@ Examples
 
 Below are examples of using `finstmt`.
 
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="    Note: The plots are not coming through and the formatting of the     statements is off in t...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_forecasting_thumb.png
+
+     :ref:`sphx_glr_auto_examples_forecasting.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/forecasting
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
@@ -21,13 +41,13 @@ Below are examples of using `finstmt`.
     :class: sphx-glr-footer-gallery
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
     :download:`Download all examples in Python source code: auto_examples_python.zip <//home/runner/work/py-finstmt/py-finstmt/docsrc/source/auto_examples/auto_examples_python.zip>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
     :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip <//home/runner/work/py-finstmt/py-finstmt/docsrc/source/auto_examples/auto_examples_jupyter.zip>`
 

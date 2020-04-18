@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; finstmt 0.2.2 documentation</title>
+  <title>Index &mdash; finstmt 0.3.2 documentation</title>
   
 
   
@@ -23,12 +23,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-        <script type="text/javascript" src="_static/copybutton.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -37,10 +37,12 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.3.2
               </div>
             
           
@@ -175,6 +177,7 @@
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -183,6 +186,8 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  
 </div>
 <h2 id="_">_</h2>
@@ -211,6 +216,14 @@
 </li>
         <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.__init__">(finstmt.forecast.main.Forecast method)</a>
 </li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.__init__">(finstmt.forecast.models.base.ForecastModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel.__init__">(finstmt.forecast.models.manual.ManualForecastModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel.__init__">(finstmt.forecast.models.prophet.FBProphetModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements.__init__">(finstmt.forecast.statements.ForecastedFinancialStatements method)</a>
+</li>
         <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.__init__">(finstmt.inc.data.IncomeStatementData method)</a>
 </li>
         <li><a href="api/finstmt.inc.html#finstmt.inc.main.IncomeStatements.__init__">(finstmt.inc.main.IncomeStatements method)</a>
@@ -230,16 +243,20 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.findata.html#finstmt.findata.database.FinDataBase.as_dict">as_dict() (finstmt.findata.database.FinDataBase method)</a>
 </li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel">AverageModel (class in finstmt.forecast.models.average)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData">BalanceSheetData (class in finstmt.bs.data)</a>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.balance_sheets">balance_sheets (finstmt.combined.statements.FinancialStatements attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData">BalanceSheetData (class in finstmt.bs.data)</a>
+</li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.main.BalanceSheets">BalanceSheets (class in finstmt.bs.main)</a>
 </li>
   </ul></td>
@@ -248,6 +265,10 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.cagr">cagr (finstmt.forecast.models.cagr.CAGRModel attribute)</a>
+</li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel">CAGRModel (class in finstmt.forecast.models.cagr)</a>
+</li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.cap">cap (finstmt.forecast.config.ForecastItemConfig attribute)</a>
 </li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.capex">capex() (finstmt.combined.statements.FinancialStatements property)</a>
@@ -258,15 +279,29 @@
 </li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.change">change() (finstmt.combined.statements.FinancialStatements method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.cogs">cogs (finstmt.inc.data.IncomeStatementData attribute)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.common_stock">common_stock (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.config_dict">config_dict() (finstmt.config_manage.data.DataConfigManager property)</a>
 </li>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update.params.config_keys">config_keys (finstmt.config_manage.statements.StatementsConfigManager.update parameter)</a>
+
+      <ul>
+        <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update_all.params.config_keys">(finstmt.config_manage.statements.StatementsConfigManager.update_all parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.config_managers">config_managers (finstmt.config_manage.statement.StatementConfigManager attribute)</a>
+
+      <ul>
+        <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.config_managers">(finstmt.config_manage.statements.StatementsConfigManager attribute)</a>
+</li>
+      </ul></li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase">ConfigManagerBase (class in finstmt.config_manage.base)</a>
+</li>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.configs">configs (finstmt.config_manage.data.DataConfigManager attribute)</a>
 </li>
       <li><a href="api/finstmt.html#finstmt.exc.CouldNotParseException">CouldNotParseException</a>
 </li>
@@ -288,10 +323,10 @@
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.def_tax_lt">def_tax_lt (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.def_tax_st">def_tax_st (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.deferred_rev">deferred_rev (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.dep">dep (finstmt.bs.data.BalanceSheetData attribute)</a>
@@ -299,6 +334,8 @@
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.dep_exp">dep_exp (finstmt.inc.data.IncomeStatementData attribute)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.deposit_liab">deposit_liab (finstmt.bs.data.BalanceSheetData attribute)</a>
+</li>
+      <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.display_name">display_name (finstmt.items.config.ItemConfig attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -328,6 +365,8 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel">FBProphetModel (class in finstmt.forecast.models.prophet)</a>
+</li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.fcf">fcf() (finstmt.combined.statements.FinancialStatements property)</a>
 </li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements">FinancialStatements (class in finstmt.combined.statements)</a>
@@ -336,70 +375,320 @@
 </li>
       <li><a href="api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase">FinStatementsBase (class in finstmt.findata.statementsbase)</a>
 </li>
-      <li><a href="api/finstmt.html#module-finstmt">finstmt (module)</a>
+      <li>
+    finstmt
+
+      <ul>
+        <li><a href="api/finstmt.html#module-finstmt">module</a>
 </li>
-      <li><a href="api/finstmt.bs.html#module-finstmt.bs">finstmt.bs (module)</a>
+      </ul></li>
+      <li>
+    finstmt.bs
+
+      <ul>
+        <li><a href="api/finstmt.bs.html#module-finstmt.bs">module</a>
 </li>
-      <li><a href="api/finstmt.bs.html#module-finstmt.bs.config">finstmt.bs.config (module)</a>
+      </ul></li>
+      <li>
+    finstmt.bs.config
+
+      <ul>
+        <li><a href="api/finstmt.bs.html#module-finstmt.bs.config">module</a>
 </li>
-      <li><a href="api/finstmt.bs.html#module-finstmt.bs.data">finstmt.bs.data (module)</a>
+      </ul></li>
+      <li>
+    finstmt.bs.data
+
+      <ul>
+        <li><a href="api/finstmt.bs.html#module-finstmt.bs.data">module</a>
 </li>
-      <li><a href="api/finstmt.bs.html#module-finstmt.bs.main">finstmt.bs.main (module)</a>
+      </ul></li>
+      <li>
+    finstmt.bs.main
+
+      <ul>
+        <li><a href="api/finstmt.bs.html#module-finstmt.bs.main">module</a>
 </li>
-      <li><a href="api/finstmt.clean.html#module-finstmt.clean">finstmt.clean (module)</a>
+      </ul></li>
+      <li>
+    finstmt.clean
+
+      <ul>
+        <li><a href="api/finstmt.clean.html#module-finstmt.clean">module</a>
 </li>
-      <li><a href="api/finstmt.clean.html#module-finstmt.clean.name">finstmt.clean.name (module)</a>
+      </ul></li>
+      <li>
+    finstmt.clean.name
+
+      <ul>
+        <li><a href="api/finstmt.clean.html#module-finstmt.clean.name">module</a>
 </li>
-      <li><a href="api/finstmt.combined.html#module-finstmt.combined">finstmt.combined (module)</a>
+      </ul></li>
+      <li>
+    finstmt.combined
+
+      <ul>
+        <li><a href="api/finstmt.combined.html#module-finstmt.combined">module</a>
 </li>
-      <li><a href="api/finstmt.combined.html#module-finstmt.combined.statements">finstmt.combined.statements (module)</a>
+      </ul></li>
+      <li>
+    finstmt.combined.statements
+
+      <ul>
+        <li><a href="api/finstmt.combined.html#module-finstmt.combined.statements">module</a>
 </li>
-      <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage">finstmt.config_manage (module)</a>
+      </ul></li>
+      <li>
+    finstmt.config_manage
+
+      <ul>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage">module</a>
 </li>
-      <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.base">finstmt.config_manage.base (module)</a>
+      </ul></li>
+      <li>
+    finstmt.config_manage.base
+
+      <ul>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.base">module</a>
 </li>
-      <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.data">finstmt.config_manage.data (module)</a>
+      </ul></li>
+      <li>
+    finstmt.config_manage.data
+
+      <ul>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.data">module</a>
 </li>
-      <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.statement">finstmt.config_manage.statement (module)</a>
+      </ul></li>
+      <li>
+    finstmt.config_manage.statement
+
+      <ul>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.statement">module</a>
 </li>
-      <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.statements">finstmt.config_manage.statements (module)</a>
+      </ul></li>
+      <li>
+    finstmt.config_manage.statements
+
+      <ul>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.statements">module</a>
 </li>
-      <li><a href="api/finstmt.html#module-finstmt.exc">finstmt.exc (module)</a>
+      </ul></li>
+      <li>
+    finstmt.exc
+
+      <ul>
+        <li><a href="api/finstmt.html#module-finstmt.exc">module</a>
 </li>
-      <li><a href="api/finstmt.findata.html#module-finstmt.findata">finstmt.findata (module)</a>
+      </ul></li>
+      <li>
+    finstmt.findata
+
+      <ul>
+        <li><a href="api/finstmt.findata.html#module-finstmt.findata">module</a>
 </li>
-      <li><a href="api/finstmt.findata.html#module-finstmt.findata.database">finstmt.findata.database (module)</a>
+      </ul></li>
+      <li>
+    finstmt.findata.database
+
+      <ul>
+        <li><a href="api/finstmt.findata.html#module-finstmt.findata.database">module</a>
 </li>
-      <li><a href="api/finstmt.findata.html#module-finstmt.findata.statementsbase">finstmt.findata.statementsbase (module)</a>
+      </ul></li>
+      <li>
+    finstmt.findata.statementsbase
+
+      <ul>
+        <li><a href="api/finstmt.findata.html#module-finstmt.findata.statementsbase">module</a>
 </li>
+      </ul></li>
+      <li>
+    finstmt.forecast
+
+      <ul>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.forecast.config
+
+      <ul>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.config">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.forecast.dataframe
+
+      <ul>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.dataframe">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.forecast.main
+
+      <ul>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.main">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.forecast.models
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.forecast.models.average
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.average">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.forecast.models.base
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.base">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.forecast.models.cagr
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.cagr">module</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/finstmt.forecast.html#module-finstmt.forecast">finstmt.forecast (module)</a>
+      <li>
+    finstmt.forecast.models.chooser
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.chooser">module</a>
 </li>
-      <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.config">finstmt.forecast.config (module)</a>
+      </ul></li>
+      <li>
+    finstmt.forecast.models.manual
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.manual">module</a>
 </li>
-      <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.dataframe">finstmt.forecast.dataframe (module)</a>
+      </ul></li>
+      <li>
+    finstmt.forecast.models.prophet
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.prophet">module</a>
 </li>
-      <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.main">finstmt.forecast.main (module)</a>
+      </ul></li>
+      <li>
+    finstmt.forecast.models.recent
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.recent">module</a>
 </li>
-      <li><a href="api/finstmt.inc.html#module-finstmt.inc">finstmt.inc (module)</a>
+      </ul></li>
+      <li>
+    finstmt.forecast.models.trend
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.trend">module</a>
 </li>
-      <li><a href="api/finstmt.inc.html#module-finstmt.inc.config">finstmt.inc.config (module)</a>
+      </ul></li>
+      <li>
+    finstmt.forecast.plot
+
+      <ul>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.plot">module</a>
 </li>
-      <li><a href="api/finstmt.inc.html#module-finstmt.inc.data">finstmt.inc.data (module)</a>
+      </ul></li>
+      <li>
+    finstmt.forecast.statements
+
+      <ul>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.statements">module</a>
 </li>
-      <li><a href="api/finstmt.inc.html#module-finstmt.inc.main">finstmt.inc.main (module)</a>
+      </ul></li>
+      <li>
+    finstmt.inc
+
+      <ul>
+        <li><a href="api/finstmt.inc.html#module-finstmt.inc">module</a>
 </li>
-      <li><a href="api/finstmt.items.html#module-finstmt.items">finstmt.items (module)</a>
+      </ul></li>
+      <li>
+    finstmt.inc.config
+
+      <ul>
+        <li><a href="api/finstmt.inc.html#module-finstmt.inc.config">module</a>
 </li>
-      <li><a href="api/finstmt.items.html#module-finstmt.items.config">finstmt.items.config (module)</a>
+      </ul></li>
+      <li>
+    finstmt.inc.data
+
+      <ul>
+        <li><a href="api/finstmt.inc.html#module-finstmt.inc.data">module</a>
 </li>
-      <li><a href="api/finstmt.loaders.html#module-finstmt.loaders">finstmt.loaders (module)</a>
+      </ul></li>
+      <li>
+    finstmt.inc.main
+
+      <ul>
+        <li><a href="api/finstmt.inc.html#module-finstmt.inc.main">module</a>
 </li>
-      <li><a href="api/finstmt.loaders.html#module-finstmt.loaders.capiq">finstmt.loaders.capiq (module)</a>
+      </ul></li>
+      <li>
+    finstmt.items
+
+      <ul>
+        <li><a href="api/finstmt.items.html#module-finstmt.items">module</a>
 </li>
+      </ul></li>
+      <li>
+    finstmt.items.config
+
+      <ul>
+        <li><a href="api/finstmt.items.html#module-finstmt.items.config">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.loaders
+
+      <ul>
+        <li><a href="api/finstmt.loaders.html#module-finstmt.loaders">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.loaders.capiq
+
+      <ul>
+        <li><a href="api/finstmt.loaders.html#module-finstmt.loaders.capiq">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.logger
+
+      <ul>
+        <li><a href="api/finstmt.html#module-finstmt.logger">module</a>
+</li>
+      </ul></li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.fit">fit() (finstmt.forecast.main.Forecast method)</a>
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel.fit">(finstmt.forecast.models.average.AverageModel method)</a>
 </li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.fit">(finstmt.forecast.models.base.ForecastModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.fit">(finstmt.forecast.models.cagr.CAGRModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel.fit">(finstmt.forecast.models.manual.ManualForecastModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel.fit">(finstmt.forecast.models.prophet.FBProphetModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.recent.RecentValueModel.fit">(finstmt.forecast.models.recent.RecentValueModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.fit">(finstmt.forecast.models.trend.LinearTrendModel method)</a>
+</li>
+      </ul></li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.floor">floor (finstmt.forecast.config.ForecastItemConfig attribute)</a>
 </li>
       <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.force_positive">force_positive (finstmt.items.config.ItemConfig attribute)</a>
@@ -410,9 +699,23 @@
 </li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.forecast_assumptions">forecast_assumptions() (finstmt.combined.statements.FinancialStatements property)</a>
 </li>
+      <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.forecast_config">forecast_config (finstmt.items.config.ItemConfig attribute)</a>
+</li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastConfig">ForecastConfig (class in finstmt.forecast.config)</a>
 </li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements">ForecastedFinancialStatements (class in finstmt.forecast.statements)</a>
+</li>
+      <li><a href="api/finstmt.html#finstmt.exc.ForecastException">ForecastException</a>
+</li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig">ForecastItemConfig (class in finstmt.forecast.config)</a>
+</li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel">ForecastModel (class in finstmt.forecast.models.base)</a>
+</li>
+      <li><a href="api/finstmt.html#finstmt.exc.ForecastNotFitException">ForecastNotFitException</a>
+</li>
+      <li><a href="api/finstmt.html#finstmt.exc.ForecastNotPredictedException">ForecastNotPredictedException</a>
+</li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements.forecasts">forecasts (finstmt.forecast.statements.ForecastedFinancialStatements attribute)</a>
 </li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.freq">freq (finstmt.forecast.config.ForecastConfig attribute)</a>
 </li>
@@ -442,6 +745,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.chooser.get_model">get_model() (in module finstmt.forecast.models.chooser)</a>
+</li>
       <li><a href="api/finstmt.findata.html#finstmt.findata.database.FinDataBase.get_sympy_subs_dict">get_sympy_subs_dict() (finstmt.findata.database.FinDataBase method)</a>
 </li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.get_value">get_value() (finstmt.config_manage.base.ConfigManagerBase method)</a>
@@ -460,6 +765,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.impairment">impairment (finstmt.inc.data.IncomeStatementData attribute)</a>
 </li>
+      <li><a href="api/finstmt.html#finstmt.exc.ImproperManualForecastException">ImproperManualForecastException</a>
+</li>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.income_statements">income_statements (finstmt.combined.statements.FinancialStatements attribute)</a>
+</li>
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData">IncomeStatementData (class in finstmt.inc.data)</a>
 </li>
       <li><a href="api/finstmt.inc.html#finstmt.inc.main.IncomeStatements">IncomeStatements (class in finstmt.inc.main)</a>
@@ -470,12 +779,32 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.inventory">inventory (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update.params.item_key">item_key (finstmt.config_manage.statements.StatementsConfigManager.update parameter)</a>
+</li>
       <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig">ItemConfig (class in finstmt.items.config)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.items_config">items_config (finstmt.bs.data.BalanceSheetData attribute)</a>
 
       <ul>
+        <li><a href="api/finstmt.findata.html#finstmt.findata.database.FinDataBase.items_config">(finstmt.findata.database.FinDataBase attribute)</a>
+</li>
         <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.items_config">(finstmt.inc.data.IncomeStatementData attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.key">key (finstmt.items.config.ItemConfig attribute)</a>
+</li>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.keys">keys() (finstmt.config_manage.data.DataConfigManager property)</a>
+
+      <ul>
+        <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.keys">(finstmt.config_manage.statement.StatementConfigManager property)</a>
+</li>
+        <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.keys">(finstmt.config_manage.statements.StatementsConfigManager property)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -486,10 +815,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.lag">lag() (finstmt.combined.statements.FinancialStatements method)</a>
 </li>
-      <li><a href="api/finstmt.loaders.html#finstmt.loaders.capiq.load_capiq_df">load_capiq_df() (in module finstmt.loaders.capiq)</a>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.last_historical_period">last_historical_period (finstmt.forecast.models.base.ForecastModel attribute)</a>
+</li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.last_value">last_value (finstmt.forecast.models.cagr.CAGRModel attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel">LinearTrendModel (class in finstmt.forecast.models.trend)</a>
+</li>
+      <li><a href="api/finstmt.loaders.html#finstmt.loaders.capiq.load_capiq_df">load_capiq_df() (in module finstmt.loaders.capiq)</a>
+</li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.lt_debt">lt_debt (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.lt_invest">lt_invest (finstmt.bs.data.BalanceSheetData attribute)</a>
@@ -504,18 +839,121 @@
 </li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.make_future_df_kwargs">make_future_df_kwargs() (finstmt.forecast.config.ForecastConfig property)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.manual_forecasts">manual_forecasts (finstmt.forecast.config.ForecastItemConfig attribute)</a>
+</li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel">ManualForecastModel (class in finstmt.forecast.models.manual)</a>
+</li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel.mean">mean (finstmt.forecast.models.average.AverageModel attribute)</a>
+</li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.method">method (finstmt.forecast.config.ForecastItemConfig attribute)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.minority_interest">minority_interest (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.model">model (finstmt.forecast.main.Forecast attribute)</a>
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.model">(finstmt.forecast.models.trend.LinearTrendModel attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.model_result">model_result (finstmt.forecast.models.trend.LinearTrendModel attribute)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="api/finstmt.html#module-finstmt">finstmt</a>
+</li>
+        <li><a href="api/finstmt.bs.html#module-finstmt.bs">finstmt.bs</a>
+</li>
+        <li><a href="api/finstmt.bs.html#module-finstmt.bs.config">finstmt.bs.config</a>
+</li>
+        <li><a href="api/finstmt.bs.html#module-finstmt.bs.data">finstmt.bs.data</a>
+</li>
+        <li><a href="api/finstmt.bs.html#module-finstmt.bs.main">finstmt.bs.main</a>
+</li>
+        <li><a href="api/finstmt.clean.html#module-finstmt.clean">finstmt.clean</a>
+</li>
+        <li><a href="api/finstmt.clean.html#module-finstmt.clean.name">finstmt.clean.name</a>
+</li>
+        <li><a href="api/finstmt.combined.html#module-finstmt.combined">finstmt.combined</a>
+</li>
+        <li><a href="api/finstmt.combined.html#module-finstmt.combined.statements">finstmt.combined.statements</a>
+</li>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage">finstmt.config_manage</a>
+</li>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.base">finstmt.config_manage.base</a>
+</li>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.data">finstmt.config_manage.data</a>
+</li>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.statement">finstmt.config_manage.statement</a>
+</li>
+        <li><a href="api/finstmt.config_manage.html#module-finstmt.config_manage.statements">finstmt.config_manage.statements</a>
+</li>
+        <li><a href="api/finstmt.html#module-finstmt.exc">finstmt.exc</a>
+</li>
+        <li><a href="api/finstmt.findata.html#module-finstmt.findata">finstmt.findata</a>
+</li>
+        <li><a href="api/finstmt.findata.html#module-finstmt.findata.database">finstmt.findata.database</a>
+</li>
+        <li><a href="api/finstmt.findata.html#module-finstmt.findata.statementsbase">finstmt.findata.statementsbase</a>
+</li>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast">finstmt.forecast</a>
+</li>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.config">finstmt.forecast.config</a>
+</li>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.dataframe">finstmt.forecast.dataframe</a>
+</li>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.main">finstmt.forecast.main</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models">finstmt.forecast.models</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.average">finstmt.forecast.models.average</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.base">finstmt.forecast.models.base</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.cagr">finstmt.forecast.models.cagr</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.chooser">finstmt.forecast.models.chooser</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.manual">finstmt.forecast.models.manual</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.prophet">finstmt.forecast.models.prophet</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.recent">finstmt.forecast.models.recent</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.trend">finstmt.forecast.models.trend</a>
+</li>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.plot">finstmt.forecast.plot</a>
+</li>
+        <li><a href="api/finstmt.forecast.html#module-finstmt.forecast.statements">finstmt.forecast.statements</a>
+</li>
+        <li><a href="api/finstmt.inc.html#module-finstmt.inc">finstmt.inc</a>
+</li>
+        <li><a href="api/finstmt.inc.html#module-finstmt.inc.config">finstmt.inc.config</a>
+</li>
+        <li><a href="api/finstmt.inc.html#module-finstmt.inc.data">finstmt.inc.data</a>
+</li>
+        <li><a href="api/finstmt.inc.html#module-finstmt.inc.main">finstmt.inc.main</a>
+</li>
+        <li><a href="api/finstmt.items.html#module-finstmt.items">finstmt.items</a>
+</li>
+        <li><a href="api/finstmt.items.html#module-finstmt.items.config">finstmt.items.config</a>
+</li>
+        <li><a href="api/finstmt.loaders.html#module-finstmt.loaders">finstmt.loaders</a>
+</li>
+        <li><a href="api/finstmt.loaders.html#module-finstmt.loaders.capiq">finstmt.loaders.capiq</a>
+</li>
+        <li><a href="api/finstmt.html#module-finstmt.logger">finstmt.logger</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.name">name() (finstmt.forecast.main.Forecast property)</a>
+</li>
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.net_income">net_income (finstmt.inc.data.IncomeStatementData attribute)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.net_ppe">net_ppe (finstmt.bs.data.BalanceSheetData attribute)</a>
@@ -539,6 +977,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.op_exp">op_exp (finstmt.inc.data.IncomeStatementData attribute)</a>
+</li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.orig_series">orig_series (finstmt.forecast.models.base.ForecastModel attribute)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_current_assets">other_current_assets (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
@@ -566,16 +1006,48 @@
 </li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.periods">periods (finstmt.forecast.config.ForecastConfig attribute)</a>
 </li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.plot">plot() (finstmt.forecast.main.Forecast method)</a>
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.plot">(finstmt.forecast.models.base.ForecastModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel.plot">(finstmt.forecast.models.prophet.FBProphetModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements.plot">(finstmt.forecast.statements.ForecastedFinancialStatements method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.plot.plot_forecast">plot_forecast() (in module finstmt.forecast.plot)</a>
+</li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.predict">predict() (finstmt.forecast.main.Forecast method)</a>
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel.predict">(finstmt.forecast.models.average.AverageModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.predict">(finstmt.forecast.models.base.ForecastModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.predict">(finstmt.forecast.models.cagr.CAGRModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel.predict">(finstmt.forecast.models.manual.ManualForecastModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel.predict">(finstmt.forecast.models.prophet.FBProphetModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.recent.RecentValueModel.predict">(finstmt.forecast.models.recent.RecentValueModel method)</a>
+</li>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.predict">(finstmt.forecast.models.trend.LinearTrendModel method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.plot">plot() (finstmt.forecast.main.Forecast method)</a>
-</li>
-      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.plot_components">plot_components() (finstmt.forecast.main.Forecast method)</a>
-</li>
       <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.primary_name">primary_name() (finstmt.items.config.ItemConfig property)</a>
 </li>
       <li><a href="api/finstmt.findata.html#finstmt.findata.database.FinDataBase.prior_statement">prior_statement (finstmt.findata.database.FinDataBase attribute)</a>
 </li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.prophet_kwargs">prophet_kwargs (finstmt.forecast.config.ForecastConfig attribute)</a>
+
+      <ul>
+        <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.prophet_kwargs">(finstmt.forecast.config.ForecastItemConfig attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -586,8 +1058,22 @@
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.receivables">receivables (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel.recent">recent (finstmt.forecast.models.manual.ManualForecastModel attribute)</a>
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.recent.RecentValueModel.recent">(finstmt.forecast.models.recent.RecentValueModel attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.recent.RecentValueModel">RecentValueModel (class in finstmt.forecast.models.recent)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.result">result (finstmt.forecast.models.base.ForecastModel attribute)</a>
+</li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.result">result() (finstmt.forecast.main.Forecast property)</a>
+</li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.result_df">result_df (finstmt.forecast.models.base.ForecastModel attribute)</a>
+</li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.retained_earnings">retained_earnings (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.revenue">revenue (finstmt.inc.data.IncomeStatementData attribute)</a>
@@ -598,6 +1084,8 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.series">series() (finstmt.forecast.main.Forecast property)</a>
+</li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.set">set() (finstmt.config_manage.base.ConfigManagerBase method)</a>
 
       <ul>
@@ -618,8 +1106,6 @@
 </li>
       <li><a href="api/finstmt.clean.html#finstmt.clean.name.standardize_name_for_look_up">standardize_name_for_look_up() (in module finstmt.clean.name)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.clean.html#finstmt.clean.name.standardize_names_in_series_index">standardize_names_in_series_index() (in module finstmt.clean.name)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.main.BalanceSheets.statement_cls">statement_cls (finstmt.bs.main.BalanceSheets attribute)</a>
@@ -630,10 +1116,34 @@
         <li><a href="api/finstmt.inc.html#finstmt.inc.main.IncomeStatements.statement_cls">(finstmt.inc.main.IncomeStatements attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.bs.html#finstmt.bs.main.BalanceSheets.statement_name">statement_name (finstmt.bs.main.BalanceSheets attribute)</a>
+
+      <ul>
+        <li><a href="api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.statement_name">(finstmt.findata.statementsbase.FinStatementsBase attribute)</a>
+</li>
+        <li><a href="api/finstmt.inc.html#finstmt.inc.main.IncomeStatements.statement_name">(finstmt.inc.main.IncomeStatements attribute)</a>
+</li>
+      </ul></li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager">StatementConfigManager (class in finstmt.config_manage.statement)</a>
 </li>
+      <li><a href="api/finstmt.bs.html#finstmt.bs.main.BalanceSheets.statements">statements (finstmt.bs.main.BalanceSheets attribute)</a>
+
+      <ul>
+        <li><a href="api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.statements">(finstmt.findata.statementsbase.FinStatementsBase attribute)</a>
+</li>
+        <li><a href="api/finstmt.inc.html#finstmt.inc.main.IncomeStatements.statements">(finstmt.inc.main.IncomeStatements attribute)</a>
+</li>
+      </ul></li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager">StatementsConfigManager (class in finstmt.config_manage.statements)</a>
 </li>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel.stderr">stderr (finstmt.forecast.models.average.AverageModel attribute)</a>
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.stderr">(finstmt.forecast.models.cagr.CAGRModel attribute)</a>
+</li>
+      </ul></li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.sympy_namespace">sympy_namespace() (finstmt.config_manage.base.ConfigManagerBase property)</a>
 
       <ul>
@@ -657,6 +1167,8 @@
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.tax_liab_st">tax_liab_st (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
       <li><a href="api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.to_df">to_df() (finstmt.findata.statementsbase.FinStatementsBase method)</a>
+</li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.to_manual">to_manual() (finstmt.forecast.main.Forecast method)</a>
 </li>
       <li><a href="api/finstmt.findata.html#finstmt.findata.database.FinDataBase.to_series">to_series() (finstmt.findata.database.FinDataBase method)</a>
 
@@ -684,6 +1196,30 @@
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_non_current_liab">total_non_current_liab (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update">update() (finstmt.config_manage.statements.StatementsConfigManager method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update_all">update_all() (finstmt.config_manage.statements.StatementsConfigManager method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update.params.value">value (finstmt.config_manage.statements.StatementsConfigManager.update parameter)</a>
+
+      <ul>
+        <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update_all.params.value">(finstmt.config_manage.statements.StatementsConfigManager.update_all parameter)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 

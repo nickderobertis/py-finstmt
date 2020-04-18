@@ -1,6 +1,11 @@
 finstmt.bs package
 ==================
 
+.. automodule:: finstmt.bs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -28,11 +33,3 @@ finstmt.bs.main module
    :undoc-members:
    :show-inheritance:
 
-
-Module contents
----------------
-
-.. automodule:: finstmt.bs
-   :members:
-   :undoc-members:
-   :show-inheritance:

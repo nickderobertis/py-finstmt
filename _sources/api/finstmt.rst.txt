@@ -1,6 +1,11 @@
 finstmt package
 ===============
 
+.. automodule:: finstmt
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -27,11 +32,11 @@ finstmt.exc module
    :undoc-members:
    :show-inheritance:
 
+finstmt.logger module
+---------------------
 
-Module contents
----------------
-
-.. automodule:: finstmt
+.. automodule:: finstmt.logger
    :members:
    :undoc-members:
    :show-inheritance:
+

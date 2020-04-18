@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.loaders package &mdash; finstmt 0.2.2 documentation</title>
+  <title>finstmt.loaders package &mdash; finstmt 0.3.2 documentation</title>
   
 
   
@@ -22,12 +22,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-        <script type="text/javascript" src="../_static/copybutton.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -36,10 +36,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="finstmt.items package" href="finstmt.items.html" /> 
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.3.2
               </div>
             
           
@@ -114,7 +116,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
 </ul>
 </li>
 </ul>
@@ -188,16 +190,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="finstmt-loaders-package">
-<h1>finstmt.loaders package<a class="headerlink" href="#finstmt-loaders-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-finstmt.loaders">
+<span id="finstmt-loaders-package"></span><h1>finstmt.loaders package<a class="headerlink" href="#module-finstmt.loaders" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-finstmt.loaders.capiq">
 <span id="finstmt-loaders-capiq-module"></span><h2>finstmt.loaders.capiq module<a class="headerlink" href="#module-finstmt.loaders.capiq" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
+<dl class="py function">
 <dt id="finstmt.loaders.capiq.load_capiq_df">
-<code class="sig-prename descclassname">finstmt.loaders.capiq.</code><code class="sig-name descname">load_capiq_df</code><span class="sig-paren">(</span><em class="sig-param">file_path</em>, <em class="sig-param">sheet_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/loaders/capiq.html#load_capiq_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.loaders.capiq.load_capiq_df" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">finstmt.loaders.capiq.</code><code class="sig-name descname">load_capiq_df</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em>, <em class="sig-param"><span class="n">sheet_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/loaders/capiq.html#load_capiq_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.loaders.capiq.load_capiq_df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads financial statements downloaded from Capital IQ into a DataFrame which can be passed into
 IncomeStatements or BalanceSheets</p>
 <dl class="field-list simple">
@@ -207,9 +209,6 @@ IncomeStatements or BalanceSheets</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-finstmt.loaders">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-finstmt.loaders" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

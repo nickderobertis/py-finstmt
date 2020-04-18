@@ -1,6 +1,11 @@
 finstmt.clean package
 =====================
 
+.. automodule:: finstmt.clean
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -12,11 +17,3 @@ finstmt.clean.name module
    :undoc-members:
    :show-inheritance:
 
-
-Module contents
----------------
-
-.. automodule:: finstmt.clean
-   :members:
-   :undoc-members:
-   :show-inheritance:

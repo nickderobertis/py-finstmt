@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.exc &mdash; finstmt 0.2.2 documentation</title>
+  <title>finstmt.exc &mdash; finstmt 0.3.2 documentation</title>
   
 
   
@@ -22,12 +22,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-        <script type="text/javascript" src="../../_static/copybutton.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -36,10 +36,12 @@
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
@@ -65,7 +67,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.3.2
               </div>
             
           
@@ -172,6 +174,22 @@
 
 
 <div class="viewcode-block" id="CouldNotParseException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.CouldNotParseException">[docs]</a><span class="k">class</span> <span class="nc">CouldNotParseException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ForecastException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.ForecastException">[docs]</a><span class="k">class</span> <span class="nc">ForecastException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ForecastNotFitException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.ForecastNotFitException">[docs]</a><span class="k">class</span> <span class="nc">ForecastNotFitException</span><span class="p">(</span><span class="n">ForecastException</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ForecastNotPredictedException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.ForecastNotPredictedException">[docs]</a><span class="k">class</span> <span class="nc">ForecastNotPredictedException</span><span class="p">(</span><span class="n">ForecastException</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ImproperManualForecastException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.ImproperManualForecastException">[docs]</a><span class="k">class</span> <span class="nc">ImproperManualForecastException</span><span class="p">(</span><span class="n">ForecastException</span><span class="p">):</span>
     <span class="k">pass</span></div>
 </pre></div>
 

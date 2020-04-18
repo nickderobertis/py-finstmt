@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.items package &mdash; finstmt 0.2.2 documentation</title>
+  <title>finstmt.items package &mdash; finstmt 0.3.2 documentation</title>
   
 
   
@@ -22,12 +22,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-        <script type="text/javascript" src="../_static/copybutton.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -36,10 +36,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="finstmt.loaders package" href="finstmt.loaders.html" />
@@ -67,7 +69,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.3.2
               </div>
             
           
@@ -115,7 +117,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
 </ul>
 </li>
 </ul>
@@ -189,20 +191,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="finstmt-items-package">
-<h1>finstmt.items package<a class="headerlink" href="#finstmt-items-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-finstmt.items">
+<span id="finstmt-items-package"></span><h1>finstmt.items package<a class="headerlink" href="#module-finstmt.items" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-finstmt.items.config">
 <span id="finstmt-items-config-module"></span><h2>finstmt.items.config module<a class="headerlink" href="#module-finstmt.items.config" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="finstmt.items.config.ItemConfig">
 <em class="property">class </em><code class="sig-prename descclassname">finstmt.items.config.</code><code class="sig-name descname">ItemConfig</code><span class="sig-paren">(</span><em class="sig-param">key: str, display_name: str, extract_names: Union[Sequence[str], NoneType] = None, force_positive: bool = True, forecast_config: finstmt.forecast.config.ForecastItemConfig = &lt;factory&gt;, expr_str: Union[str, NoneType] = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/items/config.html#ItemConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.items.config.ItemConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.items.config.ItemConfig.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">key: str</em>, <em class="sig-param">display_name: str</em>, <em class="sig-param">extract_names: Optional[Sequence[str]] = None</em>, <em class="sig-param">force_positive: bool = True</em>, <em class="sig-param">forecast_config: finstmt.forecast.config.ForecastItemConfig = &lt;factory&gt;</em>, <em class="sig-param">expr_str: Optional[str] = None</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.items.config.ItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">key: str</em>, <em class="sig-param">display_name: str</em>, <em class="sig-param">extract_names: Optional[Sequence[str]] = None</em>, <em class="sig-param">force_positive: bool = True</em>, <em class="sig-param">forecast_config: finstmt.forecast.config.ForecastItemConfig = &lt;factory&gt;</em>, <em class="sig-param">expr_str: Optional[str] = None</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.items.config.ItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -210,22 +212,37 @@
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
+<dt id="finstmt.items.config.ItemConfig.display_name">
+<code class="sig-name descname">display_name</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.display_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt id="finstmt.items.config.ItemConfig.expr_str">
-<code class="sig-name descname">expr_str</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.expr_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">expr_str</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.expr_str" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.items.config.ItemConfig.extract_names">
-<code class="sig-name descname">extract_names</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.extract_names" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">extract_names</code><em class="property">: Optional[Sequence[str]]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.extract_names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.items.config.ItemConfig.force_positive">
-<code class="sig-name descname">force_positive</code><em class="property"> = True</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.force_positive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">force_positive</code><em class="property">: bool</em><em class="property"> = True</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.force_positive" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
+<dt id="finstmt.items.config.ItemConfig.forecast_config">
+<code class="sig-name descname">forecast_config</code><em class="property">: ForecastItemConfig</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.forecast_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="finstmt.items.config.ItemConfig.key">
+<code class="sig-name descname">key</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="finstmt.items.config.ItemConfig.primary_name">
 <em class="property">property </em><code class="sig-name descname">primary_name</code><a class="headerlink" href="#finstmt.items.config.ItemConfig.primary_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -237,9 +254,6 @@
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-finstmt.items">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-finstmt.items" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

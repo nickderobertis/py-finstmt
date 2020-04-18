@@ -1,6 +1,11 @@
 finstmt.config\_manage package
 ==============================
 
+.. automodule:: finstmt.config_manage
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -36,11 +41,3 @@ finstmt.config\_manage.statements module
    :undoc-members:
    :show-inheritance:
 
-
-Module contents
----------------
-
-.. automodule:: finstmt.config_manage
-   :members:
-   :undoc-members:
-   :show-inheritance:

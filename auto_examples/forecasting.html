@@ -1,0 +1,1750 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Forecasting Financial Statements with finstmt &mdash; finstmt 0.3.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="finstmt" href="../api/modules.html" />
+    <link rel="prev" title="Examples" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> finstmt
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Getting started with finstmt</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Forecasting Financial Statements with <code class="docutils literal notranslate"><span class="pre">finstmt</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#load-financial-statements">Load Financial Statements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#view-existing-statements">View Existing Statements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#run-a-forecast">Run a Forecast</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#set-the-default-method">Set the Default Method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-the-first-forecast">Run the First Forecast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#change-methods-and-re-run-forecast">Change Methods and Re-Run Forecast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adjusting-an-existing-forecast">Adjusting an Existing Forecast</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">finstmt</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">finstmt</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Examples</a> &raquo;</li>
+        
+      <li>Forecasting Financial Statements with <code class="docutils literal notranslate"><span class="pre">finstmt</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/auto_examples/forecasting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-forecasting-py"><span class="std std-ref">here</span></a>     to download the full example code or to run this example in your browser via Binder</p>
+</div>
+<div class="sphx-glr-example-title section" id="forecasting-financial-statements-with-finstmt">
+<span id="sphx-glr-auto-examples-forecasting-py"></span><h1>Forecasting Financial Statements with <code class="docutils literal notranslate"><span class="pre">finstmt</span></code><a class="headerlink" href="#forecasting-financial-statements-with-finstmt" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Note: The plots are not coming through and the formatting of the
+statements is off in the web view. Download the Jupyter notebook for
+the full experience.</p>
+</div></blockquote>
+<p>First import the necessary classes and <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<a href="https://docs.python.org/3/library/os.html#os.chdir" title="os.chdir" class="sphx-glr-backref-module-os sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">chdir</span></a><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">finstmt</span> <span class="kn">import</span> <span class="n">FinancialStatements</span><span class="p">,</span> <span class="n">IncomeStatements</span><span class="p">,</span> <span class="n">BalanceSheets</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+<div class="section" id="load-financial-statements">
+<h2>Load Financial Statements<a class="headerlink" href="#load-financial-statements" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">root_folder</span></a> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;tests&#39;</span><span class="p">,</span> <span class="s1">&#39;sources&#39;</span><span class="p">,</span> <span class="s1">&#39;stockrow&#39;</span><span class="p">,</span> <span class="s1">&#39;CAT&#39;</span><span class="p">])</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">inc_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.join" title="os.path.join" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">root_folder</span></a><span class="p">,</span> <span class="s1">&#39;annual_income.csv&#39;</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bs_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.join" title="os.path.join" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">root_folder</span></a><span class="p">,</span> <span class="s1">&#39;annual_bs.csv&#39;</span><span class="p">)</span>
+
+<span class="n">inc_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">inc_path</span></a><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">bs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bs_path</span></a><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">bs</span> <span class="o">=</span> <span class="n">BalanceSheets</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">bs_df</span><span class="p">)</span>
+<span class="n">inc</span> <span class="o">=</span> <span class="n">IncomeStatements</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">inc_df</span><span class="p">)</span>
+<span class="n">stmts</span> <span class="o">=</span> <span class="n">FinancialStatements</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="n">bs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:78: UserWarning: Previously had ebit extracted from &quot;Operating Income&quot;. Replacing with value from &quot;EBIT&quot;
+  warnings.warn(f&#39;Previously had {item_config.key} &#39;
+</pre></div>
+</div>
+<div class="section" id="view-existing-statements">
+<h3>View Existing Statements<a class="headerlink" href="#view-existing-statements" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stmts</span>
+</pre></div>
+</div>
+        <h2>Income Statement</h2>
+        <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>12/31/2009</th>
+      <th>12/31/2010</th>
+      <th>12/31/2011</th>
+      <th>12/31/2012</th>
+      <th>12/31/2013</th>
+      <th>12/31/2014</th>
+      <th>12/31/2015</th>
+      <th>12/31/2016</th>
+      <th>12/31/2017</th>
+      <th>12/31/2018</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Revenue</th>
+      <td>$32,396,000,000</td>
+      <td>$42,588,000,000</td>
+      <td>$60,138,000,000</td>
+      <td>$65,875,000,000</td>
+      <td>$55,656,000,000</td>
+      <td>$55,184,000,000</td>
+      <td>$47,011,000,000</td>
+      <td>$38,537,000,000</td>
+      <td>$45,462,000,000</td>
+      <td>$54,722,000,000</td>
+    </tr>
+    <tr>
+      <th>Cost of Goods Sold</th>
+      <td>$24,931,000,000</td>
+      <td>$31,281,000,000</td>
+      <td>$44,404,000,000</td>
+      <td>$47,852,000,000</td>
+      <td>$41,454,000,000</td>
+      <td>$41,342,000,000</td>
+      <td>$34,133,000,000</td>
+      <td>$28,640,000,000</td>
+      <td>$31,906,000,000</td>
+      <td>$37,719,000,000</td>
+    </tr>
+    <tr>
+      <th>Gross Profit</th>
+      <td>$7,465,000,000</td>
+      <td>$11,307,000,000</td>
+      <td>$15,734,000,000</td>
+      <td>$18,023,000,000</td>
+      <td>$14,202,000,000</td>
+      <td>$13,842,000,000</td>
+      <td>$12,878,000,000</td>
+      <td>$9,897,000,000</td>
+      <td>$13,556,000,000</td>
+      <td>$17,003,000,000</td>
+    </tr>
+    <tr>
+      <th>R&amp;D Expense</th>
+      <td>$1,421,000,000</td>
+      <td>$1,905,000,000</td>
+      <td>$2,297,000,000</td>
+      <td>$2,466,000,000</td>
+      <td>$2,046,000,000</td>
+      <td>$2,380,000,000</td>
+      <td>$2,119,000,000</td>
+      <td>$1,853,000,000</td>
+      <td>$1,842,000,000</td>
+      <td>$1,850,000,000</td>
+    </tr>
+    <tr>
+      <th>SG&amp;A Expense</th>
+      <td>$3,645,000,000</td>
+      <td>$4,248,000,000</td>
+      <td>$5,203,000,000</td>
+      <td>$5,919,000,000</td>
+      <td>$5,547,000,000</td>
+      <td>$6,529,000,000</td>
+      <td>$4,951,000,000</td>
+      <td>$4,383,000,000</td>
+      <td>$4,999,000,000</td>
+      <td>$5,478,000,000</td>
+    </tr>
+    <tr>
+      <th>Depreciation &amp; Amortization Expense</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Other Operating Expenses</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Operating Expense</th>
+      <td>$6,888,000,000</td>
+      <td>$7,344,000,000</td>
+      <td>$8,581,000,000</td>
+      <td>$9,450,000,000</td>
+      <td>$8,574,000,000</td>
+      <td>$10,528,000,000</td>
+      <td>$9,093,000,000</td>
+      <td>$8,735,000,000</td>
+      <td>$9,096,000,000</td>
+      <td>$8,710,000,000</td>
+    </tr>
+    <tr>
+      <th>Earnings Before Interest and Taxes</th>
+      <td>$1,014,000,000</td>
+      <td>$4,011,000,000</td>
+      <td>$7,044,000,000</td>
+      <td>$8,676,000,000</td>
+      <td>$5,573,000,000</td>
+      <td>$3,628,000,000</td>
+      <td>$3,935,000,000</td>
+      <td>$630,000,000</td>
+      <td>$4,624,000,000</td>
+      <td>$8,249,000,000</td>
+    </tr>
+    <tr>
+      <th>Interest Expense</th>
+      <td>$389,000,000</td>
+      <td>$343,000,000</td>
+      <td>$396,000,000</td>
+      <td>$467,000,000</td>
+      <td>$465,000,000</td>
+      <td>$484,000,000</td>
+      <td>$507,000,000</td>
+      <td>$505,000,000</td>
+      <td>$531,000,000</td>
+      <td>$404,000,000</td>
+    </tr>
+    <tr>
+      <th>Gain on Sale of Investments</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Gain on Sale of Assets</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Impairment Expense</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Earnings Before Tax</th>
+      <td>$625,000,000</td>
+      <td>$3,668,000,000</td>
+      <td>$6,648,000,000</td>
+      <td>$8,209,000,000</td>
+      <td>$5,108,000,000</td>
+      <td>$3,144,000,000</td>
+      <td>$3,428,000,000</td>
+      <td>$125,000,000</td>
+      <td>$4,093,000,000</td>
+      <td>$7,845,000,000</td>
+    </tr>
+    <tr>
+      <th>Income Tax Expense</th>
+      <td>$270,000,000</td>
+      <td>$968,000,000</td>
+      <td>$1,720,000,000</td>
+      <td>$2,528,000,000</td>
+      <td>$1,319,000,000</td>
+      <td>$692,000,000</td>
+      <td>$916,000,000</td>
+      <td>$192,000,000</td>
+      <td>$3,339,000,000</td>
+      <td>$1,698,000,000</td>
+    </tr>
+    <tr>
+      <th>Net Income</th>
+      <td>$895,000,000</td>
+      <td>$2,700,000,000</td>
+      <td>$4,928,000,000</td>
+      <td>$5,681,000,000</td>
+      <td>$3,789,000,000</td>
+      <td>$2,452,000,000</td>
+      <td>$2,512,000,000</td>
+      <td>$67,000,000</td>
+      <td>$754,000,000</td>
+      <td>$6,147,000,000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+        <h2>Balance Sheet</h2>
+        <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>12/31/2009</th>
+      <th>12/31/2010</th>
+      <th>12/31/2011</th>
+      <th>12/31/2012</th>
+      <th>12/31/2013</th>
+      <th>12/31/2014</th>
+      <th>12/31/2015</th>
+      <th>12/31/2016</th>
+      <th>12/31/2017</th>
+      <th>12/31/2018</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Cash and Cash Equivalents</th>
+      <td>$4,867,000,000</td>
+      <td>$3,592,000,000</td>
+      <td>$3,057,000,000</td>
+      <td>$5,490,000,000</td>
+      <td>$6,081,000,000</td>
+      <td>$7,341,000,000</td>
+      <td>$6,460,000,000</td>
+      <td>$7,168,000,000</td>
+      <td>$8,261,000,000</td>
+      <td>$7,857,000,000</td>
+    </tr>
+    <tr>
+      <th>Short-Term Investments</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Cash and Short-Term Investments</th>
+      <td>$4,867,000,000</td>
+      <td>$3,592,000,000</td>
+      <td>$3,057,000,000</td>
+      <td>$5,490,000,000</td>
+      <td>$6,081,000,000</td>
+      <td>$7,341,000,000</td>
+      <td>$6,460,000,000</td>
+      <td>$7,168,000,000</td>
+      <td>$8,261,000,000</td>
+      <td>$7,857,000,000</td>
+    </tr>
+    <tr>
+      <th>Receivables</th>
+      <td>$27,162,000,000</td>
+      <td>$28,849,000,000</td>
+      <td>$30,803,000,000</td>
+      <td>$33,911,000,000</td>
+      <td>$33,499,000,000</td>
+      <td>$32,772,000,000</td>
+      <td>$30,507,000,000</td>
+      <td>$29,088,000,000</td>
+      <td>$30,725,000,000</td>
+      <td>$31,899,000,000</td>
+    </tr>
+    <tr>
+      <th>Inventory</th>
+      <td>$6,360,000,000</td>
+      <td>$9,587,000,000</td>
+      <td>$14,544,000,000</td>
+      <td>$15,547,000,000</td>
+      <td>$12,625,000,000</td>
+      <td>$12,205,000,000</td>
+      <td>$9,700,000,000</td>
+      <td>$8,614,000,000</td>
+      <td>$10,018,000,000</td>
+      <td>$11,529,000,000</td>
+    </tr>
+    <tr>
+      <th>Deferred Tax Assets, Current</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Other Current Assets</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Current Assets</th>
+      <td>$27,217,000,000</td>
+      <td>$31,810,000,000</td>
+      <td>$37,900,000,000</td>
+      <td>$42,138,000,000</td>
+      <td>$38,335,000,000</td>
+      <td>$38,867,000,000</td>
+      <td>$33,508,000,000</td>
+      <td>$31,967,000,000</td>
+      <td>$36,244,000,000</td>
+      <td>$38,603,000,000</td>
+    </tr>
+    <tr>
+      <th>Grosss Property, Plant &amp; Equipment</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Accumulated Depreciation</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Net Property, Plant &amp; Equipment</th>
+      <td>$12,386,000,000</td>
+      <td>$12,539,000,000</td>
+      <td>$14,395,000,000</td>
+      <td>$16,461,000,000</td>
+      <td>$17,075,000,000</td>
+      <td>$16,577,000,000</td>
+      <td>$16,090,000,000</td>
+      <td>$15,322,000,000</td>
+      <td>$14,155,000,000</td>
+      <td>$13,574,000,000</td>
+    </tr>
+    <tr>
+      <th>Goodwill and Intangible Assets</th>
+      <td>$2,734,000,000</td>
+      <td>$3,419,000,000</td>
+      <td>$11,448,000,000</td>
+      <td>$10,958,000,000</td>
+      <td>$10,552,000,000</td>
+      <td>$9,770,000,000</td>
+      <td>$9,436,000,000</td>
+      <td>$8,369,000,000</td>
+      <td>$8,311,000,000</td>
+      <td>$8,114,000,000</td>
+    </tr>
+    <tr>
+      <th>Long-Term Investments</th>
+      <td>$105,000,000</td>
+      <td>$164,000,000</td>
+      <td>$133,000,000</td>
+      <td>$272,000,000</td>
+      <td>$272,000,000</td>
+      <td>$257,000,000</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Deferred Tax Assets, Long-Term</th>
+      <td>$3,930,000,000</td>
+      <td>$3,424,000,000</td>
+      <td>$3,737,000,000</td>
+      <td>$3,558,000,000</td>
+      <td>$2,147,000,000</td>
+      <td>$3,143,000,000</td>
+      <td>$2,489,000,000</td>
+      <td>$2,790,000,000</td>
+      <td>$1,693,000,000</td>
+      <td>$1,439,000,000</td>
+    </tr>
+    <tr>
+      <th>Other Long-Term Assets</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Non-Current Assets</th>
+      <td>$32,821,000,000</td>
+      <td>$32,210,000,000</td>
+      <td>$43,318,000,000</td>
+      <td>$46,832,000,000</td>
+      <td>$46,561,000,000</td>
+      <td>$45,814,000,000</td>
+      <td>$44,834,000,000</td>
+      <td>$42,737,000,000</td>
+      <td>$40,718,000,000</td>
+      <td>$39,906,000,000</td>
+    </tr>
+    <tr>
+      <th>Total Assets</th>
+      <td>$60,038,000,000</td>
+      <td>$64,020,000,000</td>
+      <td>$81,218,000,000</td>
+      <td>$88,970,000,000</td>
+      <td>$84,896,000,000</td>
+      <td>$84,681,000,000</td>
+      <td>$78,342,000,000</td>
+      <td>$74,704,000,000</td>
+      <td>$76,962,000,000</td>
+      <td>$78,509,000,000</td>
+    </tr>
+    <tr>
+      <th>Payables</th>
+      <td>$2,993,000,000</td>
+      <td>$5,856,000,000</td>
+      <td>$8,161,000,000</td>
+      <td>$6,753,000,000</td>
+      <td>$6,560,000,000</td>
+      <td>$6,515,000,000</td>
+      <td>$5,023,000,000</td>
+      <td>$4,614,000,000</td>
+      <td>$6,487,000,000</td>
+      <td>$7,051,000,000</td>
+    </tr>
+    <tr>
+      <th>Short-Term Debt</th>
+      <td>$9,784,000,000</td>
+      <td>$7,981,000,000</td>
+      <td>$9,648,000,000</td>
+      <td>$12,391,000,000</td>
+      <td>$11,031,000,000</td>
+      <td>$11,501,000,000</td>
+      <td>$12,844,000,000</td>
+      <td>$13,965,000,000</td>
+      <td>$11,031,000,000</td>
+      <td>$11,553,000,000</td>
+    </tr>
+    <tr>
+      <th>Current Portion of Long-Term Debt</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Tax Liabilities, Short-Term</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Other Current Liabilities</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Current Liabilities</th>
+      <td>$18,975,000,000</td>
+      <td>$22,020,000,000</td>
+      <td>$28,357,000,000</td>
+      <td>$29,415,000,000</td>
+      <td>$27,297,000,000</td>
+      <td>$27,877,000,000</td>
+      <td>$26,242,000,000</td>
+      <td>$26,132,000,000</td>
+      <td>$26,931,000,000</td>
+      <td>$28,218,000,000</td>
+    </tr>
+    <tr>
+      <th>Long-Term Debt</th>
+      <td>$21,847,000,000</td>
+      <td>$20,437,000,000</td>
+      <td>$24,944,000,000</td>
+      <td>$27,752,000,000</td>
+      <td>$26,719,000,000</td>
+      <td>$27,784,000,000</td>
+      <td>$25,169,000,000</td>
+      <td>$22,818,000,000</td>
+      <td>$23,847,000,000</td>
+      <td>$25,000,000,000</td>
+    </tr>
+    <tr>
+      <th>Total Debt</th>
+      <td>$31,631,000,000</td>
+      <td>$28,418,000,000</td>
+      <td>$34,592,000,000</td>
+      <td>$40,143,000,000</td>
+      <td>$37,750,000,000</td>
+      <td>$39,285,000,000</td>
+      <td>$38,013,000,000</td>
+      <td>$36,783,000,000</td>
+      <td>$34,878,000,000</td>
+      <td>$36,553,000,000</td>
+    </tr>
+    <tr>
+      <th>Deferred Revenue</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Tax Liabilities, Long-Term</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Deposit Liabilities</th>
+      <td>$1,217,000,000</td>
+      <td>$1,831,000,000</td>
+      <td>$2,487,000,000</td>
+      <td>$2,638,000,000</td>
+      <td>$2,360,000,000</td>
+      <td>$1,697,000,000</td>
+      <td>$1,146,000,000</td>
+      <td>$1,167,000,000</td>
+      <td>$1,426,000,000</td>
+      <td>$1,243,000,000</td>
+    </tr>
+    <tr>
+      <th>Other Long-Term Liabilities</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Non-Current Liabilities</th>
+      <td>$31,763,000,000</td>
+      <td>$30,675,000,000</td>
+      <td>$39,459,000,000</td>
+      <td>$41,973,000,000</td>
+      <td>$36,721,000,000</td>
+      <td>$39,978,000,000</td>
+      <td>$37,215,000,000</td>
+      <td>$35,359,000,000</td>
+      <td>$36,265,000,000</td>
+      <td>$36,211,000,000</td>
+    </tr>
+    <tr>
+      <th>Total Liabilities</th>
+      <td>$50,738,000,000</td>
+      <td>$52,695,000,000</td>
+      <td>$67,816,000,000</td>
+      <td>$71,388,000,000</td>
+      <td>$64,018,000,000</td>
+      <td>$67,855,000,000</td>
+      <td>$63,457,000,000</td>
+      <td>$61,491,000,000</td>
+      <td>$63,196,000,000</td>
+      <td>$64,429,000,000</td>
+    </tr>
+    <tr>
+      <th>Common Stock</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Other Comprehensive Income</th>
+      <td>$-3,764,000,000</td>
+      <td>$-4,051,000,000</td>
+      <td>$-6,328,000,000</td>
+      <td>$-6,433,000,000</td>
+      <td>$-3,898,000,000</td>
+      <td>$-6,431,000,000</td>
+      <td>$-2,035,000,000</td>
+      <td>$-2,039,000,000</td>
+      <td>$-1,192,000,000</td>
+      <td>$-1,684,000,000</td>
+    </tr>
+    <tr>
+      <th>Retained Earnings</th>
+      <td>$19,711,000,000</td>
+      <td>$21,384,000,000</td>
+      <td>$25,219,000,000</td>
+      <td>$29,558,000,000</td>
+      <td>$31,854,000,000</td>
+      <td>$33,887,000,000</td>
+      <td>$29,246,000,000</td>
+      <td>$27,377,000,000</td>
+      <td>$26,301,000,000</td>
+      <td>$30,427,000,000</td>
+    </tr>
+    <tr>
+      <th>Minority Interest</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Stockholder's Equity</th>
+      <td>$8,740,000,000</td>
+      <td>$10,824,000,000</td>
+      <td>$12,883,000,000</td>
+      <td>$17,532,000,000</td>
+      <td>$20,811,000,000</td>
+      <td>$16,746,000,000</td>
+      <td>$14,809,000,000</td>
+      <td>$13,213,000,000</td>
+      <td>$13,766,000,000</td>
+      <td>$14,080,000,000</td>
+    </tr>
+    <tr>
+      <th>Total Liabilities and Equity</th>
+      <td>$59,478,000,000</td>
+      <td>$63,519,000,000</td>
+      <td>$80,699,000,000</td>
+      <td>$88,920,000,000</td>
+      <td>$84,829,000,000</td>
+      <td>$84,601,000,000</td>
+      <td>$78,266,000,000</td>
+      <td>$74,704,000,000</td>
+      <td>$76,962,000,000</td>
+      <td>$78,509,000,000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<br />
+<br /></div>
+</div>
+<div class="section" id="run-a-forecast">
+<h2>Run a Forecast<a class="headerlink" href="#run-a-forecast" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="set-the-default-method">
+<h3>Set the Default Method<a class="headerlink" href="#set-the-default-method" title="Permalink to this headline">¶</a></h3>
+<p>This is not a necessary step, but this is the way to change the default
+forecast method. The default is already <code class="docutils literal notranslate"><span class="pre">cagr</span></code> and so this doesn’t
+actually have an effect.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update_all</span><span class="p">([</span><span class="s1">&#39;forecast_config&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="s1">&#39;cagr&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-the-first-forecast">
+<h3>Run the First Forecast<a class="headerlink" href="#run-the-first-forecast" title="Permalink to this headline">¶</a></h3>
+<p>Forecasts are run using <code class="docutils literal notranslate"><span class="pre">.forecast()</span></code> and produce
+<code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatements</span></code>. It is usually good practice to first
+run a forecast, then view the results, then adjust as needed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcst</span> <span class="o">=</span> <span class="n">stmts</span><span class="o">.</span><span class="n">forecast</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Depreciation &amp; Amortization Expense as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Operating Expenses as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Gain on Sale of Investments as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Gain on Sale of Assets as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+100%|##########| 16/16 [00:00&lt;00:00, 165.38it/s]
+
+  0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Tax Assets, Current as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Assets as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Grosss Property, Plant &amp; Equipment as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+ 32%|###2      | 12/37 [00:00&lt;00:00, 118.34it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:62: RuntimeWarning: invalid value encountered in true_divide
+  next_value = last_value / (1 + cagr)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+ 65%|######4   | 24/37 [00:00&lt;00:00, 117.99it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+100%|##########| 37/37 [00:00&lt;00:00, 119.91it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 119.94it/s]
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Note: Warnings are raised because CAGR is the default method but it</dt><dd><p>is not suitable for items which begin with 0</p>
+</dd>
+</dl>
+<p>Now view the forecast.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcst</span>
+</pre></div>
+</div>
+        <h2>Income Statement</h2>
+        <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>12/31/2019</th>
+      <th>12/31/2020</th>
+      <th>12/31/2021</th>
+      <th>12/31/2022</th>
+      <th>12/31/2023</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Revenue</th>
+      <td>$57,667,220,438</td>
+      <td>$60,770,957,074</td>
+      <td>$64,041,741,490</td>
+      <td>$67,488,564,448</td>
+      <td>$71,120,900,608</td>
+    </tr>
+    <tr>
+      <th>Cost of Goods Sold</th>
+      <td>$39,313,545,944</td>
+      <td>$40,975,500,271</td>
+      <td>$42,707,712,625</td>
+      <td>$44,513,153,118</td>
+      <td>$46,394,917,421</td>
+    </tr>
+    <tr>
+      <th>Gross Profit</th>
+      <td>$18,353,674,493</td>
+      <td>$19,795,456,804</td>
+      <td>$21,334,028,865</td>
+      <td>$22,975,411,330</td>
+      <td>$24,725,983,186</td>
+    </tr>
+    <tr>
+      <th>R&amp;D Expense</th>
+      <td>$1,899,457,118</td>
+      <td>$1,950,236,402</td>
+      <td>$2,002,373,198</td>
+      <td>$2,055,903,797</td>
+      <td>$2,110,865,460</td>
+    </tr>
+    <tr>
+      <th>SG&amp;A Expense</th>
+      <td>$5,705,772,841</td>
+      <td>$5,943,016,376</td>
+      <td>$6,190,124,394</td>
+      <td>$6,447,507,055</td>
+      <td>$6,715,591,574</td>
+    </tr>
+    <tr>
+      <th>Depreciation &amp; Amortization Expense</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Other Operating Expenses</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Operating Expense</th>
+      <td>$7,605,229,959</td>
+      <td>$7,893,252,778</td>
+      <td>$8,192,497,592</td>
+      <td>$8,503,410,852</td>
+      <td>$8,826,457,034</td>
+    </tr>
+    <tr>
+      <th>Earnings Before Interest and Taxes</th>
+      <td>$10,748,444,535</td>
+      <td>$11,902,204,025</td>
+      <td>$13,141,531,274</td>
+      <td>$14,472,000,479</td>
+      <td>$15,899,526,152</td>
+    </tr>
+    <tr>
+      <th>Interest Expense</th>
+      <td>$405,531,451</td>
+      <td>$407,068,707</td>
+      <td>$408,611,791</td>
+      <td>$410,160,724</td>
+      <td>$411,715,528</td>
+    </tr>
+    <tr>
+      <th>Gain on Sale of Investments</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Gain on Sale of Assets</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Impairment Expense</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Earnings Before Tax</th>
+      <td>$10,342,913,084</td>
+      <td>$11,495,135,318</td>
+      <td>$12,732,919,483</td>
+      <td>$14,061,839,755</td>
+      <td>$15,487,810,624</td>
+    </tr>
+    <tr>
+      <th>Income Tax Expense</th>
+      <td>$2,089,169,670</td>
+      <td>$2,166,860,856</td>
+      <td>$2,239,912,370</td>
+      <td>$2,308,507,442</td>
+      <td>$2,372,822,562</td>
+    </tr>
+    <tr>
+      <th>Net Income</th>
+      <td>$8,253,743,414</td>
+      <td>$9,328,274,462</td>
+      <td>$10,493,007,113</td>
+      <td>$11,753,332,313</td>
+      <td>$13,114,988,062</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+        <h2>Balance Sheet</h2>
+        <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>12/31/2019</th>
+      <th>12/31/2020</th>
+      <th>12/31/2021</th>
+      <th>12/31/2022</th>
+      <th>12/31/2023</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Cash and Cash Equivalents</th>
+      <td>$8,242,449,478</td>
+      <td>$8,646,808,375</td>
+      <td>$9,071,004,350</td>
+      <td>$9,516,010,573</td>
+      <td>$9,982,847,955</td>
+    </tr>
+    <tr>
+      <th>Short-Term Investments</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Cash and Short-Term Investments</th>
+      <td>$8,242,449,478</td>
+      <td>$8,646,808,375</td>
+      <td>$9,071,004,350</td>
+      <td>$9,516,010,573</td>
+      <td>$9,982,847,955</td>
+    </tr>
+    <tr>
+      <th>Receivables</th>
+      <td>$32,415,938,592</td>
+      <td>$32,941,254,423</td>
+      <td>$33,475,083,248</td>
+      <td>$34,017,563,025</td>
+      <td>$34,568,833,947</td>
+    </tr>
+    <tr>
+      <th>Inventory</th>
+      <td>$12,235,594,949</td>
+      <td>$12,985,496,033</td>
+      <td>$13,781,357,418</td>
+      <td>$14,625,995,942</td>
+      <td>$15,522,401,082</td>
+    </tr>
+    <tr>
+      <th>Deferred Tax Assets, Current</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Other Current Assets</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Current Assets</th>
+      <td>$39,975,981,658</td>
+      <td>$41,397,795,755</td>
+      <td>$42,870,179,099</td>
+      <td>$44,394,930,274</td>
+      <td>$45,973,911,829</td>
+    </tr>
+    <tr>
+      <th>Grosss Property, Plant &amp; Equipment</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Accumulated Depreciation</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Net Property, Plant &amp; Equipment</th>
+      <td>$13,698,894,523</td>
+      <td>$13,824,938,203</td>
+      <td>$13,952,141,611</td>
+      <td>$14,080,515,420</td>
+      <td>$14,210,070,397</td>
+    </tr>
+    <tr>
+      <th>Goodwill and Intangible Assets</th>
+      <td>$9,046,459,697</td>
+      <td>$10,086,077,526</td>
+      <td>$11,245,168,084</td>
+      <td>$12,537,461,160</td>
+      <td>$13,978,264,368</td>
+    </tr>
+    <tr>
+      <th>Long-Term Investments</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Deferred Tax Assets, Long-Term</th>
+      <td>$1,301,450,391</td>
+      <td>$1,177,048,729</td>
+      <td>$1,064,538,241</td>
+      <td>$962,782,286</td>
+      <td>$870,752,872</td>
+    </tr>
+    <tr>
+      <th>Other Long-Term Assets</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Non-Current Assets</th>
+      <td>$40,693,667,959</td>
+      <td>$41,496,882,974</td>
+      <td>$42,315,951,914</td>
+      <td>$43,151,187,705</td>
+      <td>$44,002,909,449</td>
+    </tr>
+    <tr>
+      <th>Total Assets</th>
+      <td>$80,643,388,633</td>
+      <td>$82,835,803,923</td>
+      <td>$85,087,823,415</td>
+      <td>$87,401,067,542</td>
+      <td>$89,777,200,789</td>
+    </tr>
+    <tr>
+      <th>Payables</th>
+      <td>$7,681,837,474</td>
+      <td>$8,369,114,590</td>
+      <td>$9,117,880,879</td>
+      <td>$9,933,637,642</td>
+      <td>$10,822,378,370</td>
+    </tr>
+    <tr>
+      <th>Short-Term Debt</th>
+      <td>$11,746,611,523</td>
+      <td>$11,943,467,695</td>
+      <td>$12,143,622,891</td>
+      <td>$12,347,132,397</td>
+      <td>$12,554,052,428</td>
+    </tr>
+    <tr>
+      <th>Current Portion of Long-Term Debt</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Tax Liabilities, Short-Term</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Other Current Liabilities</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Current Liabilities</th>
+      <td>$29,360,312,490</td>
+      <td>$30,548,867,727</td>
+      <td>$31,785,537,695</td>
+      <td>$33,072,270,160</td>
+      <td>$34,411,091,738</td>
+    </tr>
+    <tr>
+      <th>Long-Term Debt</th>
+      <td>$25,339,312,566</td>
+      <td>$25,683,230,453</td>
+      <td>$26,031,816,167</td>
+      <td>$26,385,133,060</td>
+      <td>$26,743,245,349</td>
+    </tr>
+    <tr>
+      <th>Total Debt</th>
+      <td>$37,085,491,304</td>
+      <td>$37,625,739,755</td>
+      <td>$38,173,858,356</td>
+      <td>$38,729,961,757</td>
+      <td>$39,294,166,277</td>
+    </tr>
+    <tr>
+      <th>Deferred Revenue</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Tax Liabilities, Long-Term</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Deposit Liabilities</th>
+      <td>$1,245,630,357</td>
+      <td>$1,248,266,280</td>
+      <td>$1,250,907,780</td>
+      <td>$1,253,554,871</td>
+      <td>$1,256,207,563</td>
+    </tr>
+    <tr>
+      <th>Other Long-Term Liabilities</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Non-Current Liabilities</th>
+      <td>$36,688,708,046</td>
+      <td>$37,172,718,182</td>
+      <td>$37,663,113,547</td>
+      <td>$38,159,978,378</td>
+      <td>$38,663,398,021</td>
+    </tr>
+    <tr>
+      <th>Total Liabilities</th>
+      <td>$65,986,667,422</td>
+      <td>$67,581,993,784</td>
+      <td>$69,215,889,545</td>
+      <td>$70,889,287,181</td>
+      <td>$72,603,141,706</td>
+    </tr>
+    <tr>
+      <th>Common Stock</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Other Comprehensive Income</th>
+      <td>$-1,553,858,023</td>
+      <td>$-1,433,773,607</td>
+      <td>$-1,322,969,491</td>
+      <td>$-1,220,728,478</td>
+      <td>$-1,126,388,800</td>
+    </tr>
+    <tr>
+      <th>Retained Earnings</th>
+      <td>$31,777,094,255</td>
+      <td>$33,187,094,333</td>
+      <td>$34,659,658,352</td>
+      <td>$36,197,562,372</td>
+      <td>$37,803,705,632</td>
+    </tr>
+    <tr>
+      <th>Minority Interest</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Total Stockholder's Equity</th>
+      <td>$14,767,663,132</td>
+      <td>$15,488,911,533</td>
+      <td>$16,245,385,497</td>
+      <td>$17,038,805,431</td>
+      <td>$17,870,975,766</td>
+    </tr>
+    <tr>
+      <th>Total Liabilities and Equity</th>
+      <td>$80,718,996,577</td>
+      <td>$82,991,203,663</td>
+      <td>$85,327,372,460</td>
+      <td>$87,729,303,462</td>
+      <td>$90,198,847,850</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<br />
+<br /><p>And the plot:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcst</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x4800 with 48 Axes&gt;
+</pre></div>
+</div>
+<p>It is also possible to plot a subset. Let’s focus on only a few items
+for sake of example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;revenue&#39;</span><span class="p">,</span> <span class="s1">&#39;cogs&#39;</span><span class="p">,</span> <span class="s1">&#39;cash&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x300 with 3 Axes&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="change-methods-and-re-run-forecast">
+<h3>Change Methods and Re-Run Forecast<a class="headerlink" href="#change-methods-and-re-run-forecast" title="Permalink to this headline">¶</a></h3>
+<p>After viewing the plots, the appropriate methods for forecasting each
+item should be chosen. Then they can be updated.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;cash&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;forecast_config&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="s1">&#39;trend&#39;</span><span class="p">)</span>
+<span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;cogs&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;forecast_config&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now re-run the forecast.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcst</span> <span class="o">=</span> <span class="n">stmts</span><span class="o">.</span><span class="n">forecast</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Depreciation &amp; Amortization Expense as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Operating Expenses as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Gain on Sale of Investments as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Gain on Sale of Assets as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+100%|##########| 16/16 [00:00&lt;00:00, 176.50it/s]
+
+  0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Tax Assets, Current as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Assets as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Grosss Property, Plant &amp; Equipment as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:62: RuntimeWarning: invalid value encountered in true_divide
+  next_value = last_value / (1 + cagr)
+
+ 35%|###5      | 13/37 [00:00&lt;00:00, 121.75it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+ 68%|######7   | 25/37 [00:00&lt;00:00, 119.46it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+100%|##########| 37/37 [00:00&lt;00:00, 119.51it/s]
+</pre></div>
+</div>
+<p>And plot the results:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;revenue&#39;</span><span class="p">,</span> <span class="s1">&#39;cogs&#39;</span><span class="p">,</span> <span class="s1">&#39;cash&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x300 with 3 Axes&gt;
+</pre></div>
+</div>
+<p>Now the methods for those forecasts has been updated.</p>
+</div>
+<div class="section" id="adjusting-an-existing-forecast">
+<h3>Adjusting an Existing Forecast<a class="headerlink" href="#adjusting-an-existing-forecast" title="Permalink to this headline">¶</a></h3>
+<p>While it is possible to use the <code class="docutils literal notranslate"><span class="pre">manual</span></code> forecast type and pass in the
+desired growth rates or levels from the beginning, it is often more
+convenient to first run the forecast, then simply adjust it. The
+<code class="docutils literal notranslate"><span class="pre">.to_manual</span></code> method of the forecast was added for this purpose.</p>
+<p>Either <code class="docutils literal notranslate"><span class="pre">adjustments</span></code> or <code class="docutils literal notranslate"><span class="pre">replacements</span></code> can be passed while updating,
+and either the level of the item or the growth in the item can be used
+for the new manual forecast.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fcst</span><span class="o">.</span><span class="n">forecasts</span></a><span class="p">[</span><span class="s1">&#39;cash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_manual</span><span class="p">(</span><span class="n">adjustments</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># boost second forecast period cash growth by 40%</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fcst</span><span class="o">.</span><span class="n">forecasts</span></a><span class="p">[</span><span class="s1">&#39;revenue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_manual</span><span class="p">(</span><span class="n">use_levels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">replacements</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mf">8e10</span><span class="p">})</span>  <span class="c1"># set second forecast period revenue to 80,000,000,000</span>
+</pre></div>
+</div>
+<p>The existing forecast is updated without running a new one. Now view the
+plots:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;revenue&#39;</span><span class="p">,</span> <span class="s1">&#39;cogs&#39;</span><span class="p">,</span> <span class="s1">&#39;cash&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x300 with 3 Axes&gt;
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.408 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-forecasting-py">
+<div class="binder-badge docutils container">
+<a class="reference external image-reference" href="https://mybinder.org/v2/gh/nickderobertis/py-finstmt/gh-pages?urlpath=lab/tree/notebooks/auto_examples/forecasting.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/04cdf4071d7b13ffd0c8a56fc3cbee20/forecasting.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">forecasting.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/a446f1ef0bfbda02c41a9d492352cecf/forecasting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">forecasting.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api/modules.html" class="btn btn-neutral float-right" title="finstmt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Nick DeRobertis
+
+    </p>
+  </div>
+    
+    
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-154145306-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

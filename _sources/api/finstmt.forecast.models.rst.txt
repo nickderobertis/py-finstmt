@@ -1,0 +1,75 @@
+finstmt.forecast.models package
+===============================
+
+.. automodule:: finstmt.forecast.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+finstmt.forecast.models.average module
+--------------------------------------
+
+.. automodule:: finstmt.forecast.models.average
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.forecast.models.base module
+-----------------------------------
+
+.. automodule:: finstmt.forecast.models.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.forecast.models.cagr module
+-----------------------------------
+
+.. automodule:: finstmt.forecast.models.cagr
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.forecast.models.chooser module
+--------------------------------------
+
+.. automodule:: finstmt.forecast.models.chooser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.forecast.models.manual module
+-------------------------------------
+
+.. automodule:: finstmt.forecast.models.manual
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.forecast.models.prophet module
+--------------------------------------
+
+.. automodule:: finstmt.forecast.models.prophet
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.forecast.models.recent module
+-------------------------------------
+
+.. automodule:: finstmt.forecast.models.recent
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.forecast.models.trend module
+------------------------------------
+
+.. automodule:: finstmt.forecast.models.trend
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

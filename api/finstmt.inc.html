@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.inc package &mdash; finstmt 0.2.2 documentation</title>
+  <title>finstmt.inc package &mdash; finstmt 0.3.2 documentation</title>
   
 
   
@@ -22,12 +22,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-        <script type="text/javascript" src="../_static/copybutton.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -36,14 +36,16 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="finstmt.items package" href="finstmt.items.html" />
-    <link rel="prev" title="finstmt.forecast package" href="finstmt.forecast.html" /> 
+    <link rel="prev" title="finstmt.forecast.models package" href="finstmt.forecast.models.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -67,7 +69,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.3.2
               </div>
             
           
@@ -115,7 +117,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
 </ul>
 </li>
 </ul>
@@ -189,8 +191,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="finstmt-inc-package">
-<h1>finstmt.inc package<a class="headerlink" href="#finstmt-inc-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-finstmt.inc">
+<span id="finstmt-inc-package"></span><h1>finstmt.inc package<a class="headerlink" href="#module-finstmt.inc" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -199,13 +201,13 @@
 </div>
 <div class="section" id="module-finstmt.inc.data">
 <span id="finstmt-inc-data-module"></span><h2>finstmt.inc.data module<a class="headerlink" href="#module-finstmt.inc.data" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="finstmt.inc.data.IncomeStatementData">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.inc.data.</code><code class="sig-name descname">IncomeStatementData</code><span class="sig-paren">(</span><em class="sig-param">revenue: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">cogs: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">sga: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">int_exp: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">tax_exp: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">rd_exp: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">dep_exp: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">other_op_exp: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">gain_on_sale_invest: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">gain_on_sale_asset: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">impairment: Union[float</em>, <em class="sig-param">NoneType] = 0</em>, <em class="sig-param">op_exp: Union[float</em>, <em class="sig-param">NoneType] = None</em>, <em class="sig-param">ebit: Union[float</em>, <em class="sig-param">NoneType] = None</em>, <em class="sig-param">ebt: Union[float</em>, <em class="sig-param">NoneType] = None</em>, <em class="sig-param">net_income: Union[float</em>, <em class="sig-param">NoneType] = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/inc/data.html#IncomeStatementData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.inc.data.</code><code class="sig-name descname">IncomeStatementData</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">revenue</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">cogs</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">sga</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">int_exp</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">tax_exp</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">rd_exp</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">dep_exp</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">other_op_exp</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">gain_on_sale_invest</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">gain_on_sale_asset</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">impairment</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">op_exp</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ebit</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ebt</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">net_income</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">, </span>NoneType<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/inc/data.html#IncomeStatementData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase" title="finstmt.findata.database.FinDataBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.findata.database.FinDataBase</span></code></a></p>
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.inc.data.IncomeStatementData.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">revenue: Optional[float] = 0</em>, <em class="sig-param">cogs: Optional[float] = 0</em>, <em class="sig-param">sga: Optional[float] = 0</em>, <em class="sig-param">int_exp: Optional[float] = 0</em>, <em class="sig-param">tax_exp: Optional[float] = 0</em>, <em class="sig-param">rd_exp: Optional[float] = 0</em>, <em class="sig-param">dep_exp: Optional[float] = 0</em>, <em class="sig-param">other_op_exp: Optional[float] = 0</em>, <em class="sig-param">gain_on_sale_invest: Optional[float] = 0</em>, <em class="sig-param">gain_on_sale_asset: Optional[float] = 0</em>, <em class="sig-param">impairment: Optional[float] = 0</em>, <em class="sig-param">op_exp: Optional[float] = None</em>, <em class="sig-param">ebit: Optional[float] = None</em>, <em class="sig-param">ebt: Optional[float] = None</em>, <em class="sig-param">net_income: Optional[float] = None</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">revenue</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">cogs</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">sga</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">int_exp</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">tax_exp</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">rd_exp</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">dep_exp</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">other_op_exp</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">gain_on_sale_invest</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">gain_on_sale_asset</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">impairment</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">op_exp</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ebit</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ebt</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">net_income</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -213,27 +215,27 @@
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.cogs">
-<code class="sig-name descname">cogs</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.cogs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cogs</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.cogs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.dep_exp">
-<code class="sig-name descname">dep_exp</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.dep_exp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">dep_exp</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.dep_exp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.ebit">
-<code class="sig-name descname">ebit</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.ebit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ebit</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.ebit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.ebt">
-<code class="sig-name descname">ebt</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.ebt" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ebt</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.ebt" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.inc.data.IncomeStatementData.effective_tax_rate">
 <em class="property">property </em><code class="sig-name descname">effective_tax_rate</code><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.effective_tax_rate" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -243,17 +245,17 @@
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.gain_on_sale_asset">
-<code class="sig-name descname">gain_on_sale_asset</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.gain_on_sale_asset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">gain_on_sale_asset</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.gain_on_sale_asset" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.gain_on_sale_invest">
-<code class="sig-name descname">gain_on_sale_invest</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.gain_on_sale_invest" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">gain_on_sale_invest</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.gain_on_sale_invest" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.inc.data.IncomeStatementData.gross_profit">
 <em class="property">property </em><code class="sig-name descname">gross_profit</code><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.gross_profit" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -263,54 +265,54 @@
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.impairment">
-<code class="sig-name descname">impairment</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.impairment" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">impairment</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.impairment" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.int_exp">
-<code class="sig-name descname">int_exp</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.int_exp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">int_exp</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.int_exp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.items_config">
-<code class="sig-name descname">items_config</code><em class="property"> = [ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='cogs', display_name='Cost of Goods Sold', extract_names=['cost of revenue', 'cost of goods sold', 'cogs', 'cor'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='gross_profit', display_name='Gross Profit', extract_names=None, force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str='revenue[t] - cogs[t]'), ItemConfig(key='rd_exp', display_name='R&amp;D Expense', extract_names=['rd expenses', 'rd expense', 'rd exp', 'rd', 'research and development expenses', 'research and development expense', 'research and development exp', 'research and development'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='sga', display_name='SG&amp;A Expense', extract_names=['sga', 'sga expense', 'sga expenses', 'sga exp', 'selling general and administrative', 'selling general and administrative expense', 'selling general and administrative expenses', 'selling general and administrative exp', 'selling general administrative', 'selling general administrative expense', 'selling general administrative expenses', 'selling general administrative exp', 'selling general and admin', 'selling general and admin expense', 'selling general and admin expenses', 'selling general and admin exp', 'selling general admin', 'selling general admin expense', 'selling general admin expenses', 'selling general admin exp'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='dep_exp', display_name='Depreciation &amp; Amortization Expense', extract_names=['da', 'dep amort', 'dep and amort', 'dep', 'depreciation amort', 'depreciation and amort', 'depreciation', 'depreciation amortization', 'depreciation and amortization', 'dep amortization', 'dep and amortization'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='other_op_exp', display_name='Other Operating Expenses', extract_names=['other operating expenses', 'other operating expense', 'other operating exp', 'other op expenses', 'other op expense', 'other op exp', 'other operating expensesincome', 'other operating expenseincome', 'other operating expincome', 'other op expensesincome', 'other op expenseincome', 'other op expincome', 'other operating expenses income', 'other operating expense income', 'other operating exp income', 'other op expenses income', 'other op expense income', 'other op exp income', 'other operating expensesinc', 'other operating expenseinc', 'other operating expinc', 'other op expensesinc', 'other op expenseinc', 'other op expinc', 'other operating expenses inc', 'other operating expense inc', 'other operating exp inc', 'other op expenses inc', 'other op expense inc', 'other op exp inc'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='op_exp', display_name='Operating Expense', extract_names=['op expense', 'op expenses', 'op exp', 'operating expense', 'operating expenses', 'operating exp'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None), expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'), ItemConfig(key='ebit', display_name='Earnings Before Interest and Taxes', extract_names=['ebit', 'earnings before interest and taxes', 'earnings before int and taxes', 'earnings before interest and tax', 'earnings before int and tax', 'earn before interest and taxes', 'earn before int and taxes', 'earn before interest and tax', 'earn before int and tax', 'earnings before interest taxes', 'earnings before int taxes', 'earnings before interest tax', 'earnings before int tax', 'earn before interest taxes', 'earn before int taxes', 'earn before interest tax', 'earn before int tax', 'operating income', 'op income', 'op inc', 'operating inc'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None), expr_str='gross_profit[t] - op_exp[t]'), ItemConfig(key='int_exp', display_name='Interest Expense', extract_names=['int', 'int expense', 'int expenses', 'int exp', 'interest', 'interest expense', 'interest expenses', 'interest exp'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='gain_on_sale_invest', display_name='Gain on Sale of Investments', extract_names=['gain loss on sale of invest', 'gain loss sale of invest', 'gain loss sale invest', 'gain on sale of invest', 'gain sale of invest', 'gain sale invest', 'gain loss on sale of investments', 'gain loss sale of investments', 'gain loss sale investments', 'gain on sale of investments', 'gain sale of investments', 'gain sale investments'], force_positive=False, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='gain_on_sale_asset', display_name='Gain on Sale of Assets', extract_names=['gain loss on sale of assets', 'gain loss sale of assets', 'gain loss sale assets', 'gain on sale of assets', 'gain sale of assets', 'gain sale assets', 'gain loss on sale of asset', 'gain loss sale of asset', 'gain loss sale asset', 'gain on sale of asset', 'gain sale of asset', 'gain sale asset'], force_positive=False, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='impairment', display_name='Impairment Expense', extract_names=['impairment', 'impairment expense', 'impairment exp', 'impairments', 'impair', 'impair expense', 'impair exp', 'impairment charges', 'impairment charge', 'impair charges', 'impair charge', 'impairment of goodwill', 'impairment expense of goodwill', 'impairment exp of goodwill', 'impairments of goodwill', 'impair of goodwill', 'impair expense of goodwill', 'impair exp of goodwill', 'impairment charges of goodwill', 'impairment charge of goodwill', 'impair charges of goodwill', 'impair charge of goodwill', 'impairment goodwill', 'impairment expense goodwill', 'impairment exp goodwill', 'impairments goodwill', 'impair goodwill', 'impair expense goodwill', 'impair exp goodwill', 'impairment charges goodwill', 'impairment charge goodwill', 'impair charges goodwill', 'impair charge goodwill', 'asset writedown', 'assets writedown', 'asset write down', 'assets write down'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='ebt', display_name='Earnings Before Tax', extract_names=['ebt', 'earnings before taxes', 'earnings before tax', 'earn before tax', 'earn before taxes', 'ebt including unusual items', 'earnings before taxes including unusual items', 'earnings before tax including unusual items', 'earn before tax including unusual items', 'earn before taxes including unusual items', 'ebt inc unusual items', 'earnings before taxes inc unusual items', 'earnings before tax inc unusual items', 'earn before tax inc unusual items', 'earn before taxes inc unusual items', 'ebt incl unusual items', 'earnings before taxes incl unusual items', 'earnings before tax incl unusual items', 'earn before tax incl unusual items', 'earn before taxes incl unusual items'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None), expr_str='ebit[t] - int_exp[t]'), ItemConfig(key='tax_exp', display_name='Income Tax Expense', extract_names=['taxes', 'tax', 'tax provision', 'tax expense', 'tax expenses', 'tax exp', 'income tax', 'income tax provision', 'income tax expense', 'income tax expenses', 'income tax exp'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of='ebt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None), expr_str=None), ItemConfig(key='net_income', display_name='Net Income', extract_names=['net income', 'net inc', 'earnings', 'earn'], force_positive=True, forecast_config=ForecastItemConfig(method='auto', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None), expr_str='ebt[t] - tax_exp[t]')]</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.items_config" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">items_config</code><em class="property"> = [ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='cogs', display_name='Cost of Goods Sold', extract_names=['cost of revenue', 'cost of goods sold', 'cogs', 'cor'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='gross_profit', display_name='Gross Profit', extract_names=None, force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str='revenue[t] - cogs[t]'), ItemConfig(key='rd_exp', display_name='R&amp;D Expense', extract_names=['rd expenses', 'rd expense', 'rd exp', 'rd', 'research and development expenses', 'research and development expense', 'research and development exp', 'research and development'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='sga', display_name='SG&amp;A Expense', extract_names=['sga', 'sga expense', 'sga expenses', 'sga exp', 'selling general and administrative', 'selling general and administrative expense', 'selling general and administrative expenses', 'selling general and administrative exp', 'selling general administrative', 'selling general administrative expense', 'selling general administrative expenses', 'selling general administrative exp', 'selling general and admin', 'selling general and admin expense', 'selling general and admin expenses', 'selling general and admin exp', 'selling general admin', 'selling general admin expense', 'selling general admin expenses', 'selling general admin exp'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='dep_exp', display_name='Depreciation &amp; Amortization Expense', extract_names=['da', 'dep amort', 'dep and amort', 'dep', 'depreciation amort', 'depreciation and amort', 'depreciation', 'depreciation amortization', 'depreciation and amortization', 'dep amortization', 'dep and amortization'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='other_op_exp', display_name='Other Operating Expenses', extract_names=['other operating expenses', 'other operating expense', 'other operating exp', 'other op expenses', 'other op expense', 'other op exp', 'other operating expensesincome', 'other operating expenseincome', 'other operating expincome', 'other op expensesincome', 'other op expenseincome', 'other op expincome', 'other operating expenses income', 'other operating expense income', 'other operating exp income', 'other op expenses income', 'other op expense income', 'other op exp income', 'other operating expensesinc', 'other operating expenseinc', 'other operating expinc', 'other op expensesinc', 'other op expenseinc', 'other op expinc', 'other operating expenses inc', 'other operating expense inc', 'other operating exp inc', 'other op expenses inc', 'other op expense inc', 'other op exp inc'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='op_exp', display_name='Operating Expense', extract_names=['op expense', 'op expenses', 'op exp', 'operating expense', 'operating expenses', 'operating exp'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'), ItemConfig(key='ebit', display_name='Earnings Before Interest and Taxes', extract_names=['ebit', 'earnings before interest and taxes', 'earnings before int and taxes', 'earnings before interest and tax', 'earnings before int and tax', 'earn before interest and taxes', 'earn before int and taxes', 'earn before interest and tax', 'earn before int and tax', 'earnings before interest taxes', 'earnings before int taxes', 'earnings before interest tax', 'earnings before int tax', 'earn before interest taxes', 'earn before int taxes', 'earn before interest tax', 'earn before int tax', 'operating income', 'op income', 'op inc', 'operating inc'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str='gross_profit[t] - op_exp[t]'), ItemConfig(key='int_exp', display_name='Interest Expense', extract_names=['int', 'int expense', 'int expenses', 'int exp', 'interest', 'interest expense', 'interest expenses', 'interest exp'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='gain_on_sale_invest', display_name='Gain on Sale of Investments', extract_names=['gain loss on sale of invest', 'gain loss sale of invest', 'gain loss sale invest', 'gain on sale of invest', 'gain sale of invest', 'gain sale invest', 'gain loss on sale of investments', 'gain loss sale of investments', 'gain loss sale investments', 'gain on sale of investments', 'gain sale of investments', 'gain sale investments'], force_positive=False, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='gain_on_sale_asset', display_name='Gain on Sale of Assets', extract_names=['gain loss on sale of assets', 'gain loss sale of assets', 'gain loss sale assets', 'gain on sale of assets', 'gain sale of assets', 'gain sale assets', 'gain loss on sale of asset', 'gain loss sale of asset', 'gain loss sale asset', 'gain on sale of asset', 'gain sale of asset', 'gain sale asset'], force_positive=False, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='impairment', display_name='Impairment Expense', extract_names=['impairment', 'impairment expense', 'impairment exp', 'impairments', 'impair', 'impair expense', 'impair exp', 'impairment charges', 'impairment charge', 'impair charges', 'impair charge', 'impairment of goodwill', 'impairment expense of goodwill', 'impairment exp of goodwill', 'impairments of goodwill', 'impair of goodwill', 'impair expense of goodwill', 'impair exp of goodwill', 'impairment charges of goodwill', 'impairment charge of goodwill', 'impair charges of goodwill', 'impair charge of goodwill', 'impairment goodwill', 'impairment expense goodwill', 'impairment exp goodwill', 'impairments goodwill', 'impair goodwill', 'impair expense goodwill', 'impair exp goodwill', 'impairment charges goodwill', 'impairment charge goodwill', 'impair charges goodwill', 'impair charge goodwill', 'asset writedown', 'assets writedown', 'asset write down', 'assets write down'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='ebt', display_name='Earnings Before Tax', extract_names=['ebt', 'earnings before taxes', 'earnings before tax', 'earn before tax', 'earn before taxes', 'ebt including unusual items', 'earnings before taxes including unusual items', 'earnings before tax including unusual items', 'earn before tax including unusual items', 'earn before taxes including unusual items', 'ebt inc unusual items', 'earnings before taxes inc unusual items', 'earnings before tax inc unusual items', 'earn before tax inc unusual items', 'earn before taxes inc unusual items', 'ebt incl unusual items', 'earnings before taxes incl unusual items', 'earnings before tax incl unusual items', 'earn before tax incl unusual items', 'earn before taxes incl unusual items'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str='ebit[t] - int_exp[t]'), ItemConfig(key='tax_exp', display_name='Income Tax Expense', extract_names=['taxes', 'tax', 'tax provision', 'tax expense', 'tax expenses', 'tax exp', 'income tax', 'income tax provision', 'income tax expense', 'income tax expenses', 'income tax exp'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of='ebt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str=None), ItemConfig(key='net_income', display_name='Net Income', extract_names=['net income', 'net inc', 'earnings', 'earn'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}), expr_str='ebt[t] - tax_exp[t]')]</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.items_config" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.net_income">
-<code class="sig-name descname">net_income</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.net_income" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">net_income</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.net_income" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.op_exp">
-<code class="sig-name descname">op_exp</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.op_exp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">op_exp</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.op_exp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.other_op_exp">
-<code class="sig-name descname">other_op_exp</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.other_op_exp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">other_op_exp</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.other_op_exp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.rd_exp">
-<code class="sig-name descname">rd_exp</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.rd_exp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">rd_exp</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.rd_exp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.revenue">
-<code class="sig-name descname">revenue</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.revenue" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">revenue</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.revenue" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.sga">
-<code class="sig-name descname">sga</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.sga" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sga</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.sga" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.data.IncomeStatementData.tax_exp">
-<code class="sig-name descname">tax_exp</code><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.tax_exp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">tax_exp</code><em class="property">: Optional[float]</em><em class="property"> = 0</em><a class="headerlink" href="#finstmt.inc.data.IncomeStatementData.tax_exp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -318,22 +320,22 @@
 </div>
 <div class="section" id="module-finstmt.inc.main">
 <span id="finstmt-inc-main-module"></span><h2>finstmt.inc.main module<a class="headerlink" href="#module-finstmt.inc.main" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="finstmt.inc.main.IncomeStatements">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.inc.main.</code><code class="sig-name descname">IncomeStatements</code><span class="sig-paren">(</span><em class="sig-param">statements: Dict[pandas.Timestamp, finstmt.inc.data.IncomeStatementData]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/inc/main.html#IncomeStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.inc.main.IncomeStatements" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.inc.main.</code><code class="sig-name descname">IncomeStatements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">statements</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>pandas.Timestamp<span class="p">, </span><a class="reference internal" href="#finstmt.inc.data.IncomeStatementData" title="finstmt.inc.data.IncomeStatementData">finstmt.inc.data.IncomeStatementData</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/inc/main.html#IncomeStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.inc.main.IncomeStatements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase" title="finstmt.findata.statementsbase.FinStatementsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.findata.statementsbase.FinStatementsBase</span></code></a></p>
 <p>Main class for holding income statement data. Usual way to construct is with the .from_df method.</p>
 <dl>
-<dt>Examples:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inc_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;WMT Income Statement.xlsx&#39;</span>
+<dt>Examples:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inc_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;WMT Income Statement.xlsx&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">inc_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">inc_path</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">inc_data</span> <span class="o">=</span> <span class="n">IncomeStatements</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">inc_df</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.inc.main.IncomeStatements.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">statements: Dict[pandas.Timestamp, finstmt.inc.data.IncomeStatementData]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.inc.main.IncomeStatements.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">statements</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>pandas.Timestamp<span class="p">, </span><a class="reference internal" href="#finstmt.inc.data.IncomeStatementData" title="finstmt.inc.data.IncomeStatementData">finstmt.inc.data.IncomeStatementData</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.inc.main.IncomeStatements.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -341,17 +343,24 @@
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="finstmt.inc.main.IncomeStatements.statement_cls">
 <code class="sig-name descname">statement_cls</code><a class="headerlink" href="#finstmt.inc.main.IncomeStatements.statement_cls" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <a class="reference internal" href="#finstmt.inc.data.IncomeStatementData" title="finstmt.inc.data.IncomeStatementData"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.inc.data.IncomeStatementData</span></code></a></p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="finstmt.inc.main.IncomeStatements.statement_name">
+<code class="sig-name descname">statement_name</code><em class="property"> = 'Income Statement'</em><a class="headerlink" href="#finstmt.inc.main.IncomeStatements.statement_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="finstmt.inc.main.IncomeStatements.statements">
+<code class="sig-name descname">statements</code><em class="property">: Dict[pd.Timestamp, IncomeStatementData]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.inc.main.IncomeStatements.statements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
-</div>
-<div class="section" id="module-finstmt.inc">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-finstmt.inc" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -366,7 +375,7 @@
         <a href="finstmt.items.html" class="btn btn-neutral float-right" title="finstmt.items package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="finstmt.forecast.html" class="btn btn-neutral float-left" title="finstmt.forecast package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="finstmt.forecast.models.html" class="btn btn-neutral float-left" title="finstmt.forecast.models package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

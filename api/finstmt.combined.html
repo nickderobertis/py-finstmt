@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.combined package &mdash; finstmt 0.2.2 documentation</title>
+  <title>finstmt.combined package &mdash; finstmt 0.3.2 documentation</title>
   
 
   
@@ -22,12 +22,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-        <script type="text/javascript" src="../_static/copybutton.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -36,10 +36,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="finstmt.config_manage package" href="finstmt.config_manage.html" />
@@ -67,7 +69,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.3.2
               </div>
             
           
@@ -115,7 +117,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
 </ul>
 </li>
 </ul>
@@ -189,20 +191,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="finstmt-combined-package">
-<h1>finstmt.combined package<a class="headerlink" href="#finstmt-combined-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-finstmt.combined">
+<span id="finstmt-combined-package"></span><h1>finstmt.combined package<a class="headerlink" href="#module-finstmt.combined" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-finstmt.combined.statements">
 <span id="finstmt-combined-statements-module"></span><h2>finstmt.combined.statements module<a class="headerlink" href="#module-finstmt.combined.statements" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="finstmt.combined.statements.FinancialStatements">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.combined.statements.</code><code class="sig-name descname">FinancialStatements</code><span class="sig-paren">(</span><em class="sig-param">income_statements: finstmt.inc.main.IncomeStatements</em>, <em class="sig-param">balance_sheets: finstmt.bs.main.BalanceSheets</em>, <em class="sig-param">forecasts: Dict[str</em>, <em class="sig-param">finstmt.forecast.main.Forecast] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.combined.statements.</code><code class="sig-name descname">FinancialStatements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">income_statements</span><span class="p">:</span> <span class="n"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements" title="finstmt.inc.main.IncomeStatements">finstmt.inc.main.IncomeStatements</a></span></em>, <em class="sig-param"><span class="n">balance_sheets</span><span class="p">:</span> <span class="n"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets" title="finstmt.bs.main.BalanceSheets">finstmt.bs.main.BalanceSheets</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Main class that holds all the financial statements.</p>
 <dl>
-<dt>Examples:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bs_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;WMT Balance Sheet.xlsx&#39;</span>
+<dt>Examples:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bs_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;WMT Balance Sheet.xlsx&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">inc_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;WMT Income Statement.xlsx&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">bs_path</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">inc_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">inc_path</span><span class="p">)</span>
@@ -213,9 +215,9 @@
 </div>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">income_statements: finstmt.inc.main.IncomeStatements</em>, <em class="sig-param">balance_sheets: finstmt.bs.main.BalanceSheets</em>, <em class="sig-param">forecasts: Dict[str</em>, <em class="sig-param">finstmt.forecast.main.Forecast] = &lt;factory&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">income_statements</span><span class="p">:</span> <span class="n"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements" title="finstmt.inc.main.IncomeStatements">finstmt.inc.main.IncomeStatements</a></span></em>, <em class="sig-param"><span class="n">balance_sheets</span><span class="p">:</span> <span class="n"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets" title="finstmt.bs.main.BalanceSheets">finstmt.bs.main.BalanceSheets</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -223,7 +225,12 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
+<dt id="finstmt.combined.statements.FinancialStatements.balance_sheets">
+<code class="sig-name descname">balance_sheets</code><em class="property">: BalanceSheets</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.balance_sheets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.capex">
 <em class="property">property </em><code class="sig-name descname">capex</code><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.capex" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -233,9 +240,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.change">
-<code class="sig-name descname">change</code><span class="sig-paren">(</span><em class="sig-param">data_key</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.change" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">change</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.change" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the change between this period and last for a data series</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -247,7 +254,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.fcf">
 <em class="property">property </em><code class="sig-name descname">fcf</code><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.fcf" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -257,9 +264,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.forecast">
-<code class="sig-name descname">forecast</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.forecast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.forecast" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forecast</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.forecast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.forecast" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
@@ -267,7 +274,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.forecast_assumptions">
 <em class="property">property </em><code class="sig-name descname">forecast_assumptions</code><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.forecast_assumptions" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -277,9 +284,14 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
+<dt id="finstmt.combined.statements.FinancialStatements.income_statements">
+<code class="sig-name descname">income_statements</code><em class="property">: IncomeStatements</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.income_statements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.lag">
-<code class="sig-name descname">lag</code><span class="sig-paren">(</span><em class="sig-param">data_key</em>, <em class="sig-param">num_lags</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.lag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.lag" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">lag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_key</span></em>, <em class="sig-param"><span class="n">num_lags</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.lag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.lag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a data series lagged for a number of periods</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -294,7 +306,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.non_cash_expenses">
 <em class="property">property </em><code class="sig-name descname">non_cash_expenses</code><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.non_cash_expenses" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -306,9 +318,6 @@
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-finstmt.combined">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-finstmt.combined" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

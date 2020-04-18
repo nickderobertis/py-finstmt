@@ -1,6 +1,18 @@
 finstmt.forecast package
 ========================
 
+.. automodule:: finstmt.forecast
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   finstmt.forecast.models
+
 Submodules
 ----------
 
@@ -28,11 +40,19 @@ finstmt.forecast.main module
    :undoc-members:
    :show-inheritance:
 
+finstmt.forecast.plot module
+----------------------------
 
-Module contents
----------------
-
-.. automodule:: finstmt.forecast
+.. automodule:: finstmt.forecast.plot
    :members:
    :undoc-members:
    :show-inheritance:
+
+finstmt.forecast.statements module
+----------------------------------
+
+.. automodule:: finstmt.forecast.statements
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.combined.statements &mdash; finstmt 0.2.2 documentation</title>
+  <title>finstmt.combined.statements &mdash; finstmt 0.3.2 documentation</title>
   
 
   
@@ -22,12 +22,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-        <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -36,10 +36,12 @@
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -65,7 +67,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.3.2
               </div>
             
           
@@ -192,7 +194,6 @@
     <span class="n">income_statements</span><span class="p">:</span> <span class="n">IncomeStatements</span>
     <span class="n">balance_sheets</span><span class="p">:</span> <span class="n">BalanceSheets</span>
 
-    <span class="n">forecasts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Forecast</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{})</span>
 
     <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">config_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -222,9 +223,9 @@
     <span class="k">def</span> <span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        &lt;h2&gt;Income Statement&lt;/h2&gt;</span>
-<span class="s2">        {self.income_statements._repr_html_()}</span>
+<span class="s2">        </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">_repr_html_</span><span class="p">()</span><span class="si">}</span><span class="s2"></span>
 <span class="s2">        &lt;h2&gt;Balance Sheet&lt;/h2&gt;</span>
-<span class="s2">        {self.balance_sheets._repr_html_()}</span>
+<span class="s2">        </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">_repr_html_</span><span class="p">()</span><span class="si">}</span><span class="s2"></span>
 <span class="s2">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
@@ -258,7 +259,9 @@
             <span class="s1">&#39;balance_sheets&#39;</span><span class="p">,</span>
             <span class="s1">&#39;capex&#39;</span><span class="p">,</span>
             <span class="s1">&#39;non_cash_expenses&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;fcf&#39;</span>
+            <span class="s1">&#39;fcf&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;forecast&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;forecast_assumptions&#39;</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="n">all_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span>
         <span class="n">item_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">all_config</span><span class="p">]</span>
@@ -278,6 +281,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_income</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_cash_expenses</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="s1">&#39;nwc&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">capex</span>
 
 <div class="viewcode-block" id="FinancialStatements.forecast"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.forecast">[docs]</a>    <span class="k">def</span> <span class="nf">forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;FinancialStatements&#39;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">finstmt.forecast.statements</span> <span class="kn">import</span> <span class="n">ForecastedFinancialStatements</span>
+
         <span class="c1"># TODO [#6]: clean up forecast logic</span>
         <span class="c1">#</span>
         <span class="c1"># Seems like this whole thing is repeating a lot of logic that could maybe be removed if</span>
@@ -364,7 +369,7 @@
                 <span class="c1"># This is a calculated item, need to calculate it, add it to results, and use that series</span>
                 <span class="n">pct_of_series</span> <span class="o">=</span> <span class="n">get_expr_eval_create_series_and_add_to_by_date_item_dict_and_results</span><span class="p">(</span><span class="n">pct_of_key</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;could not get series for </span><span class="si">{pct_of_key}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;could not get series for </span><span class="si">{</span><span class="n">pct_of_key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">calc_series</span> <span class="o">=</span> <span class="n">pct_result</span> <span class="o">*</span> <span class="n">pct_of_series</span>
             <span class="n">calc_series</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pct_result</span><span class="o">.</span><span class="n">name</span>
             <span class="n">all_results</span><span class="p">[</span><span class="n">pct_item_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">calc_series</span>
@@ -374,8 +379,10 @@
         <span class="n">all_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_results</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="n">inc_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span>
         <span class="n">bs_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span>
-        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">inc_df</span><span class="p">,</span> <span class="n">bs_df</span><span class="p">)</span>
-        <span class="n">obj</span><span class="o">.</span><span class="n">forecasts</span> <span class="o">=</span> <span class="n">all_forecast_dict</span>
+
+        <span class="c1"># type ignore added because for some reason mypy is not picking up structure</span>
+        <span class="c1"># correctly since it is a dataclass</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">ForecastedFinancialStatements</span><span class="p">(</span><span class="n">inc_df</span><span class="p">,</span> <span class="n">bs_df</span><span class="p">,</span> <span class="n">all_forecast_dict</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
         <span class="k">return</span> <span class="n">obj</span></div>
 
     <span class="nd">@property</span>
