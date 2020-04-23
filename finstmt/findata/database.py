@@ -1,7 +1,7 @@
 from copy import deepcopy
 import warnings
 from dataclasses import dataclass
-from typing import Optional, List, Dict, Union, Sequence
+from typing import Optional, List, Dict, Union, Sequence, cast
 
 import pandas as pd
 from sympy import IndexedBase
@@ -51,7 +51,7 @@ class FinDataBase:
     def from_series(cls, series: pd.Series, prior_statement: Optional['FinDataBase'] = None,
                     items_config: Optional[Sequence[ItemConfig]] = None):
         if items_config is None:
-            items_config = cls.items_config
+            items_config = cast(Sequence[ItemConfig], cls.items_config)
 
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
