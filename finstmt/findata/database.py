@@ -1,7 +1,7 @@
 from copy import deepcopy
 import warnings
 from dataclasses import dataclass
-from typing import Optional, List, Dict, Union
+from typing import Optional, List, Dict, Union, Sequence, cast
 
 import pandas as pd
 from sympy import IndexedBase
@@ -12,6 +12,7 @@ from finstmt.exc import CouldNotParseException
 from finstmt.items.config import ItemConfig
 
 
+@dataclass
 class FinDataBase:
     """
     Base class for financial statement data. Should not be used directly.
@@ -23,7 +24,7 @@ class FinDataBase:
         raise NotImplementedError
 
     def __post_init__(self):
-        self.items_config = DataConfigManager(self.items_config)
+        self.items_config = DataConfigManager(deepcopy(self.items_config))
         for item in self.items_config:
             if item.force_positive and item.extract_names is not None:
                 # If extracted and need to force positive, take absolute value
@@ -47,7 +48,11 @@ class FinDataBase:
         return df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')._repr_html_()
 
     @classmethod
-    def from_series(cls, series: pd.Series, prior_statement: Optional['FinDataBase'] = None):
+    def from_series(cls, series: pd.Series, prior_statement: Optional['FinDataBase'] = None,
+                    items_config: Optional[Sequence[ItemConfig]] = None):
+        if items_config is None:
+            items_config = cast(Sequence[ItemConfig], cls.items_config)
+
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
         data_dict: Dict[str, Union[float, 'FinDataBase']] = {}
@@ -59,7 +64,7 @@ class FinDataBase:
 
         for i, name in enumerate(for_lookup.index):
             orig_name = series.index[i]
-            for item_config in cls.items_config:
+            for item_config in items_config:
                 if item_config.extract_names is None:
                     # Not an extractable item, must be a calculated item
                     continue
@@ -90,7 +95,7 @@ class FinDataBase:
         if not data_dict:
             raise CouldNotParseException('Passed Series did not have any statement items in the index. '
                                          'Got index:', series.index)
-        return cls(**data_dict)
+        return cls(**data_dict, items_config=items_config)
 
     def to_series(self) -> pd.Series:
         data_dict = {}
