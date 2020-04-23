@@ -53,7 +53,7 @@ class FinStatementsBase:
 
     def __getattr__(self, item):
         data_dict = {}
-        for date, statement in self.statements.items():
+        for date, statement in super().__getattribute__('statements').items():
             try:
                 statement_value = getattr(statement, item)
             except AttributeError:

@@ -63,8 +63,8 @@ class FinancialStatements:
         """
 
     def __getattr__(self, item):
-        inc_items = dir(self.income_statements)
-        bs_items = dir(self.balance_sheets)
+        inc_items = dir(super().__getattribute__('income_statements'))
+        bs_items = dir(super().__getattribute__('balance_sheets'))
         if item not in inc_items + bs_items:
             raise AttributeError(item)
 
