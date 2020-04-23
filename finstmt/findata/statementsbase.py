@@ -1,4 +1,4 @@
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Sequence, Optional
 from dataclasses import field
 
 import pandas as pd
@@ -9,6 +9,7 @@ from finstmt.exc import CouldNotParseException
 from finstmt.findata.database import FinDataBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
+from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
 
 
@@ -89,7 +90,7 @@ class FinStatementsBase:
         return normal_attrs + item_attrs
 
     @classmethod
-    def from_df(cls, df: pd.DataFrame):
+    def from_df(cls, df: pd.DataFrame, items_config: Optional[Sequence[ItemConfig]] = None):
         """
         DataFrame must have columns as dates and index as names of financial statement items
         """
@@ -98,7 +99,7 @@ class FinStatementsBase:
         dates.sort(key=lambda t: pd.to_datetime(t))
         for col in dates:
             try:
-                statement = cls.statement_cls.from_series(df[col])
+                statement = cls.statement_cls.from_series(df[col], items_config=items_config)
             except CouldNotParseException:
                 raise CouldNotParseException('Passed DataFrame did not have any statement items in the index. '
                                              'Did you set the column with statement items to the index? Got index:',
@@ -127,7 +128,7 @@ class FinStatementsBase:
         results: Dict[str, pd.Series] = {}
         pct_results: Dict[str, pd.Series] = {}
         logger.info(f'Forecasting {self.statement_name}')
-        for item in tqdm(self.statement_cls.items_config):
+        for item in tqdm(self.config.items):
             if item.extract_names is None or not item.forecast_config.make_forecast:
                 # If can't extract item, must be calculated item, no need to forecast
                 continue

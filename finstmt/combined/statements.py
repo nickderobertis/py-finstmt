@@ -97,7 +97,7 @@ class FinancialStatements:
             'forecast',
             'forecast_assumptions',
         ]
-        all_config = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
+        all_config = self.income_statements.config.items + self.balance_sheets.config.items
         item_attrs = [config.key for config in all_config]
         return normal_attrs + item_attrs
 
@@ -211,8 +211,8 @@ class FinancialStatements:
             add_series_to_by_date_item_dict(calc_series, pct_item_key)
 
         all_results = pd.concat(list(all_results.values()), axis=1).T
-        inc_df = self.income_statements.__class__.from_df(all_results)
-        bs_df = self.balance_sheets.__class__.from_df(all_results)
+        inc_df = self.income_statements.__class__.from_df(all_results, items_config=self.income_statements.config.items)
+        bs_df = self.balance_sheets.__class__.from_df(all_results, items_config=self.balance_sheets.config.items)
 
         # type ignore added because for some reason mypy is not picking up structure
         # correctly since it is a dataclass
@@ -221,7 +221,7 @@ class FinancialStatements:
 
     @property
     def forecast_assumptions(self) -> pd.DataFrame:
-        all_configs = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config  # type: ignore
+        all_configs = self.income_statements.config.items + self.balance_sheets.config.items  # type: ignore
         all_series = []
         for config in all_configs:
             if config.extract_names is None or not config.forecast_config.make_forecast:

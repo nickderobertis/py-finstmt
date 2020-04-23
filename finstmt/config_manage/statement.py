@@ -50,3 +50,11 @@ class StatementConfigManager(ConfigManagerBase):
         for manager in self.config_managers.values():
             all_keys.update(manager.keys)
         return list(all_keys)
+
+    @property
+    def items(self) -> List[ItemConfig]:
+        # TODO: rethink low-level config structure
+        #
+        # We have a config for each item for each date and this method just gets the ones for the first date
+        for manager in self.config_managers.values():
+            return manager.configs
