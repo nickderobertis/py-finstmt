@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast.models.base &mdash; finstmt 0.3.2 documentation</title>
+  <title>finstmt.forecast.models.base &mdash; finstmt 0.4.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.4.0
               </div>
             
           
@@ -165,7 +165,7 @@
             
   <h1>Source code for finstmt.forecast.models.base</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -228,7 +228,35 @@
             <span class="n">periods</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">periods</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
             <span class="n">freq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">freq</span><span class="p">,</span>
             <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;right&#39;</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">historical_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_series</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ForecastNotFitException</span><span class="p">(</span><span class="s1">&#39;call .fit before .historical_freq&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">infer_freq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_series</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">desired_freq_t_multiplier</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The  multiplier of the forecast frequncy versus the historical frequency. E.g.</span>
+<span class="sd">        if the forecast is annual and historical is quarterly then the multiplier is 4.</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_series</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ForecastNotFitException</span><span class="p">(</span><span class="s1">&#39;call .fit before .desired_freq_t_multiplier&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">compare_freq_strs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">freq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_freq</span><span class="p">,</span> <span class="n">ref_date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_series</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="compare_freq_strs"><a class="viewcode-back" href="../../../../api/finstmt.forecast.models.html#finstmt.forecast.models.base.compare_freq_strs">[docs]</a><span class="k">def</span> <span class="nf">compare_freq_strs</span><span class="p">(</span><span class="n">freq1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">freq2</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                      <span class="n">ref_date</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1/1/2000&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="n">periods</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">dates1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">ref_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq1</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">periods</span><span class="p">)</span>
+    <span class="n">td1</span> <span class="o">=</span> <span class="n">dates1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dates1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dates2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">ref_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq2</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">periods</span><span class="p">)</span>
+    <span class="n">td2</span> <span class="o">=</span> <span class="n">dates2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dates2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">td1</span> <span class="o">/</span> <span class="n">td2</span></div>
 </pre></div>
 
            </div>

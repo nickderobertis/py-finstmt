@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Forecasting Financial Statements with finstmt &mdash; finstmt 0.3.2 documentation</title>
+  <title>Forecasting Financial Statements with finstmt &mdash; finstmt 0.4.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.4.0
               </div>
             
           
@@ -101,15 +101,20 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Forecasting Financial Statements with <code class="docutils literal notranslate"><span class="pre">finstmt</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#load-financial-statements">Load Financial Statements</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#view-existing-statements">View Existing Statements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#copy-the-statements">Copy the Statements</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#run-a-forecast">Run a Forecast</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#set-the-default-method">Set the Default Method</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#view-the-forecast-assumptions">View the Forecast Assumptions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#run-the-first-forecast">Run the First Forecast</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#change-methods-and-re-run-forecast">Change Methods and Re-Run Forecast</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adjusting-an-existing-forecast">Adjusting an Existing Forecast</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#a-second-forecast">A Second Forecast</a></li>
 </ul>
 </li>
 </ul>
@@ -219,7 +224,7 @@ the full experience.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:78: UserWarning: Previously had ebit extracted from &quot;Operating Income&quot;. Replacing with value from &quot;EBIT&quot;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:83: UserWarning: Previously had ebit extracted from &quot;Operating Income&quot;. Replacing with value from &quot;EBIT&quot;
   warnings.warn(f&#39;Previously had {item_config.key} &#39;
 </pre></div>
 </div>
@@ -990,6 +995,17 @@ the full experience.</p>
 
 <br />
 <br /></div>
+<div class="section" id="copy-the-statements">
+<h3>Copy the Statements<a class="headerlink" href="#copy-the-statements" title="Permalink to this headline">¶</a></h3>
+<p>To set up for running multiple forecasts off the same data, you can make
+a copy of it using <code class="docutils literal notranslate"><span class="pre">copy.deepcopy</span></code>. Then any adjustments to the
+configuration will only be in the original object and not the copy.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/copy.html#copy.deepcopy" title="copy.deepcopy" class="sphx-glr-backref-module-copy sphx-glr-backref-type-py-function"><span class="n">deepcopy</span></a>
+
+<span class="n">stmts2</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/copy.html#copy.deepcopy" title="copy.deepcopy" class="sphx-glr-backref-module-copy sphx-glr-backref-type-py-function"><span class="n">deepcopy</span></a><span class="p">(</span><span class="n">stmts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="run-a-forecast">
 <h2>Run a Forecast<a class="headerlink" href="#run-a-forecast" title="Permalink to this headline">¶</a></h2>
@@ -1002,7 +1018,380 @@ actually have an effect.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="run-the-first-forecast">
+</div>
+<div class="section" id="view-the-forecast-assumptions">
+<h2>View the Forecast Assumptions<a class="headerlink" href="#view-the-forecast-assumptions" title="Permalink to this headline">¶</a></h2>
+<p>All the assumptions going into the forecast are in
+<code class="docutils literal notranslate"><span class="pre">forecast_assumptions</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stmts</span><span class="o">.</span><span class="n">forecast_assumptions</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Method</th>
+      <th>% of</th>
+      <th>Cap</th>
+      <th>Floor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Revenue</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Cost of Goods Sold</th>
+      <td>cagr</td>
+      <td>revenue</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>R&amp;D Expense</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>SG&amp;A Expense</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Depreciation &amp; Amortization Expense</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Operating Expenses</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Interest Expense</th>
+      <td>cagr</td>
+      <td>total_debt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Gain on Sale of Investments</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Gain on Sale of Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Impairment Expense</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Income Tax Expense</th>
+      <td>cagr</td>
+      <td>ebt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Cash and Cash Equivalents</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Short-Term Investments</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Cash and Short-Term Investments</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Receivables</th>
+      <td>cagr</td>
+      <td>revenue</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Inventory</th>
+      <td>cagr</td>
+      <td>revenue</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Deferred Tax Assets, Current</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Current Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Current Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Grosss Property, Plant &amp; Equipment</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Accumulated Depreciation</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Net Property, Plant &amp; Equipment</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Goodwill and Intangible Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Long-Term Investments</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Deferred Tax Assets, Long-Term</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Long-Term Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Non-Current Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Payables</th>
+      <td>cagr</td>
+      <td>revenue</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Short-Term Debt</th>
+      <td>cagr</td>
+      <td>total_debt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Current Portion of Long-Term Debt</th>
+      <td>cagr</td>
+      <td>total_debt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Tax Liabilities, Short-Term</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Current Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Current Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Long-Term Debt</th>
+      <td>cagr</td>
+      <td>total_debt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Debt</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Deferred Revenue</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Tax Liabilities, Long-Term</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Deposit Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Long-Term Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Non-Current Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Common Stock</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Comprehensive Income</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Retained Earnings</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Minority Interest</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Stockholder's Equity</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Liabilities and Equity</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<br /><div class="section" id="run-the-first-forecast">
 <h3>Run the First Forecast<a class="headerlink" href="#run-the-first-forecast" title="Permalink to this headline">¶</a></h3>
 <p>Forecasts are run using <code class="docutils literal notranslate"><span class="pre">.forecast()</span></code> and produce
 <code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatements</span></code>. It is usually good practice to first
@@ -1022,7 +1411,7 @@ run a forecast, then view the results, then adjust as needed.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 
-100%|##########| 16/16 [00:00&lt;00:00, 165.38it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 167.84it/s]
 
   0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
@@ -1035,7 +1424,7 @@ run a forecast, then view the results, then adjust as needed.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 
- 32%|###2      | 12/37 [00:00&lt;00:00, 118.34it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:62: RuntimeWarning: invalid value encountered in true_divide
+ 32%|###2      | 12/37 [00:00&lt;00:00, 112.45it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:71: RuntimeWarning: invalid value encountered in true_divide
   next_value = last_value / (1 + cagr)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
@@ -1046,7 +1435,7 @@ run a forecast, then view the results, then adjust as needed.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 
- 65%|######4   | 24/37 [00:00&lt;00:00, 117.99it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0. Setting to 0 growth
+ 68%|######7   | 25/37 [00:00&lt;00:00, 115.29it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
@@ -1057,8 +1446,7 @@ run a forecast, then view the results, then adjust as needed.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 
-100%|##########| 37/37 [00:00&lt;00:00, 119.91it/s]
-100%|##########| 37/37 [00:00&lt;00:00, 119.94it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 120.82it/s]
 </pre></div>
 </div>
 <dl class="simple">
@@ -1597,7 +1985,7 @@ item should be chosen. Then they can be updated.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 
-100%|##########| 16/16 [00:00&lt;00:00, 176.50it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 193.65it/s]
 
   0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
@@ -1609,10 +1997,10 @@ item should be chosen. Then they can be updated.</p>
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:62: RuntimeWarning: invalid value encountered in true_divide
-  next_value = last_value / (1 + cagr)
 
- 35%|###5      | 13/37 [00:00&lt;00:00, 121.75it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0. Setting to 0 growth
+ 30%|##9       | 11/37 [00:00&lt;00:00, 105.96it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:71: RuntimeWarning: invalid value encountered in true_divide
+  next_value = last_value / (1 + cagr)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
@@ -1621,7 +2009,7 @@ item should be chosen. Then they can be updated.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 
- 68%|######7   | 25/37 [00:00&lt;00:00, 119.46it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0. Setting to 0 growth
+ 62%|######2   | 23/37 [00:00&lt;00:00, 108.57it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
@@ -1632,7 +2020,8 @@ item should be chosen. Then they can be updated.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
   warnings.warn(message)
 
-100%|##########| 37/37 [00:00&lt;00:00, 119.51it/s]
+ 97%|#########7| 36/37 [00:00&lt;00:00, 112.05it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 114.12it/s]
 </pre></div>
 </div>
 <p>And plot the results:</p>
@@ -1653,21 +2042,448 @@ convenient to first run the forecast, then simply adjust it. The
 <code class="docutils literal notranslate"><span class="pre">.to_manual</span></code> method of the forecast was added for this purpose.</p>
 <p>Either <code class="docutils literal notranslate"><span class="pre">adjustments</span></code> or <code class="docutils literal notranslate"><span class="pre">replacements</span></code> can be passed while updating,
 and either the level of the item or the growth in the item can be used
-for the new manual forecast.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fcst</span><span class="o">.</span><span class="n">forecasts</span></a><span class="p">[</span><span class="s1">&#39;cash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_manual</span><span class="p">(</span><span class="n">adjustments</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># boost second forecast period cash growth by 40%</span>
+for the new manual forecast. For either one, a dictionary where the keys
+are the index of the period and values are the adjustment/replacement or
+a list containing all the adjustment/replacements can be used.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fcst</span><span class="o">.</span><span class="n">forecasts</span></a><span class="p">[</span><span class="s1">&#39;cash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_manual</span><span class="p">(</span><span class="n">adjustments</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">})</span>  <span class="c1"># boost first forecast period cash growth by 40%</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fcst</span><span class="o">.</span><span class="n">forecasts</span></a><span class="p">[</span><span class="s1">&#39;cogs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_manual</span><span class="p">(</span><span class="n">use_levels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">replacements</span><span class="o">=</span><span class="p">[</span><span class="mf">0.85</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span>  <span class="c1"># use 85% of sales for full COGS forecast</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fcst</span><span class="o">.</span><span class="n">forecasts</span></a><span class="p">[</span><span class="s1">&#39;revenue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_manual</span><span class="p">(</span><span class="n">use_levels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">replacements</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mf">8e10</span><span class="p">})</span>  <span class="c1"># set second forecast period revenue to 80,000,000,000</span>
 </pre></div>
 </div>
-<p>The existing forecast is updated without running a new one. Now view the
-plots:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;revenue&#39;</span><span class="p">,</span> <span class="s1">&#39;cogs&#39;</span><span class="p">,</span> <span class="s1">&#39;cash&#39;</span><span class="p">])</span>
+<p>Then just run the forecast again to get everything updated in the
+statements. Then you can view the plots:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fcst</span> <span class="o">=</span> <span class="n">stmts</span><span class="o">.</span><span class="n">forecast</span><span class="p">()</span>
+<span class="n">fcst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;revenue&#39;</span><span class="p">,</span> <span class="s1">&#39;cogs&#39;</span><span class="p">,</span> <span class="s1">&#39;cash&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x300 with 3 Axes&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Depreciation &amp; Amortization Expense as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Operating Expenses as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Gain on Sale of Investments as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Gain on Sale of Assets as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+100%|##########| 16/16 [00:00&lt;00:00, 216.07it/s]
+
+  0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Tax Assets, Current as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Assets as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Grosss Property, Plant &amp; Equipment as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:71: RuntimeWarning: invalid value encountered in true_divide
+  next_value = last_value / (1 + cagr)
+
+ 38%|###7      | 14/37 [00:00&lt;00:00, 129.58it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+ 70%|#######   | 26/37 [00:00&lt;00:00, 123.65it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
+  warnings.warn(message)
+
+100%|##########| 37/37 [00:00&lt;00:00, 122.70it/s]
+
+&lt;Figure size 1500x300 with 3 Axes&gt;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.408 seconds)</p>
+</div>
+</div>
+<div class="section" id="a-second-forecast">
+<h2>A Second Forecast<a class="headerlink" href="#a-second-forecast" title="Permalink to this headline">¶</a></h2>
+<p>Since we earlier did a <code class="docutils literal notranslate"><span class="pre">deepcopy</span></code> of the <code class="docutils literal notranslate"><span class="pre">stmts</span></code> object, that still
+has the original forecast assumptions and can be used for a separate
+forecast.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stmts2</span><span class="o">.</span><span class="n">forecast_assumptions</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Method</th>
+      <th>% of</th>
+      <th>Cap</th>
+      <th>Floor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Revenue</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Cost of Goods Sold</th>
+      <td>cagr</td>
+      <td>revenue</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>R&amp;D Expense</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>SG&amp;A Expense</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Depreciation &amp; Amortization Expense</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Operating Expenses</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Interest Expense</th>
+      <td>cagr</td>
+      <td>total_debt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Gain on Sale of Investments</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Gain on Sale of Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Impairment Expense</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Income Tax Expense</th>
+      <td>cagr</td>
+      <td>ebt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Cash and Cash Equivalents</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Short-Term Investments</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Cash and Short-Term Investments</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Receivables</th>
+      <td>cagr</td>
+      <td>revenue</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Inventory</th>
+      <td>cagr</td>
+      <td>revenue</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Deferred Tax Assets, Current</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Current Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Current Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Grosss Property, Plant &amp; Equipment</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Accumulated Depreciation</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Net Property, Plant &amp; Equipment</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Goodwill and Intangible Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Long-Term Investments</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Deferred Tax Assets, Long-Term</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Long-Term Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Non-Current Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Assets</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Payables</th>
+      <td>cagr</td>
+      <td>revenue</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Short-Term Debt</th>
+      <td>cagr</td>
+      <td>total_debt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Current Portion of Long-Term Debt</th>
+      <td>cagr</td>
+      <td>total_debt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Tax Liabilities, Short-Term</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Current Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Current Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Long-Term Debt</th>
+      <td>cagr</td>
+      <td>total_debt</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Debt</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Deferred Revenue</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Tax Liabilities, Long-Term</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Deposit Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Long-Term Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Non-Current Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Liabilities</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Common Stock</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Other Comprehensive Income</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Retained Earnings</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Minority Interest</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Stockholder's Equity</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Total Liabilities and Equity</th>
+      <td>cagr</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.649 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-forecasting-py">
 <div class="binder-badge docutils container">
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/nickderobertis/py-finstmt/gh-pages?urlpath=lab/tree/notebooks/auto_examples/forecasting.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>
@@ -1680,7 +2496,6 @@ plots:</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
 </div>
 </div>
 

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast.models.cagr &mdash; finstmt 0.3.2 documentation</title>
+  <title>finstmt.forecast.models.cagr &mdash; finstmt 0.4.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.4.0
               </div>
             
           
@@ -200,15 +200,24 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cagr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_series</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ForecastNotFitException</span><span class="p">(</span><span class="s1">&#39;call .fit before .predict&#39;</span><span class="p">)</span>
 
+        <span class="n">adj_cagr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cagr</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">desired_freq_t_multiplier</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">adj_stderr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">desired_freq_t_multiplier</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
         <span class="n">cagr_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
             <span class="n">lower</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cagr</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
             <span class="n">upper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cagr</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
             <span class="n">mean</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cagr</span>
         <span class="p">)</span>
 
+        <span class="n">adj_cagr_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">lower</span><span class="o">=</span><span class="n">adj_cagr</span> <span class="o">-</span> <span class="n">adj_stderr</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="n">upper</span><span class="o">=</span><span class="n">adj_cagr</span> <span class="o">+</span> <span class="n">adj_stderr</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="n">mean</span><span class="o">=</span><span class="n">adj_cagr</span>
+        <span class="p">)</span>
+
         <span class="c1"># Start from last period, apply growth to predict into future</span>
         <span class="n">future_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_future_date_range</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">col_name</span><span class="p">,</span> <span class="n">cagr</span> <span class="ow">in</span> <span class="n">cagr_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">col_name</span><span class="p">,</span> <span class="n">cagr</span> <span class="ow">in</span> <span class="n">adj_cagr_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">last_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_value</span>
             <span class="n">future_values</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">periods</span><span class="p">):</span>

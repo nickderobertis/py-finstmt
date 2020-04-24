@@ -25,6 +25,14 @@ finstmt.config\_manage.data module
    :undoc-members:
    :show-inheritance:
 
+finstmt.config\_manage.global\_ module
+--------------------------------------
+
+.. automodule:: finstmt.config_manage.global_
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 finstmt.config\_manage.statement module
 ---------------------------------------
 

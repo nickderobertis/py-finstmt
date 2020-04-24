@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.findata.statementsbase &mdash; finstmt 0.3.2 documentation</title>
+  <title>finstmt.findata.statementsbase &mdash; finstmt 0.4.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.4.0
               </div>
             
           
@@ -164,7 +164,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for finstmt.findata.statementsbase</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">field</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -175,6 +175,7 @@
 <span class="kn">from</span> <span class="nn">finstmt.findata.database</span> <span class="kn">import</span> <span class="n">FinDataBase</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.config</span> <span class="kn">import</span> <span class="n">ForecastConfig</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.main</span> <span class="kn">import</span> <span class="n">Forecast</span>
+<span class="kn">from</span> <span class="nn">finstmt.items.config</span> <span class="kn">import</span> <span class="n">ItemConfig</span>
 <span class="kn">from</span> <span class="nn">finstmt.logger</span> <span class="kn">import</span> <span class="n">logger</span>
 
 
@@ -218,7 +219,7 @@
 
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">statement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">statements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">statement</span> <span class="ow">in</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s1">&#39;statements&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">statement_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
@@ -250,12 +251,13 @@
         <span class="n">normal_attrs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;statements&#39;</span><span class="p">,</span>
             <span class="s1">&#39;to_df&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;freq&#39;</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="n">item_attrs</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statements</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">normal_attrs</span> <span class="o">+</span> <span class="n">item_attrs</span>
 
 <div class="viewcode-block" id="FinStatementsBase.from_df"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.from_df">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_df</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_df</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">items_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">ItemConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DataFrame must have columns as dates and index as names of financial statement items</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -264,7 +266,7 @@
         <span class="n">dates</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">statement</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">from_series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+                <span class="n">statement</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">from_series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">items_config</span><span class="o">=</span><span class="n">items_config</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">CouldNotParseException</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">CouldNotParseException</span><span class="p">(</span><span class="s1">&#39;Passed DataFrame did not have any statement items in the index. &#39;</span>
                                              <span class="s1">&#39;Did you set the column with statement items to the index? Got index:&#39;</span><span class="p">,</span>
@@ -288,12 +290,15 @@
         <span class="k">return</span> <span class="n">out_df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39; - &#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Forecast</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">]]:</span>
+        <span class="k">if</span> <span class="s1">&#39;freq&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq</span>  <span class="c1"># use historical frequency if desired frequency not passed</span>
+
         <span class="n">forecast_config</span> <span class="o">=</span> <span class="n">ForecastConfig</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">forecast_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Forecast</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">pct_results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Forecasting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">statement_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">extract_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span><span class="p">:</span>
                 <span class="c1"># If can&#39;t extract item, must be calculated item, no need to forecast</span>
                 <span class="k">continue</span>
@@ -321,8 +326,12 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">results</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">result</span>
 
-        <span class="k">return</span> <span class="n">forecast_dict</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">pct_results</span></div>
+        <span class="k">return</span> <span class="n">forecast_dict</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">pct_results</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">freq</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">dates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statements</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">infer_freq</span><span class="p">(</span><span class="n">dates</span><span class="p">)</span></div>
 
 
 </pre></div>

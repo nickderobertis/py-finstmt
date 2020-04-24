@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast.models.trend &mdash; finstmt 0.3.2 documentation</title>
+  <title>finstmt.forecast.models.trend &mdash; finstmt 0.4.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.4.0
               </div>
             
           
@@ -189,7 +189,8 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_series</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ForecastNotFitException</span><span class="p">(</span><span class="s1">&#39;call .fit before .predict&#39;</span><span class="p">)</span>
         <span class="n">last_t</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="n">future_X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">last_t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">periods</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">desired_freq_t_multiplier</span>
+        <span class="n">future_X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">last_t</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">last_t</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">periods</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="n">step</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
         <span class="n">future_dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_future_date_range</span>
         <span class="n">all_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog</span><span class="p">,</span> <span class="n">future_X</span><span class="p">))</span>
         <span class="n">all_dates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_series</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">future_dates</span><span class="p">))</span>

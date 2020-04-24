@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.combined.statements &mdash; finstmt 0.3.2 documentation</title>
+  <title>finstmt.combined.statements &mdash; finstmt 0.4.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.4.0
               </div>
             
           
@@ -229,8 +229,8 @@
 <span class="s2">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-        <span class="n">inc_items</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="p">)</span>
-        <span class="n">bs_items</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">)</span>
+        <span class="n">inc_items</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s1">&#39;income_statements&#39;</span><span class="p">))</span>
+        <span class="n">bs_items</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s1">&#39;balance_sheets&#39;</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">inc_items</span> <span class="o">+</span> <span class="n">bs_items</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
@@ -263,7 +263,7 @@
             <span class="s1">&#39;forecast&#39;</span><span class="p">,</span>
             <span class="s1">&#39;forecast_assumptions&#39;</span><span class="p">,</span>
         <span class="p">]</span>
-        <span class="n">all_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span>
+        <span class="n">all_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span>
         <span class="n">item_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">all_config</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">normal_attrs</span> <span class="o">+</span> <span class="n">item_attrs</span>
 
@@ -377,8 +377,8 @@
             <span class="n">add_series_to_by_date_item_dict</span><span class="p">(</span><span class="n">calc_series</span><span class="p">,</span> <span class="n">pct_item_key</span><span class="p">)</span>
 
         <span class="n">all_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_results</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-        <span class="n">inc_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span>
-        <span class="n">bs_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span>
+        <span class="n">inc_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">all_results</span><span class="p">,</span> <span class="n">items_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+        <span class="n">bs_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">all_results</span><span class="p">,</span> <span class="n">items_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
 
         <span class="c1"># type ignore added because for some reason mypy is not picking up structure</span>
         <span class="c1"># correctly since it is a dataclass</span>
@@ -387,7 +387,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">forecast_assumptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-        <span class="n">all_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">items_config</span>  <span class="c1"># type: ignore</span>
+        <span class="n">all_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span>  <span class="c1"># type: ignore</span>
         <span class="n">all_series</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">all_configs</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">extract_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span><span class="p">:</span>

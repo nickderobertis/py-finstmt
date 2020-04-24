@@ -43,6 +43,20 @@ stmts
 
 
 ######################################################################
+# Copy the Statements
+# ~~~~~~~~~~~~~~~~~~~
+# 
+# To set up for running multiple forecasts off the same data, you can make
+# a copy of it using ``copy.deepcopy``. Then any adjustments to the
+# configuration will only be in the original object and not the copy.
+# 
+
+from copy import deepcopy
+
+stmts2 = deepcopy(stmts)
+
+
+######################################################################
 # Run a Forecast
 # --------------
 # 
@@ -58,6 +72,17 @@ stmts
 # 
 
 stmts.config.update_all(['forecast_config', 'method'], 'cagr')
+
+
+######################################################################
+# View the Forecast Assumptions
+# -----------------------------
+# 
+# All the assumptions going into the forecast are in
+# ``forecast_assumptions``:
+# 
+
+stmts.forecast_assumptions
 
 
 ######################################################################
@@ -136,16 +161,32 @@ fcst.plot(subset=['revenue', 'cogs', 'cash'])
 # 
 # Either ``adjustments`` or ``replacements`` can be passed while updating,
 # and either the level of the item or the growth in the item can be used
-# for the new manual forecast.
+# for the new manual forecast. For either one, a dictionary where the keys
+# are the index of the period and values are the adjustment/replacement or
+# a list containing all the adjustment/replacements can be used.
 # 
 
-fcst.forecasts['cash'].to_manual(adjustments=[0, 0.4, 0, 0, 0])  # boost second forecast period cash growth by 40%
+fcst.forecasts['cash'].to_manual(adjustments={0: 0.4})  # boost first forecast period cash growth by 40%
+fcst.forecasts['cogs'].to_manual(use_levels=True, replacements=[0.85 for _ in range(5)])  # use 85% of sales for full COGS forecast
 fcst.forecasts['revenue'].to_manual(use_levels=True, replacements={1: 8e10})  # set second forecast period revenue to 80,000,000,000
 
 
 ######################################################################
-# The existing forecast is updated without running a new one. Now view the
-# plots:
+# Then just run the forecast again to get everything updated in the
+# statements. Then you can view the plots:
 # 
 
+fcst = stmts.forecast()
 fcst.plot(subset=['revenue', 'cogs', 'cash'])
+
+
+######################################################################
+# A Second Forecast
+# -----------------
+# 
+# Since we earlier did a ``deepcopy`` of the ``stmts`` object, that still
+# has the original forecast assumptions and can be used for a separate
+# forecast.
+# 
+
+stmts2.forecast_assumptions
