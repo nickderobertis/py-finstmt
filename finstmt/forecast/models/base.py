@@ -72,6 +72,12 @@ class ForecastModel:
 
     @property
     def desired_freq_t_multiplier(self) -> float:
+        """
+        The  multiplier of the forecast frequncy versus the historical frequency. E.g.
+        if the forecast is annual and historical is quarterly then the multiplier is 4.
+
+        :return:
+        """
         if self.orig_series is None:
             raise ForecastNotFitException('call .fit before .desired_freq_t_multiplier')
         return compare_freq_strs(self.config.freq, self.historical_freq, ref_date=self.orig_series.index[-1])
