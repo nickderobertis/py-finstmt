@@ -34,15 +34,24 @@ class CAGRModel(ForecastModel):
         if self.cagr is None or self.stderr is None or self.last_value is None or self.orig_series is None:
             raise ForecastNotFitException('call .fit before .predict')
 
+        adj_cagr = (1 + self.cagr) ** (self.desired_freq_t_multiplier) - 1
+        adj_stderr = (1 + self.stderr) ** (self.desired_freq_t_multiplier) - 1
+
         cagr_dict = dict(
             lower=self.cagr - self.stderr * 2,
             upper=self.cagr + self.stderr * 2,
             mean=self.cagr
         )
 
+        adj_cagr_dict = dict(
+            lower=adj_cagr - adj_stderr * 2,
+            upper=adj_cagr + adj_stderr * 2,
+            mean=adj_cagr
+        )
+
         # Start from last period, apply growth to predict into future
         future_df = pd.DataFrame(index=self._future_date_range)
-        for col_name, cagr in cagr_dict.items():
+        for col_name, cagr in adj_cagr_dict.items():
             last_value = self.last_value
             future_values = []
             for _ in range(self.config.periods):
