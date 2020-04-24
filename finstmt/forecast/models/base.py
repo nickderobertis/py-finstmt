@@ -66,10 +66,14 @@ class ForecastModel:
 
     @property
     def historical_freq(self) -> str:
+        if self.orig_series is None:
+            raise ForecastNotFitException('call .fit before .historical_freq')
         return pd.infer_freq(self.orig_series.index)
 
     @property
     def desired_freq_t_multiplier(self) -> float:
+        if self.orig_series is None:
+            raise ForecastNotFitException('call .fit before .desired_freq_t_multiplier')
         return compare_freq_strs(self.config.freq, self.historical_freq, ref_date=self.orig_series.index[-1])
 
 
