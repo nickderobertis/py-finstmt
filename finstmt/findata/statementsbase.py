@@ -85,6 +85,7 @@ class FinStatementsBase:
         normal_attrs = [
             'statements',
             'to_df',
+            'freq',
         ]
         item_attrs = dir(list(self.statements.values())[0])
         return normal_attrs + item_attrs
@@ -123,6 +124,9 @@ class FinStatementsBase:
         return out_df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')
 
     def _forecast(self, statements, **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series], Dict[str, pd.Series]]:
+        if 'freq' not in kwargs:
+            kwargs['freq'] = self.freq  # use historical frequency if desired frequency not passed
+
         forecast_config = ForecastConfig(**kwargs)
         forecast_dict: Dict[str, Forecast] = {}
         results: Dict[str, pd.Series] = {}
@@ -158,5 +162,9 @@ class FinStatementsBase:
 
         return forecast_dict, results, pct_results
 
+    @property
+    def freq(self) -> str:
+        dates = list(self.statements.keys())
+        return pd.infer_freq(dates)
 
 
