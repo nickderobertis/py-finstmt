@@ -258,7 +258,7 @@ class FinancialStatements:
         return _new_statements(self, other, *statements)
 
     def __rtruediv__(self, other):
-        # TODO [$5ea490c38aa1460007681b84]: implement right division for statements
+        # TODO [#41]: implement right division for statements
         raise NotImplementedError(f'cannot divide type {type(other)} by type {type(self)}')
 
 

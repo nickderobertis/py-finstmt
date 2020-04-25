@@ -176,7 +176,7 @@ class FinStatementsBase:
         else:
             raise NotImplementedError(f'cannot add type {type(other)} to type {type(self)}')
 
-        # TODO [$5ea490c38aa1460007681b85]: combined statements retain only item config of first statements
+        # TODO [#42]: combined statements retain only item config of first statements
         #
         # Think about the best way to handle this. This applies to all math dunder methods.
         new_statements = type(self).from_df(new_df, self.config.items)
