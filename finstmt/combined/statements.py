@@ -1,5 +1,6 @@
+import operator
 from dataclasses import dataclass, field
-from typing import Dict
+from typing import Dict, Tuple, Callable
 
 import pandas as pd
 from sympy import Indexed
@@ -232,26 +233,59 @@ class FinancialStatements:
         return pd.concat(all_series, axis=1).T
 
     def __add__(self, other):
-        from finstmt.forecast.statements import ForecastedFinancialStatements
-        if isinstance(other, (float, int)):
-            new_inc_df = self.income_statements.df + other
-            new_inc = IncomeStatements.from_df(new_inc_df, self.income_statements.config.items)
-            new_bs_df = self.balance_sheets.df + other
-            new_bs = BalanceSheets.from_df(new_bs_df, self.balance_sheets.config.items)
-        elif isinstance(other, FinancialStatements):
-            new_inc = self.income_statements + other.income_statements
-            new_bs = self.balance_sheets + other.balance_sheets
-        else:
-            raise NotImplementedError(f'cannot add type {type(other)} to type {type(self)}')
-
-        if isinstance(self, ForecastedFinancialStatements) and isinstance(other, ForecastedFinancialStatements):
-            raise NotImplementedError('not yet implemented to combine two forecasted statements')
-        if isinstance(self, ForecastedFinancialStatements):
-            return ForecastedFinancialStatements(new_inc, new_bs, self.forecasts)
-        if isinstance(other, ForecastedFinancialStatements):
-            return ForecastedFinancialStatements(new_inc, new_bs, other.forecasts)
-
-        return FinancialStatements(new_inc, new_bs)
+        statements = _combine_statements(self, other, operator.add)
+        return _new_statements(self, other, *statements)
 
     def __radd__(self, other):
         return self.__add__(other)
+
+    def __sub__(self, other):
+        statements = _combine_statements(self, other, operator.sub)
+        return _new_statements(self, other, *statements)
+
+    def __rsub__(self, other):
+        return (-1 * self) + other
+
+    def __mul__(self, other):
+        statements = _combine_statements(self, other, operator.mul)
+        return _new_statements(self, other, *statements)
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __truediv__(self, other):
+        statements = _combine_statements(self, other, operator.truediv)
+        return _new_statements(self, other, *statements)
+
+    def __rtruediv__(self, other):
+        # TODO: implement right division for statements
+        raise NotImplementedError(f'cannot divide type {type(other)} by type {type(self)}')
+
+
+def _combine_statements(statements: FinancialStatements,
+                        other_statements: FinancialStatements,
+                        func: Callable) -> Tuple[IncomeStatements, BalanceSheets]:
+    if isinstance(other_statements, (float, int)):
+        new_inc_df = func(statements.income_statements.df, other_statements)
+        new_inc = IncomeStatements.from_df(new_inc_df, statements.income_statements.config.items)
+        new_bs_df = func(statements.balance_sheets.df, other_statements)
+        new_bs = BalanceSheets.from_df(new_bs_df, statements.balance_sheets.config.items)
+    elif isinstance(other_statements, FinancialStatements):
+        new_inc = func(statements.income_statements, other_statements.income_statements)
+        new_bs = func(statements.balance_sheets, other_statements.balance_sheets)
+    else:
+        raise NotImplementedError(f'cannot {func.__name__} type {type(statements)} to type {type(other_statements)}')
+
+    return new_inc, new_bs
+
+def _new_statements(statements: FinancialStatements, other_statements: FinancialStatements,
+                    new_inc: IncomeStatements, new_bs: BalanceSheets) -> FinancialStatements:
+    from finstmt.forecast.statements import ForecastedFinancialStatements
+    if isinstance(statements, ForecastedFinancialStatements) and isinstance(other_statements, ForecastedFinancialStatements):
+        raise NotImplementedError('not yet implemented to combine two forecasted statements')
+    if isinstance(statements, ForecastedFinancialStatements):
+        return ForecastedFinancialStatements(new_inc, new_bs, statements.forecasts)  # type: ignore
+    if isinstance(other_statements, ForecastedFinancialStatements):
+        return ForecastedFinancialStatements(new_inc, new_bs, other_statements.forecasts)  # type: ignore
+
+    return FinancialStatements(new_inc, new_bs)

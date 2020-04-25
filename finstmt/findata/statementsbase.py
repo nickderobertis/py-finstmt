@@ -178,12 +178,60 @@ class FinStatementsBase:
 
         # TODO: combined statements retain only item config of first statements
         #
-        # Think about the best way to handle this
+        # Think about the best way to handle this. This applies to all math dunder methods.
         new_statements = type(self).from_df(new_df, self.config.items)
         return new_statements
 
     def __radd__(self, other):
         return self.__add__(other)
+
+    def __mul__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = self.df * other
+        elif isinstance(other, FinStatementsBase):
+            new_df = combine_statement_dfs(self.df, other.df, operation=operator.mul)
+        else:
+            raise NotImplementedError(f'cannot multiply type {type(other)} to type {type(self)}')
+
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __sub__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = self.df - other
+        elif isinstance(other, FinStatementsBase):
+            new_df = combine_statement_dfs(self.df, other.df, operation=operator.sub)
+        else:
+            raise NotImplementedError(f'cannot subtract type {type(other)} to type {type(self)}')
+
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
+
+    def __rsub__(self, other):
+        return (-1 * self) + other
+
+    def __truediv__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = self.df / other
+        elif isinstance(other, FinStatementsBase):
+            new_df = combine_statement_dfs(self.df, other.df, operation=operator.truediv)
+        else:
+            raise NotImplementedError(f'cannot divide type {type(other)} to type {type(self)}')
+
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
+
+    def __rtruediv__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = other / self.df
+        else:
+            raise NotImplementedError(f'cannot divide type {type(other)} to type {type(self)}')
+
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
 
 
 def combine_statement_dfs(
