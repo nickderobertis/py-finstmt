@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.combined.statements &mdash; finstmt 0.4.0 documentation</title>
+  <title>finstmt.combined.statements &mdash; finstmt 0.5.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.5.0
               </div>
             
           
@@ -164,8 +164,9 @@
            <div itemprop="articleBody">
             
   <h1>Source code for finstmt.combined.statements</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span></span><span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Callable</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Indexed</span>
@@ -395,9 +396,65 @@
             <span class="n">config_series</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">to_series</span><span class="p">()</span>
             <span class="n">config_series</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">display_name</span>
             <span class="n">all_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">config_series</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">all_series</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span></div>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">all_series</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">_combine_statements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_new_statements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="o">*</span><span class="n">statements</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">_combine_statements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">sub</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_new_statements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="o">*</span><span class="n">statements</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">other</span>
+
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">_combine_statements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_new_statements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="o">*</span><span class="n">statements</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">_combine_statements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">truediv</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_new_statements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="o">*</span><span class="n">statements</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__rtruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1"># TODO: implement right division for statements</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot divide type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s1"> by type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
 
+<span class="k">def</span> <span class="nf">_combine_statements</span><span class="p">(</span><span class="n">statements</span><span class="p">:</span> <span class="n">FinancialStatements</span><span class="p">,</span>
+                        <span class="n">other_statements</span><span class="p">:</span> <span class="n">FinancialStatements</span><span class="p">,</span>
+                        <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">IncomeStatements</span><span class="p">,</span> <span class="n">BalanceSheets</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other_statements</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+        <span class="n">new_inc_df</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">statements</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">other_statements</span><span class="p">)</span>
+        <span class="n">new_inc</span> <span class="o">=</span> <span class="n">IncomeStatements</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_inc_df</span><span class="p">,</span> <span class="n">statements</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+        <span class="n">new_bs_df</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">statements</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">other_statements</span><span class="p">)</span>
+        <span class="n">new_bs</span> <span class="o">=</span> <span class="n">BalanceSheets</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_bs_df</span><span class="p">,</span> <span class="n">statements</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other_statements</span><span class="p">,</span> <span class="n">FinancialStatements</span><span class="p">):</span>
+        <span class="n">new_inc</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">statements</span><span class="o">.</span><span class="n">income_statements</span><span class="p">,</span> <span class="n">other_statements</span><span class="o">.</span><span class="n">income_statements</span><span class="p">)</span>
+        <span class="n">new_bs</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">statements</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">,</span> <span class="n">other_statements</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1"> type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">statements</span><span class="p">)</span><span class="si">}</span><span class="s1"> to type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other_statements</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_inc</span><span class="p">,</span> <span class="n">new_bs</span>
+
+<span class="k">def</span> <span class="nf">_new_statements</span><span class="p">(</span><span class="n">statements</span><span class="p">:</span> <span class="n">FinancialStatements</span><span class="p">,</span> <span class="n">other_statements</span><span class="p">:</span> <span class="n">FinancialStatements</span><span class="p">,</span>
+                    <span class="n">new_inc</span><span class="p">:</span> <span class="n">IncomeStatements</span><span class="p">,</span> <span class="n">new_bs</span><span class="p">:</span> <span class="n">BalanceSheets</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FinancialStatements</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">finstmt.forecast.statements</span> <span class="kn">import</span> <span class="n">ForecastedFinancialStatements</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">statements</span><span class="p">,</span> <span class="n">ForecastedFinancialStatements</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other_statements</span><span class="p">,</span> <span class="n">ForecastedFinancialStatements</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;not yet implemented to combine two forecasted statements&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">statements</span><span class="p">,</span> <span class="n">ForecastedFinancialStatements</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ForecastedFinancialStatements</span><span class="p">(</span><span class="n">new_inc</span><span class="p">,</span> <span class="n">new_bs</span><span class="p">,</span> <span class="n">statements</span><span class="o">.</span><span class="n">forecasts</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other_statements</span><span class="p">,</span> <span class="n">ForecastedFinancialStatements</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ForecastedFinancialStatements</span><span class="p">(</span><span class="n">new_inc</span><span class="p">,</span> <span class="n">new_bs</span><span class="p">,</span> <span class="n">other_statements</span><span class="o">.</span><span class="n">forecasts</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+
+    <span class="k">return</span> <span class="n">FinancialStatements</span><span class="p">(</span><span class="n">new_inc</span><span class="p">,</span> <span class="n">new_bs</span><span class="p">)</span>
 </pre></div>
 
            </div>

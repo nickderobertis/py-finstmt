@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting started with finstmt &mdash; finstmt 0.4.0 documentation</title>
+  <title>Getting started with finstmt &mdash; finstmt 0.5.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.5.0
               </div>
             
           
@@ -99,6 +99,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with finstmt</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#forecasting">Forecasting</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Examples</a></li>
@@ -192,6 +193,18 @@
 <span class="n">stmts</span> <span class="o">=</span> <span class="n">FinancialStatements</span><span class="p">(</span><span class="n">inc_data</span><span class="p">,</span> <span class="n">bs_data</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="forecasting">
+<h2>Forecasting<a class="headerlink" href="#forecasting" title="Permalink to this headline">¶</a></h2>
+<p>See the example notebook for an example of forecasting. The available forecast
+methods are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code>: Uses <code class="docutils literal notranslate"><span class="pre">fbprophet</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trend</span></code>: Fits a linear trend regression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cagr</span></code>: Calculates the compounded annual growth rate (CAGR) and grows each future period at that rate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean</span></code>: Uses an average of the historical to predict the future</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recent</span></code>: Uses the most recent value to predict the future</p></li>
+</ul>
 </div>
 </div>
 
