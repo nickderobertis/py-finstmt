@@ -231,4 +231,27 @@ class FinancialStatements:
             all_series.append(config_series)
         return pd.concat(all_series, axis=1).T
 
+    def __add__(self, other):
+        from finstmt.forecast.statements import ForecastedFinancialStatements
+        if isinstance(other, (float, int)):
+            new_inc_df = self.income_statements.df + other
+            new_inc = IncomeStatements.from_df(new_inc_df, self.income_statements.config.items)
+            new_bs_df = self.balance_sheets.df + other
+            new_bs = BalanceSheets.from_df(new_bs_df, self.balance_sheets.config.items)
+        elif isinstance(other, FinancialStatements):
+            new_inc = self.income_statements + other.income_statements
+            new_bs = self.balance_sheets + other.balance_sheets
+        else:
+            raise NotImplementedError(f'cannot add type {type(other)} to type {type(self)}')
 
+        if isinstance(self, ForecastedFinancialStatements) and isinstance(other, ForecastedFinancialStatements):
+            raise NotImplementedError('not yet implemented to combine two forecasted statements')
+        if isinstance(self, ForecastedFinancialStatements):
+            return ForecastedFinancialStatements(new_inc, new_bs, self.forecasts)
+        if isinstance(other, ForecastedFinancialStatements):
+            return ForecastedFinancialStatements(new_inc, new_bs, other.forecasts)
+
+        return FinancialStatements(new_inc, new_bs)
+
+    def __radd__(self, other):
+        return self.__add__(other)

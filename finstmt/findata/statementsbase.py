@@ -1,4 +1,5 @@
-from typing import Dict, Tuple, Sequence, Optional
+import operator
+from typing import Dict, Tuple, Sequence, Optional, Callable
 from dataclasses import field
 
 import pandas as pd
@@ -167,4 +168,32 @@ class FinStatementsBase:
         dates = list(self.statements.keys())
         return pd.infer_freq(dates)
 
+    def __add__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = self.df + other
+        elif isinstance(other, FinStatementsBase):
+            new_df = combine_statement_dfs(self.df, other.df, operation=operator.add)
+        else:
+            raise NotImplementedError(f'cannot add type {type(other)} to type {type(self)}')
 
+        # TODO: combined statements retain only item config of first statements
+        #
+        # Think about the best way to handle this
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+
+def combine_statement_dfs(
+    df: pd.DataFrame, df2: pd.DataFrame,
+    operation: Callable[[pd.DataFrame, pd.DataFrame], pd.DataFrame] = operator.add
+) -> pd.DataFrame:
+    common_cols = [col for col in df.columns if col in df2.columns]
+    df_unique_cols = [col for col in df.columns if col not in df2.columns]
+    df2_unique_cols = [col for col in df2.columns if col not in df.columns]
+    common_df = operation(df[common_cols], df2[common_cols])
+    result = pd.concat([common_df, df[df_unique_cols], df2[df2_unique_cols]], axis=1)
+    cols = sorted(list(result.columns))
+    return result[cols]
