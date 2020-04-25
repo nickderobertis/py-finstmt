@@ -1329,9 +1329,9 @@ run a forecast, then view the results, then adjust as needed.
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Gain on Sale of Assets as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     75%|#######5  | 12/16 [00:00<00:00, 115.49it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0. Setting to 0 growth
+     75%|#######5  | 12/16 [00:00<00:00, 113.50it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-    100%|##########| 16/16 [00:00<00:00, 127.88it/s]
+    100%|##########| 16/16 [00:00<00:00, 127.12it/s]
       0%|          | 0/37 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Tax Assets, Current as y_0 is 0. Setting to 0 growth
@@ -1342,13 +1342,13 @@ run a forecast, then view the results, then adjust as needed.
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     27%|##7       | 10/37 [00:00<00:00, 95.38it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:71: RuntimeWarning: invalid value encountered in true_divide
+     27%|##7       | 10/37 [00:00<00:00, 99.76it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:71: RuntimeWarning: invalid value encountered in true_divide
       next_value = last_value / (1 + cagr)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     54%|#####4    | 20/37 [00:00<00:00, 95.20it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0. Setting to 0 growth
+     54%|#####4    | 20/37 [00:00<00:00, 99.70it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
@@ -1358,11 +1358,11 @@ run a forecast, then view the results, then adjust as needed.
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     78%|#######8  | 29/37 [00:00<00:00, 91.91it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0. Setting to 0 growth
+     81%|########1 | 30/37 [00:00<00:00, 98.71it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-    100%|##########| 37/37 [00:00<00:00, 92.82it/s]
+    100%|##########| 37/37 [00:00<00:00, 97.03it/s]
 
 
 
@@ -1981,7 +1981,7 @@ Now re-run the forecast.
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     94%|#########3| 15/16 [00:00<00:00, 141.15it/s]    100%|##########| 16/16 [00:00<00:00, 150.00it/s]
+     94%|#########3| 15/16 [00:00<00:00, 143.90it/s]    100%|##########| 16/16 [00:00<00:00, 152.91it/s]
       0%|          | 0/37 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Tax Assets, Current as y_0 is 0. Setting to 0 growth
@@ -1992,7 +1992,7 @@ Now re-run the forecast.
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     30%|##9       | 11/37 [00:00<00:00, 103.22it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:71: RuntimeWarning: invalid value encountered in true_divide
+     30%|##9       | 11/37 [00:00<00:00, 103.00it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:71: RuntimeWarning: invalid value encountered in true_divide
       next_value = last_value / (1 + cagr)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
@@ -2000,7 +2000,7 @@ Now re-run the forecast.
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     57%|#####6    | 21/37 [00:00<00:00, 101.56it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
+     57%|#####6    | 21/37 [00:00<00:00, 101.86it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
@@ -2008,11 +2008,11 @@ Now re-run the forecast.
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0. Setting to 0 growth
+     84%|########3 | 31/37 [00:00<00:00, 101.01it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     86%|########6 | 32/37 [00:00<00:00, 101.41it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-    100%|##########| 37/37 [00:00<00:00, 100.69it/s]
+    100%|##########| 37/37 [00:00<00:00, 100.20it/s]
 
 
 
@@ -2107,7 +2107,7 @@ statements. Then you can view the plots:
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-    100%|##########| 16/16 [00:00<00:00, 169.20it/s]
+    100%|##########| 16/16 [00:00<00:00, 160.35it/s]
       0%|          | 0/37 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Tax Assets, Current as y_0 is 0. Setting to 0 growth
@@ -2118,7 +2118,7 @@ statements. Then you can view the plots:
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     30%|##9       | 11/37 [00:00<00:00, 109.41it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:71: RuntimeWarning: invalid value encountered in true_divide
+     30%|##9       | 11/37 [00:00<00:00, 103.39it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:71: RuntimeWarning: invalid value encountered in true_divide
       next_value = last_value / (1 + cagr)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
@@ -2126,7 +2126,7 @@ statements. Then you can view the plots:
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     57%|#####6    | 21/37 [00:00<00:00, 106.20it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
+     57%|#####6    | 21/37 [00:00<00:00, 100.93it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
@@ -2134,11 +2134,11 @@ statements. Then you can view the plots:
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0. Setting to 0 growth
+     84%|########3 | 31/37 [00:00<00:00, 100.07it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-     86%|########6 | 32/37 [00:00<00:00, 104.67it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:24: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0. Setting to 0 growth
       warnings.warn(message)
-    100%|##########| 37/37 [00:00<00:00, 102.55it/s]
+    100%|##########| 37/37 [00:00<00:00, 99.11it/s] 
 
     <Figure size 1500x300 with 3 Axes>
 
@@ -2535,7 +2535,7 @@ forecast.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.771 seconds)
+   **Total running time of the script:** ( 0 minutes  5.694 seconds)
 
 
 .. _sphx_glr_download_auto_examples_forecasting.py:
