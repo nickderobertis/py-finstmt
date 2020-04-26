@@ -323,10 +323,23 @@ def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, 
     A_arr, b_arr = eq_arrs
     b_arr[-len(x):] = -x * PLUG_SCALE  # plug solutions with new X values
     sol_arr = np.linalg.solve(A_arr, b_arr)
-    solutions_dict = {var: sol_arr[i] for i, var in enumerate(solve_for)}
-    new_results = sympy_dict_to_results_dict(solutions_dict, forecast_dates, item_configs)
-    diff = abs(new_results['total_assets'] - new_results['total_liab_and_equity']).astype(float)
-    norm = np.linalg.norm(diff.values)
+    solutions_dict = {}
+    assets_arr = np.zeros(len(forecast_dates))
+    le_arr = np.zeros(len(forecast_dates))
+    for value, var in zip(sol_arr, solve_for):
+        solutions_dict[var] = value
+        key = str(var.base)
+        if key == 'total_assets':
+            t = int(var.indices[0]) - 1
+            if t > 0:
+                assets_arr[t] = value
+        elif key == 'total_liab_and_equity':
+            t = int(var.indices[0]) - 1
+            if t > 0:
+                le_arr[t] = value
+
+    diff = abs(assets_arr - le_arr).astype(float)
+    norm = np.linalg.norm(diff)
     logger.debug(f'x: {x * PLUG_SCALE}, norm: {norm}')
     desired_norm = np.linalg.norm([bs_diff_max] * len(diff))
     if norm <= desired_norm:
