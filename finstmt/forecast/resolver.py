@@ -273,22 +273,35 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
         method='TNC',
     )
     plug_solutions = _x_arr_to_plug_solutions(res.x, plug_keys, sympy_namespace)
-    return plug_solutions
+    solutions_dict = _solve_eqs_with_plug_solutions(
+        eqs, plug_solutions, subs_dict, forecast_dates, item_configs
+    )
+    return solutions_dict
 
 
 def _resolve_balance_sheet_check_diff(x: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str],
-                                     subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
-                                     item_configs: List[ItemConfig], sympy_namespace: Dict[str, IndexedBase]):
-    subs_dict = subs_dict.copy()
+                                      subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
+                                      item_configs: List[ItemConfig], sympy_namespace: Dict[str, IndexedBase]):
     plug_solutions = _x_arr_to_plug_solutions(x, plug_keys, sympy_namespace)
-    subs_dict.update(plug_solutions)
-    sub_eqs = [Eq(lhs, rhs) for lhs, rhs in subs_dict.items()]
-    solutions_dict = solve_equations(eqs + sub_eqs, {}, substitute=False)
+    solutions_dict = _solve_eqs_with_plug_solutions(
+        eqs, plug_solutions, subs_dict, forecast_dates, item_configs
+    )
     new_results = sympy_dict_to_results_dict(solutions_dict, forecast_dates, item_configs)
     diff = abs(new_results['total_assets'] - new_results['total_liab_and_equity']).astype(float)
     norm = np.linalg.norm(diff.values)
     logger.debug(f'x: {x * PLUG_SCALE}, norm: {norm}')
     return norm
+
+
+def _solve_eqs_with_plug_solutions(eqs: List[Eq], plug_solutions: Dict[IndexedBase, float],
+                                   subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
+                                   item_configs: List[ItemConfig]) -> Dict[IndexedBase, float]:
+    subs_dict = subs_dict.copy()
+    subs_dict.update(plug_solutions)
+    sub_eqs = [Eq(lhs, rhs) for lhs, rhs in subs_dict.items()]
+    solutions_dict = solve_equations(eqs + sub_eqs, {}, substitute=False)
+
+    return solutions_dict
 
 
 def _x_arr_to_plug_solutions(x: np.ndarray, plug_keys: Sequence[str],
