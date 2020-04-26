@@ -1034,7 +1034,10 @@ ItemConfig(
             'total stockholders equity',
             'equity total',
             'shareholders equity total',
-            'stockholders equity total'
+            'stockholders equity total',
+            'equity',
+            'shareholders equity',
+            'stockholders equity',
         ],
         expr_str='other_income[t] + retained_earnings[t] + common_stock[t] + minority_interest[t]'
     ),

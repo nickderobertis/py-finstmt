@@ -1,5 +1,5 @@
 import datetime
-from typing import Optional, Tuple, Dict, Sequence
+from typing import Optional, Tuple, Dict, Sequence, Union
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -63,3 +63,31 @@ class ForecastModel:
             freq=self.config.freq,
             closed='right'
         )
+
+    @property
+    def historical_freq(self) -> str:
+        if self.orig_series is None:
+            raise ForecastNotFitException('call .fit before .historical_freq')
+        return pd.infer_freq(self.orig_series.index)
+
+    @property
+    def desired_freq_t_multiplier(self) -> float:
+        """
+        The  multiplier of the forecast frequncy versus the historical frequency. E.g.
+        if the forecast is annual and historical is quarterly then the multiplier is 4.
+
+        :return:
+        """
+        if self.orig_series is None:
+            raise ForecastNotFitException('call .fit before .desired_freq_t_multiplier')
+        return compare_freq_strs(self.config.freq, self.historical_freq, ref_date=self.orig_series.index[-1])
+
+
+def compare_freq_strs(freq1: str, freq2: str,
+                      ref_date: Union[pd.Timestamp, datetime.datetime, str] = '1/1/2000') -> float:
+    periods = 10
+    dates1 = pd.date_range(start=ref_date, freq=freq1, periods=periods)
+    td1 = dates1[-1] - dates1[0]
+    dates2 = pd.date_range(start=ref_date, freq=freq2, periods=periods)
+    td2 = dates2[-1] - dates2[0]
+    return td1 / td2

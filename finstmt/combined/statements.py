@@ -1,5 +1,6 @@
+import operator
 from dataclasses import dataclass, field
-from typing import Dict, List
+from typing import Dict, List, Tuple, Callable
 
 import pandas as pd
 from sympy import Indexed
@@ -64,8 +65,8 @@ class FinancialStatements:
         """
 
     def __getattr__(self, item):
-        inc_items = dir(self.income_statements)
-        bs_items = dir(self.balance_sheets)
+        inc_items = dir(super().__getattribute__('income_statements'))
+        bs_items = dir(super().__getattribute__('balance_sheets'))
         if item not in inc_items + bs_items:
             raise AttributeError(item)
 
@@ -98,7 +99,7 @@ class FinancialStatements:
             'forecast',
             'forecast_assumptions',
         ]
-        all_config = self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
+        all_config = self.income_statements.config.items + self.balance_sheets.config.items
         item_attrs = [config.key for config in all_config]
         return normal_attrs + item_attrs
 
@@ -214,8 +215,8 @@ class FinancialStatements:
             add_series_to_by_date_item_dict(calc_series, pct_item_key)
 
         all_results = pd.concat(list(all_results.values()), axis=1).T
-        inc_df = self.income_statements.__class__.from_df(all_results)
-        bs_df = self.balance_sheets.__class__.from_df(all_results)
+        inc_df = self.income_statements.__class__.from_df(all_results, items_config=self.income_statements.config.items)
+        bs_df = self.balance_sheets.__class__.from_df(all_results, items_config=self.balance_sheets.config.items)
 
         # type ignore added because for some reason mypy is not picking up structure
         # correctly since it is a dataclass
@@ -235,6 +236,62 @@ class FinancialStatements:
 
     @property
     def all_config_items(self) -> List[ItemConfig]:
-        return self.income_statements.statement_cls.items_config + self.balance_sheets.statement_cls.items_config
+        return self.income_statements.config.items + self.balance_sheets.config.items  # type: ignore
+
+    def __add__(self, other):
+        statements = _combine_statements(self, other, operator.add)
+        return _new_statements(self, other, *statements)
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __sub__(self, other):
+        statements = _combine_statements(self, other, operator.sub)
+        return _new_statements(self, other, *statements)
+
+    def __rsub__(self, other):
+        return (-1 * self) + other
+
+    def __mul__(self, other):
+        statements = _combine_statements(self, other, operator.mul)
+        return _new_statements(self, other, *statements)
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __truediv__(self, other):
+        statements = _combine_statements(self, other, operator.truediv)
+        return _new_statements(self, other, *statements)
+
+    def __rtruediv__(self, other):
+        # TODO [#41]: implement right division for statements
+        raise NotImplementedError(f'cannot divide type {type(other)} by type {type(self)}')
 
 
+def _combine_statements(statements: FinancialStatements,
+                        other_statements: FinancialStatements,
+                        func: Callable) -> Tuple[IncomeStatements, BalanceSheets]:
+    if isinstance(other_statements, (float, int)):
+        new_inc_df = func(statements.income_statements.df, other_statements)
+        new_inc = IncomeStatements.from_df(new_inc_df, statements.income_statements.config.items)
+        new_bs_df = func(statements.balance_sheets.df, other_statements)
+        new_bs = BalanceSheets.from_df(new_bs_df, statements.balance_sheets.config.items)
+    elif isinstance(other_statements, FinancialStatements):
+        new_inc = func(statements.income_statements, other_statements.income_statements)
+        new_bs = func(statements.balance_sheets, other_statements.balance_sheets)
+    else:
+        raise NotImplementedError(f'cannot {func.__name__} type {type(statements)} to type {type(other_statements)}')
+
+    return new_inc, new_bs
+
+def _new_statements(statements: FinancialStatements, other_statements: FinancialStatements,
+                    new_inc: IncomeStatements, new_bs: BalanceSheets) -> FinancialStatements:
+    from finstmt.forecast.statements import ForecastedFinancialStatements
+    if isinstance(statements, ForecastedFinancialStatements) and isinstance(other_statements, ForecastedFinancialStatements):
+        raise NotImplementedError('not yet implemented to combine two forecasted statements')
+    if isinstance(statements, ForecastedFinancialStatements):
+        return ForecastedFinancialStatements(new_inc, new_bs, statements.forecasts)  # type: ignore
+    if isinstance(other_statements, ForecastedFinancialStatements):
+        return ForecastedFinancialStatements(new_inc, new_bs, other_statements.forecasts)  # type: ignore
+
+    return FinancialStatements(new_inc, new_bs)

@@ -1,4 +1,5 @@
-from typing import Dict, Tuple, Set
+import operator
+from typing import Dict, Tuple, Sequence, Optional, Callable, Set
 from dataclasses import field
 
 import pandas as pd
@@ -54,7 +55,7 @@ class FinStatementsBase:
 
     def __getattr__(self, item):
         data_dict = {}
-        for date, statement in self.statements.items():
+        for date, statement in super().__getattribute__('statements').items():
             try:
                 statement_value = getattr(statement, item)
             except AttributeError:
@@ -86,12 +87,13 @@ class FinStatementsBase:
         normal_attrs = [
             'statements',
             'to_df',
+            'freq',
         ]
         item_attrs = dir(list(self.statements.values())[0])
         return normal_attrs + item_attrs
 
     @classmethod
-    def from_df(cls, df: pd.DataFrame):
+    def from_df(cls, df: pd.DataFrame, items_config: Optional[Sequence[ItemConfig]] = None):
         """
         DataFrame must have columns as dates and index as names of financial statement items
         """
@@ -100,7 +102,7 @@ class FinStatementsBase:
         dates.sort(key=lambda t: pd.to_datetime(t))
         for col in dates:
             try:
-                statement = cls.statement_cls.from_series(df[col])
+                statement = cls.statement_cls.from_series(df[col], items_config=items_config)
             except CouldNotParseException:
                 raise CouldNotParseException('Passed DataFrame did not have any statement items in the index. '
                                              'Did you set the column with statement items to the index? Got index:',
@@ -124,12 +126,15 @@ class FinStatementsBase:
         return out_df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')
 
     def _forecast(self, statements, all_pct_of_keys: Set[str], **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series]]:
+        if 'freq' not in kwargs:
+            kwargs['freq'] = self.freq  # use historical frequency if desired frequency not passed
+
         forecast_config = ForecastConfig(**kwargs)
         forecast_dict: Dict[str, Forecast] = {}
         results: Dict[str, pd.Series] = {}
         logger.info(f'Forecasting {self.statement_name}')
         item: ItemConfig
-        for item in tqdm(self.statement_cls.items_config):
+        for item in tqdm(self.config.items):
             if item.expr_str is not None or not item.forecast_config.make_forecast:
                 # If calculated, skip the forecast
                 # If user set to skip the forecast, skip it as well
@@ -161,5 +166,85 @@ class FinStatementsBase:
 
         return forecast_dict, results
 
+    @property
+    def freq(self) -> str:
+        dates = list(self.statements.keys())
+        return pd.infer_freq(dates)
+
+    def __add__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = self.df + other
+        elif isinstance(other, FinStatementsBase):
+            new_df = combine_statement_dfs(self.df, other.df, operation=operator.add)
+        else:
+            raise NotImplementedError(f'cannot add type {type(other)} to type {type(self)}')
+
+        # TODO [#42]: combined statements retain only item config of first statements
+        #
+        # Think about the best way to handle this. This applies to all math dunder methods.
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __mul__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = self.df * other
+        elif isinstance(other, FinStatementsBase):
+            new_df = combine_statement_dfs(self.df, other.df, operation=operator.mul)
+        else:
+            raise NotImplementedError(f'cannot multiply type {type(other)} to type {type(self)}')
+
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __sub__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = self.df - other
+        elif isinstance(other, FinStatementsBase):
+            new_df = combine_statement_dfs(self.df, other.df, operation=operator.sub)
+        else:
+            raise NotImplementedError(f'cannot subtract type {type(other)} to type {type(self)}')
+
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
+
+    def __rsub__(self, other):
+        return (-1 * self) + other
+
+    def __truediv__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = self.df / other
+        elif isinstance(other, FinStatementsBase):
+            new_df = combine_statement_dfs(self.df, other.df, operation=operator.truediv)
+        else:
+            raise NotImplementedError(f'cannot divide type {type(other)} to type {type(self)}')
+
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
+
+    def __rtruediv__(self, other):
+        if isinstance(other, (float, int)):
+            new_df = other / self.df
+        else:
+            raise NotImplementedError(f'cannot divide type {type(other)} to type {type(self)}')
+
+        new_statements = type(self).from_df(new_df, self.config.items)
+        return new_statements
 
 
+def combine_statement_dfs(
+    df: pd.DataFrame, df2: pd.DataFrame,
+    operation: Callable[[pd.DataFrame, pd.DataFrame], pd.DataFrame] = operator.add
+) -> pd.DataFrame:
+    common_cols = [col for col in df.columns if col in df2.columns]
+    df_unique_cols = [col for col in df.columns if col not in df2.columns]
+    df2_unique_cols = [col for col in df2.columns if col not in df.columns]
+    common_df = operation(df[common_cols], df2[common_cols])
+    result = pd.concat([common_df, df[df_unique_cols], df2[df2_unique_cols]], axis=1)
+    cols = sorted(list(result.columns))
+    return result[cols]
