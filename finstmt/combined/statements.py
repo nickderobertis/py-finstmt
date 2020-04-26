@@ -119,6 +119,11 @@ class FinancialStatements:
     def forecast(self, **kwargs) -> 'FinancialStatements':
         from finstmt.forecast.resolver import ForecastResolver
 
+        if 'bs_diff_max' in kwargs:
+            bs_diff_max = kwargs['bs_diff_max']
+        else:
+            bs_diff_max = ForecastConfig.bs_diff_max
+
         all_forecast_dict = {}
         all_results = {}
         for stmt in [self.income_statements, self.balance_sheets]:
@@ -126,7 +131,7 @@ class FinancialStatements:
             all_forecast_dict.update(forecast_dict)
             all_results.update(results)
 
-        resolver = ForecastResolver(self, all_forecast_dict, all_results)
+        resolver = ForecastResolver(self, all_forecast_dict, all_results, bs_diff_max)
         obj = resolver.to_statements()
 
         return obj

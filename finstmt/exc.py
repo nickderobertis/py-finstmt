@@ -25,3 +25,7 @@ class ForecastNotPredictedException(ForecastException):
 
 class ImproperManualForecastException(ForecastException):
     pass
+
+
+class BalanceSheetNotBalancedException(Exception):
+    pass

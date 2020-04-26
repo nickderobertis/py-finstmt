@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import TYPE_CHECKING, List, Dict, Tuple, Optional, Sequence
 
 from scipy.optimize import minimize
@@ -6,6 +7,7 @@ import pandas as pd
 import numpy as np
 from sympy.logic.boolalg import BooleanFalse, BooleanTrue
 
+from finstmt.exc import BalanceSheetNotBalancedException
 from finstmt.forecast.main import Forecast
 from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.forecast.statements import ForecastedFinancialStatements
@@ -23,10 +25,11 @@ class ForecastResolver:
     subs_dict: Optional[Dict[IndexedBase, float]] = None
 
     def __init__(self, stmts: 'FinancialStatements', forecast_dict: Dict[str, Forecast],
-                 results: Dict[str, pd.Series]):
+                 results: Dict[str, pd.Series], bs_diff_max: float):
         self.stmts = stmts
         self.forecast_dict = forecast_dict
         self.results = results
+        self.bs_diff_max = bs_diff_max
 
         self.set_solve_eqs_and_full_subs_dict()
 
@@ -50,7 +53,8 @@ class ForecastResolver:
             self.subs_dict,
             self.forecast_dates,
             self.stmts.all_config_items,
-            self.stmts.config.sympy_namespace
+            self.stmts.config.sympy_namespace,
+            self.bs_diff_max,
         )
         solutions_dict.update(new_solutions)
 
@@ -200,6 +204,11 @@ def get_solve_eqs_and_full_subs_dict(
     return eqs_for_sub, subs_dict
 
 
+@dataclass
+class PlugResult:
+    res: Optional[np.array] = None
+
+
 def sympy_dict_to_results_dict(
     s_dict: Dict[IndexedBase, float],
     forecast_dates: pd.DatetimeIndex,
@@ -264,15 +273,26 @@ def solve_equations(solve_eqs: List[Eq], subs_dict: Dict[IndexedBase, float], su
 def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str],
                           subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
                           item_configs: List[ItemConfig],
-                          sympy_namespace: Dict[str, IndexedBase]) -> Dict[IndexedBase, float]:
-    res = minimize(
-        _resolve_balance_sheet_check_diff,
-        x0,
-        args=(eqs, plug_keys, subs_dict, forecast_dates, item_configs, sympy_namespace),
-        bounds=[(0, None) for _ in range(len(x0))],  # all positive
-        method='TNC',
-    )
-    plug_solutions = _x_arr_to_plug_solutions(res.x, plug_keys, sympy_namespace)
+                          sympy_namespace: Dict[str, IndexedBase], bs_diff_max: float) -> Dict[IndexedBase, float]:
+    result = PlugResult()
+    res = None
+    try:
+        res = minimize(
+            _resolve_balance_sheet_check_diff,
+            x0,
+            args=(eqs, plug_keys, subs_dict, forecast_dates, item_configs, sympy_namespace, bs_diff_max, result),
+            bounds=[(0, None) for _ in range(len(x0))],  # all positive
+            method='TNC',
+        )
+    except BalanceSheetBalancedException:
+        pass
+    if result.res is None:
+        if res is not None:
+            message = f'final solution {res.x * PLUG_SCALE} still could not meet max difference of {bs_diff_max}'
+        else:
+            message = None
+        raise BalanceSheetNotBalancedException(message)
+    plug_solutions = _x_arr_to_plug_solutions(result.res, plug_keys, sympy_namespace)
     solutions_dict = _solve_eqs_with_plug_solutions(
         eqs, plug_solutions, subs_dict, forecast_dates, item_configs
     )
@@ -281,7 +301,8 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
 
 def _resolve_balance_sheet_check_diff(x: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str],
                                       subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
-                                      item_configs: List[ItemConfig], sympy_namespace: Dict[str, IndexedBase]):
+                                      item_configs: List[ItemConfig], sympy_namespace: Dict[str, IndexedBase],
+                                      bs_diff_max: float, res: PlugResult):
     plug_solutions = _x_arr_to_plug_solutions(x, plug_keys, sympy_namespace)
     solutions_dict = _solve_eqs_with_plug_solutions(
         eqs, plug_solutions, subs_dict, forecast_dates, item_configs
@@ -290,6 +311,10 @@ def _resolve_balance_sheet_check_diff(x: np.ndarray, eqs: List[Eq], plug_keys: S
     diff = abs(new_results['total_assets'] - new_results['total_liab_and_equity']).astype(float)
     norm = np.linalg.norm(diff.values)
     logger.debug(f'x: {x * PLUG_SCALE}, norm: {norm}')
+    desired_norm = np.linalg.norm([bs_diff_max] * len(diff))
+    if norm <= desired_norm:
+        res.res = x
+        raise BalanceSheetBalancedException(x)
     return norm
 
 
@@ -335,3 +360,10 @@ def numpy_solve(exprs: Sequence[Expr], variables: Sequence[Symbol]):
     x = np.linalg.solve(a_arr, b_arr)
     solution_dict = {var: x[i] for i, var in enumerate(variables)}
     return solution_dict
+
+
+class BalanceSheetBalancedException(Exception):
+    pass
+
+
+

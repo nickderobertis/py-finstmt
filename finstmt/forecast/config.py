@@ -10,6 +10,9 @@ class ForecastConfig:
     freq: str = 'Y'
     prophet_kwargs:  dict = field(default_factory=lambda: {})
 
+    # TODO: after handling units, adjust default allowed BS difference for units
+    bs_diff_max = 10000
+
     def __post_init__(self):
         if self.freq.casefold() == 'y':
             self.freq = '12m'
