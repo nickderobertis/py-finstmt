@@ -283,6 +283,9 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
             args=(eqs, plug_keys, subs_dict, forecast_dates, item_configs, sympy_namespace, bs_diff_max, result),
             bounds=[(0, None) for _ in range(len(x0))],  # all positive
             method='TNC',
+            options=dict(
+                maxCGit=0,
+            )
         )
     except BalanceSheetBalancedException:
         pass
