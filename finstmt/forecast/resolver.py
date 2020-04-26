@@ -61,8 +61,8 @@ class ForecastResolver:
         new_results = sympy_dict_to_results_dict(solutions_dict, self.forecast_dates, self.stmts.all_config_items)
 
         all_results = pd.concat(list(new_results.values()), axis=1).T
-        inc_df = self.stmts.income_statements.__class__.from_df(all_results)
-        bs_df = self.stmts.balance_sheets.__class__.from_df(all_results)
+        inc_df = self.stmts.income_statements.__class__.from_df(all_results, self.stmts.income_statements.config.items)
+        bs_df = self.stmts.balance_sheets.__class__.from_df(all_results, self.stmts.balance_sheets.config.items)
 
         # type ignore added because for some reason mypy is not picking up structure
         # correctly since it is a dataclass
