@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING, List, Dict, Tuple, Optional, Sequence
 
 from scipy.optimize import minimize
-from sympy import Eq, sympify, IndexedBase, Idx, linsolve, Expr, nonlinsolve, solve
+from sympy import Eq, sympify, IndexedBase, Idx, linsolve, Expr, nonlinsolve, solve, Symbol, expand
 import pandas as pd
 import numpy as np
 from sympy.logic.boolalg import BooleanFalse, BooleanTrue
@@ -247,21 +247,13 @@ def solve_equations(solve_eqs: List[Eq], subs_dict: Dict[IndexedBase, float], su
     to_solve_for = []
     for eq in solve_eqs:
         solve_exprs.append(eq.rhs - eq.lhs)
-        if eq.lhs not in to_solve_for:
-            to_solve_for.append(eq.lhs)
+        to_solve_for.append(eq.lhs)
+    to_solve_for = list(set(to_solve_for))
 
-    res_set = solve(solve_exprs, to_solve_for, simplify=False, rational=False)
+    res_set = numpy_solve(solve_exprs, to_solve_for)
     if not res_set:
         raise ValueError('could not solve equations')
     solutions_dict.update(res_set)
-    # Following code is for linsolve
-    # for all_results in res_set:
-    #     for sym, res in zip(to_solve_for, all_results):
-    #         if round_results:
-    #             result = round(res, 0)
-    #         else:
-    #             result = res
-    #         solutions_dict[sym] = result
 
     return solutions_dict
 
@@ -302,3 +294,28 @@ def _x_arr_to_plug_solutions(x: np.ndarray, plug_keys: Sequence[str],
     plug_dict = {key: pd.Series(x_arrs[i]) for i, key in enumerate(plug_keys)}
     plug_solutions = results_dict_to_sympy_dict(plug_dict, sympy_namespace)
     return plug_solutions
+
+
+def _symbolic_to_matrix(exprs: Sequence[Expr], variables: Sequence[Symbol]):
+
+    """
+    Expr should be in the format of eq.lhs - eq.rhs
+
+    Assuming that there exists numeric matrix A such that equation F = 0
+    is equivalent to linear equation Ax = b, this function returns
+    tuple (A, b)
+    """
+    A = []
+    b = []
+    for expr in exprs:
+        coeffs = expand(expr).as_coefficients_dict()
+        A.append([float(coeffs[x]) for x in variables])
+        b.append(-float(coeffs[1]))
+    return np.array(A), np.array(b)
+
+
+def numpy_solve(exprs: Sequence[Expr], variables: Sequence[Symbol]):
+    a_arr, b_arr = _symbolic_to_matrix(exprs, variables)
+    x = np.linalg.solve(a_arr, b_arr)
+    solution_dict = {var: x[i] for i, var in enumerate(variables)}
+    return solution_dict
