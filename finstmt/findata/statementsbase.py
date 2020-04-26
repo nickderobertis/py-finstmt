@@ -125,7 +125,7 @@ class FinStatementsBase:
         out_df.columns = [col.strftime('%m/%d/%Y') for col in out_df.columns]
         return out_df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')
 
-    def _forecast(self, statements, all_pct_of_keys: Set[str], **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series]]:
+    def _forecast(self, statements, **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series]]:
         if 'freq' not in kwargs:
             kwargs['freq'] = self.freq  # use historical frequency if desired frequency not passed
 

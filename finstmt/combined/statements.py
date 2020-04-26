@@ -121,12 +121,8 @@ class FinancialStatements:
 
         all_forecast_dict = {}
         all_results = {}
-        all_pct_of_keys = {
-            config.forecast_config.pct_of for config in self.all_config_items
-            if config.forecast_config.pct_of is not None
-        }
         for stmt in [self.income_statements, self.balance_sheets]:
-            forecast_dict, results = stmt._forecast(self, all_pct_of_keys, **kwargs)
+            forecast_dict, results = stmt._forecast(self, **kwargs)
             all_forecast_dict.update(forecast_dict)
             all_results.update(results)
 
