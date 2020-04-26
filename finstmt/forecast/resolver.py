@@ -274,13 +274,27 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
                           subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
                           item_configs: List[ItemConfig],
                           sympy_namespace: Dict[str, IndexedBase], bs_diff_max: float) -> Dict[IndexedBase, float]:
+    plug_solutions = _x_arr_to_plug_solutions(x0, plug_keys, sympy_namespace)
+    solve_exprs = []
+    to_solve_for = []
+    for eq in eqs:
+        solve_exprs.append(eq.rhs - eq.lhs)
+        to_solve_for.append(eq.lhs)
+    for sol_dict in [subs_dict, plug_solutions]:
+        # Plug solutions second here so that they are at end of array
+        for lhs, rhs in sol_dict.items():
+            solve_exprs.append(rhs - lhs)
+            to_solve_for.append(lhs)
+    to_solve_for = list(set(to_solve_for))
+    eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)
+
     result = PlugResult()
     res = None
     try:
         res = minimize(
             _resolve_balance_sheet_check_diff,
             x0,
-            args=(eqs, plug_keys, subs_dict, forecast_dates, item_configs, sympy_namespace, bs_diff_max, result),
+            args=(eq_arrs, forecast_dates, item_configs, to_solve_for, bs_diff_max, result),
             bounds=[(0, None) for _ in range(len(x0))],  # all positive
             method='TNC',
             options=dict(
@@ -302,14 +316,14 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
     return solutions_dict
 
 
-def _resolve_balance_sheet_check_diff(x: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str],
-                                      subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
-                                      item_configs: List[ItemConfig], sympy_namespace: Dict[str, IndexedBase],
+def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, np.ndarray],
+                                      forecast_dates: pd.DatetimeIndex,
+                                      item_configs: List[ItemConfig], solve_for: Sequence[IndexedBase],
                                       bs_diff_max: float, res: PlugResult):
-    plug_solutions = _x_arr_to_plug_solutions(x, plug_keys, sympy_namespace)
-    solutions_dict = _solve_eqs_with_plug_solutions(
-        eqs, plug_solutions, subs_dict, forecast_dates, item_configs
-    )
+    A_arr, b_arr = eq_arrs
+    b_arr[-len(x):] = -x * PLUG_SCALE  # plug solutions with new X values
+    sol_arr = np.linalg.solve(A_arr, b_arr)
+    solutions_dict = {var: sol_arr[i] for i, var in enumerate(solve_for)}
     new_results = sympy_dict_to_results_dict(solutions_dict, forecast_dates, item_configs)
     diff = abs(new_results['total_assets'] - new_results['total_liab_and_equity']).astype(float)
     norm = np.linalg.norm(diff.values)
