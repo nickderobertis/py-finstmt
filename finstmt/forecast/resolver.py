@@ -218,6 +218,9 @@ def sympy_dict_to_results_dict(
     for expr, val in s_dict.items():
         key = str(expr.base)
         t = int(expr.indices[0]) - 1
+        if t < 0:
+            # Don't need to store historical results
+            continue
         if key not in new_results:
             # Pct of item, skip it, don't need in final results
             continue
