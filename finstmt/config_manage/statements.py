@@ -7,6 +7,7 @@ from finstmt.config_manage.base import ConfigManagerBase
 from finstmt.config_manage.statement import StatementConfigManager
 from finstmt.exc import NoSuchItemException
 from finstmt.items.config import ItemConfig
+from finstmt.logger import logger
 
 
 @dataclass
@@ -59,9 +60,11 @@ class StatementsConfigManager(ConfigManagerBase):
             if i == len(config_keys) - 1:
                 # Last iteration, now set value
                 setattr(nested_config, config_key, value)
+                logger.debug(f'Set {config_key} for {item_key} on {type(nested_config)} to {value}')
             else:
                 # Not last iteration, need to get nested config
                 nested_config = getattr(nested_config, config_key)
+        self.set(item_key, orig_config)
 
     def update_all(self, config_keys: Union[str, Sequence[str]], value: Any):
         """

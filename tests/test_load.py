@@ -6,9 +6,12 @@ import pandas as pd
 from pandas.testing import assert_series_equal
 
 from finstmt import FinancialStatements
+from finstmt.exc import MismatchingDatesException
 from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
 
 # Imported for test development purposes
+from tests.expectdata.load.load_capiq_cat_annual import LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT
+
 if DEVELOPMENT_MODE:
     from tests.utils.gen.data_load import print_test_data_def, get_keys_for_inc_data_items, get_keys_for_bs_data_items
     inc_keys = get_keys_for_inc_data_items()
@@ -1372,230 +1375,7 @@ class TestLoadStockrowMAR(LoadTest):
 
 class TestLoadCapitalIQ(LoadTest):
     name = 'load_capiq_cat'
-    a_inc_index_str = ["2014-12-31 00:00:00", "2015-12-31 00:00:00", "2016-12-31 00:00:00", "2017-12-31 00:00:00",
-                       "2018-12-31 00:00:00"]
-    a_inc_index = [pd.to_datetime(val) for val in a_inc_index_str]
-    a_inc_test_data_dict = dict(
-        revenue=pd.Series(
-            [55184, 47011, 38537, 45462, 54722],
-            index=a_inc_index
-        ),
-        cogs=pd.Series(
-            [40718, 33546, 28044, 31260, 36997],
-            index=a_inc_index
-        ),
-        gross_profit=pd.Series(
-            [14466, 13465, 10493, 14202, 17725],
-            index=a_inc_index
-        ),
-        rd_exp=pd.Series(
-            [2380, 2119, 1853, 1842, 1850],
-            index=a_inc_index
-        ),
-        sga=pd.Series(
-            [5894, 4363, 4476, 4425, 4806],
-            index=a_inc_index
-        ),
-        dep_exp=pd.Series(
-            [0, 0, 0, 0, 0],
-            index=a_inc_index
-        ),
-        other_op_exp=pd.Series(
-            [44, 27, 78, 19, 89],
-            index=a_inc_index
-        ),
-        op_exp=pd.Series(
-            [0, 0, 0, 0, 0],
-            index=a_inc_index
-        ),
-        ebit=pd.Series(
-            [3766, 4659, 1884, 5576, 8336],
-            index=a_inc_index
-        ),
-        int_exp=pd.Series(
-            [484, 507, 503, 531, 404],
-            index=a_inc_index
-        ),
-        gain_on_sale_invest=pd.Series(
-            [36, 176, 47, 187, -29],
-            index=a_inc_index
-        ),
-        gain_on_sale_asset=pd.Series(
-            [0, 0, 0, 0, 0],
-            index=a_inc_index
-        ),
-        impairment=pd.Series(
-            [0, 0, 595, 0, 0],
-            index=a_inc_index
-        ),
-        ebt=pd.Series(
-            [3160, 3439, 133, 4098, 7846],
-            index=a_inc_index
-        ),
-        tax_exp=pd.Series(
-            [692, 916, 192, 3339, 1698],
-            index=a_inc_index
-        ),
-        net_income=pd.Series(
-            [2452, 2512, 67, 754, 6147],
-            index=a_inc_index
-        ),
-    )
-    a_bs_index_str = ["2014-12-31 00:00:00", "2015-12-31 00:00:00", "2016-12-31 00:00:00", "2017-12-31 00:00:00",
-                      "2018-12-31 00:00:00", "2019-09-30 00:00:00"]
-    a_bs_index = [pd.to_datetime(val) for val in a_bs_index_str]
-    a_bs_test_data_dict = dict(
-        cash=pd.Series(
-            [6317, 5340, 5257, 7381, 6968, 6380],
-            index=a_bs_index
-        ),
-        st_invest=pd.Series(
-            [0, 0, 0, 0, 0, 0],
-            index=a_bs_index
-        ),
-        cash_and_st_invest=pd.Series(
-            [6317, 5340, 5257, 7381, 6968, 6380],
-            index=a_bs_index
-        ),
-        receivables=pd.Series(
-            [7699, 6677, 5919, 7376, 8714, 8167],
-            index=a_bs_index
-        ),
-        inventory=pd.Series(
-            [12205, 9700, 8614, 10018, 11529, 12180],
-            index=a_bs_index
-        ),
-        def_tax_st=pd.Series(
-            [1644, 0, 0, 0, 0, 0],
-            index=a_bs_index
-        ),
-        other_current_assets=pd.Series(
-            [27, 14, 23, 48, 19, 27],
-            index=a_bs_index
-        ),
-        total_current_assets=pd.Series(
-            [38867, 33508, 31967, 36244, 38603, 39160],
-            index=a_bs_index
-        ),
-        gross_ppe=pd.Series(
-            [31572, 31977, 31940, 31538, 29781, 0],
-            index=a_bs_index
-        ),
-        dep=pd.Series(
-            [14995, 15887, 16618, 17383, 16207, 0],
-            index=a_bs_index
-        ),
-        net_ppe=pd.Series(
-            [16577, 16090, 15322, 14155, 13574, 9131],
-            index=a_bs_index
-        ),
-        goodwill=pd.Series(
-            [6677, 6598, 6003, 6183, 6217, 6142],
-            index=a_bs_index
-        ),
-        lt_invest=pd.Series(
-            [257, 246, 249, 0, 0, 1328],
-            index=a_bs_index
-        ),
-        def_tax_lt=pd.Series(
-            [1267, 2367, 2683, 1569, 1363, 1254],
-            index=a_bs_index
-        ),
-        other_lt_assets=pd.Series(
-            [528, 1874, 1529, 950, 962, 1400],
-            index=a_bs_index
-        ),
-        total_non_current_assets=pd.Series(
-            [25306.0, 27175.0, 25786.0, 0.0, 0.0, 19255.0],
-            index=a_bs_index
-        ),
-        total_assets=pd.Series(
-            [84681, 78342, 74704, 76962, 78509, 77993],
-            index=a_bs_index
-        ),
-        payables=pd.Series(
-            [6515, 5023, 4614, 6487, 7051, 6141],
-            index=a_bs_index
-        ),
-        st_debt=pd.Series(
-            [9, 9, 209, 1, 0, 0],
-            index=a_bs_index
-        ),
-        current_lt_debt=pd.Series(
-            [510, 517, 507, 6, 10, 25],
-            index=a_bs_index
-        ),
-        tax_liab_st=pd.Series(
-            [414, 0, 0, 0, 0, 0],
-            index=a_bs_index
-        ),
-        other_current_liab=pd.Series(
-            [4004, 2955, 3377, 3424, 3735, 3364],
-            index=a_bs_index
-        ),
-        total_current_liab=pd.Series(
-            [27877, 26242, 26132, 26931, 28218, 27201],
-            index=a_bs_index
-        ),
-        lt_debt=pd.Series(
-            [9408, 8883, 8368, 7492, 7549, 9134],
-            index=a_bs_index
-        ),
-        total_debt=pd.Series(
-            [39293, 38017, 36784, 34880, 36593, 38607],
-            index=a_bs_index
-        ),
-        deferred_rev=pd.Series(
-            [0, 0, 0, 0, 0, 0],
-            index=a_bs_index
-        ),
-        tax_liab_lt=pd.Series(
-            [414, 0, 0, 0, 0, 0],
-            index=a_bs_index
-        ),
-        deposit_liab=pd.Series(
-            [0, 0, 0, 0, 0, 0],
-            index=a_bs_index
-        ),
-        other_lt_liab=pd.Series(
-            [2817, 3203, 3184, 3657, 3319, 3330],
-            index=a_bs_index
-        ),
-        total_non_current_liab=pd.Series(
-            [12639.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-            index=a_bs_index
-        ),
-        total_liab=pd.Series(
-            [67855, 63457, 61491, 63196, 64429, 63000],
-            index=a_bs_index
-        ),
-        common_stock=pd.Series(
-            [5016, 5238, 5277, 5593, 5827, 5951],
-            index=a_bs_index
-        ),
-        other_income=pd.Series(
-            [-6431, -2035, -2039, -1192, -1684, -1783],
-            index=a_bs_index
-        ),
-        retained_earnings=pd.Series(
-            [33887, 29246, 27377, 26301, 30427, 34477],
-            index=a_bs_index
-        ),
-        minority_interest=pd.Series(
-            [80, 76, 76, 69, 41, 41],
-            index=a_bs_index
-        ),
-        total_equity=pd.Series(
-            [16826, 14885, 13213, 13766, 14080, 14993],
-            index=a_bs_index
-        ),
-        total_liab_and_equity=pd.Series(
-            [84681, 78342, 74704, 76962, 78509, 77993],
-            index=a_bs_index
-        ),
-    )
-    a_test_data_dict = a_bs_test_data_dict.copy()
-    a_test_data_dict.update(a_inc_test_data_dict)
+    a_test_data_dict = LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT
 
     q_inc_index_str = ["2012-03-31 00:00:00", "2012-06-30 00:00:00", "2012-09-30 00:00:00", "2012-12-31 00:00:00",
                        "2013-03-31 00:00:00", "2013-06-30 00:00:00", "2013-09-30 00:00:00", "2013-12-31 00:00:00",
@@ -1643,7 +1423,9 @@ class TestLoadCapitalIQ(LoadTest):
             index=q_inc_index
         ),
         op_exp=pd.Series(
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [1874.0, 2128.0, 2043.0, 2249.0, 1830.0, 1823.0, 1666.0, 1756.0, 1655.0, 1848.0, 1832.0, 1956.0, 1657.0,
+             1689.0, 1505.0, 1708.0, 1480.0, 1448.0, 1322.0, 1893.0, 1369.0, 1639.0, 1542.0, 1759.0, 1487.0, 1636.0,
+             1529.0, 1840.0, 1559.0, 1561.0, 1528.0],
             index=q_inc_index
         ),
         ebit=pd.Series(
@@ -1771,9 +1553,9 @@ class TestLoadCapitalIQ(LoadTest):
             index=q_bs_index
         ),
         total_non_current_assets=pd.Series(
-            [26081.0, 22151.0, 22508.0, 26105.0, 22424.0, 22433.0, 22475.0, 25319.0, 21142.0, 20896.0, 20541.0, 25306.0,
-             20602.0, 20591.0, 21875.0, 27175.0, 22848.0, 22672.0, 22511.0, 25786.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-             0.0, 19583.0, 19549.0, 19255.0],
+            [26081.0, 22151.0, 22508.0, 26105.0, 22424.0, 22433.0, 22475.0, 25319.0, 21142.0, 20896.0, 20541.0,
+             25306.0, 20602.0, 20591.0, 21875.0, 27175.0, 22848.0, 22672.0, 22511.0, 25786.0, 19962.0, 19662.0,
+             19502.0, 22857.0, 18398.0, 17967.0, 17456.0, 22116.0, 19583.0, 19549.0, 19255.0],
             index=q_bs_index
         ),
         total_assets=pd.Series(
@@ -1841,8 +1623,9 @@ class TestLoadCapitalIQ(LoadTest):
             index=q_bs_index
         ),
         total_non_current_liab=pd.Series(
-            [0.0, 0.0, 0.0, 11729.0, 0.0, 0.0, 0.0, 10931.0, 0.0, 0.0, 0.0, 12639.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-             0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+            [11993.0, 12866.0, 12635.0, 11729.0, 11880.0, 11181.0, 11127.0, 10931.0, 11215.0, 12754.0, 12782.0,
+             12639.0, 12701.0, 12768.0, 11866.0, 12086.0, 11734.0, 11272.0, 11244.0, 11552.0, 12042.0, 12050.0,
+             11972.0, 11149.0, 11498.0, 11502.0, 11358.0, 10868.0, 10886.0, 11105.0, 12464.0],
             index=q_bs_index
         ),
         total_liab=pd.Series(

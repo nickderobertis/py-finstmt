@@ -221,14 +221,7 @@ class TestForecastCapitalIQCAT(ForecastTest):
     )
 
     def test_annual(self, annual_capiq_stmts: FinancialStatements):
-        try:
-            fcst = annual_capiq_stmts.forecast(**FORECAST_KWARGS)
-        except MismatchingDatesException:
-            pass
-        else:
-            assert False
-        dates = annual_capiq_stmts.income_statements.dates
-        super().test_annual(annual_capiq_stmts[dates])
+        super().test_annual(annual_capiq_stmts)
 
     def test_quarterly(self, quarterly_capiq_stmts: FinancialStatements):
         super().test_quarterly(quarterly_capiq_stmts)
