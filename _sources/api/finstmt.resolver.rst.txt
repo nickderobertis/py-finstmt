@@ -1,0 +1,43 @@
+finstmt.resolver package
+========================
+
+.. automodule:: finstmt.resolver
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+finstmt.resolver.base module
+----------------------------
+
+.. automodule:: finstmt.resolver.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.resolver.forecast module
+--------------------------------
+
+.. automodule:: finstmt.resolver.forecast
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.resolver.history module
+-------------------------------
+
+.. automodule:: finstmt.resolver.history
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.resolver.solve module
+-----------------------------
+
+.. automodule:: finstmt.resolver.solve
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

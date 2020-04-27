@@ -1,0 +1,3490 @@
+.. only:: html
+
+    .. note::
+        :class: sphx-glr-download-link-note
+
+        Click :ref:`here <sphx_glr_download_auto_examples_manipulating_statements.py>`     to download the full example code or to run this example in your browser via Binder
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_auto_examples_manipulating_statements.py:
+
+
+Manipulating Statements
+=======================
+
+    Note: The formatting of the statements is off in the web view.
+    Download the Jupyter notebook for the full experience.
+
+First import the necessary classes and ``pandas``.
+
+
+.. code-block:: default
+
+
+    import os
+    os.chdir('..')
+    from finstmt import FinancialStatements, IncomeStatements, BalanceSheets
+    import pandas as pd
+
+
+
+
+
+
+
+
+
+Load Financial Statements
+-------------------------
+
+
+
+.. code-block:: default
+
+
+    root_folder = os.path.sep.join(['..', 'tests', 'sources', 'stockrow', 'CAT'])
+
+    inc_path = os.path.join(root_folder, 'annual_income.csv')
+    bs_path = os.path.join(root_folder, 'annual_bs.csv')
+
+    inc_df = pd.read_csv(inc_path, index_col=0)
+    bs_df = pd.read_csv(bs_path, index_col=0)
+
+    bs = BalanceSheets.from_df(bs_df)
+    inc = IncomeStatements.from_df(inc_df)
+    stmts = FinancialStatements(inc, bs)
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:83: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(f'Previously had {item_config.key} '
+
+
+
+
+View Statements
+---------------
+
+
+
+.. code-block:: default
+
+
+    stmts
+
+
+
+
+
+
+
+.. only:: builder_html
+
+    .. raw:: html
+
+
+                <h2>Income Statement</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2009</th>
+              <th>12/31/2010</th>
+              <th>12/31/2011</th>
+              <th>12/31/2012</th>
+              <th>12/31/2013</th>
+              <th>12/31/2014</th>
+              <th>12/31/2015</th>
+              <th>12/31/2016</th>
+              <th>12/31/2017</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Revenue</th>
+              <td>$32,396,000,000</td>
+              <td>$42,588,000,000</td>
+              <td>$60,138,000,000</td>
+              <td>$65,875,000,000</td>
+              <td>$55,656,000,000</td>
+              <td>$55,184,000,000</td>
+              <td>$47,011,000,000</td>
+              <td>$38,537,000,000</td>
+              <td>$45,462,000,000</td>
+              <td>$54,722,000,000</td>
+            </tr>
+            <tr>
+              <th>Cost of Goods Sold</th>
+              <td>$24,931,000,000</td>
+              <td>$31,281,000,000</td>
+              <td>$44,404,000,000</td>
+              <td>$47,852,000,000</td>
+              <td>$41,454,000,000</td>
+              <td>$41,342,000,000</td>
+              <td>$34,133,000,000</td>
+              <td>$28,640,000,000</td>
+              <td>$31,906,000,000</td>
+              <td>$37,719,000,000</td>
+            </tr>
+            <tr>
+              <th>Gross Profit</th>
+              <td>$7,465,000,000</td>
+              <td>$11,307,000,000</td>
+              <td>$15,734,000,000</td>
+              <td>$18,023,000,000</td>
+              <td>$14,202,000,000</td>
+              <td>$13,842,000,000</td>
+              <td>$12,878,000,000</td>
+              <td>$9,897,000,000</td>
+              <td>$13,556,000,000</td>
+              <td>$17,003,000,000</td>
+            </tr>
+            <tr>
+              <th>R&amp;D Expense</th>
+              <td>$1,421,000,000</td>
+              <td>$1,905,000,000</td>
+              <td>$2,297,000,000</td>
+              <td>$2,466,000,000</td>
+              <td>$2,046,000,000</td>
+              <td>$2,380,000,000</td>
+              <td>$2,119,000,000</td>
+              <td>$1,853,000,000</td>
+              <td>$1,842,000,000</td>
+              <td>$1,850,000,000</td>
+            </tr>
+            <tr>
+              <th>SG&amp;A Expense</th>
+              <td>$3,645,000,000</td>
+              <td>$4,248,000,000</td>
+              <td>$5,203,000,000</td>
+              <td>$5,919,000,000</td>
+              <td>$5,547,000,000</td>
+              <td>$6,529,000,000</td>
+              <td>$4,951,000,000</td>
+              <td>$4,383,000,000</td>
+              <td>$4,999,000,000</td>
+              <td>$5,478,000,000</td>
+            </tr>
+            <tr>
+              <th>Depreciation &amp; Amortization Expense</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Operating Expenses</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Operating Expense</th>
+              <td>$6,888,000,000</td>
+              <td>$7,344,000,000</td>
+              <td>$8,581,000,000</td>
+              <td>$9,450,000,000</td>
+              <td>$8,574,000,000</td>
+              <td>$10,528,000,000</td>
+              <td>$9,093,000,000</td>
+              <td>$8,735,000,000</td>
+              <td>$9,096,000,000</td>
+              <td>$8,710,000,000</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Interest and Taxes</th>
+              <td>$1,014,000,000</td>
+              <td>$4,011,000,000</td>
+              <td>$7,044,000,000</td>
+              <td>$8,676,000,000</td>
+              <td>$5,573,000,000</td>
+              <td>$3,628,000,000</td>
+              <td>$3,935,000,000</td>
+              <td>$630,000,000</td>
+              <td>$4,624,000,000</td>
+              <td>$8,249,000,000</td>
+            </tr>
+            <tr>
+              <th>Interest Expense</th>
+              <td>$389,000,000</td>
+              <td>$343,000,000</td>
+              <td>$396,000,000</td>
+              <td>$467,000,000</td>
+              <td>$465,000,000</td>
+              <td>$484,000,000</td>
+              <td>$507,000,000</td>
+              <td>$505,000,000</td>
+              <td>$531,000,000</td>
+              <td>$404,000,000</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Investments</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Assets</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Impairment Expense</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Tax</th>
+              <td>$625,000,000</td>
+              <td>$3,668,000,000</td>
+              <td>$6,648,000,000</td>
+              <td>$8,209,000,000</td>
+              <td>$5,108,000,000</td>
+              <td>$3,144,000,000</td>
+              <td>$3,428,000,000</td>
+              <td>$125,000,000</td>
+              <td>$4,093,000,000</td>
+              <td>$7,845,000,000</td>
+            </tr>
+            <tr>
+              <th>Income Tax Expense</th>
+              <td>$270,000,000</td>
+              <td>$968,000,000</td>
+              <td>$1,720,000,000</td>
+              <td>$2,528,000,000</td>
+              <td>$1,319,000,000</td>
+              <td>$692,000,000</td>
+              <td>$916,000,000</td>
+              <td>$192,000,000</td>
+              <td>$3,339,000,000</td>
+              <td>$1,698,000,000</td>
+            </tr>
+            <tr>
+              <th>Net Income</th>
+              <td>$895,000,000</td>
+              <td>$2,700,000,000</td>
+              <td>$4,928,000,000</td>
+              <td>$5,681,000,000</td>
+              <td>$3,789,000,000</td>
+              <td>$2,452,000,000</td>
+              <td>$2,512,000,000</td>
+              <td>$67,000,000</td>
+              <td>$754,000,000</td>
+              <td>$6,147,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+                <h2>Balance Sheet</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2009</th>
+              <th>12/31/2010</th>
+              <th>12/31/2011</th>
+              <th>12/31/2012</th>
+              <th>12/31/2013</th>
+              <th>12/31/2014</th>
+              <th>12/31/2015</th>
+              <th>12/31/2016</th>
+              <th>12/31/2017</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Cash and Cash Equivalents</th>
+              <td>$4,867,000,000</td>
+              <td>$3,592,000,000</td>
+              <td>$3,057,000,000</td>
+              <td>$5,490,000,000</td>
+              <td>$6,081,000,000</td>
+              <td>$7,341,000,000</td>
+              <td>$6,460,000,000</td>
+              <td>$7,168,000,000</td>
+              <td>$8,261,000,000</td>
+              <td>$7,857,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Investments</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Cash and Short-Term Investments</th>
+              <td>$4,867,000,000</td>
+              <td>$3,592,000,000</td>
+              <td>$3,057,000,000</td>
+              <td>$5,490,000,000</td>
+              <td>$6,081,000,000</td>
+              <td>$7,341,000,000</td>
+              <td>$6,460,000,000</td>
+              <td>$7,168,000,000</td>
+              <td>$8,261,000,000</td>
+              <td>$7,857,000,000</td>
+            </tr>
+            <tr>
+              <th>Receivables</th>
+              <td>$27,162,000,000</td>
+              <td>$28,849,000,000</td>
+              <td>$30,803,000,000</td>
+              <td>$33,911,000,000</td>
+              <td>$33,499,000,000</td>
+              <td>$32,772,000,000</td>
+              <td>$30,507,000,000</td>
+              <td>$29,088,000,000</td>
+              <td>$30,725,000,000</td>
+              <td>$31,899,000,000</td>
+            </tr>
+            <tr>
+              <th>Inventory</th>
+              <td>$6,360,000,000</td>
+              <td>$9,587,000,000</td>
+              <td>$14,544,000,000</td>
+              <td>$15,547,000,000</td>
+              <td>$12,625,000,000</td>
+              <td>$12,205,000,000</td>
+              <td>$9,700,000,000</td>
+              <td>$8,614,000,000</td>
+              <td>$10,018,000,000</td>
+              <td>$11,529,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Current</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Assets</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Assets</th>
+              <td>$27,217,000,000</td>
+              <td>$31,810,000,000</td>
+              <td>$37,900,000,000</td>
+              <td>$42,138,000,000</td>
+              <td>$38,335,000,000</td>
+              <td>$38,867,000,000</td>
+              <td>$33,508,000,000</td>
+              <td>$31,967,000,000</td>
+              <td>$36,244,000,000</td>
+              <td>$38,603,000,000</td>
+            </tr>
+            <tr>
+              <th>Grosss Property, Plant &amp; Equipment</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Accumulated Depreciation</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Net Property, Plant &amp; Equipment</th>
+              <td>$12,386,000,000</td>
+              <td>$12,539,000,000</td>
+              <td>$14,395,000,000</td>
+              <td>$16,461,000,000</td>
+              <td>$17,075,000,000</td>
+              <td>$16,577,000,000</td>
+              <td>$16,090,000,000</td>
+              <td>$15,322,000,000</td>
+              <td>$14,155,000,000</td>
+              <td>$13,574,000,000</td>
+            </tr>
+            <tr>
+              <th>Goodwill and Intangible Assets</th>
+              <td>$2,734,000,000</td>
+              <td>$3,419,000,000</td>
+              <td>$11,448,000,000</td>
+              <td>$10,958,000,000</td>
+              <td>$10,552,000,000</td>
+              <td>$9,770,000,000</td>
+              <td>$9,436,000,000</td>
+              <td>$8,369,000,000</td>
+              <td>$8,311,000,000</td>
+              <td>$8,114,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Investments</th>
+              <td>$105,000,000</td>
+              <td>$164,000,000</td>
+              <td>$133,000,000</td>
+              <td>$272,000,000</td>
+              <td>$272,000,000</td>
+              <td>$257,000,000</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Long-Term</th>
+              <td>$3,930,000,000</td>
+              <td>$3,424,000,000</td>
+              <td>$3,737,000,000</td>
+              <td>$3,558,000,000</td>
+              <td>$2,147,000,000</td>
+              <td>$3,143,000,000</td>
+              <td>$2,489,000,000</td>
+              <td>$2,790,000,000</td>
+              <td>$1,693,000,000</td>
+              <td>$1,439,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Assets</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Assets</th>
+              <td>$32,821,000,000</td>
+              <td>$32,210,000,000</td>
+              <td>$43,318,000,000</td>
+              <td>$46,832,000,000</td>
+              <td>$46,561,000,000</td>
+              <td>$45,814,000,000</td>
+              <td>$44,834,000,000</td>
+              <td>$42,737,000,000</td>
+              <td>$40,718,000,000</td>
+              <td>$39,906,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Assets</th>
+              <td>$60,038,000,000</td>
+              <td>$64,020,000,000</td>
+              <td>$81,218,000,000</td>
+              <td>$88,970,000,000</td>
+              <td>$84,896,000,000</td>
+              <td>$84,681,000,000</td>
+              <td>$78,342,000,000</td>
+              <td>$74,704,000,000</td>
+              <td>$76,962,000,000</td>
+              <td>$78,509,000,000</td>
+            </tr>
+            <tr>
+              <th>Payables</th>
+              <td>$2,993,000,000</td>
+              <td>$5,856,000,000</td>
+              <td>$8,161,000,000</td>
+              <td>$6,753,000,000</td>
+              <td>$6,560,000,000</td>
+              <td>$6,515,000,000</td>
+              <td>$5,023,000,000</td>
+              <td>$4,614,000,000</td>
+              <td>$6,487,000,000</td>
+              <td>$7,051,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Debt</th>
+              <td>$9,784,000,000</td>
+              <td>$7,981,000,000</td>
+              <td>$9,648,000,000</td>
+              <td>$12,391,000,000</td>
+              <td>$11,031,000,000</td>
+              <td>$11,501,000,000</td>
+              <td>$12,844,000,000</td>
+              <td>$13,965,000,000</td>
+              <td>$11,031,000,000</td>
+              <td>$11,553,000,000</td>
+            </tr>
+            <tr>
+              <th>Current Portion of Long-Term Debt</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Short-Term</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Liabilities</th>
+              <td>$18,975,000,000</td>
+              <td>$22,020,000,000</td>
+              <td>$28,357,000,000</td>
+              <td>$29,415,000,000</td>
+              <td>$27,297,000,000</td>
+              <td>$27,877,000,000</td>
+              <td>$26,242,000,000</td>
+              <td>$26,132,000,000</td>
+              <td>$26,931,000,000</td>
+              <td>$28,218,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Debt</th>
+              <td>$21,847,000,000</td>
+              <td>$20,437,000,000</td>
+              <td>$24,944,000,000</td>
+              <td>$27,752,000,000</td>
+              <td>$26,719,000,000</td>
+              <td>$27,784,000,000</td>
+              <td>$25,169,000,000</td>
+              <td>$22,818,000,000</td>
+              <td>$23,847,000,000</td>
+              <td>$25,000,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Debt</th>
+              <td>$31,631,000,000</td>
+              <td>$28,418,000,000</td>
+              <td>$34,592,000,000</td>
+              <td>$40,143,000,000</td>
+              <td>$37,750,000,000</td>
+              <td>$39,285,000,000</td>
+              <td>$38,013,000,000</td>
+              <td>$36,783,000,000</td>
+              <td>$34,878,000,000</td>
+              <td>$36,553,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Revenue</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Long-Term</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deposit Liabilities</th>
+              <td>$1,217,000,000</td>
+              <td>$1,831,000,000</td>
+              <td>$2,487,000,000</td>
+              <td>$2,638,000,000</td>
+              <td>$2,360,000,000</td>
+              <td>$1,697,000,000</td>
+              <td>$1,146,000,000</td>
+              <td>$1,167,000,000</td>
+              <td>$1,426,000,000</td>
+              <td>$1,243,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Liabilities</th>
+              <td>$31,763,000,000</td>
+              <td>$30,675,000,000</td>
+              <td>$39,459,000,000</td>
+              <td>$41,973,000,000</td>
+              <td>$36,721,000,000</td>
+              <td>$39,978,000,000</td>
+              <td>$37,215,000,000</td>
+              <td>$35,359,000,000</td>
+              <td>$36,265,000,000</td>
+              <td>$36,211,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities</th>
+              <td>$50,738,000,000</td>
+              <td>$52,695,000,000</td>
+              <td>$67,816,000,000</td>
+              <td>$71,388,000,000</td>
+              <td>$64,018,000,000</td>
+              <td>$67,855,000,000</td>
+              <td>$63,457,000,000</td>
+              <td>$61,491,000,000</td>
+              <td>$63,196,000,000</td>
+              <td>$64,429,000,000</td>
+            </tr>
+            <tr>
+              <th>Common Stock</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Comprehensive Income</th>
+              <td>$-3,764,000,000</td>
+              <td>$-4,051,000,000</td>
+              <td>$-6,328,000,000</td>
+              <td>$-6,433,000,000</td>
+              <td>$-3,898,000,000</td>
+              <td>$-6,431,000,000</td>
+              <td>$-2,035,000,000</td>
+              <td>$-2,039,000,000</td>
+              <td>$-1,192,000,000</td>
+              <td>$-1,684,000,000</td>
+            </tr>
+            <tr>
+              <th>Retained Earnings</th>
+              <td>$19,711,000,000</td>
+              <td>$21,384,000,000</td>
+              <td>$25,219,000,000</td>
+              <td>$29,558,000,000</td>
+              <td>$31,854,000,000</td>
+              <td>$33,887,000,000</td>
+              <td>$29,246,000,000</td>
+              <td>$27,377,000,000</td>
+              <td>$26,301,000,000</td>
+              <td>$30,427,000,000</td>
+            </tr>
+            <tr>
+              <th>Minority Interest</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Stockholder's Equity</th>
+              <td>$8,740,000,000</td>
+              <td>$10,824,000,000</td>
+              <td>$12,883,000,000</td>
+              <td>$17,532,000,000</td>
+              <td>$20,811,000,000</td>
+              <td>$16,746,000,000</td>
+              <td>$14,809,000,000</td>
+              <td>$13,213,000,000</td>
+              <td>$13,766,000,000</td>
+              <td>$14,080,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities and Equity</th>
+              <td>$59,478,000,000</td>
+              <td>$63,519,000,000</td>
+              <td>$80,699,000,000</td>
+              <td>$88,920,000,000</td>
+              <td>$84,829,000,000</td>
+              <td>$84,601,000,000</td>
+              <td>$78,266,000,000</td>
+              <td>$74,704,000,000</td>
+              <td>$76,962,000,000</td>
+              <td>$78,509,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        
+        <br />
+        <br />
+
+Select Statement Periods
+------------------------
+
+Statements periods can be selected by indexing the statements object
+with them.
+
+
+
+.. code-block:: default
+
+
+    stmts['12-31-2018']  # one period
+
+
+
+
+
+
+
+.. only:: builder_html
+
+    .. raw:: html
+
+
+                <h2>Income Statement</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Revenue</th>
+              <td>$54,722,000,000</td>
+            </tr>
+            <tr>
+              <th>Cost of Goods Sold</th>
+              <td>$37,719,000,000</td>
+            </tr>
+            <tr>
+              <th>Gross Profit</th>
+              <td>$17,003,000,000</td>
+            </tr>
+            <tr>
+              <th>R&amp;D Expense</th>
+              <td>$1,850,000,000</td>
+            </tr>
+            <tr>
+              <th>SG&amp;A Expense</th>
+              <td>$5,478,000,000</td>
+            </tr>
+            <tr>
+              <th>Depreciation &amp; Amortization Expense</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Operating Expenses</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Operating Expense</th>
+              <td>$8,710,000,000</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Interest and Taxes</th>
+              <td>$8,249,000,000</td>
+            </tr>
+            <tr>
+              <th>Interest Expense</th>
+              <td>$404,000,000</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Investments</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Assets</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Impairment Expense</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Tax</th>
+              <td>$7,845,000,000</td>
+            </tr>
+            <tr>
+              <th>Income Tax Expense</th>
+              <td>$1,698,000,000</td>
+            </tr>
+            <tr>
+              <th>Net Income</th>
+              <td>$6,147,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+                <h2>Balance Sheet</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Cash and Cash Equivalents</th>
+              <td>$7,857,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Investments</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Cash and Short-Term Investments</th>
+              <td>$7,857,000,000</td>
+            </tr>
+            <tr>
+              <th>Receivables</th>
+              <td>$31,899,000,000</td>
+            </tr>
+            <tr>
+              <th>Inventory</th>
+              <td>$11,529,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Current</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Assets</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Assets</th>
+              <td>$38,603,000,000</td>
+            </tr>
+            <tr>
+              <th>Grosss Property, Plant &amp; Equipment</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Accumulated Depreciation</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Net Property, Plant &amp; Equipment</th>
+              <td>$13,574,000,000</td>
+            </tr>
+            <tr>
+              <th>Goodwill and Intangible Assets</th>
+              <td>$8,114,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Investments</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Long-Term</th>
+              <td>$1,439,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Assets</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Assets</th>
+              <td>$39,906,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Assets</th>
+              <td>$78,509,000,000</td>
+            </tr>
+            <tr>
+              <th>Payables</th>
+              <td>$7,051,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Debt</th>
+              <td>$11,553,000,000</td>
+            </tr>
+            <tr>
+              <th>Current Portion of Long-Term Debt</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Short-Term</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Liabilities</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Liabilities</th>
+              <td>$28,218,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Debt</th>
+              <td>$25,000,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Debt</th>
+              <td>$36,553,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Revenue</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Long-Term</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deposit Liabilities</th>
+              <td>$1,243,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Liabilities</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Liabilities</th>
+              <td>$36,211,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities</th>
+              <td>$64,429,000,000</td>
+            </tr>
+            <tr>
+              <th>Common Stock</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Comprehensive Income</th>
+              <td>$-1,684,000,000</td>
+            </tr>
+            <tr>
+              <th>Retained Earnings</th>
+              <td>$30,427,000,000</td>
+            </tr>
+            <tr>
+              <th>Minority Interest</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Stockholder's Equity</th>
+              <td>$14,080,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities and Equity</th>
+              <td>$78,509,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        
+        <br />
+        <br />
+
+Now select multiple periods. Notice how the date format doesn't matter.
+
+
+
+.. code-block:: default
+
+
+    stmts[['12/31/2015', '12-31-2018']]
+
+
+
+
+
+
+
+.. only:: builder_html
+
+    .. raw:: html
+
+
+                <h2>Income Statement</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2015</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Revenue</th>
+              <td>$47,011,000,000</td>
+              <td>$54,722,000,000</td>
+            </tr>
+            <tr>
+              <th>Cost of Goods Sold</th>
+              <td>$34,133,000,000</td>
+              <td>$37,719,000,000</td>
+            </tr>
+            <tr>
+              <th>Gross Profit</th>
+              <td>$12,878,000,000</td>
+              <td>$17,003,000,000</td>
+            </tr>
+            <tr>
+              <th>R&amp;D Expense</th>
+              <td>$2,119,000,000</td>
+              <td>$1,850,000,000</td>
+            </tr>
+            <tr>
+              <th>SG&amp;A Expense</th>
+              <td>$4,951,000,000</td>
+              <td>$5,478,000,000</td>
+            </tr>
+            <tr>
+              <th>Depreciation &amp; Amortization Expense</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Operating Expenses</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Operating Expense</th>
+              <td>$9,093,000,000</td>
+              <td>$8,710,000,000</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Interest and Taxes</th>
+              <td>$3,935,000,000</td>
+              <td>$8,249,000,000</td>
+            </tr>
+            <tr>
+              <th>Interest Expense</th>
+              <td>$507,000,000</td>
+              <td>$404,000,000</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Investments</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Assets</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Impairment Expense</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Tax</th>
+              <td>$3,428,000,000</td>
+              <td>$7,845,000,000</td>
+            </tr>
+            <tr>
+              <th>Income Tax Expense</th>
+              <td>$916,000,000</td>
+              <td>$1,698,000,000</td>
+            </tr>
+            <tr>
+              <th>Net Income</th>
+              <td>$2,512,000,000</td>
+              <td>$6,147,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+                <h2>Balance Sheet</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2015</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Cash and Cash Equivalents</th>
+              <td>$6,460,000,000</td>
+              <td>$7,857,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Investments</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Cash and Short-Term Investments</th>
+              <td>$6,460,000,000</td>
+              <td>$7,857,000,000</td>
+            </tr>
+            <tr>
+              <th>Receivables</th>
+              <td>$30,507,000,000</td>
+              <td>$31,899,000,000</td>
+            </tr>
+            <tr>
+              <th>Inventory</th>
+              <td>$9,700,000,000</td>
+              <td>$11,529,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Current</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Assets</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Assets</th>
+              <td>$33,508,000,000</td>
+              <td>$38,603,000,000</td>
+            </tr>
+            <tr>
+              <th>Grosss Property, Plant &amp; Equipment</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Accumulated Depreciation</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Net Property, Plant &amp; Equipment</th>
+              <td>$16,090,000,000</td>
+              <td>$13,574,000,000</td>
+            </tr>
+            <tr>
+              <th>Goodwill and Intangible Assets</th>
+              <td>$9,436,000,000</td>
+              <td>$8,114,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Investments</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Long-Term</th>
+              <td>$2,489,000,000</td>
+              <td>$1,439,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Assets</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Assets</th>
+              <td>$44,834,000,000</td>
+              <td>$39,906,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Assets</th>
+              <td>$78,342,000,000</td>
+              <td>$78,509,000,000</td>
+            </tr>
+            <tr>
+              <th>Payables</th>
+              <td>$5,023,000,000</td>
+              <td>$7,051,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Debt</th>
+              <td>$12,844,000,000</td>
+              <td>$11,553,000,000</td>
+            </tr>
+            <tr>
+              <th>Current Portion of Long-Term Debt</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Short-Term</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Liabilities</th>
+              <td>$26,242,000,000</td>
+              <td>$28,218,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Debt</th>
+              <td>$25,169,000,000</td>
+              <td>$25,000,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Debt</th>
+              <td>$38,013,000,000</td>
+              <td>$36,553,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Revenue</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Long-Term</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deposit Liabilities</th>
+              <td>$1,146,000,000</td>
+              <td>$1,243,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Liabilities</th>
+              <td>$37,215,000,000</td>
+              <td>$36,211,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities</th>
+              <td>$63,457,000,000</td>
+              <td>$64,429,000,000</td>
+            </tr>
+            <tr>
+              <th>Common Stock</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Comprehensive Income</th>
+              <td>$-2,035,000,000</td>
+              <td>$-1,684,000,000</td>
+            </tr>
+            <tr>
+              <th>Retained Earnings</th>
+              <td>$29,246,000,000</td>
+              <td>$30,427,000,000</td>
+            </tr>
+            <tr>
+              <th>Minority Interest</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Stockholder's Equity</th>
+              <td>$14,809,000,000</td>
+              <td>$14,080,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities and Equity</th>
+              <td>$78,266,000,000</td>
+              <td>$78,509,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        
+        <br />
+        <br />
+
+Statement Math
+--------------
+
+All of the math operators are valid on statements. If the operation is
+with a number, it will apply to each item. If the operation is with
+another statement, for any overlapping time periods, it will apply the
+operation on the two items, while for non-overlapping time periods it
+will combine the statements.
+
+Adjust Units
+~~~~~~~~~~~~
+
+It is easy to adjust units by multiplying or dividing the statements.
+
+
+
+.. code-block:: default
+
+
+    stmts / 1000000  # in millions
+
+
+
+
+
+
+
+.. only:: builder_html
+
+    .. raw:: html
+
+
+                <h2>Income Statement</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2009</th>
+              <th>12/31/2010</th>
+              <th>12/31/2011</th>
+              <th>12/31/2012</th>
+              <th>12/31/2013</th>
+              <th>12/31/2014</th>
+              <th>12/31/2015</th>
+              <th>12/31/2016</th>
+              <th>12/31/2017</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Revenue</th>
+              <td>$32,396</td>
+              <td>$42,588</td>
+              <td>$60,138</td>
+              <td>$65,875</td>
+              <td>$55,656</td>
+              <td>$55,184</td>
+              <td>$47,011</td>
+              <td>$38,537</td>
+              <td>$45,462</td>
+              <td>$54,722</td>
+            </tr>
+            <tr>
+              <th>Cost of Goods Sold</th>
+              <td>$24,931</td>
+              <td>$31,281</td>
+              <td>$44,404</td>
+              <td>$47,852</td>
+              <td>$41,454</td>
+              <td>$41,342</td>
+              <td>$34,133</td>
+              <td>$28,640</td>
+              <td>$31,906</td>
+              <td>$37,719</td>
+            </tr>
+            <tr>
+              <th>Gross Profit</th>
+              <td>$7,465</td>
+              <td>$11,307</td>
+              <td>$15,734</td>
+              <td>$18,023</td>
+              <td>$14,202</td>
+              <td>$13,842</td>
+              <td>$12,878</td>
+              <td>$9,897</td>
+              <td>$13,556</td>
+              <td>$17,003</td>
+            </tr>
+            <tr>
+              <th>R&amp;D Expense</th>
+              <td>$1,421</td>
+              <td>$1,905</td>
+              <td>$2,297</td>
+              <td>$2,466</td>
+              <td>$2,046</td>
+              <td>$2,380</td>
+              <td>$2,119</td>
+              <td>$1,853</td>
+              <td>$1,842</td>
+              <td>$1,850</td>
+            </tr>
+            <tr>
+              <th>SG&amp;A Expense</th>
+              <td>$3,645</td>
+              <td>$4,248</td>
+              <td>$5,203</td>
+              <td>$5,919</td>
+              <td>$5,547</td>
+              <td>$6,529</td>
+              <td>$4,951</td>
+              <td>$4,383</td>
+              <td>$4,999</td>
+              <td>$5,478</td>
+            </tr>
+            <tr>
+              <th>Depreciation &amp; Amortization Expense</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Operating Expenses</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Operating Expense</th>
+              <td>$6,888</td>
+              <td>$7,344</td>
+              <td>$8,581</td>
+              <td>$9,450</td>
+              <td>$8,574</td>
+              <td>$10,528</td>
+              <td>$9,093</td>
+              <td>$8,735</td>
+              <td>$9,096</td>
+              <td>$8,710</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Interest and Taxes</th>
+              <td>$1,014</td>
+              <td>$4,011</td>
+              <td>$7,044</td>
+              <td>$8,676</td>
+              <td>$5,573</td>
+              <td>$3,628</td>
+              <td>$3,935</td>
+              <td>$630</td>
+              <td>$4,624</td>
+              <td>$8,249</td>
+            </tr>
+            <tr>
+              <th>Interest Expense</th>
+              <td>$389</td>
+              <td>$343</td>
+              <td>$396</td>
+              <td>$467</td>
+              <td>$465</td>
+              <td>$484</td>
+              <td>$507</td>
+              <td>$505</td>
+              <td>$531</td>
+              <td>$404</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Investments</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Assets</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Impairment Expense</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Tax</th>
+              <td>$625</td>
+              <td>$3,668</td>
+              <td>$6,648</td>
+              <td>$8,209</td>
+              <td>$5,108</td>
+              <td>$3,144</td>
+              <td>$3,428</td>
+              <td>$125</td>
+              <td>$4,093</td>
+              <td>$7,845</td>
+            </tr>
+            <tr>
+              <th>Income Tax Expense</th>
+              <td>$270</td>
+              <td>$968</td>
+              <td>$1,720</td>
+              <td>$2,528</td>
+              <td>$1,319</td>
+              <td>$692</td>
+              <td>$916</td>
+              <td>$192</td>
+              <td>$3,339</td>
+              <td>$1,698</td>
+            </tr>
+            <tr>
+              <th>Net Income</th>
+              <td>$895</td>
+              <td>$2,700</td>
+              <td>$4,928</td>
+              <td>$5,681</td>
+              <td>$3,789</td>
+              <td>$2,452</td>
+              <td>$2,512</td>
+              <td>$67</td>
+              <td>$754</td>
+              <td>$6,147</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+                <h2>Balance Sheet</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2009</th>
+              <th>12/31/2010</th>
+              <th>12/31/2011</th>
+              <th>12/31/2012</th>
+              <th>12/31/2013</th>
+              <th>12/31/2014</th>
+              <th>12/31/2015</th>
+              <th>12/31/2016</th>
+              <th>12/31/2017</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Cash and Cash Equivalents</th>
+              <td>$4,867</td>
+              <td>$3,592</td>
+              <td>$3,057</td>
+              <td>$5,490</td>
+              <td>$6,081</td>
+              <td>$7,341</td>
+              <td>$6,460</td>
+              <td>$7,168</td>
+              <td>$8,261</td>
+              <td>$7,857</td>
+            </tr>
+            <tr>
+              <th>Short-Term Investments</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Cash and Short-Term Investments</th>
+              <td>$4,867</td>
+              <td>$3,592</td>
+              <td>$3,057</td>
+              <td>$5,490</td>
+              <td>$6,081</td>
+              <td>$7,341</td>
+              <td>$6,460</td>
+              <td>$7,168</td>
+              <td>$8,261</td>
+              <td>$7,857</td>
+            </tr>
+            <tr>
+              <th>Receivables</th>
+              <td>$27,162</td>
+              <td>$28,849</td>
+              <td>$30,803</td>
+              <td>$33,911</td>
+              <td>$33,499</td>
+              <td>$32,772</td>
+              <td>$30,507</td>
+              <td>$29,088</td>
+              <td>$30,725</td>
+              <td>$31,899</td>
+            </tr>
+            <tr>
+              <th>Inventory</th>
+              <td>$6,360</td>
+              <td>$9,587</td>
+              <td>$14,544</td>
+              <td>$15,547</td>
+              <td>$12,625</td>
+              <td>$12,205</td>
+              <td>$9,700</td>
+              <td>$8,614</td>
+              <td>$10,018</td>
+              <td>$11,529</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Current</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Assets</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Assets</th>
+              <td>$27,217</td>
+              <td>$31,810</td>
+              <td>$37,900</td>
+              <td>$42,138</td>
+              <td>$38,335</td>
+              <td>$38,867</td>
+              <td>$33,508</td>
+              <td>$31,967</td>
+              <td>$36,244</td>
+              <td>$38,603</td>
+            </tr>
+            <tr>
+              <th>Grosss Property, Plant &amp; Equipment</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Accumulated Depreciation</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Net Property, Plant &amp; Equipment</th>
+              <td>$12,386</td>
+              <td>$12,539</td>
+              <td>$14,395</td>
+              <td>$16,461</td>
+              <td>$17,075</td>
+              <td>$16,577</td>
+              <td>$16,090</td>
+              <td>$15,322</td>
+              <td>$14,155</td>
+              <td>$13,574</td>
+            </tr>
+            <tr>
+              <th>Goodwill and Intangible Assets</th>
+              <td>$2,734</td>
+              <td>$3,419</td>
+              <td>$11,448</td>
+              <td>$10,958</td>
+              <td>$10,552</td>
+              <td>$9,770</td>
+              <td>$9,436</td>
+              <td>$8,369</td>
+              <td>$8,311</td>
+              <td>$8,114</td>
+            </tr>
+            <tr>
+              <th>Long-Term Investments</th>
+              <td>$105</td>
+              <td>$164</td>
+              <td>$133</td>
+              <td>$272</td>
+              <td>$272</td>
+              <td>$257</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Long-Term</th>
+              <td>$3,930</td>
+              <td>$3,424</td>
+              <td>$3,737</td>
+              <td>$3,558</td>
+              <td>$2,147</td>
+              <td>$3,143</td>
+              <td>$2,489</td>
+              <td>$2,790</td>
+              <td>$1,693</td>
+              <td>$1,439</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Assets</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Assets</th>
+              <td>$32,821</td>
+              <td>$32,210</td>
+              <td>$43,318</td>
+              <td>$46,832</td>
+              <td>$46,561</td>
+              <td>$45,814</td>
+              <td>$44,834</td>
+              <td>$42,737</td>
+              <td>$40,718</td>
+              <td>$39,906</td>
+            </tr>
+            <tr>
+              <th>Total Assets</th>
+              <td>$60,038</td>
+              <td>$64,020</td>
+              <td>$81,218</td>
+              <td>$88,970</td>
+              <td>$84,896</td>
+              <td>$84,681</td>
+              <td>$78,342</td>
+              <td>$74,704</td>
+              <td>$76,962</td>
+              <td>$78,509</td>
+            </tr>
+            <tr>
+              <th>Payables</th>
+              <td>$2,993</td>
+              <td>$5,856</td>
+              <td>$8,161</td>
+              <td>$6,753</td>
+              <td>$6,560</td>
+              <td>$6,515</td>
+              <td>$5,023</td>
+              <td>$4,614</td>
+              <td>$6,487</td>
+              <td>$7,051</td>
+            </tr>
+            <tr>
+              <th>Short-Term Debt</th>
+              <td>$9,784</td>
+              <td>$7,981</td>
+              <td>$9,648</td>
+              <td>$12,391</td>
+              <td>$11,031</td>
+              <td>$11,501</td>
+              <td>$12,844</td>
+              <td>$13,965</td>
+              <td>$11,031</td>
+              <td>$11,553</td>
+            </tr>
+            <tr>
+              <th>Current Portion of Long-Term Debt</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Short-Term</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Liabilities</th>
+              <td>$18,975</td>
+              <td>$22,020</td>
+              <td>$28,357</td>
+              <td>$29,415</td>
+              <td>$27,297</td>
+              <td>$27,877</td>
+              <td>$26,242</td>
+              <td>$26,132</td>
+              <td>$26,931</td>
+              <td>$28,218</td>
+            </tr>
+            <tr>
+              <th>Long-Term Debt</th>
+              <td>$21,847</td>
+              <td>$20,437</td>
+              <td>$24,944</td>
+              <td>$27,752</td>
+              <td>$26,719</td>
+              <td>$27,784</td>
+              <td>$25,169</td>
+              <td>$22,818</td>
+              <td>$23,847</td>
+              <td>$25,000</td>
+            </tr>
+            <tr>
+              <th>Total Debt</th>
+              <td>$31,631</td>
+              <td>$28,418</td>
+              <td>$34,592</td>
+              <td>$40,143</td>
+              <td>$37,750</td>
+              <td>$39,285</td>
+              <td>$38,013</td>
+              <td>$36,783</td>
+              <td>$34,878</td>
+              <td>$36,553</td>
+            </tr>
+            <tr>
+              <th>Deferred Revenue</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Long-Term</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deposit Liabilities</th>
+              <td>$1,217</td>
+              <td>$1,831</td>
+              <td>$2,487</td>
+              <td>$2,638</td>
+              <td>$2,360</td>
+              <td>$1,697</td>
+              <td>$1,146</td>
+              <td>$1,167</td>
+              <td>$1,426</td>
+              <td>$1,243</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Liabilities</th>
+              <td>$31,763</td>
+              <td>$30,675</td>
+              <td>$39,459</td>
+              <td>$41,973</td>
+              <td>$36,721</td>
+              <td>$39,978</td>
+              <td>$37,215</td>
+              <td>$35,359</td>
+              <td>$36,265</td>
+              <td>$36,211</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities</th>
+              <td>$50,738</td>
+              <td>$52,695</td>
+              <td>$67,816</td>
+              <td>$71,388</td>
+              <td>$64,018</td>
+              <td>$67,855</td>
+              <td>$63,457</td>
+              <td>$61,491</td>
+              <td>$63,196</td>
+              <td>$64,429</td>
+            </tr>
+            <tr>
+              <th>Common Stock</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Comprehensive Income</th>
+              <td>$-3,764</td>
+              <td>$-4,051</td>
+              <td>$-6,328</td>
+              <td>$-6,433</td>
+              <td>$-3,898</td>
+              <td>$-6,431</td>
+              <td>$-2,035</td>
+              <td>$-2,039</td>
+              <td>$-1,192</td>
+              <td>$-1,684</td>
+            </tr>
+            <tr>
+              <th>Retained Earnings</th>
+              <td>$19,711</td>
+              <td>$21,384</td>
+              <td>$25,219</td>
+              <td>$29,558</td>
+              <td>$31,854</td>
+              <td>$33,887</td>
+              <td>$29,246</td>
+              <td>$27,377</td>
+              <td>$26,301</td>
+              <td>$30,427</td>
+            </tr>
+            <tr>
+              <th>Minority Interest</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Stockholder's Equity</th>
+              <td>$8,740</td>
+              <td>$10,824</td>
+              <td>$12,883</td>
+              <td>$17,532</td>
+              <td>$20,811</td>
+              <td>$16,746</td>
+              <td>$14,809</td>
+              <td>$13,213</td>
+              <td>$13,766</td>
+              <td>$14,080</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities and Equity</th>
+              <td>$59,478</td>
+              <td>$63,519</td>
+              <td>$80,699</td>
+              <td>$88,920</td>
+              <td>$84,829</td>
+              <td>$84,601</td>
+              <td>$78,266</td>
+              <td>$74,704</td>
+              <td>$76,962</td>
+              <td>$78,509</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        
+        <br />
+        <br />
+
+Math with Overlapping Statements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the time periods overlap, math will be done with each pair of items.
+This can be useful for aggregating statements from subsidiaries,
+segments, etc.:
+
+
+
+.. code-block:: default
+
+
+    stmts + stmts
+
+
+
+
+
+
+
+.. only:: builder_html
+
+    .. raw:: html
+
+
+                <h2>Income Statement</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2009</th>
+              <th>12/31/2010</th>
+              <th>12/31/2011</th>
+              <th>12/31/2012</th>
+              <th>12/31/2013</th>
+              <th>12/31/2014</th>
+              <th>12/31/2015</th>
+              <th>12/31/2016</th>
+              <th>12/31/2017</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Revenue</th>
+              <td>$64,792,000,000</td>
+              <td>$85,176,000,000</td>
+              <td>$120,276,000,000</td>
+              <td>$131,750,000,000</td>
+              <td>$111,312,000,000</td>
+              <td>$110,368,000,000</td>
+              <td>$94,022,000,000</td>
+              <td>$77,074,000,000</td>
+              <td>$90,924,000,000</td>
+              <td>$109,444,000,000</td>
+            </tr>
+            <tr>
+              <th>Cost of Goods Sold</th>
+              <td>$49,862,000,000</td>
+              <td>$62,562,000,000</td>
+              <td>$88,808,000,000</td>
+              <td>$95,704,000,000</td>
+              <td>$82,908,000,000</td>
+              <td>$82,684,000,000</td>
+              <td>$68,266,000,000</td>
+              <td>$57,280,000,000</td>
+              <td>$63,812,000,000</td>
+              <td>$75,438,000,000</td>
+            </tr>
+            <tr>
+              <th>Gross Profit</th>
+              <td>$14,930,000,000</td>
+              <td>$22,614,000,000</td>
+              <td>$31,468,000,000</td>
+              <td>$36,046,000,000</td>
+              <td>$28,404,000,000</td>
+              <td>$27,684,000,000</td>
+              <td>$25,756,000,000</td>
+              <td>$19,794,000,000</td>
+              <td>$27,112,000,000</td>
+              <td>$34,006,000,000</td>
+            </tr>
+            <tr>
+              <th>R&amp;D Expense</th>
+              <td>$2,842,000,000</td>
+              <td>$3,810,000,000</td>
+              <td>$4,594,000,000</td>
+              <td>$4,932,000,000</td>
+              <td>$4,092,000,000</td>
+              <td>$4,760,000,000</td>
+              <td>$4,238,000,000</td>
+              <td>$3,706,000,000</td>
+              <td>$3,684,000,000</td>
+              <td>$3,700,000,000</td>
+            </tr>
+            <tr>
+              <th>SG&amp;A Expense</th>
+              <td>$7,290,000,000</td>
+              <td>$8,496,000,000</td>
+              <td>$10,406,000,000</td>
+              <td>$11,838,000,000</td>
+              <td>$11,094,000,000</td>
+              <td>$13,058,000,000</td>
+              <td>$9,902,000,000</td>
+              <td>$8,766,000,000</td>
+              <td>$9,998,000,000</td>
+              <td>$10,956,000,000</td>
+            </tr>
+            <tr>
+              <th>Depreciation &amp; Amortization Expense</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Operating Expenses</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Operating Expense</th>
+              <td>$13,776,000,000</td>
+              <td>$14,688,000,000</td>
+              <td>$17,162,000,000</td>
+              <td>$18,900,000,000</td>
+              <td>$17,148,000,000</td>
+              <td>$21,056,000,000</td>
+              <td>$18,186,000,000</td>
+              <td>$17,470,000,000</td>
+              <td>$18,192,000,000</td>
+              <td>$17,420,000,000</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Interest and Taxes</th>
+              <td>$2,028,000,000</td>
+              <td>$8,022,000,000</td>
+              <td>$14,088,000,000</td>
+              <td>$17,352,000,000</td>
+              <td>$11,146,000,000</td>
+              <td>$7,256,000,000</td>
+              <td>$7,870,000,000</td>
+              <td>$1,260,000,000</td>
+              <td>$9,248,000,000</td>
+              <td>$16,498,000,000</td>
+            </tr>
+            <tr>
+              <th>Interest Expense</th>
+              <td>$778,000,000</td>
+              <td>$686,000,000</td>
+              <td>$792,000,000</td>
+              <td>$934,000,000</td>
+              <td>$930,000,000</td>
+              <td>$968,000,000</td>
+              <td>$1,014,000,000</td>
+              <td>$1,010,000,000</td>
+              <td>$1,062,000,000</td>
+              <td>$808,000,000</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Investments</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Assets</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Impairment Expense</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Tax</th>
+              <td>$1,250,000,000</td>
+              <td>$7,336,000,000</td>
+              <td>$13,296,000,000</td>
+              <td>$16,418,000,000</td>
+              <td>$10,216,000,000</td>
+              <td>$6,288,000,000</td>
+              <td>$6,856,000,000</td>
+              <td>$250,000,000</td>
+              <td>$8,186,000,000</td>
+              <td>$15,690,000,000</td>
+            </tr>
+            <tr>
+              <th>Income Tax Expense</th>
+              <td>$540,000,000</td>
+              <td>$1,936,000,000</td>
+              <td>$3,440,000,000</td>
+              <td>$5,056,000,000</td>
+              <td>$2,638,000,000</td>
+              <td>$1,384,000,000</td>
+              <td>$1,832,000,000</td>
+              <td>$384,000,000</td>
+              <td>$6,678,000,000</td>
+              <td>$3,396,000,000</td>
+            </tr>
+            <tr>
+              <th>Net Income</th>
+              <td>$1,790,000,000</td>
+              <td>$5,400,000,000</td>
+              <td>$9,856,000,000</td>
+              <td>$11,362,000,000</td>
+              <td>$7,578,000,000</td>
+              <td>$4,904,000,000</td>
+              <td>$5,024,000,000</td>
+              <td>$134,000,000</td>
+              <td>$1,508,000,000</td>
+              <td>$12,294,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+                <h2>Balance Sheet</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2009</th>
+              <th>12/31/2010</th>
+              <th>12/31/2011</th>
+              <th>12/31/2012</th>
+              <th>12/31/2013</th>
+              <th>12/31/2014</th>
+              <th>12/31/2015</th>
+              <th>12/31/2016</th>
+              <th>12/31/2017</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Cash and Cash Equivalents</th>
+              <td>$9,734,000,000</td>
+              <td>$7,184,000,000</td>
+              <td>$6,114,000,000</td>
+              <td>$10,980,000,000</td>
+              <td>$12,162,000,000</td>
+              <td>$14,682,000,000</td>
+              <td>$12,920,000,000</td>
+              <td>$14,336,000,000</td>
+              <td>$16,522,000,000</td>
+              <td>$15,714,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Investments</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Cash and Short-Term Investments</th>
+              <td>$9,734,000,000</td>
+              <td>$7,184,000,000</td>
+              <td>$6,114,000,000</td>
+              <td>$10,980,000,000</td>
+              <td>$12,162,000,000</td>
+              <td>$14,682,000,000</td>
+              <td>$12,920,000,000</td>
+              <td>$14,336,000,000</td>
+              <td>$16,522,000,000</td>
+              <td>$15,714,000,000</td>
+            </tr>
+            <tr>
+              <th>Receivables</th>
+              <td>$54,324,000,000</td>
+              <td>$57,698,000,000</td>
+              <td>$61,606,000,000</td>
+              <td>$67,822,000,000</td>
+              <td>$66,998,000,000</td>
+              <td>$65,544,000,000</td>
+              <td>$61,014,000,000</td>
+              <td>$58,176,000,000</td>
+              <td>$61,450,000,000</td>
+              <td>$63,798,000,000</td>
+            </tr>
+            <tr>
+              <th>Inventory</th>
+              <td>$12,720,000,000</td>
+              <td>$19,174,000,000</td>
+              <td>$29,088,000,000</td>
+              <td>$31,094,000,000</td>
+              <td>$25,250,000,000</td>
+              <td>$24,410,000,000</td>
+              <td>$19,400,000,000</td>
+              <td>$17,228,000,000</td>
+              <td>$20,036,000,000</td>
+              <td>$23,058,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Current</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Assets</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Assets</th>
+              <td>$54,434,000,000</td>
+              <td>$63,620,000,000</td>
+              <td>$75,800,000,000</td>
+              <td>$84,276,000,000</td>
+              <td>$76,670,000,000</td>
+              <td>$77,734,000,000</td>
+              <td>$67,016,000,000</td>
+              <td>$63,934,000,000</td>
+              <td>$72,488,000,000</td>
+              <td>$77,206,000,000</td>
+            </tr>
+            <tr>
+              <th>Grosss Property, Plant &amp; Equipment</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Accumulated Depreciation</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Net Property, Plant &amp; Equipment</th>
+              <td>$24,772,000,000</td>
+              <td>$25,078,000,000</td>
+              <td>$28,790,000,000</td>
+              <td>$32,922,000,000</td>
+              <td>$34,150,000,000</td>
+              <td>$33,154,000,000</td>
+              <td>$32,180,000,000</td>
+              <td>$30,644,000,000</td>
+              <td>$28,310,000,000</td>
+              <td>$27,148,000,000</td>
+            </tr>
+            <tr>
+              <th>Goodwill and Intangible Assets</th>
+              <td>$5,468,000,000</td>
+              <td>$6,838,000,000</td>
+              <td>$22,896,000,000</td>
+              <td>$21,916,000,000</td>
+              <td>$21,104,000,000</td>
+              <td>$19,540,000,000</td>
+              <td>$18,872,000,000</td>
+              <td>$16,738,000,000</td>
+              <td>$16,622,000,000</td>
+              <td>$16,228,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Investments</th>
+              <td>$210,000,000</td>
+              <td>$328,000,000</td>
+              <td>$266,000,000</td>
+              <td>$544,000,000</td>
+              <td>$544,000,000</td>
+              <td>$514,000,000</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Long-Term</th>
+              <td>$7,860,000,000</td>
+              <td>$6,848,000,000</td>
+              <td>$7,474,000,000</td>
+              <td>$7,116,000,000</td>
+              <td>$4,294,000,000</td>
+              <td>$6,286,000,000</td>
+              <td>$4,978,000,000</td>
+              <td>$5,580,000,000</td>
+              <td>$3,386,000,000</td>
+              <td>$2,878,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Assets</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Assets</th>
+              <td>$65,642,000,000</td>
+              <td>$64,420,000,000</td>
+              <td>$86,636,000,000</td>
+              <td>$93,664,000,000</td>
+              <td>$93,122,000,000</td>
+              <td>$91,628,000,000</td>
+              <td>$89,668,000,000</td>
+              <td>$85,474,000,000</td>
+              <td>$81,436,000,000</td>
+              <td>$79,812,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Assets</th>
+              <td>$120,076,000,000</td>
+              <td>$128,040,000,000</td>
+              <td>$162,436,000,000</td>
+              <td>$177,940,000,000</td>
+              <td>$169,792,000,000</td>
+              <td>$169,362,000,000</td>
+              <td>$156,684,000,000</td>
+              <td>$149,408,000,000</td>
+              <td>$153,924,000,000</td>
+              <td>$157,018,000,000</td>
+            </tr>
+            <tr>
+              <th>Payables</th>
+              <td>$5,986,000,000</td>
+              <td>$11,712,000,000</td>
+              <td>$16,322,000,000</td>
+              <td>$13,506,000,000</td>
+              <td>$13,120,000,000</td>
+              <td>$13,030,000,000</td>
+              <td>$10,046,000,000</td>
+              <td>$9,228,000,000</td>
+              <td>$12,974,000,000</td>
+              <td>$14,102,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Debt</th>
+              <td>$19,568,000,000</td>
+              <td>$15,962,000,000</td>
+              <td>$19,296,000,000</td>
+              <td>$24,782,000,000</td>
+              <td>$22,062,000,000</td>
+              <td>$23,002,000,000</td>
+              <td>$25,688,000,000</td>
+              <td>$27,930,000,000</td>
+              <td>$22,062,000,000</td>
+              <td>$23,106,000,000</td>
+            </tr>
+            <tr>
+              <th>Current Portion of Long-Term Debt</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Short-Term</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Liabilities</th>
+              <td>$37,950,000,000</td>
+              <td>$44,040,000,000</td>
+              <td>$56,714,000,000</td>
+              <td>$58,830,000,000</td>
+              <td>$54,594,000,000</td>
+              <td>$55,754,000,000</td>
+              <td>$52,484,000,000</td>
+              <td>$52,264,000,000</td>
+              <td>$53,862,000,000</td>
+              <td>$56,436,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Debt</th>
+              <td>$43,694,000,000</td>
+              <td>$40,874,000,000</td>
+              <td>$49,888,000,000</td>
+              <td>$55,504,000,000</td>
+              <td>$53,438,000,000</td>
+              <td>$55,568,000,000</td>
+              <td>$50,338,000,000</td>
+              <td>$45,636,000,000</td>
+              <td>$47,694,000,000</td>
+              <td>$50,000,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Debt</th>
+              <td>$63,262,000,000</td>
+              <td>$56,836,000,000</td>
+              <td>$69,184,000,000</td>
+              <td>$80,286,000,000</td>
+              <td>$75,500,000,000</td>
+              <td>$78,570,000,000</td>
+              <td>$76,026,000,000</td>
+              <td>$73,566,000,000</td>
+              <td>$69,756,000,000</td>
+              <td>$73,106,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Revenue</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Long-Term</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deposit Liabilities</th>
+              <td>$2,434,000,000</td>
+              <td>$3,662,000,000</td>
+              <td>$4,974,000,000</td>
+              <td>$5,276,000,000</td>
+              <td>$4,720,000,000</td>
+              <td>$3,394,000,000</td>
+              <td>$2,292,000,000</td>
+              <td>$2,334,000,000</td>
+              <td>$2,852,000,000</td>
+              <td>$2,486,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Liabilities</th>
+              <td>$63,526,000,000</td>
+              <td>$61,350,000,000</td>
+              <td>$78,918,000,000</td>
+              <td>$83,946,000,000</td>
+              <td>$73,442,000,000</td>
+              <td>$79,956,000,000</td>
+              <td>$74,430,000,000</td>
+              <td>$70,718,000,000</td>
+              <td>$72,530,000,000</td>
+              <td>$72,422,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities</th>
+              <td>$101,476,000,000</td>
+              <td>$105,390,000,000</td>
+              <td>$135,632,000,000</td>
+              <td>$142,776,000,000</td>
+              <td>$128,036,000,000</td>
+              <td>$135,710,000,000</td>
+              <td>$126,914,000,000</td>
+              <td>$122,982,000,000</td>
+              <td>$126,392,000,000</td>
+              <td>$128,858,000,000</td>
+            </tr>
+            <tr>
+              <th>Common Stock</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Comprehensive Income</th>
+              <td>$-7,528,000,000</td>
+              <td>$-8,102,000,000</td>
+              <td>$-12,656,000,000</td>
+              <td>$-12,866,000,000</td>
+              <td>$-7,796,000,000</td>
+              <td>$-12,862,000,000</td>
+              <td>$-4,070,000,000</td>
+              <td>$-4,078,000,000</td>
+              <td>$-2,384,000,000</td>
+              <td>$-3,368,000,000</td>
+            </tr>
+            <tr>
+              <th>Retained Earnings</th>
+              <td>$39,422,000,000</td>
+              <td>$42,768,000,000</td>
+              <td>$50,438,000,000</td>
+              <td>$59,116,000,000</td>
+              <td>$63,708,000,000</td>
+              <td>$67,774,000,000</td>
+              <td>$58,492,000,000</td>
+              <td>$54,754,000,000</td>
+              <td>$52,602,000,000</td>
+              <td>$60,854,000,000</td>
+            </tr>
+            <tr>
+              <th>Minority Interest</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Stockholder's Equity</th>
+              <td>$17,480,000,000</td>
+              <td>$21,648,000,000</td>
+              <td>$25,766,000,000</td>
+              <td>$35,064,000,000</td>
+              <td>$41,622,000,000</td>
+              <td>$33,492,000,000</td>
+              <td>$29,618,000,000</td>
+              <td>$26,426,000,000</td>
+              <td>$27,532,000,000</td>
+              <td>$28,160,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities and Equity</th>
+              <td>$118,956,000,000</td>
+              <td>$127,038,000,000</td>
+              <td>$161,398,000,000</td>
+              <td>$177,840,000,000</td>
+              <td>$169,658,000,000</td>
+              <td>$169,202,000,000</td>
+              <td>$156,532,000,000</td>
+              <td>$149,408,000,000</td>
+              <td>$153,924,000,000</td>
+              <td>$157,018,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        
+        <br />
+        <br />
+
+Combine Non-Overlapping Statements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the statements have different time periods, adding them will put both
+sets of periods in a single statement.
+
+
+
+.. code-block:: default
+
+
+    stmts['12/31/2018'] + stmts['12/31/2014']
+
+
+
+
+
+
+
+.. only:: builder_html
+
+    .. raw:: html
+
+
+                <h2>Income Statement</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2014</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Revenue</th>
+              <td>$55,184,000,000</td>
+              <td>$54,722,000,000</td>
+            </tr>
+            <tr>
+              <th>Cost of Goods Sold</th>
+              <td>$41,342,000,000</td>
+              <td>$37,719,000,000</td>
+            </tr>
+            <tr>
+              <th>Gross Profit</th>
+              <td>$13,842,000,000</td>
+              <td>$17,003,000,000</td>
+            </tr>
+            <tr>
+              <th>R&amp;D Expense</th>
+              <td>$2,380,000,000</td>
+              <td>$1,850,000,000</td>
+            </tr>
+            <tr>
+              <th>SG&amp;A Expense</th>
+              <td>$6,529,000,000</td>
+              <td>$5,478,000,000</td>
+            </tr>
+            <tr>
+              <th>Depreciation &amp; Amortization Expense</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Operating Expenses</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Operating Expense</th>
+              <td>$10,528,000,000</td>
+              <td>$8,710,000,000</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Interest and Taxes</th>
+              <td>$3,628,000,000</td>
+              <td>$8,249,000,000</td>
+            </tr>
+            <tr>
+              <th>Interest Expense</th>
+              <td>$484,000,000</td>
+              <td>$404,000,000</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Investments</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Gain on Sale of Assets</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Impairment Expense</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Earnings Before Tax</th>
+              <td>$3,144,000,000</td>
+              <td>$7,845,000,000</td>
+            </tr>
+            <tr>
+              <th>Income Tax Expense</th>
+              <td>$692,000,000</td>
+              <td>$1,698,000,000</td>
+            </tr>
+            <tr>
+              <th>Net Income</th>
+              <td>$2,452,000,000</td>
+              <td>$6,147,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+                <h2>Balance Sheet</h2>
+                <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+
+            .dataframe thead th {
+                text-align: right;
+            }
+        </style>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>12/31/2014</th>
+              <th>12/31/2018</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Cash and Cash Equivalents</th>
+              <td>$7,341,000,000</td>
+              <td>$7,857,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Investments</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Cash and Short-Term Investments</th>
+              <td>$7,341,000,000</td>
+              <td>$7,857,000,000</td>
+            </tr>
+            <tr>
+              <th>Receivables</th>
+              <td>$32,772,000,000</td>
+              <td>$31,899,000,000</td>
+            </tr>
+            <tr>
+              <th>Inventory</th>
+              <td>$12,205,000,000</td>
+              <td>$11,529,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Current</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Assets</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Assets</th>
+              <td>$38,867,000,000</td>
+              <td>$38,603,000,000</td>
+            </tr>
+            <tr>
+              <th>Grosss Property, Plant &amp; Equipment</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Accumulated Depreciation</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Net Property, Plant &amp; Equipment</th>
+              <td>$16,577,000,000</td>
+              <td>$13,574,000,000</td>
+            </tr>
+            <tr>
+              <th>Goodwill and Intangible Assets</th>
+              <td>$9,770,000,000</td>
+              <td>$8,114,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Investments</th>
+              <td>$257,000,000</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deferred Tax Assets, Long-Term</th>
+              <td>$3,143,000,000</td>
+              <td>$1,439,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Assets</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Assets</th>
+              <td>$45,814,000,000</td>
+              <td>$39,906,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Assets</th>
+              <td>$84,681,000,000</td>
+              <td>$78,509,000,000</td>
+            </tr>
+            <tr>
+              <th>Payables</th>
+              <td>$6,515,000,000</td>
+              <td>$7,051,000,000</td>
+            </tr>
+            <tr>
+              <th>Short-Term Debt</th>
+              <td>$11,501,000,000</td>
+              <td>$11,553,000,000</td>
+            </tr>
+            <tr>
+              <th>Current Portion of Long-Term Debt</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Short-Term</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Current Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Current Liabilities</th>
+              <td>$27,877,000,000</td>
+              <td>$28,218,000,000</td>
+            </tr>
+            <tr>
+              <th>Long-Term Debt</th>
+              <td>$27,784,000,000</td>
+              <td>$25,000,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Debt</th>
+              <td>$39,285,000,000</td>
+              <td>$36,553,000,000</td>
+            </tr>
+            <tr>
+              <th>Deferred Revenue</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Tax Liabilities, Long-Term</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Deposit Liabilities</th>
+              <td>$1,697,000,000</td>
+              <td>$1,243,000,000</td>
+            </tr>
+            <tr>
+              <th>Other Long-Term Liabilities</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Non-Current Liabilities</th>
+              <td>$39,978,000,000</td>
+              <td>$36,211,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities</th>
+              <td>$67,855,000,000</td>
+              <td>$64,429,000,000</td>
+            </tr>
+            <tr>
+              <th>Common Stock</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Other Comprehensive Income</th>
+              <td>$-6,431,000,000</td>
+              <td>$-1,684,000,000</td>
+            </tr>
+            <tr>
+              <th>Retained Earnings</th>
+              <td>$33,887,000,000</td>
+              <td>$30,427,000,000</td>
+            </tr>
+            <tr>
+              <th>Minority Interest</th>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Total Stockholder's Equity</th>
+              <td>$16,746,000,000</td>
+              <td>$14,080,000,000</td>
+            </tr>
+            <tr>
+              <th>Total Liabilities and Equity</th>
+              <td>$84,601,000,000</td>
+              <td>$78,509,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        
+        <br />
+        <br />
+
+This can be very useful in the case where you have done a forecast and
+need to calculate something which requires data from the last historical
+period, such as FCF.
+
+
+
+.. code-block:: default
+
+
+    stmts.config.update_all(['forecast_config', 'method'], 'trend')
+    fcst = stmts.forecast(periods=2)
+    (stmts[stmts.dates[-1]] + fcst).fcf.dropna()
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+      0%|          | 0/16 [00:00<?, ?it/s]    100%|##########| 16/16 [00:00<00:00, 174.25it/s]
+      0%|          | 0/37 [00:00<?, ?it/s]     41%|####      | 15/37 [00:00<00:00, 145.51it/s]     89%|########9 | 33/37 [00:00<00:00, 154.08it/s]    100%|##########| 37/37 [00:00<00:00, 167.72it/s]
+
+    2019-12-31    1.554878e+10
+    2020-12-31    1.802664e+09
+    dtype: float64
+
+
+
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** ( 0 minutes  26.499 seconds)
+
+
+.. _sphx_glr_download_auto_examples_manipulating_statements.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+  .. container:: binder-badge
+
+    .. image:: https://mybinder.org/badge_logo.svg
+      :target: https://mybinder.org/v2/gh/nickderobertis/py-finstmt/gh-pages?urlpath=lab/tree/notebooks/auto_examples/manipulating_statements.ipynb
+      :width: 150 px
+
+
+  .. container:: sphx-glr-download sphx-glr-download-python
+
+     :download:`Download Python source code: manipulating_statements.py <manipulating_statements.py>`
+
+
+
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+     :download:`Download Jupyter notebook: manipulating_statements.ipynb <manipulating_statements.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

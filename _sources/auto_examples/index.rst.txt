@@ -12,6 +12,26 @@ Below are examples of using `finstmt`.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="    Note: The formatting of the statements is off in the web view.     Download the Jupyter not...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_manipulating_statements_thumb.png
+
+     :ref:`sphx_glr_auto_examples_manipulating_statements.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/manipulating_statements
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="    Note: The plots are not coming through and the formatting of the     statements is off in t...">
 
 .. only:: html

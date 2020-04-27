@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.exc &mdash; finstmt 0.5.0 documentation</title>
+  <title>finstmt.exc &mdash; finstmt 0.6.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.6.0
               </div>
             
           
@@ -165,19 +165,35 @@
             
   <h1>Source code for finstmt.exc</h1><div class="highlight"><pre>
 <span></span>
-<div class="viewcode-block" id="NotACalculatedItemException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.NotACalculatedItemException">[docs]</a><span class="k">class</span> <span class="nc">NotACalculatedItemException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="FinstmtException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.FinstmtException">[docs]</a><span class="k">class</span> <span class="nc">FinstmtException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="NoSuchItemException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.NoSuchItemException">[docs]</a><span class="k">class</span> <span class="nc">NoSuchItemException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="NotACalculatedItemException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.NotACalculatedItemException">[docs]</a><span class="k">class</span> <span class="nc">NotACalculatedItemException</span><span class="p">(</span><span class="n">FinstmtException</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="CouldNotParseException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.CouldNotParseException">[docs]</a><span class="k">class</span> <span class="nc">CouldNotParseException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="NoSuchItemException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.NoSuchItemException">[docs]</a><span class="k">class</span> <span class="nc">NoSuchItemException</span><span class="p">(</span><span class="n">FinstmtException</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="ForecastException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.ForecastException">[docs]</a><span class="k">class</span> <span class="nc">ForecastException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="CouldNotParseException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.CouldNotParseException">[docs]</a><span class="k">class</span> <span class="nc">CouldNotParseException</span><span class="p">(</span><span class="n">FinstmtException</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="MissingDataException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.MissingDataException">[docs]</a><span class="k">class</span> <span class="nc">MissingDataException</span><span class="p">(</span><span class="n">FinstmtException</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="MixedFrequencyException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.MixedFrequencyException">[docs]</a><span class="k">class</span> <span class="nc">MixedFrequencyException</span><span class="p">(</span><span class="n">FinstmtException</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="MismatchingDatesException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.MismatchingDatesException">[docs]</a><span class="k">class</span> <span class="nc">MismatchingDatesException</span><span class="p">(</span><span class="n">FinstmtException</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ForecastException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.ForecastException">[docs]</a><span class="k">class</span> <span class="nc">ForecastException</span><span class="p">(</span><span class="n">FinstmtException</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
 
@@ -190,6 +206,14 @@
 
 
 <div class="viewcode-block" id="ImproperManualForecastException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.ImproperManualForecastException">[docs]</a><span class="k">class</span> <span class="nc">ImproperManualForecastException</span><span class="p">(</span><span class="n">ForecastException</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="BalanceSheetNotBalancedException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.BalanceSheetNotBalancedException">[docs]</a><span class="k">class</span> <span class="nc">BalanceSheetNotBalancedException</span><span class="p">(</span><span class="n">ForecastException</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="InvalidForecastEquationException"><a class="viewcode-back" href="../../api/finstmt.html#finstmt.exc.InvalidForecastEquationException">[docs]</a><span class="k">class</span> <span class="nc">InvalidForecastEquationException</span><span class="p">(</span><span class="n">ForecastException</span><span class="p">):</span>
     <span class="k">pass</span></div>
 </pre></div>
 

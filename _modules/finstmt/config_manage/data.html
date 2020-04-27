@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.config_manage.data &mdash; finstmt 0.5.0 documentation</title>
+  <title>finstmt.config_manage.data &mdash; finstmt 0.6.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.6.0
               </div>
             
           
@@ -217,12 +217,19 @@
         <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="p">:</span>
             <span class="n">expr</span> <span class="o">=</span> <span class="n">IndexedBase</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
             <span class="n">ns_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">config</span><span class="o">.</span><span class="n">key</span><span class="p">:</span> <span class="n">expr</span><span class="p">})</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">pct_of</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">key_pct_of_key</span> <span class="o">=</span> <span class="n">_key_pct_of_key</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">pct_of</span><span class="p">)</span>
+                <span class="n">expr</span> <span class="o">=</span> <span class="n">IndexedBase</span><span class="p">(</span><span class="n">key_pct_of_key</span><span class="p">)</span>
+                <span class="n">ns_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">key_pct_of_key</span><span class="p">:</span> <span class="n">expr</span><span class="p">})</span>
         <span class="k">return</span> <span class="n">ns_dict</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
 
+
+<span class="k">def</span> <span class="nf">_key_pct_of_key</span><span class="p">(</span><span class="n">base_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pct_of_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_key</span><span class="si">}</span><span class="s1">_pct_</span><span class="si">{</span><span class="n">pct_of_key</span><span class="si">}</span><span class="s1">&#39;</span>
 </pre></div>
 
            </div>

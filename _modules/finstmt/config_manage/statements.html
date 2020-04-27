@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.config_manage.statements &mdash; finstmt 0.5.0 documentation</title>
+  <title>finstmt.config_manage.statements &mdash; finstmt 0.6.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.6.0
               </div>
             
           
@@ -173,6 +173,7 @@
 <span class="kn">from</span> <span class="nn">finstmt.config_manage.statement</span> <span class="kn">import</span> <span class="n">StatementConfigManager</span>
 <span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">NoSuchItemException</span>
 <span class="kn">from</span> <span class="nn">finstmt.items.config</span> <span class="kn">import</span> <span class="n">ItemConfig</span>
+<span class="kn">from</span> <span class="nn">finstmt.logger</span> <span class="kn">import</span> <span class="n">logger</span>
 
 
 <div class="viewcode-block" id="StatementsConfigManager"><a class="viewcode-back" href="../../../api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager">[docs]</a><span class="nd">@dataclass</span>
@@ -225,9 +226,11 @@
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">config_keys</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="c1"># Last iteration, now set value</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="n">nested_config</span><span class="p">,</span> <span class="n">config_key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Set </span><span class="si">{</span><span class="n">config_key</span><span class="si">}</span><span class="s1"> for </span><span class="si">{</span><span class="n">item_key</span><span class="si">}</span><span class="s1"> on </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">nested_config</span><span class="p">)</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># Not last iteration, need to get nested config</span>
-                <span class="n">nested_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">nested_config</span><span class="p">,</span> <span class="n">config_key</span><span class="p">)</span></div>
+                <span class="n">nested_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">nested_config</span><span class="p">,</span> <span class="n">config_key</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">item_key</span><span class="p">,</span> <span class="n">orig_config</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="StatementsConfigManager.update_all"><a class="viewcode-back" href="../../../api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update_all">[docs]</a>    <span class="k">def</span> <span class="nf">update_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_keys</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

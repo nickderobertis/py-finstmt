@@ -25,3 +25,10 @@ a.copybtn {
     width: 1.8em;
     height: 1.8em;
 }
+
+/* Make DataFrames scroll when too wide */
+table.dataframe {
+    overflow: auto;
+    border: lightgray;
+    display: block;
+}

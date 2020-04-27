@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast package &mdash; finstmt 0.5.0 documentation</title>
+  <title>finstmt.forecast package &mdash; finstmt 0.6.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.6.0
               </div>
             
           
@@ -113,6 +113,7 @@
 <li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html">finstmt.inc package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.items.html">finstmt.items package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.loaders.html">finstmt.loaders package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html">finstmt.resolver package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
@@ -219,17 +220,27 @@
 <span id="finstmt-forecast-config-module"></span><h2>finstmt.forecast.config module<a class="headerlink" href="#module-finstmt.forecast.config" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="finstmt.forecast.config.ForecastConfig">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastConfig</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastConfig</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">balance: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.forecast.config.ForecastConfig.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">balance: bool = True</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py attribute">
+<dt id="finstmt.forecast.config.ForecastConfig.balance">
+<code class="sig-name descname">balance</code><em class="property">: bool</em><em class="property"> = True</em><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.balance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="finstmt.forecast.config.ForecastConfig.bs_diff_max">
+<code class="sig-name descname">bs_diff_max</code><em class="property"> = 10000</em><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.bs_diff_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.config.ForecastConfig.freq">
@@ -260,7 +271,7 @@
 
 <dl class="py class">
 <dt id="finstmt.forecast.config.ForecastItemConfig">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastItemConfig</code><span class="sig-paren">(</span><em class="sig-param">method: str = 'cagr'</em>, <em class="sig-param">pct_of: Optional[str] = None</em>, <em class="sig-param">make_forecast: bool = True</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">cap: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">floor: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">manual_forecasts: Dict[str</em>, <em class="sig-param">List[float]] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastItemConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastItemConfig</code><span class="sig-paren">(</span><em class="sig-param">method: str = 'cagr'</em>, <em class="sig-param">pct_of: Optional[str] = None</em>, <em class="sig-param">make_forecast: bool = True</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">cap: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">floor: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">manual_forecasts: Dict[str</em>, <em class="sig-param">List[float]] = &lt;factory&gt;</em>, <em class="sig-param">plug: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastItemConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The main configuration for a single item forecast</p>
 <p>method: ‘auto’ currently only supported method, runs forecast with fbprophet
@@ -268,10 +279,12 @@ pct_of: key of financial statement item to forecast this as a percentage of
 make_forecast: whether to forecast
 prophet_kwargs: kwargs to pass to fbprophet model
 cap: the maximum that the trend line should reach
-floot: the minimum that the trend line should reach</p>
+floor: the minimum that the trend line should reach
+manual_forecasts: manually set values to use instead of doing a forecast
+plug: Whether to make this item adjustable to balance the balance sheet</p>
 <dl class="py method">
 <dt id="finstmt.forecast.config.ForecastItemConfig.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">method: str = 'cagr'</em>, <em class="sig-param">pct_of: Optional[str] = None</em>, <em class="sig-param">make_forecast: bool = True</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">cap: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">floor: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">manual_forecasts: Dict[str</em>, <em class="sig-param">List[float]] = &lt;factory&gt;</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">method: str = 'cagr'</em>, <em class="sig-param">pct_of: Optional[str] = None</em>, <em class="sig-param">make_forecast: bool = True</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">cap: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">floor: Union[float</em>, <em class="sig-param">pandas.Series</em>, <em class="sig-param">None] = None</em>, <em class="sig-param">manual_forecasts: Dict[str</em>, <em class="sig-param">List[float]] = &lt;factory&gt;</em>, <em class="sig-param">plug: bool = False</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -307,6 +320,11 @@ floot: the minimum that the trend line should reach</p>
 <dl class="py attribute">
 <dt id="finstmt.forecast.config.ForecastItemConfig.pct_of">
 <code class="sig-name descname">pct_of</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.pct_of" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="finstmt.forecast.config.ForecastItemConfig.plug">
+<code class="sig-name descname">plug</code><em class="property">: bool</em><em class="property"> = False</em><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.plug" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -433,11 +451,11 @@ floot: the minimum that the trend line should reach</p>
 <span id="finstmt-forecast-statements-module"></span><h2>finstmt.forecast.statements module<a class="headerlink" href="#module-finstmt.forecast.statements" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="finstmt.forecast.statements.ForecastedFinancialStatements">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.statements.</code><code class="sig-name descname">ForecastedFinancialStatements</code><span class="sig-paren">(</span><em class="sig-param">income_statements: finstmt.inc.main.IncomeStatements</em>, <em class="sig-param">balance_sheets: finstmt.bs.main.BalanceSheets</em>, <em class="sig-param">forecasts: Dict[str</em>, <em class="sig-param">finstmt.forecast.main.Forecast] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/statements.html#ForecastedFinancialStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.statements.ForecastedFinancialStatements" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.statements.</code><code class="sig-name descname">ForecastedFinancialStatements</code><span class="sig-paren">(</span><em class="sig-param">income_statements: finstmt.inc.main.IncomeStatements</em>, <em class="sig-param">balance_sheets: finstmt.bs.main.BalanceSheets</em>, <em class="sig-param">calculate: bool = True</em>, <em class="sig-param">forecasts: Dict[str</em>, <em class="sig-param">finstmt.forecast.main.Forecast] = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/statements.html#ForecastedFinancialStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.statements.ForecastedFinancialStatements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.combined.statements.FinancialStatements</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.forecast.statements.ForecastedFinancialStatements.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">income_statements: finstmt.inc.main.IncomeStatements</em>, <em class="sig-param">balance_sheets: finstmt.bs.main.BalanceSheets</em>, <em class="sig-param">forecasts: Dict[str</em>, <em class="sig-param">finstmt.forecast.main.Forecast] = &lt;factory&gt;</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.forecast.statements.ForecastedFinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">income_statements: finstmt.inc.main.IncomeStatements</em>, <em class="sig-param">balance_sheets: finstmt.bs.main.BalanceSheets</em>, <em class="sig-param">calculate: bool = True</em>, <em class="sig-param">forecasts: Dict[str</em>, <em class="sig-param">finstmt.forecast.main.Forecast] = &lt;factory&gt;</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.forecast.statements.ForecastedFinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>

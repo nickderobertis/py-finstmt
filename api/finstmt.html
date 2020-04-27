@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt package &mdash; finstmt 0.5.0 documentation</title>
+  <title>finstmt package &mdash; finstmt 0.6.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.6.0
               </div>
             
           
@@ -113,6 +113,7 @@
 <li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html">finstmt.inc package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.items.html">finstmt.items package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.loaders.html">finstmt.loaders package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html">finstmt.resolver package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
@@ -270,6 +271,14 @@ financial statements.</p>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.loaders.html#module-finstmt.loaders.capiq">finstmt.loaders.capiq module</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="finstmt.resolver.html">finstmt.resolver package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.base">finstmt.resolver.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.forecast">finstmt.resolver.forecast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.history">finstmt.resolver.history module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.solve">finstmt.resolver.solve module</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -279,15 +288,27 @@ financial statements.</p>
 <div class="section" id="module-finstmt.exc">
 <span id="finstmt-exc-module"></span><h2>finstmt.exc module<a class="headerlink" href="#module-finstmt.exc" title="Permalink to this headline">¶</a></h2>
 <dl class="py exception">
+<dt id="finstmt.exc.BalanceSheetNotBalancedException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">BalanceSheetNotBalancedException</code><a class="reference internal" href="../_modules/finstmt/exc.html#BalanceSheetNotBalancedException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.BalanceSheetNotBalancedException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
 <dt id="finstmt.exc.CouldNotParseException">
 <em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">CouldNotParseException</code><a class="reference internal" href="../_modules/finstmt/exc.html#CouldNotParseException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.CouldNotParseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="finstmt.exc.FinstmtException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">FinstmtException</code><a class="reference internal" href="../_modules/finstmt/exc.html#FinstmtException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.FinstmtException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
 <dl class="py exception">
 <dt id="finstmt.exc.ForecastException">
 <em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">ForecastException</code><a class="reference internal" href="../_modules/finstmt/exc.html#ForecastException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.ForecastException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
 </dd></dl>
 
 <dl class="py exception">
@@ -309,15 +330,39 @@ financial statements.</p>
 </dd></dl>
 
 <dl class="py exception">
+<dt id="finstmt.exc.InvalidForecastEquationException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">InvalidForecastEquationException</code><a class="reference internal" href="../_modules/finstmt/exc.html#InvalidForecastEquationException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.InvalidForecastEquationException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="finstmt.exc.MismatchingDatesException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">MismatchingDatesException</code><a class="reference internal" href="../_modules/finstmt/exc.html#MismatchingDatesException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.MismatchingDatesException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="finstmt.exc.MissingDataException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">MissingDataException</code><a class="reference internal" href="../_modules/finstmt/exc.html#MissingDataException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.MissingDataException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="finstmt.exc.MixedFrequencyException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">MixedFrequencyException</code><a class="reference internal" href="../_modules/finstmt/exc.html#MixedFrequencyException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.MixedFrequencyException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
 <dt id="finstmt.exc.NoSuchItemException">
 <em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">NoSuchItemException</code><a class="reference internal" href="../_modules/finstmt/exc.html#NoSuchItemException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.NoSuchItemException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
 </dd></dl>
 
 <dl class="py exception">
 <dt id="finstmt.exc.NotACalculatedItemException">
 <em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">NotACalculatedItemException</code><a class="reference internal" href="../_modules/finstmt/exc.html#NotACalculatedItemException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.NotACalculatedItemException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
 </dd></dl>
 
 </div>
