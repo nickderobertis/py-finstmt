@@ -7,6 +7,7 @@ from sympy import Indexed
 
 from finstmt import BalanceSheets, IncomeStatements
 from finstmt.config_manage.statements import StatementsConfigManager
+from finstmt.exc import MismatchingDatesException
 from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
@@ -97,7 +98,9 @@ class FinancialStatements:
             'non_cash_expenses',
             'fcf',
             'forecast',
+            'forecasts',
             'forecast_assumptions',
+            'dates',
         ]
         all_config = self.income_statements.config.items + self.balance_sheets.config.items
         item_attrs = [config.key for config in all_config]
@@ -123,6 +126,8 @@ class FinancialStatements:
             bs_diff_max = kwargs['bs_diff_max']
         else:
             bs_diff_max = ForecastConfig.bs_diff_max
+
+        self._validate_dates()
 
         all_forecast_dict = {}
         all_results = {}
@@ -150,6 +155,24 @@ class FinancialStatements:
     @property
     def all_config_items(self) -> List[ItemConfig]:
         return self.income_statements.config.items + self.balance_sheets.config.items  # type: ignore
+
+    @property
+    def dates(self) -> List[pd.Timestamp]:
+        self._validate_dates()
+        return list(self.balance_sheets.statements.keys())
+
+    def _validate_dates(self):
+        bs_dates = set(self.balance_sheets.statements.keys())
+        is_dates = set(self.income_statements.statements.keys())
+        if bs_dates != is_dates:
+            bs_unique = bs_dates.difference(is_dates)
+            is_unique = is_dates.difference(bs_dates)
+            message = 'Got mismatching dates between historical statements. '
+            if bs_unique:
+                message += f'Balance sheet has {bs_unique} dates not in Income Statement. '
+            if is_unique:
+                message += f'Income Statement has {is_unique} dates not in Balance Sheet. '
+            raise MismatchingDatesException(message)
 
     def __add__(self, other):
         statements = _combine_statements(self, other, operator.add)

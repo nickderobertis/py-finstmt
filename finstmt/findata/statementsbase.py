@@ -1,5 +1,5 @@
 import operator
-from typing import Dict, Tuple, Sequence, Optional, Callable, Set
+from typing import Dict, Tuple, Sequence, Optional, Callable, Set, List
 from dataclasses import field
 
 import pandas as pd
@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.config_manage.statement import StatementConfigManager
-from finstmt.exc import CouldNotParseException
+from finstmt.exc import CouldNotParseException, MixedFrequencyException
 from finstmt.findata.database import FinDataBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
@@ -127,7 +127,14 @@ class FinStatementsBase:
 
     def _forecast(self, statements, **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series]]:
         if 'freq' not in kwargs:
-            kwargs['freq'] = self.freq  # use historical frequency if desired frequency not passed
+            freq = self.freq
+            if freq is None:
+                raise MixedFrequencyException(
+                    'Could not automatically determine frequency of history. Likely there are mixed '
+                    'frequencies in the data. Either pass an explicit freq to forecast or remove the '
+                    'periods which do not match the frequency before running the forecast.'
+                )
+            kwargs['freq'] = freq  # use historical frequency if desired frequency not passed
 
         forecast_config = ForecastConfig(**kwargs)
         forecast_dict: Dict[str, Forecast] = {}
@@ -168,8 +175,11 @@ class FinStatementsBase:
 
     @property
     def freq(self) -> str:
-        dates = list(self.statements.keys())
-        return pd.infer_freq(dates)
+        return pd.infer_freq(self.dates)
+
+    @property
+    def dates(self) -> List[pd.Timestamp]:
+        return list(self.statements.keys())
 
     def __add__(self, other):
         if isinstance(other, (float, int)):

@@ -19,6 +19,14 @@ class MissingDataException(FinstmtException):
     pass
 
 
+class MixedFrequencyException(FinstmtException):
+    pass
+
+
+class MismatchingDatesException(FinstmtException):
+    pass
+
+
 class ForecastException(FinstmtException):
     pass
 
@@ -41,5 +49,3 @@ class BalanceSheetNotBalancedException(ForecastException):
 
 class InvalidForecastEquationException(ForecastException):
     pass
-
-
