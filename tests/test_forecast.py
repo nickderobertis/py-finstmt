@@ -1,6 +1,6 @@
 import os
 import unittest
-from typing import Sequence, Dict
+from typing import Sequence, Dict, Optional
 
 import pandas as pd
 
@@ -30,23 +30,27 @@ class ForecastTest(LoadTest):
     a_adjust_dict: Dict[str, Sequence[str]]
     q_adjust_dict: Dict[str, Sequence[str]]
 
-    def test_annual(self, stmts: FinancialStatements):
+    def test_annual(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None, **kwargs):
+        fcst_kwargs = FORECAST_KWARGS.copy()
+        fcst_kwargs.update(kwargs)
         adjust_forecast_methods(stmts, self.a_adjust_dict)
-        fcst = stmts.forecast(**FORECAST_KWARGS)
+        fcst = stmts.forecast(**fcst_kwargs)
         if DEVELOPMENT_MODE:
             fig = fcst.plot()
             out_path = os.path.join(GENERATED_PATH, f'{self.name}_annual.pdf')
             fig.savefig(out_path)
-        super().test_annual(fcst)
+        super().test_annual(fcst, data=data)
 
-    def test_quarterly(self, stmts: FinancialStatements):
+    def test_quarterly(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None, **kwargs):
+        fcst_kwargs = FORECAST_KWARGS.copy()
+        fcst_kwargs.update(kwargs)
         adjust_forecast_methods(stmts, self.q_adjust_dict)
-        fcst = stmts.forecast(**FORECAST_KWARGS)
+        fcst = stmts.forecast(**fcst_kwargs)
         if DEVELOPMENT_MODE:
             fig = fcst.plot()
             out_path = os.path.join(GENERATED_PATH, f'{self.name}_quarterly.pdf')
             fig.savefig(out_path)
-        super().test_quarterly(fcst)
+        super().test_quarterly(fcst, data=data)
 
 
 class TestForecastStockrowCAT(ForecastTest):

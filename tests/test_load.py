@@ -1,6 +1,6 @@
 import os
 import unittest
-from typing import Dict
+from typing import Dict, Optional
 
 import pandas as pd
 from pandas.testing import assert_series_equal
@@ -18,7 +18,7 @@ if DEVELOPMENT_MODE:
 def check_data_items(stmts: FinancialStatements, data_dict: Dict[str, pd.Series]):
     for item_key, item_values in data_dict.items():
         item = getattr(stmts, item_key)
-        assert_series_equal(item, item_values)
+        assert_series_equal(item, item_values, check_dtype=False)
 
 
 class LoadTest:
@@ -26,7 +26,9 @@ class LoadTest:
     a_test_data_dict: Dict[str, pd.Series]
     q_test_data_dict: Dict[str, pd.Series]
 
-    def test_annual(self, stmts: FinancialStatements):
+    def test_annual(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None):
+        if data is None:
+            data = self.a_test_data_dict
         if DEVELOPMENT_MODE:
             out_path = os.path.join(GENERATED_PATH, f'{self.name}_annual.py')
             with open(out_path, 'w') as f:
@@ -39,9 +41,11 @@ class LoadTest:
                         disp=False
                     )
                 )
-        check_data_items(stmts, self.a_test_data_dict)
+        check_data_items(stmts, data)
 
-    def test_quarterly(self, stmts: FinancialStatements):
+    def test_quarterly(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None):
+        if data is None:
+            data = self.q_test_data_dict
         if DEVELOPMENT_MODE:
             out_path = os.path.join(GENERATED_PATH, f'{self.name}_quarterly.py')
             with open(out_path, 'w') as f:
@@ -54,7 +58,7 @@ class LoadTest:
                         disp=False
                     )
                 )
-        check_data_items(stmts, self.q_test_data_dict)
+        check_data_items(stmts, data)
 
 
 class TestLoadStockrowCAT(LoadTest):
