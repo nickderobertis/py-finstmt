@@ -20,6 +20,13 @@ if TYPE_CHECKING:
 
 PLUG_SCALE = 1e11
 
+# TODO: clean up ForecastResolver
+#
+# `ForecastResolver` and associated logic is messy after reworking it multiple times.
+# Need to remove unneeded code and restructure more logic into classes. `PlugResult`
+# could handle more operations with the plugs, and the math could be more separated
+# from the finance logic.
+
 
 class ForecastResolver:
     solve_eqs: List[Eq]
