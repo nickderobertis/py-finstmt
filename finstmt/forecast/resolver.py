@@ -81,8 +81,8 @@ class ForecastResolver:
     @property
     def t_indexed_eqs(self) -> List[Eq]:
         config_managers = [
-            self.stmts.income_statements.statement_cls.items_config,
-            self.stmts.balance_sheets.statement_cls.items_config,
+            self.stmts.income_statements.config.items,
+            self.stmts.balance_sheets.config.items,
         ]
         all_eqs = []
         for config_manage in config_managers:
@@ -315,6 +315,7 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
     except BalanceSheetBalancedException:
         pass
     if result.res is None:
+        message: Optional[str]
         if res is not None:
             message = f'final solution {res.x * PLUG_SCALE} still could not meet max difference of {bs_diff_max}'
         else:
