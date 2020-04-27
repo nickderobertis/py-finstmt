@@ -1,9 +1,18 @@
+import os
+import unittest
 from typing import Dict
 
 import pandas as pd
 from pandas.testing import assert_series_equal
 
 from finstmt import FinancialStatements
+from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
+
+# Imported for test development purposes
+if DEVELOPMENT_MODE:
+    from tests.utils.gen.data_load import print_test_data_def, get_keys_for_inc_data_items, get_keys_for_bs_data_items
+    inc_keys = get_keys_for_inc_data_items()
+    bs_keys = get_keys_for_bs_data_items()
 
 
 def check_data_items(stmts: FinancialStatements, data_dict: Dict[str, pd.Series]):
@@ -13,17 +22,43 @@ def check_data_items(stmts: FinancialStatements, data_dict: Dict[str, pd.Series]
 
 
 class LoadTest:
+    name: str
     a_test_data_dict: Dict[str, pd.Series]
     q_test_data_dict: Dict[str, pd.Series]
 
     def test_annual(self, stmts: FinancialStatements):
+        if DEVELOPMENT_MODE:
+            out_path = os.path.join(GENERATED_PATH, f'{self.name}_annual.py')
+            with open(out_path, 'w') as f:
+                f.write('import pandas as pd\n\n')
+                f.write(
+                    print_test_data_def(
+                        stmts, inc_keys + bs_keys,
+                        f'{self.name.upper()}_A_INDEX',
+                        f'{self.name.upper()}_A_INDEX_DATA_DICT',
+                        disp=False
+                    )
+                )
         check_data_items(stmts, self.a_test_data_dict)
 
     def test_quarterly(self, stmts: FinancialStatements):
+        if DEVELOPMENT_MODE:
+            out_path = os.path.join(GENERATED_PATH, f'{self.name}_quarterly.py')
+            with open(out_path, 'w') as f:
+                f.write('import pandas as pd\n\n')
+                f.write(
+                    print_test_data_def(
+                        stmts, inc_keys + bs_keys,
+                        f'{self.name.upper()}_Q_INDEX',
+                        f'{self.name.upper()}_Q_INDEX_DATA_DICT',
+                        disp=False
+                    )
+                )
         check_data_items(stmts, self.q_test_data_dict)
 
 
 class TestLoadStockrowCAT(LoadTest):
+    name = 'load_stockrow_cat'
     a_index_str = ["2009-12-31 00:00:00", "2010-12-31 00:00:00", "2011-12-31 00:00:00", "2012-12-31 00:00:00",
                    "2013-12-31 00:00:00", "2014-12-31 00:00:00", "2015-12-31 00:00:00", "2016-12-31 00:00:00",
                    "2017-12-31 00:00:00", "2018-12-31 00:00:00"]
@@ -673,6 +708,7 @@ class TestLoadStockrowCAT(LoadTest):
 
 
 class TestLoadStockrowMAR(LoadTest):
+    name = 'load_stockrow_mar'
     a_index_str = ["2009-12-31 00:00:00", "2010-12-31 00:00:00", "2011-12-31 00:00:00", "2012-12-31 00:00:00",
                    "2013-12-31 00:00:00", "2014-12-31 00:00:00", "2015-12-31 00:00:00", "2016-12-31 00:00:00",
                    "2017-12-31 00:00:00", "2018-12-31 00:00:00"]
@@ -1331,6 +1367,7 @@ class TestLoadStockrowMAR(LoadTest):
 
 
 class TestLoadCapitalIQ(LoadTest):
+    name = 'load_capiq_cat'
     a_inc_index_str = ["2014-12-31 00:00:00", "2015-12-31 00:00:00", "2016-12-31 00:00:00", "2017-12-31 00:00:00",
                        "2018-12-31 00:00:00"]
     a_inc_index = [pd.to_datetime(val) for val in a_inc_index_str]
