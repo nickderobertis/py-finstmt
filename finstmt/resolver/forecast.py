@@ -16,7 +16,7 @@ from finstmt.logger import logger
 from finstmt.combined.statements import FinancialStatements
 from finstmt.resolver.base import ResolverBase
 
-# TODO [$5ea758276e21ed000759aaf5]: clean up ForecastResolver
+# TODO [#46]: clean up ForecastResolver
 #
 # `ForecastResolver` and associated logic is messy after reworking it multiple times.
 # Need to remove unneeded code and restructure more logic into classes. `PlugResult`
