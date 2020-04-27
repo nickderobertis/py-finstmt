@@ -34,7 +34,7 @@ class FinancialStatements:
 
 
     def __post_init__(self):
-        from finstmt.forecast.resolver import StatementsResolver
+        from finstmt.resolver.history import StatementsResolver
 
         self._create_config_from_statements()
 
@@ -133,7 +133,7 @@ class FinancialStatements:
         return self.net_income + self.non_cash_expenses - self.change('nwc') - self.capex
 
     def forecast(self, **kwargs) -> 'FinancialStatements':
-        from finstmt.forecast.resolver import ForecastResolver
+        from finstmt.resolver.forecast import ForecastResolver
 
         if 'bs_diff_max' in kwargs:
             bs_diff_max = kwargs['bs_diff_max']
