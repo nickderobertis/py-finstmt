@@ -1,17 +1,25 @@
 
-class NotACalculatedItemException(Exception):
+class FinstmtException(Exception):
     pass
 
 
-class NoSuchItemException(Exception):
+class NotACalculatedItemException(FinstmtException):
     pass
 
 
-class CouldNotParseException(Exception):
+class NoSuchItemException(FinstmtException):
     pass
 
 
-class ForecastException(Exception):
+class CouldNotParseException(FinstmtException):
+    pass
+
+
+class MissingDataException(FinstmtException):
+    pass
+
+
+class ForecastException(FinstmtException):
     pass
 
 
@@ -27,5 +35,11 @@ class ImproperManualForecastException(ForecastException):
     pass
 
 
-class BalanceSheetNotBalancedException(Exception):
+class BalanceSheetNotBalancedException(ForecastException):
     pass
+
+
+class InvalidForecastEquationException(ForecastException):
+    pass
+
+

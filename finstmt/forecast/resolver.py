@@ -5,9 +5,10 @@ from scipy.optimize import minimize
 from sympy import Eq, sympify, IndexedBase, Idx, linsolve, Expr, nonlinsolve, solve, Symbol, expand
 import pandas as pd
 import numpy as np
+from sympy.core.numbers import NaN
 from sympy.logic.boolalg import BooleanFalse, BooleanTrue
 
-from finstmt.exc import BalanceSheetNotBalancedException
+from finstmt.exc import BalanceSheetNotBalancedException, MissingDataException, InvalidForecastEquationException
 from finstmt.forecast.main import Forecast
 from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.forecast.statements import ForecastedFinancialStatements
@@ -278,12 +279,18 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
     solve_exprs = []
     to_solve_for = []
     for eq in eqs:
-        solve_exprs.append(eq.rhs - eq.lhs)
+        expr = eq.rhs - eq.lhs
+        if expr == NaN():
+            raise InvalidForecastEquationException(f'got NaN forecast equation. LHS: {eq.lhs}, RHS: {eq.rhs}')
+        solve_exprs.append(expr)
         to_solve_for.append(eq.lhs)
     for sol_dict in [subs_dict, plug_solutions]:
         # Plug solutions second here so that they are at end of array
         for lhs, rhs in sol_dict.items():
-            solve_exprs.append(rhs - lhs)
+            expr = rhs - lhs
+            if expr == NaN():
+                raise MissingDataException(f'got NaN for {lhs} but that is needed for resolving the forecast')
+            solve_exprs.append(expr)
             to_solve_for.append(lhs)
     to_solve_for = list(set(to_solve_for))
     eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)
