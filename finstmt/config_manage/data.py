@@ -51,9 +51,16 @@ class DataConfigManager(ConfigManagerBase):
         for config in self.configs:
             expr = IndexedBase(config.key)
             ns_dict.update({config.key: expr})
+            if config.forecast_config.pct_of is not None:
+                key_pct_of_key = _key_pct_of_key(config.key, config.forecast_config.pct_of)
+                expr = IndexedBase(key_pct_of_key)
+                ns_dict.update({key_pct_of_key: expr})
         return ns_dict
 
     @property
     def keys(self) -> List[str]:
         return list(self.config_dict.keys())
 
+
+def _key_pct_of_key(base_key: str, pct_of_key: str) -> str:
+    return f'{base_key}_pct_{pct_of_key}'

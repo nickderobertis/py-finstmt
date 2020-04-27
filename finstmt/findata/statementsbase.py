@@ -1,12 +1,13 @@
 import operator
-from typing import Dict, Tuple, Sequence, Optional, Callable
+from typing import Dict, Tuple, Sequence, Optional, Callable, Set, List
 from dataclasses import field
 
 import pandas as pd
 from tqdm import tqdm
 
+from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.config_manage.statement import StatementConfigManager
-from finstmt.exc import CouldNotParseException
+from finstmt.exc import CouldNotParseException, MixedFrequencyException
 from finstmt.findata.database import FinDataBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
@@ -124,18 +125,26 @@ class FinStatementsBase:
         out_df.columns = [col.strftime('%m/%d/%Y') for col in out_df.columns]
         return out_df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')
 
-    def _forecast(self, statements, **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series], Dict[str, pd.Series]]:
+    def _forecast(self, statements, **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series]]:
         if 'freq' not in kwargs:
-            kwargs['freq'] = self.freq  # use historical frequency if desired frequency not passed
+            freq = self.freq
+            if freq is None:
+                raise MixedFrequencyException(
+                    'Could not automatically determine frequency of history. Likely there are mixed '
+                    'frequencies in the data. Either pass an explicit freq to forecast or remove the '
+                    'periods which do not match the frequency before running the forecast.'
+                )
+            kwargs['freq'] = freq  # use historical frequency if desired frequency not passed
 
         forecast_config = ForecastConfig(**kwargs)
         forecast_dict: Dict[str, Forecast] = {}
         results: Dict[str, pd.Series] = {}
-        pct_results: Dict[str, pd.Series] = {}
         logger.info(f'Forecasting {self.statement_name}')
+        item: ItemConfig
         for item in tqdm(self.config.items):
-            if item.extract_names is None or not item.forecast_config.make_forecast:
-                # If can't extract item, must be calculated item, no need to forecast
+            if item.expr_str is not None or not item.forecast_config.make_forecast:
+                # If calculated, skip the forecast
+                # If user set to skip the forecast, skip it as well
                 continue
             data = getattr(statements, item.key)
             pct_of_series = None
@@ -157,16 +166,20 @@ class FinStatementsBase:
             if forecast.result is not None:
                 forecast.result.name = item.primary_name
             if item.forecast_config.pct_of is not None:
-                pct_results[item.key] = forecast.result
+                key_pct_of_key = _key_pct_of_key(item.key, item.forecast_config.pct_of)
+                results[key_pct_of_key] = forecast.result
             else:
                 results[item.key] = forecast.result
 
-        return forecast_dict, results, pct_results
+        return forecast_dict, results
 
     @property
     def freq(self) -> str:
-        dates = list(self.statements.keys())
-        return pd.infer_freq(dates)
+        return pd.infer_freq(self.dates)
+
+    @property
+    def dates(self) -> List[pd.Timestamp]:
+        return list(self.statements.keys())
 
     def __add__(self, other):
         if isinstance(other, (float, int)):

@@ -9,6 +9,10 @@ class ForecastConfig:
     periods: int = 5
     freq: str = 'Y'
     prophet_kwargs:  dict = field(default_factory=lambda: {})
+    balance: bool = True
+
+    # TODO: after handling units, adjust default allowed BS difference for units
+    bs_diff_max = 10000
 
     def __post_init__(self):
         if self.freq.casefold() == 'y':
@@ -34,7 +38,9 @@ class ForecastItemConfig:
     make_forecast: whether to forecast
     prophet_kwargs: kwargs to pass to fbprophet model
     cap: the maximum that the trend line should reach
-    floot: the minimum that the trend line should reach
+    floor: the minimum that the trend line should reach
+    manual_forecasts: manually set values to use instead of doing a forecast
+    plug: Whether to make this item adjustable to balance the balance sheet
     """
     method: str = 'cagr'
     pct_of: Optional[str] = None
@@ -43,13 +49,15 @@ class ForecastItemConfig:
     cap: Optional[Union[float, pd.Series]] = None
     floor: Optional[Union[float, pd.Series]] = None
     manual_forecasts: Dict[str, List[float]] = field(default_factory=lambda: {'levels': [], 'growth': []})
+    plug: bool = False
 
     def to_series(self) -> pd.Series:
         out_dict = {
             'Method': self.method,
             '% of': self.pct_of,
             'Cap': self.cap,
-            'Floor': self.floor
+            'Floor': self.floor,
+            'Plug': self.plug,
         }
         out_dict.update(self.prophet_kwargs)
         if self.manual_forecasts['levels']:

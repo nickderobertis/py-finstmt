@@ -40,22 +40,29 @@ def get_keys_for_bs_data_items() -> List[str]:
 
 
 def print_test_data_def(stmts: FinancialStatements, data_keys: List[str], index_name: str = 'a_index',
-                         data_dict_name: str = 'a_test_data_dict') -> None:
-    _print_index_def(stmts, data_keys, index_name)
-    _print_data_dict_def(stmts, data_keys, index_name, data_dict_name)
+                         data_dict_name: str = 'a_test_data_dict', disp: bool = True) -> str:
+    out_str = _index_def(stmts, data_keys, index_name)
+    out_str += _print_data_dict_def(stmts, data_keys, index_name, data_dict_name)
+    if disp:
+        print(out_str)
+    return out_str
 
 
 def _print_data_dict_def(stmts: FinancialStatements, data_keys: List[str], index_name: str = 'a_index',
-                         data_dict_name: str = 'a_test_data_dict') -> None:
-    print(f'{data_dict_name} = dict(')
+                         data_dict_name: str = 'a_test_data_dict') -> str:
+
+    out_str = f'{data_dict_name} = dict(\n'
     for key in data_keys:
         value = getattr(stmts, key).values
         str_value = '[' + ', '.join([str(val) for val in value]) + ']'
-        print(f'\t{key}=pd.Series(\n\t\t{str_value},\n\t\tindex={index_name}\n\t),')
-    print(')')
+        out_str += f'\t{key}=pd.Series(\n\t\t{str_value},\n\t\tindex={index_name}\n\t),\n'
+    out_str += ')\n'
+    return out_str
 
 
-def _print_index_def(stmts: FinancialStatements, data_keys: List[str], index_name: str = 'a_index') -> None:
+def _index_def(stmts: FinancialStatements, data_keys: List[str], index_name: str = 'a_index') -> str:
+    out_str = ''
     index_values_str = '[' + ', '.join([f'"{val}"' for val in getattr(stmts, data_keys[0]).index]) + ']'
-    print(f'{index_name}_str = {index_values_str}')
-    print(f'{index_name} = [pd.to_datetime(val) for val in {index_name}_str]')
+    out_str += f'{index_name}_str = {index_values_str}\n'
+    out_str += f'{index_name} = [pd.to_datetime(val) for val in {index_name}_str]\n'
+    return out_str

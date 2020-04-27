@@ -21,7 +21,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'cash cash equivalents',
             'cash equivalents',
             'cash equiv',
-        ]
+        ],
+        forecast_config=ForecastItemConfig(
+            plug=True
+        )
     ),
     ItemConfig(
         'st_invest',
@@ -567,7 +570,7 @@ ItemConfig(
             'longterm borrowings total',
         ],
         forecast_config=ForecastItemConfig(
-            pct_of='total_debt'
+            plug=True
         )
     ),
     ItemConfig(
