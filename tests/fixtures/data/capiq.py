@@ -3,6 +3,7 @@ import os
 import pandas as pd
 
 from finstmt import IncomeStatements, BalanceSheets, FinancialStatements
+from finstmt.exc import MismatchingDatesException
 from tests.fixtures.data.common import DATA_PATH
 from finstmt.loaders.capiq import load_capiq_df
 
@@ -38,7 +39,14 @@ def annual_capiq_bs_stmt(annual_capiq_bs_df) -> BalanceSheets:
 
 @pytest.fixture
 def annual_capiq_stmts(annual_capiq_income_stmt, annual_capiq_bs_stmt) -> FinancialStatements:
-    stmts = FinancialStatements(annual_capiq_income_stmt, annual_capiq_bs_stmt)
+    try:
+        stmts = FinancialStatements(annual_capiq_income_stmt, annual_capiq_bs_stmt)
+    except MismatchingDatesException:
+        pass
+    else:
+        assert False
+    dates = annual_capiq_income_stmt.dates
+    stmts = FinancialStatements(annual_capiq_income_stmt, annual_capiq_bs_stmt[dates])
     return stmts
 
 

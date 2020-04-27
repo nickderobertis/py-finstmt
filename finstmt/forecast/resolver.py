@@ -14,9 +14,7 @@ from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.forecast.statements import ForecastedFinancialStatements
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
-
-if TYPE_CHECKING:
-    from finstmt.combined.statements import FinancialStatements
+from finstmt.combined.statements import FinancialStatements
 
 PLUG_SCALE = 1e11
 
@@ -28,13 +26,98 @@ PLUG_SCALE = 1e11
 # from the finance logic.
 
 
-class ForecastResolver:
+class StatementsResolver:
     solve_eqs: List[Eq]
     subs_dict: Dict[IndexedBase, float]
 
+    def __init__(self, stmts: FinancialStatements):
+        self.stmts = stmts
+
+        self.set_solve_eqs_and_full_subs_dict()
+
+    def set_solve_eqs_and_full_subs_dict(self):
+        self.solve_eqs, self.subs_dict = get_solve_eqs_and_full_subs_dict(self.all_eqs, self.sympy_subs_dict)
+
+    def to_statements(self) -> FinancialStatements:
+        if self.solve_eqs:
+            solutions_dict = solve_equations(self.solve_eqs, self.subs_dict)
+        else:
+            solutions_dict = self.subs_dict
+
+        new_results = sympy_dict_to_results_dict(
+            solutions_dict,
+            pd.DatetimeIndex(self.stmts.dates),
+            self.stmts.all_config_items
+        )
+
+        all_results = pd.concat(list(new_results.values()), axis=1).T
+        inc_df = self.stmts.income_statements.__class__.from_df(all_results, self.stmts.income_statements.config.items)
+        bs_df = self.stmts.balance_sheets.__class__.from_df(all_results, self.stmts.balance_sheets.config.items)
+
+        obj = FinancialStatements(inc_df, bs_df, calculate=False)
+        return obj
+
+    @property
+    def t(self) -> Idx:
+        return self.stmts.config.sympy_namespace['t']
+
+    @property
+    def t_indexed_eqs(self) -> List[Eq]:
+        config_managers = [
+            self.stmts.income_statements.config.items,
+            self.stmts.balance_sheets.config.items,
+        ]
+        all_eqs = []
+        for config_manage in config_managers:
+            for config in config_manage:
+                lhs = sympify(config.key + '[t]', locals=self.stmts.config.sympy_namespace)
+                if config.expr_str is not None:
+                    rhs = self.stmts.config.expr_for(config.key)
+                    eq = Eq(lhs, rhs)
+                    all_eqs.append(eq)
+        return all_eqs
+
+    @property
+    def all_eqs(self) -> List[Eq]:
+        t_eqs = self.t_indexed_eqs
+        out_eqs = []
+        subs_dict = self.sympy_subs_dict
+        for period in range(self.num_periods):
+            this_t_eqs = []
+            for eq in t_eqs:
+                period_eq = eq.subs({self.t: period})
+                if period_eq.lhs in subs_dict:
+                    # Already have data for this, no need to calculate
+                    continue
+                this_t_eqs.append(period_eq)
+            out_eqs.extend(this_t_eqs)
+        return out_eqs
+
+    @property
+    def num_periods(self) -> int:
+        return len(self.stmts.dates)
+
+    @property
+    def sympy_subs_dict(self) -> Dict[IndexedBase, float]:
+        nper = self.num_periods
+        subs_dict = {}
+        for config in self.stmts.all_config_items:
+            key = config.key
+            for period in range(nper):
+                t_key = f'{key}[{period}]'
+                lhs = sympify(t_key, locals=self.stmts.config.sympy_namespace)
+                value = getattr(self.stmts, key).iloc[period]
+                if config.expr_str is not None and value == 0:
+                    # Don't have a value but it can be calculated, calculate it by not adding to substitutions
+                    continue
+                subs_dict[lhs] = value
+        return subs_dict
+
+
+class ForecastResolver(StatementsResolver):
+
     def __init__(self, stmts: 'FinancialStatements', forecast_dict: Dict[str, Forecast],
                  results: Dict[str, pd.Series], bs_diff_max: float, balance: bool = True):
-        self.stmts = stmts
         self.forecast_dict = forecast_dict
         self.results = results
         self.bs_diff_max = bs_diff_max
@@ -45,10 +128,7 @@ class ForecastResolver:
         else:
             self.exclude_plugs = False
 
-        self.set_solve_eqs_and_full_subs_dict()
-
-    def set_solve_eqs_and_full_subs_dict(self):
-        self.solve_eqs, self.subs_dict = get_solve_eqs_and_full_subs_dict(self.all_eqs, self.sympy_subs_dict)
+        super().__init__(stmts)
 
     def resolve_balance_sheet(self):
         logger.info('Balancing balance sheet')
@@ -80,7 +160,9 @@ class ForecastResolver:
         else:
             solutions_dict = solve_equations(self.solve_eqs, self.subs_dict)
 
-        new_results = sympy_dict_to_results_dict(solutions_dict, self.forecast_dates, self.stmts.all_config_items)
+        new_results = sympy_dict_to_results_dict(
+            solutions_dict, self.forecast_dates, self.stmts.all_config_items, t_offset=1
+        )
 
         if self.balance:
             # Update forecast dict for plug values
@@ -93,7 +175,7 @@ class ForecastResolver:
 
         # type ignore added because for some reason mypy is not picking up structure
         # correctly since it is a dataclass
-        obj = ForecastedFinancialStatements(inc_df, bs_df, self.forecast_dict)  # type: ignore
+        obj = ForecastedFinancialStatements(inc_df, bs_df, forecasts=self.forecast_dict, calculate=False)  # type: ignore
         return obj
 
     @property
@@ -137,10 +219,6 @@ class ForecastResolver:
     @property
     def forecast_dates(self) -> pd.DatetimeIndex:
         return list(self.results.values())[0].index
-
-    @property
-    def t(self) -> Idx:
-        return self.stmts.config.sympy_namespace['t']
 
     @property
     def sympy_subs_dict(self) -> Dict[IndexedBase, float]:
@@ -236,6 +314,7 @@ def sympy_dict_to_results_dict(
     s_dict: Dict[IndexedBase, float],
     forecast_dates: pd.DatetimeIndex,
     item_configs: List[ItemConfig],
+    t_offset: int = 0
 ) -> Dict[str, pd.Series]:
     item_config_dict: Dict[str, ItemConfig] = {config.key: config for config in item_configs}
     new_results = {}
@@ -249,7 +328,7 @@ def sympy_dict_to_results_dict(
         new_results[key] = pd.Series(index=forecast_dates, dtype='float', name=config.primary_name)
     for expr, val in s_dict.items():
         key = str(expr.base)
-        t = int(expr.indices[0]) - 1
+        t = int(expr.indices[0]) - t_offset
         if t < 0:
             # Don't need to store historical results
             continue

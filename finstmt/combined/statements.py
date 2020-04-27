@@ -30,9 +30,22 @@ class FinancialStatements:
     """
     income_statements: IncomeStatements
     balance_sheets: BalanceSheets
+    calculate: bool = True
 
 
     def __post_init__(self):
+        from finstmt.forecast.resolver import StatementsResolver
+
+        self._create_config_from_statements()
+
+        if self.calculate:
+            resolver = StatementsResolver(self)
+            new_stmts = resolver.to_statements()
+            self.income_statements = new_stmts.income_statements
+            self.balance_sheets = new_stmts.balance_sheets
+            self._create_config_from_statements()
+
+    def _create_config_from_statements(self):
         config_dict = {}
         config_dict['income_statements'] = self.income_statements.config
         config_dict['balance_sheets'] = self.balance_sheets.config

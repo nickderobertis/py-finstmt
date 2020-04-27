@@ -8,6 +8,7 @@ from finstmt.config_manage.base import ConfigManagerBase
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.exc import NoSuchItemException
 from finstmt.items.config import ItemConfig
+from finstmt.logger import logger
 
 
 @dataclass
@@ -22,9 +23,11 @@ class StatementConfigManager(ConfigManagerBase):
         """
         For internal use, get the config as well as the key of the financial statement type it belongs to
         """
-        for manager in self.config_managers.values():
+        for date, manager in self.config_managers.items():
             try:
-                return manager.get(item_key)
+                conf = manager.get(item_key)
+                logger.debug(f'Got config for {item_key} from {date}')
+                return conf
             except KeyError:
                 continue
         raise NoSuchItemException(item_key)
@@ -34,8 +37,9 @@ class StatementConfigManager(ConfigManagerBase):
         Set entire configuration for item by key. Needs to handle setting the value in each individual
         data config manager
         """
-        for manager in self.config_managers.values():
+        for date, manager in self.config_managers.items():
             manager.set(item_key, config)
+            logger.debug(f'Set config for {item_key} for {date}')
 
     @property
     def sympy_namespace(self) -> Dict[str, IndexedBase]:
