@@ -56,7 +56,8 @@ class ForecastItemConfig:
             'Method': self.method,
             '% of': self.pct_of,
             'Cap': self.cap,
-            'Floor': self.floor
+            'Floor': self.floor,
+            'Plug': self.plug,
         }
         out_dict.update(self.prophet_kwargs)
         if self.manual_forecasts['levels']:
