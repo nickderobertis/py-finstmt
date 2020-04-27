@@ -26,11 +26,17 @@ class ForecastResolver:
     subs_dict: Optional[Dict[IndexedBase, float]] = None
 
     def __init__(self, stmts: 'FinancialStatements', forecast_dict: Dict[str, Forecast],
-                 results: Dict[str, pd.Series], bs_diff_max: float):
+                 results: Dict[str, pd.Series], bs_diff_max: float, balance: bool = True):
         self.stmts = stmts
         self.forecast_dict = forecast_dict
         self.results = results
         self.bs_diff_max = bs_diff_max
+        self.balance = balance
+
+        if balance:
+            self.exclude_plugs = True
+        else:
+            self.exclude_plugs = False
 
         self.set_solve_eqs_and_full_subs_dict()
 
@@ -62,12 +68,17 @@ class ForecastResolver:
         return solutions_dict
 
     def to_statements(self) -> ForecastedFinancialStatements:
-        solutions_dict = self.resolve_balance_sheet()
+        if self.balance:
+            solutions_dict = self.resolve_balance_sheet()
+        else:
+            solutions_dict = solve_equations(self.solve_eqs, self.subs_dict)
+
         new_results = sympy_dict_to_results_dict(solutions_dict, self.forecast_dates, self.stmts.all_config_items)
 
-        # Update forecast dict for plug values
-        for config in self.plug_configs:
-            self.forecast_dict[config.key].to_manual(use_levels=True, replacements=new_results[config.key].values)
+        if self.balance:
+            # Update forecast dict for plug values
+            for config in self.plug_configs:
+                self.forecast_dict[config.key].to_manual(use_levels=True, replacements=new_results[config.key].values)
 
         all_results = pd.concat(list(new_results.values()), axis=1).T
         inc_df = self.stmts.income_statements.__class__.from_df(all_results, self.stmts.income_statements.config.items)
@@ -149,7 +160,7 @@ class ForecastResolver:
                 else:
                     # period 1 or later, forecasted period, get from forecast results
                     # If it is a plug item, don't get forecasted values
-                    if config.forecast_config.plug:
+                    if self.exclude_plugs and config.forecast_config.plug:
                         continue
                     try:
                         series = self.results[key]
@@ -238,7 +249,7 @@ def sympy_dict_to_results_dict(
         if key not in new_results:
             # Pct of item, skip it, don't need in final results
             continue
-        new_results[key].iloc[t] = val
+        new_results[key].iloc[t] = float(val)
     return new_results
 
 

@@ -127,6 +127,11 @@ class FinancialStatements:
         else:
             bs_diff_max = ForecastConfig.bs_diff_max
 
+        if 'balance' in kwargs:
+            balance = kwargs['balance']
+        else:
+            balance = ForecastConfig.balance
+
         self._validate_dates()
 
         all_forecast_dict = {}
@@ -136,7 +141,7 @@ class FinancialStatements:
             all_forecast_dict.update(forecast_dict)
             all_results.update(results)
 
-        resolver = ForecastResolver(self, all_forecast_dict, all_results, bs_diff_max)
+        resolver = ForecastResolver(self, all_forecast_dict, all_results, bs_diff_max, balance=balance)
         obj = resolver.to_statements()
 
         return obj

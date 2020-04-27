@@ -10,6 +10,7 @@ from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
 from tests.expectdata.forecast.fcst_capiq_cat_annual import FCST_CAPIQ_CAT_A_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_capiq_cat_quarterly import FCST_CAPIQ_CAT_Q_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_cat_annual import STOCKROW_FCST_CAT_A_INDEX_DATA_DICT
+from tests.expectdata.forecast.fcst_stockrow_cat_annual_no_balance import FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_cat_quarterly import STOCKROW_FCST_CAT_Q_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_mar_annual import FCST_STOCKROW_MAR_A_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_mar_quarterly import FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT
@@ -104,6 +105,11 @@ class TestForecastStockrowCAT(ForecastTest):
 
     def test_annual(self, annual_stockrow_stmts_cat: FinancialStatements):
         super().test_annual(annual_stockrow_stmts_cat)
+
+    def test_annual_no_balance(self, annual_stockrow_stmts_cat: FinancialStatements):
+        super().test_annual(
+            annual_stockrow_stmts_cat, data=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT, balance=False
+        )
 
     def test_quarterly(self, quarterly_stockrow_stmts_cat: FinancialStatements):
         super().test_quarterly(quarterly_stockrow_stmts_cat)
