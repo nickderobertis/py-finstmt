@@ -65,6 +65,10 @@ class ForecastResolver:
         solutions_dict = self.resolve_balance_sheet()
         new_results = sympy_dict_to_results_dict(solutions_dict, self.forecast_dates, self.stmts.all_config_items)
 
+        # Update forecast dict for plug values
+        for config in self.plug_configs:
+            self.forecast_dict[config.key].to_manual(use_levels=True, replacements=new_results[config.key].values)
+
         all_results = pd.concat(list(new_results.values()), axis=1).T
         inc_df = self.stmts.income_statements.__class__.from_df(all_results, self.stmts.income_statements.config.items)
         bs_df = self.stmts.balance_sheets.__class__.from_df(all_results, self.stmts.balance_sheets.config.items)
