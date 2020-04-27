@@ -22,8 +22,8 @@ PLUG_SCALE = 1e11
 
 
 class ForecastResolver:
-    solve_eqs: Optional[List[Eq]] = None
-    subs_dict: Optional[Dict[IndexedBase, float]] = None
+    solve_eqs: List[Eq]
+    subs_dict: Dict[IndexedBase, float]
 
     def __init__(self, stmts: 'FinancialStatements', forecast_dict: Dict[str, Forecast],
                  results: Dict[str, pd.Series], bs_diff_max: float, balance: bool = True):
