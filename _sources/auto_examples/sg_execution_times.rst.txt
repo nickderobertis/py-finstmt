@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:50.741** total execution time for **auto_examples** files:
+**00:48.329** total execution time for **auto_examples** files:
 
 +-------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_manipulating_statements.py` (``manipulating_statements.py``) | 00:26.499 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_manipulating_statements.py` (``manipulating_statements.py``) | 00:25.135 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_forecasting.py` (``forecasting.py``)                         | 00:24.242 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_forecasting.py` (``forecasting.py``)                         | 00:23.194 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
