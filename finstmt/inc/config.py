@@ -40,6 +40,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
     ItemConfig(
         'gross_profit',
         'Gross Profit',
+        force_positive=False,
         expr_str='revenue[t] - cogs[t]'
     ),
     ItemConfig(
@@ -177,6 +178,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'op inc',
             'operating inc'
         ],
+        force_positive=False,
         forecast_config=ForecastItemConfig(
             make_forecast=False
         ),
@@ -305,6 +307,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'earn before tax incl unusual items',
             'earn before taxes incl unusual items',
         ],
+        force_positive=False,
         forecast_config=ForecastItemConfig(
             make_forecast=False
         ),
@@ -339,6 +342,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'earnings',
             'earn',
         ],
+        force_positive=False,
         forecast_config=ForecastItemConfig(
             make_forecast=False
         ),
