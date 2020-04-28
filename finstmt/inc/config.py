@@ -329,6 +329,13 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'income tax expenses',
             'income tax exp',
         ],
+        # TODO: better handling for income tax expense sign
+        #
+        # This item can be reported as a negative for a positive expense, so previously
+        # had it as forcing positive. But also there can truly be negative expenses if
+        # EBT is negative. Handle determination of whether should be forced positive
+        # based on the EBT value.
+        force_positive=False,
         forecast_config=ForecastItemConfig(
             pct_of='ebt'
         )
