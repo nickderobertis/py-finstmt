@@ -12,7 +12,7 @@ class ForecastConfig:
     balance: bool = True
 
     # TODO [#45]: after handling units, adjust default allowed BS difference for units
-    bs_diff_max = 10000
+    bs_diff_max: float = 10000
 
     def __post_init__(self):
         if self.freq.casefold() == 'y':

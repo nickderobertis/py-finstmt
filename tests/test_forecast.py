@@ -111,6 +111,11 @@ class TestForecastStockrowCAT(ForecastTest):
             annual_stockrow_stmts_cat, data=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT, balance=False
         )
 
+    def test_annual_change_bs_diff(self, annual_stockrow_stmts_cat: FinancialStatements):
+        super().test_annual(
+            annual_stockrow_stmts_cat, bs_diff_max=100000
+        )
+
     def test_quarterly(self, quarterly_stockrow_stmts_cat: FinancialStatements):
         super().test_quarterly(quarterly_stockrow_stmts_cat)
 
