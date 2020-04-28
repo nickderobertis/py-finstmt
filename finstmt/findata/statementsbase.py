@@ -152,9 +152,9 @@ class FinStatementsBase:
         logger.info(f'Forecasting {self.statement_name}')
         item: ItemConfig
         for item in tqdm(self.config.items):
-            if item.expr_str is not None or not item.forecast_config.make_forecast:
-                # If calculated, skip the forecast
+            if not item.forecast_config.make_forecast:
                 # If user set to skip the forecast, skip it as well
+                # By default, all calculated items will be skipped
                 continue
             data = getattr(statements, item.key)
             pct_of_series = None

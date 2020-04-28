@@ -67,7 +67,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'cash shortterm invest',
             'cash short term invest',
         ],
-        expr_str='cash[t] + st_invest[t]'
+        expr_str='cash[t] + st_invest[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'receivables',
@@ -148,7 +151,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'total current assets',
             'tca',
         ],
-        expr_str='cash_and_st_invest[t] + receivables[t] + inventory[t] + def_tax_st[t] + other_current_assets[t]'
+        expr_str='cash_and_st_invest[t] + receivables[t] + inventory[t] + def_tax_st[t] + other_current_assets[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'gross_ppe',
@@ -196,7 +202,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'net property plant equipment',
             'net property plant and equipment',
         ],
-        expr_str='gross_ppe[t] - dep[t]'
+        expr_str='gross_ppe[t] - dep[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'goodwill',
@@ -292,7 +301,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'total longterm assets',
             'total long term assets'
         ],
-        expr_str='net_ppe[t] + goodwill[t] + lt_invest[t] + def_tax_lt[t] + other_lt_assets[t]'
+        expr_str='net_ppe[t] + goodwill[t] + lt_invest[t] + def_tax_lt[t] + other_lt_assets[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'total_assets',
@@ -303,7 +315,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'assets',
             'asset'
         ],
-        expr_str='total_current_assets[t] + total_non_current_assets[t]'
+        expr_str='total_current_assets[t] + total_non_current_assets[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'payables',
@@ -544,7 +559,10 @@ ItemConfig(
         extract_names=[
             'total current liabilities',
         ],
-        expr_str='payables[t] + st_debt[t] + tax_liab_st[t] + current_lt_debt[t] + other_current_liab[t]'
+        expr_str='payables[t] + st_debt[t] + tax_liab_st[t] + current_lt_debt[t] + other_current_liab[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'lt_debt',
@@ -579,7 +597,10 @@ ItemConfig(
         extract_names=[
             'total debt'
         ],
-        expr_str='st_debt[t] + lt_debt[t]'
+        expr_str='st_debt[t] + lt_debt[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'deferred_rev',
@@ -940,7 +961,10 @@ ItemConfig(
             'total non current liab',
             'total noncurrent liab',
         ],
-        expr_str='lt_debt[t] + deferred_rev[t] + tax_liab_lt[t] + deposit_liab[t] + other_lt_liab[t]'
+        expr_str='lt_debt[t] + deferred_rev[t] + tax_liab_lt[t] + deposit_liab[t] + other_lt_liab[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'total_liab',
@@ -950,7 +974,10 @@ ItemConfig(
             'total liability',
             'total liabilities',
         ],
-        expr_str='total_non_current_liab[t] + total_current_liab[t]'
+        expr_str='total_non_current_liab[t] + total_current_liab[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'common_stock',
@@ -1039,7 +1066,10 @@ ItemConfig(
             'shareholders equity',
             'stockholders equity',
         ],
-        expr_str='other_income[t] + retained_earnings[t] + common_stock[t] + minority_interest[t]'
+        expr_str='other_income[t] + retained_earnings[t] + common_stock[t] + minority_interest[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'total_liab_and_equity',
@@ -1054,6 +1084,9 @@ ItemConfig(
             'liabilities equity',
             'liab equity',
         ],
-        expr_str='total_liab[t] + total_equity[t]'
+        expr_str='total_liab[t] + total_equity[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     )
 ]

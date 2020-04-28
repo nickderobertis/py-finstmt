@@ -40,7 +40,10 @@ INCOME_STATEMENT_INPUT_ITEMS = [
     ItemConfig(
         'gross_profit',
         'Gross Profit',
-        expr_str='revenue[t] - cogs[t]'
+        expr_str='revenue[t] - cogs[t]',
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
     ),
     ItemConfig(
         'rd_exp',

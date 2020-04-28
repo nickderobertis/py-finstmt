@@ -104,7 +104,7 @@ class ForecastResolver(ResolverBase):
         for config_manage in config_managers:
             for config in config_manage:
                 lhs = sympify(config.key + '[t]', locals=self.stmts.config.sympy_namespace)
-                if config.expr_str is not None:
+                if config.expr_str is not None and not config.forecast_config.make_forecast:
                     rhs = self.stmts.config.expr_for(config.key)
                 elif config.forecast_config.pct_of is not None:
                     key_pct_of_key = _key_pct_of_key(config.key, config.forecast_config.pct_of)
