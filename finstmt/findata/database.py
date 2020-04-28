@@ -1,6 +1,6 @@
 from copy import deepcopy
 import warnings
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Union, Sequence, cast
 
 import pandas as pd
@@ -10,6 +10,7 @@ from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.exc import CouldNotParseException
 from finstmt.items.config import ItemConfig
+from finstmt.logger import logger
 
 
 @dataclass
@@ -19,6 +20,7 @@ class FinDataBase:
     """
     items_config: Union[List[ItemConfig], DataConfigManager]
     prior_statement: Optional['FinDataBase'] = None
+    unextracted_names: List[str] = field(default_factory=lambda: [])
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
@@ -33,14 +35,6 @@ class FinDataBase:
                     continue
                 positive_value = abs(value)
                 setattr(self, item.key, positive_value)
-        subs_dict = self.get_sympy_subs_dict()
-        for config in self.items_config:
-            item_value = getattr(self, config.key)
-            if item_value is None and config.expr_str is not None:
-                # Got a calculated item which has no value from the data, need to calculate
-                expr = self.items_config.expr_for(config.key)
-                eval_expr = expr.subs(subs_dict)
-                setattr(self, config.key, float(eval_expr))
 
     def _repr_html_(self):
         series = self.to_series()
@@ -58,6 +52,7 @@ class FinDataBase:
         data_dict: Dict[str, Union[float, 'FinDataBase']] = {}
         extracted_name_dict: Dict[str, str] = {}
         original_name_dict: Dict[str, str] = {}
+        unextracted_names: List[str] = []
 
         if prior_statement is not None:
             data_dict['prior_statement'] = prior_statement
@@ -92,10 +87,12 @@ class FinDataBase:
                     data_dict[item_config.key] = for_lookup[name]
                     extracted_name_dict[item_config.key] = name
                     original_name_dict[item_config.key] = orig_name
+            if name not in extracted_name_dict.values():
+                unextracted_names.append(orig_name)
         if not data_dict:
             raise CouldNotParseException('Passed Series did not have any statement items in the index. '
                                          'Got index:', series.index)
-        return cls(**data_dict, items_config=items_config)
+        return cls(**data_dict, items_config=items_config, unextracted_names=unextracted_names)
 
     def to_series(self) -> pd.Series:
         data_dict = {}

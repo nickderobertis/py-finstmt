@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import List, Dict, Tuple, Optional, Sequence
 
 from scipy.optimize import minimize
-from sympy import Eq, sympify, IndexedBase
+from sympy import Eq, sympify, IndexedBase, Expr
 import pandas as pd
 import numpy as np
 from sympy.core.numbers import NaN
@@ -82,8 +82,12 @@ class ForecastResolver(ResolverBase):
                 self.forecast_dict[config.key].to_manual(use_levels=True, replacements=new_results[config.key].values)
 
         all_results = pd.concat(list(new_results.values()), axis=1).T
-        inc_df = self.stmts.income_statements.__class__.from_df(all_results, self.stmts.income_statements.config.items)
-        bs_df = self.stmts.balance_sheets.__class__.from_df(all_results, self.stmts.balance_sheets.config.items)
+        inc_df = self.stmts.income_statements.__class__.from_df(
+            all_results, self.stmts.income_statements.config.items, disp_unextracted=False
+        )
+        bs_df = self.stmts.balance_sheets.__class__.from_df(
+            all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
+        )
 
         # type ignore added because for some reason mypy is not picking up structure
         # correctly since it is a dataclass
@@ -100,7 +104,7 @@ class ForecastResolver(ResolverBase):
         for config_manage in config_managers:
             for config in config_manage:
                 lhs = sympify(config.key + '[t]', locals=self.stmts.config.sympy_namespace)
-                if config.expr_str is not None:
+                if config.expr_str is not None and not config.forecast_config.make_forecast:
                     rhs = self.stmts.config.expr_for(config.key)
                 elif config.forecast_config.pct_of is not None:
                     key_pct_of_key = _key_pct_of_key(config.key, config.forecast_config.pct_of)
@@ -211,6 +215,7 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
             solve_exprs.append(expr)
             to_solve_for.append(lhs)
     to_solve_for = list(set(to_solve_for))
+    _check_for_invalid_system_of_equations(eqs, subs_dict, plug_solutions, to_solve_for, solve_exprs)
     eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)
 
     result = PlugResult()
@@ -276,3 +281,27 @@ def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, 
 
 class BalanceSheetBalancedException(Exception):
     pass
+
+
+def _check_for_invalid_system_of_equations(eqs: List[Eq], subs_dict: Dict[IndexedBase, float],
+                                           plug_solutions: Dict[IndexedBase, float],
+                                           to_solve_for: List[IndexedBase], solve_exprs: List[Expr]):
+    if len(to_solve_for) == len(solve_exprs):
+        # Equations seem valid, just return
+        return
+
+    # Invalid equations, figure out why
+    eq_lhs = {eq.lhs for eq in eqs}
+    subs_lhs = {key for key in subs_dict}
+    plugs_lhs = {key for key in plug_solutions}
+    message = f'Got {len(to_solve_for)} items to solve for with {len(solve_exprs)} equations. '
+    eq_subs_overlap = eq_lhs.intersection(subs_lhs)
+    if eq_subs_overlap:
+        message += f'Got {eq_subs_overlap} which overlap between the equations and the calculated values. '
+    eq_plugs_overlap = eq_lhs.intersection(plugs_lhs)
+    if eq_plugs_overlap:
+        message += f'Got {eq_plugs_overlap} which overlap between the equations and the plug values. '
+    subs_plugs_overlap = subs_lhs.intersection(plugs_lhs)
+    if subs_plugs_overlap:
+        message += f'Got {subs_plugs_overlap} which overlap between the calculated values and the plug values. '
+    raise InvalidForecastEquationException(message)

@@ -81,7 +81,7 @@ class FinStatementsBase:
             all_series.append(series)
         df = pd.concat(all_series, axis=1)
 
-        return self.from_df(df)
+        return self.from_df(df, disp_unextracted=False)
 
     def __dir__(self):
         normal_attrs = [
@@ -93,7 +93,8 @@ class FinStatementsBase:
         return normal_attrs + item_attrs
 
     @classmethod
-    def from_df(cls, df: pd.DataFrame, items_config: Optional[Sequence[ItemConfig]] = None):
+    def from_df(cls, df: pd.DataFrame, items_config: Optional[Sequence[ItemConfig]] = None,
+                disp_unextracted: bool = True):
         """
         DataFrame must have columns as dates and index as names of financial statement items
         """
@@ -109,6 +110,15 @@ class FinStatementsBase:
                                               df.index)
             statement_date = pd.to_datetime(col)
             statements_dict[statement_date] = statement
+
+        if disp_unextracted:
+            # Warn about unextracted names
+            all_unextracted_names = set()
+            for stmt_data in statements_dict.values():
+                all_unextracted_names.update(stmt_data.unextracted_names)
+            if all_unextracted_names:
+                logger.info(f'Was not able to extract data from the following names: {all_unextracted_names}')
+
         return cls(statements_dict)
 
     def to_df(self) -> pd.DataFrame:
@@ -142,9 +152,9 @@ class FinStatementsBase:
         logger.info(f'Forecasting {self.statement_name}')
         item: ItemConfig
         for item in tqdm(self.config.items):
-            if item.expr_str is not None or not item.forecast_config.make_forecast:
-                # If calculated, skip the forecast
+            if not item.forecast_config.make_forecast:
                 # If user set to skip the forecast, skip it as well
+                # By default, all calculated items will be skipped
                 continue
             data = getattr(statements, item.key)
             pct_of_series = None
@@ -192,7 +202,7 @@ class FinStatementsBase:
         # TODO [#42]: combined statements retain only item config of first statements
         #
         # Think about the best way to handle this. This applies to all math dunder methods.
-        new_statements = type(self).from_df(new_df, self.config.items)
+        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
         return new_statements
 
     def __radd__(self, other):
@@ -206,7 +216,7 @@ class FinStatementsBase:
         else:
             raise NotImplementedError(f'cannot multiply type {type(other)} to type {type(self)}')
 
-        new_statements = type(self).from_df(new_df, self.config.items)
+        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
         return new_statements
 
     def __rmul__(self, other):
@@ -220,7 +230,7 @@ class FinStatementsBase:
         else:
             raise NotImplementedError(f'cannot subtract type {type(other)} to type {type(self)}')
 
-        new_statements = type(self).from_df(new_df, self.config.items)
+        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
         return new_statements
 
     def __rsub__(self, other):
@@ -234,7 +244,7 @@ class FinStatementsBase:
         else:
             raise NotImplementedError(f'cannot divide type {type(other)} to type {type(self)}')
 
-        new_statements = type(self).from_df(new_df, self.config.items)
+        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
         return new_statements
 
     def __rtruediv__(self, other):
@@ -243,7 +253,7 @@ class FinStatementsBase:
         else:
             raise NotImplementedError(f'cannot divide type {type(other)} to type {type(self)}')
 
-        new_statements = type(self).from_df(new_df, self.config.items)
+        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
         return new_statements
 
 
