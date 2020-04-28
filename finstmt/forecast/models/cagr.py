@@ -24,6 +24,12 @@ class CAGRModel(ForecastModel):
             warnings.warn(message)
             self.cagr = 0
             self.stderr = 0
+        elif y_0 < 0:
+            message = f'CAGR not an appropriate method for {self.base_config.display_name} ' \
+                      f'as y_0 is negative. Setting to 0 growth'
+            warnings.warn(message)
+            self.cagr = 0
+            self.stderr = 0
         else:
             n = len(series)
             self.cagr = (y_T / y_0) ** (1 / n) - 1
