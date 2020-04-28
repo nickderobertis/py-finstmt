@@ -35,14 +35,6 @@ class FinDataBase:
                     continue
                 positive_value = abs(value)
                 setattr(self, item.key, positive_value)
-        subs_dict = self.get_sympy_subs_dict()
-        for config in self.items_config:
-            item_value = getattr(self, config.key)
-            if item_value is None and config.expr_str is not None:
-                # Got a calculated item which has no value from the data, need to calculate
-                expr = self.items_config.expr_for(config.key)
-                eval_expr = expr.subs(subs_dict)
-                setattr(self, config.key, float(eval_expr))
 
     def _repr_html_(self):
         series = self.to_series()
