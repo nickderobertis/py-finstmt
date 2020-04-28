@@ -64,7 +64,7 @@ LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
 		index=LOAD_CAPIQ_CAT_A_INDEX
 	),
 	net_income=pd.Series(
-		[2452.0, 2512.0, 67.0, 754.0, 6147.0],
+		[2452.0, 2512.0, -67.0, 754.0, 6147.0],
 		index=LOAD_CAPIQ_CAT_A_INDEX
 	),
 	cash=pd.Series(
