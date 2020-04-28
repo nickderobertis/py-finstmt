@@ -40,6 +40,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
     ItemConfig(
         'gross_profit',
         'Gross Profit',
+        force_positive=False,
         expr_str='revenue[t] - cogs[t]',
         forecast_config=ForecastItemConfig(
             make_forecast=False,
@@ -196,6 +197,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'op inc',
             'operating inc'
         ],
+        force_positive=False,
         forecast_config=ForecastItemConfig(
             make_forecast=False
         ),
@@ -328,6 +330,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'income pretax',
             'income pre tax',
         ],
+        force_positive=False,
         forecast_config=ForecastItemConfig(
             make_forecast=False
         ),
@@ -349,6 +352,13 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'income tax expenses',
             'income tax exp',
         ],
+        # TODO: better handling for income tax expense sign
+        #
+        # This item can be reported as a negative for a positive expense, so previously
+        # had it as forcing positive. But also there can truly be negative expenses if
+        # EBT is negative. Handle determination of whether should be forced positive
+        # based on the EBT value.
+        force_positive=False,
         forecast_config=ForecastItemConfig(
             pct_of='ebt'
         )
@@ -362,6 +372,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'earnings',
             'earn',
         ],
+        force_positive=False,
         forecast_config=ForecastItemConfig(
             make_forecast=False
         ),

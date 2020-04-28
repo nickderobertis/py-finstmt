@@ -9,9 +9,9 @@ from finstmt.exc import MismatchingDatesException
 from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
 from tests.expectdata.forecast.fcst_capiq_cat_annual import FCST_CAPIQ_CAT_A_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_capiq_cat_quarterly import FCST_CAPIQ_CAT_Q_INDEX_DATA_DICT
-from tests.expectdata.forecast.fcst_stockrow_cat_annual import STOCKROW_FCST_CAT_A_INDEX_DATA_DICT
+from tests.expectdata.forecast.fcst_stockrow_cat_annual import FCST_STOCKROW_CAT_A_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_cat_annual_no_balance import FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT
-from tests.expectdata.forecast.fcst_stockrow_cat_quarterly import STOCKROW_FCST_CAT_Q_INDEX_DATA_DICT
+from tests.expectdata.forecast.fcst_stockrow_cat_quarterly import FCST_STOCKROW_CAT_Q_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_mar_annual import FCST_STOCKROW_MAR_A_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_mar_quarterly import FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT
 from tests.test_load import LoadTest
@@ -56,8 +56,8 @@ class ForecastTest(LoadTest):
 
 class TestForecastStockrowCAT(ForecastTest):
     name = 'fcst_stockrow_cat'
-    q_test_data_dict = STOCKROW_FCST_CAT_Q_INDEX_DATA_DICT
-    a_test_data_dict = STOCKROW_FCST_CAT_A_INDEX_DATA_DICT
+    q_test_data_dict = FCST_STOCKROW_CAT_Q_INDEX_DATA_DICT
+    a_test_data_dict = FCST_STOCKROW_CAT_A_INDEX_DATA_DICT
     a_adjust_dict = q_adjust_dict = dict(
         trend=[
             'cogs',
