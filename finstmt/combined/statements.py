@@ -163,7 +163,7 @@ class FinancialStatements:
     def forecast_assumptions(self) -> pd.DataFrame:
         all_series = []
         for config in self.all_config_items:
-            if config.extract_names is None or not config.forecast_config.make_forecast:
+            if config.expr_str is not None or not config.forecast_config.make_forecast:
                 continue
             config_series = config.forecast_config.to_series()
             config_series.name = config.display_name
