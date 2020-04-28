@@ -392,7 +392,7 @@ BALANCE_SHEET_INPUT_ITEMS = [
             pct_of='total_debt'
         )
     ),
-ItemConfig(
+    ItemConfig(
         'tax_liab_st',
         'Tax Liabilities, Short-Term',
         extract_names=[
@@ -1011,6 +1011,7 @@ ItemConfig(
             'retained earnings deficit',
             're deficit'
         ],
+        force_positive=False,
         # TODO [#4]: forecast of retained earnings should be calculated
         #
         # Should be a calculation of retained_earnings[t-1] + net income[t] - dividends[t]
