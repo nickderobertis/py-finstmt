@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast.config &mdash; finstmt 0.6.0 documentation</title>
+  <title>finstmt.forecast.config &mdash; finstmt 0.6.1 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.6.0
+                0.6.1
               </div>
             
           
@@ -177,8 +177,8 @@
     <span class="n">prophet_kwargs</span><span class="p">:</span>  <span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{})</span>
     <span class="n">balance</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="c1"># TODO: after handling units, adjust default allowed BS difference for units</span>
-    <span class="n">bs_diff_max</span> <span class="o">=</span> <span class="mi">10000</span>
+    <span class="c1"># TODO [#45]: after handling units, adjust default allowed BS difference for units</span>
+    <span class="n">bs_diff_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10000</span>
 
     <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>

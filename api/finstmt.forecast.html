@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast package &mdash; finstmt 0.6.0 documentation</title>
+  <title>finstmt.forecast package &mdash; finstmt 0.6.1 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.6.0
+                0.6.1
               </div>
             
           
@@ -220,11 +220,11 @@
 <span id="finstmt-forecast-config-module"></span><h2>finstmt.forecast.config module<a class="headerlink" href="#module-finstmt.forecast.config" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="finstmt.forecast.config.ForecastConfig">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastConfig</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">balance: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastConfig</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">balance: bool = True</em>, <em class="sig-param">bs_diff_max: float = 10000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.forecast.config.ForecastConfig.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">balance: bool = True</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">periods: int = 5</em>, <em class="sig-param">freq: str = 'Y'</em>, <em class="sig-param">prophet_kwargs: dict = &lt;factory&gt;</em>, <em class="sig-param">balance: bool = True</em>, <em class="sig-param">bs_diff_max: float = 10000</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -239,7 +239,7 @@
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.config.ForecastConfig.bs_diff_max">
-<code class="sig-name descname">bs_diff_max</code><em class="property"> = 10000</em><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.bs_diff_max" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">bs_diff_max</code><em class="property">: float</em><em class="property"> = 10000</em><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.bs_diff_max" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
