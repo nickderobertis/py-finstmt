@@ -222,6 +222,10 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'goodwill intangible assets total',
             'goodwill intangibles total',
         ]
+        # TODO: need to be able to extract from multiple items at once
+        #
+        # Morningstar financial statements have Goodwill and then Intangibles other than Goodwill,
+        # both of those should be coming into the Goodwill and Intagible Assets variable.
     ),
     ItemConfig(
         'lt_invest',
@@ -326,7 +330,23 @@ BALANCE_SHEET_INPUT_ITEMS = [
         extract_names=[
             'payables',
             'accounts payable',
-            'ap'
+            'ap',
+            'payables and accrued expenses',
+            'payables and accrued expense',
+            'payable and accrued expenses',
+            'payable and accrued expense',
+            'payables and acc expenses',
+            'payables and acc expense',
+            'payable and acc expenses',
+            'payable and acc expense',
+            'payables and accrued exps',
+            'payables and accrued exp',
+            'payable and accrued exps',
+            'payable and accrued exp',
+            'payables and acc exps',
+            'payables and acc exp',
+            'payable and acc exps',
+            'payable and acc exp',
         ],
         forecast_config=ForecastItemConfig(
             pct_of='revenue'

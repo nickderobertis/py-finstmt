@@ -136,6 +136,22 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'other op expenses inc',
             'other op expense inc',
             'other op exp inc',
+            'other income expenses',
+            'other income expense',
+            'other income exps',
+            'other income exp',
+            'other inc expenses',
+            'other inc expense',
+            'other inc exps',
+            'other inc exp',
+            'other expenses income',
+            'other expense income',
+            'other exps income',
+            'other exp income',
+            'other expenses inc',
+            'other expense inc',
+            'other exps inc',
+            'other exp inc',
         ]
     ),
     ItemConfig(
@@ -307,6 +323,10 @@ INCOME_STATEMENT_INPUT_ITEMS = [
             'earnings before tax incl unusual items',
             'earn before tax incl unusual items',
             'earn before taxes incl unusual items',
+            'pretax income',
+            'pre tax income',
+            'income pretax',
+            'income pre tax',
         ],
         forecast_config=ForecastItemConfig(
             make_forecast=False
