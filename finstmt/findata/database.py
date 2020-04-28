@@ -1,6 +1,6 @@
 from copy import deepcopy
 import warnings
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Union, Sequence, cast
 
 import pandas as pd
@@ -10,6 +10,7 @@ from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.exc import CouldNotParseException
 from finstmt.items.config import ItemConfig
+from finstmt.logger import logger
 
 
 @dataclass
@@ -19,6 +20,7 @@ class FinDataBase:
     """
     items_config: Union[List[ItemConfig], DataConfigManager]
     prior_statement: Optional['FinDataBase'] = None
+    unextracted_names: List[str] = field(default_factory=lambda: [])
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
@@ -58,6 +60,7 @@ class FinDataBase:
         data_dict: Dict[str, Union[float, 'FinDataBase']] = {}
         extracted_name_dict: Dict[str, str] = {}
         original_name_dict: Dict[str, str] = {}
+        unextracted_names: List[str] = []
 
         if prior_statement is not None:
             data_dict['prior_statement'] = prior_statement
@@ -92,10 +95,12 @@ class FinDataBase:
                     data_dict[item_config.key] = for_lookup[name]
                     extracted_name_dict[item_config.key] = name
                     original_name_dict[item_config.key] = orig_name
+            if name not in extracted_name_dict.values():
+                unextracted_names.append(orig_name)
         if not data_dict:
             raise CouldNotParseException('Passed Series did not have any statement items in the index. '
                                          'Got index:', series.index)
-        return cls(**data_dict, items_config=items_config)
+        return cls(**data_dict, items_config=items_config, unextracted_names=unextracted_names)
 
     def to_series(self) -> pd.Series:
         data_dict = {}

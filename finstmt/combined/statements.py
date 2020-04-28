@@ -227,9 +227,13 @@ def _combine_statements(statements: FinancialStatements,
                         func: Callable) -> Tuple[IncomeStatements, BalanceSheets]:
     if isinstance(other_statements, (float, int)):
         new_inc_df = func(statements.income_statements.df, other_statements)
-        new_inc = IncomeStatements.from_df(new_inc_df, statements.income_statements.config.items)
+        new_inc = IncomeStatements.from_df(
+            new_inc_df, statements.income_statements.config.items, disp_unextracted=False
+        )
         new_bs_df = func(statements.balance_sheets.df, other_statements)
-        new_bs = BalanceSheets.from_df(new_bs_df, statements.balance_sheets.config.items)
+        new_bs = BalanceSheets.from_df(
+            new_bs_df, statements.balance_sheets.config.items, disp_unextracted=False
+        )
     elif isinstance(other_statements, FinancialStatements):
         new_inc = func(statements.income_statements, other_statements.income_statements)
         new_bs = func(statements.balance_sheets, other_statements.balance_sheets)

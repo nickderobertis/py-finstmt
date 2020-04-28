@@ -23,8 +23,12 @@ class StatementsResolver(ResolverBase):
         )
 
         all_results = pd.concat(list(new_results.values()), axis=1).T
-        inc_df = self.stmts.income_statements.__class__.from_df(all_results, self.stmts.income_statements.config.items)
-        bs_df = self.stmts.balance_sheets.__class__.from_df(all_results, self.stmts.balance_sheets.config.items)
+        inc_df = self.stmts.income_statements.__class__.from_df(
+            all_results, self.stmts.income_statements.config.items, disp_unextracted=False
+        )
+        bs_df = self.stmts.balance_sheets.__class__.from_df(
+            all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
+        )
 
         obj = FinancialStatements(inc_df, bs_df, calculate=False)
         return obj

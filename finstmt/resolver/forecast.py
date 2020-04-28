@@ -82,8 +82,12 @@ class ForecastResolver(ResolverBase):
                 self.forecast_dict[config.key].to_manual(use_levels=True, replacements=new_results[config.key].values)
 
         all_results = pd.concat(list(new_results.values()), axis=1).T
-        inc_df = self.stmts.income_statements.__class__.from_df(all_results, self.stmts.income_statements.config.items)
-        bs_df = self.stmts.balance_sheets.__class__.from_df(all_results, self.stmts.balance_sheets.config.items)
+        inc_df = self.stmts.income_statements.__class__.from_df(
+            all_results, self.stmts.income_statements.config.items, disp_unextracted=False
+        )
+        bs_df = self.stmts.balance_sheets.__class__.from_df(
+            all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
+        )
 
         # type ignore added because for some reason mypy is not picking up structure
         # correctly since it is a dataclass
