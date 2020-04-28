@@ -222,7 +222,7 @@ BALANCE_SHEET_INPUT_ITEMS = [
             'goodwill intangible assets total',
             'goodwill intangibles total',
         ]
-        # TODO: need to be able to extract from multiple items at once
+        # TODO [#50]: need to be able to extract from multiple items at once
         #
         # Morningstar financial statements have Goodwill and then Intangibles other than Goodwill,
         # both of those should be coming into the Goodwill and Intagible Assets variable.
