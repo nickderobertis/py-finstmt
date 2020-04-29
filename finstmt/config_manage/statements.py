@@ -90,3 +90,14 @@ class StatementsConfigManager(ConfigManagerBase):
         for manager in self.config_managers.values():
             all_keys.update(manager.keys)
         return list(all_keys)
+
+    @property
+    def items(self) -> List[ItemConfig]:
+        all_items = []
+        for manager in self.config_managers.values():
+            # Get unique maintaining order within a statement
+            for item in manager.items:
+                if item in all_items:
+                    continue
+                all_items.append(item)
+        return all_items
