@@ -201,45 +201,7 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
     plug_solutions = _x_arr_to_plug_solutions(x0, plug_keys, sympy_namespace)
     all_hardcoded = plug_solutions.copy()
     all_hardcoded.update(subs_dict)
-    new_eqs = []
-    for eq in eqs:
-        if eq.lhs in all_hardcoded:
-            # Got a calculated item which has also been set with make_forecast=True or as plug=True
-            # Solve the equation to see if there is another variable we can set as the lhs which
-            # has make_forecast=False and plug=False
-            selected_lhs: Optional[IndexedBase] = None
-            for sym in _get_indexed_symbols(eq.rhs):
-                if sym not in all_hardcoded:
-                    selected_lhs = sym
-            if selected_lhs is None:
-                # Invalid forecast, need to display useful message to the user to fix it.
-                # Need to get the original unsubbed equation, as possible variables the user could adjust might
-                # have been substituted out of the equation
-                key = str(eq.lhs.base)
-                orig_expr = config.expr_for(key)
-                orig_eq = Eq(eq.lhs, orig_expr)
-
-                possible_fix_strs = []
-                possible_symbols = _get_indexed_symbols(orig_eq)
-                for sym in possible_symbols:
-                    sym_key = str(sym.base)
-                    fix_str = f'\tstmts.config.update("{sym_key}", ["forecast_config", "make_forecast"], False)\n\t' \
-                              f'stmts.config.update("{sym_key}", ["forecast_config", "plug"], False)'
-                    possible_fix_strs.append(fix_str)
-                possible_fix_str = '\nor,\n'.join(possible_fix_strs)
-
-                raise InvalidForecastEquationException(
-                    f'{eq.lhs} has been set with make_forecast=True or plug=True and yet it is a calculated '
-                    f'item. Tried to re-express {orig_eq} in terms of another variable which is not forecasted or '
-                    f'plugged but they all are. Set one of {_get_indexed_symbols(orig_eq)} '
-                    f'with make_forecast=False and plug=False.\n\nPossible fixes:\n{possible_fix_str}'
-                )
-            # Another variable in the original equation is not forecasted/plugged. Re-express the equation in
-            # terms of that variable
-            solution = solve(eq, selected_lhs)[0]
-            new_eqs.append(Eq(selected_lhs, solution))
-        else:
-            new_eqs.append(eq)
+    new_eqs = _get_equations_reformed_for_needed_solutions(eqs, all_hardcoded, config)
 
     all_to_solve: Dict[IndexedBase, Expr] = {}
     for eq in new_eqs:
@@ -359,3 +321,47 @@ def _check_for_invalid_system_of_equations(eqs: List[Eq], subs_dict: Dict[Indexe
     if subs_plugs_overlap:
         message += f'Got {subs_plugs_overlap} which overlap between the calculated values and the plug values. '
     raise InvalidForecastEquationException(message)
+
+
+def _get_equations_reformed_for_needed_solutions(eqs: Sequence[Eq], all_hardcoded: Dict[IndexedBase, float],
+                                                 config: StatementsConfigManager) -> List[Eq]:
+    new_eqs = []
+    for eq in eqs:
+        if eq.lhs in all_hardcoded:
+            # Got a calculated item which has also been set with make_forecast=True or as plug=True
+            # Solve the equation to see if there is another variable we can set as the lhs which
+            # has make_forecast=False and plug=False
+            selected_lhs: Optional[IndexedBase] = None
+            for sym in _get_indexed_symbols(eq.rhs):
+                if sym not in all_hardcoded:
+                    selected_lhs = sym
+            if selected_lhs is None:
+                # Invalid forecast, need to display useful message to the user to fix it.
+                # Need to get the original unsubbed equation, as possible variables the user could adjust might
+                # have been substituted out of the equation
+                key = str(eq.lhs.base)
+                orig_expr = config.expr_for(key)
+                orig_eq = Eq(eq.lhs, orig_expr)
+
+                possible_fix_strs = []
+                possible_symbols = _get_indexed_symbols(orig_eq)
+                for sym in possible_symbols:
+                    sym_key = str(sym.base)
+                    fix_str = f'\tstmts.config.update("{sym_key}", ["forecast_config", "make_forecast"], False)\n\t' \
+                              f'stmts.config.update("{sym_key}", ["forecast_config", "plug"], False)'
+                    possible_fix_strs.append(fix_str)
+                possible_fix_str = '\nor,\n'.join(possible_fix_strs)
+
+                raise InvalidForecastEquationException(
+                    f'{eq.lhs} has been set with make_forecast=True or plug=True and yet it is a calculated '
+                    f'item. Tried to re-express {orig_eq} in terms of another variable which is not forecasted or '
+                    f'plugged but they all are. Set one of {_get_indexed_symbols(orig_eq)} '
+                    f'with make_forecast=False and plug=False.\n\nPossible fixes:\n{possible_fix_str}'
+                )
+            # Another variable in the original equation is not forecasted/plugged. Re-express the equation in
+            # terms of that variable
+            solution = solve(eq, selected_lhs)[0]
+            new_eqs.append(Eq(selected_lhs, solution))
+        else:
+            new_eqs.append(eq)
+    return new_eqs
