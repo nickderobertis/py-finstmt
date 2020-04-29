@@ -5,12 +5,14 @@ from typing import Sequence, Dict, Optional
 import pandas as pd
 
 from finstmt import FinancialStatements
-from finstmt.exc import MismatchingDatesException
+from finstmt.exc import MismatchingDatesException, BalanceSheetNotBalancedException
 from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
 from tests.expectdata.forecast.fcst_capiq_cat_annual import FCST_CAPIQ_CAT_A_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_capiq_cat_quarterly import FCST_CAPIQ_CAT_Q_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_cat_annual import FCST_STOCKROW_CAT_A_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_cat_annual_no_balance import FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT
+from tests.expectdata.forecast.fcst_stockrow_cat_annual_plug_make_forecast import \
+    FCST_STOCKROW_CAT_A_PLUG_MAKE_FORECAST_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_cat_quarterly import FCST_STOCKROW_CAT_Q_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_mar_annual import FCST_STOCKROW_MAR_A_INDEX_DATA_DICT
 from tests.expectdata.forecast.fcst_stockrow_mar_quarterly import FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT
@@ -115,6 +117,22 @@ class TestForecastStockrowCAT(ForecastTest):
         super().test_annual(
             annual_stockrow_stmts_cat, bs_diff_max=100000
         )
+
+    def test_annual_change_make_forecast_and_plug(self, annual_stockrow_stmts_cat: FinancialStatements):
+        stmts = annual_stockrow_stmts_cat.copy()
+        stmts.config.update('total_debt', ['forecast_config', 'make_forecast'], True)
+        stmts.config.update('st_debt', ['forecast_config', 'make_forecast'], False)
+        stmts.config.update('def_tax_lt', ['forecast_config', 'method'], 'manual')
+        stmts.config.update('def_tax_lt', ['forecast_config', 'manual_forecasts'], {'levels': [], 'growth': [4, 5]})
+        try:
+            super().test_annual(stmts)
+        except BalanceSheetNotBalancedException:
+            pass
+        else:
+            assert False
+        stmts.config.update("total_debt", ["forecast_config", "plug"], True)
+        stmts.config.update("lt_debt", ["forecast_config", "plug"], False)
+        super().test_annual(stmts, data=FCST_STOCKROW_CAT_A_PLUG_MAKE_FORECAST_INDEX_DATA_DICT)
 
     def test_quarterly(self, quarterly_stockrow_stmts_cat: FinancialStatements):
         super().test_quarterly(quarterly_stockrow_stmts_cat)
