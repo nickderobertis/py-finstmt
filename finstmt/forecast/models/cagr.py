@@ -18,18 +18,23 @@ class CAGRModel(ForecastModel):
 
         y_0 = series.iloc[0]
 
-        if y_0 == 0:
-            message = f'CAGR not an appropriate method for {self.base_config.display_name} ' \
-                      f'as y_0 is 0. Setting to 0 growth'
-            warnings.warn(message)
+        if y_0 <= 0 or y_T <= 0:
+            # Invalid data for CAGR method
             self.cagr = 0
             self.stderr = 0
-        elif y_0 < 0:
+            specific_messages = []
+            if y_0 == 0:
+                specific_messages.append('y_0 is 0')
+            elif y_0 < 0:
+                specific_messages.append('y_0 is negative')
+            if y_T == 0:
+                specific_messages.append('y_T is 0')
+            elif y_T < 0:
+                specific_messages.append('y_T is negative')
+            specific_message = ', '.join(specific_messages)
             message = f'CAGR not an appropriate method for {self.base_config.display_name} ' \
-                      f'as y_0 is negative. Setting to 0 growth'
+                      f'as {specific_message}. Setting to 0 growth (recent value forecast)'
             warnings.warn(message)
-            self.cagr = 0
-            self.stderr = 0
         else:
             n = len(series)
             self.cagr = (y_T / y_0) ** (1 / n) - 1
