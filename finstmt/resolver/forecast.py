@@ -71,7 +71,10 @@ class ForecastResolver(ResolverBase):
         if self.balance:
             solutions_dict = self.resolve_balance_sheet()
         else:
-            solutions_dict = solve_equations(self.solve_eqs, self.subs_dict)
+            if self.solve_eqs:
+                solutions_dict = solve_equations(self.solve_eqs, self.subs_dict)
+            else:
+                solutions_dict = self.subs_dict
 
         new_results = sympy_dict_to_results_dict(
             solutions_dict, self.forecast_dates, self.stmts.all_config_items, t_offset=1
