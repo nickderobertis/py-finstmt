@@ -65,7 +65,7 @@ Load Financial Statements
 
  .. code-block:: none
 
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:83: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:78: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(f'Previously had {item_config.key} '
 
 
@@ -308,7 +308,7 @@ View Statements
             </tr>
             <tr>
               <th>Income Tax Expense</th>
-              <td>$270,000,000</td>
+              <td>$-270,000,000</td>
               <td>$968,000,000</td>
               <td>$1,720,000,000</td>
               <td>$2,528,000,000</td>
@@ -328,7 +328,7 @@ View Statements
               <td>$3,789,000,000</td>
               <td>$2,452,000,000</td>
               <td>$2,512,000,000</td>
-              <td>$67,000,000</td>
+              <td>$-67,000,000</td>
               <td>$754,000,000</td>
               <td>$6,147,000,000</td>
             </tr>
@@ -1738,7 +1738,7 @@ It is easy to adjust units by multiplying or dividing the statements.
             </tr>
             <tr>
               <th>Income Tax Expense</th>
-              <td>$270</td>
+              <td>$-270</td>
               <td>$968</td>
               <td>$1,720</td>
               <td>$2,528</td>
@@ -1758,7 +1758,7 @@ It is easy to adjust units by multiplying or dividing the statements.
               <td>$3,789</td>
               <td>$2,452</td>
               <td>$2,512</td>
-              <td>$67</td>
+              <td>$-67</td>
               <td>$754</td>
               <td>$6,147</td>
             </tr>
@@ -2526,7 +2526,7 @@ segments, etc.:
             </tr>
             <tr>
               <th>Income Tax Expense</th>
-              <td>$540,000,000</td>
+              <td>$-540,000,000</td>
               <td>$1,936,000,000</td>
               <td>$3,440,000,000</td>
               <td>$5,056,000,000</td>
@@ -2546,7 +2546,7 @@ segments, etc.:
               <td>$7,578,000,000</td>
               <td>$4,904,000,000</td>
               <td>$5,024,000,000</td>
-              <td>$134,000,000</td>
+              <td>$-134,000,000</td>
               <td>$1,508,000,000</td>
               <td>$12,294,000,000</td>
             </tr>
@@ -3441,11 +3441,11 @@ period, such as FCF.
 
  .. code-block:: none
 
-      0%|          | 0/16 [00:00<?, ?it/s]     94%|#########3| 15/16 [00:00<00:00, 149.28it/s]    100%|##########| 16/16 [00:00<00:00, 158.65it/s]
-      0%|          | 0/37 [00:00<?, ?it/s]     41%|####      | 15/37 [00:00<00:00, 142.22it/s]     89%|########9 | 33/37 [00:00<00:00, 150.54it/s]    100%|##########| 37/37 [00:00<00:00, 162.88it/s]
+      0%|          | 0/16 [00:00<?, ?it/s]    100%|##########| 16/16 [00:00<00:00, 195.76it/s]
+      0%|          | 0/37 [00:00<?, ?it/s]     51%|#####1    | 19/37 [00:00<00:00, 189.70it/s]    100%|##########| 37/37 [00:00<00:00, 197.81it/s]
 
-    2019-12-31    1.554878e+10
-    2020-12-31    1.802664e+09
+    2019-12-31    1.429899e+10
+    2020-12-31    1.154565e+08
     dtype: float64
 
 
@@ -3453,7 +3453,7 @@ period, such as FCF.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  27.436 seconds)
+   **Total running time of the script:** ( 0 minutes  23.988 seconds)
 
 
 .. _sphx_glr_download_auto_examples_manipulating_statements.py:

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.findata.statementsbase &mdash; finstmt 0.6.1 documentation</title>
+  <title>finstmt.findata.statementsbase &mdash; finstmt 0.6.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.6.1
+                0.6.2
               </div>
             
           
@@ -247,7 +247,7 @@
             <span class="n">all_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">all_series</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">disp_unextracted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">normal_attrs</span> <span class="o">=</span> <span class="p">[</span>
@@ -259,7 +259,8 @@
         <span class="k">return</span> <span class="n">normal_attrs</span> <span class="o">+</span> <span class="n">item_attrs</span>
 
 <div class="viewcode-block" id="FinStatementsBase.from_df"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.from_df">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_df</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">items_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">ItemConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_df</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">items_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">ItemConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">disp_unextracted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DataFrame must have columns as dates and index as names of financial statement items</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -275,6 +276,15 @@
                                               <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
             <span class="n">statement_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
             <span class="n">statements_dict</span><span class="p">[</span><span class="n">statement_date</span><span class="p">]</span> <span class="o">=</span> <span class="n">statement</span>
+
+        <span class="k">if</span> <span class="n">disp_unextracted</span><span class="p">:</span>
+            <span class="c1"># Warn about unextracted names</span>
+            <span class="n">all_unextracted_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">stmt_data</span> <span class="ow">in</span> <span class="n">statements_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">all_unextracted_names</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">stmt_data</span><span class="o">.</span><span class="n">unextracted_names</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">all_unextracted_names</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Was not able to extract data from the following names: </span><span class="si">{</span><span class="n">all_unextracted_names</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">statements_dict</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FinStatementsBase.to_df"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.to_df">[docs]</a>    <span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
@@ -308,9 +318,9 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Forecasting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">statement_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">item</span><span class="p">:</span> <span class="n">ItemConfig</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">expr_str</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span><span class="p">:</span>
-                <span class="c1"># If calculated, skip the forecast</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span><span class="p">:</span>
                 <span class="c1"># If user set to skip the forecast, skip it as well</span>
+                <span class="c1"># By default, all calculated items will be skipped</span>
                 <span class="k">continue</span>
             <span class="n">data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">statements</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
             <span class="n">pct_of_series</span> <span class="o">=</span> <span class="kc">None</span>
@@ -358,7 +368,7 @@
         <span class="c1"># TODO [#42]: combined statements retain only item config of first statements</span>
         <span class="c1">#</span>
         <span class="c1"># Think about the best way to handle this. This applies to all math dunder methods.</span>
-        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">,</span> <span class="n">disp_unextracted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">new_statements</span>
 
     <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -372,7 +382,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot multiply type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s1"> to type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">,</span> <span class="n">disp_unextracted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">new_statements</span>
 
     <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -386,7 +396,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot subtract type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s1"> to type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">,</span> <span class="n">disp_unextracted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">new_statements</span>
 
     <span class="k">def</span> <span class="fm">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -400,7 +410,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot divide type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s1"> to type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">,</span> <span class="n">disp_unextracted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">new_statements</span>
 
     <span class="k">def</span> <span class="fm">__rtruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -409,7 +419,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot divide type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s1"> to type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+        <span class="n">new_statements</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">,</span> <span class="n">disp_unextracted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">new_statements</span></div>
 
 

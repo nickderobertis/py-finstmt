@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Manipulating Statements &mdash; finstmt 0.6.1 documentation</title>
+  <title>Manipulating Statements &mdash; finstmt 0.6.2 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.6.1
+                0.6.2
               </div>
             
           
@@ -217,7 +217,7 @@ Download the Jupyter notebook for the full experience.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:83: UserWarning: Previously had ebit extracted from &quot;Operating Income&quot;. Replacing with value from &quot;EBIT&quot;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:78: UserWarning: Previously had ebit extracted from &quot;Operating Income&quot;. Replacing with value from &quot;EBIT&quot;
   warnings.warn(f&#39;Previously had {item_config.key} &#39;
 </pre></div>
 </div>
@@ -443,7 +443,7 @@ Download the Jupyter notebook for the full experience.</p>
     </tr>
     <tr>
       <th>Income Tax Expense</th>
-      <td>$270,000,000</td>
+      <td>$-270,000,000</td>
       <td>$968,000,000</td>
       <td>$1,720,000,000</td>
       <td>$2,528,000,000</td>
@@ -463,7 +463,7 @@ Download the Jupyter notebook for the full experience.</p>
       <td>$3,789,000,000</td>
       <td>$2,452,000,000</td>
       <td>$2,512,000,000</td>
-      <td>$67,000,000</td>
+      <td>$-67,000,000</td>
       <td>$754,000,000</td>
       <td>$6,147,000,000</td>
     </tr>
@@ -1817,7 +1817,7 @@ will combine the statements.</p>
     </tr>
     <tr>
       <th>Income Tax Expense</th>
-      <td>$270</td>
+      <td>$-270</td>
       <td>$968</td>
       <td>$1,720</td>
       <td>$2,528</td>
@@ -1837,7 +1837,7 @@ will combine the statements.</p>
       <td>$3,789</td>
       <td>$2,452</td>
       <td>$2,512</td>
-      <td>$67</td>
+      <td>$-67</td>
       <td>$754</td>
       <td>$6,147</td>
     </tr>
@@ -2587,7 +2587,7 @@ segments, etc.:</p>
     </tr>
     <tr>
       <th>Income Tax Expense</th>
-      <td>$540,000,000</td>
+      <td>$-540,000,000</td>
       <td>$1,936,000,000</td>
       <td>$3,440,000,000</td>
       <td>$5,056,000,000</td>
@@ -2607,7 +2607,7 @@ segments, etc.:</p>
       <td>$7,578,000,000</td>
       <td>$4,904,000,000</td>
       <td>$5,024,000,000</td>
-      <td>$134,000,000</td>
+      <td>$-134,000,000</td>
       <td>$1,508,000,000</td>
       <td>$12,294,000,000</td>
     </tr>
@@ -3471,20 +3471,18 @@ period, such as FCF.</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]
- 94%|#########3| 15/16 [00:00&lt;00:00, 149.28it/s]
-100%|##########| 16/16 [00:00&lt;00:00, 158.65it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 195.76it/s]
 
   0%|          | 0/37 [00:00&lt;?, ?it/s]
- 41%|####      | 15/37 [00:00&lt;00:00, 142.22it/s]
- 89%|########9 | 33/37 [00:00&lt;00:00, 150.54it/s]
-100%|##########| 37/37 [00:00&lt;00:00, 162.88it/s]
+ 51%|#####1    | 19/37 [00:00&lt;00:00, 189.70it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 197.81it/s]
 
-2019-12-31    1.554878e+10
-2020-12-31    1.802664e+09
+2019-12-31    1.429899e+10
+2020-12-31    1.154565e+08
 dtype: float64
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  27.436 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  23.988 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manipulating-statements-py">
 <div class="binder-badge docutils container">
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/nickderobertis/py-finstmt/gh-pages?urlpath=lab/tree/notebooks/auto_examples/manipulating_statements.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>

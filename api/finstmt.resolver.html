@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.resolver package &mdash; finstmt 0.6.1 documentation</title>
+  <title>finstmt.resolver package &mdash; finstmt 0.6.2 documentation</title>
   
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.6.1
+                0.6.2
               </div>
             
           
@@ -355,6 +355,26 @@
 </dd></dl>
 
 <dl class="py method">
+<dt id="finstmt.resolver.forecast.ForecastResolver.plug_keys">
+<em class="property">property </em><code class="sig-name descname">plug_keys</code><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.plug_keys" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finstmt.resolver.forecast.ForecastResolver.plug_x0">
+<em class="property">property </em><code class="sig-name descname">plug_x0</code><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.plug_x0" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="finstmt.resolver.forecast.ForecastResolver.resolve_balance_sheet">
 <code class="sig-name descname">resolve_balance_sheet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#ForecastResolver.resolve_balance_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.resolve_balance_sheet" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -424,7 +444,7 @@
 
 <dl class="py function">
 <dt id="finstmt.resolver.forecast.resolve_balance_sheet">
-<code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">resolve_balance_sheet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">eqs</span></em>, <em class="sig-param"><span class="n">plug_keys</span></em>, <em class="sig-param"><span class="n">subs_dict</span></em>, <em class="sig-param"><span class="n">forecast_dates</span></em>, <em class="sig-param"><span class="n">item_configs</span></em>, <em class="sig-param"><span class="n">sympy_namespace</span></em>, <em class="sig-param"><span class="n">bs_diff_max</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#resolve_balance_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.resolve_balance_sheet" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">resolve_balance_sheet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">eqs</span></em>, <em class="sig-param"><span class="n">plug_keys</span></em>, <em class="sig-param"><span class="n">subs_dict</span></em>, <em class="sig-param"><span class="n">forecast_dates</span></em>, <em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">sympy_namespace</span></em>, <em class="sig-param"><span class="n">bs_diff_max</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#resolve_balance_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.resolve_balance_sheet" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>

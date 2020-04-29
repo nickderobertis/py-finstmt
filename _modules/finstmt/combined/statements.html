@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.combined.statements &mdash; finstmt 0.6.1 documentation</title>
+  <title>finstmt.combined.statements &mdash; finstmt 0.6.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.6.1
+                0.6.2
               </div>
             
           
@@ -165,6 +165,7 @@
             
   <h1>Source code for finstmt.combined.statements</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Callable</span>
 
@@ -280,6 +281,7 @@
             <span class="s1">&#39;forecasts&#39;</span><span class="p">,</span>
             <span class="s1">&#39;forecast_assumptions&#39;</span><span class="p">,</span>
             <span class="s1">&#39;dates&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;copy&#39;</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="n">all_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span>
         <span class="n">item_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">all_config</span><span class="p">]</span>
@@ -329,7 +331,7 @@
     <span class="k">def</span> <span class="nf">forecast_assumptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="n">all_series</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_config_items</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">extract_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="n">config_series</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">to_series</span><span class="p">()</span>
             <span class="n">config_series</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">display_name</span>
@@ -357,6 +359,9 @@
             <span class="k">if</span> <span class="n">is_unique</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;Income Statement has </span><span class="si">{</span><span class="n">is_unique</span><span class="si">}</span><span class="s1"> dates not in Balance Sheet. &#39;</span>
             <span class="k">raise</span> <span class="n">MismatchingDatesException</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FinancialStatements.copy"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;FinancialStatements&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="n">statements</span> <span class="o">=</span> <span class="n">_combine_statements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">)</span>
@@ -393,9 +398,13 @@
                         <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">IncomeStatements</span><span class="p">,</span> <span class="n">BalanceSheets</span><span class="p">]:</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other_statements</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
         <span class="n">new_inc_df</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">statements</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">other_statements</span><span class="p">)</span>
-        <span class="n">new_inc</span> <span class="o">=</span> <span class="n">IncomeStatements</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_inc_df</span><span class="p">,</span> <span class="n">statements</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+        <span class="n">new_inc</span> <span class="o">=</span> <span class="n">IncomeStatements</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span>
+            <span class="n">new_inc_df</span><span class="p">,</span> <span class="n">statements</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">,</span> <span class="n">disp_unextracted</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
         <span class="n">new_bs_df</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">statements</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">other_statements</span><span class="p">)</span>
-        <span class="n">new_bs</span> <span class="o">=</span> <span class="n">BalanceSheets</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">new_bs_df</span><span class="p">,</span> <span class="n">statements</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+        <span class="n">new_bs</span> <span class="o">=</span> <span class="n">BalanceSheets</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span>
+            <span class="n">new_bs_df</span><span class="p">,</span> <span class="n">statements</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">,</span> <span class="n">disp_unextracted</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other_statements</span><span class="p">,</span> <span class="n">FinancialStatements</span><span class="p">):</span>
         <span class="n">new_inc</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">statements</span><span class="o">.</span><span class="n">income_statements</span><span class="p">,</span> <span class="n">other_statements</span><span class="o">.</span><span class="n">income_statements</span><span class="p">)</span>
         <span class="n">new_bs</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">statements</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">,</span> <span class="n">other_statements</span><span class="o">.</span><span class="n">balance_sheets</span><span class="p">)</span>
