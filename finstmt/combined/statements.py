@@ -1,4 +1,5 @@
 import operator
+from copy import deepcopy
 from dataclasses import dataclass, field
 from typing import Dict, List, Tuple, Callable
 
@@ -114,6 +115,7 @@ class FinancialStatements:
             'forecasts',
             'forecast_assumptions',
             'dates',
+            'copy',
         ]
         all_config = self.income_statements.config.items + self.balance_sheets.config.items
         item_attrs = [config.key for config in all_config]
@@ -191,6 +193,9 @@ class FinancialStatements:
             if is_unique:
                 message += f'Income Statement has {is_unique} dates not in Balance Sheet. '
             raise MismatchingDatesException(message)
+
+    def copy(self) -> 'FinancialStatements':
+        return deepcopy(self)
 
     def __add__(self, other):
         statements = _combine_statements(self, other, operator.add)
