@@ -2,11 +2,12 @@ from dataclasses import dataclass
 from typing import List, Dict, Tuple, Optional, Sequence
 
 from scipy.optimize import minimize
-from sympy import Eq, sympify, IndexedBase, Expr
+from sympy import Eq, sympify, IndexedBase, Expr, solve, Indexed
 import pandas as pd
 import numpy as np
 from sympy.core.numbers import NaN
 
+from finstmt.config_manage.statements import StatementsConfigManager
 from finstmt.exc import BalanceSheetNotBalancedException, MissingDataException, InvalidForecastEquationException
 from finstmt.forecast.main import Forecast
 from finstmt.config_manage.data import _key_pct_of_key
@@ -23,7 +24,7 @@ from finstmt.resolver.base import ResolverBase
 # could handle more operations with the plugs, and the math could be more separated
 # from the finance logic.
 from finstmt.resolver.solve import PLUG_SCALE, solve_equations, sympy_dict_to_results_dict, _x_arr_to_plug_solutions, \
-    _symbolic_to_matrix, _solve_eqs_with_plug_solutions
+    _symbolic_to_matrix, _solve_eqs_with_plug_solutions, _get_indexed_symbols
 
 
 class ForecastResolver(ResolverBase):
@@ -58,7 +59,7 @@ class ForecastResolver(ResolverBase):
             plug_keys,
             self.subs_dict,
             self.forecast_dates,
-            self.stmts.all_config_items,
+            self.stmts.config,
             self.stmts.config.sympy_namespace,
             self.bs_diff_max,
         )
@@ -104,9 +105,9 @@ class ForecastResolver(ResolverBase):
         for config_manage in config_managers:
             for config in config_manage:
                 lhs = sympify(config.key + '[t]', locals=self.stmts.config.sympy_namespace)
-                if config.expr_str is not None and not config.forecast_config.make_forecast:
+                if config.expr_str is not None:
                     rhs = self.stmts.config.expr_for(config.key)
-                elif config.forecast_config.pct_of is not None:
+                elif config.forecast_config.pct_of is not None and config.forecast_config.make_forecast:
                     key_pct_of_key = _key_pct_of_key(config.key, config.forecast_config.pct_of)
                     rhs = sympify(f'{config.forecast_config.pct_of}[t] * {key_pct_of_key}[t]',
                                   locals=self.stmts.config.sympy_namespace)
@@ -195,27 +196,80 @@ class PlugResult:
 
 def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str],
                           subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
-                          item_configs: List[ItemConfig],
+                          config: StatementsConfigManager,
                           sympy_namespace: Dict[str, IndexedBase], bs_diff_max: float) -> Dict[IndexedBase, float]:
     plug_solutions = _x_arr_to_plug_solutions(x0, plug_keys, sympy_namespace)
-    solve_exprs = []
-    to_solve_for = []
+    all_hardcoded = plug_solutions.copy()
+    all_hardcoded.update(subs_dict)
+    new_eqs = []
     for eq in eqs:
+        if eq.lhs in all_hardcoded:
+            # Got a calculated item which has also been set with make_forecast=True or as plug=True
+            # Solve the equation to see if there is another variable we can set as the lhs which
+            # has make_forecast=False and plug=False
+            selected_lhs: Optional[IndexedBase] = None
+            for sym in _get_indexed_symbols(eq.rhs):
+                if sym not in all_hardcoded:
+                    selected_lhs = sym
+            if selected_lhs is None:
+                # Invalid forecast, need to display useful message to the user to fix it.
+                # Need to get the original unsubbed equation, as possible variables the user could adjust might
+                # have been substituted out of the equation
+                key = str(eq.lhs.base)
+                orig_expr = config.expr_for(key)
+                orig_eq = Eq(eq.lhs, orig_expr)
+
+                possible_fix_strs = []
+                possible_symbols = _get_indexed_symbols(orig_eq)
+                for sym in possible_symbols:
+                    sym_key = str(sym.base)
+                    fix_str = f'\tstmts.config.update("{sym_key}", ["forecast_config", "make_forecast"], False)\n\t' \
+                              f'stmts.config.update("{sym_key}", ["forecast_config", "plug"], False)'
+                    possible_fix_strs.append(fix_str)
+                possible_fix_str = '\nor,\n'.join(possible_fix_strs)
+
+                raise InvalidForecastEquationException(
+                    f'{eq.lhs} has been set with make_forecast=True or plug=True and yet it is a calculated '
+                    f'item. Tried to re-express {orig_eq} in terms of another variable which is not forecasted or '
+                    f'plugged but they all are. Set one of {_get_indexed_symbols(orig_eq)} '
+                    f'with make_forecast=False and plug=False.\n\nPossible fixes:\n{possible_fix_str}'
+                )
+            # Another variable in the original equation is not forecasted/plugged. Re-express the equation in
+            # terms of that variable
+            solution = solve(eq, selected_lhs)[0]
+            new_eqs.append(Eq(selected_lhs, solution))
+        else:
+            new_eqs.append(eq)
+
+    all_to_solve: Dict[IndexedBase, Expr] = {}
+    for eq in new_eqs:
         expr = eq.rhs - eq.lhs
         if expr == NaN():
             raise InvalidForecastEquationException(f'got NaN forecast equation. LHS: {eq.lhs}, RHS: {eq.rhs}')
-        solve_exprs.append(expr)
-        to_solve_for.append(eq.lhs)
+        if eq.lhs in all_to_solve:
+            raise InvalidForecastEquationException(
+                f'got multiple equations to solve for {eq.lhs}. Already had {all_to_solve[eq.lhs]}, now got {expr}'
+            )
+        all_to_solve[eq.lhs] = expr
     for sol_dict in [subs_dict, plug_solutions]:
         # Plug solutions second here so that they are at end of array
         for lhs, rhs in sol_dict.items():
             expr = rhs - lhs
             if expr == NaN():
                 raise MissingDataException(f'got NaN for {lhs} but that is needed for resolving the forecast')
-            solve_exprs.append(expr)
-            to_solve_for.append(lhs)
-    to_solve_for = list(set(to_solve_for))
-    _check_for_invalid_system_of_equations(eqs, subs_dict, plug_solutions, to_solve_for, solve_exprs)
+            if lhs in all_to_solve:
+                existing_value = all_to_solve[lhs]
+                if isinstance(existing_value, float):
+                    had_message = f'forecast/plug value of {existing_value}'
+                else:
+                    had_message = f'equation of {existing_value}'
+                raise InvalidForecastEquationException(
+                    f'got forecast/plug value for {lhs} but already had an existing {had_message}, now got {expr}'
+                )
+            all_to_solve[lhs] = expr
+    to_solve_for = list(all_to_solve.keys())
+    solve_exprs = list(all_to_solve.values())
+    _check_for_invalid_system_of_equations(new_eqs, subs_dict, plug_solutions, to_solve_for, solve_exprs)
     eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)
 
     result = PlugResult()
@@ -224,7 +278,7 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
         res = minimize(
             _resolve_balance_sheet_check_diff,
             x0,
-            args=(eq_arrs, forecast_dates, item_configs, to_solve_for, bs_diff_max, result),
+            args=(eq_arrs, forecast_dates, to_solve_for, bs_diff_max, result),
             bounds=[(0, None) for _ in range(len(x0))],  # all positive
             method='TNC',
             options=dict(
@@ -242,14 +296,14 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
         raise BalanceSheetNotBalancedException(message)
     plug_solutions = _x_arr_to_plug_solutions(result.res, plug_keys, sympy_namespace)
     solutions_dict = _solve_eqs_with_plug_solutions(
-        eqs, plug_solutions, subs_dict, forecast_dates, item_configs
+        new_eqs, plug_solutions, subs_dict, forecast_dates, config.items
     )
     return solutions_dict
 
 
 def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, np.ndarray],
                                       forecast_dates: pd.DatetimeIndex,
-                                      item_configs: List[ItemConfig], solve_for: Sequence[IndexedBase],
+                                      solve_for: Sequence[IndexedBase],
                                       bs_diff_max: float, res: PlugResult):
     A_arr, b_arr = eq_arrs
     b_arr[-len(x):] = -x * PLUG_SCALE  # plug solutions with new X values

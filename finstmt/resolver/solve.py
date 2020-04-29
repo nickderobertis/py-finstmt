@@ -1,6 +1,6 @@
-from typing import List, Dict, Tuple, Sequence
+from typing import List, Dict, Tuple, Sequence, Union
 
-from sympy import Eq, sympify, IndexedBase, Expr, Symbol, expand
+from sympy import Eq, sympify, IndexedBase, Expr, Symbol, expand, Indexed
 import pandas as pd
 import numpy as np
 from sympy.logic.boolalg import BooleanFalse, BooleanTrue
@@ -146,3 +146,7 @@ def numpy_solve(exprs: Sequence[Expr], variables: Sequence[Symbol]):
     x = np.linalg.solve(a_arr, b_arr)
     solution_dict = {var: x[i] for i, var in enumerate(variables)}
     return solution_dict
+
+
+def _get_indexed_symbols(expr: Union[Eq, Expr]) -> List[Indexed]:
+    return [sym for sym in expr.free_symbols if isinstance(sym, Indexed)]
