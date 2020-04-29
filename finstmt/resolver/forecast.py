@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import List, Dict, Tuple, Optional, Sequence
 
-from scipy.optimize import minimize
+from scipy.optimize import minimize, OptimizeResult
 from sympy import Eq, sympify, IndexedBase, Expr, solve, Indexed
 import pandas as pd
 import numpy as np
@@ -45,18 +45,12 @@ class ForecastResolver(ResolverBase):
 
     def resolve_balance_sheet(self):
         logger.info('Balancing balance sheet')
-        x_arrs = []
-        plug_keys = []
-        for config in self.plug_configs:
-            x_arrs.append(self.results[config.key].values)
-            plug_keys.append(config.key)
-        x0 = np.concatenate(x_arrs) / PLUG_SCALE
 
         solutions_dict = self.subs_dict.copy()
         new_solutions = resolve_balance_sheet(
-            x0,
+            self.plug_x0,
             self.solve_eqs,
-            plug_keys,
+            self.plug_keys,
             self.subs_dict,
             self.forecast_dates,
             self.stmts.config,
@@ -129,7 +123,12 @@ class ForecastResolver(ResolverBase):
         for period in range(1, self.num_periods):
             this_t_eqs = [eq.subs({self.t: period}) for eq in t_eqs]
             out_eqs.extend(this_t_eqs)
-        return out_eqs
+
+        all_hardcoded = _x_arr_to_plug_solutions(self.plug_x0, self.plug_keys, self.stmts.config.sympy_namespace)
+        all_hardcoded.update(self.sympy_subs_dict)
+        new_eqs = _get_equations_reformed_for_needed_solutions(out_eqs, all_hardcoded, self.stmts.config)
+
+        return new_eqs
 
     @property
     def num_periods(self) -> int:
@@ -191,6 +190,20 @@ class ForecastResolver(ResolverBase):
     def plug_configs(self) -> List[ItemConfig]:
         return [conf for conf in self.stmts.all_config_items if conf.forecast_config.plug]
 
+    @property
+    def plug_keys(self) -> List[str]:
+        return [config.key for config in self.plug_configs]
+
+    @property
+    def plug_x0(self) -> np.array:
+        x_arrs = []
+        plug_keys = []
+        for config in self.plug_configs:
+            x_arrs.append(self.results[config.key].values)
+            plug_keys.append(config.key)
+        x0 = np.concatenate(x_arrs) / PLUG_SCALE
+        return x0
+
 
 @dataclass
 class PlugResult:
@@ -202,12 +215,8 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
                           config: StatementsConfigManager,
                           sympy_namespace: Dict[str, IndexedBase], bs_diff_max: float) -> Dict[IndexedBase, float]:
     plug_solutions = _x_arr_to_plug_solutions(x0, plug_keys, sympy_namespace)
-    all_hardcoded = plug_solutions.copy()
-    all_hardcoded.update(subs_dict)
-    new_eqs = _get_equations_reformed_for_needed_solutions(eqs, all_hardcoded, config)
-
     all_to_solve: Dict[IndexedBase, Expr] = {}
-    for eq in new_eqs:
+    for eq in eqs:
         expr = eq.rhs - eq.lhs
         if expr == NaN():
             raise InvalidForecastEquationException(f'got NaN forecast equation. LHS: {eq.lhs}, RHS: {eq.rhs}')
@@ -234,11 +243,11 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
             all_to_solve[lhs] = expr
     to_solve_for = list(all_to_solve.keys())
     solve_exprs = list(all_to_solve.values())
-    _check_for_invalid_system_of_equations(new_eqs, subs_dict, plug_solutions, to_solve_for, solve_exprs)
+    _check_for_invalid_system_of_equations(eqs, subs_dict, plug_solutions, to_solve_for, solve_exprs)
     eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)
 
     result = PlugResult()
-    res = None
+    res: Optional[OptimizeResult] = None
     try:
         res = minimize(
             _resolve_balance_sheet_check_diff,
@@ -255,13 +264,24 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
     if result.res is None:
         message: Optional[str]
         if res is not None:
-            message = f'final solution {res.x * PLUG_SCALE} still could not meet max difference of {bs_diff_max}'
+            plug_solutions = _x_arr_to_plug_solutions(res.x, plug_keys, sympy_namespace)
+            avg_error = (res.fun ** 2 / len(res.x)) ** 0.5
+            message = (
+                f'final solution {plug_solutions} still could not meet max difference of '
+                f'${bs_diff_max:,.0f}. Average difference was ${avg_error:,.0f}.\nIf the make_forecast or plug '
+                f'configuration for any items were changed, ensure that changes in {plug_keys} can flow through '
+                f'to Total Assets and Total Liabilities and Equity. For example, if make_forecast=True for Total Debt '
+                f'and make_forecast=False for ST Debt, then using LT debt as a plug will not work as ST debt will '
+                f'go down when LT debt goes up.\nOtherwise, consider '
+                f'passing bs_diff_max to .forecast at a value greater than {avg_error:,.0f}, or pass '
+                f'balance=False to skip balancing entirely.'
+            )
         else:
             message = None
         raise BalanceSheetNotBalancedException(message)
     plug_solutions = _x_arr_to_plug_solutions(result.res, plug_keys, sympy_namespace)
     solutions_dict = _solve_eqs_with_plug_solutions(
-        new_eqs, plug_solutions, subs_dict, forecast_dates, config.items
+        eqs, plug_solutions, subs_dict, forecast_dates, config.items
     )
     return solutions_dict
 
