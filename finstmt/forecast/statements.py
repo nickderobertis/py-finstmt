@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from typing import Dict, Sequence, Optional, Tuple
 
 import matplotlib.pyplot as plt
+from matplotlib.axes import Subplot
 
 from finstmt.combined.statements import FinancialStatements
 from finstmt.forecast.main import Forecast
@@ -12,21 +13,24 @@ NUM_PLOT_COLUMNS = 3
 DEFAULT_WIDTH = 15
 DEFAULT_HEIGHT_PER_ROW = 3
 
+
 @dataclass
 class ForecastedFinancialStatements(FinancialStatements):
     forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
 
-    def plot(self, subset: Optional[Sequence[str]] = None, figsize: Optional[Tuple[int, int]] = None) -> plt.Figure:
+    def plot(self, subset: Optional[Sequence[str]] = None, figsize: Optional[Tuple[int, int]] = None,
+             num_cols: int = NUM_PLOT_COLUMNS, height_per_row: float = DEFAULT_HEIGHT_PER_ROW,
+             plot_width: float = DEFAULT_WIDTH) -> plt.Figure:
         if subset is not None:
             plot_items = {k: v for k, v in self.forecasts.items() if k in subset}
         else:
             plot_items = self.forecasts
 
-        num_plot_rows = math.ceil(len(plot_items) / NUM_PLOT_COLUMNS)
-        num_plot_columns = min(len(plot_items), NUM_PLOT_COLUMNS)
+        num_plot_rows = math.ceil(len(plot_items) / num_cols)
+        num_plot_columns = min(len(plot_items), num_cols)
 
         if figsize is None:
-            figsize = (DEFAULT_WIDTH, DEFAULT_HEIGHT_PER_ROW * num_plot_rows)
+            figsize = (plot_width, height_per_row * num_plot_rows)
 
         fig, axes = plt.subplots(num_plot_rows, num_plot_columns, sharex=False, sharey=False, figsize=figsize)
         row = 0
@@ -55,19 +59,25 @@ class ForecastedFinancialStatements(FinancialStatements):
             fig.delaxes(axes[row][col])
         return fig
 
+
 def _plot_finished(row: int, col: int, max_rows: int, max_cols: int) -> bool:
     return row == max_rows - 1 and col == max_cols - 1
 
-def _get_selected_ax(axes: plt.Axes, row: int, col: int, num_plot_rows: int, num_plot_columns: int) -> Subplot:
+
+def _get_selected_ax(axes: plt.GridSpec, row: int, col: int, num_plot_rows: int, num_plot_columns: int) -> Subplot:
     if num_plot_rows == num_plot_columns == 1:
         # No array if single row and column
         return axes
     elif num_plot_rows == 1:
         # 1D array if single row
         return axes[col]
+    elif num_plot_columns == 1:
+        # 1D array if single column
+        return axes[row]
     else:
         # 2D array if multiple rows
         return axes[row, col]
+
 
 def _is_last_plot_in_col(row: int, col: int, num_plot_rows: int, num_plot_columns: int, num_plots: int) -> bool:
     # In last row, automatically last plot in col
