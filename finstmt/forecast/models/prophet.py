@@ -41,13 +41,16 @@ class FBProphetModel(ForecastModel):
         return result
 
     def plot(self, ax: Optional[plt.Axes] = None, figsize: Tuple[int, int] = (12, 5),
-             xlabel: Optional[str] = None, ylabel: Optional[str] = None) -> plt.Figure:
+             xlabel: Optional[str] = None, ylabel: Optional[str] = None, title: Optional[str] = None) -> plt.Figure:
         if xlabel is None:
             xlabel = 'Time'
-        if ylabel is None:
-            ylabel = self.base_config.display_name
+        if title is None:
+            title = self.base_config.display_name
 
         fig = self.model.plot(self.result_df, ax=ax, figsize=figsize, xlabel=xlabel, ylabel=ylabel)
+        if title:
+            _set_title_on_axes(fig, title)
+
         plt.close()
         return fig
 
@@ -72,3 +75,8 @@ def _try_import_fbprophet():
     fbprophet_logger.setLevel(logging.WARN)
 
     return Prophet
+
+
+def _set_title_on_axes(fig: plt.Figure, title: str):
+    for ax in fig.axes:
+        ax.set_title(title)

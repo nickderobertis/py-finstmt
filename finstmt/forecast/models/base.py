@@ -34,11 +34,12 @@ class ForecastModel:
         return pd.Series()
 
     def plot(self, ax: Optional[plt.Axes] = None, figsize: Tuple[int, int] = (12, 5),
-             xlabel: Optional[str] = None, ylabel: Optional[str] = None) -> plt.Figure:
+             xlabel: Optional[str] = None, ylabel: Optional[str] = None,
+             title: Optional[str] = None) -> plt.Figure:
         if xlabel is None:
             xlabel = 'Time'
-        if ylabel is None:
-            ylabel = self.base_config.display_name
+        if title is None:
+            title = self.base_config.display_name
 
         if self.orig_series is None:
             raise ForecastNotPredictedException('call .fit then .predict before .plot')
@@ -50,7 +51,8 @@ class ForecastModel:
             ax=ax,
             figsize=figsize,
             xlabel=xlabel,
-            ylabel=ylabel
+            ylabel=ylabel,
+            title=title
         )
 
     @property
