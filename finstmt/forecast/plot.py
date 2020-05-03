@@ -29,6 +29,7 @@ def plot_forecast(fcst_df: pd.DataFrame, orig_data: np.ndarray, orig_dates: pd.D
     y_lim_upper = max_point * (1 + PAD_PCT)
     y_lim_lower = min_point * (1 - PAD_PCT)
     ax.set_ylim([y_lim_lower, y_lim_upper])
+    ax.grid(True, which='major', c='gray', ls='-', lw=1, alpha=0.2)
     if xlabel is not None:
         ax.set_xlabel(xlabel)
     if ylabel is not None:
