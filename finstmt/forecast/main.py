@@ -42,7 +42,7 @@ class Forecast:
     def plot(self, ax: Optional[plt.Axes] = None, figsize: Tuple[int, int] = (12, 5)) -> plt.Figure:
         if not self.model.has_prediction:
             raise ForecastNotPredictedException('call .predict before .plot')
-        return self.model.plot(ax=ax, figsize=figsize, ylabel=self.name)
+        return self.model.plot(ax=ax, figsize=figsize, title=self.name)
 
     def to_manual(self, use_levels: bool = False,
                   adjustments: Optional[Union[Sequence[float], Dict[int, float]]] = None,
