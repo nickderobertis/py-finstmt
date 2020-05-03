@@ -34,7 +34,10 @@ class ForecastedFinancialStatements(FinancialStatements):
         with warnings.catch_warnings():
             warnings.filterwarnings(action='ignore', message='Attempting to set identical bottom == top')
             for i, (item_key, forecast) in enumerate(plot_items.items()):
-                if num_plot_rows == 1:
+                if num_plot_rows == num_plot_columns == 1:
+                    # No array if single row and column
+                    forecast.plot(ax=axes)
+                elif num_plot_rows == 1:
                     # 1D array if single row
                     forecast.plot(ax=axes[col])
                 else:
