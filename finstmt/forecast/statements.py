@@ -18,7 +18,7 @@ DEFAULT_HEIGHT_PER_ROW = 3
 class ForecastedFinancialStatements(FinancialStatements):
     forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
 
-    def plot(self, subset: Optional[Sequence[str]] = None, figsize: Optional[Tuple[int, int]] = None,
+    def plot(self, subset: Optional[Sequence[str]] = None, figsize: Optional[Tuple[float, float]] = None,
              num_cols: int = NUM_PLOT_COLUMNS, height_per_row: float = DEFAULT_HEIGHT_PER_ROW,
              plot_width: float = DEFAULT_WIDTH) -> plt.Figure:
         if subset is not None:
