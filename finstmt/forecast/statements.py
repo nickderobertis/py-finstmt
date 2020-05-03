@@ -33,15 +33,27 @@ class ForecastedFinancialStatements(FinancialStatements):
         col = 0
         with warnings.catch_warnings():
             warnings.filterwarnings(action='ignore', message='Attempting to set identical bottom == top')
-            for item_key, forecast in plot_items.items():
+            for i, (item_key, forecast) in enumerate(plot_items.items()):
                 if num_plot_rows == 1:
                     # 1D array if single row
                     forecast.plot(ax=axes[col])
                 else:
                     # 2D array if multiple rows
                     forecast.plot(ax=axes[row, col])
+                if i == len(plot_items) - 1 or _plot_finished(row, col, num_plot_rows, num_plot_columns):
+                    break
                 col += 1
                 if col == num_plot_columns:
                     row += 1
                     col = 0
+        while not _plot_finished(row, col, num_plot_rows, num_plot_columns):
+            col += 1
+            if col == num_plot_columns:
+                row += 1
+                col = 0
+            fig.delaxes(axes[row][col])
         return fig
+
+
+def _plot_finished(row: int, col: int, max_rows: int, max_cols: int) -> bool:
+    return row == max_rows - 1 and col == max_cols - 1
