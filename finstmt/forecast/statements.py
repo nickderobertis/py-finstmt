@@ -28,21 +28,19 @@ class ForecastedFinancialStatements(FinancialStatements):
         if figsize is None:
             figsize = (DEFAULT_WIDTH, DEFAULT_HEIGHT_PER_ROW * num_plot_rows)
 
-        fig, axes = plt.subplots(num_plot_rows, num_plot_columns, sharex='col', sharey=False, figsize=figsize)
+        fig, axes = plt.subplots(num_plot_rows, num_plot_columns, sharex=False, sharey=False, figsize=figsize)
         row = 0
         col = 0
         with warnings.catch_warnings():
             warnings.filterwarnings(action='ignore', message='Attempting to set identical bottom == top')
             for i, (item_key, forecast) in enumerate(plot_items.items()):
-                if num_plot_rows == num_plot_columns == 1:
-                    # No array if single row and column
-                    forecast.plot(ax=axes)
-                elif num_plot_rows == 1:
-                    # 1D array if single row
-                    forecast.plot(ax=axes[col])
-                else:
-                    # 2D array if multiple rows
-                    forecast.plot(ax=axes[row, col])
+                selected_ax = _get_selected_ax(axes, row, col, num_plot_rows, num_plot_columns)
+                forecast.plot(ax=selected_ax)
+
+                # For before final row, don't display x-axis
+                if not _is_last_plot_in_col(row, col, num_plot_rows, num_plot_columns, len(plot_items)):
+                    selected_ax.get_xaxis().set_visible(False)
+
                 if i == len(plot_items) - 1 or _plot_finished(row, col, num_plot_rows, num_plot_columns):
                     break
                 col += 1
@@ -57,6 +55,33 @@ class ForecastedFinancialStatements(FinancialStatements):
             fig.delaxes(axes[row][col])
         return fig
 
-
 def _plot_finished(row: int, col: int, max_rows: int, max_cols: int) -> bool:
     return row == max_rows - 1 and col == max_cols - 1
+
+def _get_selected_ax(axes: plt.Axes, row: int, col: int, num_plot_rows: int, num_plot_columns: int) -> Subplot:
+    if num_plot_rows == num_plot_columns == 1:
+        # No array if single row and column
+        return axes
+    elif num_plot_rows == 1:
+        # 1D array if single row
+        return axes[col]
+    else:
+        # 2D array if multiple rows
+        return axes[row, col]
+
+def _is_last_plot_in_col(row: int, col: int, num_plot_rows: int, num_plot_columns: int, num_plots: int) -> bool:
+    # In last row, automatically last plot in col
+    if row == num_plot_rows - 1:
+        return True
+
+    # If earlier than next to last row, must not be last plot in rol
+    if row != num_plot_rows - 2:
+        return False
+
+    # Must be in next to last row. Determine if there is going to be a plot below
+    plot_number = row * num_plot_columns + (col + 1)
+    if plot_number + num_plot_columns > num_plots:
+        # Moving down one row would mean that is more plots than necessary
+        return True
+    else:
+        return False
