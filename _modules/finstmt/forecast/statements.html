@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast.statements &mdash; finstmt 0.6.2 documentation</title>
+  <title>finstmt.forecast.statements &mdash; finstmt 0.6.3 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.6.2
+                0.6.3
               </div>
             
           
@@ -170,6 +170,7 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Subplot</span>
 
 <span class="kn">from</span> <span class="nn">finstmt.combined.statements</span> <span class="kn">import</span> <span class="n">FinancialStatements</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.main</span> <span class="kn">import</span> <span class="n">Forecast</span>
@@ -178,39 +179,88 @@
 <span class="n">DEFAULT_WIDTH</span> <span class="o">=</span> <span class="mi">15</span>
 <span class="n">DEFAULT_HEIGHT_PER_ROW</span> <span class="o">=</span> <span class="mi">3</span>
 
+
 <div class="viewcode-block" id="ForecastedFinancialStatements"><a class="viewcode-back" href="../../../api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ForecastedFinancialStatements</span><span class="p">(</span><span class="n">FinancialStatements</span><span class="p">):</span>
     <span class="n">forecasts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Forecast</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{})</span>
 
-<div class="viewcode-block" id="ForecastedFinancialStatements.plot"><a class="viewcode-back" href="../../../api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+<div class="viewcode-block" id="ForecastedFinancialStatements.plot"><a class="viewcode-back" href="../../../api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+             <span class="n">num_cols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">NUM_PLOT_COLUMNS</span><span class="p">,</span> <span class="n">height_per_row</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_HEIGHT_PER_ROW</span><span class="p">,</span>
+             <span class="n">plot_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_WIDTH</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">subset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">plot_items</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">forecasts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">subset</span><span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">plot_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forecasts</span>
 
-        <span class="n">num_plot_rows</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_items</span><span class="p">)</span> <span class="o">/</span> <span class="n">NUM_PLOT_COLUMNS</span><span class="p">)</span>
-        <span class="n">num_plot_columns</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_items</span><span class="p">),</span> <span class="n">NUM_PLOT_COLUMNS</span><span class="p">)</span>
+        <span class="n">num_plot_rows</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_items</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_cols</span><span class="p">)</span>
+        <span class="n">num_plot_columns</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_items</span><span class="p">),</span> <span class="n">num_cols</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">figsize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="n">DEFAULT_WIDTH</span><span class="p">,</span> <span class="n">DEFAULT_HEIGHT_PER_ROW</span> <span class="o">*</span> <span class="n">num_plot_rows</span><span class="p">)</span>
+            <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="n">plot_width</span><span class="p">,</span> <span class="n">height_per_row</span> <span class="o">*</span> <span class="n">num_plot_rows</span><span class="p">)</span>
 
-        <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num_plot_rows</span><span class="p">,</span> <span class="n">num_plot_columns</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num_plot_rows</span><span class="p">,</span> <span class="n">num_plot_columns</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
         <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Attempting to set identical bottom == top&#39;</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">item_key</span><span class="p">,</span> <span class="n">forecast</span> <span class="ow">in</span> <span class="n">plot_items</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">num_plot_rows</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="c1"># 1D array if single row</span>
-                    <span class="n">forecast</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># 2D array if multiple rows</span>
-                    <span class="n">forecast</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">item_key</span><span class="p">,</span> <span class="n">forecast</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plot_items</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="n">selected_ax</span> <span class="o">=</span> <span class="n">_get_selected_ax</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">num_plot_rows</span><span class="p">,</span> <span class="n">num_plot_columns</span><span class="p">)</span>
+                <span class="n">forecast</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">selected_ax</span><span class="p">)</span>
+
+                <span class="c1"># For before final row, don&#39;t display x-axis</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">_is_last_plot_in_col</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">num_plot_rows</span><span class="p">,</span> <span class="n">num_plot_columns</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_items</span><span class="p">)):</span>
+                    <span class="n">selected_ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_items</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">_plot_finished</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">num_plot_rows</span><span class="p">,</span> <span class="n">num_plot_columns</span><span class="p">):</span>
+                    <span class="k">break</span>
                 <span class="n">col</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="n">num_plot_columns</span><span class="p">:</span>
                     <span class="n">row</span> <span class="o">+=</span> <span class="mi">1</span>
                     <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">_plot_finished</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">num_plot_rows</span><span class="p">,</span> <span class="n">num_plot_columns</span><span class="p">):</span>
+            <span class="n">col</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="n">num_plot_columns</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">delaxes</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">fig</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_plot_finished</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">max_rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">max_cols</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">row</span> <span class="o">==</span> <span class="n">max_rows</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">col</span> <span class="o">==</span> <span class="n">max_cols</span> <span class="o">-</span> <span class="mi">1</span>
+
+
+<span class="k">def</span> <span class="nf">_get_selected_ax</span><span class="p">(</span><span class="n">axes</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_plot_rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_plot_columns</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Subplot</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num_plot_rows</span> <span class="o">==</span> <span class="n">num_plot_columns</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># No array if single row and column</span>
+        <span class="k">return</span> <span class="n">axes</span>
+    <span class="k">elif</span> <span class="n">num_plot_rows</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># 1D array if single row</span>
+        <span class="k">return</span> <span class="n">axes</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">num_plot_columns</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># 1D array if single column</span>
+        <span class="k">return</span> <span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 2D array if multiple rows</span>
+        <span class="k">return</span> <span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_is_last_plot_in_col</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_plot_rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_plot_columns</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_plots</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="c1"># In last row, automatically last plot in col</span>
+    <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="n">num_plot_rows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="c1"># If earlier than next to last row, must not be last plot in rol</span>
+    <span class="k">if</span> <span class="n">row</span> <span class="o">!=</span> <span class="n">num_plot_rows</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Must be in next to last row. Determine if there is going to be a plot below</span>
+    <span class="n">plot_number</span> <span class="o">=</span> <span class="n">row</span> <span class="o">*</span> <span class="n">num_plot_columns</span> <span class="o">+</span> <span class="p">(</span><span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plot_number</span> <span class="o">+</span> <span class="n">num_plot_columns</span> <span class="o">&gt;</span> <span class="n">num_plots</span><span class="p">:</span>
+        <span class="c1"># Moving down one row would mean that is more plots than necessary</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
 </pre></div>
 
            </div>

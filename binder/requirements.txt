@@ -1,8 +1,8 @@
-statsmodels
 tqdm
-sympy
 finstmt
-matplotlib
 xlrd
-fbprophet
+matplotlib
 pandas
+statsmodels
+fbprophet
+sympy

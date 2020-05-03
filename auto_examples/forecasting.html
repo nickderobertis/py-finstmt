@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Forecasting Financial Statements with finstmt &mdash; finstmt 0.6.2 documentation</title>
+  <title>Forecasting Financial Statements with finstmt &mdash; finstmt 0.6.3 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.6.2
+                0.6.3
               </div>
             
           
@@ -1362,7 +1362,8 @@ run a forecast, then view the results, then adjust as needed.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Depreciation &amp; Amortization Expense as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]
+  6%|6         | 1/16 [00:00&lt;00:03,  4.35it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Depreciation &amp; Amortization Expense as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Operating Expenses as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
@@ -1372,11 +1373,10 @@ run a forecast, then view the results, then adjust as needed.</p>
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
-
- 81%|########1 | 13/16 [00:00&lt;00:00, 117.44it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
-100%|##########| 16/16 [00:00&lt;00:00, 131.16it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 48.48it/s]
 
   0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
@@ -1391,7 +1391,7 @@ run a forecast, then view the results, then adjust as needed.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 35%|###5      | 13/37 [00:00&lt;00:00, 125.74it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+ 38%|###7      | 14/37 [00:00&lt;00:00, 127.85it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
@@ -1403,17 +1403,17 @@ run a forecast, then view the results, then adjust as needed.</p>
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
-
- 73%|#######2  | 27/37 [00:00&lt;00:00, 128.66it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+
+ 78%|#######8  | 29/37 [00:00&lt;00:00, 130.88it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Comprehensive Income as y_0 is negative, y_T is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
-100%|##########| 37/37 [00:00&lt;00:00, 139.11it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 144.04it/s]
 </pre></div>
 </div>
 <dl class="simple">
@@ -1915,7 +1915,7 @@ run a forecast, then view the results, then adjust as needed.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x3900 with 39 Axes&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x3900 with 37 Axes&gt;
 </pre></div>
 </div>
 <p>It is also possible to plot a subset. Let’s focus on only a few items
@@ -1954,8 +1954,8 @@ item should be chosen. Then they can be updated.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 94%|#########3| 15/16 [00:00&lt;00:00, 137.87it/s]
-100%|##########| 16/16 [00:00&lt;00:00, 146.53it/s]
+ 94%|#########3| 15/16 [00:00&lt;00:00, 142.05it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 150.97it/s]
 
   0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
@@ -1970,7 +1970,7 @@ item should be chosen. Then they can be updated.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 35%|###5      | 13/37 [00:00&lt;00:00, 125.51it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+ 38%|###7      | 14/37 [00:00&lt;00:00, 129.57it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
@@ -1982,17 +1982,17 @@ item should be chosen. Then they can be updated.</p>
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
-
- 76%|#######5  | 28/37 [00:00&lt;00:00, 130.13it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+
+ 78%|#######8  | 29/37 [00:00&lt;00:00, 135.06it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Comprehensive Income as y_0 is negative, y_T is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
-100%|##########| 37/37 [00:00&lt;00:00, 142.16it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 149.43it/s]
 </pre></div>
 </div>
 <p>And plot the results:</p>
@@ -2041,7 +2041,7 @@ statements. Then you can view the plots:</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
-100%|##########| 16/16 [00:00&lt;00:00, 161.52it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 168.86it/s]
 
   0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
@@ -2056,7 +2056,7 @@ statements. Then you can view the plots:</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 35%|###5      | 13/37 [00:00&lt;00:00, 124.47it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+ 38%|###7      | 14/37 [00:00&lt;00:00, 138.99it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
@@ -2066,19 +2066,19 @@ statements. Then you can view the plots:</p>
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
-
- 70%|#######   | 26/37 [00:00&lt;00:00, 125.54it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+
+ 78%|#######8  | 29/37 [00:00&lt;00:00, 141.77it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Comprehensive Income as y_0 is negative, y_T is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
-100%|##########| 37/37 [00:00&lt;00:00, 125.11it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 153.47it/s]
 
 &lt;Figure size 1500x300 with 3 Axes&gt;
 </pre></div>
@@ -2419,7 +2419,7 @@ forecast.</p>
 </table>
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  23.597 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  22.446 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-forecasting-py">
 <div class="binder-badge docutils container">
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/nickderobertis/py-finstmt/gh-pages?urlpath=lab/tree/notebooks/auto_examples/forecasting.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>
