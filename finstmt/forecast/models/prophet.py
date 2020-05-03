@@ -48,7 +48,9 @@ class FBProphetModel(ForecastModel):
             title = self.base_config.display_name
 
         fig = self.model.plot(self.result_df, ax=ax, figsize=figsize, xlabel=xlabel, ylabel=ylabel)
-        if title:
+        if ax is not None and title:
+            ax.set_title(title)
+        elif title:
             _set_title_on_axes(fig, title)
 
         plt.close()
