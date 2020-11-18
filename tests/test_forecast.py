@@ -134,6 +134,16 @@ class TestForecastStockrowCAT(ForecastTest):
         stmts.config.update("lt_debt", ["forecast_config", "plug"], False)
         super().test_annual(stmts, data=FCST_STOCKROW_CAT_A_PLUG_MAKE_FORECAST_INDEX_DATA_DICT)
 
+    def test_multi_forecast_changing_assumptions(self, annual_stockrow_stmts_cat: FinancialStatements):
+        stmts = annual_stockrow_stmts_cat.copy()
+
+        stmts.config.update_all(['forecast_config', 'method'], 'cagr')
+        fcst = stmts.forecast()
+
+        stmts.config.update('revenue', ['forecast_config', 'method'], 'trend')
+        stmts.config.update('cogs', ['forecast_config', 'method'], 'mean')
+        fcst = stmts.forecast()
+
     def test_quarterly(self, quarterly_stockrow_stmts_cat: FinancialStatements):
         super().test_quarterly(quarterly_stockrow_stmts_cat)
 
