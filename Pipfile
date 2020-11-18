@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-sphinx = "==2.4.3"
+sphinx = "*"
 sphinx-autobuild = "*"
 sphinx-autodoc-typehints = "*"
 sphinxcontrib-fulltoc = "*"
@@ -33,4 +33,4 @@ statsmodels = "*"
 pillow = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
