@@ -5,6 +5,7 @@ from dataclasses import field
 import pandas as pd
 from tqdm import tqdm
 
+from finstmt.check import item_series_is_empty
 from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.config_manage.statement import StatementConfigManager
 from finstmt.exc import CouldNotParseException, MixedFrequencyException
@@ -190,6 +191,10 @@ class FinStatementsBase:
     @property
     def dates(self) -> List[pd.Timestamp]:
         return list(self.statements.keys())
+
+    def item_is_empty(self, key: str) -> bool:
+        item: pd.Series = getattr(self, key)
+        return item_series_is_empty(item)
 
     def __add__(self, other):
         if isinstance(other, (float, int)):

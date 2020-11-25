@@ -61,6 +61,10 @@ class DataConfigManager(ConfigManagerBase):
     def keys(self) -> List[str]:
         return list(self.config_dict.keys())
 
+    @property
+    def items(self) -> List[ItemConfig]:
+        return self.configs
+
 
 def _key_pct_of_key(base_key: str, pct_of_key: str) -> str:
     return f'{base_key}_pct_{pct_of_key}'

@@ -1,6 +1,6 @@
-from typing import Dict, Any
+from typing import Dict, Any, List
 
-from sympy import symbols, IndexedBase, Idx, Expr, sympify
+from sympy import symbols, IndexedBase, Idx, Expr, sympify, Eq
 
 from finstmt.exc import NotACalculatedItemException
 from finstmt.items.config import ItemConfig
@@ -28,6 +28,13 @@ class ConfigManagerBase:
         """
         raise NotImplementedError
 
+    @property
+    def items(self) -> List[ItemConfig]:
+        """
+        All the configuration items
+        """
+        raise NotImplementedError
+
     def get_value(self, item_key: str, config_key: str) -> Any:
         """
         Get a particular configuration for a particular item
@@ -49,6 +56,37 @@ class ConfigManagerBase:
             raise NotACalculatedItemException(item_key)
         expr = sympify(config.expr_str, locals=self.sympy_namespace)
         return expr
+
+    def eqs_involving(self, item_key: str) -> List[Eq]:
+        ns = self.sympy_namespace
+        item_sym = ns[item_key]
+        t = ns['t']
+        item_t = item_sym[t]
+        eqs: List[Eq] = []
+        for config in self.items:
+            if config.expr_str is None:
+                continue
+            rhs = self.expr_for(config.key)
+            if item_t in rhs.free_symbols:
+                this_item_sym = ns[config.key]
+                this_item_sym_t = this_item_sym[t]
+                eq = Eq(this_item_sym_t, rhs)
+                eqs.append(eq)
+
+        return eqs
+
+    def _expr_to_keys(self, expr: Expr) -> List[str]:
+        ns = self.sympy_namespace
+        t = ns['t']
+        syms = expr.free_symbols
+        keys: List[str] = []
+        for key, key_expr in ns.items():
+            if key == 't':
+                continue
+            key_expr_t = key_expr[t]
+            if key_expr_t in syms:
+                keys.append(key)
+        return keys
 
     def eq_subs_dict(self, values_dict: Dict[str, float], t_offset: int = 0) -> Dict[IndexedBase, float]:
         out_dict = {}
