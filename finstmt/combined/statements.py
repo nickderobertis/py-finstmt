@@ -66,6 +66,10 @@ class FinancialStatements:
     def _adjust_config_based_on_data(self):
         for item in self.config.items:
             if self.item_is_empty(item.key):
+                if self.config.get(item.key).forecast_config.plug:
+                    # It is OK for plug items to be empty, won't affect the forecast
+                    continue
+
                 # Useless to make forecasts on empty items
                 logger.debug(f'Setting {item.key} to not forecast as it is empty')
                 item.forecast_config.make_forecast = False
