@@ -16,8 +16,20 @@ def check_config(config: StatementsConfigManager, json_path: Path):
     assert config.dict() == expect_data
 
 
-def test_config_load(annual_stockrow_income_stmt_cat: IncomeStatements, annual_stockrow_bs_stmt_cat: BalanceSheets):
+def test_config_load_cat_annual_stockrow(
+    annual_stockrow_income_stmt_cat: IncomeStatements,
+    annual_stockrow_bs_stmt_cat: BalanceSheets
+):
     stmts = FinancialStatements(annual_stockrow_income_stmt_cat, annual_stockrow_bs_stmt_cat)
     json_path = EXPECT_CONFIG_PATH / 'default-cat-annual-stockrow.json'
     check_config(stmts.config, json_path)
 
+
+def test_config_load_cat_annual_capiq(
+    annual_capiq_income_stmt: IncomeStatements,
+    annual_capiq_bs_stmt: BalanceSheets
+):
+    dates = annual_capiq_income_stmt.dates
+    stmts = FinancialStatements(annual_capiq_income_stmt, annual_capiq_bs_stmt[dates])
+    json_path = EXPECT_CONFIG_PATH / 'default-cat-annual-capiq.json'
+    check_config(stmts.config, json_path)
