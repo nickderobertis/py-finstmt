@@ -1,16 +1,14 @@
 import os
-import unittest
 from typing import Dict, Optional
 
 import pandas as pd
 from pandas.testing import assert_series_equal
 
 from finstmt import FinancialStatements
-from finstmt.exc import MismatchingDatesException
-from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
+from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH, EXPECT_STATEMENTS_PATH
 
 # Imported for test development purposes
-from tests.expectdata.load.load_capiq_cat_annual import LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT
+from tests.expectdata.statements.load_capiq_cat_annual import LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT
 
 if DEVELOPMENT_MODE:
     from tests.utils.gen.data_load import print_test_data_def, get_keys_for_inc_data_items, get_keys_for_bs_data_items
@@ -34,7 +32,7 @@ class LoadTest:
         if data is None:
             data = self.a_test_data_dict
         if DEVELOPMENT_MODE:
-            out_path = os.path.join(GENERATED_PATH, f'{self.name}_annual.py')
+            out_path = os.path.join(EXPECT_STATEMENTS_PATH, f'{self.name}_annual.py')
             with open(out_path, 'w') as f:
                 f.write('import pandas as pd\n\n')
                 f.write(
@@ -45,13 +43,14 @@ class LoadTest:
                         disp=False
                     )
                 )
-        check_data_items(stmts, data)
+        else:
+            check_data_items(stmts, data)
 
     def test_quarterly(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None):
         if data is None:
             data = self.q_test_data_dict
         if DEVELOPMENT_MODE:
-            out_path = os.path.join(GENERATED_PATH, f'{self.name}_quarterly.py')
+            out_path = os.path.join(EXPECT_STATEMENTS_PATH, f'{self.name}_quarterly.py')
             with open(out_path, 'w') as f:
                 f.write('import pandas as pd\n\n')
                 f.write(
@@ -62,7 +61,8 @@ class LoadTest:
                         disp=False
                     )
                 )
-        check_data_items(stmts, data)
+        else:
+            check_data_items(stmts, data)
 
 
 class TestLoadStockrowCAT(LoadTest):

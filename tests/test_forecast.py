@@ -3,19 +3,21 @@ import unittest
 from typing import Sequence, Dict, Optional
 
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 
 from finstmt import FinancialStatements
 from finstmt.exc import MismatchingDatesException, BalanceSheetNotBalancedException
 from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
-from tests.expectdata.forecast.fcst_capiq_cat_annual import FCST_CAPIQ_CAT_A_INDEX_DATA_DICT
-from tests.expectdata.forecast.fcst_capiq_cat_quarterly import FCST_CAPIQ_CAT_Q_INDEX_DATA_DICT
-from tests.expectdata.forecast.fcst_stockrow_cat_annual import FCST_STOCKROW_CAT_A_INDEX_DATA_DICT
-from tests.expectdata.forecast.fcst_stockrow_cat_annual_no_balance import FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT
-from tests.expectdata.forecast.fcst_stockrow_cat_annual_plug_make_forecast import \
+from tests.expectdata.statements.fcst_capiq_cat_annual import FCST_CAPIQ_CAT_A_INDEX_DATA_DICT
+from tests.expectdata.statements.fcst_capiq_cat_quarterly import FCST_CAPIQ_CAT_Q_INDEX_DATA_DICT
+from tests.expectdata.statements.fcst_stockrow_cat_annual import FCST_STOCKROW_CAT_A_INDEX_DATA_DICT
+from tests.expectdata.statements.fcst_stockrow_cat_annual_no_balance import FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT
+from tests.expectdata.statements.fcst_stockrow_cat_annual_plug_make_forecast import \
     FCST_STOCKROW_CAT_A_PLUG_MAKE_FORECAST_INDEX_DATA_DICT
-from tests.expectdata.forecast.fcst_stockrow_cat_quarterly import FCST_STOCKROW_CAT_Q_INDEX_DATA_DICT
-from tests.expectdata.forecast.fcst_stockrow_mar_annual import FCST_STOCKROW_MAR_A_INDEX_DATA_DICT
-from tests.expectdata.forecast.fcst_stockrow_mar_quarterly import FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT
+from tests.expectdata.statements.fcst_stockrow_cat_quarterly import FCST_STOCKROW_CAT_Q_INDEX_DATA_DICT
+from tests.expectdata.statements.fcst_stockrow_mar_annual import FCST_STOCKROW_MAR_A_INDEX_DATA_DICT
+from tests.expectdata.statements.fcst_stockrow_mar_quarterly import FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT
 from tests.test_load import LoadTest
 
 FORECAST_KWARGS = dict(
