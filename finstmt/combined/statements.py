@@ -14,6 +14,7 @@ from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
 from finstmt.items.config import ItemConfig
+from finstmt.logger import logger
 
 
 @dataclass
@@ -66,6 +67,7 @@ class FinancialStatements:
         for item in self.config.items:
             if self.item_is_empty(item.key):
                 # Useless to make forecasts on empty items
+                logger.debug(f'Setting {item.key} to not forecast as it is empty')
                 item.forecast_config.make_forecast = False
                 # But this may mean another item should be forecasted instead.
                 # E.g. normally net_ppe is calculated from gross_ppe and dep,
@@ -99,6 +101,8 @@ class FinancialStatements:
                         continue
                     # Now this is a calculated item which is non-empty, and all the components of the
                     # calculated are empty, so we need to forecast this item instead
+                    logger.debug(f'Setting {conf.key} to forecast as it is a calculated item which is not empty '
+                                 f'and yet none of the components have data')
                     conf.forecast_config.make_forecast = True
 
     def change(self, data_key: str) -> pd.Series:
