@@ -50,7 +50,7 @@ class FinancialStatements:
         config_dict = {}
         config_dict['income_statements'] = self.income_statements.config
         config_dict['balance_sheets'] = self.balance_sheets.config
-        self.config = StatementsConfigManager(config_dict)
+        self.config = StatementsConfigManager(config_managers=config_dict)
 
     def change(self, data_key: str) -> pd.Series:
         """
