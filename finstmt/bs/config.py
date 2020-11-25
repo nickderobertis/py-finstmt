@@ -158,7 +158,7 @@ BALANCE_SHEET_INPUT_ITEMS = [
     ),
     ItemConfig(
         'gross_ppe',
-        'Grosss Property, Plant & Equipment',
+        'Gross Property, Plant & Equipment',
         extract_names=[
             'gross ppe',
             'gross property plant equipment',
