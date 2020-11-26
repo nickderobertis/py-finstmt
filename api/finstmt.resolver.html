@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.resolver package &mdash; finstmt 0.6.4 documentation</title>
+  <title>finstmt.resolver package &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -116,6 +116,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.check">finstmt.check module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
 </ul>
@@ -201,7 +202,7 @@
 <dl class="py class">
 <dt id="finstmt.resolver.base.ResolverBase">
 <em class="property">class </em><code class="sig-prename descclassname">finstmt.resolver.base.</code><code class="sig-name descname">ResolverBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stmts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/base.html#ResolverBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.base.ResolverBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.resolver.base.ResolverBase.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stmts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/base.html#ResolverBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.base.ResolverBase.__init__" title="Permalink to this definition">¶</a></dt>
@@ -213,7 +214,7 @@
 <em class="property">property </em><code class="sig-name descname">all_eqs</code><a class="headerlink" href="#finstmt.resolver.base.ResolverBase.all_eqs" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -223,7 +224,7 @@
 <em class="property">property </em><code class="sig-name descname">num_periods</code><a class="headerlink" href="#finstmt.resolver.base.ResolverBase.num_periods" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -235,12 +236,12 @@
 
 <dl class="py attribute">
 <dt id="finstmt.resolver.base.ResolverBase.solve_eqs">
-<code class="sig-name descname">solve_eqs</code><em class="property">: List[Eq]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.base.ResolverBase.solve_eqs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">solve_eqs</code><em class="property">: List<span class="p">[</span>sympy.Eq<span class="p">]</span></em><a class="headerlink" href="#finstmt.resolver.base.ResolverBase.solve_eqs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.resolver.base.ResolverBase.subs_dict">
-<code class="sig-name descname">subs_dict</code><em class="property">: Dict[IndexedBase, float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.base.ResolverBase.subs_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">subs_dict</code><em class="property">: Dict<span class="p">[</span>sympy.IndexedBase<span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><a class="headerlink" href="#finstmt.resolver.base.ResolverBase.subs_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -248,7 +249,7 @@
 <em class="property">property </em><code class="sig-name descname">sympy_subs_dict</code><a class="headerlink" href="#finstmt.resolver.base.ResolverBase.sympy_subs_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -268,7 +269,7 @@
 <em class="property">property </em><code class="sig-name descname">t_indexed_eqs</code><a class="headerlink" href="#finstmt.resolver.base.ResolverBase.t_indexed_eqs" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -291,7 +292,7 @@
 <dl class="py exception">
 <dt id="finstmt.resolver.forecast.BalanceSheetBalancedException">
 <em class="property">exception </em><code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">BalanceSheetBalancedException</code><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#BalanceSheetBalancedException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.BalanceSheetBalancedException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
@@ -309,7 +310,7 @@
 <em class="property">property </em><code class="sig-name descname">all_eqs</code><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.all_eqs" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -319,7 +320,7 @@
 <em class="property">property </em><code class="sig-name descname">bs_balance_eqs</code><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.bs_balance_eqs" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -339,7 +340,7 @@
 <em class="property">property </em><code class="sig-name descname">num_periods</code><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.num_periods" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -349,7 +350,7 @@
 <em class="property">property </em><code class="sig-name descname">plug_configs</code><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.plug_configs" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -359,7 +360,7 @@
 <em class="property">property </em><code class="sig-name descname">plug_keys</code><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.plug_keys" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -381,12 +382,12 @@
 
 <dl class="py attribute">
 <dt id="finstmt.resolver.forecast.ForecastResolver.solve_eqs">
-<code class="sig-name descname">solve_eqs</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.solve_eqs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">solve_eqs</code><em class="property">: List<span class="p">[</span>sympy.Eq<span class="p">]</span></em><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.solve_eqs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.resolver.forecast.ForecastResolver.subs_dict">
-<code class="sig-name descname">subs_dict</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.subs_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">subs_dict</code><em class="property">: Dict<span class="p">[</span>sympy.IndexedBase<span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.subs_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -394,7 +395,7 @@
 <em class="property">property </em><code class="sig-name descname">sympy_subs_dict</code><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.sympy_subs_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -404,7 +405,7 @@
 <em class="property">property </em><code class="sig-name descname">t_indexed_eqs</code><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.t_indexed_eqs" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -423,21 +424,17 @@
 
 <dl class="py class">
 <dt id="finstmt.resolver.forecast.PlugResult">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">PlugResult</code><span class="sig-paren">(</span><em class="sig-param">res: Union[&lt;built-in function array&gt;</em>, <em class="sig-param">NoneType] = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#PlugResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">PlugResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">res</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#PlugResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.resolver.forecast.PlugResult.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">res</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>numpy.array<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">res</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.resolver.forecast.PlugResult.res">
-<code class="sig-name descname">res</code><em class="property">: Optional[numpy.array]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.res" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">res</code><em class="property">: Optional<span class="p">[</span>numpy.array<span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.res" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -447,7 +444,7 @@
 <code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">resolve_balance_sheet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">eqs</span></em>, <em class="sig-param"><span class="n">plug_keys</span></em>, <em class="sig-param"><span class="n">subs_dict</span></em>, <em class="sig-param"><span class="n">forecast_dates</span></em>, <em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">sympy_namespace</span></em>, <em class="sig-param"><span class="n">bs_diff_max</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#resolve_balance_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.resolve_balance_sheet" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -464,7 +461,7 @@
 <em class="property">property </em><code class="sig-name descname">all_eqs</code><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.all_eqs" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -474,19 +471,19 @@
 <em class="property">property </em><code class="sig-name descname">num_periods</code><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.num_periods" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.resolver.history.StatementsResolver.solve_eqs">
-<code class="sig-name descname">solve_eqs</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.solve_eqs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">solve_eqs</code><em class="property">: List<span class="p">[</span>sympy.Eq<span class="p">]</span></em><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.solve_eqs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.resolver.history.StatementsResolver.subs_dict">
-<code class="sig-name descname">subs_dict</code><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.subs_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">subs_dict</code><em class="property">: Dict<span class="p">[</span>sympy.IndexedBase<span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.subs_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -494,7 +491,7 @@
 <em class="property">property </em><code class="sig-name descname">sympy_subs_dict</code><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.sympy_subs_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -504,14 +501,14 @@
 <em class="property">property </em><code class="sig-name descname">t_indexed_eqs</code><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.t_indexed_eqs" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="finstmt.resolver.history.StatementsResolver.to_statements">
-<code class="sig-name descname">to_statements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/history.html#StatementsResolver.to_statements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.to_statements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">to_statements</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/history.html#StatementsResolver.to_statements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.history.StatementsResolver.to_statements" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
@@ -529,7 +526,7 @@
 <code class="sig-prename descclassname">finstmt.resolver.solve.</code><code class="sig-name descname">get_solve_eqs_and_full_subs_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">eqs_for_sub</span></em>, <em class="sig-param"><span class="n">subs_dict</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/solve.html#get_solve_eqs_and_full_subs_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.solve.get_solve_eqs_and_full_subs_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -544,7 +541,7 @@
 <code class="sig-prename descclassname">finstmt.resolver.solve.</code><code class="sig-name descname">results_dict_to_sympy_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results_dict</span></em>, <em class="sig-param"><span class="n">sympy_namespace</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/solve.html#results_dict_to_sympy_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.solve.results_dict_to_sympy_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -559,7 +556,7 @@
 <code class="sig-prename descclassname">finstmt.resolver.solve.</code><code class="sig-name descname">sympy_dict_to_results_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s_dict</span></em>, <em class="sig-param"><span class="n">forecast_dates</span></em>, <em class="sig-param"><span class="n">item_configs</span></em>, <em class="sig-param"><span class="n">t_offset</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/solve.html#sympy_dict_to_results_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.solve.sympy_dict_to_results_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>

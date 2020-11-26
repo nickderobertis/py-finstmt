@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -8,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; finstmt 0.6.4 documentation</title>
+  <title>Index &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -68,7 +67,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -178,6 +177,7 @@
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
@@ -258,8 +258,16 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.Config.arbitrary_types_allowed">arbitrary_types_allowed (finstmt.items.config.ItemConfig.Config attribute)</a>
+</li>
       <li><a href="api/finstmt.findata.html#finstmt.findata.database.FinDataBase.as_dict">as_dict() (finstmt.findata.database.FinDataBase method)</a>
 </li>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.auto_adjust_config">auto_adjust_config (finstmt.combined.statements.FinancialStatements attribute)</a>
+
+      <ul>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.params.auto_adjust_config">(finstmt.combined.statements.FinancialStatements parameter)</a>, <a href="index.html#finstmt.combined.statements.FinancialStatements.params.auto_adjust_config">[1]</a>
+</li>
+      </ul></li>
       <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel">AverageModel (class in finstmt.forecast.models.average)</a>
 </li>
   </ul></td>
@@ -351,6 +359,8 @@
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.change.params.data_key">data_key (finstmt.combined.statements.FinancialStatements.change parameter)</a>
 
       <ul>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.item_is_empty.params.data_key">(finstmt.combined.statements.FinancialStatements.item_is_empty parameter)</a>
+</li>
         <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.lag.params.data_key">(finstmt.combined.statements.FinancialStatements.lag parameter)</a>
 </li>
       </ul></li>
@@ -378,6 +388,8 @@
 </li>
       <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.desired_freq_t_multiplier">desired_freq_t_multiplier() (finstmt.forecast.models.base.ForecastModel property)</a>
 </li>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.dict">dict() (finstmt.config_manage.statements.StatementsConfigManager method)</a>
+</li>
       <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.display_name">display_name (finstmt.items.config.ItemConfig attribute)</a>
 </li>
   </ul></td>
@@ -392,9 +404,11 @@
 </li>
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.effective_tax_rate">effective_tax_rate() (finstmt.inc.data.IncomeStatementData property)</a>
 </li>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.eq_subs_dict">eq_subs_dict() (finstmt.config_manage.base.ConfigManagerBase method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.eq_subs_dict">eq_subs_dict() (finstmt.config_manage.base.ConfigManagerBase method)</a>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.eqs_involving">eqs_involving() (finstmt.config_manage.base.ConfigManagerBase method)</a>
 </li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.expr_for">expr_for() (finstmt.config_manage.base.ConfigManagerBase method)</a>
 </li>
@@ -451,6 +465,13 @@
 
       <ul>
         <li><a href="api/finstmt.bs.html#module-finstmt.bs.main">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.check
+
+      <ul>
+        <li><a href="api/finstmt.html#module-finstmt.check">module</a>
 </li>
       </ul></li>
       <li>
@@ -880,17 +901,31 @@
 </li>
       <li><a href="api/finstmt.html#finstmt.exc.InvalidForecastEquationException">InvalidForecastEquationException</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.inventory">inventory (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.item_is_empty">item_is_empty() (finstmt.combined.statements.FinancialStatements method)</a>
+
+      <ul>
+        <li><a href="api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.item_is_empty">(finstmt.findata.statementsbase.FinStatementsBase method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update.params.item_key">item_key (finstmt.config_manage.statements.StatementsConfigManager.update parameter)</a>
+</li>
+      <li><a href="api/finstmt.html#finstmt.check.item_series_is_empty">item_series_is_empty() (in module finstmt.check)</a>
 </li>
       <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig">ItemConfig (class in finstmt.items.config)</a>
 </li>
-      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.items">items() (finstmt.config_manage.statement.StatementConfigManager property)</a>
+      <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.Config">ItemConfig.Config (class in finstmt.items.config)</a>
+</li>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.items">items() (finstmt.config_manage.base.ConfigManagerBase property)</a>
 
       <ul>
+        <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.items">(finstmt.config_manage.data.DataConfigManager property)</a>
+</li>
+        <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.items">(finstmt.config_manage.statement.StatementConfigManager property)</a>
+</li>
         <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.items">(finstmt.config_manage.statements.StatementsConfigManager property)</a>
 </li>
       </ul></li>
@@ -902,6 +937,14 @@
         <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.items_config">(finstmt.inc.data.IncomeStatementData attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.json">json() (finstmt.config_manage.statements.StatementsConfigManager method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -918,6 +961,10 @@
         <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.keys">(finstmt.config_manage.statements.StatementsConfigManager property)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.forecast.params.kwargs">kwargs (finstmt.combined.statements.FinancialStatements.forecast parameter)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -987,6 +1034,8 @@
         <li><a href="api/finstmt.bs.html#module-finstmt.bs.data">finstmt.bs.data</a>
 </li>
         <li><a href="api/finstmt.bs.html#module-finstmt.bs.main">finstmt.bs.main</a>
+</li>
+        <li><a href="api/finstmt.html#module-finstmt.check">finstmt.check</a>
 </li>
         <li><a href="api/finstmt.clean.html#module-finstmt.clean">finstmt.clean</a>
 </li>

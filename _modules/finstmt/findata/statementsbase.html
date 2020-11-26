@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.findata.statementsbase &mdash; finstmt 0.6.4 documentation</title>
+  <title>finstmt.findata.statementsbase &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -171,6 +171,7 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
+<span class="kn">from</span> <span class="nn">finstmt.check</span> <span class="kn">import</span> <span class="n">item_series_is_empty</span>
 <span class="kn">from</span> <span class="nn">finstmt.config_manage.data</span> <span class="kn">import</span> <span class="n">_key_pct_of_key</span>
 <span class="kn">from</span> <span class="nn">finstmt.config_manage.statement</span> <span class="kn">import</span> <span class="n">StatementConfigManager</span>
 <span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">CouldNotParseException</span><span class="p">,</span> <span class="n">MixedFrequencyException</span>
@@ -356,6 +357,10 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">dates</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">]:</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statements</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<div class="viewcode-block" id="FinStatementsBase.item_is_empty"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.item_is_empty">[docs]</a>    <span class="k">def</span> <span class="nf">item_is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">item</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">item_series_is_empty</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Forecasting Financial Statements with finstmt &mdash; finstmt 0.6.4 documentation</title>
+  <title>Forecasting Financial Statements with finstmt &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -614,7 +614,7 @@ the full experience.</p>
       <td>$38,603,000,000</td>
     </tr>
     <tr>
-      <th>Grosss Property, Plant &amp; Equipment</th>
+      <th>Gross Property, Plant &amp; Equipment</th>
       <td>-</td>
       <td>-</td>
       <td>-</td>
@@ -999,11 +999,9 @@ the full experience.</p>
 <div class="section" id="copy-the-statements">
 <h3>Copy the Statements<a class="headerlink" href="#copy-the-statements" title="Permalink to this headline">¶</a></h3>
 <p>To set up for running multiple forecasts off the same data, you can make
-a copy of it using <code class="docutils literal notranslate"><span class="pre">copy.deepcopy</span></code>. Then any adjustments to the
+a copy of it using <code class="docutils literal notranslate"><span class="pre">stmts.copy()</span></code>. Then any adjustments to the
 configuration will only be in the original object and not the copy.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/copy.html#copy.deepcopy" title="copy.deepcopy" class="sphx-glr-backref-module-copy sphx-glr-backref-type-py-function"><span class="n">deepcopy</span></a>
-
-<span class="n">stmts2</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/copy.html#copy.deepcopy" title="copy.deepcopy" class="sphx-glr-backref-module-copy sphx-glr-backref-type-py-function"><span class="n">deepcopy</span></a><span class="p">(</span><span class="n">stmts</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stmts2</span> <span class="o">=</span> <span class="n">stmts</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1086,49 +1084,9 @@ actually have an effect.</p>
       <td>False</td>
     </tr>
     <tr>
-      <th>Depreciation &amp; Amortization Expense</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Other Operating Expenses</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Interest Expense</th>
       <td>cagr</td>
       <td>total_debt</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Gain on Sale of Investments</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Gain on Sale of Assets</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Impairment Expense</th>
-      <td>cagr</td>
-      <td>None</td>
       <td>None</td>
       <td>None</td>
       <td>False</td>
@@ -1150,14 +1108,6 @@ actually have an effect.</p>
       <td>True</td>
     </tr>
     <tr>
-      <th>Short-Term Investments</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Receivables</th>
       <td>cagr</td>
       <td>revenue</td>
@@ -1174,31 +1124,7 @@ actually have an effect.</p>
       <td>False</td>
     </tr>
     <tr>
-      <th>Deferred Tax Assets, Current</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Other Current Assets</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Grosss Property, Plant &amp; Equipment</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Accumulated Depreciation</th>
+      <th>Net Property, Plant &amp; Equipment</th>
       <td>cagr</td>
       <td>None</td>
       <td>None</td>
@@ -1230,14 +1156,6 @@ actually have an effect.</p>
       <td>False</td>
     </tr>
     <tr>
-      <th>Other Long-Term Assets</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Payables</th>
       <td>cagr</td>
       <td>revenue</td>
@@ -1254,30 +1172,6 @@ actually have an effect.</p>
       <td>False</td>
     </tr>
     <tr>
-      <th>Current Portion of Long-Term Debt</th>
-      <td>cagr</td>
-      <td>total_debt</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Tax Liabilities, Short-Term</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Other Current Liabilities</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Long-Term Debt</th>
       <td>cagr</td>
       <td>None</td>
@@ -1286,39 +1180,7 @@ actually have an effect.</p>
       <td>True</td>
     </tr>
     <tr>
-      <th>Deferred Revenue</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Tax Liabilities, Long-Term</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Deposit Liabilities</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Other Long-Term Liabilities</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Common Stock</th>
       <td>cagr</td>
       <td>None</td>
       <td>None</td>
@@ -1341,14 +1203,6 @@ actually have an effect.</p>
       <td>None</td>
       <td>False</td>
     </tr>
-    <tr>
-      <th>Minority Interest</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
   </tbody>
 </table>
 </div>
@@ -1362,58 +1216,18 @@ run a forecast, then view the results, then adjust as needed.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Depreciation &amp; Amortization Expense as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Operating Expenses as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Gain on Sale of Investments as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Gain on Sale of Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 94%|#########3| 15/16 [00:00&lt;00:00, 145.50it/s]
-100%|##########| 16/16 [00:00&lt;00:00, 154.64it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 228.14it/s]
 
-  0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Deferred Tax Assets, Current as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Current Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Grosss Property, Plant &amp; Equipment as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
+  0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 38%|###7      | 14/37 [00:00&lt;00:00, 134.97it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+ 65%|######4   | 24/37 [00:00&lt;00:00, 229.18it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Comprehensive Income as y_0 is negative, y_T is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 78%|#######8  | 29/37 [00:00&lt;00:00, 136.95it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Comprehensive Income as y_0 is negative, y_T is negative. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-
-100%|##########| 37/37 [00:00&lt;00:00, 149.51it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 274.34it/s]
 </pre></div>
 </div>
 <dl class="simple">
@@ -1526,10 +1340,10 @@ run a forecast, then view the results, then adjust as needed.</p>
     <tr>
       <th>Interest Expense</th>
       <td>$405,538,377</td>
-      <td>$303,474,383</td>
-      <td>$306,352,143</td>
-      <td>$309,869,909</td>
-      <td>$314,080,279</td>
+      <td>$414,418,711</td>
+      <td>$417,120,973</td>
+      <td>$420,455,390</td>
+      <td>$424,474,230</td>
     </tr>
     <tr>
       <th>Gain on Sale of Investments</th>
@@ -1558,26 +1372,26 @@ run a forecast, then view the results, then adjust as needed.</p>
     <tr>
       <th>Earnings Before Tax</th>
       <td>$10,342,906,157</td>
-      <td>$11,598,729,642</td>
-      <td>$12,835,179,130</td>
-      <td>$14,162,130,570</td>
-      <td>$15,585,445,873</td>
+      <td>$11,487,785,314</td>
+      <td>$12,724,410,301</td>
+      <td>$14,051,545,089</td>
+      <td>$15,475,051,922</td>
     </tr>
     <tr>
       <th>Income Tax Expense</th>
       <td>$2,238,655,788</td>
-      <td>$2,510,470,737</td>
-      <td>$2,778,092,309</td>
-      <td>$3,065,302,448</td>
-      <td>$3,373,369,929</td>
+      <td>$2,486,457,548</td>
+      <td>$2,754,117,105</td>
+      <td>$3,041,366,929</td>
+      <td>$3,349,475,865</td>
     </tr>
     <tr>
       <th>Net Income</th>
       <td>$8,104,250,370</td>
-      <td>$9,088,258,905</td>
-      <td>$10,057,086,821</td>
-      <td>$11,096,828,121</td>
-      <td>$12,212,075,944</td>
+      <td>$9,001,327,766</td>
+      <td>$9,970,293,195</td>
+      <td>$11,010,178,159</td>
+      <td>$12,125,576,057</td>
     </tr>
   </tbody>
 </table>
@@ -1612,10 +1426,10 @@ run a forecast, then view the results, then adjust as needed.</p>
     <tr>
       <th>Cash and Cash Equivalents</th>
       <td>$8,242,449,478</td>
-      <td>$11,981,018,344</td>
-      <td>$12,398,725,964</td>
-      <td>$12,816,823,565</td>
-      <td>$13,233,888,747</td>
+      <td>$8,410,769,467</td>
+      <td>$8,794,973,040</td>
+      <td>$9,178,486,517</td>
+      <td>$9,559,824,786</td>
     </tr>
     <tr>
       <th>Short-Term Investments</th>
@@ -1628,10 +1442,10 @@ run a forecast, then view the results, then adjust as needed.</p>
     <tr>
       <th>Cash and Short-Term Investments</th>
       <td>$8,242,449,478</td>
-      <td>$11,981,018,344</td>
-      <td>$12,398,725,964</td>
-      <td>$12,816,823,565</td>
-      <td>$13,233,888,747</td>
+      <td>$8,410,769,467</td>
+      <td>$8,794,973,040</td>
+      <td>$9,178,486,517</td>
+      <td>$9,559,824,786</td>
     </tr>
     <tr>
       <th>Receivables</th>
@@ -1668,34 +1482,34 @@ run a forecast, then view the results, then adjust as needed.</p>
     <tr>
       <th>Total Current Assets</th>
       <td>$52,893,983,020</td>
-      <td>$57,907,768,799</td>
-      <td>$59,655,166,630</td>
-      <td>$61,460,382,532</td>
-      <td>$63,325,123,777</td>
+      <td>$54,337,519,923</td>
+      <td>$56,051,413,706</td>
+      <td>$57,822,045,484</td>
+      <td>$59,651,059,816</td>
     </tr>
     <tr>
-      <th>Grosss Property, Plant &amp; Equipment</th>
+      <th>Gross Property, Plant &amp; Equipment</th>
+      <td>$13,698,894,523</td>
       <td>-</td>
       <td>-</td>
-      <td>-</td>
-      <td>-</td>
+      <td>$14,080,515,420</td>
       <td>-</td>
     </tr>
     <tr>
       <th>Accumulated Depreciation</th>
       <td>-</td>
+      <td>$13,824,938,203</td>
+      <td>$13,952,141,611</td>
       <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
+      <td>$14,210,070,397</td>
     </tr>
     <tr>
       <th>Net Property, Plant &amp; Equipment</th>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
+      <td>$13,698,894,523</td>
+      <td>$13,824,938,203</td>
+      <td>$13,952,141,611</td>
+      <td>$14,080,515,420</td>
+      <td>$14,210,070,397</td>
     </tr>
     <tr>
       <th>Goodwill and Intangible Assets</th>
@@ -1731,19 +1545,19 @@ run a forecast, then view the results, then adjust as needed.</p>
     </tr>
     <tr>
       <th>Total Non-Current Assets</th>
-      <td>$10,347,910,088</td>
-      <td>$11,263,126,254</td>
-      <td>$12,309,706,325</td>
-      <td>$13,500,243,446</td>
-      <td>$14,849,017,240</td>
+      <td>$24,046,804,611</td>
+      <td>$25,088,064,457</td>
+      <td>$26,261,847,936</td>
+      <td>$27,580,758,866</td>
+      <td>$29,059,087,638</td>
     </tr>
     <tr>
       <th>Total Assets</th>
-      <td>$63,241,893,108</td>
-      <td>$69,170,895,053</td>
-      <td>$71,964,872,955</td>
-      <td>$74,960,625,978</td>
-      <td>$78,174,141,017</td>
+      <td>$76,940,787,631</td>
+      <td>$79,425,584,380</td>
+      <td>$82,313,261,642</td>
+      <td>$85,402,804,351</td>
+      <td>$88,710,147,453</td>
     </tr>
     <tr>
       <th>Payables</th>
@@ -1756,10 +1570,10 @@ run a forecast, then view the results, then adjust as needed.</p>
     <tr>
       <th>Short-Term Debt</th>
       <td>$11,746,812,154</td>
-      <td>$8,903,991,943</td>
-      <td>$9,104,546,137</td>
-      <td>$9,328,062,328</td>
-      <td>$9,576,953,057</td>
+      <td>$12,159,118,100</td>
+      <td>$12,396,509,129</td>
+      <td>$12,657,034,344</td>
+      <td>$12,943,091,456</td>
     </tr>
     <tr>
       <th>Current Portion of Long-Term Debt</th>
@@ -1788,26 +1602,26 @@ run a forecast, then view the results, then adjust as needed.</p>
     <tr>
       <th>Total Current Liabilities</th>
       <td>$19,428,649,628</td>
-      <td>$17,273,106,533</td>
-      <td>$18,222,427,016</td>
-      <td>$19,261,699,970</td>
-      <td>$20,399,331,428</td>
+      <td>$20,528,232,689</td>
+      <td>$21,514,390,008</td>
+      <td>$22,590,671,986</td>
+      <td>$23,765,469,826</td>
     </tr>
     <tr>
       <th>Long-Term Debt</th>
       <td>$25,339,312,566</td>
-      <td>$19,146,427,934</td>
-      <td>$19,515,879,395</td>
-      <td>$19,931,808,353</td>
-      <td>$20,398,896,417</td>
+      <td>$26,145,989,340</td>
+      <td>$26,572,305,026</td>
+      <td>$27,045,014,709</td>
+      <td>$27,568,766,428</td>
     </tr>
     <tr>
       <th>Total Debt</th>
       <td>$37,086,124,721</td>
-      <td>$28,050,419,877</td>
-      <td>$28,620,425,533</td>
-      <td>$29,259,870,681</td>
-      <td>$29,975,849,474</td>
+      <td>$38,305,107,440</td>
+      <td>$38,968,814,156</td>
+      <td>$39,702,049,053</td>
+      <td>$40,511,857,884</td>
     </tr>
     <tr>
       <th>Deferred Revenue</th>
@@ -1844,18 +1658,18 @@ run a forecast, then view the results, then adjust as needed.</p>
     <tr>
       <th>Total Non-Current Liabilities</th>
       <td>$26,584,942,923</td>
-      <td>$20,394,694,213</td>
-      <td>$20,766,787,176</td>
-      <td>$21,185,363,224</td>
-      <td>$21,655,103,980</td>
+      <td>$27,394,255,620</td>
+      <td>$27,823,212,807</td>
+      <td>$28,298,569,580</td>
+      <td>$28,824,973,991</td>
     </tr>
     <tr>
       <th>Total Liabilities</th>
       <td>$46,013,592,551</td>
-      <td>$37,667,800,746</td>
-      <td>$38,989,214,192</td>
-      <td>$40,447,063,194</td>
-      <td>$42,054,435,408</td>
+      <td>$47,922,488,309</td>
+      <td>$49,337,602,815</td>
+      <td>$50,889,241,566</td>
+      <td>$52,590,443,818</td>
     </tr>
     <tr>
       <th>Common Stock</th>
@@ -1900,10 +1714,10 @@ run a forecast, then view the results, then adjust as needed.</p>
     <tr>
       <th>Total Liabilities and Equity</th>
       <td>$76,106,686,806</td>
-      <td>$69,170,895,079</td>
-      <td>$71,964,872,544</td>
-      <td>$74,960,625,565</td>
-      <td>$78,174,141,040</td>
+      <td>$79,425,582,642</td>
+      <td>$82,313,261,166</td>
+      <td>$85,402,803,937</td>
+      <td>$88,710,149,450</td>
     </tr>
   </tbody>
 </table>
@@ -1915,7 +1729,7 @@ run a forecast, then view the results, then adjust as needed.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x3900 with 37 Axes&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x2100 with 19 Axes&gt;
 </pre></div>
 </div>
 <p>It is also possible to plot a subset. Let’s focus on only a few items
@@ -1932,7 +1746,7 @@ for sake of example.</p>
 <h3>Change Methods and Re-Run Forecast<a class="headerlink" href="#change-methods-and-re-run-forecast" title="Permalink to this headline">¶</a></h3>
 <p>After viewing the plots, the appropriate methods for forecasting each
 item should be chosen. Then they can be updated.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;cash&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;forecast_config&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="s1">&#39;trend&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;revenue&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;forecast_config&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="s1">&#39;trend&#39;</span><span class="p">)</span>
 <span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;cogs&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;forecast_config&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1941,58 +1755,18 @@ item should be chosen. Then they can be updated.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Depreciation &amp; Amortization Expense as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Operating Expenses as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Gain on Sale of Investments as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Gain on Sale of Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 94%|#########3| 15/16 [00:00&lt;00:00, 149.27it/s]
-100%|##########| 16/16 [00:00&lt;00:00, 158.56it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 298.85it/s]
 
-  0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Deferred Tax Assets, Current as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Current Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Grosss Property, Plant &amp; Equipment as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-
- 41%|####      | 15/37 [00:00&lt;00:00, 140.10it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+  0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Comprehensive Income as y_0 is negative, y_T is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 89%|########9 | 33/37 [00:00&lt;00:00, 146.68it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-
-100%|##########| 37/37 [00:00&lt;00:00, 154.26it/s]
+ 89%|########9 | 33/37 [00:00&lt;00:00, 305.19it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 312.13it/s]
 </pre></div>
 </div>
 <p>And plot the results:</p>
@@ -2028,57 +1802,18 @@ statements. Then you can view the plots:</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Depreciation &amp; Amortization Expense as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Operating Expenses as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Gain on Sale of Investments as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Gain on Sale of Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Impairment Expense as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/16 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Income Tax Expense as y_0 is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
-100%|##########| 16/16 [00:00&lt;00:00, 181.41it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 297.88it/s]
 
-  0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Short-Term Investments as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Deferred Tax Assets, Current as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Current Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Grosss Property, Plant &amp; Equipment as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Accumulated Depreciation as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Assets as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
+  0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 41%|####      | 15/37 [00:00&lt;00:00, 149.21it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Current Portion of Long-Term Debt as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Short-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Current Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Deferred Revenue as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Tax Liabilities, Long-Term as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Long-Term Liabilities as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Common Stock as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Comprehensive Income as y_0 is negative, y_T is negative. Setting to 0 growth (recent value forecast)
+ 76%|#######5  | 28/37 [00:00&lt;00:00, 259.17it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Other Comprehensive Income as y_0 is negative, y_T is negative. Setting to 0 growth (recent value forecast)
   warnings.warn(message)
 
- 89%|########9 | 33/37 [00:00&lt;00:00, 154.49it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:37: UserWarning: CAGR not an appropriate method for Minority Interest as y_0 is 0, y_T is 0. Setting to 0 growth (recent value forecast)
-  warnings.warn(message)
-
-100%|##########| 37/37 [00:00&lt;00:00, 161.77it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 270.33it/s]
 
 &lt;Figure size 1500x300 with 3 Axes&gt;
 </pre></div>
@@ -2152,49 +1887,9 @@ forecast.</p>
       <td>False</td>
     </tr>
     <tr>
-      <th>Depreciation &amp; Amortization Expense</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Other Operating Expenses</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Interest Expense</th>
       <td>cagr</td>
       <td>total_debt</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Gain on Sale of Investments</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Gain on Sale of Assets</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Impairment Expense</th>
-      <td>cagr</td>
-      <td>None</td>
       <td>None</td>
       <td>None</td>
       <td>False</td>
@@ -2216,14 +1911,6 @@ forecast.</p>
       <td>True</td>
     </tr>
     <tr>
-      <th>Short-Term Investments</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Receivables</th>
       <td>cagr</td>
       <td>revenue</td>
@@ -2240,31 +1927,7 @@ forecast.</p>
       <td>False</td>
     </tr>
     <tr>
-      <th>Deferred Tax Assets, Current</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Other Current Assets</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Grosss Property, Plant &amp; Equipment</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Accumulated Depreciation</th>
+      <th>Net Property, Plant &amp; Equipment</th>
       <td>cagr</td>
       <td>None</td>
       <td>None</td>
@@ -2296,14 +1959,6 @@ forecast.</p>
       <td>False</td>
     </tr>
     <tr>
-      <th>Other Long-Term Assets</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Payables</th>
       <td>cagr</td>
       <td>revenue</td>
@@ -2320,30 +1975,6 @@ forecast.</p>
       <td>False</td>
     </tr>
     <tr>
-      <th>Current Portion of Long-Term Debt</th>
-      <td>cagr</td>
-      <td>total_debt</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Tax Liabilities, Short-Term</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Other Current Liabilities</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Long-Term Debt</th>
       <td>cagr</td>
       <td>None</td>
@@ -2352,39 +1983,7 @@ forecast.</p>
       <td>True</td>
     </tr>
     <tr>
-      <th>Deferred Revenue</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Tax Liabilities, Long-Term</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>Deposit Liabilities</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Other Long-Term Liabilities</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>Common Stock</th>
       <td>cagr</td>
       <td>None</td>
       <td>None</td>
@@ -2407,22 +2006,14 @@ forecast.</p>
       <td>None</td>
       <td>False</td>
     </tr>
-    <tr>
-      <th>Minority Interest</th>
-      <td>cagr</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>False</td>
-    </tr>
   </tbody>
 </table>
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  21.101 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  26.248 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-forecasting-py">
 <div class="binder-badge docutils container">
-<a class="reference external image-reference" href="https://mybinder.org/v2/gh/nickderobertis/py-finstmt/gh-pages?urlpath=lab/tree/notebooks/auto_examples/forecasting.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>
+<a class="reference external image-reference" href="https://mybinder.org/v2/gh/nickderobertis/py-finstmt/gh-pages?urlpath=lab/tree/notebooks/auto_examples/forecasting.ipynb"><img alt="Launch binder" src="../_images/binder_badge_logo.svg" width="150px" /></a>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/04cdf4071d7b13ffd0c8a56fc3cbee20/forecasting.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">forecasting.py</span></code></a></p>

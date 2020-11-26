@@ -17,6 +17,7 @@ Below are examples of using `finstmt`.
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_manipulating_statements_thumb.png
+     :alt: Manipulating Statements
 
      :ref:`sphx_glr_auto_examples_manipulating_statements.py`
 
@@ -37,6 +38,7 @@ Below are examples of using `finstmt`.
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_forecasting_thumb.png
+     :alt: Forecasting Financial Statements with ``finstmt``
 
      :ref:`sphx_glr_auto_examples_forecasting.py`
 
@@ -63,13 +65,13 @@ Below are examples of using `finstmt`.
 
   .. container:: sphx-glr-download sphx-glr-download-python
 
-    :download:`Download all examples in Python source code: auto_examples_python.zip <//home/runner/work/py-finstmt/py-finstmt/docsrc/source/auto_examples/auto_examples_python.zip>`
+    :download:`Download all examples in Python source code: auto_examples_python.zip </auto_examples/auto_examples_python.zip>`
 
 
 
   .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-    :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip <//home/runner/work/py-finstmt/py-finstmt/docsrc/source/auto_examples/auto_examples_jupyter.zip>`
+    :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip </auto_examples/auto_examples_jupyter.zip>`
 
 
 .. only:: html

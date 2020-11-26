@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.items package &mdash; finstmt 0.6.4 documentation</title>
+  <title>finstmt.items package &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -117,6 +117,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.check">finstmt.check module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
 </ul>
@@ -201,46 +202,53 @@
 <span id="finstmt-items-config-module"></span><h2>finstmt.items.config module<a class="headerlink" href="#module-finstmt.items.config" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="finstmt.items.config.ItemConfig">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.items.config.</code><code class="sig-name descname">ItemConfig</code><span class="sig-paren">(</span><em class="sig-param">key: str, display_name: str, extract_names: Union[Sequence[str], NoneType] = None, force_positive: bool = True, forecast_config: finstmt.forecast.config.ForecastItemConfig = &lt;factory&gt;, expr_str: Union[str, NoneType] = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/items/config.html#ItemConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.items.config.ItemConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.items.config.</code><code class="sig-name descname">ItemConfig</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">display_name</em>, <em class="sig-param">extract_names=None</em>, <em class="sig-param">force_positive=True</em>, <em class="sig-param">forecast_config=&lt;factory&gt;</em>, <em class="sig-param">expr_str=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/items/config.html#ItemConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.items.config.ItemConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py class">
+<dt id="finstmt.items.config.ItemConfig.Config">
+<em class="property">class </em><code class="sig-name descname">Config</code><a class="reference internal" href="../_modules/finstmt/items/config.html#ItemConfig.Config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.items.config.ItemConfig.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py attribute">
+<dt id="finstmt.items.config.ItemConfig.Config.arbitrary_types_allowed">
+<code class="sig-name descname">arbitrary_types_allowed</code><em class="property"> = True</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.Config.arbitrary_types_allowed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py method">
 <dt id="finstmt.items.config.ItemConfig.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">key: str</em>, <em class="sig-param">display_name: str</em>, <em class="sig-param">extract_names: Optional[Sequence[str]] = None</em>, <em class="sig-param">force_positive: bool = True</em>, <em class="sig-param">forecast_config: finstmt.forecast.config.ForecastItemConfig = &lt;factory&gt;</em>, <em class="sig-param">expr_str: Optional[str] = None</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.items.config.ItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">display_name</em>, <em class="sig-param">extract_names=None</em>, <em class="sig-param">force_positive=True</em>, <em class="sig-param">forecast_config=&lt;factory&gt;</em>, <em class="sig-param">expr_str=None</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.items.config.ItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.items.config.ItemConfig.display_name">
-<code class="sig-name descname">display_name</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.display_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">display_name</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><a class="headerlink" href="#finstmt.items.config.ItemConfig.display_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.items.config.ItemConfig.expr_str">
-<code class="sig-name descname">expr_str</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.expr_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">expr_str</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.expr_str" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.items.config.ItemConfig.extract_names">
-<code class="sig-name descname">extract_names</code><em class="property">: Optional[Sequence[str]]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.extract_names" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">extract_names</code><em class="property">: Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.extract_names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.items.config.ItemConfig.force_positive">
-<code class="sig-name descname">force_positive</code><em class="property">: bool</em><em class="property"> = True</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.force_positive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">force_positive</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><em class="property"> = True</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.force_positive" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.items.config.ItemConfig.forecast_config">
-<code class="sig-name descname">forecast_config</code><em class="property">: ForecastItemConfig</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.forecast_config" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forecast_config</code><em class="property">: <a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig" title="finstmt.forecast.config.ForecastItemConfig">finstmt.forecast.config.ForecastItemConfig</a></em><a class="headerlink" href="#finstmt.items.config.ItemConfig.forecast_config" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.items.config.ItemConfig.key">
-<code class="sig-name descname">key</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.items.config.ItemConfig.key" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">key</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><a class="headerlink" href="#finstmt.items.config.ItemConfig.key" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -248,7 +256,7 @@
 <em class="property">property </em><code class="sig-name descname">primary_name</code><a class="headerlink" href="#finstmt.items.config.ItemConfig.primary_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>

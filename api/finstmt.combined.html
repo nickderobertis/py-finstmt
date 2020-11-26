@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.combined package &mdash; finstmt 0.6.4 documentation</title>
+  <title>finstmt.combined package &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -117,6 +117,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.check">finstmt.check module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
 </ul>
@@ -201,9 +202,18 @@
 <span id="finstmt-combined-statements-module"></span><h2>finstmt.combined.statements module<a class="headerlink" href="#module-finstmt.combined.statements" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="finstmt.combined.statements.FinancialStatements">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.combined.statements.</code><code class="sig-name descname">FinancialStatements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">income_statements</span><span class="p">:</span> <span class="n"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements" title="finstmt.inc.main.IncomeStatements">finstmt.inc.main.IncomeStatements</a></span></em>, <em class="sig-param"><span class="n">balance_sheets</span><span class="p">:</span> <span class="n"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets" title="finstmt.bs.main.BalanceSheets">finstmt.bs.main.BalanceSheets</a></span></em>, <em class="sig-param"><span class="n">calculate</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.combined.statements.</code><code class="sig-name descname">FinancialStatements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">income_statements</span></em>, <em class="sig-param"><span class="n">balance_sheets</span></em>, <em class="sig-param"><span class="n">calculate</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">auto_adjust_config</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Main class that holds all the financial statements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><span class="target" id="finstmt.combined.statements.FinancialStatements.params.auto_adjust_config"></span><strong>auto_adjust_config</strong><a class="paramlink headerlink reference internal" href="#finstmt.combined.statements.FinancialStatements.params.auto_adjust_config">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to automatically adjust the configuration based
+on the loaded data. Currently will turn forecasting off for items not in the data,
+and turn forecasting on for items normally calculated off those which are
+not in the data. For example, if gross_ppe is missing then will start forecasting
+net_ppe instead</p>
+</dd>
+</dl>
 <dl>
 <dt>Examples:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bs_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;WMT Balance Sheet.xlsx&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">inc_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;WMT Income Statement.xlsx&#39;</span>
@@ -218,12 +228,8 @@
 </dl>
 <dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">income_statements</span><span class="p">:</span> <span class="n"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements" title="finstmt.inc.main.IncomeStatements">finstmt.inc.main.IncomeStatements</a></span></em>, <em class="sig-param"><span class="n">balance_sheets</span><span class="p">:</span> <span class="n"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets" title="finstmt.bs.main.BalanceSheets">finstmt.bs.main.BalanceSheets</a></span></em>, <em class="sig-param"><span class="n">calculate</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-</dl>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">income_statements</span></em>, <em class="sig-param"><span class="n">balance_sheets</span></em>, <em class="sig-param"><span class="n">calculate</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">auto_adjust_config</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -231,19 +237,24 @@
 <em class="property">property </em><code class="sig-name descname">all_config_items</code><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.all_config_items" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="finstmt.combined.statements.FinancialStatements.auto_adjust_config">
+<code class="sig-name descname">auto_adjust_config</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><em class="property"> = True</em><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.auto_adjust_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt id="finstmt.combined.statements.FinancialStatements.balance_sheets">
-<code class="sig-name descname">balance_sheets</code><em class="property">: BalanceSheets</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.balance_sheets" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">balance_sheets</code><em class="property">: <a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets" title="finstmt.bs.main.BalanceSheets">finstmt.bs.main.BalanceSheets</a></em><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.balance_sheets" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.combined.statements.FinancialStatements.calculate">
-<code class="sig-name descname">calculate</code><em class="property">: bool</em><em class="property"> = True</em><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.calculate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">calculate</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><em class="property"> = True</em><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.calculate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -262,7 +273,7 @@
 <dd><p>Get the change between this period and last for a data series</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><span class="target" id="finstmt.combined.statements.FinancialStatements.change.params.data_key"></span><strong>data_key</strong><a class="paramlink headerlink reference internal" href="#finstmt.combined.statements.FinancialStatements.change.params.data_key">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – key of variable, how it would be accessed with FinancialStatements.data_key</p>
+<dd class="field-odd"><p><span class="target" id="finstmt.combined.statements.FinancialStatements.change.params.data_key"></span><strong>data_key</strong><a class="paramlink headerlink reference internal" href="#finstmt.combined.statements.FinancialStatements.change.params.data_key">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – key of variable, how it would be accessed with FinancialStatements.data_key</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></p>
@@ -285,7 +296,7 @@
 <em class="property">property </em><code class="sig-name descname">dates</code><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.dates" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -303,7 +314,16 @@
 <dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.forecast">
 <code class="sig-name descname">forecast</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.forecast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.forecast" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Run a forecast, returning forecasted financial statements</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><span class="target" id="finstmt.combined.statements.FinancialStatements.forecast.params.kwargs"></span><strong>kwargs</strong><a class="paramlink headerlink reference internal" href="#finstmt.combined.statements.FinancialStatements.forecast.params.kwargs">¶</a> – Attributes of <a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig" title="finstmt.forecast.config.ForecastConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.forecast.config.ForecastConfig</span></code></a></p>
+</dd>
+<dt class="field-even">Examples</dt>
+<dd class="field-even"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stmts</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
 </dd>
@@ -322,8 +342,25 @@
 
 <dl class="py attribute">
 <dt id="finstmt.combined.statements.FinancialStatements.income_statements">
-<code class="sig-name descname">income_statements</code><em class="property">: IncomeStatements</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.income_statements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">income_statements</code><em class="property">: <a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements" title="finstmt.inc.main.IncomeStatements">finstmt.inc.main.IncomeStatements</a></em><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.income_statements" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt id="finstmt.combined.statements.FinancialStatements.item_is_empty">
+<code class="sig-name descname">item_is_empty</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.item_is_empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.item_is_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the passed item has no data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><span class="target" id="finstmt.combined.statements.FinancialStatements.item_is_empty.params.data_key"></span><strong>data_key</strong><a class="paramlink headerlink reference internal" href="#finstmt.combined.statements.FinancialStatements.item_is_empty.params.data_key">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – key of variable, how it would be accessed with FinancialStatements.data_key</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="finstmt.combined.statements.FinancialStatements.lag">
@@ -332,8 +369,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="finstmt.combined.statements.FinancialStatements.lag.params.data_key"></span><strong>data_key</strong><a class="paramlink headerlink reference internal" href="#finstmt.combined.statements.FinancialStatements.lag.params.data_key">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – key of variable, how it would be accessed with FinancialStatements.data_key</p></li>
-<li><p><span class="target" id="finstmt.combined.statements.FinancialStatements.lag.params.num_lags"></span><strong>num_lags</strong><a class="paramlink headerlink reference internal" href="#finstmt.combined.statements.FinancialStatements.lag.params.num_lags">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Number of lags</p></li>
+<li><p><span class="target" id="finstmt.combined.statements.FinancialStatements.lag.params.data_key"></span><strong>data_key</strong><a class="paramlink headerlink reference internal" href="#finstmt.combined.statements.FinancialStatements.lag.params.data_key">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – key of variable, how it would be accessed with FinancialStatements.data_key</p></li>
+<li><p><span class="target" id="finstmt.combined.statements.FinancialStatements.lag.params.num_lags"></span><strong>num_lags</strong><a class="paramlink headerlink reference internal" href="#finstmt.combined.statements.FinancialStatements.lag.params.num_lags">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Number of lags</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>

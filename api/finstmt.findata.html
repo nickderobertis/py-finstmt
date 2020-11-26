@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.findata package &mdash; finstmt 0.6.4 documentation</title>
+  <title>finstmt.findata package &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -117,6 +117,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.check">finstmt.check module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
 </ul>
@@ -202,7 +203,7 @@
 <dl class="py class">
 <dt id="finstmt.findata.database.FinDataBase">
 <em class="property">class </em><code class="sig-prename descclassname">finstmt.findata.database.</code><code class="sig-name descname">FinDataBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/database.html#FinDataBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.database.FinDataBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Base class for financial statement data. Should not be used directly.</p>
 <dl class="py method">
 <dt id="finstmt.findata.database.FinDataBase.__init__">
@@ -215,7 +216,7 @@
 <code class="sig-name descname">as_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/database.html#FinDataBase.as_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.database.FinDataBase.as_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -230,19 +231,19 @@
 <code class="sig-name descname">get_sympy_subs_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t_offset</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/database.html#FinDataBase.get_sympy_subs_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.database.FinDataBase.get_sympy_subs_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.findata.database.FinDataBase.items_config">
-<code class="sig-name descname">items_config</code><em class="property">: Union[List[ItemConfig], DataConfigManager]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.findata.database.FinDataBase.items_config" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">items_config</code><em class="property">: Union<span class="p">[</span>List<span class="p">[</span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig">finstmt.items.config.ItemConfig</a><span class="p">]</span><span class="p">, </span><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager" title="finstmt.config_manage.data.DataConfigManager">finstmt.config_manage.data.DataConfigManager</a><span class="p">]</span></em><a class="headerlink" href="#finstmt.findata.database.FinDataBase.items_config" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.findata.database.FinDataBase.prior_statement">
-<code class="sig-name descname">prior_statement</code><em class="property">: Optional[FinDataBase]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.findata.database.FinDataBase.prior_statement" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">prior_statement</code><em class="property">: Optional<span class="p">[</span><a class="reference internal" href="#finstmt.findata.database.FinDataBase" title="finstmt.findata.database.FinDataBase">finstmt.findata.database.FinDataBase</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.findata.database.FinDataBase.prior_statement" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -257,7 +258,7 @@
 
 <dl class="py attribute">
 <dt id="finstmt.findata.database.FinDataBase.unextracted_names">
-<code class="sig-name descname">unextracted_names</code><em class="property">: List[str]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.findata.database.FinDataBase.unextracted_names" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">unextracted_names</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></em><a class="headerlink" href="#finstmt.findata.database.FinDataBase.unextracted_names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -268,7 +269,7 @@
 <dl class="py class">
 <dt id="finstmt.findata.statementsbase.FinStatementsBase">
 <em class="property">class </em><code class="sig-prename descclassname">finstmt.findata.statementsbase.</code><code class="sig-name descname">FinStatementsBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/statementsbase.html#FinStatementsBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.findata.statementsbase.FinStatementsBase.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/statementsbase.html#FinStatementsBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase.__init__" title="Permalink to this definition">¶</a></dt>
@@ -280,7 +281,7 @@
 <em class="property">property </em><code class="sig-name descname">dates</code><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase.dates" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -290,7 +291,7 @@
 <em class="property">property </em><code class="sig-name descname">freq</code><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase.freq" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -301,6 +302,16 @@
 <dd><p>DataFrame must have columns as dates and index as names of financial statement items</p>
 </dd></dl>
 
+<dl class="py method">
+<dt id="finstmt.findata.statementsbase.FinStatementsBase.item_is_empty">
+<code class="sig-name descname">item_is_empty</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/findata/statementsbase.html#FinStatementsBase.item_is_empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase.item_is_empty" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt id="finstmt.findata.statementsbase.FinStatementsBase.statement_cls">
 <code class="sig-name descname">statement_cls</code><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase.statement_cls" title="Permalink to this definition">¶</a></dt>
@@ -309,12 +320,12 @@
 
 <dl class="py attribute">
 <dt id="finstmt.findata.statementsbase.FinStatementsBase.statement_name">
-<code class="sig-name descname">statement_name</code><em class="property">: str</em><em class="property"> = 'Base'</em><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase.statement_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">statement_name</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><em class="property"> = 'Base'</em><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase.statement_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.findata.statementsbase.FinStatementsBase.statements">
-<code class="sig-name descname">statements</code><em class="property">: Dict[pd.Timestamp, FinDataBase]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase.statements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">statements</code><em class="property">: Dict<span class="p">[</span>pandas.Timestamp<span class="p">, </span><a class="reference internal" href="#finstmt.findata.database.FinDataBase" title="finstmt.findata.database.FinDataBase">finstmt.findata.database.FinDataBase</a><span class="p">]</span></em><a class="headerlink" href="#finstmt.findata.statementsbase.FinStatementsBase.statements" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

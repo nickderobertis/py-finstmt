@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.config_manage.base &mdash; finstmt 0.6.4 documentation</title>
+  <title>finstmt.config_manage.base &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -164,9 +164,9 @@
            <div itemprop="articleBody">
             
   <h1>Source code for finstmt.config_manage.base</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
 
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">,</span> <span class="n">Idx</span><span class="p">,</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">sympify</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">,</span> <span class="n">Idx</span><span class="p">,</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">Eq</span>
 
 <span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">NotACalculatedItemException</span>
 <span class="kn">from</span> <span class="nn">finstmt.items.config</span> <span class="kn">import</span> <span class="n">ItemConfig</span>
@@ -194,6 +194,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ItemConfig</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        All the configuration items</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
 <div class="viewcode-block" id="ConfigManagerBase.get_value"><a class="viewcode-back" href="../../../api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.get_value">[docs]</a>    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a particular configuration for a particular item</span>
@@ -215,6 +222,37 @@
             <span class="k">raise</span> <span class="n">NotACalculatedItemException</span><span class="p">(</span><span class="n">item_key</span><span class="p">)</span>
         <span class="n">expr</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">expr_str</span><span class="p">,</span> <span class="nb">locals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">expr</span></div>
+
+<div class="viewcode-block" id="ConfigManagerBase.eqs_involving"><a class="viewcode-back" href="../../../api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.eqs_involving">[docs]</a>    <span class="k">def</span> <span class="nf">eqs_involving</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Eq</span><span class="p">]:</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sympy_namespace</span>
+        <span class="n">item_sym</span> <span class="o">=</span> <span class="n">ns</span><span class="p">[</span><span class="n">item_key</span><span class="p">]</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">ns</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
+        <span class="n">item_t</span> <span class="o">=</span> <span class="n">item_sym</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+        <span class="n">eqs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Eq</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">expr_str</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">rhs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_for</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">item_t</span> <span class="ow">in</span> <span class="n">rhs</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">:</span>
+                <span class="n">this_item_sym</span> <span class="o">=</span> <span class="n">ns</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">this_item_sym_t</span> <span class="o">=</span> <span class="n">this_item_sym</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+                <span class="n">eq</span> <span class="o">=</span> <span class="n">Eq</span><span class="p">(</span><span class="n">this_item_sym_t</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+                <span class="n">eqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">eqs</span></div>
+
+    <span class="k">def</span> <span class="nf">_expr_to_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">:</span> <span class="n">Expr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sympy_namespace</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">ns</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
+        <span class="n">syms</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">free_symbols</span>
+        <span class="n">keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">key_expr</span> <span class="ow">in</span> <span class="n">ns</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">key_expr_t</span> <span class="o">=</span> <span class="n">key_expr</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">key_expr_t</span> <span class="ow">in</span> <span class="n">syms</span><span class="p">:</span>
+                <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">keys</span>
 
 <div class="viewcode-block" id="ConfigManagerBase.eq_subs_dict"><a class="viewcode-back" href="../../../api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.eq_subs_dict">[docs]</a>    <span class="k">def</span> <span class="nf">eq_subs_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">t_offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
         <span class="n">out_dict</span> <span class="o">=</span> <span class="p">{}</span>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast.models package &mdash; finstmt 0.6.4 documentation</title>
+  <title>finstmt.forecast.models package &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -117,6 +117,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.check">finstmt.check module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
 </ul>
@@ -212,7 +213,7 @@
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.average.AverageModel.mean">
-<code class="sig-name descname">mean</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.average.AverageModel.mean" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">mean</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.average.AverageModel.mean" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -227,7 +228,7 @@
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.average.AverageModel.stderr">
-<code class="sig-name descname">stderr</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.average.AverageModel.stderr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">stderr</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.average.AverageModel.stderr" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -238,7 +239,7 @@
 <dl class="py class">
 <dt id="finstmt.forecast.models.base.ForecastModel">
 <em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.models.base.</code><code class="sig-name descname">ForecastModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">item_config</span></em>, <em class="sig-param"><span class="n">base_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/models/base.html#ForecastModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.forecast.models.base.ForecastModel.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">item_config</span></em>, <em class="sig-param"><span class="n">base_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/models/base.html#ForecastModel.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.__init__" title="Permalink to this definition">¶</a></dt>
@@ -252,7 +253,7 @@
 if the forecast is annual and historical is quarterly then the multiplier is 4.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p></p>
@@ -270,27 +271,27 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 <em class="property">property </em><code class="sig-name descname">historical_freq</code><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.historical_freq" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.base.ForecastModel.last_historical_period">
-<code class="sig-name descname">last_historical_period</code><em class="property">: Optional[datetime.datetime]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.last_historical_period" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">last_historical_period</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.9)">datetime.datetime</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.last_historical_period" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.base.ForecastModel.orig_series">
-<code class="sig-name descname">orig_series</code><em class="property">: Optional[pandas.Series]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.orig_series" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">orig_series</code><em class="property">: Optional<span class="p">[</span>pandas.Series<span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.orig_series" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="finstmt.forecast.models.base.ForecastModel.plot">
-<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">12, 5</span></em>, <em class="sig-param"><span class="n">xlabel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ylabel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/models/base.html#ForecastModel.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">(12, 5)</span></em>, <em class="sig-param"><span class="n">xlabel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ylabel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/models/base.html#ForecastModel.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.plot" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -307,12 +308,12 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.base.ForecastModel.result">
-<code class="sig-name descname">result</code><em class="property">: Optional[pandas.Series]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.result" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">result</code><em class="property">: Optional<span class="p">[</span>pandas.Series<span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.result" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.base.ForecastModel.result_df">
-<code class="sig-name descname">result_df</code><em class="property">: Optional[pandas.DataFrame]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.result_df" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">result_df</code><em class="property">: Optional<span class="p">[</span>pandas.DataFrame<span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.base.ForecastModel.result_df" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -322,7 +323,7 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 <code class="sig-prename descclassname">finstmt.forecast.models.base.</code><code class="sig-name descname">compare_freq_strs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">freq1</span></em>, <em class="sig-param"><span class="n">freq2</span></em>, <em class="sig-param"><span class="n">ref_date</span><span class="o">=</span><span class="default_value">'1/1/2000'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/models/base.html#compare_freq_strs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.models.base.compare_freq_strs" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -336,7 +337,7 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 <dd><p>Bases: <a class="reference internal" href="#finstmt.forecast.models.base.ForecastModel" title="finstmt.forecast.models.base.ForecastModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.forecast.models.base.ForecastModel</span></code></a></p>
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.cagr.CAGRModel.cagr">
-<code class="sig-name descname">cagr</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.cagr.CAGRModel.cagr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cagr</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.cagr.CAGRModel.cagr" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -346,7 +347,7 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.cagr.CAGRModel.last_value">
-<code class="sig-name descname">last_value</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.cagr.CAGRModel.last_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">last_value</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.cagr.CAGRModel.last_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -361,7 +362,7 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.cagr.CAGRModel.stderr">
-<code class="sig-name descname">stderr</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.cagr.CAGRModel.stderr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">stderr</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.cagr.CAGRModel.stderr" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -409,7 +410,7 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.manual.ManualForecastModel.recent">
-<code class="sig-name descname">recent</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.manual.ManualForecastModel.recent" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">recent</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.manual.ManualForecastModel.recent" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -434,10 +435,10 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 
 <dl class="py method">
 <dt id="finstmt.forecast.models.prophet.FBProphetModel.plot">
-<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">12, 5</span></em>, <em class="sig-param"><span class="n">xlabel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ylabel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/models/prophet.html#FBProphetModel.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.models.prophet.FBProphetModel.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">(12, 5)</span></em>, <em class="sig-param"><span class="n">xlabel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ylabel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/models/prophet.html#FBProphetModel.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.models.prophet.FBProphetModel.plot" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.3.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -478,7 +479,7 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.recent.RecentValueModel.recent">
-<code class="sig-name descname">recent</code><em class="property">: Optional[float]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.recent.RecentValueModel.recent" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">recent</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.recent.RecentValueModel.recent" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -497,12 +498,12 @@ if the forecast is annual and historical is quarterly then the multiplier is 4.<
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.trend.LinearTrendModel.model">
-<code class="sig-name descname">model</code><em class="property">: Optional[statsmodels.api.OLS]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.trend.LinearTrendModel.model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">model</code><em class="property">: Optional<span class="p">[</span>statsmodels.api.OLS<span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.trend.LinearTrendModel.model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.models.trend.LinearTrendModel.model_result">
-<code class="sig-name descname">model_result</code><em class="property">: Optional[statsmodels.regression.linear_model.RegressionResults]</em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.trend.LinearTrendModel.model_result" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">model_result</code><em class="property">: Optional<span class="p">[</span>statsmodels.regression.linear_model.RegressionResults<span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.models.trend.LinearTrendModel.model_result" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

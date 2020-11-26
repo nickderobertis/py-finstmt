@@ -47,13 +47,11 @@ stmts
 # ~~~~~~~~~~~~~~~~~~~
 # 
 # To set up for running multiple forecasts off the same data, you can make
-# a copy of it using ``copy.deepcopy``. Then any adjustments to the
+# a copy of it using ``stmts.copy()``. Then any adjustments to the
 # configuration will only be in the original object and not the copy.
 # 
 
-from copy import deepcopy
-
-stmts2 = deepcopy(stmts)
+stmts2 = stmts.copy()
 
 
 ######################################################################
@@ -130,7 +128,7 @@ fcst.plot(subset=['revenue', 'cogs', 'cash'])
 # item should be chosen. Then they can be updated.
 # 
 
-stmts.config.update('cash', ['forecast_config', 'method'], 'trend')
+stmts.config.update('revenue', ['forecast_config', 'method'], 'trend')
 stmts.config.update('cogs', ['forecast_config', 'method'], 'mean')
 
 

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.combined.statements &mdash; finstmt 0.6.4 documentation</title>
+  <title>finstmt.combined.statements &mdash; finstmt 0.7.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.6.4
+                0.7.0
               </div>
             
           
@@ -167,24 +167,32 @@
 <span></span><span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Set</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Indexed</span>
 
 <span class="kn">from</span> <span class="nn">finstmt</span> <span class="kn">import</span> <span class="n">BalanceSheets</span><span class="p">,</span> <span class="n">IncomeStatements</span>
+<span class="kn">from</span> <span class="nn">finstmt.check</span> <span class="kn">import</span> <span class="n">item_series_is_empty</span>
 <span class="kn">from</span> <span class="nn">finstmt.config_manage.statements</span> <span class="kn">import</span> <span class="n">StatementsConfigManager</span>
 <span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">MismatchingDatesException</span>
 <span class="kn">from</span> <span class="nn">finstmt.findata.statementsbase</span> <span class="kn">import</span> <span class="n">FinStatementsBase</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.config</span> <span class="kn">import</span> <span class="n">ForecastConfig</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.main</span> <span class="kn">import</span> <span class="n">Forecast</span>
 <span class="kn">from</span> <span class="nn">finstmt.items.config</span> <span class="kn">import</span> <span class="n">ItemConfig</span>
+<span class="kn">from</span> <span class="nn">finstmt.logger</span> <span class="kn">import</span> <span class="n">logger</span>
 
 
 <div class="viewcode-block" id="FinancialStatements"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">FinancialStatements</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Main class that holds all the financial statements.</span>
+
+<span class="sd">    :param auto_adjust_config: Whether to automatically adjust the configuration based</span>
+<span class="sd">        on the loaded data. Currently will turn forecasting off for items not in the data,</span>
+<span class="sd">        and turn forecasting on for items normally calculated off those which are</span>
+<span class="sd">        not in the data. For example, if gross_ppe is missing then will start forecasting</span>
+<span class="sd">        net_ppe instead</span>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; bs_path = r&#39;WMT Balance Sheet.xlsx&#39;</span>
@@ -198,6 +206,7 @@
     <span class="n">income_statements</span><span class="p">:</span> <span class="n">IncomeStatements</span>
     <span class="n">balance_sheets</span><span class="p">:</span> <span class="n">BalanceSheets</span>
     <span class="n">calculate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">auto_adjust_config</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 
 
     <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -207,7 +216,7 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate</span><span class="p">:</span>
             <span class="n">resolver</span> <span class="o">=</span> <span class="n">StatementsResolver</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="n">new_stmts</span> <span class="o">=</span> <span class="n">resolver</span><span class="o">.</span><span class="n">to_statements</span><span class="p">()</span>
+            <span class="n">new_stmts</span> <span class="o">=</span> <span class="n">resolver</span><span class="o">.</span><span class="n">to_statements</span><span class="p">(</span><span class="n">auto_adjust_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auto_adjust_config</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span> <span class="o">=</span> <span class="n">new_stmts</span><span class="o">.</span><span class="n">income_statements</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span> <span class="o">=</span> <span class="n">new_stmts</span><span class="o">.</span><span class="n">balance_sheets</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_create_config_from_statements</span><span class="p">()</span>
@@ -216,7 +225,55 @@
         <span class="n">config_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">config_dict</span><span class="p">[</span><span class="s1">&#39;income_statements&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">income_statements</span><span class="o">.</span><span class="n">config</span>
         <span class="n">config_dict</span><span class="p">[</span><span class="s1">&#39;balance_sheets&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance_sheets</span><span class="o">.</span><span class="n">config</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">StatementsConfigManager</span><span class="p">(</span><span class="n">config_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">StatementsConfigManager</span><span class="p">(</span><span class="n">config_managers</span><span class="o">=</span><span class="n">config_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_adjust_config</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_adjust_config_based_on_data</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_adjust_config_based_on_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_is_empty</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">plug</span><span class="p">:</span>
+                    <span class="c1"># It is OK for plug items to be empty, won&#39;t affect the forecast</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># Useless to make forecasts on empty items</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1"> to not forecast as it is empty&#39;</span><span class="p">)</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="c1"># But this may mean another item should be forecasted instead.</span>
+                <span class="c1"># E.g. normally net_ppe is calculated from gross_ppe and dep,</span>
+                <span class="c1"># so it is not forecasted. But if gross_ppe is missing from</span>
+                <span class="c1"># the data, then net_ppe should be forecasted directly.</span>
+
+                <span class="c1"># So first, get the equations involving this item to determine</span>
+                <span class="c1"># what other items are related to this one</span>
+                <span class="n">relevant_eqs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">eqs_involving</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+                <span class="n">relevant_keys</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">}</span>
+                <span class="k">for</span> <span class="n">eq</span> <span class="ow">in</span> <span class="n">relevant_eqs</span><span class="p">:</span>
+                    <span class="n">relevant_keys</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">_expr_to_keys</span><span class="p">(</span><span class="n">eq</span><span class="o">.</span><span class="n">lhs</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">relevant_keys</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">_expr_to_keys</span><span class="p">(</span><span class="n">eq</span><span class="o">.</span><span class="n">rhs</span><span class="p">)))</span>
+                <span class="n">relevant_keys</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">relevant_keys</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_is_empty</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+                        <span class="k">continue</span>
+                    <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">expr_str</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># Not a calculated item, so it doesn&#39;t make sense to turn forecasting on</span>
+                        <span class="k">continue</span>
+
+                    <span class="c1"># Check to make sure that all components of the calculated item are also empty</span>
+                    <span class="n">expr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">expr_for</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                    <span class="n">component_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">_expr_to_keys</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+                    <span class="n">all_component_items_are_empty</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">for</span> <span class="n">c_key</span> <span class="ow">in</span> <span class="n">component_keys</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_is_empty</span><span class="p">(</span><span class="n">c_key</span><span class="p">):</span>
+                            <span class="n">all_component_items_are_empty</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">all_component_items_are_empty</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="c1"># Now this is a calculated item which is non-empty, and all the components of the</span>
+                    <span class="c1"># calculated are empty, so we need to forecast this item instead</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting </span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1"> to forecast as it is a calculated item which is not empty &#39;</span>
+                                 <span class="sa">f</span><span class="s1">&#39;and yet none of the components have data&#39;</span><span class="p">)</span>
+                    <span class="n">conf</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span> <span class="o">=</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="FinancialStatements.change"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.change">[docs]</a>    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -236,6 +293,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">series</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_key</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">series</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">num_lags</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FinancialStatements.item_is_empty"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.item_is_empty">[docs]</a>    <span class="k">def</span> <span class="nf">item_is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Whether the passed item has no data</span>
+
+<span class="sd">        :param data_key: key of variable, how it would be accessed with FinancialStatements.data_key</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">item_series_is_empty</span><span class="p">(</span><span class="n">series</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
@@ -301,6 +368,16 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_income</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_cash_expenses</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="s1">&#39;nwc&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">capex</span>
 
 <div class="viewcode-block" id="FinancialStatements.forecast"><a class="viewcode-back" href="../../../api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.forecast">[docs]</a>    <span class="k">def</span> <span class="nf">forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;FinancialStatements&#39;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run a forecast, returning forecasted financial statements</span>
+
+<span class="sd">        :param kwargs: Attributes of :class:`finstmt.forecast.config.ForecastConfig`</span>
+
+<span class="sd">        :Examples:</span>
+
+<span class="sd">            &gt;&gt;&gt; stmts.forecast(periods=2)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">finstmt.resolver.forecast</span> <span class="kn">import</span> <span class="n">ForecastResolver</span>
 
         <span class="k">if</span> <span class="s1">&#39;bs_diff_max&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>

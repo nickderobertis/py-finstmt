@@ -25,6 +25,14 @@ Subpackages
 Submodules
 ----------
 
+finstmt.check module
+--------------------
+
+.. automodule:: finstmt.check
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 finstmt.exc module
 ------------------
 
