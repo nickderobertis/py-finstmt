@@ -14,7 +14,7 @@ from tests.expectdata.statements.fcst_capiq_cat_quarterly import FCST_CAPIQ_CAT_
 from tests.expectdata.statements.fcst_stockrow_cat_annual import FCST_STOCKROW_CAT_A_INDEX_DATA_DICT
 from tests.expectdata.statements.fcst_stockrow_cat_no_balance_annual import FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT
 from tests.expectdata.statements.fcst_stockrow_cat_plug_make_forecast_annual import \
-    FCST_STOCKROW_CAT_A_PLUG_MAKE_FORECAST_INDEX_DATA_DICT
+    FCST_STOCKROW_CAT_PLUG_MAKE_FORECAST_A_INDEX_DATA_DICT
 from tests.expectdata.statements.fcst_stockrow_cat_quarterly import FCST_STOCKROW_CAT_Q_INDEX_DATA_DICT
 from tests.expectdata.statements.fcst_stockrow_mar_annual import FCST_STOCKROW_MAR_A_INDEX_DATA_DICT
 from tests.expectdata.statements.fcst_stockrow_mar_quarterly import FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT
@@ -36,7 +36,7 @@ class ForecastTest(LoadTest):
     q_adjust_dict: Dict[str, Sequence[str]]
 
     def test_annual(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None,
-                    name: Optional[str] = None, **kwargs):
+                    name: Optional[str] = None, ignore_keys: Optional[Sequence[str]] = None, **kwargs):
         if name is None:
             name = self.name
         fcst_kwargs = FORECAST_KWARGS.copy()
@@ -47,10 +47,10 @@ class ForecastTest(LoadTest):
             fig = fcst.plot()
             out_path = os.path.join(GENERATED_PATH, f'{name}_annual.pdf')
             fig.savefig(out_path)
-        super().test_annual(fcst, data=data, name=name)
+        super().test_annual(fcst, data=data, name=name, ignore_keys=ignore_keys)
 
     def test_quarterly(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None,
-                       name: Optional[str] = None, **kwargs):
+                       name: Optional[str] = None, ignore_keys: Optional[Sequence[str]] = None, **kwargs):
         if name is None:
             name = self.name
         fcst_kwargs = FORECAST_KWARGS.copy()
@@ -61,7 +61,7 @@ class ForecastTest(LoadTest):
             fig = fcst.plot()
             out_path = os.path.join(GENERATED_PATH, f'{name}_quarterly.pdf')
             fig.savefig(out_path)
-        super().test_quarterly(fcst, data=data, name=name)
+        super().test_quarterly(fcst, data=data, name=name, ignore_keys=ignore_keys)
 
 
 class TestForecastStockrowCAT(ForecastTest):
@@ -114,18 +114,20 @@ class TestForecastStockrowCAT(ForecastTest):
     )
 
     def test_annual(self, annual_stockrow_stmts_cat: FinancialStatements):
-        super().test_annual(annual_stockrow_stmts_cat)
+        super().test_annual(annual_stockrow_stmts_cat, ignore_keys=['gross_ppe', 'dep'])
 
     def test_annual_no_balance(self, annual_stockrow_stmts_cat: FinancialStatements):
         super().test_annual(
             annual_stockrow_stmts_cat, data=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT, balance=False,
-            name='fcst_stockrow_cat_no_balance'
+            name='fcst_stockrow_cat_no_balance',
+            ignore_keys=['gross_ppe', 'dep'],
         )
 
     def test_annual_change_bs_diff(self, annual_stockrow_stmts_cat: FinancialStatements):
         super().test_annual(
             annual_stockrow_stmts_cat, bs_diff_max=100000,
-            name='fcst_stockrow_cat_bs_diff_100000'
+            name='fcst_stockrow_cat_bs_diff_100000',
+            ignore_keys=['gross_ppe', 'dep'],
         )
 
     def test_annual_change_make_forecast_and_plug(self, annual_stockrow_stmts_cat: FinancialStatements):
@@ -142,8 +144,8 @@ class TestForecastStockrowCAT(ForecastTest):
             assert False
         stmts.config.update("total_debt", ["forecast_config", "plug"], True)
         stmts.config.update("lt_debt", ["forecast_config", "plug"], False)
-        super().test_annual(stmts, data=FCST_STOCKROW_CAT_A_PLUG_MAKE_FORECAST_INDEX_DATA_DICT,
-                            name='fcst_stockrow_cat_plug_make_forecast')
+        super().test_annual(stmts, data=FCST_STOCKROW_CAT_PLUG_MAKE_FORECAST_A_INDEX_DATA_DICT,
+                            name='fcst_stockrow_cat_plug_make_forecast', ignore_keys=['gross_ppe', 'dep'])
 
     def test_multi_forecast_changing_assumptions(self, annual_stockrow_stmts_cat: FinancialStatements):
         stmts = annual_stockrow_stmts_cat.copy()
@@ -156,7 +158,7 @@ class TestForecastStockrowCAT(ForecastTest):
         fcst = stmts.forecast()
 
     def test_quarterly(self, quarterly_stockrow_stmts_cat: FinancialStatements):
-        super().test_quarterly(quarterly_stockrow_stmts_cat)
+        super().test_quarterly(quarterly_stockrow_stmts_cat, ignore_keys=['gross_ppe', 'dep'])
 
 
 class TestForecastStockrowMAR(ForecastTest):
@@ -208,10 +210,10 @@ class TestForecastStockrowMAR(ForecastTest):
     )
 
     def test_annual(self, annual_stockrow_stmts_mar: FinancialStatements):
-        super().test_annual(annual_stockrow_stmts_mar)
+        super().test_annual(annual_stockrow_stmts_mar, ignore_keys=['gross_ppe', 'dep'])
 
     def test_quarterly(self, quarterly_stockrow_stmts_mar: FinancialStatements):
-        super().test_quarterly(quarterly_stockrow_stmts_mar)
+        super().test_quarterly(quarterly_stockrow_stmts_mar, ignore_keys=['gross_ppe', 'dep'])
 
 
 class TestForecastCapitalIQCAT(ForecastTest):

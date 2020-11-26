@@ -1,5 +1,5 @@
 import os
-from typing import Dict, Optional
+from typing import Dict, Optional, Sequence
 
 import pandas as pd
 from pandas.testing import assert_series_equal
@@ -17,8 +17,14 @@ if DEVELOPMENT_MODE:
     bs_keys = get_keys_for_bs_data_items()
 
 
-def check_data_items(stmts: FinancialStatements, data_dict: Dict[str, pd.Series]):
+def check_data_items(stmts: FinancialStatements, data_dict: Dict[str, pd.Series],
+                     ignore_keys: Optional[Sequence[str]] = None):
+    if ignore_keys is None:
+        ignore_keys = []
+
     for item_key, item_values in data_dict.items():
+        if item_key in ignore_keys:
+            continue
         item = getattr(stmts, item_key)
         assert_series_equal(item, item_values, check_dtype=False)
 
@@ -29,7 +35,7 @@ class LoadTest:
     q_test_data_dict: Dict[str, pd.Series]
 
     def test_annual(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None,
-                    name: Optional[str] = None):
+                    name: Optional[str] = None, ignore_keys: Optional[Sequence[str]] = None):
         if data is None:
             data = self.a_test_data_dict
         if name is None:
@@ -47,10 +53,10 @@ class LoadTest:
                     )
                 )
         else:
-            check_data_items(stmts, data)
+            check_data_items(stmts, data, ignore_keys=ignore_keys)
 
     def test_quarterly(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None,
-                       name: Optional[str] = None):
+                       name: Optional[str] = None, ignore_keys: Optional[Sequence[str]] = None):
         if data is None:
             data = self.q_test_data_dict
         if name is None:
@@ -68,7 +74,7 @@ class LoadTest:
                     )
                 )
         else:
-            check_data_items(stmts, data)
+            check_data_items(stmts, data, ignore_keys=ignore_keys)
 
 
 class TestLoadStockrowCAT(LoadTest):
