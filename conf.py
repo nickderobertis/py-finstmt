@@ -20,7 +20,7 @@ REPO_MAINTAINERS = [
 ]
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 6, 4)
+PACKAGE_VERSION_TUPLE = (0, 7, 0)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = 'Python package for working with financial statement data'
@@ -68,6 +68,7 @@ PACKAGE_INSTALL_REQUIRES = [
     'matplotlib',
     'tqdm',
     'statsmodels',
+    'pydantic',
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here
