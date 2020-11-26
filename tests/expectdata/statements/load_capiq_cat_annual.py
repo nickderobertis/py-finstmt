@@ -100,7 +100,7 @@ LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=LOAD_CAPIQ_CAT_A_INDEX
     ),
     gross_ppe=pd.Series(
-        [0.0, 0.0, 0.0, 0.0, 0.0],
+        [31572.0, 31977.0, 31940.0, 31538.0, 29781.0],
         index=LOAD_CAPIQ_CAT_A_INDEX
     ),
     dep=pd.Series(
