@@ -8,75 +8,75 @@ FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     cogs=pd.Series(
-        [4269560373.1805234, 4316609326.085908],
+        [4269560373.1805205, 4316609326.085905],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     gross_profit=pd.Series(
-        [979897319.1271691, 1002960936.5782576],
+        [979897319.127172, 1002960936.5782604],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     rd_exp=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     sga=pd.Series(
-        [219153846.15384617, 220657692.30769232],
+        [219153846.15384614, 220657692.3076923],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     dep_exp=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     other_op_exp=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     op_exp=pd.Series(
-        [219153846.15384617, 220657692.30769232],
+        [219153846.15384614, 220657692.3076923],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     ebit=pd.Series(
-        [760743472.973323, 782303244.2705653],
+        [760743472.9733258, 782303244.2705681],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     int_exp=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     gain_on_sale_invest=pd.Series(
-        [-0.0, -0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     gain_on_sale_asset=pd.Series(
-        [-0.0, -0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     impairment=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     ebt=pd.Series(
-        [760743472.973323, 782303244.2705653],
+        [760743472.9733258, 782303244.2705681],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     tax_exp=pd.Series(
-        [219134872.94473127, 225345242.02679938],
+        [219134872.94473207, 225345242.02680027],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     net_income=pd.Series(
-        [541608600.0285918, 556958002.2437658],
+        [541608600.0285938, 556958002.2437679],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     cash=pd.Series(
-        [0.0, 4028770370.6349645],
-        index=FCST_STOCKROW_MAR_Q_INDEX
-    ),
-    st_invest=pd.Series(
         [0.0, 0.0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
+    st_invest=pd.Series(
+        [282107325.14405596, 288349793.1157033],
+        index=FCST_STOCKROW_MAR_Q_INDEX
+    ),
     cash_and_st_invest=pd.Series(
-        [0.0, 4028770370.6349645],
+        [282107325.14405596, 288349793.1157033],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     receivables=pd.Series(
@@ -88,7 +88,7 @@ FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     def_tax_st=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     other_current_assets=pd.Series(
@@ -96,19 +96,19 @@ FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     total_current_assets=pd.Series(
-        [2557543965.232413, 6655719520.035957],
+        [2839651290.3764687, 2915298942.5166974],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     gross_ppe=pd.Series(
-        [0.0, 0.0],
+        [1977916919.1774583, 1995997622.0247183],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     dep=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     net_ppe=pd.Series(
-        [0.0, 0.0],
+        [1977916919.1774583, 1995997622.0247183],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     goodwill=pd.Series(
@@ -128,27 +128,27 @@ FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     total_non_current_assets=pd.Series(
-        [19835573029.44174, 19828472448.775036],
+        [21813489948.619198, 21824470070.799755],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     total_assets=pd.Series(
-        [22393116994.674152, 26484191968.810993],
+        [24653141238.995667, 24739769013.316452],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     payables=pd.Series(
-        [702484420.5215071, 703108761.6099135],
+        [702484420.5215065, 703108761.6099131],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     st_debt=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     current_lt_debt=pd.Series(
-        [992388829.6683247, 573730286.8627205],
+        [992388829.6683247, 439406466.61206365],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     tax_liab_st=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     other_current_liab=pd.Series(
@@ -156,15 +156,15 @@ FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     total_current_liab=pd.Series(
-        [3915604862.0400662, 3533886596.2396545],
+        [3915604862.0400662, 3399562775.9889984],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     lt_debt=pd.Series(
-        [11895444560.885262, 6877119750.08552],
+        [11895444560.885262, 5267023476.095781],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     total_debt=pd.Series(
-        [11895444560.885262, 6877119750.08552],
+        [11895444560.885262, 5267023476.095781],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     deferred_rev=pd.Series(
@@ -176,7 +176,7 @@ FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     deposit_liab=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     other_lt_liab=pd.Series(
@@ -184,11 +184,11 @@ FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     total_non_current_liab=pd.Series(
-        [17755435990.445614, 12874238079.55125],
+        [17755435990.445614, 11264141805.561512],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     total_liab=pd.Series(
-        [21671040852.48568, 16408124675.790905],
+        [21671040852.48568, 14663704581.55051],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     common_stock=pd.Series(
@@ -196,7 +196,7 @@ FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     other_income=pd.Series(
-        [-0.0, -0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     retained_earnings=pd.Series(
@@ -204,15 +204,15 @@ FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     minority_interest=pd.Series(
-        [0.0, 0.0],
+        [0, 0],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     total_equity=pd.Series(
-        [9797686180.179125, 10076067278.247345],
+        [9797686180.179127, 10076067278.247345],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
     total_liab_and_equity=pd.Series(
-        [31468727032.664806, 26484191954.03825],
+        [31468727032.664806, 24739771859.797855],
         index=FCST_STOCKROW_MAR_Q_INDEX
     ),
 )
