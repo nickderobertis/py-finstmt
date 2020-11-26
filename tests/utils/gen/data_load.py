@@ -55,7 +55,7 @@ def _print_data_dict_def(stmts: FinancialStatements, data_keys: List[str], index
     for key in data_keys:
         value = getattr(stmts, key).values
         str_value = '[' + ', '.join([str(val) for val in value]) + ']'
-        out_str += f'\t{key}=pd.Series(\n\t\t{str_value},\n\t\tindex={index_name}\n\t),\n'
+        out_str += f'    {key}=pd.Series(\n        {str_value},\n        index={index_name}\n    ),\n'
     out_str += ')\n'
     return out_str
 

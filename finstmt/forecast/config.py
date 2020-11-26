@@ -1,7 +1,12 @@
-from dataclasses import dataclass, field
+from pydantic.dataclasses import dataclass
+from dataclasses import field
 from typing import Union, Dict, Optional, Any, List
 
 import pandas as pd
+
+
+class PydanticConfig:
+    arbitrary_types_allowed = True
 
 
 @dataclass
@@ -28,7 +33,7 @@ class ForecastConfig:
         )
 
 
-@dataclass
+@dataclass(config=PydanticConfig)
 class ForecastItemConfig:
     """
     The main configuration for a single item forecast

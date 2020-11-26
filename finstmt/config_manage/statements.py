@@ -1,6 +1,8 @@
-from dataclasses import dataclass
+import json
+from dataclasses import asdict
 from typing import Dict, Tuple, Sequence, Union, Any, List
 
+from pydantic.dataclasses import dataclass
 from sympy import IndexedBase
 
 from finstmt.config_manage.base import ConfigManagerBase
@@ -101,3 +103,12 @@ class StatementsConfigManager(ConfigManagerBase):
                     continue
                 all_items.append(item)
         return all_items
+
+    def dict(self) -> dict:
+        item_data: Dict[str, dict] = {}
+        for item in self.items:
+            item_data[item.key] = asdict(item)
+        return item_data
+
+    def json(self, **kwargs) -> str:
+        return json.dumps(self.dict(), **kwargs)

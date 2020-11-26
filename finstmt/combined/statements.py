@@ -1,24 +1,32 @@
 import operator
 from copy import deepcopy
 from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Callable
+from typing import Dict, List, Tuple, Callable, Set
 
 import pandas as pd
 from sympy import Indexed
 
 from finstmt import BalanceSheets, IncomeStatements
+from finstmt.check import item_series_is_empty
 from finstmt.config_manage.statements import StatementsConfigManager
 from finstmt.exc import MismatchingDatesException
 from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
 from finstmt.items.config import ItemConfig
+from finstmt.logger import logger
 
 
 @dataclass
 class FinancialStatements:
     """
     Main class that holds all the financial statements.
+
+    :param auto_adjust_config: Whether to automatically adjust the configuration based
+        on the loaded data. Currently will turn forecasting off for items not in the data,
+        and turn forecasting on for items normally calculated off those which are
+        not in the data. For example, if gross_ppe is missing then will start forecasting
+        net_ppe instead
 
     Examples:
         >>> bs_path = r'WMT Balance Sheet.xlsx'
@@ -32,6 +40,7 @@ class FinancialStatements:
     income_statements: IncomeStatements
     balance_sheets: BalanceSheets
     calculate: bool = True
+    auto_adjust_config: bool = True
 
 
     def __post_init__(self):
@@ -41,7 +50,7 @@ class FinancialStatements:
 
         if self.calculate:
             resolver = StatementsResolver(self)
-            new_stmts = resolver.to_statements()
+            new_stmts = resolver.to_statements(auto_adjust_config=self.auto_adjust_config)
             self.income_statements = new_stmts.income_statements
             self.balance_sheets = new_stmts.balance_sheets
             self._create_config_from_statements()
@@ -50,7 +59,55 @@ class FinancialStatements:
         config_dict = {}
         config_dict['income_statements'] = self.income_statements.config
         config_dict['balance_sheets'] = self.balance_sheets.config
-        self.config = StatementsConfigManager(config_dict)
+        self.config = StatementsConfigManager(config_managers=config_dict)
+        if self.auto_adjust_config:
+            self._adjust_config_based_on_data()
+
+    def _adjust_config_based_on_data(self):
+        for item in self.config.items:
+            if self.item_is_empty(item.key):
+                if self.config.get(item.key).forecast_config.plug:
+                    # It is OK for plug items to be empty, won't affect the forecast
+                    continue
+
+                # Useless to make forecasts on empty items
+                logger.debug(f'Setting {item.key} to not forecast as it is empty')
+                item.forecast_config.make_forecast = False
+                # But this may mean another item should be forecasted instead.
+                # E.g. normally net_ppe is calculated from gross_ppe and dep,
+                # so it is not forecasted. But if gross_ppe is missing from
+                # the data, then net_ppe should be forecasted directly.
+
+                # So first, get the equations involving this item to determine
+                # what other items are related to this one
+                relevant_eqs = self.config.eqs_involving(item.key)
+                relevant_keys: Set[str] = {item.key}
+                for eq in relevant_eqs:
+                    relevant_keys.add(self.config._expr_to_keys(eq.lhs)[0])
+                    relevant_keys.update(set(self.config._expr_to_keys(eq.rhs)))
+                relevant_keys.remove(item.key)
+                for key in relevant_keys:
+                    if self.item_is_empty(key):
+                        continue
+                    conf = self.config.get(key)
+                    if conf.expr_str is None:
+                        # Not a calculated item, so it doesn't make sense to turn forecasting on
+                        continue
+
+                    # Check to make sure that all components of the calculated item are also empty
+                    expr = self.config.expr_for(key)
+                    component_keys = self.config._expr_to_keys(expr)
+                    all_component_items_are_empty = True
+                    for c_key in component_keys:
+                        if not self.item_is_empty(c_key):
+                            all_component_items_are_empty = False
+                    if not all_component_items_are_empty:
+                        continue
+                    # Now this is a calculated item which is non-empty, and all the components of the
+                    # calculated are empty, so we need to forecast this item instead
+                    logger.debug(f'Setting {conf.key} to forecast as it is a calculated item which is not empty '
+                                 f'and yet none of the components have data')
+                    conf.forecast_config.make_forecast = True
 
     def change(self, data_key: str) -> pd.Series:
         """
@@ -70,6 +127,16 @@ class FinancialStatements:
         """
         series = getattr(self, data_key)
         return series.shift(num_lags)
+
+    def item_is_empty(self, data_key: str) -> bool:
+        """
+        Whether the passed item has no data
+
+        :param data_key: key of variable, how it would be accessed with FinancialStatements.data_key
+        :return:
+        """
+        series = getattr(self, data_key)
+        return item_series_is_empty(series)
 
     def _repr_html_(self):
         return f"""

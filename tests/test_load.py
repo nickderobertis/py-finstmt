@@ -1,16 +1,14 @@
 import os
-import unittest
-from typing import Dict, Optional
+from typing import Dict, Optional, Sequence
 
 import pandas as pd
 from pandas.testing import assert_series_equal
 
 from finstmt import FinancialStatements
-from finstmt.exc import MismatchingDatesException
-from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
+from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH, EXPECT_STATEMENTS_PATH
 
 # Imported for test development purposes
-from tests.expectdata.load.load_capiq_cat_annual import LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT
+from tests.expectdata.statements.load_capiq_cat_annual import LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT
 
 if DEVELOPMENT_MODE:
     from tests.utils.gen.data_load import print_test_data_def, get_keys_for_inc_data_items, get_keys_for_bs_data_items
@@ -19,8 +17,14 @@ if DEVELOPMENT_MODE:
     bs_keys = get_keys_for_bs_data_items()
 
 
-def check_data_items(stmts: FinancialStatements, data_dict: Dict[str, pd.Series]):
+def check_data_items(stmts: FinancialStatements, data_dict: Dict[str, pd.Series],
+                     ignore_keys: Optional[Sequence[str]] = None):
+    if ignore_keys is None:
+        ignore_keys = []
+
     for item_key, item_values in data_dict.items():
+        if item_key in ignore_keys:
+            continue
         item = getattr(stmts, item_key)
         assert_series_equal(item, item_values, check_dtype=False)
 
@@ -30,39 +34,47 @@ class LoadTest:
     a_test_data_dict: Dict[str, pd.Series]
     q_test_data_dict: Dict[str, pd.Series]
 
-    def test_annual(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None):
+    def test_annual(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None,
+                    name: Optional[str] = None, ignore_keys: Optional[Sequence[str]] = None):
         if data is None:
             data = self.a_test_data_dict
+        if name is None:
+            name = self.name
         if DEVELOPMENT_MODE:
-            out_path = os.path.join(GENERATED_PATH, f'{self.name}_annual.py')
+            out_path = os.path.join(EXPECT_STATEMENTS_PATH, f'{name}_annual.py')
             with open(out_path, 'w') as f:
                 f.write('import pandas as pd\n\n')
                 f.write(
                     print_test_data_def(
                         stmts, inc_keys + bs_keys,
-                        f'{self.name.upper()}_A_INDEX',
-                        f'{self.name.upper()}_A_INDEX_DATA_DICT',
+                        f'{name.upper()}_A_INDEX',
+                        f'{name.upper()}_A_INDEX_DATA_DICT',
                         disp=False
                     )
                 )
-        check_data_items(stmts, data)
+        else:
+            check_data_items(stmts, data, ignore_keys=ignore_keys)
 
-    def test_quarterly(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None):
+    def test_quarterly(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None,
+                       name: Optional[str] = None, ignore_keys: Optional[Sequence[str]] = None):
         if data is None:
             data = self.q_test_data_dict
+        if name is None:
+            name = self.name
         if DEVELOPMENT_MODE:
-            out_path = os.path.join(GENERATED_PATH, f'{self.name}_quarterly.py')
+            out_path = os.path.join(EXPECT_STATEMENTS_PATH, f'{name}_quarterly.py')
             with open(out_path, 'w') as f:
                 f.write('import pandas as pd\n\n')
                 f.write(
                     print_test_data_def(
                         stmts, inc_keys + bs_keys,
-                        f'{self.name.upper()}_Q_INDEX',
-                        f'{self.name.upper()}_Q_INDEX_DATA_DICT',
+                        f'{name.upper()}_Q_INDEX',
+                        f'{name.upper()}_Q_INDEX_DATA_DICT',
                         disp=False
                     )
                 )
-        check_data_items(stmts, data)
+        else:
+            check_data_items(stmts, data, ignore_keys=ignore_keys)
 
 
 class TestLoadStockrowCAT(LoadTest):

@@ -12,7 +12,7 @@ inc_data_config_mgr = DataConfigManager(INCOME_STATEMENT_INPUT_ITEMS)
 inc_stmt_config_mgr = StatementConfigManager({pd.Timestamp(datetime.datetime.today()): inc_data_config_mgr})
 bs_data_config_mgr = DataConfigManager(BALANCE_SHEET_INPUT_ITEMS)
 bs_stmt_config_mgr = StatementConfigManager({pd.Timestamp(datetime.datetime.today()): bs_data_config_mgr})
-CONFIG = StatementsConfigManager({
+CONFIG = StatementsConfigManager(config_managers={
     'income_statements': inc_stmt_config_mgr,
     'balance_sheets': bs_stmt_config_mgr
 })

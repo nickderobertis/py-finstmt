@@ -10,7 +10,7 @@ from finstmt.resolver.solve import solve_equations, sympy_dict_to_results_dict
 
 class StatementsResolver(ResolverBase):
 
-    def to_statements(self) -> FinancialStatements:
+    def to_statements(self, **kwargs) -> FinancialStatements:
         if self.solve_eqs:
             solutions_dict = solve_equations(self.solve_eqs, self.subs_dict)
         else:
@@ -30,7 +30,7 @@ class StatementsResolver(ResolverBase):
             all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
         )
 
-        obj = FinancialStatements(inc_df, bs_df, calculate=False)
+        obj = FinancialStatements(inc_df, bs_df, calculate=False, **kwargs)
         return obj
 
     @property

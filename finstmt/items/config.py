@@ -1,4 +1,5 @@
-from dataclasses import dataclass, field
+from pydantic.dataclasses import dataclass
+from dataclasses import field
 from typing import Sequence, Optional
 
 from finstmt.forecast.config import ForecastItemConfig
@@ -26,3 +27,6 @@ class ItemConfig:
             return self.key
 
         return self.extract_names[0]
+
+    class Config:
+        arbitrary_types_allowed = True

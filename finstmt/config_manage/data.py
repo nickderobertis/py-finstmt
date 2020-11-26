@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from pydantic.dataclasses import dataclass
 from typing import Dict, List
 
 from sympy import symbols, IndexedBase, Idx
@@ -60,6 +60,10 @@ class DataConfigManager(ConfigManagerBase):
     @property
     def keys(self) -> List[str]:
         return list(self.config_dict.keys())
+
+    @property
+    def items(self) -> List[ItemConfig]:
+        return self.configs
 
 
 def _key_pct_of_key(base_key: str, pct_of_key: str) -> str:
