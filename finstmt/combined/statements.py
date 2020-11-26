@@ -202,6 +202,16 @@ class FinancialStatements:
         return self.net_income + self.non_cash_expenses - self.change('nwc') - self.capex
 
     def forecast(self, **kwargs) -> 'FinancialStatements':
+        """
+        Run a forecast, returning forecasted financial statements
+
+        :param kwargs: Attributes of :class:`finstmt.forecast.config.ForecastConfig`
+
+        :Examples:
+
+            >>> stmts.forecast(periods=2)
+
+        """
         from finstmt.resolver.forecast import ForecastResolver
 
         if 'bs_diff_max' in kwargs:

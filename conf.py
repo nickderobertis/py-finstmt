@@ -68,7 +68,6 @@ PACKAGE_INSTALL_REQUIRES = [
     'matplotlib',
     'tqdm',
     'statsmodels',
-    'pydantic',
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here

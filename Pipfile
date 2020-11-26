@@ -31,7 +31,6 @@ fbprophet = "*"
 tqdm = "*"
 statsmodels = "*"
 pillow = "*"
-pydantic = "*"
 
 [requires]
 python_version = "3.8"

@@ -1,5 +1,4 @@
-from pydantic.dataclasses import dataclass
-from dataclasses import field
+from dataclasses import dataclass, field
 from typing import Sequence, Optional
 
 from finstmt.forecast.config import ForecastItemConfig

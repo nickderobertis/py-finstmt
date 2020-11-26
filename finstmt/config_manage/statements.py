@@ -1,8 +1,7 @@
 import json
-from dataclasses import asdict
+from dataclasses import asdict, dataclass
 from typing import Dict, Tuple, Sequence, Union, Any, List
 
-from pydantic.dataclasses import dataclass
 from sympy import IndexedBase
 
 from finstmt.config_manage.base import ConfigManagerBase
