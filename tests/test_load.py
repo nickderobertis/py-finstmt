@@ -28,36 +28,42 @@ class LoadTest:
     a_test_data_dict: Dict[str, pd.Series]
     q_test_data_dict: Dict[str, pd.Series]
 
-    def test_annual(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None):
+    def test_annual(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None,
+                    name: Optional[str] = None):
         if data is None:
             data = self.a_test_data_dict
+        if name is None:
+            name = self.name
         if DEVELOPMENT_MODE:
-            out_path = os.path.join(EXPECT_STATEMENTS_PATH, f'{self.name}_annual.py')
+            out_path = os.path.join(EXPECT_STATEMENTS_PATH, f'{name}_annual.py')
             with open(out_path, 'w') as f:
                 f.write('import pandas as pd\n\n')
                 f.write(
                     print_test_data_def(
                         stmts, inc_keys + bs_keys,
-                        f'{self.name.upper()}_A_INDEX',
-                        f'{self.name.upper()}_A_INDEX_DATA_DICT',
+                        f'{name.upper()}_A_INDEX',
+                        f'{name.upper()}_A_INDEX_DATA_DICT',
                         disp=False
                     )
                 )
         else:
             check_data_items(stmts, data)
 
-    def test_quarterly(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None):
+    def test_quarterly(self, stmts: FinancialStatements, data: Optional[Dict[str, pd.Series]] = None,
+                       name: Optional[str] = None):
         if data is None:
             data = self.q_test_data_dict
+        if name is None:
+            name = self.name
         if DEVELOPMENT_MODE:
-            out_path = os.path.join(EXPECT_STATEMENTS_PATH, f'{self.name}_quarterly.py')
+            out_path = os.path.join(EXPECT_STATEMENTS_PATH, f'{name}_quarterly.py')
             with open(out_path, 'w') as f:
                 f.write('import pandas as pd\n\n')
                 f.write(
                     print_test_data_def(
                         stmts, inc_keys + bs_keys,
-                        f'{self.name.upper()}_Q_INDEX',
-                        f'{self.name.upper()}_Q_INDEX_DATA_DICT',
+                        f'{name.upper()}_Q_INDEX',
+                        f'{name.upper()}_Q_INDEX_DATA_DICT',
                         disp=False
                     )
                 )
