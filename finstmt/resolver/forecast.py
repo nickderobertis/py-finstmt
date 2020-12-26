@@ -301,11 +301,11 @@ def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, 
         key = str(var.base)
         if key == 'total_assets':
             t = int(var.indices[0]) - 1
-            if t > 0:
+            if t >= 0:
                 assets_arr[t] = value
         elif key == 'total_liab_and_equity':
             t = int(var.indices[0]) - 1
-            if t > 0:
+            if t >= 0:
                 le_arr[t] = value
 
     diff = abs(assets_arr - le_arr).astype(float)
