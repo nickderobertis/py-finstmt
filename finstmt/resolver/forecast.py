@@ -1,5 +1,6 @@
+import itertools
 from dataclasses import dataclass
-from typing import List, Dict, Tuple, Optional, Sequence
+from typing import List, Dict, Tuple, Optional, Sequence, Set
 
 from scipy.optimize import minimize, OptimizeResult
 from sympy import Eq, sympify, IndexedBase, Expr, solve, Indexed
@@ -56,6 +57,7 @@ class ForecastResolver(ResolverBase):
             self.stmts.config,
             self.stmts.config.sympy_namespace,
             self.bs_diff_max,
+            self.stmts.config.balance_groups,
         )
         solutions_dict.update(new_solutions)
 
@@ -178,12 +180,14 @@ class ForecastResolver(ResolverBase):
     @property
     def bs_balance_eqs(self) -> List[Eq]:
         eqs = []
-        for period in range(1, self.num_periods):
-            asset_key = f'total_assets[{period}]'
-            lhs = sympify(asset_key, locals=self.stmts.config.sympy_namespace)
-            liab_eq_key = f'total_liab_and_equity[{period}]'
-            rhs = sympify(liab_eq_key, locals=self.stmts.config.sympy_namespace)
-            eqs.append(Eq(lhs, rhs))
+        for balance_set in self.stmts.config.balance_groups:
+            for period in range(1, self.num_periods):
+                for combo in itertools.combinations(balance_set, 2):
+                    lhs_key = f'{combo[0]}[{period}]'
+                    lhs = sympify(lhs_key, locals=self.stmts.config.sympy_namespace)
+                    rhs_key = f'{combo[1]}[{period}]'
+                    rhs = sympify(rhs_key, locals=self.stmts.config.sympy_namespace)
+                    eqs.append(Eq(lhs, rhs))
         return eqs
 
     @property
@@ -213,7 +217,8 @@ class PlugResult:
 def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str],
                           subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
                           config: StatementsConfigManager,
-                          sympy_namespace: Dict[str, IndexedBase], bs_diff_max: float) -> Dict[IndexedBase, float]:
+                          sympy_namespace: Dict[str, IndexedBase], bs_diff_max: float,
+                          balance_groups: Set[str]) -> Dict[IndexedBase, float]:
     plug_solutions = _x_arr_to_plug_solutions(x0, plug_keys, sympy_namespace)
     all_to_solve: Dict[IndexedBase, Expr] = {}
     for eq in eqs:
@@ -252,7 +257,7 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
         res = minimize(
             _resolve_balance_sheet_check_diff,
             x0,
-            args=(eq_arrs, forecast_dates, to_solve_for, bs_diff_max, result),
+            args=(eq_arrs, forecast_dates, to_solve_for, bs_diff_max, balance_groups, result),
             bounds=[(0, None) for _ in range(len(x0))],  # all positive
             method='TNC',
             options=dict(
@@ -289,33 +294,39 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
 def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, np.ndarray],
                                       forecast_dates: pd.DatetimeIndex,
                                       solve_for: Sequence[IndexedBase],
-                                      bs_diff_max: float, res: PlugResult):
+                                      bs_diff_max: float, balance_groups: Set[str],
+                                      res: PlugResult):
     A_arr, b_arr = eq_arrs
     b_arr[-len(x):] = -x * PLUG_SCALE  # plug solutions with new X values
     sol_arr = np.linalg.solve(A_arr, b_arr)
     solutions_dict = {}
-    assets_arr = np.zeros(len(forecast_dates))
-    le_arr = np.zeros(len(forecast_dates))
-    for value, var in zip(sol_arr, solve_for):
-        solutions_dict[var] = value
-        key = str(var.base)
-        if key == 'total_assets':
-            t = int(var.indices[0]) - 1
-            if t >= 0:
-                assets_arr[t] = value
-        elif key == 'total_liab_and_equity':
-            t = int(var.indices[0]) - 1
-            if t >= 0:
-                le_arr[t] = value
+    norms: List[float] = []
+    for balance_group in balance_groups:
+        balance_arrs: List[np.ndarray] = [np.zeros(len(forecast_dates)) for _ in range(len(balance_group))]
+        balance_list = list(balance_group)
+        for value, var in zip(sol_arr, solve_for):
+            solutions_dict[var] = value
+            key = str(var.base)
+            if key in balance_list:
+                arr_idx = balance_list.index(key)
+                t = int(var.indices[0]) - 1
+                if t >= 0:
+                    balance_arrs[arr_idx][t] = value
 
-    diff = abs(assets_arr - le_arr).astype(float)
-    norm = np.linalg.norm(diff)
-    logger.debug(f'x: {x * PLUG_SCALE}, norm: {norm}')
-    desired_norm = np.linalg.norm([bs_diff_max] * len(diff))
-    if norm <= desired_norm:
+        norm = 0
+        for arr_pair in itertools.combinations(balance_arrs, 2):
+            diff = abs(arr_pair[0] - arr_pair[1]).astype(float)
+            pair_norm = np.linalg.norm(diff)
+            norm += pair_norm
+        norms.append(norm)
+
+    desired_norm = np.linalg.norm([bs_diff_max] * len(forecast_dates))
+    if all([norm <= desired_norm for norm in norms]):
         res.res = x
         raise BalanceSheetBalancedException(x)
-    return norm
+    full_norm = sum(norms)
+    logger.debug(f'x: {x * PLUG_SCALE}, norm: {full_norm}')
+    return full_norm
 
 
 class BalanceSheetBalancedException(Exception):
