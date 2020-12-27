@@ -75,6 +75,37 @@ class ConfigManagerBase:
 
         return eqs
 
+    def _calculated_item_determinant_keys(self, item_key: str) -> List[str]:
+        determinant_keys: List[str] = []
+        to_process_keys: List[str] = [item_key]
+        i = -1
+        while len(to_process_keys) > 0:
+            i += 1
+            process_key = to_process_keys.pop()
+            if i != 0:
+                # Add to determinants if not original key
+                determinant_keys.append(process_key)
+            try:
+                expr = self.expr_for(process_key)
+            except NotACalculatedItemException:
+                continue
+            new_keys = self._expr_to_keys(expr)
+            to_process_keys.extend(new_keys)
+        return determinant_keys
+
+    def item_determinant_keys(self, item_key: str, include_pct_of: bool = True) -> List[str]:
+        determinant_keys = self._calculated_item_determinant_keys(item_key)
+        if include_pct_of:
+            for item in self.items:
+                # TODO: multiple passes through determinants may be necessary for complicated pct_of structures
+                if item.key in determinant_keys and item.forecast_config.pct_of is not None:
+                    pct_conf = self.get(item.forecast_config.pct_of)
+                    if pct_conf.expr_str is None:
+                        determinant_keys.append(item.forecast_config.pct_of)
+                    else:
+                        determinant_keys.extend(self._calculated_item_determinant_keys(pct_conf.key))
+        return list(set(determinant_keys))
+
     def _expr_to_keys(self, expr: Expr) -> List[str]:
         ns = self.sympy_namespace
         t = ns['t']
