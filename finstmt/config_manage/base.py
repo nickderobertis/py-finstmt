@@ -1,4 +1,4 @@
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Set
 
 from sympy import symbols, IndexedBase, Idx, Expr, sympify, Eq
 
@@ -105,6 +105,37 @@ class ConfigManagerBase:
                     else:
                         determinant_keys.extend(self._calculated_item_determinant_keys(pct_conf.key))
         return list(set(determinant_keys))
+
+    @property
+    def balance_groups(self) -> List[Set[ItemConfig]]:
+        balance_sets: List[Set[str]] = []
+        for item in self.items:
+            if item.forecast_config.balance_with is not None:
+                # Skip items already tracked
+                item_tracked = False
+                for bl in balance_sets:
+                    # Balance item in a group which was already already found, skip
+                    if item.key in bl:
+                        item_tracked = True
+                        break
+                if item_tracked:
+                    continue
+
+                # Not already tracked, must be a new balance group
+                balance_group: Set[str] = {item.key, item.forecast_config.balance_with}
+                balance_with_conf = self.get(item.forecast_config.balance_with)
+                if balance_with_conf.forecast_config.balance_with != item.key:
+                    # This is part of a balance chain, e.g. a balanced with b, b balanced with c, c balanced with a
+                    changed = True
+                    while changed:
+                        num_balanced = len(balance_group)
+                        balance_group.add(balance_with_conf.forecast_config.balance_with)
+                        new_num_balanced = len(balance_group)
+                        changed = num_balanced != new_num_balanced
+                        balance_with_conf = self.get(balance_with_conf.forecast_config.balance_with)
+
+                balance_sets.append(balance_group)
+        return balance_sets
 
     def _expr_to_keys(self, expr: Expr) -> List[str]:
         ns = self.sympy_namespace
