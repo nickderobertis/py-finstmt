@@ -253,50 +253,7 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
     eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)
 
     # Get better initial x0 by adding to appropriate plug
-    A_arr, b_arr = eq_arrs
-    b_arr[-len(x0):] = -x0 * PLUG_SCALE  # plug solutions with new X values
-    sol_arr = np.linalg.solve(A_arr, b_arr)
-    n_periods = len(forecast_dates)
-    for balance_group in balance_groups:
-        balance_arrs = _balance_group_to_balance_arrs(
-            balance_group, sol_arr, to_solve_for, n_periods
-        )
-        bg_with_arrs = list(zip(balance_group, balance_arrs))
-        for bg_arr1, bg_arr2 in itertools.combinations(bg_with_arrs, 2):
-            bg1, arr1 = bg_arr1
-            bg2, arr2 = bg_arr2
-            # e.g. assets - liabilities and equity
-            diff = (arr1 - arr2).astype(float)
-            for i, d in enumerate(diff):
-                # Handle periods one by one
-                if d > 0:
-                    # e.g. first period asset is greater than first period liabilities and equity
-                    # Therefore adjust by adding to liabilities and equity
-                    adjust_side = bg2
-                else:
-                    # e.g. first period asset is less than first period liabilities and equity
-                    # Therefore adjust by adding to assets
-                    adjust_side = bg1
-                # Get plug which corresponds to this adjustment side e.g. find cash for assets
-                # TODO: move out of loop
-                possible_plug_keys = config.item_determinant_keys(adjust_side)
-                plug_key: Optional[str] = None
-                for key in possible_plug_keys:
-                    if config.get(key).forecast_config.plug:
-                        plug_key = key  # e.g. cash
-                        break
-                if plug_key is None:
-                    raise InvalidBalancePlugsException(
-                        f'Trying to balance {adjust_side} but no plug affects it. One of the following '
-                        f'items must have forecast_config.plug = True so that it can be balanced: {possible_plug_keys}'
-                    )
-
-                # Determine index of array to increment. Array has structure of num plugs * num periods, with
-                # plugs in order of plug_keys and periods in order within the plugs
-                plug_idx = plug_keys.index(plug_key)
-                begin_plug_arr_idx = plug_idx * n_periods
-                arr_idx = begin_plug_arr_idx + i
-                x0[arr_idx] += abs(d) / PLUG_SCALE
+    _adjust_x0_to_initial_balance_guess(x0, plug_keys, eq_arrs, forecast_dates, to_solve_for, config, balance_groups)
 
     result = PlugResult()
     res: Optional[OptimizeResult] = None
@@ -343,9 +300,7 @@ def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, 
                                       solve_for: Sequence[IndexedBase],
                                       bs_diff_max: float, balance_groups: List[Set[str]],
                                       res: PlugResult):
-    A_arr, b_arr = eq_arrs
-    b_arr[-len(x):] = -x * PLUG_SCALE  # plug solutions with new X values
-    sol_arr = np.linalg.solve(A_arr, b_arr)
+    sol_arr = _eq_arrs_and_x_to_sol_arr(x, eq_arrs)
     norms: List[float] = []
     for balance_group in balance_groups:
         balance_arrs = _balance_group_to_balance_arrs(
@@ -381,6 +336,71 @@ def _balance_group_to_balance_arrs(
             if t >= 0:
                 balance_arrs[arr_idx][t] = value
     return balance_arrs
+
+
+def _eq_arrs_and_x_to_sol_arr(x: np.ndarray, eq_arrs: Tuple[np.ndarray, np.ndarray]) -> np.ndarray:
+    A_arr, b_arr = eq_arrs
+    b_arr[-len(x):] = -x * PLUG_SCALE  # plug solutions with new X values
+    sol_arr = np.linalg.solve(A_arr, b_arr)
+    return sol_arr
+
+
+def _adjust_x0_to_initial_balance_guess(
+    x0: np.ndarray, plug_keys: Sequence[str],
+    eq_arrs: Tuple[np.ndarray, np.ndarray],
+    forecast_dates: pd.DatetimeIndex,
+    solve_for: Sequence[IndexedBase],
+    config: StatementsConfigManager,
+    balance_groups: List[Set[str]]
+):
+    sol_arr = _eq_arrs_and_x_to_sol_arr(x0, eq_arrs)
+    n_periods = len(forecast_dates)
+    for balance_group in balance_groups:
+        balance_arrs = _balance_group_to_balance_arrs(
+            balance_group, sol_arr, solve_for, n_periods
+        )
+        # Get plug which corresponds to each balance item e.g. find cash for assets
+        balance_group_plug_keys: List[Optional[str]] = []
+        for balance_item in balance_group:
+            possible_plug_keys = config.item_determinant_keys(balance_item)
+            plug_key: Optional[str] = None
+            for key in possible_plug_keys:
+                if config.get(key).forecast_config.plug:
+                    plug_key = key  # e.g. cash
+                    break
+            balance_group_plug_keys.append(plug_key)
+        bg_with_arrs = list(zip(balance_group, balance_arrs, balance_group_plug_keys))
+        for bg_arr1, bg_arr2 in itertools.combinations(bg_with_arrs, 2):
+            bg1, arr1, plug1 = bg_arr1
+            bg2, arr2, plug2 = bg_arr2
+            # e.g. assets - liabilities and equity
+            diff = (arr1 - arr2).astype(float)
+            for i, d in enumerate(diff):
+                # Handle periods one by one
+                if d > 0:
+                    # e.g. first period asset is greater than first period liabilities and equity
+                    # Therefore adjust by adding to liabilities and equity
+                    adjust_side = bg2
+                    plug_key = plug2
+                else:
+                    # e.g. first period asset is less than first period liabilities and equity
+                    # Therefore adjust by adding to assets
+                    adjust_side = bg1
+                    plug_key = plug1
+
+                if plug_key is None:
+                    raise InvalidBalancePlugsException(
+                        f'Trying to balance {adjust_side} but no plug affects it. One of the following '
+                        f'items must have forecast_config.plug = True so that it can be balanced: '
+                        f'{config.item_determinant_keys(adjust_side)}'
+                    )
+
+                # Determine index of array to increment. Array has structure of num plugs * num periods, with
+                # plugs in order of plug_keys and periods in order within the plugs
+                plug_idx = plug_keys.index(plug_key)
+                begin_plug_arr_idx = plug_idx * n_periods
+                arr_idx = begin_plug_arr_idx + i
+                x0[arr_idx] += abs(d) / PLUG_SCALE
 
 
 class BalanceSheetBalancedException(Exception):
