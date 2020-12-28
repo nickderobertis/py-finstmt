@@ -9,7 +9,8 @@ import numpy as np
 from sympy.core.numbers import NaN
 
 from finstmt.config_manage.statements import StatementsConfigManager
-from finstmt.exc import BalanceSheetNotBalancedException, MissingDataException, InvalidForecastEquationException
+from finstmt.exc import BalanceSheetNotBalancedException, MissingDataException, InvalidForecastEquationException, \
+    InvalidBalancePlugsException
 from finstmt.forecast.main import Forecast
 from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.forecast.statements import ForecastedFinancialStatements
@@ -218,7 +219,7 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
                           subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
                           config: StatementsConfigManager,
                           sympy_namespace: Dict[str, IndexedBase], bs_diff_max: float,
-                          balance_groups: Set[str]) -> Dict[IndexedBase, float]:
+                          balance_groups: List[Set[str]]) -> Dict[IndexedBase, float]:
     plug_solutions = _x_arr_to_plug_solutions(x0, plug_keys, sympy_namespace)
     all_to_solve: Dict[IndexedBase, Expr] = {}
     for eq in eqs:
@@ -250,6 +251,52 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
     solve_exprs = list(all_to_solve.values())
     _check_for_invalid_system_of_equations(eqs, subs_dict, plug_solutions, to_solve_for, solve_exprs)
     eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)
+
+    # Get better initial x0 by adding to appropriate plug
+    A_arr, b_arr = eq_arrs
+    b_arr[-len(x0):] = -x0 * PLUG_SCALE  # plug solutions with new X values
+    sol_arr = np.linalg.solve(A_arr, b_arr)
+    n_periods = len(forecast_dates)
+    for balance_group in balance_groups:
+        balance_arrs = _balance_group_to_balance_arrs(
+            balance_group, sol_arr, to_solve_for, n_periods
+        )
+        bg_with_arrs = list(zip(balance_group, balance_arrs))
+        for bg_arr1, bg_arr2 in itertools.combinations(bg_with_arrs, 2):
+            bg1, arr1 = bg_arr1
+            bg2, arr2 = bg_arr2
+            # e.g. assets - liabilities and equity
+            diff = (arr1 - arr2).astype(float)
+            for i, d in enumerate(diff):
+                # Handle periods one by one
+                if d > 0:
+                    # e.g. first period asset is greater than first period liabilities and equity
+                    # Therefore adjust by adding to liabilities and equity
+                    adjust_side = bg2
+                else:
+                    # e.g. first period asset is less than first period liabilities and equity
+                    # Therefore adjust by adding to assets
+                    adjust_side = bg1
+                # Get plug which corresponds to this adjustment side e.g. find cash for assets
+                # TODO: move out of loop
+                possible_plug_keys = config.item_determinant_keys(adjust_side)
+                plug_key: Optional[str] = None
+                for key in possible_plug_keys:
+                    if config.get(key).forecast_config.plug:
+                        plug_key = key  # e.g. cash
+                        break
+                if plug_key is None:
+                    raise InvalidBalancePlugsException(
+                        f'Trying to balance {adjust_side} but no plug affects it. One of the following '
+                        f'items must have forecast_config.plug = True so that it can be balanced: {possible_plug_keys}'
+                    )
+
+                # Determine index of array to increment. Array has structure of num plugs * num periods, with
+                # plugs in order of plug_keys and periods in order within the plugs
+                plug_idx = plug_keys.index(plug_key)
+                begin_plug_arr_idx = plug_idx * n_periods
+                arr_idx = begin_plug_arr_idx + i
+                x0[arr_idx] += abs(d) / PLUG_SCALE
 
     result = PlugResult()
     res: Optional[OptimizeResult] = None
@@ -294,24 +341,16 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
 def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, np.ndarray],
                                       forecast_dates: pd.DatetimeIndex,
                                       solve_for: Sequence[IndexedBase],
-                                      bs_diff_max: float, balance_groups: Set[str],
+                                      bs_diff_max: float, balance_groups: List[Set[str]],
                                       res: PlugResult):
     A_arr, b_arr = eq_arrs
     b_arr[-len(x):] = -x * PLUG_SCALE  # plug solutions with new X values
     sol_arr = np.linalg.solve(A_arr, b_arr)
-    solutions_dict = {}
     norms: List[float] = []
     for balance_group in balance_groups:
-        balance_arrs: List[np.ndarray] = [np.zeros(len(forecast_dates)) for _ in range(len(balance_group))]
-        balance_list = list(balance_group)
-        for value, var in zip(sol_arr, solve_for):
-            solutions_dict[var] = value
-            key = str(var.base)
-            if key in balance_list:
-                arr_idx = balance_list.index(key)
-                t = int(var.indices[0]) - 1
-                if t >= 0:
-                    balance_arrs[arr_idx][t] = value
+        balance_arrs = _balance_group_to_balance_arrs(
+            balance_group, sol_arr, solve_for, len(forecast_dates)
+        )
 
         norm = 0
         for arr_pair in itertools.combinations(balance_arrs, 2):
@@ -327,6 +366,21 @@ def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, 
     full_norm = sum(norms)
     logger.debug(f'x: {x * PLUG_SCALE}, norm: {full_norm}')
     return full_norm
+
+
+def _balance_group_to_balance_arrs(
+    balance_group: Set[str], sol_arr: np.ndarray, solve_for: Sequence[IndexedBase], num_periods: int,
+) -> List[np.ndarray]:
+    balance_arrs: List[np.ndarray] = [np.zeros(num_periods) for _ in range(len(balance_group))]
+    balance_list = list(balance_group)
+    for value, var in zip(sol_arr, solve_for):
+        key = str(var.base)
+        if key in balance_list:
+            arr_idx = balance_list.index(key)
+            t = int(var.indices[0]) - 1
+            if t >= 0:
+                balance_arrs[arr_idx][t] = value
+    return balance_arrs
 
 
 class BalanceSheetBalancedException(Exception):

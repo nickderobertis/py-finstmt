@@ -49,3 +49,7 @@ class BalanceSheetNotBalancedException(ForecastException):
 
 class InvalidForecastEquationException(ForecastException):
     pass
+
+
+class InvalidBalancePlugsException(ForecastException):
+    pass
