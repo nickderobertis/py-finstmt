@@ -10,6 +10,7 @@ class ForecastConfig:
     freq: str = 'Y'
     prophet_kwargs:  dict = field(default_factory=lambda: {})
     balance: bool = True
+    timeout: float = 180
 
     # TODO [#45]: after handling units, adjust default allowed BS difference for units
     bs_diff_max: float = 10000
