@@ -53,3 +53,7 @@ class InvalidForecastEquationException(ForecastException):
 
 class InvalidBalancePlugsException(ForecastException):
     pass
+
+
+class InvalidBalanceConfigException(ForecastException):
+    pass

@@ -2,7 +2,7 @@ from typing import Dict, Any, List, Set
 
 from sympy import symbols, IndexedBase, Idx, Expr, sympify, Eq
 
-from finstmt.exc import NotACalculatedItemException
+from finstmt.exc import NotACalculatedItemException, InvalidBalanceConfigException
 from finstmt.items.config import ItemConfig
 
 
@@ -126,7 +126,7 @@ class ConfigManagerBase:
         return list(set(determinant_keys))
 
     @property
-    def balance_groups(self) -> List[Set[ItemConfig]]:
+    def balance_groups(self) -> List[Set[str]]:
         balance_sets: List[Set[str]] = []
         for item in self.items:
             if item.forecast_config.balance_with is not None:
@@ -148,10 +148,17 @@ class ConfigManagerBase:
                     changed = True
                     while changed:
                         num_balanced = len(balance_group)
-                        balance_group.add(balance_with_conf.forecast_config.balance_with)
+                        balance_with_key = balance_with_conf.forecast_config.balance_with
+                        if balance_with_key is None:
+                            raise InvalidBalanceConfigException(
+                                f'{balance_with_conf.key} is part of balance group {balance_group} but in its '
+                                f'forecast_config it has None for balance_with. Set balance_with for '
+                                f'{balance_with_conf.key} to be another key in the balance group'
+                            )
+                        balance_group.add(balance_with_key)
                         new_num_balanced = len(balance_group)
                         changed = num_balanced != new_num_balanced
-                        balance_with_conf = self.get(balance_with_conf.forecast_config.balance_with)
+                        balance_with_conf = self.get(balance_with_key)
 
                 balance_sets.append(balance_group)
         return balance_sets

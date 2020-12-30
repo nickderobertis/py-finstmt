@@ -228,6 +228,8 @@ class PlugResult:
 
     @property
     def time_elapsed(self) -> float:
+        if self.start_time is None:
+            raise ValueError('Must instantiate PlugResult to get time_elapsed')
         return timeit.default_timer() - self.start_time
 
     @property
@@ -292,6 +294,11 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
     except (BalanceSheetBalancedException, BalanceSheetNotBalancedException):
         pass
     if not result.met_goal:
+        if result.fun is None or result.res is None:
+            # Mainly for mypy purposes
+            raise BalanceSheetNotBalancedException(
+                'Unexpected balancing error. Did not evaluate the balancing function even once'
+            )
         plug_solutions = _x_arr_to_plug_solutions(result.res, plug_keys, sympy_namespace)
         avg_error = (result.fun ** 2 / len(result.res)) ** 0.5
         message = (
