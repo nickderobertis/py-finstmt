@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.resolver.forecast &mdash; finstmt 0.7.0 documentation</title>
+  <title>finstmt.resolver.forecast &mdash; finstmt 0.8.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.7.0
+                0.8.0
               </div>
             
           
@@ -164,8 +164,10 @@
            <div itemprop="articleBody">
             
   <h1>Source code for finstmt.resolver.forecast</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
+<span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">timeit</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span>
 
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span><span class="p">,</span> <span class="n">OptimizeResult</span>
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">,</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">solve</span><span class="p">,</span> <span class="n">Indexed</span>
@@ -174,7 +176,8 @@
 <span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">NaN</span>
 
 <span class="kn">from</span> <span class="nn">finstmt.config_manage.statements</span> <span class="kn">import</span> <span class="n">StatementsConfigManager</span>
-<span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">BalanceSheetNotBalancedException</span><span class="p">,</span> <span class="n">MissingDataException</span><span class="p">,</span> <span class="n">InvalidForecastEquationException</span>
+<span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">BalanceSheetNotBalancedException</span><span class="p">,</span> <span class="n">MissingDataException</span><span class="p">,</span> <span class="n">InvalidForecastEquationException</span><span class="p">,</span> \
+    <span class="n">InvalidBalancePlugsException</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.main</span> <span class="kn">import</span> <span class="n">Forecast</span>
 <span class="kn">from</span> <span class="nn">finstmt.config_manage.data</span> <span class="kn">import</span> <span class="n">_key_pct_of_key</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.statements</span> <span class="kn">import</span> <span class="n">ForecastedFinancialStatements</span>
@@ -196,10 +199,12 @@
 <div class="viewcode-block" id="ForecastResolver"><a class="viewcode-back" href="../../../api/finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver">[docs]</a><span class="k">class</span> <span class="nc">ForecastResolver</span><span class="p">(</span><span class="n">ResolverBase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="ForecastResolver.__init__"><a class="viewcode-back" href="../../../api/finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stmts</span><span class="p">:</span> <span class="s1">&#39;FinancialStatements&#39;</span><span class="p">,</span> <span class="n">forecast_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Forecast</span><span class="p">],</span>
-                 <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> <span class="n">bs_diff_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">balance</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+                 <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> <span class="n">bs_diff_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                 <span class="n">balance</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">forecast_dict</span> <span class="o">=</span> <span class="n">forecast_dict</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">results</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bs_diff_max</span> <span class="o">=</span> <span class="n">bs_diff_max</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
 
         <span class="k">if</span> <span class="n">balance</span><span class="p">:</span>
@@ -222,6 +227,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">bs_diff_max</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">balance_groups</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">solutions_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">new_solutions</span><span class="p">)</span>
 
@@ -344,12 +351,14 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bs_balance_eqs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Eq</span><span class="p">]:</span>
         <span class="n">eqs</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">period</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_periods</span><span class="p">):</span>
-            <span class="n">asset_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;total_assets[</span><span class="si">{</span><span class="n">period</span><span class="si">}</span><span class="s1">]&#39;</span>
-            <span class="n">lhs</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">asset_key</span><span class="p">,</span> <span class="nb">locals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="p">)</span>
-            <span class="n">liab_eq_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;total_liab_and_equity[</span><span class="si">{</span><span class="n">period</span><span class="si">}</span><span class="s1">]&#39;</span>
-            <span class="n">rhs</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">liab_eq_key</span><span class="p">,</span> <span class="nb">locals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="p">)</span>
-            <span class="n">eqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Eq</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">balance_set</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">balance_groups</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">period</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_periods</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">combo</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">balance_set</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+                    <span class="n">lhs_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">combo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">[</span><span class="si">{</span><span class="n">period</span><span class="si">}</span><span class="s1">]&#39;</span>
+                    <span class="n">lhs</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">lhs_key</span><span class="p">,</span> <span class="nb">locals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="p">)</span>
+                    <span class="n">rhs_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">combo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">[</span><span class="si">{</span><span class="n">period</span><span class="si">}</span><span class="s1">]&#39;</span>
+                    <span class="n">rhs</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">rhs_key</span><span class="p">,</span> <span class="nb">locals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stmts</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="p">)</span>
+                    <span class="n">eqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Eq</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">eqs</span>
 
     <span class="nd">@property</span>
@@ -373,13 +382,32 @@
 
 <div class="viewcode-block" id="PlugResult"><a class="viewcode-back" href="../../../api/finstmt.resolver.html#finstmt.resolver.forecast.PlugResult">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">PlugResult</span><span class="p">:</span>
-    <span class="n">res</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+    <span class="n">res</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">180</span>
+    <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">fun</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">met_goal</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time_elapsed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Must instantiate PlugResult to get time_elapsed&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_timed_out</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_elapsed</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span></div>
 
 
 <div class="viewcode-block" id="resolve_balance_sheet"><a class="viewcode-back" href="../../../api/finstmt.resolver.html#finstmt.resolver.forecast.resolve_balance_sheet">[docs]</a><span class="k">def</span> <span class="nf">resolve_balance_sheet</span><span class="p">(</span><span class="n">x0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">eqs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Eq</span><span class="p">],</span> <span class="n">plug_keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
                           <span class="n">subs_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">forecast_dates</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">,</span>
                           <span class="n">config</span><span class="p">:</span> <span class="n">StatementsConfigManager</span><span class="p">,</span>
-                          <span class="n">sympy_namespace</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">],</span> <span class="n">bs_diff_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+                          <span class="n">sympy_namespace</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">],</span> <span class="n">bs_diff_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                          <span class="n">balance_groups</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
     <span class="n">plug_solutions</span> <span class="o">=</span> <span class="n">_x_arr_to_plug_solutions</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">plug_keys</span><span class="p">,</span> <span class="n">sympy_namespace</span><span class="p">)</span>
     <span class="n">all_to_solve</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">,</span> <span class="n">Expr</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">eq</span> <span class="ow">in</span> <span class="n">eqs</span><span class="p">:</span>
@@ -412,39 +440,48 @@
     <span class="n">_check_for_invalid_system_of_equations</span><span class="p">(</span><span class="n">eqs</span><span class="p">,</span> <span class="n">subs_dict</span><span class="p">,</span> <span class="n">plug_solutions</span><span class="p">,</span> <span class="n">to_solve_for</span><span class="p">,</span> <span class="n">solve_exprs</span><span class="p">)</span>
     <span class="n">eq_arrs</span> <span class="o">=</span> <span class="n">_symbolic_to_matrix</span><span class="p">(</span><span class="n">solve_exprs</span><span class="p">,</span> <span class="n">to_solve_for</span><span class="p">)</span>
 
-    <span class="n">result</span> <span class="o">=</span> <span class="n">PlugResult</span><span class="p">()</span>
+    <span class="c1"># Get better initial x0 by adding to appropriate plug</span>
+    <span class="n">_adjust_x0_to_initial_balance_guess</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">plug_keys</span><span class="p">,</span> <span class="n">eq_arrs</span><span class="p">,</span> <span class="n">forecast_dates</span><span class="p">,</span> <span class="n">to_solve_for</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">balance_groups</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PlugResult</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
     <span class="n">res</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">OptimizeResult</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
             <span class="n">_resolve_balance_sheet_check_diff</span><span class="p">,</span>
             <span class="n">x0</span><span class="p">,</span>
-            <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">eq_arrs</span><span class="p">,</span> <span class="n">forecast_dates</span><span class="p">,</span> <span class="n">to_solve_for</span><span class="p">,</span> <span class="n">bs_diff_max</span><span class="p">,</span> <span class="n">result</span><span class="p">),</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">eq_arrs</span><span class="p">,</span> <span class="n">forecast_dates</span><span class="p">,</span> <span class="n">to_solve_for</span><span class="p">,</span> <span class="n">bs_diff_max</span><span class="p">,</span> <span class="n">balance_groups</span><span class="p">,</span> <span class="n">result</span><span class="p">),</span>
             <span class="n">bounds</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x0</span><span class="p">))],</span>  <span class="c1"># all positive</span>
             <span class="n">method</span><span class="o">=</span><span class="s1">&#39;TNC&#39;</span><span class="p">,</span>
             <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
                 <span class="n">maxCGit</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">maxfun</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)</span>
-    <span class="k">except</span> <span class="n">BalanceSheetBalancedException</span><span class="p">:</span>
+    <span class="k">except</span> <span class="p">(</span><span class="n">BalanceSheetBalancedException</span><span class="p">,</span> <span class="n">BalanceSheetNotBalancedException</span><span class="p">):</span>
         <span class="k">pass</span>
-    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">res</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">message</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">plug_solutions</span> <span class="o">=</span> <span class="n">_x_arr_to_plug_solutions</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">plug_keys</span><span class="p">,</span> <span class="n">sympy_namespace</span><span class="p">)</span>
-            <span class="n">avg_error</span> <span class="o">=</span> <span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">fun</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">))</span> <span class="o">**</span> <span class="mf">0.5</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s1">&#39;final solution </span><span class="si">{</span><span class="n">plug_solutions</span><span class="si">}</span><span class="s1"> still could not meet max difference of &#39;</span>
-                <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">bs_diff_max</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">. Average difference was $</span><span class="si">{</span><span class="n">avg_error</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">If the make_forecast or plug &#39;</span>
-                <span class="sa">f</span><span class="s1">&#39;configuration for any items were changed, ensure that changes in </span><span class="si">{</span><span class="n">plug_keys</span><span class="si">}</span><span class="s1"> can flow through &#39;</span>
-                <span class="sa">f</span><span class="s1">&#39;to Total Assets and Total Liabilities and Equity. For example, if make_forecast=True for Total Debt &#39;</span>
-                <span class="sa">f</span><span class="s1">&#39;and make_forecast=False for ST Debt, then using LT debt as a plug will not work as ST debt will &#39;</span>
-                <span class="sa">f</span><span class="s1">&#39;go down when LT debt goes up.</span><span class="se">\n</span><span class="s1">Otherwise, consider &#39;</span>
-                <span class="sa">f</span><span class="s1">&#39;passing bs_diff_max to .forecast at a value greater than </span><span class="si">{</span><span class="n">avg_error</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">, or pass &#39;</span>
-                <span class="sa">f</span><span class="s1">&#39;balance=False to skip balancing entirely.&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">met_goal</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">fun</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">result</span><span class="o">.</span><span class="n">res</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Mainly for mypy purposes</span>
+            <span class="k">raise</span> <span class="n">BalanceSheetNotBalancedException</span><span class="p">(</span>
+                <span class="s1">&#39;Unexpected balancing error. Did not evaluate the balancing function even once&#39;</span>
             <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">plug_solutions</span> <span class="o">=</span> <span class="n">_x_arr_to_plug_solutions</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">res</span><span class="p">,</span> <span class="n">plug_keys</span><span class="p">,</span> <span class="n">sympy_namespace</span><span class="p">)</span>
+        <span class="n">avg_error</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">res</span><span class="p">))</span> <span class="o">**</span> <span class="mf">0.5</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;final solution </span><span class="si">{</span><span class="n">plug_solutions</span><span class="si">}</span><span class="s1"> still could not meet max difference of &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">bs_diff_max</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1"> within timeout of </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">timeout</span><span class="si">}</span><span class="s1">s. &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;Average difference was $</span><span class="si">{</span><span class="n">avg_error</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">If the make_forecast or plug &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;configuration for any items were changed, ensure that changes in </span><span class="si">{</span><span class="n">plug_keys</span><span class="si">}</span><span class="s1"> can flow through &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;to Total Assets and Total Liabilities and Equity. For example, if make_forecast=True for Total Debt &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;and make_forecast=False for ST Debt, then using LT debt as a plug will not work as ST debt will &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;go down when LT debt goes up.</span><span class="se">\n</span><span class="s1">Otherwise, consider &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;passing to .forecast a timeout greater than </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">timeout</span><span class="si">}</span><span class="s1">, &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;a bs_diff_max at a value greater than </span><span class="si">{</span><span class="n">avg_error</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">, or pass &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;balance=False to skip balancing entirely.&#39;</span>
+        <span class="p">)</span>
         <span class="k">raise</span> <span class="n">BalanceSheetNotBalancedException</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Balanced in </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">time_elapsed</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">s&#39;</span><span class="p">)</span>
     <span class="n">plug_solutions</span> <span class="o">=</span> <span class="n">_x_arr_to_plug_solutions</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">res</span><span class="p">,</span> <span class="n">plug_keys</span><span class="p">,</span> <span class="n">sympy_namespace</span><span class="p">)</span>
     <span class="n">solutions_dict</span> <span class="o">=</span> <span class="n">_solve_eqs_with_plug_solutions</span><span class="p">(</span>
         <span class="n">eqs</span><span class="p">,</span> <span class="n">plug_solutions</span><span class="p">,</span> <span class="n">subs_dict</span><span class="p">,</span> <span class="n">forecast_dates</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">items</span>
@@ -455,33 +492,130 @@
 <span class="k">def</span> <span class="nf">_resolve_balance_sheet_check_diff</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">eq_arrs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
                                       <span class="n">forecast_dates</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">,</span>
                                       <span class="n">solve_for</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">],</span>
-                                      <span class="n">bs_diff_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="n">PlugResult</span><span class="p">):</span>
+                                      <span class="n">bs_diff_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">balance_groups</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+                                      <span class="n">res</span><span class="p">:</span> <span class="n">PlugResult</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">is_timed_out</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">BalanceSheetNotBalancedException</span>
+
+    <span class="n">sol_arr</span> <span class="o">=</span> <span class="n">_eq_arrs_and_x_to_sol_arr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eq_arrs</span><span class="p">)</span>
+    <span class="n">norms</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">balance_group</span> <span class="ow">in</span> <span class="n">balance_groups</span><span class="p">:</span>
+        <span class="n">balance_arrs</span> <span class="o">=</span> <span class="n">_balance_group_to_balance_arrs</span><span class="p">(</span>
+            <span class="n">balance_group</span><span class="p">,</span> <span class="n">sol_arr</span><span class="p">,</span> <span class="n">solve_for</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">forecast_dates</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">norm</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">arr_pair</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">balance_arrs</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">arr_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">arr_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">pair_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+            <span class="n">norm</span> <span class="o">+=</span> <span class="n">pair_norm</span>
+        <span class="n">norms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span>
+
+    <span class="n">desired_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="n">bs_diff_max</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">forecast_dates</span><span class="p">))</span>
+    <span class="n">full_norm</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">norms</span><span class="p">)</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">fun</span> <span class="o">=</span> <span class="n">full_norm</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">time_elapsed</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">: x: </span><span class="si">{</span><span class="n">x</span> <span class="o">*</span> <span class="n">PLUG_SCALE</span><span class="si">}</span><span class="s1">, norm: </span><span class="si">{</span><span class="n">full_norm</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="n">norm</span> <span class="o">&lt;=</span> <span class="n">desired_norm</span> <span class="k">for</span> <span class="n">norm</span> <span class="ow">in</span> <span class="n">norms</span><span class="p">]):</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">met_goal</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">raise</span> <span class="n">BalanceSheetBalancedException</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">full_norm</span>
+
+
+<span class="k">def</span> <span class="nf">_balance_group_to_balance_arrs</span><span class="p">(</span>
+    <span class="n">balance_group</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">sol_arr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">solve_for</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">],</span> <span class="n">num_periods</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="n">balance_arrs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_periods</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">balance_group</span><span class="p">))]</span>
+    <span class="n">balance_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">balance_group</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sol_arr</span><span class="p">,</span> <span class="n">solve_for</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">balance_list</span><span class="p">:</span>
+            <span class="n">arr_idx</span> <span class="o">=</span> <span class="n">balance_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">balance_arrs</span><span class="p">[</span><span class="n">arr_idx</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">balance_arrs</span>
+
+
+<span class="k">def</span> <span class="nf">_eq_arrs_and_x_to_sol_arr</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">eq_arrs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="n">A_arr</span><span class="p">,</span> <span class="n">b_arr</span> <span class="o">=</span> <span class="n">eq_arrs</span>
     <span class="n">b_arr</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">):]</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="n">PLUG_SCALE</span>  <span class="c1"># plug solutions with new X values</span>
     <span class="n">sol_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_arr</span><span class="p">,</span> <span class="n">b_arr</span><span class="p">)</span>
-    <span class="n">solutions_dict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">assets_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">forecast_dates</span><span class="p">))</span>
-    <span class="n">le_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">forecast_dates</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sol_arr</span><span class="p">,</span> <span class="n">solve_for</span><span class="p">):</span>
-        <span class="n">solutions_dict</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;total_assets&#39;</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">assets_arr</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;total_liab_and_equity&#39;</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">le_arr</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">sol_arr</span>
 
-    <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">assets_arr</span> <span class="o">-</span> <span class="n">le_arr</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;x: </span><span class="si">{</span><span class="n">x</span> <span class="o">*</span> <span class="n">PLUG_SCALE</span><span class="si">}</span><span class="s1">, norm: </span><span class="si">{</span><span class="n">norm</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">desired_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="n">bs_diff_max</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span>
-    <span class="k">if</span> <span class="n">norm</span> <span class="o">&lt;=</span> <span class="n">desired_norm</span><span class="p">:</span>
-        <span class="n">res</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="k">raise</span> <span class="n">BalanceSheetBalancedException</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">norm</span>
+
+<span class="k">def</span> <span class="nf">_adjust_x0_to_initial_balance_guess</span><span class="p">(</span>
+    <span class="n">x0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">plug_keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">eq_arrs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">forecast_dates</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">,</span>
+    <span class="n">solve_for</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">],</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">StatementsConfigManager</span><span class="p">,</span>
+    <span class="n">balance_groups</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+<span class="p">):</span>
+    <span class="n">sol_arr</span> <span class="o">=</span> <span class="n">_eq_arrs_and_x_to_sol_arr</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">eq_arrs</span><span class="p">)</span>
+    <span class="n">n_periods</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">forecast_dates</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">balance_group</span> <span class="ow">in</span> <span class="n">balance_groups</span><span class="p">:</span>
+        <span class="n">balance_arrs</span> <span class="o">=</span> <span class="n">_balance_group_to_balance_arrs</span><span class="p">(</span>
+            <span class="n">balance_group</span><span class="p">,</span> <span class="n">sol_arr</span><span class="p">,</span> <span class="n">solve_for</span><span class="p">,</span> <span class="n">n_periods</span>
+        <span class="p">)</span>
+        <span class="c1"># Get plug which corresponds to each balance item e.g. find cash for assets</span>
+        <span class="n">balance_group_plug_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">balance_item</span> <span class="ow">in</span> <span class="n">balance_group</span><span class="p">:</span>
+            <span class="n">possible_plug_keys</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">item_determinant_keys</span><span class="p">(</span><span class="n">balance_item</span><span class="p">)</span>
+            <span class="n">plug_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">possible_plug_keys</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">plug</span><span class="p">:</span>
+                    <span class="n">plug_key</span> <span class="o">=</span> <span class="n">key</span>  <span class="c1"># e.g. cash</span>
+                    <span class="k">break</span>
+            <span class="n">balance_group_plug_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plug_key</span><span class="p">)</span>
+        <span class="n">bg_with_arrs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">balance_group</span><span class="p">,</span> <span class="n">balance_arrs</span><span class="p">,</span> <span class="n">balance_group_plug_keys</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">bg_arr1</span><span class="p">,</span> <span class="n">bg_arr2</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">bg_with_arrs</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">bg1</span><span class="p">,</span> <span class="n">arr1</span><span class="p">,</span> <span class="n">plug1</span> <span class="o">=</span> <span class="n">bg_arr1</span>
+            <span class="n">bg2</span><span class="p">,</span> <span class="n">arr2</span><span class="p">,</span> <span class="n">plug2</span> <span class="o">=</span> <span class="n">bg_arr2</span>
+            <span class="c1"># e.g. assets - liabilities and equity</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr1</span> <span class="o">-</span> <span class="n">arr2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">diff</span><span class="p">):</span>
+                <span class="c1"># Handle periods one by one</span>
+                <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># e.g. first period asset is greater than first period liabilities and equity</span>
+                    <span class="c1"># Therefore adjust by adding to liabilities and equity</span>
+                    <span class="n">adjust_side</span> <span class="o">=</span> <span class="n">bg2</span>
+                    <span class="n">plug_key</span> <span class="o">=</span> <span class="n">plug2</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># e.g. first period asset is less than first period liabilities and equity</span>
+                    <span class="c1"># Therefore adjust by adding to assets</span>
+                    <span class="n">adjust_side</span> <span class="o">=</span> <span class="n">bg1</span>
+                    <span class="n">plug_key</span> <span class="o">=</span> <span class="n">plug1</span>
+
+                <span class="k">if</span> <span class="n">plug_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">normally_calculated_but_not_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">expr_str</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+                            <span class="n">normally_calculated_but_not_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="sa">f</span><span class="s1">&#39;Trying to balance </span><span class="si">{</span><span class="n">adjust_side</span><span class="si">}</span><span class="s1"> but no plug affects it. One of the following &#39;</span>
+                        <span class="sa">f</span><span class="s1">&#39;items must have forecast_config.plug = True so that it can be balanced: &#39;</span>
+                        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">item_determinant_keys</span><span class="p">(</span><span class="n">adjust_side</span><span class="p">)</span><span class="si">}</span><span class="s1">. Current plugs: </span><span class="si">{</span><span class="n">plug_keys</span><span class="si">}</span><span class="s1">. &#39;</span>
+                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">normally_calculated_but_not_keys</span><span class="p">:</span>
+                        <span class="n">message</span> <span class="o">+=</span> <span class="p">(</span>
+                            <span class="sa">f</span><span class="s1">&#39;If you expected one of the plugs to affect </span><span class="si">{</span><span class="n">adjust_side</span><span class="si">}</span><span class="s1"> but it is not listed &#39;</span>
+                            <span class="sa">f</span><span class="s1">&#39;in the possible items, it may be that make_forecast has been set to True for an &#39;</span>
+                            <span class="sa">f</span><span class="s1">&#39;item which would normally be calculated from your plug, but as make_forecast is True &#39;</span>
+                            <span class="sa">f</span><span class="s1">&#39;it forecasts it rather than calculating and it cannot flow through. Possible items &#39;</span>
+                            <span class="sa">f</span><span class="s1">&#39;which are normally calculated but are instead being forecasted due to the config: &#39;</span>
+                            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">normally_calculated_but_not_keys</span><span class="si">}</span><span class="s1">. Either change the plug to be that same item &#39;</span>
+                            <span class="sa">f</span><span class="s1">&#39;which is normally calculated but instead is forecasted, or set make_forecast=False &#39;</span>
+                            <span class="sa">f</span><span class="s1">&#39;for that item.&#39;</span>
+                        <span class="p">)</span>
+                    <span class="k">raise</span> <span class="n">InvalidBalancePlugsException</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+                <span class="c1"># Determine index of array to increment. Array has structure of num plugs * num periods, with</span>
+                <span class="c1"># plugs in order of plug_keys and periods in order within the plugs</span>
+                <span class="n">plug_idx</span> <span class="o">=</span> <span class="n">plug_keys</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">plug_key</span><span class="p">)</span>
+                <span class="n">begin_plug_arr_idx</span> <span class="o">=</span> <span class="n">plug_idx</span> <span class="o">*</span> <span class="n">n_periods</span>
+                <span class="n">arr_idx</span> <span class="o">=</span> <span class="n">begin_plug_arr_idx</span> <span class="o">+</span> <span class="n">i</span>
+                <span class="n">x0</span><span class="p">[</span><span class="n">arr_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">PLUG_SCALE</span>
 
 
 <div class="viewcode-block" id="BalanceSheetBalancedException"><a class="viewcode-back" href="../../../api/finstmt.resolver.html#finstmt.resolver.forecast.BalanceSheetBalancedException">[docs]</a><span class="k">class</span> <span class="nc">BalanceSheetBalancedException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>

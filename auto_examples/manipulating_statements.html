@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Manipulating Statements &mdash; finstmt 0.7.0 documentation</title>
+  <title>Manipulating Statements &mdash; finstmt 0.8.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.7.0
+                0.8.0
               </div>
             
           
@@ -217,10 +217,10 @@ Download the Jupyter notebook for the full experience.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>INFO: Was not able to extract data from the following names: {&#39;Other Assets&#39;, &#39;Investments&#39;, &#39;Net Debt&#39;, &#39;Other Liabilities&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>INFO: Was not able to extract data from the following names: {&#39;Net Debt&#39;, &#39;Other Liabilities&#39;, &#39;Investments&#39;, &#39;Other Assets&#39;}
 /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:78: UserWarning: Previously had ebit extracted from &quot;Operating Income&quot;. Replacing with value from &quot;EBIT&quot;
   warnings.warn(f&#39;Previously had {item_config.key} &#39;
-INFO: Was not able to extract data from the following names: {&#39;EPS Diluted&#39;, &#39;Shares (weighted, diluted)&#39;, &#39;EBIT Margin&#39;, &#39;Net Income - Non-Controlling int&#39;, &#39;Gross Profit&#39;, &#39;Net Profit Margin&#39;, &#39;Net Income Com&#39;, &#39;Preferred Dividends&#39;, &#39;Shares (weighted)&#39;, &#39;Consolidated Income&#39;, &#39;Dividend per Share&#39;, &#39;Gross Margin&#39;, &#39;Revenue Growth&#39;, &#39;EPS&#39;, &#39;EBITDA&#39;, &#39;Profit Margin&#39;, &#39;Free Cash Flow margin&#39;, &#39;Shares (basic)&#39;, &#39;Net Income - Discontinued ops&#39;, &#39;Earnings Before Tax Margin&#39;, &#39;EBITDA Margin&#39;}
+INFO: Was not able to extract data from the following names: {&#39;Net Profit Margin&#39;, &#39;EPS&#39;, &#39;EBITDA&#39;, &#39;Net Income - Non-Controlling int&#39;, &#39;Shares (weighted)&#39;, &#39;Consolidated Income&#39;, &#39;Dividend per Share&#39;, &#39;EBIT Margin&#39;, &#39;EPS Diluted&#39;, &#39;Net Income Com&#39;, &#39;EBITDA Margin&#39;, &#39;Net Income - Discontinued ops&#39;, &#39;Free Cash Flow margin&#39;, &#39;Gross Margin&#39;, &#39;Gross Profit&#39;, &#39;Earnings Before Tax Margin&#39;, &#39;Revenue Growth&#39;, &#39;Preferred Dividends&#39;, &#39;Shares (weighted, diluted)&#39;, &#39;Shares (basic)&#39;, &#39;Profit Margin&#39;}
 </pre></div>
 </div>
 </div>
@@ -3475,19 +3475,20 @@ period, such as FCF.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>INFO: Forecasting Income Statement
 
   0%|          | 0/16 [00:00&lt;?, ?it/s]
-100%|##########| 16/16 [00:00&lt;00:00, 398.33it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 309.89it/s]
 INFO: Forecasting Balance Sheet
 
   0%|          | 0/37 [00:00&lt;?, ?it/s]
-100%|##########| 37/37 [00:00&lt;00:00, 437.99it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 410.50it/s]
 INFO: Balancing balance sheet
+INFO: Balanced in 0.0s
 
-2019-12-31   -1.392679e+09
-2020-12-31   -3.645869e+07
+2019-12-31   -1.394863e+09
+2020-12-31   -3.646065e+07
 dtype: float64
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  0.446 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  56.455 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manipulating-statements-py">
 <div class="binder-badge docutils container">
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/nickderobertis/py-finstmt/gh-pages?urlpath=lab/tree/notebooks/auto_examples/manipulating_statements.ipynb"><img alt="Launch binder" src="../_images/binder_badge_logo.svg" width="150px" /></a>

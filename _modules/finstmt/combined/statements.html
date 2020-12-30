@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.combined.statements &mdash; finstmt 0.7.0 documentation</title>
+  <title>finstmt.combined.statements &mdash; finstmt 0.8.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.7.0
+                0.8.0
               </div>
             
           
@@ -390,6 +390,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">balance</span> <span class="o">=</span> <span class="n">ForecastConfig</span><span class="o">.</span><span class="n">balance</span>
 
+        <span class="k">if</span> <span class="s1">&#39;timeout&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;timeout&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="n">ForecastConfig</span><span class="o">.</span><span class="n">timeout</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_dates</span><span class="p">()</span>
 
         <span class="n">all_forecast_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -399,7 +404,7 @@
             <span class="n">all_forecast_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">forecast_dict</span><span class="p">)</span>
             <span class="n">all_results</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 
-        <span class="n">resolver</span> <span class="o">=</span> <span class="n">ForecastResolver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_forecast_dict</span><span class="p">,</span> <span class="n">all_results</span><span class="p">,</span> <span class="n">bs_diff_max</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="n">balance</span><span class="p">)</span>
+        <span class="n">resolver</span> <span class="o">=</span> <span class="n">ForecastResolver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_forecast_dict</span><span class="p">,</span> <span class="n">all_results</span><span class="p">,</span> <span class="n">bs_diff_max</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="n">balance</span><span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">resolver</span><span class="o">.</span><span class="n">to_statements</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">obj</span></div>

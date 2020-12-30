@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt package &mdash; finstmt 0.7.0 documentation</title>
+  <title>finstmt package &mdash; finstmt 0.8.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.7.0
+                0.8.0
               </div>
             
           
@@ -194,7 +194,7 @@
   <div class="section" id="module-finstmt">
 <span id="finstmt-package"></span><h1>finstmt package<a class="headerlink" href="#module-finstmt" title="Permalink to this headline">¶</a></h1>
 <p>Work with financial statement data in Python. Can calculate free cash flows and help project
-financial statements.</p>
+financial statements, automatically balancing the balance sheet.</p>
 <div class="section" id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -340,6 +340,18 @@ financial statements.</p>
 <dl class="py exception">
 <dt id="finstmt.exc.ImproperManualForecastException">
 <em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">ImproperManualForecastException</code><a class="reference internal" href="../_modules/finstmt/exc.html#ImproperManualForecastException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.ImproperManualForecastException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="finstmt.exc.InvalidBalanceConfigException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">InvalidBalanceConfigException</code><a class="reference internal" href="../_modules/finstmt/exc.html#InvalidBalanceConfigException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.InvalidBalanceConfigException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="finstmt.exc.InvalidBalancePlugsException">
+<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">InvalidBalancePlugsException</code><a class="reference internal" href="../_modules/finstmt/exc.html#InvalidBalancePlugsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.InvalidBalancePlugsException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
 </dd></dl>
 

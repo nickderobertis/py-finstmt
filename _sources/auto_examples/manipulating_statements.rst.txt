@@ -65,10 +65,10 @@ Load Financial Statements
 
  .. code-block:: none
 
-    INFO: Was not able to extract data from the following names: {'Other Assets', 'Investments', 'Net Debt', 'Other Liabilities'}
+    INFO: Was not able to extract data from the following names: {'Net Debt', 'Other Liabilities', 'Investments', 'Other Assets'}
     /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:78: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(f'Previously had {item_config.key} '
-    INFO: Was not able to extract data from the following names: {'EPS Diluted', 'Shares (weighted, diluted)', 'EBIT Margin', 'Net Income - Non-Controlling int', 'Gross Profit', 'Net Profit Margin', 'Net Income Com', 'Preferred Dividends', 'Shares (weighted)', 'Consolidated Income', 'Dividend per Share', 'Gross Margin', 'Revenue Growth', 'EPS', 'EBITDA', 'Profit Margin', 'Free Cash Flow margin', 'Shares (basic)', 'Net Income - Discontinued ops', 'Earnings Before Tax Margin', 'EBITDA Margin'}
+    INFO: Was not able to extract data from the following names: {'Net Profit Margin', 'EPS', 'EBITDA', 'Net Income - Non-Controlling int', 'Shares (weighted)', 'Consolidated Income', 'Dividend per Share', 'EBIT Margin', 'EPS Diluted', 'Net Income Com', 'EBITDA Margin', 'Net Income - Discontinued ops', 'Free Cash Flow margin', 'Gross Margin', 'Gross Profit', 'Earnings Before Tax Margin', 'Revenue Growth', 'Preferred Dividends', 'Shares (weighted, diluted)', 'Shares (basic)', 'Profit Margin'}
 
 
 
@@ -3432,13 +3432,14 @@ period, such as FCF.
  .. code-block:: none
 
     INFO: Forecasting Income Statement
-      0%|          | 0/16 [00:00<?, ?it/s]    100%|##########| 16/16 [00:00<00:00, 398.33it/s]
+      0%|          | 0/16 [00:00<?, ?it/s]    100%|##########| 16/16 [00:00<00:00, 309.89it/s]
     INFO: Forecasting Balance Sheet
-      0%|          | 0/37 [00:00<?, ?it/s]    100%|##########| 37/37 [00:00<00:00, 437.99it/s]
+      0%|          | 0/37 [00:00<?, ?it/s]    100%|##########| 37/37 [00:00<00:00, 410.50it/s]
     INFO: Balancing balance sheet
+    INFO: Balanced in 0.0s
 
-    2019-12-31   -1.392679e+09
-    2020-12-31   -3.645869e+07
+    2019-12-31   -1.394863e+09
+    2020-12-31   -3.646065e+07
     dtype: float64
 
 
@@ -3446,7 +3447,7 @@ period, such as FCF.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  0.446 seconds)
+   **Total running time of the script:** ( 0 minutes  56.455 seconds)
 
 
 .. _sphx_glr_download_auto_examples_manipulating_statements.py:

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.resolver package &mdash; finstmt 0.7.0 documentation</title>
+  <title>finstmt.resolver package &mdash; finstmt 0.8.0 documentation</title>
   
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.7.0
+                0.8.0
               </div>
             
           
@@ -297,11 +297,11 @@
 
 <dl class="py class">
 <dt id="finstmt.resolver.forecast.ForecastResolver">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">ForecastResolver</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stmts</span></em>, <em class="sig-param"><span class="n">forecast_dict</span></em>, <em class="sig-param"><span class="n">results</span></em>, <em class="sig-param"><span class="n">bs_diff_max</span></em>, <em class="sig-param"><span class="n">balance</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#ForecastResolver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">ForecastResolver</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stmts</span></em>, <em class="sig-param"><span class="n">forecast_dict</span></em>, <em class="sig-param"><span class="n">results</span></em>, <em class="sig-param"><span class="n">bs_diff_max</span></em>, <em class="sig-param"><span class="n">timeout</span></em>, <em class="sig-param"><span class="n">balance</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#ForecastResolver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#finstmt.resolver.base.ResolverBase" title="finstmt.resolver.base.ResolverBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.resolver.base.ResolverBase</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.resolver.forecast.ForecastResolver.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stmts</span></em>, <em class="sig-param"><span class="n">forecast_dict</span></em>, <em class="sig-param"><span class="n">results</span></em>, <em class="sig-param"><span class="n">bs_diff_max</span></em>, <em class="sig-param"><span class="n">balance</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#ForecastResolver.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stmts</span></em>, <em class="sig-param"><span class="n">forecast_dict</span></em>, <em class="sig-param"><span class="n">results</span></em>, <em class="sig-param"><span class="n">bs_diff_max</span></em>, <em class="sig-param"><span class="n">timeout</span></em>, <em class="sig-param"><span class="n">balance</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#ForecastResolver.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.ForecastResolver.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -424,24 +424,64 @@
 
 <dl class="py class">
 <dt id="finstmt.resolver.forecast.PlugResult">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">PlugResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">res</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#PlugResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">PlugResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">res</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">180</span></em>, <em class="sig-param"><span class="n">start_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fun</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">met_goal</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#PlugResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.resolver.forecast.PlugResult.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">res</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">res</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">180</span></em>, <em class="sig-param"><span class="n">start_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fun</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">met_goal</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
+
+<dl class="py attribute">
+<dt id="finstmt.resolver.forecast.PlugResult.fun">
+<code class="sig-name descname">fun</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.fun" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="finstmt.resolver.forecast.PlugResult.is_timed_out">
+<em class="property">property </em><code class="sig-name descname">is_timed_out</code><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.is_timed_out" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="finstmt.resolver.forecast.PlugResult.met_goal">
+<code class="sig-name descname">met_goal</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><em class="property"> = False</em><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.met_goal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.resolver.forecast.PlugResult.res">
 <code class="sig-name descname">res</code><em class="property">: Optional<span class="p">[</span>numpy.array<span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.res" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="finstmt.resolver.forecast.PlugResult.start_time">
+<code class="sig-name descname">start_time</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.start_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="finstmt.resolver.forecast.PlugResult.time_elapsed">
+<em class="property">property </em><code class="sig-name descname">time_elapsed</code><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.time_elapsed" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="finstmt.resolver.forecast.PlugResult.timeout">
+<code class="sig-name descname">timeout</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></em><em class="property"> = 180</em><a class="headerlink" href="#finstmt.resolver.forecast.PlugResult.timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
 <dt id="finstmt.resolver.forecast.resolve_balance_sheet">
-<code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">resolve_balance_sheet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">eqs</span></em>, <em class="sig-param"><span class="n">plug_keys</span></em>, <em class="sig-param"><span class="n">subs_dict</span></em>, <em class="sig-param"><span class="n">forecast_dates</span></em>, <em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">sympy_namespace</span></em>, <em class="sig-param"><span class="n">bs_diff_max</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#resolve_balance_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.resolve_balance_sheet" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">finstmt.resolver.forecast.</code><code class="sig-name descname">resolve_balance_sheet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">eqs</span></em>, <em class="sig-param"><span class="n">plug_keys</span></em>, <em class="sig-param"><span class="n">subs_dict</span></em>, <em class="sig-param"><span class="n">forecast_dates</span></em>, <em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">sympy_namespace</span></em>, <em class="sig-param"><span class="n">bs_diff_max</span></em>, <em class="sig-param"><span class="n">balance_groups</span></em>, <em class="sig-param"><span class="n">timeout</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/resolver/forecast.html#resolve_balance_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.resolver.forecast.resolve_balance_sheet" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>

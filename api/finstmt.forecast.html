@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast package &mdash; finstmt 0.7.0 documentation</title>
+  <title>finstmt.forecast package &mdash; finstmt 0.8.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.7.0
+                0.8.0
               </div>
             
           
@@ -221,11 +221,11 @@
 <span id="finstmt-forecast-config-module"></span><h2>finstmt.forecast.config module<a class="headerlink" href="#module-finstmt.forecast.config" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="finstmt.forecast.config.ForecastConfig">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastConfig</code><span class="sig-paren">(</span><em class="sig-param">periods=5</em>, <em class="sig-param">freq='Y'</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">balance=True</em>, <em class="sig-param">bs_diff_max=10000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastConfig</code><span class="sig-paren">(</span><em class="sig-param">periods=5</em>, <em class="sig-param">freq='Y'</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">balance=True</em>, <em class="sig-param">timeout=180</em>, <em class="sig-param">bs_diff_max=10000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt id="finstmt.forecast.config.ForecastConfig.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">periods=5</em>, <em class="sig-param">freq='Y'</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">balance=True</em>, <em class="sig-param">bs_diff_max=10000</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">periods=5</em>, <em class="sig-param">freq='Y'</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">balance=True</em>, <em class="sig-param">timeout=180</em>, <em class="sig-param">bs_diff_max=10000</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -264,11 +264,16 @@
 <code class="sig-name descname">prophet_kwargs</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></em><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.prophet_kwargs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="finstmt.forecast.config.ForecastConfig.timeout">
+<code class="sig-name descname">timeout</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></em><em class="property"> = 180</em><a class="headerlink" href="#finstmt.forecast.config.ForecastConfig.timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt id="finstmt.forecast.config.ForecastItemConfig">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastItemConfig</code><span class="sig-paren">(</span><em class="sig-param">method='cagr'</em>, <em class="sig-param">pct_of=None</em>, <em class="sig-param">make_forecast=True</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">cap=None</em>, <em class="sig-param">floor=None</em>, <em class="sig-param">manual_forecasts=&lt;factory&gt;</em>, <em class="sig-param">plug=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastItemConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">finstmt.forecast.config.</code><code class="sig-name descname">ForecastItemConfig</code><span class="sig-paren">(</span><em class="sig-param">method='cagr'</em>, <em class="sig-param">pct_of=None</em>, <em class="sig-param">make_forecast=True</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">cap=None</em>, <em class="sig-param">floor=None</em>, <em class="sig-param">manual_forecasts=&lt;factory&gt;</em>, <em class="sig-param">plug=False</em>, <em class="sig-param">balance_with=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastItemConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The main configuration for a single item forecast</p>
 <p>method: ‘auto’ currently only supported method, runs forecast with fbprophet
@@ -278,12 +283,22 @@ prophet_kwargs: kwargs to pass to fbprophet model
 cap: the maximum that the trend line should reach
 floor: the minimum that the trend line should reach
 manual_forecasts: manually set values to use instead of doing a forecast
-plug: Whether to make this item adjustable to balance the balance sheet</p>
+plug: Whether to make this item adjustable to balance the balance sheet
+balance_item: Whether this item is balanced in the balancing process after forecasting</p>
+<blockquote>
+<div><p>and which item to balance it with (typically just set to ‘total_liab_and_equity’ for
+total assets and ‘total_assets’ for total liabilities and equity)</p>
+</div></blockquote>
 <dl class="py method">
 <dt id="finstmt.forecast.config.ForecastItemConfig.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">method='cagr'</em>, <em class="sig-param">pct_of=None</em>, <em class="sig-param">make_forecast=True</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">cap=None</em>, <em class="sig-param">floor=None</em>, <em class="sig-param">manual_forecasts=&lt;factory&gt;</em>, <em class="sig-param">plug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">method='cagr'</em>, <em class="sig-param">pct_of=None</em>, <em class="sig-param">make_forecast=True</em>, <em class="sig-param">prophet_kwargs=&lt;factory&gt;</em>, <em class="sig-param">cap=None</em>, <em class="sig-param">floor=None</em>, <em class="sig-param">manual_forecasts=&lt;factory&gt;</em>, <em class="sig-param">plug=False</em>, <em class="sig-param">balance_with=None</em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
+
+<dl class="py attribute">
+<dt id="finstmt.forecast.config.ForecastItemConfig.balance_with">
+<code class="sig-name descname">balance_with</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.balance_with" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="finstmt.forecast.config.ForecastItemConfig.cap">

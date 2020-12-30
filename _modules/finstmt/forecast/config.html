@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.forecast.config &mdash; finstmt 0.7.0 documentation</title>
+  <title>finstmt.forecast.config &mdash; finstmt 0.8.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.7.0
+                0.8.0
               </div>
             
           
@@ -176,6 +176,7 @@
     <span class="n">freq</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Y&#39;</span>
     <span class="n">prophet_kwargs</span><span class="p">:</span>  <span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{})</span>
     <span class="n">balance</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">180</span>
 
     <span class="c1"># TODO [#45]: after handling units, adjust default allowed BS difference for units</span>
     <span class="n">bs_diff_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10000</span>
@@ -207,6 +208,9 @@
 <span class="sd">    floor: the minimum that the trend line should reach</span>
 <span class="sd">    manual_forecasts: manually set values to use instead of doing a forecast</span>
 <span class="sd">    plug: Whether to make this item adjustable to balance the balance sheet</span>
+<span class="sd">    balance_item: Whether this item is balanced in the balancing process after forecasting</span>
+<span class="sd">        and which item to balance it with (typically just set to &#39;total_liab_and_equity&#39; for</span>
+<span class="sd">        total assets and &#39;total_assets&#39; for total liabilities and equity)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;cagr&#39;</span>
     <span class="n">pct_of</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -216,6 +220,7 @@
     <span class="n">floor</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">manual_forecasts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;levels&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;growth&#39;</span><span class="p">:</span> <span class="p">[]})</span>
     <span class="n">plug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">balance_with</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="ForecastItemConfig.to_series"><a class="viewcode-back" href="../../../api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.to_series">[docs]</a>    <span class="k">def</span> <span class="nf">to_series</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
         <span class="n">out_dict</span> <span class="o">=</span> <span class="p">{</span>

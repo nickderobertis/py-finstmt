@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finstmt.config_manage.base &mdash; finstmt 0.7.0 documentation</title>
+  <title>finstmt.config_manage.base &mdash; finstmt 0.8.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.7.0
+                0.8.0
               </div>
             
           
@@ -164,11 +164,11 @@
            <div itemprop="articleBody">
             
   <h1>Source code for finstmt.config_manage.base</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span>
 
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">,</span> <span class="n">Idx</span><span class="p">,</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">Eq</span>
 
-<span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">NotACalculatedItemException</span>
+<span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="n">NotACalculatedItemException</span><span class="p">,</span> <span class="n">InvalidBalanceConfigException</span>
 <span class="kn">from</span> <span class="nn">finstmt.items.config</span> <span class="kn">import</span> <span class="n">ItemConfig</span>
 
 
@@ -223,7 +223,7 @@
         <span class="n">expr</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">expr_str</span><span class="p">,</span> <span class="nb">locals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sympy_namespace</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">expr</span></div>
 
-<div class="viewcode-block" id="ConfigManagerBase.eqs_involving"><a class="viewcode-back" href="../../../api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.eqs_involving">[docs]</a>    <span class="k">def</span> <span class="nf">eqs_involving</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Eq</span><span class="p">]:</span>
+<div class="viewcode-block" id="ConfigManagerBase.eqs_involving"><a class="viewcode-back" href="../../../api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.eqs_involving">[docs]</a>    <span class="k">def</span> <span class="nf">eqs_involving</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">include_self_eq</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Eq</span><span class="p">]:</span>
         <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sympy_namespace</span>
         <span class="n">item_sym</span> <span class="o">=</span> <span class="n">ns</span><span class="p">[</span><span class="n">item_key</span><span class="p">]</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">ns</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
@@ -239,7 +239,95 @@
                 <span class="n">eq</span> <span class="o">=</span> <span class="n">Eq</span><span class="p">(</span><span class="n">this_item_sym_t</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
                 <span class="n">eqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="n">include_self_eq</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">rhs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_for</span><span class="p">(</span><span class="n">item_key</span><span class="p">)</span>
+                <span class="n">eq</span> <span class="o">=</span> <span class="n">Eq</span><span class="p">(</span><span class="n">item_t</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+                <span class="n">eqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">NotACalculatedItemException</span><span class="p">:</span>
+                <span class="k">pass</span>
+
         <span class="k">return</span> <span class="n">eqs</span></div>
+
+    <span class="k">def</span> <span class="nf">_calculated_item_determinant_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">for_forecast</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">determinant_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">to_process_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">item_key</span><span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">to_process_keys</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">process_key</span> <span class="o">=</span> <span class="n">to_process_keys</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># Add to determinants if not original key</span>
+                <span class="n">determinant_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process_key</span><span class="p">)</span>
+            <span class="n">eqs_involving_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eqs_involving</span><span class="p">(</span><span class="n">process_key</span><span class="p">,</span> <span class="n">include_self_eq</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">eq</span> <span class="ow">in</span> <span class="n">eqs_involving_key</span><span class="p">:</span>
+                <span class="n">all_eq_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_keys</span><span class="p">(</span><span class="n">eq</span><span class="o">.</span><span class="n">rhs</span> <span class="o">-</span> <span class="n">eq</span><span class="o">.</span><span class="n">lhs</span><span class="p">)</span>
+                <span class="n">new_keys</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">all_eq_keys</span> <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="n">process_key</span> <span class="ow">and</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">to_process_keys</span> <span class="o">+</span> <span class="n">determinant_keys</span>
+                <span class="p">]</span>
+                <span class="k">if</span> <span class="n">for_forecast</span><span class="p">:</span>
+                    <span class="n">accepted_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">new_keys</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">make_forecast</span><span class="p">:</span>
+                            <span class="c1"># As forecast is being made for this item, it is not calculated,</span>
+                            <span class="c1"># and so shouldn&#39;t be processed. It should still be added to determinants</span>
+                            <span class="n">determinant_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                            <span class="k">continue</span>
+                        <span class="n">accepted_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                    <span class="n">new_keys</span> <span class="o">=</span> <span class="n">accepted_keys</span>
+                <span class="n">to_process_keys</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">new_keys</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">determinant_keys</span>
+
+<div class="viewcode-block" id="ConfigManagerBase.item_determinant_keys"><a class="viewcode-back" href="../../../api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.item_determinant_keys">[docs]</a>    <span class="k">def</span> <span class="nf">item_determinant_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">include_pct_of</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">for_forecast</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">determinant_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculated_item_determinant_keys</span><span class="p">(</span><span class="n">item_key</span><span class="p">,</span> <span class="n">for_forecast</span><span class="o">=</span><span class="n">for_forecast</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">include_pct_of</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+                <span class="c1"># TODO: multiple passes through determinants may be necessary for complicated pct_of structures</span>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">key</span> <span class="ow">in</span> <span class="n">determinant_keys</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">pct_of</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">pct_conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">pct_of</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">pct_conf</span><span class="o">.</span><span class="n">expr_str</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">determinant_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">pct_of</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">determinant_keys</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_calculated_item_determinant_keys</span><span class="p">(</span><span class="n">pct_conf</span><span class="o">.</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">determinant_keys</span><span class="p">))</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">balance_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="n">balance_sets</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">balance_with</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Skip items already tracked</span>
+                <span class="n">item_tracked</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">for</span> <span class="n">bl</span> <span class="ow">in</span> <span class="n">balance_sets</span><span class="p">:</span>
+                    <span class="c1"># Balance item in a group which was already already found, skip</span>
+                    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">key</span> <span class="ow">in</span> <span class="n">bl</span><span class="p">:</span>
+                        <span class="n">item_tracked</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">break</span>
+                <span class="k">if</span> <span class="n">item_tracked</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># Not already tracked, must be a new balance group</span>
+                <span class="n">balance_group</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">balance_with</span><span class="p">}</span>
+                <span class="n">balance_with_conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">balance_with</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">balance_with_conf</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">balance_with</span> <span class="o">!=</span> <span class="n">item</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+                    <span class="c1"># This is part of a balance chain, e.g. a balanced with b, b balanced with c, c balanced with a</span>
+                    <span class="n">changed</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">while</span> <span class="n">changed</span><span class="p">:</span>
+                        <span class="n">num_balanced</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">balance_group</span><span class="p">)</span>
+                        <span class="n">balance_with_key</span> <span class="o">=</span> <span class="n">balance_with_conf</span><span class="o">.</span><span class="n">forecast_config</span><span class="o">.</span><span class="n">balance_with</span>
+                        <span class="k">if</span> <span class="n">balance_with_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="n">InvalidBalanceConfigException</span><span class="p">(</span>
+                                <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">balance_with_conf</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1"> is part of balance group </span><span class="si">{</span><span class="n">balance_group</span><span class="si">}</span><span class="s1"> but in its &#39;</span>
+                                <span class="sa">f</span><span class="s1">&#39;forecast_config it has None for balance_with. Set balance_with for &#39;</span>
+                                <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">balance_with_conf</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1"> to be another key in the balance group&#39;</span>
+                            <span class="p">)</span>
+                        <span class="n">balance_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">balance_with_key</span><span class="p">)</span>
+                        <span class="n">new_num_balanced</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">balance_group</span><span class="p">)</span>
+                        <span class="n">changed</span> <span class="o">=</span> <span class="n">num_balanced</span> <span class="o">!=</span> <span class="n">new_num_balanced</span>
+                        <span class="n">balance_with_conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">balance_with_key</span><span class="p">)</span>
+
+                <span class="n">balance_sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">balance_group</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">balance_sets</span>
 
     <span class="k">def</span> <span class="nf">_expr_to_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">:</span> <span class="n">Expr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="n">ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sympy_namespace</span>
