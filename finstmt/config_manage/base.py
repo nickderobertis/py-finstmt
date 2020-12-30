@@ -116,7 +116,7 @@ class ConfigManagerBase:
         determinant_keys = self._calculated_item_determinant_keys(item_key, for_forecast=for_forecast)
         if include_pct_of:
             for item in self.items:
-                # TODO: multiple passes through determinants may be necessary for complicated pct_of structures
+                # TODO [$5fed05c64df698000808428a]: multiple passes through determinants may be necessary for complicated pct_of structures
                 if item.key in determinant_keys and item.forecast_config.pct_of is not None:
                     pct_conf = self.get(item.forecast_config.pct_of)
                     if pct_conf.expr_str is None:
