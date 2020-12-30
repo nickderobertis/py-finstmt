@@ -57,7 +57,7 @@ class ConfigManagerBase:
         expr = sympify(config.expr_str, locals=self.sympy_namespace)
         return expr
 
-    def eqs_involving(self, item_key: str) -> List[Eq]:
+    def eqs_involving(self, item_key: str, include_self_eq: bool = False) -> List[Eq]:
         ns = self.sympy_namespace
         item_sym = ns[item_key]
         t = ns['t']
@@ -73,6 +73,14 @@ class ConfigManagerBase:
                 eq = Eq(this_item_sym_t, rhs)
                 eqs.append(eq)
 
+        if include_self_eq:
+            try:
+                rhs = self.expr_for(item_key)
+                eq = Eq(item_t, rhs)
+                eqs.append(eq)
+            except NotACalculatedItemException:
+                pass
+
         return eqs
 
     def _calculated_item_determinant_keys(self, item_key: str) -> List[str]:
@@ -85,12 +93,13 @@ class ConfigManagerBase:
             if i != 0:
                 # Add to determinants if not original key
                 determinant_keys.append(process_key)
-            try:
-                expr = self.expr_for(process_key)
-            except NotACalculatedItemException:
-                continue
-            new_keys = self._expr_to_keys(expr)
-            to_process_keys.extend(new_keys)
+            eqs_involving_key = self.eqs_involving(process_key, include_self_eq=True)
+            for eq in eqs_involving_key:
+                all_eq_keys = self._expr_to_keys(eq.rhs - eq.lhs)
+                new_keys = [
+                    key for key in all_eq_keys if key != process_key and key not in to_process_keys + determinant_keys
+                ]
+                to_process_keys.extend(new_keys)
         return determinant_keys
 
     def item_determinant_keys(self, item_key: str, include_pct_of: bool = True) -> List[str]:

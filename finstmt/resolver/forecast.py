@@ -296,7 +296,7 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
         avg_error = (result.fun ** 2 / len(result.res)) ** 0.5
         message = (
             f'final solution {plug_solutions} still could not meet max difference of '
-            f'${bs_diff_max:,.0f} within timeout of {result.timeout}. '
+            f'${bs_diff_max:,.0f} within timeout of {result.timeout}s. '
             f'Average difference was ${avg_error:,.0f}.\nIf the make_forecast or plug '
             f'configuration for any items were changed, ensure that changes in {plug_keys} can flow through '
             f'to Total Assets and Total Liabilities and Equity. For example, if make_forecast=True for Total Debt '
@@ -418,7 +418,7 @@ def _adjust_x0_to_initial_balance_guess(
                     raise InvalidBalancePlugsException(
                         f'Trying to balance {adjust_side} but no plug affects it. One of the following '
                         f'items must have forecast_config.plug = True so that it can be balanced: '
-                        f'{config.item_determinant_keys(adjust_side)}'
+                        f'{config.item_determinant_keys(adjust_side)}. Current plugs: {plug_keys}'
                     )
 
                 # Determine index of array to increment. Array has structure of num plugs * num periods, with
