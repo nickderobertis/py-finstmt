@@ -83,7 +83,7 @@ class ConfigManagerBase:
 
         return eqs
 
-    def _calculated_item_determinant_keys(self, item_key: str) -> List[str]:
+    def _calculated_item_determinant_keys(self, item_key: str, for_forecast: bool = True) -> List[str]:
         determinant_keys: List[str] = []
         to_process_keys: List[str] = [item_key]
         i = -1
@@ -99,11 +99,21 @@ class ConfigManagerBase:
                 new_keys = [
                     key for key in all_eq_keys if key != process_key and key not in to_process_keys + determinant_keys
                 ]
+                if for_forecast:
+                    accepted_keys: List[str] = []
+                    for key in new_keys:
+                        if self.get(key).forecast_config.make_forecast:
+                            # As forecast is being made for this item, it is not calculated,
+                            # and so shouldn't be processed. It should still be added to determinants
+                            determinant_keys.append(key)
+                            continue
+                        accepted_keys.append(key)
+                    new_keys = accepted_keys
                 to_process_keys.extend(new_keys)
         return determinant_keys
 
-    def item_determinant_keys(self, item_key: str, include_pct_of: bool = True) -> List[str]:
-        determinant_keys = self._calculated_item_determinant_keys(item_key)
+    def item_determinant_keys(self, item_key: str, include_pct_of: bool = True, for_forecast: bool = True) -> List[str]:
+        determinant_keys = self._calculated_item_determinant_keys(item_key, for_forecast=for_forecast)
         if include_pct_of:
             for item in self.items:
                 # TODO: multiple passes through determinants may be necessary for complicated pct_of structures

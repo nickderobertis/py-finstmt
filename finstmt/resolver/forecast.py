@@ -415,11 +415,27 @@ def _adjust_x0_to_initial_balance_guess(
                     plug_key = plug1
 
                 if plug_key is None:
-                    raise InvalidBalancePlugsException(
+                    normally_calculated_but_not_keys: List[str] = []
+                    for item in config.items:
+                        if item.expr_str is not None and item.forecast_config.make_forecast == True:
+                            normally_calculated_but_not_keys.append(item.key)
+                    message = (
                         f'Trying to balance {adjust_side} but no plug affects it. One of the following '
                         f'items must have forecast_config.plug = True so that it can be balanced: '
-                        f'{config.item_determinant_keys(adjust_side)}. Current plugs: {plug_keys}'
+                        f'{config.item_determinant_keys(adjust_side)}. Current plugs: {plug_keys}. '
                     )
+                    if normally_calculated_but_not_keys:
+                        message += (
+                            f'If you expected one of the plugs to affect {adjust_side} but it is not listed '
+                            f'in the possible items, it may be that make_forecast has been set to True for an '
+                            f'item which would normally be calculated from your plug, but as make_forecast is True '
+                            f'it forecasts it rather than calculating and it cannot flow through. Possible items '
+                            f'which are normally calculated but are instead being forecasted due to the config: '
+                            f'{normally_calculated_but_not_keys}. Either change the plug to be that same item '
+                            f'which is normally calculated but instead is forecasted, or set make_forecast=False '
+                            f'for that item.'
+                        )
+                    raise InvalidBalancePlugsException(message)
 
                 # Determine index of array to increment. Array has structure of num plugs * num periods, with
                 # plugs in order of plug_keys and periods in order within the plugs
