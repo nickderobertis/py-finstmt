@@ -76,7 +76,7 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     cash_and_st_invest=pd.Series(
-        [8828000000.0, 9339018181.818184],
+        [8828000000.000002, 9339018181.818184],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     receivables=pd.Series(
@@ -100,11 +100,11 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     gross_ppe=pd.Series(
-        [13698894523.433386, 13824938202.751822],
+        [13698894523.433386, 0.0],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     dep=pd.Series(
-        [0, 0],
+        [0.0, 13824938202.751822],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     net_ppe=pd.Series(
@@ -140,7 +140,7 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     st_debt=pd.Series(
-        [11746812154.417809, 11943913393.304644],
+        [11746812154.417807, 11943913393.304644],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     current_lt_debt=pd.Series(
@@ -188,7 +188,7 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     total_liab=pd.Series(
-        [46312250940.48573, 47366878853.877884],
+        [46312250940.48573, 47366878853.87788],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     common_stock=pd.Series(

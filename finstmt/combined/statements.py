@@ -224,6 +224,11 @@ class FinancialStatements:
         else:
             balance = ForecastConfig.balance
 
+        if 'timeout' in kwargs:
+            timeout = kwargs['timeout']
+        else:
+            timeout = ForecastConfig.timeout
+
         self._validate_dates()
 
         all_forecast_dict = {}
@@ -233,7 +238,7 @@ class FinancialStatements:
             all_forecast_dict.update(forecast_dict)
             all_results.update(results)
 
-        resolver = ForecastResolver(self, all_forecast_dict, all_results, bs_diff_max, balance=balance)
+        resolver = ForecastResolver(self, all_forecast_dict, all_results, bs_diff_max, timeout, balance=balance)
         obj = resolver.to_statements()
 
         return obj
