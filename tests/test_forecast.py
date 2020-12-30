@@ -210,10 +210,16 @@ class TestForecastStockrowMAR(ForecastTest):
     )
 
     def test_annual(self, annual_stockrow_stmts_mar: FinancialStatements):
-        super().test_annual(annual_stockrow_stmts_mar, ignore_keys=['gross_ppe', 'dep'])
+        stmts = annual_stockrow_stmts_mar.copy()
+        stmts.config.update('cash', ['forecast_config', 'plug'], False)
+        stmts.config.update('cash_and_st_invest', ['forecast_config', 'plug'], True)
+        super().test_annual(stmts, ignore_keys=['gross_ppe', 'dep'])
 
     def test_quarterly(self, quarterly_stockrow_stmts_mar: FinancialStatements):
-        super().test_quarterly(quarterly_stockrow_stmts_mar, ignore_keys=['gross_ppe', 'dep'])
+        stmts = quarterly_stockrow_stmts_mar.copy()
+        stmts.config.update('cash', ['forecast_config', 'plug'], False)
+        stmts.config.update('cash_and_st_invest', ['forecast_config', 'plug'], True)
+        super().test_quarterly(stmts, ignore_keys=['gross_ppe', 'dep'])
 
 
 class TestForecastCapitalIQCAT(ForecastTest):

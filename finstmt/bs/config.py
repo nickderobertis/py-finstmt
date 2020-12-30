@@ -322,6 +322,7 @@ BALANCE_SHEET_INPUT_ITEMS = [
         expr_str='total_current_assets[t] + total_non_current_assets[t]',
         forecast_config=ForecastItemConfig(
             make_forecast=False,
+            balance_with='total_liab_and_equity',
         ),
     ),
     ItemConfig(
@@ -1108,6 +1109,7 @@ BALANCE_SHEET_INPUT_ITEMS = [
         expr_str='total_liab[t] + total_equity[t]',
         forecast_config=ForecastItemConfig(
             make_forecast=False,
+            balance_with='total_assets',
         ),
     )
 ]

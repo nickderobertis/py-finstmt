@@ -32,15 +32,15 @@ FCST_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     op_exp=pd.Series(
-        [6325.641009436247, 5829.640231743841],
+        [6325.641009436247, 5829.640231743842],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     ebit=pd.Series(
-        [12045.487476364575, 13326.014740864433],
+        [12045.487476364575, 13326.014740864432],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     int_exp=pd.Series(
-        [94.76554690770675, 90.68363007665315],
+        [94.76554690770675, 90.68363007665323],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     gain_on_sale_invest=pd.Series(
@@ -68,7 +68,7 @@ FCST_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     cash=pd.Series(
-        [7255.5, 7589.800000000001],
+        [10459.99567259742, 10742.598041900244],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     st_invest=pd.Series(
@@ -76,7 +76,7 @@ FCST_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     cash_and_st_invest=pd.Series(
-        [7255.5, 7589.800000000001],
+        [10459.99567259742, 10742.598041900244],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     receivables=pd.Series(
@@ -96,7 +96,7 @@ FCST_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     total_current_assets=pd.Series(
-        [27586.275203605397, 27849.127436412764],
+        [30790.77087620282, 31001.925478313005],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     gross_ppe=pd.Series(
@@ -132,7 +132,7 @@ FCST_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     total_assets=pd.Series(
-        [51617.13100920565, 51900.33415791282],
+        [54821.62668180307, 55053.13219981306],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     payables=pd.Series(
@@ -144,7 +144,7 @@ FCST_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     current_lt_debt=pd.Series(
-        [58.95668581440259, 56.41719444879978],
+        [58.95668581440481, 56.41719444879981],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     tax_liab_st=pd.Series(
@@ -156,15 +156,15 @@ FCST_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     total_current_liab=pd.Series(
-        [11314.291165765098, 11612.055081946897],
+        [11314.2911657651, 11612.0550819469],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     lt_debt=pd.Series(
-        [7223.835516037975, 6912.6771178661575],
+        [7223.835516037975, 6912.67711786616],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     total_debt=pd.Series(
-        [7223.835516037974, 6912.6771178661575],
+        [7223.835516037975, 6912.67711786616],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     deferred_rev=pd.Series(
@@ -184,11 +184,11 @@ FCST_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     total_non_current_liab=pd.Series(
-        [10542.635516037975, 10231.477117866158],
+        [10542.635516037975, 10231.477117866161],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     total_liab=pd.Series(
-        [21856.926681803074, 21843.532199813053],
+        [21856.926681803074, 21843.53219981306],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     common_stock=pd.Series(
@@ -212,7 +212,7 @@ FCST_CAPIQ_CAT_A_INDEX_DATA_DICT = dict(
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
     total_liab_and_equity=pd.Series(
-        [54821.62668180307, 55053.13219981306],
+        [54821.62668180307, 55053.132199813066],
         index=FCST_CAPIQ_CAT_A_INDEX
     ),
 )

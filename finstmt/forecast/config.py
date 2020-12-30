@@ -10,6 +10,7 @@ class ForecastConfig:
     freq: str = 'Y'
     prophet_kwargs:  dict = field(default_factory=lambda: {})
     balance: bool = True
+    timeout: float = 180
 
     # TODO [#45]: after handling units, adjust default allowed BS difference for units
     bs_diff_max: float = 10000
@@ -41,6 +42,9 @@ class ForecastItemConfig:
     floor: the minimum that the trend line should reach
     manual_forecasts: manually set values to use instead of doing a forecast
     plug: Whether to make this item adjustable to balance the balance sheet
+    balance_item: Whether this item is balanced in the balancing process after forecasting
+        and which item to balance it with (typically just set to 'total_liab_and_equity' for
+        total assets and 'total_assets' for total liabilities and equity)
     """
     method: str = 'cagr'
     pct_of: Optional[str] = None
@@ -50,6 +54,7 @@ class ForecastItemConfig:
     floor: Optional[Union[float, pd.Series]] = None
     manual_forecasts: Dict[str, List[float]] = field(default_factory=lambda: {'levels': [], 'growth': []})
     plug: bool = False
+    balance_with: Optional[str] = None
 
     def to_series(self) -> pd.Series:
         out_dict = {

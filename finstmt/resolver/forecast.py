@@ -1,5 +1,7 @@
+import itertools
+import timeit
 from dataclasses import dataclass
-from typing import List, Dict, Tuple, Optional, Sequence
+from typing import List, Dict, Tuple, Optional, Sequence, Set
 
 from scipy.optimize import minimize, OptimizeResult
 from sympy import Eq, sympify, IndexedBase, Expr, solve, Indexed
@@ -8,7 +10,8 @@ import numpy as np
 from sympy.core.numbers import NaN
 
 from finstmt.config_manage.statements import StatementsConfigManager
-from finstmt.exc import BalanceSheetNotBalancedException, MissingDataException, InvalidForecastEquationException
+from finstmt.exc import BalanceSheetNotBalancedException, MissingDataException, InvalidForecastEquationException, \
+    InvalidBalancePlugsException
 from finstmt.forecast.main import Forecast
 from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.forecast.statements import ForecastedFinancialStatements
@@ -30,10 +33,12 @@ from finstmt.resolver.solve import PLUG_SCALE, solve_equations, sympy_dict_to_re
 class ForecastResolver(ResolverBase):
 
     def __init__(self, stmts: 'FinancialStatements', forecast_dict: Dict[str, Forecast],
-                 results: Dict[str, pd.Series], bs_diff_max: float, balance: bool = True):
+                 results: Dict[str, pd.Series], bs_diff_max: float, timeout: float,
+                 balance: bool = True):
         self.forecast_dict = forecast_dict
         self.results = results
         self.bs_diff_max = bs_diff_max
+        self.timeout = timeout
         self.balance = balance
 
         if balance:
@@ -56,6 +61,8 @@ class ForecastResolver(ResolverBase):
             self.stmts.config,
             self.stmts.config.sympy_namespace,
             self.bs_diff_max,
+            self.stmts.config.balance_groups,
+            self.timeout,
         )
         solutions_dict.update(new_solutions)
 
@@ -178,12 +185,14 @@ class ForecastResolver(ResolverBase):
     @property
     def bs_balance_eqs(self) -> List[Eq]:
         eqs = []
-        for period in range(1, self.num_periods):
-            asset_key = f'total_assets[{period}]'
-            lhs = sympify(asset_key, locals=self.stmts.config.sympy_namespace)
-            liab_eq_key = f'total_liab_and_equity[{period}]'
-            rhs = sympify(liab_eq_key, locals=self.stmts.config.sympy_namespace)
-            eqs.append(Eq(lhs, rhs))
+        for balance_set in self.stmts.config.balance_groups:
+            for period in range(1, self.num_periods):
+                for combo in itertools.combinations(balance_set, 2):
+                    lhs_key = f'{combo[0]}[{period}]'
+                    lhs = sympify(lhs_key, locals=self.stmts.config.sympy_namespace)
+                    rhs_key = f'{combo[1]}[{period}]'
+                    rhs = sympify(rhs_key, locals=self.stmts.config.sympy_namespace)
+                    eqs.append(Eq(lhs, rhs))
         return eqs
 
     @property
@@ -208,12 +217,31 @@ class ForecastResolver(ResolverBase):
 @dataclass
 class PlugResult:
     res: Optional[np.array] = None
+    timeout: float = 180
+    start_time: Optional[float] = None
+    fun: Optional[float] = None
+    met_goal: bool = False
+
+    def __post_init__(self):
+        if self.start_time is None:
+            self.start_time = timeit.default_timer()
+
+    @property
+    def time_elapsed(self) -> float:
+        if self.start_time is None:
+            raise ValueError('Must instantiate PlugResult to get time_elapsed')
+        return timeit.default_timer() - self.start_time
+
+    @property
+    def is_timed_out(self) -> bool:
+        return self.time_elapsed > self.timeout
 
 
 def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str],
                           subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
                           config: StatementsConfigManager,
-                          sympy_namespace: Dict[str, IndexedBase], bs_diff_max: float) -> Dict[IndexedBase, float]:
+                          sympy_namespace: Dict[str, IndexedBase], bs_diff_max: float,
+                          balance_groups: List[Set[str]], timeout: float) -> Dict[IndexedBase, float]:
     plug_solutions = _x_arr_to_plug_solutions(x0, plug_keys, sympy_namespace)
     all_to_solve: Dict[IndexedBase, Expr] = {}
     for eq in eqs:
@@ -246,39 +274,48 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
     _check_for_invalid_system_of_equations(eqs, subs_dict, plug_solutions, to_solve_for, solve_exprs)
     eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)
 
-    result = PlugResult()
+    # Get better initial x0 by adding to appropriate plug
+    _adjust_x0_to_initial_balance_guess(x0, plug_keys, eq_arrs, forecast_dates, to_solve_for, config, balance_groups)
+
+    result = PlugResult(timeout=timeout)
     res: Optional[OptimizeResult] = None
     try:
         res = minimize(
             _resolve_balance_sheet_check_diff,
             x0,
-            args=(eq_arrs, forecast_dates, to_solve_for, bs_diff_max, result),
+            args=(eq_arrs, forecast_dates, to_solve_for, bs_diff_max, balance_groups, result),
             bounds=[(0, None) for _ in range(len(x0))],  # all positive
             method='TNC',
             options=dict(
                 maxCGit=0,
+                maxfun=1000000000,
             )
         )
-    except BalanceSheetBalancedException:
+    except (BalanceSheetBalancedException, BalanceSheetNotBalancedException):
         pass
-    if result.res is None:
-        message: Optional[str]
-        if res is not None:
-            plug_solutions = _x_arr_to_plug_solutions(res.x, plug_keys, sympy_namespace)
-            avg_error = (res.fun ** 2 / len(res.x)) ** 0.5
-            message = (
-                f'final solution {plug_solutions} still could not meet max difference of '
-                f'${bs_diff_max:,.0f}. Average difference was ${avg_error:,.0f}.\nIf the make_forecast or plug '
-                f'configuration for any items were changed, ensure that changes in {plug_keys} can flow through '
-                f'to Total Assets and Total Liabilities and Equity. For example, if make_forecast=True for Total Debt '
-                f'and make_forecast=False for ST Debt, then using LT debt as a plug will not work as ST debt will '
-                f'go down when LT debt goes up.\nOtherwise, consider '
-                f'passing bs_diff_max to .forecast at a value greater than {avg_error:,.0f}, or pass '
-                f'balance=False to skip balancing entirely.'
+    if not result.met_goal:
+        if result.fun is None or result.res is None:
+            # Mainly for mypy purposes
+            raise BalanceSheetNotBalancedException(
+                'Unexpected balancing error. Did not evaluate the balancing function even once'
             )
-        else:
-            message = None
+        plug_solutions = _x_arr_to_plug_solutions(result.res, plug_keys, sympy_namespace)
+        avg_error = (result.fun ** 2 / len(result.res)) ** 0.5
+        message = (
+            f'final solution {plug_solutions} still could not meet max difference of '
+            f'${bs_diff_max:,.0f} within timeout of {result.timeout}s. '
+            f'Average difference was ${avg_error:,.0f}.\nIf the make_forecast or plug '
+            f'configuration for any items were changed, ensure that changes in {plug_keys} can flow through '
+            f'to Total Assets and Total Liabilities and Equity. For example, if make_forecast=True for Total Debt '
+            f'and make_forecast=False for ST Debt, then using LT debt as a plug will not work as ST debt will '
+            f'go down when LT debt goes up.\nOtherwise, consider '
+            f'passing to .forecast a timeout greater than {result.timeout}, '
+            f'a bs_diff_max at a value greater than {avg_error:,.0f}, or pass '
+            f'balance=False to skip balancing entirely.'
+        )
         raise BalanceSheetNotBalancedException(message)
+    else:
+        logger.info(f'Balanced in {result.time_elapsed:.1f}s')
     plug_solutions = _x_arr_to_plug_solutions(result.res, plug_keys, sympy_namespace)
     solutions_dict = _solve_eqs_with_plug_solutions(
         eqs, plug_solutions, subs_dict, forecast_dates, config.items
@@ -289,33 +326,130 @@ def resolve_balance_sheet(x0: np.ndarray, eqs: List[Eq], plug_keys: Sequence[str
 def _resolve_balance_sheet_check_diff(x: np.ndarray, eq_arrs: Tuple[np.ndarray, np.ndarray],
                                       forecast_dates: pd.DatetimeIndex,
                                       solve_for: Sequence[IndexedBase],
-                                      bs_diff_max: float, res: PlugResult):
+                                      bs_diff_max: float, balance_groups: List[Set[str]],
+                                      res: PlugResult):
+    if res.is_timed_out:
+        raise BalanceSheetNotBalancedException
+
+    sol_arr = _eq_arrs_and_x_to_sol_arr(x, eq_arrs)
+    norms: List[float] = []
+    for balance_group in balance_groups:
+        balance_arrs = _balance_group_to_balance_arrs(
+            balance_group, sol_arr, solve_for, len(forecast_dates)
+        )
+
+        norm = 0
+        for arr_pair in itertools.combinations(balance_arrs, 2):
+            diff = abs(arr_pair[0] - arr_pair[1]).astype(float)
+            pair_norm = np.linalg.norm(diff)
+            norm += pair_norm
+        norms.append(norm)
+
+    desired_norm = np.linalg.norm([bs_diff_max] * len(forecast_dates))
+    full_norm = sum(norms)
+    res.res = x
+    res.fun = full_norm
+    logger.debug(f'{res.time_elapsed:.1f}: x: {x * PLUG_SCALE}, norm: {full_norm}')
+    if all([norm <= desired_norm for norm in norms]):
+        res.met_goal = True
+        raise BalanceSheetBalancedException(x)
+    return full_norm
+
+
+def _balance_group_to_balance_arrs(
+    balance_group: Set[str], sol_arr: np.ndarray, solve_for: Sequence[IndexedBase], num_periods: int,
+) -> List[np.ndarray]:
+    balance_arrs: List[np.ndarray] = [np.zeros(num_periods) for _ in range(len(balance_group))]
+    balance_list = list(balance_group)
+    for value, var in zip(sol_arr, solve_for):
+        key = str(var.base)
+        if key in balance_list:
+            arr_idx = balance_list.index(key)
+            t = int(var.indices[0]) - 1
+            if t >= 0:
+                balance_arrs[arr_idx][t] = value
+    return balance_arrs
+
+
+def _eq_arrs_and_x_to_sol_arr(x: np.ndarray, eq_arrs: Tuple[np.ndarray, np.ndarray]) -> np.ndarray:
     A_arr, b_arr = eq_arrs
     b_arr[-len(x):] = -x * PLUG_SCALE  # plug solutions with new X values
     sol_arr = np.linalg.solve(A_arr, b_arr)
-    solutions_dict = {}
-    assets_arr = np.zeros(len(forecast_dates))
-    le_arr = np.zeros(len(forecast_dates))
-    for value, var in zip(sol_arr, solve_for):
-        solutions_dict[var] = value
-        key = str(var.base)
-        if key == 'total_assets':
-            t = int(var.indices[0]) - 1
-            if t >= 0:
-                assets_arr[t] = value
-        elif key == 'total_liab_and_equity':
-            t = int(var.indices[0]) - 1
-            if t >= 0:
-                le_arr[t] = value
+    return sol_arr
 
-    diff = abs(assets_arr - le_arr).astype(float)
-    norm = np.linalg.norm(diff)
-    logger.debug(f'x: {x * PLUG_SCALE}, norm: {norm}')
-    desired_norm = np.linalg.norm([bs_diff_max] * len(diff))
-    if norm <= desired_norm:
-        res.res = x
-        raise BalanceSheetBalancedException(x)
-    return norm
+
+def _adjust_x0_to_initial_balance_guess(
+    x0: np.ndarray, plug_keys: Sequence[str],
+    eq_arrs: Tuple[np.ndarray, np.ndarray],
+    forecast_dates: pd.DatetimeIndex,
+    solve_for: Sequence[IndexedBase],
+    config: StatementsConfigManager,
+    balance_groups: List[Set[str]]
+):
+    sol_arr = _eq_arrs_and_x_to_sol_arr(x0, eq_arrs)
+    n_periods = len(forecast_dates)
+    for balance_group in balance_groups:
+        balance_arrs = _balance_group_to_balance_arrs(
+            balance_group, sol_arr, solve_for, n_periods
+        )
+        # Get plug which corresponds to each balance item e.g. find cash for assets
+        balance_group_plug_keys: List[Optional[str]] = []
+        for balance_item in balance_group:
+            possible_plug_keys = config.item_determinant_keys(balance_item)
+            plug_key: Optional[str] = None
+            for key in possible_plug_keys:
+                if config.get(key).forecast_config.plug:
+                    plug_key = key  # e.g. cash
+                    break
+            balance_group_plug_keys.append(plug_key)
+        bg_with_arrs = list(zip(balance_group, balance_arrs, balance_group_plug_keys))
+        for bg_arr1, bg_arr2 in itertools.combinations(bg_with_arrs, 2):
+            bg1, arr1, plug1 = bg_arr1
+            bg2, arr2, plug2 = bg_arr2
+            # e.g. assets - liabilities and equity
+            diff = (arr1 - arr2).astype(float)
+            for i, d in enumerate(diff):
+                # Handle periods one by one
+                if d > 0:
+                    # e.g. first period asset is greater than first period liabilities and equity
+                    # Therefore adjust by adding to liabilities and equity
+                    adjust_side = bg2
+                    plug_key = plug2
+                else:
+                    # e.g. first period asset is less than first period liabilities and equity
+                    # Therefore adjust by adding to assets
+                    adjust_side = bg1
+                    plug_key = plug1
+
+                if plug_key is None:
+                    normally_calculated_but_not_keys: List[str] = []
+                    for item in config.items:
+                        if item.expr_str is not None and item.forecast_config.make_forecast == True:
+                            normally_calculated_but_not_keys.append(item.key)
+                    message = (
+                        f'Trying to balance {adjust_side} but no plug affects it. One of the following '
+                        f'items must have forecast_config.plug = True so that it can be balanced: '
+                        f'{config.item_determinant_keys(adjust_side)}. Current plugs: {plug_keys}. '
+                    )
+                    if normally_calculated_but_not_keys:
+                        message += (
+                            f'If you expected one of the plugs to affect {adjust_side} but it is not listed '
+                            f'in the possible items, it may be that make_forecast has been set to True for an '
+                            f'item which would normally be calculated from your plug, but as make_forecast is True '
+                            f'it forecasts it rather than calculating and it cannot flow through. Possible items '
+                            f'which are normally calculated but are instead being forecasted due to the config: '
+                            f'{normally_calculated_but_not_keys}. Either change the plug to be that same item '
+                            f'which is normally calculated but instead is forecasted, or set make_forecast=False '
+                            f'for that item.'
+                        )
+                    raise InvalidBalancePlugsException(message)
+
+                # Determine index of array to increment. Array has structure of num plugs * num periods, with
+                # plugs in order of plug_keys and periods in order within the plugs
+                plug_idx = plug_keys.index(plug_key)
+                begin_plug_arr_idx = plug_idx * n_periods
+                arr_idx = begin_plug_arr_idx + i
+                x0[arr_idx] += abs(d) / PLUG_SCALE
 
 
 class BalanceSheetBalancedException(Exception):

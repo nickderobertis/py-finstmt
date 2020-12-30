@@ -24,7 +24,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -49,7 +50,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -69,7 +71,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "revenue[t] - cogs[t]"
   },
@@ -98,7 +101,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -139,7 +143,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -171,7 +176,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -238,7 +244,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -265,7 +272,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]"
   },
@@ -307,7 +315,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "gross_profit[t] - op_exp[t]"
   },
@@ -336,7 +345,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -369,7 +379,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -402,7 +413,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -460,7 +472,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -505,7 +518,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "ebit[t] - int_exp[t]"
   },
@@ -537,7 +551,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -562,7 +577,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "ebt[t] - tax_exp[t]"
   },
@@ -590,7 +606,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": true
+      "plug": true,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -617,7 +634,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -662,7 +680,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "cash[t] + st_invest[t]"
   },
@@ -687,7 +706,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -711,7 +731,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -762,7 +783,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -788,7 +810,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -811,7 +834,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "cash_and_st_invest[t] + receivables[t] + inventory[t] + def_tax_st[t] + other_current_assets[t]"
   },
@@ -844,7 +868,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -873,7 +898,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -903,7 +929,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "gross_ppe[t] - dep[t]"
   },
@@ -934,7 +961,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -961,7 +989,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1014,7 +1043,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1047,7 +1077,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1073,7 +1104,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "net_ppe[t] + goodwill[t] + lt_invest[t] + def_tax_lt[t] + other_lt_assets[t]"
   },
@@ -1098,7 +1130,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": "total_liab_and_equity"
     },
     "expr_str": "total_current_assets[t] + total_non_current_assets[t]"
   },
@@ -1138,7 +1171,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1167,7 +1201,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1236,7 +1271,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1383,7 +1419,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1412,7 +1449,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1434,7 +1472,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "payables[t] + st_debt[t] + tax_liab_st[t] + current_lt_debt[t] + other_current_liab[t]"
   },
@@ -1473,7 +1512,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": true
+      "plug": true,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1495,7 +1535,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "st_debt[t] + lt_debt[t]"
   },
@@ -1614,7 +1655,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1800,7 +1842,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1824,7 +1867,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1901,7 +1945,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -1928,7 +1973,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "lt_debt[t] + deferred_rev[t] + tax_liab_lt[t] + deposit_liab[t] + other_lt_liab[t]"
   },
@@ -1952,7 +1998,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "total_non_current_liab[t] + total_current_liab[t]"
   },
@@ -1994,7 +2041,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -2028,7 +2076,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -2053,7 +2102,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -2078,7 +2128,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": null
   },
@@ -2108,7 +2159,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": null
     },
     "expr_str": "other_income[t] + retained_earnings[t] + common_stock[t] + minority_interest[t]"
   },
@@ -2137,7 +2189,8 @@
         "levels": [],
         "growth": []
       },
-      "plug": false
+      "plug": false,
+      "balance_with": "total_assets"
     },
     "expr_str": "total_liab[t] + total_equity[t]"
   }
