@@ -40,7 +40,7 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     int_exp=pd.Series(
-        [465174147.184538, 471960192.16392887],
+        [465174147.1845379, 471960192.16392887],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     gain_on_sale_invest=pd.Series(
@@ -60,7 +60,7 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     tax_exp=pd.Series(
-        [3308120524.030582, 3745941388.10375],
+        [3308120524.030582, 3745941388.1037498],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     net_income=pd.Series(
@@ -100,11 +100,11 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     gross_ppe=pd.Series(
-        [0, 0],
+        [13698894523.433386, 0.0],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     dep=pd.Series(
-        [13698894523.433386, 13824938202.751822],
+        [0.0, 13824938202.751822],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     net_ppe=pd.Series(
@@ -128,7 +128,7 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     total_non_current_assets=pd.Series(
-        [23311444914.654556, 23313086931.598053],
+        [23311444914.654552, 23313086931.598053],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     total_assets=pd.Series(
@@ -140,7 +140,7 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     st_debt=pd.Series(
-        [11746812154.417809, 11943913393.304644],
+        [11746812154.417807, 11943913393.304644],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     current_lt_debt=pd.Series(
@@ -188,7 +188,7 @@ FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT = dict(
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     total_liab=pd.Series(
-        [46312250940.48573, 47366878853.877884],
+        [46312250940.48573, 47366878853.87788],
         index=FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX
     ),
     common_stock=pd.Series(
