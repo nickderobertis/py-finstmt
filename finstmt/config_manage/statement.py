@@ -33,7 +33,11 @@ class StatementConfigManager(ConfigManagerBase):
         raise NoSuchItemException(item_key)
 
     def __getitem__(self, item_key: str) -> ItemConfig:
-        pass
+        """
+        For internal use, get the config as well as the key of the financial statement type it belongs to
+        """
+
+        return self.get(item_key)
 
 
     def set(self, item_key: str, config: ItemConfig) -> None:
