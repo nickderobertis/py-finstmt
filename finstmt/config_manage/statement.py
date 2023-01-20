@@ -32,6 +32,10 @@ class StatementConfigManager(ConfigManagerBase):
                 continue
         raise NoSuchItemException(item_key)
 
+    def __getitem__(self, item_key: str) -> ItemConfig:
+        pass
+
+
     def set(self, item_key: str, config: ItemConfig) -> None:
         """
         Set entire configuration for item by key. Needs to handle setting the value in each individual
