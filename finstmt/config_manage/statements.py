@@ -25,6 +25,13 @@ class StatementsConfigManager(ConfigManagerBase):
         config, _ = self._get(item_key)
         return config
 
+    def __getattr__(self, item_key: str) -> ItemConfig:
+        """
+        Get the config for a given key
+        """
+        return self.get(item_key)
+
+
     def _get(self, item_key: str) -> Tuple[ItemConfig, str]:
         """
         For internal use, get the config as well as the key of the financial statement type it belongs to
