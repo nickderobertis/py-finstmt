@@ -1,0 +1,30 @@
+
+name: Build and Push Docs
+
+on:
+  push:
+    paths:
+      - "docsrc/**"
+      - "README.md"
+    branches:
+      - master
+  release:
+    types: [released]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        python-version: [3.8]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install-dependencies
+        with:
+          python-version: ${{ matrix.python-version }}
+          gh-token: ${{ secrets.GH_TOKEN }}
+      - uses: ./.github/actions/build-and-deploy-docs
+        with:
+          gh-token: ${{ secrets.GH_TOKEN }}

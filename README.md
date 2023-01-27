@@ -1,89 +1,78 @@
-# pypi-sphinx-quickstart
+
+
+[![](https://codecov.io/gh/nickderobertis/py-finstmt/branch/master/graph/badge.svg)](https://codecov.io/gh/nickderobertis/py-finstmt)
+[![PyPI](https://img.shields.io/pypi/v/finstmt)](https://pypi.org/project/finstmt/)
+![PyPI - License](https://img.shields.io/pypi/l/finstmt)
+[![Documentation](https://img.shields.io/badge/documentation-pass-green)](https://nickderobertis.github.io/py-finstmt/)
+![Tests Run on Ubuntu Python Versions](https://img.shields.io/badge/Tests%20Ubuntu%2FPython-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue)
+![Tests Run on Macos Python Versions](https://img.shields.io/badge/Tests%20Macos%2FPython-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue)
+![Tests Run on Windows Python Versions](https://img.shields.io/badge/Tests%20Windows%2FPython-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue)
+[![Github Repo](https://img.shields.io/badge/repo-github-informational)](https://github.com/nickderobertis/py-finstmt/)
+
+
+#  py-finstmt
 
 ## Overview
 
-This repo is a template to use for starting a new Python package
-which is hosted on PyPi and uses Sphinx for documentation
-hosted on Github pages.
+Contains classes to work with financial statement data. Can calculate free cash flows and help project financial statements.
 
 ## Getting Started
 
-Click the "Use this template" button at the top of the repo page, then 
-fill out the name and description your new repo. Once you have the repo,
-make the following edits.
+Install `finstmt`:
 
-### Github Pages Setup
-
-Go to repo settings, Github Pages section. For the Source dropdown, 
-select "master branch /docs folder". The settings page should reload,
-and in the Github Pages section it should show the URL of your 
-documentation. You should be able to see the documentation at the URL
-after a few seconds, but it will still be the example documentation.
-
-### `conf.py`
-
-Edit `conf.py` in the main repo directory. This contains the main 
-settings for the PyPi package. Fill out each setting with the 
-details about your package.
-
-### Adding Project Source
-
-Delete the folder `py_qs_example`, and add your own package
-with the name you set in `conf.PACKAGE_NAME`. 
-
-### Adding Global Requirements to Build
-
-If you do not already have `pipenv` installed, you will need to run:
 ```
-pip install pipenv
-```
-Then regardless of whether you already had `pipenv` installed, you will
-need to navigate to the repo folder and run:
-```
-pipenv install
+pip install finstmt
 ```
 
-### Setting up Documentation
+A simple example:
 
-Edit `docsrc/Makefile` to change `SPHINXPROJ` to set it to the name
-you set in `conf.PACKAGE_NAME`.
+```python
+import finstmt
 
-Edit `docsrc/source/index.rst` to remove the example included files. Replace
-with your own if you wish or entirely delete the My Module and 
-My Package sections if don't wish to use the autosummary directive.
-
-Edit `docsrc/source/tutorial.rst` to put your own tutorial, or remove it
-and remove it from the `toctree` directive in `docsrc/source/index.rst`.
-
-You may further modify Sphinx configuration in `docsrc/source/conf.py`
-if you wish.
-
-### Building Documentation
-
-Navigate into the `docsrc` folder and run:
-```
-pipenv run make github
+# Do something with finstmt
 ```
 
-This should generate documentation HTML in the `docs` folder.
+See a
+[more in-depth tutorial here.](
+https://nickderobertis.github.io/py-finstmt/tutorial.html
+)
 
-### Uploading to PyPi
+## Development Status
 
-Navigate to the repo base folder and run:
-```
-pipenv run python upload.py
-```
+This project is currently in early-stage development. There may be
+breaking changes often. While the major version is 0, minor version
+upgrades will often have breaking changes.
 
-## Regular Usage
+## Developing
 
-Once everything is set up, just commit your changes, then follow the
-instructions in [Building Documentation](#building-documentation) and
-[Uploading to PyPi](#uploading-to-pypi).
+First, you need a couple global dependencies installed, see their documentation for details:
+- [direnv](https://direnv.net/docs/installation.html)
+- [asdf](https://asdf-vm.com/guide/getting-started.html)
 
+Note that these tools require a UNIX-style shell, such as bash or zsh. If
+you are on Windows, you can use WSL or Git Bash. If you are using Pycharm,
+you can configure the built-in terminal to use Git Bash.
+
+Then clone the repo and run `direnv allow`. This will take a while on the first time
+to install the remaining dependencies.
+
+Make your changes and then run `just` to run formatting,
+linting, and tests.
+
+Develop documentation by running `just docs` to start up a dev server.
+
+To run tests only, run `just test`. You can pass additional arguments to pytest,
+e.g. `just test -k test_something`.
+
+Prior to committing, you can run `just` with no arguments to run all the checks.
+
+## Author
+
+Created by Nick DeRobertis. MIT License.
 
 ## Links
 
-See the example 
-[generated documentation here.](
-https://whoopnip.github.io/pypi-sphinx-quickstart/
+See the
+[documentation here.](
+https://nickderobertis.github.io/py-finstmt/
 )

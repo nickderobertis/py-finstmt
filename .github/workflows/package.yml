@@ -1,0 +1,71 @@
+
+name: Test, Build and Push Python Package and Docs
+
+on:
+  push:
+    branches:
+      - master
+      - alpha
+      - beta
+      - "*.*.*"
+      - "*.*"
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest, ]
+        python-version: ["3.7", "3.8", "3.9", "3.10", ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install-dependencies
+        with:
+          python-version: ${{ matrix.python-version }}
+          gh-token: ${{ secrets.GH_TOKEN }}
+      - uses: ./.github/actions/lint-and-test
+
+  collectTODO:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@master"
+      - name: "TODO to Issue"
+        uses: "alstr/todo-to-issue-action@v4.3"
+        id: "todo"
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        python-version: [3.8]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install Poetry
+        run: pip install poetry==1.3.2
+      - uses: bjoluc/semantic-release-config-poetry@v2
+        with:
+          pypi_token: ${{ secrets.PYPI_PASSWORD }}
+          github_token: ${{ secrets.GH_TOKEN }}
+
+  coverage:
+    needs: deploy
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        python-version: [3.8]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install-dependencies
+        with:
+          python-version: ${{ matrix.python-version }}
+          gh-token: ${{ secrets.GH_TOKEN }}
+      - name: Run coverage and upload to Codecov.io
+        uses: ./.github/actions/test-coverage
+        with:
+          codecov-token: ${{ secrets.CODECOV_TOKEN }}
