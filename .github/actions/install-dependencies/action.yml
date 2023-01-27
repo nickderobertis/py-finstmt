@@ -1,0 +1,40 @@
+name: Install Python Dependencies
+description: "Installs Python dependencies for the project."
+inputs:
+  python-version:
+    required: true
+    description: "The Python version to install dependencies for."
+  gh-token:
+    required: true
+    description: "The GitHub token to use for authentication."
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: pip
+        cache-dependency-path: global-requirements.txt
+    - name: Install Global Dependencies
+      shell: bash
+      run: |
+        pip install -r global-requirements.txt
+    - name: Install Just command runner
+      uses: extractions/setup-just@v1
+      env:
+        GITHUB_TOKEN: ${{ inputs.gh-token }}
+    - uses: actions/cache@v3
+      id: cache-venvs
+      name: Cache venvs
+      with:
+        path: |
+          .venv
+          .venvs
+        key: ${{ env.pythonLocation }}-venvs-${{ hashFiles('**/poetry.lock') }}
+    - name: Create venvs
+      shell: bash
+      if: steps.cache-venvs.outputs.cache-hit != 'true'
+      run: |
+        just install
