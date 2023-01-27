@@ -38,6 +38,9 @@ class StatementConfigManager(ConfigManagerBase):
         """
         return self.get(item_key)
 
+    def __getdir__(self):
+        return self.keys()
+
 
     def set(self, item_key: str, config: ItemConfig) -> None:
         """

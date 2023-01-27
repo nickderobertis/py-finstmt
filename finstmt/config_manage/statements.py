@@ -31,6 +31,8 @@ class StatementsConfigManager(ConfigManagerBase):
         """
         return self.get(item_key)
 
+    def __getdir__(self):
+        return self.keys()
 
     def _get(self, item_key: str) -> Tuple[ItemConfig, str]:
         """
