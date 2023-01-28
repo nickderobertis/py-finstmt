@@ -146,7 +146,6 @@ files = [
 ]
 
 [package.dependencies]
-typing-extensions = {version = ">=3.6.4", markers = "python_version < \"3.8\""}
 zipp = ">=0.5"
 
 [package.extras]
@@ -295,7 +294,6 @@ files = [
 
 [package.dependencies]
 mdurl = ">=0.1,<1.0"
-typing_extensions = {version = ">=3.7.4", markers = "python_version < \"3.8\""}
 
 [package.extras]
 benchmarking = ["psutil", "pytest", "pytest-benchmark (>=3.2,<4.0)"]
@@ -471,7 +469,7 @@ version = "1.0.0"
 description = "Example output for https://github.com/nickderobertis/copier-pypi-sphinx-flexlate"
 category = "main"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = []
 develop = true
 
@@ -959,5 +957,5 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 
 [metadata]
 lock-version = "2.0"
-python-versions = ">=3.7"
-content-hash = "4e978844a3bf1c716f43bfe49ce9620980feb2fe1688736043ff747cbd5902b5"
+python-versions = ">=3.8"
+content-hash = "45bcbc8d811c9178074b7fd4c945d697e673fafab49ce492dc39e23f40aa370d"

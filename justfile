@@ -88,10 +88,16 @@ poetry command target *ARGS:
 run target *ARGS:
     @cd {{invocation_directory()}} && just poetry run {{target}} {{ARGS}}
 
-install:
-    just poetry install root
-    just poetry install lint
-    just poetry install docs
+poetry-all +ARGS:
+    #!/usr/bin/env bash
+    # Split args into command from the first argument
+    # and the rest of the arguments, which should be empty if there is only a command
+    IFS=' ' read -r command args <<< "{{ARGS}}"
+
+    for target in root lint docs; do
+        echo "just poetry $command $target $args"
+        just poetry $command $target $args
+    done
 
 inspect-build:
     rm -rf dist

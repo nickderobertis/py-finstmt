@@ -37,4 +37,4 @@ runs:
       shell: bash
       if: steps.cache-venvs.outputs.cache-hit != 'true'
       run: |
-        just install
+        just poetry-all install
