@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "finstmt-lint"
+description = "Linting for finstmt"
+version = "1.0.0"
+authors = ["Nick DeRobertis <whoopnip@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+finstmt = {path = "../..", develop = true}
+flake8 = "*"
+mypy = "*"

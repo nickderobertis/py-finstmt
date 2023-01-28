@@ -1,1 +1,1 @@
-from tests.fixtures.data import *
+from tests.fixtures.data import *  # noqa: F401, F403

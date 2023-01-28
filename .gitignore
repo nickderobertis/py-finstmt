@@ -59,23 +59,22 @@ target/
 
 # Editor files
 .idea
+.vscode
 
 .mypy_cache
-docs
+docs/
 docsrc/source/auto_examples
 _examples
 **/.ipynb_checkpoints
-# Scratch files
-Scratch
+venvs/
+node_modules
+scripts/bin/
+!.venvs/docs/
+Scratch/
 
 # Lock file for LibreOffice
 **/.~lock.*.xls#
 **/.~lock.*.csv#
 
 # Generated files
-docs
-docsrc/source/auto_examples
-_examples
-**/.ipynb_checkpoints
-.vscode
 tests/generated

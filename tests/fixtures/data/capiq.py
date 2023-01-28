@@ -1,18 +1,20 @@
-import pytest
 import os
+
 import pandas as pd
+import pytest
 
-from finstmt import IncomeStatements, BalanceSheets, FinancialStatements
+from finstmt import BalanceSheets, FinancialStatements, IncomeStatements
 from finstmt.exc import MismatchingDatesException
-from tests.fixtures.data.common import DATA_PATH
 from finstmt.loaders.capiq import load_capiq_df
+from tests.fixtures.data.common import DATA_PATH
 
-CAPIQ_PATH = os.path.join(DATA_PATH, 'capiq')
+CAPIQ_PATH = os.path.join(DATA_PATH, "capiq")
+
 
 @pytest.fixture
 def annual_capiq_income_df() -> pd.DataFrame:
-    path = os.path.join(CAPIQ_PATH, 'annual_cat.xls')
-    sheet_name = 'Income Statement'
+    path = os.path.join(CAPIQ_PATH, "annual_cat.xls")
+    sheet_name = "Income Statement"
     df = load_capiq_df(path, sheet_name)
     return df
 
@@ -25,8 +27,8 @@ def annual_capiq_income_stmt(annual_capiq_income_df) -> IncomeStatements:
 
 @pytest.fixture
 def annual_capiq_bs_df() -> pd.DataFrame:
-    path = os.path.join(CAPIQ_PATH, 'annual_cat.xls')
-    sheet_name = 'Balance Sheet'
+    path = os.path.join(CAPIQ_PATH, "annual_cat.xls")
+    sheet_name = "Balance Sheet"
     df = load_capiq_df(path, sheet_name)
     return df
 
@@ -38,7 +40,9 @@ def annual_capiq_bs_stmt(annual_capiq_bs_df) -> BalanceSheets:
 
 
 @pytest.fixture
-def annual_capiq_stmts(annual_capiq_income_stmt, annual_capiq_bs_stmt) -> FinancialStatements:
+def annual_capiq_stmts(
+    annual_capiq_income_stmt, annual_capiq_bs_stmt
+) -> FinancialStatements:
     try:
         stmts = FinancialStatements(annual_capiq_income_stmt, annual_capiq_bs_stmt)
     except MismatchingDatesException:
@@ -52,8 +56,8 @@ def annual_capiq_stmts(annual_capiq_income_stmt, annual_capiq_bs_stmt) -> Financ
 
 @pytest.fixture
 def quarterly_capiq_income_df() -> pd.DataFrame:
-    path = os.path.join(CAPIQ_PATH, 'quarterly_cat.xls')
-    sheet_name = 'Income Statement'
+    path = os.path.join(CAPIQ_PATH, "quarterly_cat.xls")
+    sheet_name = "Income Statement"
     df = load_capiq_df(path, sheet_name)
     return df
 
@@ -66,8 +70,8 @@ def quarterly_capiq_income_stmt(quarterly_capiq_income_df) -> IncomeStatements:
 
 @pytest.fixture
 def quarterly_capiq_bs_df() -> pd.DataFrame:
-    path = os.path.join(CAPIQ_PATH, 'quarterly_cat.xls')
-    sheet_name = 'Balance Sheet'
+    path = os.path.join(CAPIQ_PATH, "quarterly_cat.xls")
+    sheet_name = "Balance Sheet"
     df = load_capiq_df(path, sheet_name)
     return df
 
@@ -79,6 +83,8 @@ def quarterly_capiq_bs_stmt(quarterly_capiq_bs_df) -> BalanceSheets:
 
 
 @pytest.fixture
-def quarterly_capiq_stmts(quarterly_capiq_income_stmt, quarterly_capiq_bs_stmt) -> FinancialStatements:
+def quarterly_capiq_stmts(
+    quarterly_capiq_income_stmt, quarterly_capiq_bs_stmt
+) -> FinancialStatements:
     stmts = FinancialStatements(quarterly_capiq_income_stmt, quarterly_capiq_bs_stmt)
     return stmts

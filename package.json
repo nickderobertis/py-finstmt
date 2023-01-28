@@ -1,0 +1,24 @@
+{
+  "name": "local-development",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "just": "./scripts/bin/just",
+    "prepare": "husky install && cat global-requirements.txt | xargs -n1 pipx install || true"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.1"
+  },
+  "lint-staged": {
+    "*.py": [
+      "npm run just format ",
+      "npm run just strip "
+    ]
+  }
+}

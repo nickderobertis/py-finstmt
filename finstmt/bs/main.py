@@ -17,7 +17,8 @@ class BalanceSheets(FinStatementsBase):
         >>> bs_df = pd.read_excel(bs_path)
         >>> bs_data = BalanceSheets.from_df(bs_df)
     """
+
     statements: Dict[pd.Timestamp, BalanceSheetData]  # type: ignore
 
     statement_cls = BalanceSheetData  # type: ignore
-    statement_name = 'Balance Sheet'
+    statement_name = "Balance Sheet"

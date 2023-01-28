@@ -23,7 +23,11 @@ def standardize_name_for_look_up(name: Any) -> str:
         return name
 
     name = name.lower().strip()
-    name = ' '.join(name.split('_'))
-    name = name.translate(str.maketrans('', '', string.punctuation))  # remove punctuation
-    name = ' '.join([part for part in name.split(' ') if part])  # ensure there is only a single space between words
+    name = " ".join(name.split("_"))
+    name = name.translate(
+        str.maketrans("", "", string.punctuation)
+    )  # remove punctuation
+    name = " ".join(
+        [part for part in name.split(" ") if part]
+    )  # ensure there is only a single space between words
     return name

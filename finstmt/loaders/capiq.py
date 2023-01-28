@@ -1,12 +1,12 @@
-from typing import Optional, Union
 import datetime
 import re
+from typing import Optional, Union
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 COLUMN_NAME_PATTERN = re.compile(
-    r'((Restated)|(Reclassified)|(12 months)|(3 months)|(Q\d)|(\n))*(?P<date>\w\w\w-\d\d-\d\d\d\d)'
+    r"((Restated)|(Reclassified)|(12 months)|(3 months)|(Q\d)|(\n))*(?P<date>\w\w\w-\d\d-\d\d\d\d)"
 )
 
 
@@ -26,13 +26,14 @@ def load_capiq_df(file_path: str, sheet_name: str) -> pd.DataFrame:
     df = df[valid_col_names]
 
     # Fill in - with mising
-    df = df.replace('-', np.nan)
+    df = df.replace("-", np.nan)
 
     return df
 
 
-def _extract_date(column_name: Union[pd.Timestamp, datetime.datetime, str]
-                  ) -> Optional[Union[pd.Timestamp, datetime.datetime]]:
+def _extract_date(
+    column_name: Union[pd.Timestamp, datetime.datetime, str]
+) -> Optional[Union[pd.Timestamp, datetime.datetime]]:
     """
     Extracts column date from Capital IQ columns.
 
@@ -46,5 +47,5 @@ def _extract_date(column_name: Union[pd.Timestamp, datetime.datetime, str]
     if not match:
         return None
 
-    date_str = match.group('date')
+    date_str = match.group("date")
     return pd.to_datetime(date_str)

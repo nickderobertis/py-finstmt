@@ -1,0 +1,42 @@
+{
+  "template_sources": [
+    {
+      "name": "copier-pypi-sphinx-flexlate",
+      "path": "https://github.com/nickderobertis/copier-pypi-sphinx-flexlate",
+      "type": "copier",
+      "version": "2991b96f12e1f7370cd1980a5b75aa7638a4e672",
+      "git_url": "https://github.com/nickderobertis/copier-pypi-sphinx-flexlate",
+      "target_version": null,
+      "render_relative_root_in_output": ".",
+      "render_relative_root_in_template": "{{ repo_name }}"
+    }
+  ],
+  "applied_templates": [
+    {
+      "name": "copier-pypi-sphinx-flexlate",
+      "data": {
+        "package_name": "finstmt",
+        "package_directory": "finstmt",
+        "full_name": "py-finstmt",
+        "repo_name": "py-finstmt",
+        "repo_username": "nickderobertis",
+        "short_description": "Contains classes to work with financial statement data. Can calculate free cash flows and help project financial statements.",
+        "main_branch_name": "master",
+        "package_author": "Nick DeRobertis",
+        "author_email": "whoopnip@gmail.com",
+        "google_analytics_id": "UA-154145306-1",
+        "os_support": [
+          "ubuntu",
+          "macos",
+          "windows"
+        ],
+        "minimum_python_version": "3.8",
+        "topics": [],
+        "logo_url": ""
+      },
+      "version": "2991b96f12e1f7370cd1980a5b75aa7638a4e672",
+      "add_mode": "local",
+      "root": "."
+    }
+  ]
+}

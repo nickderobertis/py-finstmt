@@ -1,7 +1,7 @@
 import math
 import warnings
 from dataclasses import dataclass, field
-from typing import Dict, Sequence, Optional, Tuple
+from typing import Dict, Optional, Sequence, Tuple
 
 import matplotlib.pyplot as plt
 from matplotlib.axes import Subplot
@@ -18,9 +18,14 @@ DEFAULT_HEIGHT_PER_ROW = 3
 class ForecastedFinancialStatements(FinancialStatements):
     forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
 
-    def plot(self, subset: Optional[Sequence[str]] = None, figsize: Optional[Tuple[float, float]] = None,
-             num_cols: int = NUM_PLOT_COLUMNS, height_per_row: float = DEFAULT_HEIGHT_PER_ROW,
-             plot_width: float = DEFAULT_WIDTH) -> plt.Figure:
+    def plot(
+        self,
+        subset: Optional[Sequence[str]] = None,
+        figsize: Optional[Tuple[float, float]] = None,
+        num_cols: int = NUM_PLOT_COLUMNS,
+        height_per_row: float = DEFAULT_HEIGHT_PER_ROW,
+        plot_width: float = DEFAULT_WIDTH,
+    ) -> plt.Figure:
         if subset is not None:
             plot_items = {k: v for k, v in self.forecasts.items() if k in subset}
         else:
@@ -32,20 +37,30 @@ class ForecastedFinancialStatements(FinancialStatements):
         if figsize is None:
             figsize = (plot_width, height_per_row * num_plot_rows)
 
-        fig, axes = plt.subplots(num_plot_rows, num_plot_columns, sharex=False, sharey=False, figsize=figsize)
+        fig, axes = plt.subplots(
+            num_plot_rows, num_plot_columns, sharex=False, sharey=False, figsize=figsize
+        )
         row = 0
         col = 0
         with warnings.catch_warnings():
-            warnings.filterwarnings(action='ignore', message='Attempting to set identical bottom == top')
+            warnings.filterwarnings(
+                action="ignore", message="Attempting to set identical bottom == top"
+            )
             for i, (item_key, forecast) in enumerate(plot_items.items()):
-                selected_ax = _get_selected_ax(axes, row, col, num_plot_rows, num_plot_columns)
+                selected_ax = _get_selected_ax(
+                    axes, row, col, num_plot_rows, num_plot_columns
+                )
                 forecast.plot(ax=selected_ax)
 
                 # For before final row, don't display x-axis
-                if not _is_last_plot_in_col(row, col, num_plot_rows, num_plot_columns, len(plot_items)):
+                if not _is_last_plot_in_col(
+                    row, col, num_plot_rows, num_plot_columns, len(plot_items)
+                ):
                     selected_ax.get_xaxis().set_visible(False)
 
-                if i == len(plot_items) - 1 or _plot_finished(row, col, num_plot_rows, num_plot_columns):
+                if i == len(plot_items) - 1 or _plot_finished(
+                    row, col, num_plot_rows, num_plot_columns
+                ):
                     break
                 col += 1
                 if col == num_plot_columns:
@@ -64,7 +79,9 @@ def _plot_finished(row: int, col: int, max_rows: int, max_cols: int) -> bool:
     return row == max_rows - 1 and col == max_cols - 1
 
 
-def _get_selected_ax(axes: plt.GridSpec, row: int, col: int, num_plot_rows: int, num_plot_columns: int) -> Subplot:
+def _get_selected_ax(
+    axes: plt.GridSpec, row: int, col: int, num_plot_rows: int, num_plot_columns: int
+) -> Subplot:
     if num_plot_rows == num_plot_columns == 1:
         # No array if single row and column
         return axes
@@ -79,7 +96,9 @@ def _get_selected_ax(axes: plt.GridSpec, row: int, col: int, num_plot_rows: int,
         return axes[row, col]
 
 
-def _is_last_plot_in_col(row: int, col: int, num_plot_rows: int, num_plot_columns: int, num_plots: int) -> bool:
+def _is_last_plot_in_col(
+    row: int, col: int, num_plot_rows: int, num_plot_columns: int, num_plots: int
+) -> bool:
     # In last row, automatically last plot in col
     if row == num_plot_rows - 1:
         return True

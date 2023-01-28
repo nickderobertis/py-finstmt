@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional, Dict
+from typing import Optional
 
 from finstmt.findata.database import FinDataBase
 from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
@@ -35,8 +35,9 @@ class IncomeStatementData(FinDataBase):
     @property
     def effective_tax_rate(self) -> float:
         if self.ebt is None:
-            raise ValueError('cannot calculate effective tax rate as ebt is None')
+            raise ValueError("cannot calculate effective tax rate as ebt is None")
         elif self.tax_exp is None:
-            raise ValueError('cannot calculate effective tax rate is tax expense is None')
+            raise ValueError(
+                "cannot calculate effective tax rate is tax expense is None"
+            )
         return self.tax_exp / self.ebt
-

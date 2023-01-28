@@ -1,8 +1,8 @@
-from typing import List, Dict, Tuple, Sequence, Union
+from typing import Dict, List, Sequence, Tuple, Union
 
-from sympy import Eq, sympify, IndexedBase, Expr, Symbol, expand, Indexed
-import pandas as pd
 import numpy as np
+import pandas as pd
+from sympy import Eq, Expr, Indexed, IndexedBase, Symbol, expand, sympify
 from sympy.logic.boolalg import BooleanFalse, BooleanTrue
 
 from finstmt.items.config import ItemConfig
@@ -14,21 +14,25 @@ def sympy_dict_to_results_dict(
     s_dict: Dict[IndexedBase, float],
     forecast_dates: pd.DatetimeIndex,
     item_configs: List[ItemConfig],
-    t_offset: int = 0
+    t_offset: int = 0,
 ) -> Dict[str, pd.Series]:
-    item_config_dict: Dict[str, ItemConfig] = {config.key: config for config in item_configs}
+    item_config_dict: Dict[str, ItemConfig] = {
+        config.key: config for config in item_configs
+    }
     new_results = {}
     for expr in s_dict:
-        key = str(expr.base)
+        key = str(expr.base)  # type: ignore[attr-defined]
         try:
             config = item_config_dict[key]
         except KeyError:
             # Must be pct of item, don't need in final results
             continue
-        new_results[key] = pd.Series(index=forecast_dates, dtype='float', name=config.primary_name)
+        new_results[key] = pd.Series(
+            index=forecast_dates, dtype="float", name=config.primary_name
+        )
     for expr, val in s_dict.items():
-        key = str(expr.base)
-        t = int(expr.indices[0]) - t_offset
+        key = str(expr.base)  # type: ignore[attr-defined]
+        t = int(expr.indices[0]) - t_offset  # type: ignore[attr-defined]
         if t < 0:
             # Don't need to store historical results
             continue
@@ -39,21 +43,21 @@ def sympy_dict_to_results_dict(
     return new_results
 
 
-def results_dict_to_sympy_dict(results_dict: Dict[str, pd.Series],
-                               sympy_namespace: Dict[str, Expr]) -> Dict[IndexedBase, float]:
+def results_dict_to_sympy_dict(
+    results_dict: Dict[str, pd.Series], sympy_namespace: Dict[str, Expr]
+) -> Dict[IndexedBase, float]:
     out_dict = {}
     for key, series in results_dict.items():
         arr = series.values
         for i, val in enumerate(arr):
-            t_str = f'{key}[{i + 1}]'
+            t_str = f"{key}[{i + 1}]"
             lhs = sympify(t_str, locals=sympy_namespace)
             out_dict[lhs] = val
     return out_dict
 
 
 def get_solve_eqs_and_full_subs_dict(
-    eqs_for_sub: List[Eq],
-    subs_dict: Dict[IndexedBase, float]
+    eqs_for_sub: List[Eq], subs_dict: Dict[IndexedBase, float]
 ) -> Tuple[List[Eq], Dict[IndexedBase, float]]:
     subbed_eqs = []
     subs_dict = subs_dict.copy()
@@ -84,12 +88,18 @@ def get_solve_eqs_and_full_subs_dict(
     return eqs_for_sub, subs_dict
 
 
-def solve_equations(solve_eqs: List[Eq], subs_dict: Dict[IndexedBase, float], substitute: bool = True,
-                    round_results: bool = True):
+def solve_equations(
+    solve_eqs: List[Eq],
+    subs_dict: Dict[IndexedBase, float],
+    substitute: bool = True,
+    round_results: bool = True,
+):
     solutions_dict = subs_dict.copy()
 
     if substitute:
-        solve_eqs, solutions_dict = get_solve_eqs_and_full_subs_dict(solve_eqs, solutions_dict)
+        solve_eqs, solutions_dict = get_solve_eqs_and_full_subs_dict(
+            solve_eqs, solutions_dict
+        )
     solve_exprs = []
     to_solve_for = []
     for eq in solve_eqs:
@@ -99,14 +109,19 @@ def solve_equations(solve_eqs: List[Eq], subs_dict: Dict[IndexedBase, float], su
 
     res_set = numpy_solve(solve_exprs, to_solve_for)
     if not res_set:
-        raise ValueError('could not solve equations')
+        raise ValueError("could not solve equations")
     solutions_dict.update(res_set)
 
     return solutions_dict
 
-def _solve_eqs_with_plug_solutions(eqs: List[Eq], plug_solutions: Dict[IndexedBase, float],
-                                   subs_dict: Dict[IndexedBase, float], forecast_dates: pd.DatetimeIndex,
-                                   item_configs: List[ItemConfig]) -> Dict[IndexedBase, float]:
+
+def _solve_eqs_with_plug_solutions(
+    eqs: List[Eq],
+    plug_solutions: Dict[IndexedBase, float],
+    subs_dict: Dict[IndexedBase, float],
+    forecast_dates: pd.DatetimeIndex,
+    item_configs: List[ItemConfig],
+) -> Dict[IndexedBase, float]:
     subs_dict = subs_dict.copy()
     subs_dict.update(plug_solutions)
     sub_eqs = [Eq(lhs, rhs) for lhs, rhs in subs_dict.items()]
@@ -115,11 +130,13 @@ def _solve_eqs_with_plug_solutions(eqs: List[Eq], plug_solutions: Dict[IndexedBa
     return solutions_dict
 
 
-def _x_arr_to_plug_solutions(x: np.ndarray, plug_keys: Sequence[str],
-                             sympy_namespace: Dict[str, IndexedBase]) -> Dict[IndexedBase, float]:
+def _x_arr_to_plug_solutions(
+    x: np.ndarray, plug_keys: Sequence[str], sympy_namespace: Dict[str, IndexedBase]
+) -> Dict[IndexedBase, float]:
     x_arrs = np.split(x * PLUG_SCALE, len(plug_keys))
     plug_dict = {key: pd.Series(x_arrs[i]) for i, key in enumerate(plug_keys)}
-    plug_solutions = results_dict_to_sympy_dict(plug_dict, sympy_namespace)
+    # TODO: Is Expr or IndexedBase the correct type?
+    plug_solutions = results_dict_to_sympy_dict(plug_dict, sympy_namespace)  # type: ignore[arg-type]
     return plug_solutions
 
 

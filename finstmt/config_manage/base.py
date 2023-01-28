@@ -1,13 +1,12 @@
-from typing import Dict, Any, List, Set
+from typing import Any, Dict, List, Set
 
-from sympy import symbols, IndexedBase, Idx, Expr, sympify, Eq
+from sympy import Eq, Expr, IndexedBase, sympify
 
-from finstmt.exc import NotACalculatedItemException, InvalidBalanceConfigException
+from finstmt.exc import InvalidBalanceConfigException, NotACalculatedItemException
 from finstmt.items.config import ItemConfig
 
 
 class ConfigManagerBase:
-
     def get(self, item_key: str) -> ItemConfig:
         """
         For internal use, get the config as well as the key of the financial statement type it belongs to
@@ -60,7 +59,7 @@ class ConfigManagerBase:
     def eqs_involving(self, item_key: str, include_self_eq: bool = False) -> List[Eq]:
         ns = self.sympy_namespace
         item_sym = ns[item_key]
-        t = ns['t']
+        t = ns["t"]
         item_t = item_sym[t]
         eqs: List[Eq] = []
         for config in self.items:
@@ -83,7 +82,9 @@ class ConfigManagerBase:
 
         return eqs
 
-    def _calculated_item_determinant_keys(self, item_key: str, for_forecast: bool = True) -> List[str]:
+    def _calculated_item_determinant_keys(
+        self, item_key: str, for_forecast: bool = True
+    ) -> List[str]:
         determinant_keys: List[str] = []
         to_process_keys: List[str] = [item_key]
         i = -1
@@ -97,7 +98,10 @@ class ConfigManagerBase:
             for eq in eqs_involving_key:
                 all_eq_keys = self._expr_to_keys(eq.rhs - eq.lhs)
                 new_keys = [
-                    key for key in all_eq_keys if key != process_key and key not in to_process_keys + determinant_keys
+                    key
+                    for key in all_eq_keys
+                    if key != process_key
+                    and key not in to_process_keys + determinant_keys
                 ]
                 if for_forecast:
                     accepted_keys: List[str] = []
@@ -112,17 +116,26 @@ class ConfigManagerBase:
                 to_process_keys.extend(new_keys)
         return determinant_keys
 
-    def item_determinant_keys(self, item_key: str, include_pct_of: bool = True, for_forecast: bool = True) -> List[str]:
-        determinant_keys = self._calculated_item_determinant_keys(item_key, for_forecast=for_forecast)
+    def item_determinant_keys(
+        self, item_key: str, include_pct_of: bool = True, for_forecast: bool = True
+    ) -> List[str]:
+        determinant_keys = self._calculated_item_determinant_keys(
+            item_key, for_forecast=for_forecast
+        )
         if include_pct_of:
             for item in self.items:
                 # TODO [$5fed05c64df698000808428a]: multiple passes through determinants may be necessary for complicated pct_of structures
-                if item.key in determinant_keys and item.forecast_config.pct_of is not None:
+                if (
+                    item.key in determinant_keys
+                    and item.forecast_config.pct_of is not None
+                ):
                     pct_conf = self.get(item.forecast_config.pct_of)
                     if pct_conf.expr_str is None:
                         determinant_keys.append(item.forecast_config.pct_of)
                     else:
-                        determinant_keys.extend(self._calculated_item_determinant_keys(pct_conf.key))
+                        determinant_keys.extend(
+                            self._calculated_item_determinant_keys(pct_conf.key)
+                        )
         return list(set(determinant_keys))
 
     @property
@@ -148,12 +161,14 @@ class ConfigManagerBase:
                     changed = True
                     while changed:
                         num_balanced = len(balance_group)
-                        balance_with_key = balance_with_conf.forecast_config.balance_with
+                        balance_with_key = (
+                            balance_with_conf.forecast_config.balance_with
+                        )
                         if balance_with_key is None:
                             raise InvalidBalanceConfigException(
-                                f'{balance_with_conf.key} is part of balance group {balance_group} but in its '
-                                f'forecast_config it has None for balance_with. Set balance_with for '
-                                f'{balance_with_conf.key} to be another key in the balance group'
+                                f"{balance_with_conf.key} is part of balance group {balance_group} but in its "
+                                f"forecast_config it has None for balance_with. Set balance_with for "
+                                f"{balance_with_conf.key} to be another key in the balance group"
                             )
                         balance_group.add(balance_with_key)
                         new_num_balanced = len(balance_group)
@@ -165,22 +180,26 @@ class ConfigManagerBase:
 
     def _expr_to_keys(self, expr: Expr) -> List[str]:
         ns = self.sympy_namespace
-        t = ns['t']
+        t = ns["t"]
         syms = expr.free_symbols
         keys: List[str] = []
         for key, key_expr in ns.items():
-            if key == 't':
+            if key == "t":
                 continue
             key_expr_t = key_expr[t]
             if key_expr_t in syms:
                 keys.append(key)
         return keys
 
-    def eq_subs_dict(self, values_dict: Dict[str, float], t_offset: int = 0) -> Dict[IndexedBase, float]:
+    def eq_subs_dict(
+        self, values_dict: Dict[str, float], t_offset: int = 0
+    ) -> Dict[IndexedBase, float]:
         out_dict = {}
-        t = self.sympy_namespace['t']
+        t = self.sympy_namespace["t"]
         for item_key, item_symbol in self.sympy_namespace.items():
             if item_key in values_dict:
-                indexed_symbol = item_symbol.__getitem__(t + t_offset)  # eg cash[t] or cash[t-1]
+                indexed_symbol = item_symbol.__getitem__(
+                    t + t_offset
+                )  # eg cash[t] or cash[t-1]
                 out_dict[indexed_symbol] = values_dict[item_key]
         return out_dict

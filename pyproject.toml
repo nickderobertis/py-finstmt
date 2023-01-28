@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "finstmt"
+version = "1.0.0-alpha.1"
+description = "Contains classes to work with financial statement data. Can calculate free cash flows and help project financial statements."
+authors = ["Nick DeRobertis <whoopnip@gmail.com>"]
+readme = "README.md"
+packages = [{include = "finstmt"}]
+license = "MIT"
+classifiers = [
+    # How mature is this project? Common values are
+    #   3 - Alpha
+    #   4 - Beta
+    #   5 - Production/Stable
+    "Development Status :: 3 - Alpha",
+    # Indicate who your project is intended for
+    "Intended Audience :: Developers",
+    # List supported python versions
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+include = ["conf.py", "version.py"]
+
+[tool.poetry.urls]
+repository = "https://github.com/nickderobertis/py-finstmt"
+documentation = "https://nickderobertis.github.io/py-finstmt"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+pandas = "*"
+sympy = "*"
+xlrd = "*"
+matplotlib = "*"
+tqdm = "*"
+statsmodels = "*"
+prophet = { version = "*", optional = true }
+
+[tool.poetry.extras]
+forecast = ["prophet"]
+
+[tool.poetry.group.test.dependencies]
+pytest = "*"
+pytest-cov = "*"
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "*"
+
+[tool.black]
+include = 'finstmt.*\.pyi?$|tests.*\.pyi?$'
+
+[tool.isort]
+profile = "black"
+skip = ['.bzr', '.direnv', '.eggs', '.git', '.hg', '.mypy_cache', '.pants.d', '.svn', '.tox', '.venv', '__pypackages__', '_build', 'buck-out', 'build', 'dist', 'node_modules', '.venvs']

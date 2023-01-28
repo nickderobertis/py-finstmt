@@ -1,6 +1,5 @@
 import operator
-from typing import Dict, Tuple, Sequence, Optional, Callable, Set, List
-from dataclasses import field
+from typing import Callable, Dict, List, Optional, Sequence, Tuple
 
 import pandas as pd
 from tqdm import tqdm
@@ -28,7 +27,7 @@ class FinStatementsBase:
     # See https://github.com/python/mypy/issues/2984#issuecomment-285721489 for more details
     statement_cls = FinDataBase  # to be overridden with individual class
     statements: Dict[pd.Timestamp, FinDataBase]
-    statement_name: str = 'Base'
+    statement_name: str = "Base"
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
@@ -56,7 +55,7 @@ class FinStatementsBase:
 
     def __getattr__(self, item):
         data_dict = {}
-        for date, statement in super().__getattribute__('statements').items():
+        for date, statement in super().__getattribute__("statements").items():
             try:
                 statement_value = getattr(statement, item)
             except AttributeError:
@@ -86,16 +85,20 @@ class FinStatementsBase:
 
     def __dir__(self):
         normal_attrs = [
-            'statements',
-            'to_df',
-            'freq',
+            "statements",
+            "to_df",
+            "freq",
         ]
         item_attrs = dir(list(self.statements.values())[0])
         return normal_attrs + item_attrs
 
     @classmethod
-    def from_df(cls, df: pd.DataFrame, items_config: Optional[Sequence[ItemConfig]] = None,
-                disp_unextracted: bool = True):
+    def from_df(
+        cls,
+        df: pd.DataFrame,
+        items_config: Optional[Sequence[ItemConfig]] = None,
+        disp_unextracted: bool = True,
+    ):
         """
         DataFrame must have columns as dates and index as names of financial statement items
         """
@@ -104,11 +107,15 @@ class FinStatementsBase:
         dates.sort(key=lambda t: pd.to_datetime(t))
         for col in dates:
             try:
-                statement = cls.statement_cls.from_series(df[col], items_config=items_config)
+                statement = cls.statement_cls.from_series(
+                    df[col], items_config=items_config
+                )
             except CouldNotParseException:
-                raise CouldNotParseException('Passed DataFrame did not have any statement items in the index. '
-                                             'Did you set the column with statement items to the index? Got index:',
-                                              df.index)
+                raise CouldNotParseException(
+                    "Passed DataFrame did not have any statement items in the index. "
+                    "Did you set the column with statement items to the index? Got index:",
+                    df.index,
+                )
             statement_date = pd.to_datetime(col)
             statements_dict[statement_date] = statement
 
@@ -118,7 +125,9 @@ class FinStatementsBase:
             for stmt_data in statements_dict.values():
                 all_unextracted_names.update(stmt_data.unextracted_names)
             if all_unextracted_names:
-                logger.info(f'Was not able to extract data from the following names: {all_unextracted_names}')
+                logger.info(
+                    f"Was not able to extract data from the following names: {all_unextracted_names}"
+                )
 
         return cls(statements_dict)
 
@@ -133,24 +142,28 @@ class FinStatementsBase:
     @property
     def _formatted_df(self) -> pd.DataFrame:
         out_df = self.df.copy()
-        out_df.columns = [col.strftime('%m/%d/%Y') for col in out_df.columns]
-        return out_df.applymap(lambda x: f'${x:,.0f}' if not x == 0 else ' - ')
+        out_df.columns = [col.strftime("%m/%d/%Y") for col in out_df.columns]
+        return out_df.applymap(lambda x: f"${x:,.0f}" if not x == 0 else " - ")
 
-    def _forecast(self, statements, **kwargs) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series]]:
-        if 'freq' not in kwargs:
+    def _forecast(
+        self, statements, **kwargs
+    ) -> Tuple[Dict[str, Forecast], Dict[str, pd.Series]]:
+        if "freq" not in kwargs:
             freq = self.freq
             if freq is None:
                 raise MixedFrequencyException(
-                    'Could not automatically determine frequency of history. Likely there are mixed '
-                    'frequencies in the data. Either pass an explicit freq to forecast or remove the '
-                    'periods which do not match the frequency before running the forecast.'
+                    "Could not automatically determine frequency of history. Likely there are mixed "
+                    "frequencies in the data. Either pass an explicit freq to forecast or remove the "
+                    "periods which do not match the frequency before running the forecast."
                 )
-            kwargs['freq'] = freq  # use historical frequency if desired frequency not passed
+            kwargs[
+                "freq"
+            ] = freq  # use historical frequency if desired frequency not passed
 
         forecast_config = ForecastConfig(**kwargs)
         forecast_dict: Dict[str, Forecast] = {}
         results: Dict[str, pd.Series] = {}
-        logger.info(f'Forecasting {self.statement_name}')
+        logger.info(f"Forecasting {self.statement_name}")
         item: ItemConfig
         for item in tqdm(self.config.items):
             if not item.forecast_config.make_forecast:
@@ -169,7 +182,7 @@ class FinStatementsBase:
                 item.forecast_config,
                 item,
                 pct_of_series=pct_of_series,
-                pct_of_config=pct_of_config
+                pct_of_config=pct_of_config,
             )
             forecast.fit()
             forecast.predict()
@@ -202,12 +215,16 @@ class FinStatementsBase:
         elif isinstance(other, FinStatementsBase):
             new_df = combine_statement_dfs(self.df, other.df, operation=operator.add)
         else:
-            raise NotImplementedError(f'cannot add type {type(other)} to type {type(self)}')
+            raise NotImplementedError(
+                f"cannot add type {type(other)} to type {type(self)}"
+            )
 
         # TODO [#42]: combined statements retain only item config of first statements
         #
         # Think about the best way to handle this. This applies to all math dunder methods.
-        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
+        new_statements = type(self).from_df(
+            new_df, self.config.items, disp_unextracted=False
+        )
         return new_statements
 
     def __radd__(self, other):
@@ -219,9 +236,13 @@ class FinStatementsBase:
         elif isinstance(other, FinStatementsBase):
             new_df = combine_statement_dfs(self.df, other.df, operation=operator.mul)
         else:
-            raise NotImplementedError(f'cannot multiply type {type(other)} to type {type(self)}')
+            raise NotImplementedError(
+                f"cannot multiply type {type(other)} to type {type(self)}"
+            )
 
-        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
+        new_statements = type(self).from_df(
+            new_df, self.config.items, disp_unextracted=False
+        )
         return new_statements
 
     def __rmul__(self, other):
@@ -233,9 +254,13 @@ class FinStatementsBase:
         elif isinstance(other, FinStatementsBase):
             new_df = combine_statement_dfs(self.df, other.df, operation=operator.sub)
         else:
-            raise NotImplementedError(f'cannot subtract type {type(other)} to type {type(self)}')
+            raise NotImplementedError(
+                f"cannot subtract type {type(other)} to type {type(self)}"
+            )
 
-        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
+        new_statements = type(self).from_df(
+            new_df, self.config.items, disp_unextracted=False
+        )
         return new_statements
 
     def __rsub__(self, other):
@@ -245,26 +270,37 @@ class FinStatementsBase:
         if isinstance(other, (float, int)):
             new_df = self.df / other
         elif isinstance(other, FinStatementsBase):
-            new_df = combine_statement_dfs(self.df, other.df, operation=operator.truediv)
+            new_df = combine_statement_dfs(
+                self.df, other.df, operation=operator.truediv
+            )
         else:
-            raise NotImplementedError(f'cannot divide type {type(other)} to type {type(self)}')
+            raise NotImplementedError(
+                f"cannot divide type {type(other)} to type {type(self)}"
+            )
 
-        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
+        new_statements = type(self).from_df(
+            new_df, self.config.items, disp_unextracted=False
+        )
         return new_statements
 
     def __rtruediv__(self, other):
         if isinstance(other, (float, int)):
             new_df = other / self.df
         else:
-            raise NotImplementedError(f'cannot divide type {type(other)} to type {type(self)}')
+            raise NotImplementedError(
+                f"cannot divide type {type(other)} to type {type(self)}"
+            )
 
-        new_statements = type(self).from_df(new_df, self.config.items, disp_unextracted=False)
+        new_statements = type(self).from_df(
+            new_df, self.config.items, disp_unextracted=False
+        )
         return new_statements
 
 
 def combine_statement_dfs(
-    df: pd.DataFrame, df2: pd.DataFrame,
-    operation: Callable[[pd.DataFrame, pd.DataFrame], pd.DataFrame] = operator.add
+    df: pd.DataFrame,
+    df2: pd.DataFrame,
+    operation: Callable[[pd.DataFrame, pd.DataFrame], pd.DataFrame] = operator.add,
 ) -> pd.DataFrame:
     common_cols = [col for col in df.columns if col in df2.columns]
     df_unique_cols = [col for col in df.columns if col not in df2.columns]

@@ -1,18 +1,16 @@
 import operator
 from copy import deepcopy
-from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Callable, Set
+from dataclasses import dataclass
+from typing import Callable, List, Set, Tuple
 
 import pandas as pd
-from sympy import Indexed
 
-from finstmt import BalanceSheets, IncomeStatements
+from finstmt.bs.main import BalanceSheets
 from finstmt.check import item_series_is_empty
 from finstmt.config_manage.statements import StatementsConfigManager
 from finstmt.exc import MismatchingDatesException
-from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
-from finstmt.forecast.main import Forecast
+from finstmt.inc.main import IncomeStatements
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
 
@@ -37,11 +35,11 @@ class FinancialStatements:
         >>> inc_data = IncomeStatements.from_df(inc_df)
         >>> stmts = FinancialStatements(inc_data, bs_data)
     """
+
     income_statements: IncomeStatements
     balance_sheets: BalanceSheets
     calculate: bool = True
     auto_adjust_config: bool = True
-
 
     def __post_init__(self):
         from finstmt.resolver.history import StatementsResolver
@@ -50,15 +48,17 @@ class FinancialStatements:
 
         if self.calculate:
             resolver = StatementsResolver(self)
-            new_stmts = resolver.to_statements(auto_adjust_config=self.auto_adjust_config)
+            new_stmts = resolver.to_statements(
+                auto_adjust_config=self.auto_adjust_config
+            )
             self.income_statements = new_stmts.income_statements
             self.balance_sheets = new_stmts.balance_sheets
             self._create_config_from_statements()
 
     def _create_config_from_statements(self):
         config_dict = {}
-        config_dict['income_statements'] = self.income_statements.config
-        config_dict['balance_sheets'] = self.balance_sheets.config
+        config_dict["income_statements"] = self.income_statements.config
+        config_dict["balance_sheets"] = self.balance_sheets.config
         self.config = StatementsConfigManager(config_managers=config_dict)
         if self.auto_adjust_config:
             self._adjust_config_based_on_data()
@@ -71,7 +71,7 @@ class FinancialStatements:
                     continue
 
                 # Useless to make forecasts on empty items
-                logger.debug(f'Setting {item.key} to not forecast as it is empty')
+                logger.debug(f"Setting {item.key} to not forecast as it is empty")
                 item.forecast_config.make_forecast = False
                 # But this may mean another item should be forecasted instead.
                 # E.g. normally net_ppe is calculated from gross_ppe and dep,
@@ -105,8 +105,10 @@ class FinancialStatements:
                         continue
                     # Now this is a calculated item which is non-empty, and all the components of the
                     # calculated are empty, so we need to forecast this item instead
-                    logger.debug(f'Setting {conf.key} to forecast as it is a calculated item which is not empty '
-                                 f'and yet none of the components have data')
+                    logger.debug(
+                        f"Setting {conf.key} to forecast as it is a calculated item which is not empty "
+                        f"and yet none of the components have data"
+                    )
                     conf.forecast_config.make_forecast = True
 
     def change(self, data_key: str) -> pd.Series:
@@ -147,8 +149,8 @@ class FinancialStatements:
         """
 
     def __getattr__(self, item):
-        inc_items = dir(super().__getattribute__('income_statements'))
-        bs_items = dir(super().__getattribute__('balance_sheets'))
+        inc_items = dir(super().__getattribute__("income_statements"))
+        bs_items = dir(super().__getattribute__("balance_sheets"))
         if item not in inc_items + bs_items:
             raise AttributeError(item)
 
@@ -173,35 +175,44 @@ class FinancialStatements:
 
     def __dir__(self):
         normal_attrs = [
-            'income_statements',
-            'balance_sheets',
-            'capex',
-            'non_cash_expenses',
-            'fcf',
-            'forecast',
-            'forecasts',
-            'forecast_assumptions',
-            'dates',
-            'copy',
+            "income_statements",
+            "balance_sheets",
+            "capex",
+            "non_cash_expenses",
+            "fcf",
+            "forecast",
+            "forecasts",
+            "forecast_assumptions",
+            "dates",
+            "copy",
         ]
-        all_config = self.income_statements.config.items + self.balance_sheets.config.items
+        all_config = (
+            self.income_statements.config.items + self.balance_sheets.config.items
+        )
         item_attrs = [config.key for config in all_config]
         return normal_attrs + item_attrs
 
     @property
     def capex(self) -> pd.Series:
-        return self.change('net_ppe') + self.dep
+        return self.change("net_ppe") + self.dep
 
     @property
     def non_cash_expenses(self) -> pd.Series:
         # TODO [#5]: add stock-based compensation and use in non-cash expenses calculation
-        return self.dep + self.gain_on_sale_invest + self.gain_on_sale_asset + self.impairment
+        return (
+            self.dep
+            + self.gain_on_sale_invest
+            + self.gain_on_sale_asset
+            + self.impairment
+        )
 
     @property
     def fcf(self) -> pd.Series:
-        return self.net_income + self.non_cash_expenses - self.change('nwc') - self.capex
+        return (
+            self.net_income + self.non_cash_expenses - self.change("nwc") - self.capex
+        )
 
-    def forecast(self, **kwargs) -> 'FinancialStatements':
+    def forecast(self, **kwargs) -> "FinancialStatements":
         """
         Run a forecast, returning forecasted financial statements
 
@@ -214,18 +225,18 @@ class FinancialStatements:
         """
         from finstmt.resolver.forecast import ForecastResolver
 
-        if 'bs_diff_max' in kwargs:
-            bs_diff_max = kwargs['bs_diff_max']
+        if "bs_diff_max" in kwargs:
+            bs_diff_max = kwargs["bs_diff_max"]
         else:
             bs_diff_max = ForecastConfig.bs_diff_max
 
-        if 'balance' in kwargs:
-            balance = kwargs['balance']
+        if "balance" in kwargs:
+            balance = kwargs["balance"]
         else:
             balance = ForecastConfig.balance
 
-        if 'timeout' in kwargs:
-            timeout = kwargs['timeout']
+        if "timeout" in kwargs:
+            timeout = kwargs["timeout"]
         else:
             timeout = ForecastConfig.timeout
 
@@ -238,7 +249,9 @@ class FinancialStatements:
             all_forecast_dict.update(forecast_dict)
             all_results.update(results)
 
-        resolver = ForecastResolver(self, all_forecast_dict, all_results, bs_diff_max, timeout, balance=balance)
+        resolver = ForecastResolver(
+            self, all_forecast_dict, all_results, bs_diff_max, timeout, balance=balance
+        )
         obj = resolver.to_statements()
 
         return obj
@@ -269,14 +282,18 @@ class FinancialStatements:
         if bs_dates != is_dates:
             bs_unique = bs_dates.difference(is_dates)
             is_unique = is_dates.difference(bs_dates)
-            message = 'Got mismatching dates between historical statements. '
+            message = "Got mismatching dates between historical statements. "
             if bs_unique:
-                message += f'Balance sheet has {bs_unique} dates not in Income Statement. '
+                message += (
+                    f"Balance sheet has {bs_unique} dates not in Income Statement. "
+                )
             if is_unique:
-                message += f'Income Statement has {is_unique} dates not in Balance Sheet. '
+                message += (
+                    f"Income Statement has {is_unique} dates not in Balance Sheet. "
+                )
             raise MismatchingDatesException(message)
 
-    def copy(self) -> 'FinancialStatements':
+    def copy(self) -> "FinancialStatements":
         return deepcopy(self)
 
     def __add__(self, other):
@@ -306,16 +323,22 @@ class FinancialStatements:
 
     def __rtruediv__(self, other):
         # TODO [#41]: implement right division for statements
-        raise NotImplementedError(f'cannot divide type {type(other)} by type {type(self)}')
+        raise NotImplementedError(
+            f"cannot divide type {type(other)} by type {type(self)}"
+        )
 
 
-def _combine_statements(statements: FinancialStatements,
-                        other_statements: FinancialStatements,
-                        func: Callable) -> Tuple[IncomeStatements, BalanceSheets]:
+def _combine_statements(
+    statements: FinancialStatements,
+    other_statements: FinancialStatements,
+    func: Callable,
+) -> Tuple[IncomeStatements, BalanceSheets]:
     if isinstance(other_statements, (float, int)):
         new_inc_df = func(statements.income_statements.df, other_statements)
         new_inc = IncomeStatements.from_df(
-            new_inc_df, statements.income_statements.config.items, disp_unextracted=False
+            new_inc_df,
+            statements.income_statements.config.items,
+            disp_unextracted=False,
         )
         new_bs_df = func(statements.balance_sheets.df, other_statements)
         new_bs = BalanceSheets.from_df(
@@ -325,15 +348,27 @@ def _combine_statements(statements: FinancialStatements,
         new_inc = func(statements.income_statements, other_statements.income_statements)
         new_bs = func(statements.balance_sheets, other_statements.balance_sheets)
     else:
-        raise NotImplementedError(f'cannot {func.__name__} type {type(statements)} to type {type(other_statements)}')
+        raise NotImplementedError(
+            f"cannot {func.__name__} type {type(statements)} to type {type(other_statements)}"
+        )
 
     return new_inc, new_bs
 
-def _new_statements(statements: FinancialStatements, other_statements: FinancialStatements,
-                    new_inc: IncomeStatements, new_bs: BalanceSheets) -> FinancialStatements:
+
+def _new_statements(
+    statements: FinancialStatements,
+    other_statements: FinancialStatements,
+    new_inc: IncomeStatements,
+    new_bs: BalanceSheets,
+) -> FinancialStatements:
     from finstmt.forecast.statements import ForecastedFinancialStatements
-    if isinstance(statements, ForecastedFinancialStatements) and isinstance(other_statements, ForecastedFinancialStatements):
-        raise NotImplementedError('not yet implemented to combine two forecasted statements')
+
+    if isinstance(statements, ForecastedFinancialStatements) and isinstance(
+        other_statements, ForecastedFinancialStatements
+    ):
+        raise NotImplementedError(
+            "not yet implemented to combine two forecasted statements"
+        )
     if isinstance(statements, ForecastedFinancialStatements):
         return ForecastedFinancialStatements(new_inc, new_bs, statements.forecasts)  # type: ignore
     if isinstance(other_statements, ForecastedFinancialStatements):
