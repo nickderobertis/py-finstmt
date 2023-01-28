@@ -65,3 +65,4 @@ def test_config_attribute_access(
     # Check updating a config value by attribute access
     stmts.config.cash.display_name = "Cash"
     assert stmts.config.cash.display_name == "Cash"
+    assert "cash" in dir(stmts.config)
