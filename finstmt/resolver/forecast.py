@@ -239,7 +239,7 @@ class ForecastResolver(ResolverBase):
         return [config.key for config in self.plug_configs]
 
     @property
-    def plug_x0(self) -> np.array:
+    def plug_x0(self) -> np.ndarray:
         x_arrs = []
         plug_keys = []
         for config in self.plug_configs:
@@ -251,7 +251,7 @@ class ForecastResolver(ResolverBase):
 
 @dataclass
 class PlugResult:
-    res: Optional[np.array] = None
+    res: Optional[np.ndarray] = None
     timeout: float = 180
     start_time: Optional[float] = None
     fun: Optional[float] = None
@@ -320,7 +320,8 @@ def resolve_balance_sheet(
     _check_for_invalid_system_of_equations(
         eqs, subs_dict, plug_solutions, to_solve_for, solve_exprs
     )
-    eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)
+    # TODO: Is Symbol or IndexedBase the correct type here?
+    eq_arrs = _symbolic_to_matrix(solve_exprs, to_solve_for)  # type: ignore[arg-type]
 
     # Get better initial x0 by adding to appropriate plug
     _adjust_x0_to_initial_balance_guess(
@@ -375,6 +376,10 @@ def resolve_balance_sheet(
         raise BalanceSheetNotBalancedException(message)
     else:
         logger.info(f"Balanced in {result.time_elapsed:.1f}s")
+    if result.res is None:
+        raise BalanceSheetNotBalancedException(
+            "Unexpected balancing error. No result found even though met_goal was True"
+        )
     plug_solutions = _x_arr_to_plug_solutions(result.res, plug_keys, sympy_namespace)
     solutions_dict = _solve_eqs_with_plug_solutions(
         eqs, plug_solutions, subs_dict, forecast_dates, config.items
@@ -401,11 +406,11 @@ def _resolve_balance_sheet_check_diff(
             balance_group, sol_arr, solve_for, len(forecast_dates)
         )
 
-        norm = 0
+        norm = 0.0
         for arr_pair in itertools.combinations(balance_arrs, 2):
             diff = abs(arr_pair[0] - arr_pair[1]).astype(float)
             pair_norm = np.linalg.norm(diff)
-            norm += pair_norm
+            norm += pair_norm  # type: ignore[assignment]
         norms.append(norm)
 
     desired_norm = np.linalg.norm([bs_diff_max] * len(forecast_dates))
@@ -430,10 +435,10 @@ def _balance_group_to_balance_arrs(
     ]
     balance_list = list(balance_group)
     for value, var in zip(sol_arr, solve_for):
-        key = str(var.base)
+        key = str(var.base)  # type: ignore[attr-defined]
         if key in balance_list:
-            arr_idx = balance_list.index(key)
-            t = int(var.indices[0]) - 1
+            arr_idx = balance_list.index(key)  # type: ignore[attr-defined]
+            t = int(var.indices[0]) - 1  # type: ignore[attr-defined]
             if t >= 0:
                 balance_arrs[arr_idx][t] = value
     return balance_arrs
@@ -572,7 +577,7 @@ def _get_equations_reformed_for_needed_solutions(
             selected_lhs: Optional[IndexedBase] = None
             for sym in _get_indexed_symbols(eq.rhs):
                 if sym not in all_hardcoded:
-                    selected_lhs = sym
+                    selected_lhs = sym  # type: ignore[assignment]
             if selected_lhs is None:
                 # Invalid forecast, need to display useful message to the user to fix it.
                 # Need to get the original unsubbed equation, as possible variables the user could adjust might
