@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "finstmt"
-version = "0.3.2"
+version = "1.0.0-alpha.1"
 description = "Contains classes to work with financial statement data. Can calculate free cash flows and help project financial statements."
 authors = ["Nick DeRobertis <whoopnip@gmail.com>"]
 readme = "README.md"
