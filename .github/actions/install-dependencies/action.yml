@@ -7,6 +7,7 @@ inputs:
   gh-token:
     required: true
     description: "The GitHub token to use for authentication."
+    default: ${{ github.token }}
 
 runs:
   using: composite
