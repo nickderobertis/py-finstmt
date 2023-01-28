@@ -81,7 +81,7 @@ poetry command target *ARGS:
     if [ ! -d "${DIRECTORY}/.venv" ]; then
         echo "Creating virtual environment for {{target}}"
 
-        poetry --directory $DIRECTORY install
+        poetry --directory $DIRECTORY install --all-extras
     fi
     poetry --directory $DIRECTORY {{command}} {{ARGS}}
 
