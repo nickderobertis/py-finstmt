@@ -58,7 +58,7 @@
 </script>
   
   
-    <title>finstmt.resolver.solve &#8212; finstmt 0.3.2 documentation</title>
+    <title>finstmt.resolver.solve &#8212; finstmt 1.0.0-alpha.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../../../index.html" title="finstmt 0.3.2 documentation"
+        <a href="../../../index.html" title="finstmt 1.0.0-alpha.1 documentation"
            class="md-header-nav__button md-logo">
           
             <i class="md-icon">&#xe869</i>
@@ -187,7 +187,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../../../index.html" class="md-tabs__link">finstmt 0.3.2 documentation</a></li>
+          <li class="md-tabs__item"><a href="../../../index.html" class="md-tabs__link">finstmt 1.0.0-alpha.1 documentation</a></li>
           <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">Module code</a></li>
       </ul>
     </div>
@@ -200,13 +200,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../../../index.html" title="finstmt 0.3.2 documentation" class="md-nav__button md-logo">
+    <a href="../../../index.html" title="finstmt 1.0.0-alpha.1 documentation" class="md-nav__button md-logo">
       
         <i class="md-icon">&#xe869</i>
       
     </a>
     <a href="../../../index.html"
-       title="finstmt 0.3.2 documentation">finstmt</a>
+       title="finstmt 1.0.0-alpha.1 documentation">finstmt</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
@@ -303,7 +303,7 @@
     <span class="p">}</span>
     <span class="n">new_results</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">s_dict</span><span class="p">:</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>  <span class="c1"># type: ignore[attr-defined]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">config</span> <span class="o">=</span> <span class="n">item_config_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
@@ -313,8 +313,8 @@
             <span class="n">index</span><span class="o">=</span><span class="n">forecast_dates</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"float"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">primary_name</span>
         <span class="p">)</span>
     <span class="k">for</span> <span class="n">expr</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">s_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">t_offset</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>  <span class="c1"># type: ignore[attr-defined]</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">t_offset</span>  <span class="c1"># type: ignore[attr-defined]</span>
         <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="c1"># Don't need to store historical results</span>
             <span class="k">continue</span>
@@ -417,7 +417,8 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">IndexedBase</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
     <span class="n">x_arrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">PLUG_SCALE</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plug_keys</span><span class="p">))</span>
     <span class="n">plug_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">x_arrs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plug_keys</span><span class="p">)}</span>
-    <span class="n">plug_solutions</span> <span class="o">=</span> <span class="n">results_dict_to_sympy_dict</span><span class="p">(</span><span class="n">plug_dict</span><span class="p">,</span> <span class="n">sympy_namespace</span><span class="p">)</span>
+    <span class="c1"># TODO: Is Expr or IndexedBase the correct type?</span>
+    <span class="n">plug_solutions</span> <span class="o">=</span> <span class="n">results_dict_to_sympy_dict</span><span class="p">(</span><span class="n">plug_dict</span><span class="p">,</span> <span class="n">sympy_namespace</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
     <span class="k">return</span> <span class="n">plug_solutions</span>
 
 

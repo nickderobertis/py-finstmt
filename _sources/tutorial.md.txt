@@ -27,7 +27,7 @@ stmts = FinancialStatements(inc_data, bs_data)
 See the example notebook for an example of forecasting. The available forecast
 methods are:
 
-- `auto`: Uses `fbprophet`
+- `auto`: Uses `prophet`
 - `trend`: Fits a linear trend regression
 - `cagr`: Calculates the compounded annual growth rate (CAGR) and grows each future period at that rate
 - `mean`: Uses an average of the historical to predict the future

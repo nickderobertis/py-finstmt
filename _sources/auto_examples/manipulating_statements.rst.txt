@@ -76,10 +76,28 @@ Load Financial Statements
 
  .. code-block:: none
 
-    INFO: Was not able to extract data from the following names: {'Investments', 'Other Assets', 'Net Debt', 'Other Liabilities'}
+    INFO: Was not able to extract data from the following names: {'Net Debt', 'Other Assets', 'Other Liabilities', 'Investments'}
     /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    INFO: Was not able to extract data from the following names: {'Earnings Before Tax Margin', 'EPS', 'Free Cash Flow margin', 'Dividend per Share', 'EBITDA', 'Net Income Com', 'Preferred Dividends', 'Shares (basic)', 'EBIT Margin', 'Net Income - Discontinued ops', 'Shares (weighted)', 'Consolidated Income', 'EBITDA Margin', 'Gross Profit', 'EPS Diluted', 'Net Profit Margin', 'Profit Margin', 'Gross Margin', 'Net Income - Non-Controlling int', 'Shares (weighted, diluted)', 'Revenue Growth'}
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+      warnings.warn(
+    INFO: Was not able to extract data from the following names: {'Consolidated Income', 'Earnings Before Tax Margin', 'Shares (weighted, diluted)', 'Shares (weighted)', 'Gross Margin', 'EPS Diluted', 'Free Cash Flow margin', 'Gross Profit', 'Revenue Growth', 'Net Income - Non-Controlling int', 'Preferred Dividends', 'Dividend per Share', 'Net Income Com', 'Shares (basic)', 'Net Income - Discontinued ops', 'EBITDA Margin', 'EBIT Margin', 'Net Profit Margin', 'EBITDA', 'EPS', 'Profit Margin'}
 
 
 
@@ -3474,11 +3492,95 @@ period, such as FCF.
  .. code-block:: none
 
     INFO: Forecasting Income Statement
-      0%|          | 0/16 [00:00<?, ?it/s]    100%|##########| 16/16 [00:00<00:00, 505.40it/s]
+      0%|          | 0/16 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    100%|##########| 16/16 [00:00<00:00, 504.32it/s]
     INFO: Forecasting Balance Sheet
-      0%|          | 0/37 [00:00<?, ?it/s]    100%|##########| 37/37 [00:00<00:00, 612.92it/s]
+      0%|          | 0/37 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    100%|##########| 37/37 [00:00<00:00, 584.33it/s]
     INFO: Balancing balance sheet
     INFO: Balanced in 0.0s
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
 
     2019-12-31   -1.394863e+09
     2020-12-31   -3.646065e+07
@@ -3489,7 +3591,7 @@ period, such as FCF.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  52.457 seconds)
+   **Total running time of the script:** ( 0 minutes  51.167 seconds)
 
 
 .. _sphx_glr_download_auto_examples_manipulating_statements.py:
