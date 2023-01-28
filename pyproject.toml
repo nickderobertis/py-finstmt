@@ -28,17 +28,17 @@ repository = "https://github.com/nickderobertis/py-finstmt"
 documentation = "https://nickderobertis.github.io/py-finstmt"
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.8,<4.0"
 pandas = "*"
 sympy = "*"
 xlrd = "*"
 matplotlib = "*"
 tqdm = "*"
 statsmodels = "*"
-fbprophet = { version = "*", optional = true }
+prophet = { version = "*", optional = true }
 
 [tool.poetry.extras]
-forecast = ["fbprophet"]
+forecast = ["prophet"]
 
 [tool.poetry.group.test.dependencies]
 pytest = "*"
