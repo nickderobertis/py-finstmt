@@ -5,15 +5,6 @@
 # Main package name
 PACKAGE_NAME = "finstmt"
 
-# Github username of the user which owns the repo
-REPO_USERNAME = "nickderobertis"
-
-# List of maintainers of package, by default the same user which owns the repo
-# Pull requests raised by these maintainers without the "no auto merge" label will be automatically merged
-REPO_MAINTAINERS = [
-    REPO_USERNAME,
-]
-
 # Packages added to Binder environment so that examples can be executed in Binder
 BINDER_ENVIRONMENT_REQUIRES = list(set([PACKAGE_NAME]))
 
