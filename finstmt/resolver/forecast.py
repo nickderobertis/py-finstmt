@@ -360,7 +360,7 @@ def resolve_balance_sheet(
         plug_solutions = _x_arr_to_plug_solutions(
             result.res, plug_keys, sympy_namespace
         )
-        avg_error = (result.fun ** 2 / len(result.res)) ** 0.5
+        avg_error = (result.fun**2 / len(result.res)) ** 0.5
         message = (
             f"final solution {plug_solutions} still could not meet max difference of "
             f"${bs_diff_max:,.0f} within timeout of {result.timeout}s. "
