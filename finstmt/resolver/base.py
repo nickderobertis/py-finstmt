@@ -1,6 +1,6 @@
-from typing import List, Dict
+from typing import Dict, List
 
-from sympy import Eq, IndexedBase, Idx
+from sympy import Eq, Idx, IndexedBase
 
 from finstmt.combined.statements import FinancialStatements
 from finstmt.resolver.solve import get_solve_eqs_and_full_subs_dict
@@ -16,11 +16,13 @@ class ResolverBase:
         self.set_solve_eqs_and_full_subs_dict()
 
     def set_solve_eqs_and_full_subs_dict(self):
-        self.solve_eqs, self.subs_dict = get_solve_eqs_and_full_subs_dict(self.all_eqs, self.sympy_subs_dict)
+        self.solve_eqs, self.subs_dict = get_solve_eqs_and_full_subs_dict(
+            self.all_eqs, self.sympy_subs_dict
+        )
 
     @property
     def t(self) -> Idx:
-        return self.stmts.config.sympy_namespace['t']
+        return self.stmts.config.sympy_namespace["t"]
 
     def to_statements(self) -> FinancialStatements:
         raise NotImplementedError
@@ -40,6 +42,3 @@ class ResolverBase:
     @property
     def sympy_subs_dict(self) -> Dict[IndexedBase, float]:
         raise NotImplementedError
-
-
-

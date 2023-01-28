@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Sequence, Optional
+from typing import Optional, Sequence
 
 from finstmt.forecast.config import ForecastItemConfig
 
@@ -11,7 +11,9 @@ class ItemConfig:
 
     extract_names: Optional[Sequence[str]] = None
     force_positive: bool = True
-    forecast_config: ForecastItemConfig = field(default_factory=lambda: ForecastItemConfig())
+    forecast_config: ForecastItemConfig = field(
+        default_factory=lambda: ForecastItemConfig()
+    )
     expr_str: Optional[str] = None
 
     # TODO [#19]: add config and logic for whether to take highest priority or add all of matching names

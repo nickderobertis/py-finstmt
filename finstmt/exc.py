@@ -1,4 +1,3 @@
-
 class FinstmtException(Exception):
     pass
 

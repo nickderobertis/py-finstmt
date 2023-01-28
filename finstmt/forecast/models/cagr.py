@@ -24,16 +24,18 @@ class CAGRModel(ForecastModel):
             self.stderr = 0
             specific_messages = []
             if y_0 == 0:
-                specific_messages.append('y_0 is 0')
+                specific_messages.append("y_0 is 0")
             elif y_0 < 0:
-                specific_messages.append('y_0 is negative')
+                specific_messages.append("y_0 is negative")
             if y_T == 0:
-                specific_messages.append('y_T is 0')
+                specific_messages.append("y_T is 0")
             elif y_T < 0:
-                specific_messages.append('y_T is negative')
-            specific_message = ', '.join(specific_messages)
-            message = f'CAGR not an appropriate method for {self.base_config.display_name} ' \
-                      f'as {specific_message}. Setting to 0 growth (recent value forecast)'
+                specific_messages.append("y_T is negative")
+            specific_message = ", ".join(specific_messages)
+            message = (
+                f"CAGR not an appropriate method for {self.base_config.display_name} "
+                f"as {specific_message}. Setting to 0 growth (recent value forecast)"
+            )
             warnings.warn(message)
         else:
             n = len(series)
@@ -42,8 +44,13 @@ class CAGRModel(ForecastModel):
         super().fit(series)
 
     def predict(self) -> pd.Series:
-        if self.cagr is None or self.stderr is None or self.last_value is None or self.orig_series is None:
-            raise ForecastNotFitException('call .fit before .predict')
+        if (
+            self.cagr is None
+            or self.stderr is None
+            or self.last_value is None
+            or self.orig_series is None
+        ):
+            raise ForecastNotFitException("call .fit before .predict")
 
         adj_cagr = (1 + self.cagr) ** (self.desired_freq_t_multiplier) - 1
         adj_stderr = (1 + self.stderr) ** (self.desired_freq_t_multiplier) - 1
@@ -51,13 +58,13 @@ class CAGRModel(ForecastModel):
         cagr_dict = dict(
             lower=self.cagr - self.stderr * 2,
             upper=self.cagr + self.stderr * 2,
-            mean=self.cagr
+            mean=self.cagr,
         )
 
         adj_cagr_dict = dict(
             lower=adj_cagr - adj_stderr * 2,
             upper=adj_cagr + adj_stderr * 2,
-            mean=adj_cagr
+            mean=adj_cagr,
         )
 
         # Start from last period, apply growth to predict into future
@@ -70,7 +77,7 @@ class CAGRModel(ForecastModel):
                 future_values.append(next_value)
                 last_value = next_value
             future_df[col_name] = future_values
-        self.result = future_df['mean']
+        self.result = future_df["mean"]
 
         # Start from last period, work back to earliest period removing growth to assess fit
         orig_dates = self.orig_series.index

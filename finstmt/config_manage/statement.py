@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-from typing import Dict, Tuple, List
+from typing import Dict, List
 
-from sympy import IndexedBase
 import pandas as pd
+from sympy import IndexedBase
 
 from finstmt.config_manage.base import ConfigManagerBase
 from finstmt.config_manage.data import DataConfigManager
@@ -17,6 +17,7 @@ class StatementConfigManager(ConfigManagerBase):
     Used for entire single financial statement, e.g. income statement or balance sheet, with multiple dates in the
     statement.
     """
+
     config_managers: Dict[pd.Timestamp, DataConfigManager]
 
     def get(self, item_key: str) -> ItemConfig:
@@ -26,7 +27,7 @@ class StatementConfigManager(ConfigManagerBase):
         for date, manager in self.config_managers.items():
             try:
                 conf = manager.get(item_key)
-                logger.debug(f'Got config for {item_key} from {date}')
+                logger.debug(f"Got config for {item_key} from {date}")
                 return conf
             except KeyError:
                 continue
@@ -39,14 +40,14 @@ class StatementConfigManager(ConfigManagerBase):
         """
         for date, manager in self.config_managers.items():
             manager.set(item_key, config)
-            logger.debug(f'Set config for {item_key} for {date}')
+            logger.debug(f"Set config for {item_key} for {date}")
 
     @property
     def sympy_namespace(self) -> Dict[str, IndexedBase]:
         for manager in self.config_managers.values():
             # All should be identical, so first is enough
             return manager.sympy_namespace
-        raise ValueError('no managers, could not get sympy_namespace')
+        raise ValueError("no managers, could not get sympy_namespace")
 
     @property
     def keys(self) -> List[str]:

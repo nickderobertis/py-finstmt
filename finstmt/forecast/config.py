@@ -1,5 +1,5 @@
-from dataclasses import field, dataclass
-from typing import Union, Dict, Optional, Any, List
+from dataclasses import dataclass, field
+from typing import Dict, List, Optional, Union
 
 import pandas as pd
 
@@ -7,8 +7,8 @@ import pandas as pd
 @dataclass
 class ForecastConfig:
     periods: int = 5
-    freq: str = 'Y'
-    prophet_kwargs:  dict = field(default_factory=lambda: {})
+    freq: str = "Y"
+    prophet_kwargs: dict = field(default_factory=lambda: {})
     balance: bool = True
     timeout: float = 180
 
@@ -16,17 +16,14 @@ class ForecastConfig:
     bs_diff_max: float = 10000
 
     def __post_init__(self):
-        if self.freq.casefold() == 'y':
-            self.freq = '12m'
-        elif self.freq.casefold() == 'q':
-            self.freq = '3m'
+        if self.freq.casefold() == "y":
+            self.freq = "12m"
+        elif self.freq.casefold() == "q":
+            self.freq = "3m"
 
     @property
     def make_future_df_kwargs(self) -> Dict[str, Union[int, str]]:
-        return dict(
-            periods=self.periods,
-            freq=self.freq
-        )
+        return dict(periods=self.periods, freq=self.freq)
 
 
 @dataclass
@@ -46,29 +43,33 @@ class ForecastItemConfig:
         and which item to balance it with (typically just set to 'total_liab_and_equity' for
         total assets and 'total_assets' for total liabilities and equity)
     """
-    method: str = 'cagr'
+
+    method: str = "cagr"
     pct_of: Optional[str] = None
     make_forecast: bool = True
     prophet_kwargs: dict = field(default_factory=lambda: {})
     cap: Optional[Union[float, pd.Series]] = None
     floor: Optional[Union[float, pd.Series]] = None
-    manual_forecasts: Dict[str, List[float]] = field(default_factory=lambda: {'levels': [], 'growth': []})
+    manual_forecasts: Dict[str, List[float]] = field(
+        default_factory=lambda: {"levels": [], "growth": []}
+    )
     plug: bool = False
     balance_with: Optional[str] = None
 
     def to_series(self) -> pd.Series:
         out_dict = {
-            'Method': self.method,
-            '% of': self.pct_of,
-            'Cap': self.cap,
-            'Floor': self.floor,
-            'Plug': self.plug,
+            "Method": self.method,
+            "% of": self.pct_of,
+            "Cap": self.cap,
+            "Floor": self.floor,
+            "Plug": self.plug,
         }
         out_dict.update(self.prophet_kwargs)
-        if self.manual_forecasts['levels']:
-            out_dict.update({'Manual Levels': self.manual_forecasts['levels']})
-        if self.manual_forecasts['growth']:
-            growth_pcts = [f'{growth:.2%}' for growth in self.manual_forecasts['growth']]
-            out_dict.update({'Manual Growth': growth_pcts})
+        if self.manual_forecasts["levels"]:
+            out_dict.update({"Manual Levels": self.manual_forecasts["levels"]})
+        if self.manual_forecasts["growth"]:
+            growth_pcts = [
+                f"{growth:.2%}" for growth in self.manual_forecasts["growth"]
+            ]
+            out_dict.update({"Manual Growth": growth_pcts})
         return pd.Series(out_dict)
-

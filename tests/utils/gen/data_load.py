@@ -28,7 +28,7 @@ Examples:
 
 from typing import List
 
-from finstmt import IncomeStatements, BalanceSheets, FinancialStatements
+from finstmt import BalanceSheets, FinancialStatements, IncomeStatements
 
 
 def get_keys_for_inc_data_items() -> List[str]:
@@ -39,8 +39,13 @@ def get_keys_for_bs_data_items() -> List[str]:
     return [item.key for item in BalanceSheets.statement_cls.items_config]
 
 
-def print_test_data_def(stmts: FinancialStatements, data_keys: List[str], index_name: str = 'a_index',
-                         data_dict_name: str = 'a_test_data_dict', disp: bool = True) -> str:
+def print_test_data_def(
+    stmts: FinancialStatements,
+    data_keys: List[str],
+    index_name: str = "a_index",
+    data_dict_name: str = "a_test_data_dict",
+    disp: bool = True,
+) -> str:
     out_str = _index_def(stmts, data_keys, index_name)
     out_str += _print_data_dict_def(stmts, data_keys, index_name, data_dict_name)
     if disp:
@@ -48,21 +53,31 @@ def print_test_data_def(stmts: FinancialStatements, data_keys: List[str], index_
     return out_str
 
 
-def _print_data_dict_def(stmts: FinancialStatements, data_keys: List[str], index_name: str = 'a_index',
-                         data_dict_name: str = 'a_test_data_dict') -> str:
+def _print_data_dict_def(
+    stmts: FinancialStatements,
+    data_keys: List[str],
+    index_name: str = "a_index",
+    data_dict_name: str = "a_test_data_dict",
+) -> str:
 
-    out_str = f'{data_dict_name} = dict(\n'
+    out_str = f"{data_dict_name} = dict(\n"
     for key in data_keys:
         value = getattr(stmts, key).values
-        str_value = '[' + ', '.join([str(val) for val in value]) + ']'
-        out_str += f'    {key}=pd.Series(\n        {str_value},\n        index={index_name}\n    ),\n'
-    out_str += ')\n'
+        str_value = "[" + ", ".join([str(val) for val in value]) + "]"
+        out_str += f"    {key}=pd.Series(\n        {str_value},\n        index={index_name}\n    ),\n"
+    out_str += ")\n"
     return out_str
 
 
-def _index_def(stmts: FinancialStatements, data_keys: List[str], index_name: str = 'a_index') -> str:
-    out_str = ''
-    index_values_str = '[' + ', '.join([f'"{val}"' for val in getattr(stmts, data_keys[0]).index]) + ']'
-    out_str += f'{index_name}_str = {index_values_str}\n'
-    out_str += f'{index_name} = [pd.to_datetime(val) for val in {index_name}_str]\n'
+def _index_def(
+    stmts: FinancialStatements, data_keys: List[str], index_name: str = "a_index"
+) -> str:
+    out_str = ""
+    index_values_str = (
+        "["
+        + ", ".join([f'"{val}"' for val in getattr(stmts, data_keys[0]).index])
+        + "]"
+    )
+    out_str += f"{index_name}_str = {index_values_str}\n"
+    out_str += f"{index_name} = [pd.to_datetime(val) for val in {index_name}_str]\n"
     return out_str

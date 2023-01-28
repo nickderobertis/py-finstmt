@@ -17,7 +17,8 @@ class IncomeStatements(FinStatementsBase):
         >>> inc_df = pd.read_excel(inc_path)
         >>> inc_data = IncomeStatements.from_df(inc_df)
     """
+
     statements: Dict[pd.Timestamp, IncomeStatementData]  # type: ignore
 
     statement_cls = IncomeStatementData  # type: ignore
-    statement_name = 'Income Statement'
+    statement_name = "Income Statement"

@@ -1,6 +1,6 @@
 import json
 from dataclasses import asdict, dataclass
-from typing import Dict, Tuple, Sequence, Union, Any, List
+from typing import Any, Dict, List, Sequence, Tuple, Union
 
 from sympy import IndexedBase
 
@@ -16,6 +16,7 @@ class StatementsConfigManager(ConfigManagerBase):
     """
     Main configuration interface. Handles all of the configuration for a set of financial statements.
     """
+
     config_managers: Dict[str, StatementConfigManager]
 
     def get(self, item_key: str) -> ItemConfig:
@@ -61,7 +62,9 @@ class StatementsConfigManager(ConfigManagerBase):
             if i == len(config_keys) - 1:
                 # Last iteration, now set value
                 setattr(nested_config, config_key, value)
-                logger.debug(f'Set {config_key} for {item_key} on {type(nested_config)} to {value}')
+                logger.debug(
+                    f"Set {config_key} for {item_key} on {type(nested_config)} to {value}"
+                )
             else:
                 # Not last iteration, need to get nested config
                 nested_config = getattr(nested_config, config_key)
