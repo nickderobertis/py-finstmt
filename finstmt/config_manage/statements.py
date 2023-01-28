@@ -29,10 +29,13 @@ class StatementsConfigManager(ConfigManagerBase):
         """
         Get the config for a given key
         """
-        return self.get(item_key)
+        try:
+            return self.get(item_key)
+        except NoSuchItemException:
+            raise AttributeError(item_key)
 
-    def __getdir__(self):
-        return self.keys()
+    def __dir__(self) -> List[str]:
+        return self.keys
 
     def _get(self, item_key: str) -> Tuple[ItemConfig, str]:
         """
