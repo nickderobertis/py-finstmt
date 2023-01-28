@@ -21,7 +21,7 @@ def sympy_dict_to_results_dict(
     }
     new_results = {}
     for expr in s_dict:
-        key = str(expr.base)
+        key = str(expr.base)  # type: ignore[attr-defined]
         try:
             config = item_config_dict[key]
         except KeyError:
@@ -31,8 +31,8 @@ def sympy_dict_to_results_dict(
             index=forecast_dates, dtype="float", name=config.primary_name
         )
     for expr, val in s_dict.items():
-        key = str(expr.base)
-        t = int(expr.indices[0]) - t_offset
+        key = str(expr.base)  # type: ignore[attr-defined]
+        t = int(expr.indices[0]) - t_offset  # type: ignore[attr-defined]
         if t < 0:
             # Don't need to store historical results
             continue
@@ -135,7 +135,8 @@ def _x_arr_to_plug_solutions(
 ) -> Dict[IndexedBase, float]:
     x_arrs = np.split(x * PLUG_SCALE, len(plug_keys))
     plug_dict = {key: pd.Series(x_arrs[i]) for i, key in enumerate(plug_keys)}
-    plug_solutions = results_dict_to_sympy_dict(plug_dict, sympy_namespace)
+    # TODO: Is Expr or IndexedBase the correct type?
+    plug_solutions = results_dict_to_sympy_dict(plug_dict, sympy_namespace)  # type: ignore[arg-type]
     return plug_solutions
 
 

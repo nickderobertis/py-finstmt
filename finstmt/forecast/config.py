@@ -31,10 +31,10 @@ class ForecastItemConfig:
     """
     The main configuration for a single item forecast
 
-    method: 'auto' currently only supported method, runs forecast with fbprophet
+    method: 'auto' currently only supported method, runs forecast with prophet
     pct_of: key of financial statement item to forecast this as a percentage of
     make_forecast: whether to forecast
-    prophet_kwargs: kwargs to pass to fbprophet model
+    prophet_kwargs: kwargs to pass to prophet model
     cap: the maximum that the trend line should reach
     floor: the minimum that the trend line should reach
     manual_forecasts: manually set values to use instead of doing a forecast

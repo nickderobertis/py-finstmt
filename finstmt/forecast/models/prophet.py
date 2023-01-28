@@ -18,7 +18,7 @@ class FBProphetModel(ForecastModel):
         base_config: ItemConfig,
     ):
         super().__init__(config, item_config, base_config)
-        Prophet = _try_import_fbprophet()
+        Prophet = _try_import_prophet()
 
         all_kwargs = {}
         if config.freq.lower() == "y":
@@ -75,19 +75,19 @@ class FBProphetModel(ForecastModel):
         return df
 
 
-def _try_import_fbprophet():
+def _try_import_prophet():
     try:
-        from fbprophet import Prophet
+        from prophet import Prophet
 
     except ImportError:
         raise ImportError(
-            "need to install fbprophet to use forecasting functionality with method auto. "
+            "need to install prophet to use forecasting functionality with method auto. "
             "see https://facebook.github.io/prophet/docs/installation.html"
         )
 
-    # Suppress excessive logging from fbprophet
-    fbprophet_logger = logging.getLogger("fbprophet")
-    fbprophet_logger.setLevel(logging.WARN)
+    # Suppress excessive logging from prophet
+    prophet_logger = logging.getLogger("prophet")
+    prophet_logger.setLevel(logging.WARN)
 
     return Prophet
 

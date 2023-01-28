@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from tests.fixtures import *  # noqa: F401, F403
 
 DEVELOPMENT_MODE: bool = False
 

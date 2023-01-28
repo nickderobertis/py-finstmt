@@ -40,7 +40,7 @@ class CAGRModel(ForecastModel):
         else:
             n = len(series)
             self.cagr = (y_T / y_0) ** (1 / n) - 1
-            self.stderr = series.pct_change().std() / (n ** 0.5)
+            self.stderr = series.pct_change().std() / (n**0.5)
         super().fit(series)
 
     def predict(self) -> pd.Series:
