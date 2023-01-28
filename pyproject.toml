@@ -28,7 +28,7 @@ repository = "https://github.com/nickderobertis/py-finstmt"
 documentation = "https://nickderobertis.github.io/py-finstmt"
 
 [tool.poetry.dependencies]
-python = ">=3.7"
+python = ">=3.8"
 
 [tool.poetry.group.test.dependencies]
 pytest = "*"
