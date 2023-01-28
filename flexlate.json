@@ -30,7 +30,7 @@
           "macos",
           "windows"
         ],
-        "minimum_python_version": "3.7",
+        "minimum_python_version": "3.8",
         "topics": [],
         "logo_url": ""
       },
