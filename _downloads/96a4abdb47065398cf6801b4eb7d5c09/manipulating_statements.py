@@ -2,8 +2,8 @@
 Manipulating Statements
 =======================
 
-    Note: The formatting of the statements is off in the web view.
-    Download the Jupyter notebook for the full experience.
+   Note: The formatting of the statements is off in the web view.
+   Download the Jupyter notebook for the full experience.
 
 First import the necessary classes and ``pandas``.
 
@@ -53,7 +53,7 @@ stmts['12-31-2018']  # one period
 
 
 ######################################################################
-# Now select multiple periods. Notice how the date format doesn't matter.
+# Now select multiple periods. Notice how the date format doesn’t matter.
 # 
 
 stmts[['12/31/2015', '12-31-2018']]

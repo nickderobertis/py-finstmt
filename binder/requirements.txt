@@ -1,8 +1,1 @@
-xlrd
-fbprophet
-sympy
 finstmt
-statsmodels
-tqdm
-pandas
-matplotlib

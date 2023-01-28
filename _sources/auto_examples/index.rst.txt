@@ -1,9 +1,5 @@
 :orphan:
 
-
-
-.. _sphx_glr_auto_examples:
-
 Examples
 ==================
 
@@ -12,14 +8,42 @@ Below are examples of using `finstmt`.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="    Note: The formatting of the statements is off in the web view.     Download the Jupyter not...">
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="   Note: The formatting of the statements is off in the web view.    Download the Jupyter noteb...">
 
 .. only:: html
 
- .. figure:: /auto_examples/images/thumb/sphx_glr_manipulating_statements_thumb.png
-     :alt: Manipulating Statements
+  .. image:: /auto_examples/images/thumb/sphx_glr_manipulating_statements_thumb.png
+    :alt: Manipulating Statements
 
-     :ref:`sphx_glr_auto_examples_manipulating_statements.py`
+  :ref:`sphx_glr_auto_examples_manipulating_statements.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Manipulating Statements</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="   Note: The plots are not coming through and the formatting of the    statements is off in the...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_forecasting_thumb.png
+    :alt: Forecasting Financial Statements with ``finstmt``
+
+  :ref:`sphx_glr_auto_examples_forecasting.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Forecasting Financial Statements with ``finstmt``</div>
+    </div>
+
 
 .. raw:: html
 
@@ -30,48 +54,20 @@ Below are examples of using `finstmt`.
    :hidden:
 
    /auto_examples/manipulating_statements
+   /auto_examples/forecasting
 
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="    Note: The plots are not coming through and the formatting of the     statements is off in t...">
 
 .. only:: html
 
- .. figure:: /auto_examples/images/thumb/sphx_glr_forecasting_thumb.png
-     :alt: Forecasting Financial Statements with ``finstmt``
+  .. container:: sphx-glr-footer sphx-glr-footer-gallery
 
-     :ref:`sphx_glr_auto_examples_forecasting.py`
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-.. raw:: html
+      :download:`Download all examples in Python source code: auto_examples_python.zip </auto_examples/auto_examples_python.zip>`
 
-    </div>
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/forecasting
-.. raw:: html
-
-    <div class="sphx-glr-clear"></div>
-
-
-
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-gallery
-
-
-  .. container:: sphx-glr-download sphx-glr-download-python
-
-    :download:`Download all examples in Python source code: auto_examples_python.zip </auto_examples/auto_examples_python.zip>`
-
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-    :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip </auto_examples/auto_examples_jupyter.zip>`
+      :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip </auto_examples/auto_examples_jupyter.zip>`
 
 
 .. only:: html

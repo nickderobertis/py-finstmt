@@ -2,9 +2,9 @@
 Forecasting Financial Statements with ``finstmt``
 =================================================
 
-    Note: The plots are not coming through and the formatting of the
-    statements is off in the web view. Download the Jupyter notebook for
-    the full experience.
+   Note: The plots are not coming through and the formatting of the
+   statements is off in the web view. Download the Jupyter notebook for
+   the full experience.
 
 First import the necessary classes and ``pandas``.
 
@@ -65,7 +65,7 @@ stmts2 = stmts.copy()
 # ~~~~~~~~~~~~~~~~~~~~~~
 # 
 # This is not a necessary step, but this is the way to change the default
-# forecast method. The default is already ``cagr`` and so this doesn't
+# forecast method. The default is already ``cagr`` and so this doesn’t
 # actually have an effect.
 # 
 
@@ -96,8 +96,8 @@ fcst = stmts.forecast()
 
 
 ######################################################################
-#     Note: Warnings are raised because CAGR is the default method but it
-#     is not suitable for items which begin with 0
+#    Note: Warnings are raised because CAGR is the default method but it
+#    is not suitable for items which begin with 0
 # 
 # Now view the forecast.
 # 
@@ -113,7 +113,7 @@ fcst.plot()
 
 
 ######################################################################
-# It is also possible to plot a subset. Let's focus on only a few items
+# It is also possible to plot a subset. Let’s focus on only a few items
 # for sake of example.
 # 
 

@@ -1,672 +1,806 @@
 
-
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>finstmt.config_manage package &mdash; finstmt 0.8.0 documentation</title>
-  
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
 
   
-  
-  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
   
 
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  <meta name="theme-color" content="#3f51b5">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154145306-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
 
-    
+    function gtag() {
+        dataLayer.push(arguments);
+    }
 
+    gtag('js', new Date());
+
+    gtag('config', 'UA-154145306-1');
+</script>
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  
+    <title>finstmt.config_manage package &#8212; finstmt 0.3.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <link rel="canonical" href="https://nickderobertis.github.io/py-finstmt/api/finstmt.config_manage.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="finstmt.findata package" href="finstmt.findata.html" />
-    <link rel="prev" title="finstmt.combined package" href="finstmt.combined.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
+    <link rel="prev" title="finstmt.combined package" href="finstmt.combined.html" />
+  
    
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
 
+  </head>
+  <body dir=ltr
+        data-md-color-primary=indigo data-md-color-accent=deep-purple>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#api/finstmt.config_manage" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="finstmt 0.3.2 documentation"
+           class="md-header-nav__button md-logo">
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> finstmt
+            <i class="md-icon">&#xe869</i>
           
-
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                0.8.0
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">finstmt</span>
+          <span class="md-header-nav__topic"> finstmt.config_manage package </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Tutorial</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Getting started with finstmt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">Examples</a></li>
-</ul>
-<p class="caption"><span class="caption-text">API Documentation</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">finstmt</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="finstmt.html">finstmt package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="finstmt.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html">finstmt.bs package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.clean.html">finstmt.clean package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html">finstmt.combined package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">finstmt.config_manage package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html">finstmt.findata package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html">finstmt.forecast package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html">finstmt.inc package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html">finstmt.items package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.loaders.html">finstmt.loaders package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html">finstmt.resolver package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="finstmt.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.check">finstmt.check module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.exc">finstmt.exc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="finstmt.html#module-finstmt.logger">finstmt.logger module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-            
-          
-        </div>
-        
       </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
       
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">finstmt</a>
-        
-      </nav>
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
 
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    py-finstmt
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
 
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="modules.html">finstmt</a> &raquo;</li>
-        
-          <li><a href="finstmt.html">finstmt package</a> &raquo;</li>
-        
-      <li>finstmt.config_manage package</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/api/finstmt.config_manage.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
+    </div>
+  </nav>
+</header>
 
   
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 0.3.2 documentation</a></li>
+          <li class="md-tabs__item"><a href="modules.html" class="md-tabs__link">finstmt</a></li>
+          <li class="md-tabs__item"><a href="finstmt.html" class="md-tabs__link">finstmt package</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="finstmt 0.3.2 documentation" class="md-nav__button md-logo">
+      
+        <i class="md-icon">&#xe869</i>
+      
+    </a>
+    <a href="../index.html"
+       title="finstmt 0.3.2 documentation">finstmt</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    py-finstmt
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+      <span class="md-nav__link caption"><span class="caption-text">Tutorial</span></span>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../tutorial.html" class="md-nav__link">Getting started with finstmt</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../auto_examples/index.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="modules.html" class="md-nav__link">finstmt</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="finstmt.html" class="md-nav__link">finstmt package</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="finstmt.html#subpackages" class="md-nav__link">Subpackages</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="finstmt.html#submodules" class="md-nav__link">Submodules</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="finstmt.html#module-finstmt.check" class="md-nav__link">finstmt.check module</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="finstmt.html#module-finstmt.exc" class="md-nav__link">finstmt.exc module</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="finstmt.html#module-finstmt.logger" class="md-nav__link">finstmt.logger module</a>
+      
+    
+    </li></ul>
+    
+    </li></ul>
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#api-finstmt-config-manage--page-root" class="md-nav__link">finstmt.config_manage package</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#submodules" class="md-nav__link">Submodules</a>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.config_manage.base" class="md-nav__link">finstmt.config_manage.base module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.balance_groups" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.balance_groups</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.eq_subs_dict" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.eq_subs_dict()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.eqs_involving" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.eqs_involving()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.expr_for" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.expr_for()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.get" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.get()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.get_value" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.get_value()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.item_determinant_keys" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.item_determinant_keys()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.items" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.items</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.set" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.set()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.set_value" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.set_value()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.base.ConfigManagerBase.sympy_namespace" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.sympy_namespace</span></code></a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.config_manage.data" class="md-nav__link">finstmt.config_manage.data module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.config_manage.data.DataConfigManager" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">DataConfigManager</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.config_manage.data.DataConfigManager.__init__" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.__init__()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.data.DataConfigManager.config_dict" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.config_dict</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.data.DataConfigManager.configs" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.configs</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.data.DataConfigManager.get" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.get()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.data.DataConfigManager.items" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.items</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.data.DataConfigManager.keys" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.keys</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.data.DataConfigManager.set" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.set()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.data.DataConfigManager.sympy_namespace" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.sympy_namespace</span></code></a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.config_manage.global_" class="md-nav__link">finstmt.config_manage.global_ module</a>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.config_manage.statement" class="md-nav__link">finstmt.config_manage.statement module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statement.StatementConfigManager" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statement.StatementConfigManager.__init__" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.__init__()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statement.StatementConfigManager.config_managers" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.config_managers</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statement.StatementConfigManager.get" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.get()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statement.StatementConfigManager.items" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.items</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statement.StatementConfigManager.keys" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.keys</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statement.StatementConfigManager.set" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.set()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statement.StatementConfigManager.sympy_namespace" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.sympy_namespace</span></code></a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.config_manage.statements" class="md-nav__link">finstmt.config_manage.statements module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.__init__" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.__init__()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.config_managers" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.config_managers</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.dict" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.dict()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.get" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.get()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.items" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.items</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.json" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.json()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.keys" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.keys</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.set" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.set()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.sympy_namespace" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.sympy_namespace</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.update" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.update()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.config_manage.statements.StatementsConfigManager.update_all" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.update_all()</span></code></a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/api/finstmt.config_manage.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
             
-  <div class="section" id="module-finstmt.config_manage">
-<span id="finstmt-config-manage-package"></span><h1>finstmt.config_manage package<a class="headerlink" href="#module-finstmt.config_manage" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-finstmt.config_manage.base">
-<span id="finstmt-config-manage-base-module"></span><h2>finstmt.config_manage.base module<a class="headerlink" href="#module-finstmt.config_manage.base" title="Permalink to this headline">¶</a></h2>
+  <section id="module-finstmt.config_manage">
+<span id="finstmt-config-manage-package"></span><h1 id="api-finstmt-config-manage--page-root">finstmt.config_manage package<a class="headerlink" href="#api-finstmt-config-manage--page-root" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2 id="submodules">Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-finstmt.config_manage.base">
+<span id="finstmt-config-manage-base-module"></span><h2 id="module-finstmt.config_manage.base">finstmt.config_manage.base module<a class="headerlink" href="#module-finstmt.config_manage.base" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
-<dt id="finstmt.config_manage.base.ConfigManagerBase">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.base.</code><code class="sig-name descname">ConfigManagerBase</code><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.config_manage.base.</span></span><span class="sig-name descname"><span class="pre">ConfigManagerBase</span></span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.balance_groups">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">balance_groups</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.11)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.balance_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 <dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.balance_groups">
-<em class="property">property </em><code class="sig-name descname">balance_groups</code><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.balance_groups" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.eq_subs_dict">
+<span class="sig-name descname"><span class="pre">eq_subs_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.eq_subs_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.eq_subs_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.eq_subs_dict">
-<code class="sig-name descname">eq_subs_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values_dict</span></em>, <em class="sig-param"><span class="n">t_offset</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.eq_subs_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.eq_subs_dict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.eqs_involving">
+<span class="sig-name descname"><span class="pre">eqs_involving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_self_eq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.eqs_involving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.eqs_involving" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Equality</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.eqs_involving">
-<code class="sig-name descname">eqs_involving</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em>, <em class="sig-param"><span class="n">include_self_eq</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.eqs_involving"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.eqs_involving" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.expr_for">
+<span class="sig-name descname"><span class="pre">expr_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.expr_for"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.expr_for" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Eq</span></code>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.expr_for">
-<code class="sig-name descname">expr_for</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.expr_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.expr_for" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Expr</span></code></p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.get" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>For internal use, get the config as well as the key of the financial statement type it belongs to</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.get_value">
-<code class="sig-name descname">get_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em>, <em class="sig-param"><span class="n">config_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.get_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.get_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.get_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.get_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a particular configuration for a particular item</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.item_determinant_keys">
-<code class="sig-name descname">item_determinant_keys</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em>, <em class="sig-param"><span class="n">include_pct_of</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">for_forecast</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.item_determinant_keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.item_determinant_keys" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.item_determinant_keys">
+<span class="sig-name descname"><span class="pre">item_determinant_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_pct_of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">for_forecast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.item_determinant_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.item_determinant_keys" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.items">
-<em class="property">property </em><code class="sig-name descname">items</code><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.items" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.items">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><span class="pre">ItemConfig</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.items" title="Permalink to this definition">¶</a></dt>
 <dd><p>All the configuration items</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a>]</p>
-</dd>
-</dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.set">
-<code class="sig-name descname">set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em>, <em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set entire configuration for item by key. Needs to handle setting the value in each individual
 data config manager</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.set_value">
-<code class="sig-name descname">set_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em>, <em class="sig-param"><span class="n">config_key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.set_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.set_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/base.html#ConfigManagerBase.set_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.set_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set a particular configuration for a particular item</p>
 </dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.base.ConfigManagerBase.sympy_namespace">
-<em class="property">property </em><code class="sig-name descname">sympy_namespace</code><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.sympy_namespace" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.base.ConfigManagerBase.sympy_namespace">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sympy_namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">IndexedBase</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.base.ConfigManagerBase.sympy_namespace" title="Permalink to this definition">¶</a></dt>
 <dd><p>The sympy namespace containing all the variable definitions</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>]</p>
-</dd>
-</dl>
 </dd></dl>
-
 </dd></dl>
-
-</div>
-<div class="section" id="module-finstmt.config_manage.data">
-<span id="finstmt-config-manage-data-module"></span><h2>finstmt.config_manage.data module<a class="headerlink" href="#module-finstmt.config_manage.data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-finstmt.config_manage.data">
+<span id="finstmt-config-manage-data-module"></span><h2 id="module-finstmt.config_manage.data">finstmt.config_manage.data module<a class="headerlink" href="#module-finstmt.config_manage.data" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
-<dt id="finstmt.config_manage.data.DataConfigManager">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.data.</code><code class="sig-name descname">DataConfigManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/data.html#DataConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.config_manage.base.ConfigManagerBase" title="finstmt.config_manage.base.ConfigManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.config_manage.base.ConfigManagerBase</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.config_manage.data.DataConfigManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.config_manage.data.</span></span><span class="sig-name descname"><span class="pre">DataConfigManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/data.html#DataConfigManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.config_manage.base.ConfigManagerBase" title="finstmt.config_manage.base.ConfigManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigManagerBase</span></code></a></p>
 <p>Used to manage the config for an individual time period of an individual statement</p>
 <dl class="py method">
-<dt id="finstmt.config_manage.data.DataConfigManager.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.data.DataConfigManager.config_dict">
-<em class="property">property </em><code class="sig-name descname">config_dict</code><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.config_dict" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="finstmt.config_manage.data.DataConfigManager.configs">
-<code class="sig-name descname">configs</code><em class="property">: List<span class="p">[</span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig">finstmt.items.config.ItemConfig</a><span class="p">]</span></em><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.configs" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.data.DataConfigManager.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.data.DataConfigManager.config_dict">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><span class="pre">ItemConfig</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.config_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="finstmt.config_manage.data.DataConfigManager.configs">
+<span class="sig-name descname"><span class="pre">configs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a><span class="pre">[</span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.configs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 <dl class="py method">
-<dt id="finstmt.config_manage.data.DataConfigManager.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/data.html#DataConfigManager.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.get" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.data.DataConfigManager.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/data.html#DataConfigManager.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get entire configuration for item by key</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.data.DataConfigManager.items">
-<em class="property">property </em><code class="sig-name descname">items</code><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.items" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.data.DataConfigManager.items">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><span class="pre">ItemConfig</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.items" title="Permalink to this definition">¶</a></dt>
 <dd><p>All the configuration items</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a>]</p>
-</dd>
-</dl>
 </dd></dl>
-
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.data.DataConfigManager.keys">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 <dl class="py method">
-<dt id="finstmt.config_manage.data.DataConfigManager.keys">
-<em class="property">property </em><code class="sig-name descname">keys</code><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.keys" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.data.DataConfigManager.set">
-<code class="sig-name descname">set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em>, <em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/data.html#DataConfigManager.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.data.DataConfigManager.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/data.html#DataConfigManager.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set entire configuration for item by key</p>
 </dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.data.DataConfigManager.sympy_namespace">
-<em class="property">property </em><code class="sig-name descname">sympy_namespace</code><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.sympy_namespace" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.data.DataConfigManager.sympy_namespace">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sympy_namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">IndexedBase</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.data.DataConfigManager.sympy_namespace" title="Permalink to this definition">¶</a></dt>
 <dd><p>The sympy namespace containing all the variable definitions</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>]</p>
-</dd>
-</dl>
 </dd></dl>
-
 </dd></dl>
-
-</div>
-<div class="section" id="module-finstmt.config_manage.global_">
-<span id="finstmt-config-manage-global-module"></span><h2>finstmt.config_manage.global_ module<a class="headerlink" href="#module-finstmt.config_manage.global_" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-finstmt.config_manage.statement">
-<span id="finstmt-config-manage-statement-module"></span><h2>finstmt.config_manage.statement module<a class="headerlink" href="#module-finstmt.config_manage.statement" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-finstmt.config_manage.global_">
+<span id="finstmt-config-manage-global-module"></span><h2 id="module-finstmt.config_manage.global_">finstmt.config_manage.global_ module<a class="headerlink" href="#module-finstmt.config_manage.global_" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-finstmt.config_manage.statement">
+<span id="finstmt-config-manage-statement-module"></span><h2 id="module-finstmt.config_manage.statement">finstmt.config_manage.statement module<a class="headerlink" href="#module-finstmt.config_manage.statement" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
-<dt id="finstmt.config_manage.statement.StatementConfigManager">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.statement.</code><code class="sig-name descname">StatementConfigManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_managers</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statement.html#StatementConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.config_manage.base.ConfigManagerBase" title="finstmt.config_manage.base.ConfigManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.config_manage.base.ConfigManagerBase</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.config_manage.statement.StatementConfigManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.config_manage.statement.</span></span><span class="sig-name descname"><span class="pre">StatementConfigManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_managers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statement.html#StatementConfigManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.config_manage.base.ConfigManagerBase" title="finstmt.config_manage.base.ConfigManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigManagerBase</span></code></a></p>
 <p>Used for entire single financial statement, e.g. income statement or balance sheet, with multiple dates in the
 statement.</p>
 <dl class="py method">
-<dt id="finstmt.config_manage.statement.StatementConfigManager.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_managers</span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="finstmt.config_manage.statement.StatementConfigManager.config_managers">
-<code class="sig-name descname">config_managers</code><em class="property">: Dict<span class="p">[</span>pandas.Timestamp<span class="p">, </span><a class="reference internal" href="#finstmt.config_manage.data.DataConfigManager" title="finstmt.config_manage.data.DataConfigManager">finstmt.config_manage.data.DataConfigManager</a><span class="p">]</span></em><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.config_managers" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statement.StatementConfigManager.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_managers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
+<dl class="py attribute">
+<dt class="sig sig-object py" id="finstmt.config_manage.statement.StatementConfigManager.config_managers">
+<span class="sig-name descname"><span class="pre">config_managers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code><span class="pre">,</span> <a class="reference internal" href="#finstmt.config_manage.data.DataConfigManager" title="finstmt.config_manage.data.DataConfigManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataConfigManager</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.config_managers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 <dl class="py method">
-<dt id="finstmt.config_manage.statement.StatementConfigManager.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statement.html#StatementConfigManager.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.get" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statement.StatementConfigManager.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statement.html#StatementConfigManager.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>For internal use, get the config as well as the key of the financial statement type it belongs to</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.statement.StatementConfigManager.items">
-<em class="property">property </em><code class="sig-name descname">items</code><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.items" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.statement.StatementConfigManager.items">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><span class="pre">ItemConfig</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.items" title="Permalink to this definition">¶</a></dt>
 <dd><p>All the configuration items</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a>]</p>
-</dd>
-</dl>
 </dd></dl>
-
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.statement.StatementConfigManager.keys">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 <dl class="py method">
-<dt id="finstmt.config_manage.statement.StatementConfigManager.keys">
-<em class="property">property </em><code class="sig-name descname">keys</code><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.keys" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.statement.StatementConfigManager.set">
-<code class="sig-name descname">set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em>, <em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statement.html#StatementConfigManager.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statement.StatementConfigManager.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statement.html#StatementConfigManager.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set entire configuration for item by key. Needs to handle setting the value in each individual
 data config manager</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.statement.StatementConfigManager.sympy_namespace">
-<em class="property">property </em><code class="sig-name descname">sympy_namespace</code><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.sympy_namespace" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.statement.StatementConfigManager.sympy_namespace">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sympy_namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">IndexedBase</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.statement.StatementConfigManager.sympy_namespace" title="Permalink to this definition">¶</a></dt>
 <dd><p>The sympy namespace containing all the variable definitions</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>]</p>
-</dd>
-</dl>
 </dd></dl>
-
 </dd></dl>
-
-</div>
-<div class="section" id="module-finstmt.config_manage.statements">
-<span id="finstmt-config-manage-statements-module"></span><h2>finstmt.config_manage.statements module<a class="headerlink" href="#module-finstmt.config_manage.statements" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-finstmt.config_manage.statements">
+<span id="finstmt-config-manage-statements-module"></span><h2 id="module-finstmt.config_manage.statements">finstmt.config_manage.statements module<a class="headerlink" href="#module-finstmt.config_manage.statements" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager">
-<em class="property">class </em><code class="sig-prename descclassname">finstmt.config_manage.statements.</code><code class="sig-name descname">StatementsConfigManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_managers</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.config_manage.base.ConfigManagerBase" title="finstmt.config_manage.base.ConfigManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.config_manage.base.ConfigManagerBase</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.config_manage.statements.</span></span><span class="sig-name descname"><span class="pre">StatementsConfigManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_managers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.config_manage.base.ConfigManagerBase" title="finstmt.config_manage.base.ConfigManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigManagerBase</span></code></a></p>
 <p>Main configuration interface. Handles all of the configuration for a set of financial statements.</p>
 <dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_managers</span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.config_managers">
-<code class="sig-name descname">config_managers</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference internal" href="#finstmt.config_manage.statement.StatementConfigManager" title="finstmt.config_manage.statement.StatementConfigManager">finstmt.config_manage.statement.StatementConfigManager</a><span class="p">]</span></em><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.config_managers" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_managers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
+<dl class="py attribute">
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.config_managers">
+<span class="sig-name descname"><span class="pre">config_managers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">,</span> <a class="reference internal" href="#finstmt.config_manage.statement.StatementConfigManager" title="finstmt.config_manage.statement.StatementConfigManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">StatementConfigManager</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.config_managers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 <dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.dict">
-<code class="sig-name descname">dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.dict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.dict">
+<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.dict" title="finstmt.config_manage.statements.StatementsConfigManager.dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.get" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get entire configuration for item by key</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.items">
-<em class="property">property </em><code class="sig-name descname">items</code><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.items" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.items">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><span class="pre">ItemConfig</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.items" title="Permalink to this definition">¶</a></dt>
 <dd><p>All the configuration items</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a>]</p>
-</dd>
-</dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.json">
-<code class="sig-name descname">json</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.json">
+<span class="sig-name descname"><span class="pre">json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.json" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.keys">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 <dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.keys">
-<em class="property">property </em><code class="sig-name descname">keys</code><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.keys" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.set">
-<code class="sig-name descname">set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em>, <em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set entire configuration for item by key</p>
 </dd></dl>
-
-<dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.sympy_namespace">
-<em class="property">property </em><code class="sig-name descname">sympy_namespace</code><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.sympy_namespace" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.sympy_namespace">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sympy_namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">IndexedBase</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.sympy_namespace" title="Permalink to this definition">¶</a></dt>
 <dd><p>The sympy namespace containing all the variable definitions</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IndexedBase</span></code>]</p>
-</dd>
-</dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.update">
-<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item_key</span></em>, <em class="sig-param"><span class="n">config_keys</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.update" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update configuration for item by item key and nested config keys</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update.params.item_key"></span><strong>item_key</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update.params.item_key">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – </p></li>
-<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update.params.config_keys"></span><strong>config_keys</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update.params.config_keys">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – </p></li>
-<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update.params.value"></span><strong>value</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update.params.value">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>) – </p></li>
+<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update.params.item_key"></span><strong>item_key</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update.params.item_key">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – </p></li>
+<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update.params.config_keys"></span><strong>config_keys</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update.params.config_keys">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – </p></li>
+<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update.params.value"></span><strong>value</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update.params.value">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p></p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
-<dt id="finstmt.config_manage.statements.StatementsConfigManager.update_all">
-<code class="sig-name descname">update_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_keys</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.update_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.update_all" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.config_manage.statements.StatementsConfigManager.update_all">
+<span class="sig-name descname"><span class="pre">update_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/config_manage/statements.html#StatementsConfigManager.update_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.config_manage.statements.StatementsConfigManager.update_all" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update configuration for all items by nested config keys</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update_all.params.config_keys"></span><strong>config_keys</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update_all.params.config_keys">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – </p></li>
-<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update_all.params.value"></span><strong>value</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update_all.params.value">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>) – </p></li>
+<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update_all.params.config_keys"></span><strong>config_keys</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update_all.params.config_keys">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – </p></li>
+<li><p><span class="target" id="finstmt.config_manage.statements.StatementsConfigManager.update_all.params.value"></span><strong>value</strong><a class="paramlink headerlink reference internal" href="#finstmt.config_manage.statements.StatementsConfigManager.update_all.params.value">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p></p>
 </dd>
 </dl>
 </dd></dl>
-
 </dd></dl>
+</section>
+</section>
 
-</div>
-</div>
 
-
-           </div>
-           
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="finstmt.findata.html" class="btn btn-neutral float-right" title="finstmt.findata package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="finstmt.combined.html" class="btn btn-neutral float-left" title="finstmt.combined package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2020, Nick DeRobertis
-
-    </p>
-  </div>
-    
-    
-      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
+          </article>
         </div>
       </div>
-
-    </section>
-
+    </main>
   </div>
-  
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
-  
-    
-    <!-- Theme Analytics -->
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-154145306-1', 'auto');
-    ga('send', 'pageview');
-    </script>
-
-    
-   
-
-</body>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="finstmt.combined.html" title="finstmt.combined package"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> finstmt.combined package </span>
+              </div>
+            </a>
+          
+          
+            <a href="finstmt.findata.html" title="finstmt.findata package"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> finstmt.findata package </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2023, Nick DeRobertis.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
 </html>

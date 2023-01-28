@@ -1,463 +1,1101 @@
 
-
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>finstmt package &mdash; finstmt 0.8.0 documentation</title>
-  
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
 
   
-  
-  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
   
 
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  <meta name="theme-color" content="#3f51b5">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154145306-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
 
-    
+    function gtag() {
+        dataLayer.push(arguments);
+    }
 
+    gtag('js', new Date());
+
+    gtag('config', 'UA-154145306-1');
+</script>
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  
+    <title>finstmt package &#8212; finstmt 0.3.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <link rel="canonical" href="https://nickderobertis.github.io/py-finstmt/api/finstmt.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="finstmt.bs package" href="finstmt.bs.html" />
-    <link rel="prev" title="finstmt" href="modules.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
+    <link rel="prev" title="finstmt" href="modules.html" />
+  
    
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
 
+  </head>
+  <body dir=ltr
+        data-md-color-primary=indigo data-md-color-accent=deep-purple>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#api/finstmt" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="finstmt 0.3.2 documentation"
+           class="md-header-nav__button md-logo">
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> finstmt
+            <i class="md-icon">&#xe869</i>
           
-
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                0.8.0
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">finstmt</span>
+          <span class="md-header-nav__topic"> finstmt package </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Tutorial</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Getting started with finstmt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">Examples</a></li>
-</ul>
-<p class="caption"><span class="caption-text">API Documentation</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">finstmt</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">finstmt package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html">finstmt.bs package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.clean.html">finstmt.clean package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html">finstmt.combined package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html">finstmt.config_manage package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html">finstmt.findata package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html">finstmt.forecast package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html">finstmt.inc package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html">finstmt.items package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.loaders.html">finstmt.loaders package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html">finstmt.resolver package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-finstmt.check">finstmt.check module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-finstmt.exc">finstmt.exc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-finstmt.logger">finstmt.logger module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-            
-          
-        </div>
-        
       </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
       
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">finstmt</a>
-        
-      </nav>
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
 
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    py-finstmt
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
 
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="modules.html">finstmt</a> &raquo;</li>
-        
-      <li>finstmt package</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/api/finstmt.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
+    </div>
+  </nav>
+</header>
 
   
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 0.3.2 documentation</a></li>
+          <li class="md-tabs__item"><a href="modules.html" class="md-tabs__link">finstmt</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="finstmt 0.3.2 documentation" class="md-nav__button md-logo">
+      
+        <i class="md-icon">&#xe869</i>
+      
+    </a>
+    <a href="../index.html"
+       title="finstmt 0.3.2 documentation">finstmt</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    py-finstmt
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+      <span class="md-nav__link caption"><span class="caption-text">Tutorial</span></span>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../tutorial.html" class="md-nav__link">Getting started with finstmt</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../auto_examples/index.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="modules.html" class="md-nav__link">finstmt</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> finstmt package </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">finstmt package</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#api-finstmt--page-root" class="md-nav__link">finstmt package</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#subpackages" class="md-nav__link">Subpackages</a>
+        </li>
+        <li class="md-nav__item"><a href="#submodules" class="md-nav__link">Submodules</a>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.check" class="md-nav__link">finstmt.check module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.check.item_series_is_empty" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">item_series_is_empty()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.exc" class="md-nav__link">finstmt.exc module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.exc.BalanceSheetNotBalancedException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">BalanceSheetNotBalancedException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.CouldNotParseException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">CouldNotParseException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.FinstmtException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">FinstmtException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.ForecastException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.ForecastNotFitException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastNotFitException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.ForecastNotPredictedException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastNotPredictedException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.ImproperManualForecastException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ImproperManualForecastException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.InvalidBalanceConfigException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">InvalidBalanceConfigException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.InvalidBalancePlugsException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">InvalidBalancePlugsException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.InvalidForecastEquationException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">InvalidForecastEquationException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.MismatchingDatesException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">MismatchingDatesException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.MissingDataException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">MissingDataException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.MixedFrequencyException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">MixedFrequencyException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.NoSuchItemException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NoSuchItemException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.NotACalculatedItemException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NotACalculatedItemException</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.logger" class="md-nav__link">finstmt.logger module</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/api/finstmt.rst.txt">Show Source</a> </li>
+
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#subpackages" class="md-nav__link">Subpackages</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#submodules" class="md-nav__link">Submodules</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#module-finstmt.check" class="md-nav__link">finstmt.check module</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#module-finstmt.exc" class="md-nav__link">finstmt.exc module</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#module-finstmt.logger" class="md-nav__link">finstmt.logger module</a>
+      
+    
+    </li></ul>
+    
+    </li></ul>
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#api-finstmt--page-root" class="md-nav__link">finstmt package</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#subpackages" class="md-nav__link">Subpackages</a>
+        </li>
+        <li class="md-nav__item"><a href="#submodules" class="md-nav__link">Submodules</a>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.check" class="md-nav__link">finstmt.check module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.check.item_series_is_empty" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">item_series_is_empty()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.exc" class="md-nav__link">finstmt.exc module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.exc.BalanceSheetNotBalancedException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">BalanceSheetNotBalancedException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.CouldNotParseException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">CouldNotParseException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.FinstmtException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">FinstmtException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.ForecastException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.ForecastNotFitException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastNotFitException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.ForecastNotPredictedException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastNotPredictedException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.ImproperManualForecastException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ImproperManualForecastException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.InvalidBalanceConfigException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">InvalidBalanceConfigException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.InvalidBalancePlugsException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">InvalidBalancePlugsException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.InvalidForecastEquationException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">InvalidForecastEquationException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.MismatchingDatesException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">MismatchingDatesException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.MissingDataException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">MissingDataException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.MixedFrequencyException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">MixedFrequencyException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.NoSuchItemException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NoSuchItemException</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.exc.NotACalculatedItemException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NotACalculatedItemException</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#module-finstmt.logger" class="md-nav__link">finstmt.logger module</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/api/finstmt.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
             
-  <div class="section" id="module-finstmt">
-<span id="finstmt-package"></span><h1>finstmt package<a class="headerlink" href="#module-finstmt" title="Permalink to this headline">¶</a></h1>
+  <section id="module-finstmt">
+<span id="finstmt-package"></span><h1 id="api-finstmt--page-root">finstmt package<a class="headerlink" href="#api-finstmt--page-root" title="Permalink to this heading">¶</a></h1>
 <p>Work with financial statement data in Python. Can calculate free cash flows and help project
 financial statements, automatically balancing the balance sheet.</p>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<section id="subpackages">
+<h2 id="subpackages">Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.bs.html">finstmt.bs package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.bs.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.bs.html#module-finstmt.bs.config">finstmt.bs.config module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.bs.html#module-finstmt.bs.data">finstmt.bs.data module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.bs.html#module-finstmt.bs.main">finstmt.bs.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.bs.html#module-finstmt.bs.data">finstmt.bs.data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.__init__"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.cash"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.cash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.cash_and_st_invest"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.cash_and_st_invest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.common_stock"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.common_stock</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.current_lt_debt"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.current_lt_debt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.def_tax_lt"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.def_tax_lt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.def_tax_st"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.def_tax_st</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.deferred_rev"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.deferred_rev</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.dep"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.dep</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.deposit_liab"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.deposit_liab</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.goodwill"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.goodwill</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.gross_ppe"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.gross_ppe</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.inventory"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.inventory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.items_config"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.items_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.lt_debt"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.lt_debt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.lt_invest"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.lt_invest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.minority_interest"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.minority_interest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.net_ppe"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.net_ppe</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.nwc"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.nwc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_current_assets"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.other_current_assets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_current_liab"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.other_current_liab</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_income"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.other_income</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_lt_assets"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.other_lt_assets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_lt_liab"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.other_lt_liab</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.payables"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.payables</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.receivables"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.receivables</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.retained_earnings"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.retained_earnings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.st_debt"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.st_debt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.st_invest"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.st_invest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.tax_liab_lt"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.tax_liab_lt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.tax_liab_st"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.tax_liab_st</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_assets"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.total_assets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_current_assets"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.total_current_assets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_current_liab"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.total_current_liab</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_debt"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.total_debt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_equity"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.total_equity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_liab"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.total_liab</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_liab_and_equity"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.total_liab_and_equity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_non_current_assets"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.total_non_current_assets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.data.BalanceSheetData.total_non_current_liab"><code class="docutils literal notranslate"><span class="pre">BalanceSheetData.total_non_current_liab</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.bs.html#module-finstmt.bs.main">finstmt.bs.main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets"><code class="docutils literal notranslate"><span class="pre">BalanceSheets</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets.__init__"><code class="docutils literal notranslate"><span class="pre">BalanceSheets.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets.statement_cls"><code class="docutils literal notranslate"><span class="pre">BalanceSheets.statement_cls</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets.statement_name"><code class="docutils literal notranslate"><span class="pre">BalanceSheets.statement_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.bs.html#finstmt.bs.main.BalanceSheets.statements"><code class="docutils literal notranslate"><span class="pre">BalanceSheets.statements</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.clean.html">finstmt.clean package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.clean.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.clean.html#module-finstmt.clean.name">finstmt.clean.name module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.clean.html#module-finstmt.clean.name">finstmt.clean.name module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.clean.html#finstmt.clean.name.standardize_name_for_look_up"><code class="docutils literal notranslate"><span class="pre">standardize_name_for_look_up()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.clean.html#finstmt.clean.name.standardize_names_in_series_index"><code class="docutils literal notranslate"><span class="pre">standardize_names_in_series_index()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.combined.html">finstmt.combined package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.combined.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.combined.html#module-finstmt.combined.statements">finstmt.combined.statements module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.combined.html#module-finstmt.combined.statements">finstmt.combined.statements module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements"><code class="docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.__init__"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.all_config_items"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.all_config_items</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.auto_adjust_config"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.auto_adjust_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.balance_sheets"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.balance_sheets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.calculate"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.calculate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.capex"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.capex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.change"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.copy"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.dates"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.dates</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.fcf"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.fcf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.forecast"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.forecast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.forecast_assumptions"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.forecast_assumptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.income_statements"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.income_statements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.item_is_empty"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.item_is_empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.lag"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.lag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements.non_cash_expenses"><code class="docutils literal notranslate"><span class="pre">FinancialStatements.non_cash_expenses</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.config_manage.html">finstmt.config_manage package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.base">finstmt.config_manage.base module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.data">finstmt.config_manage.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.base">finstmt.config_manage.base module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.balance_groups"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.balance_groups</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.eq_subs_dict"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.eq_subs_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.eqs_involving"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.eqs_involving()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.expr_for"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.expr_for()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.get"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.get_value"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.get_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.item_determinant_keys"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.item_determinant_keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.items"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.items</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.set"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.set_value"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.set_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.sympy_namespace"><code class="docutils literal notranslate"><span class="pre">ConfigManagerBase.sympy_namespace</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.data">finstmt.config_manage.data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager"><code class="docutils literal notranslate"><span class="pre">DataConfigManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.__init__"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.config_dict"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.config_dict</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.configs"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.configs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.get"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.items"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.items</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.keys"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.keys</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.set"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.sympy_namespace"><code class="docutils literal notranslate"><span class="pre">DataConfigManager.sympy_namespace</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.global_">finstmt.config_manage.global_ module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.statement">finstmt.config_manage.statement module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.statements">finstmt.config_manage.statements module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.statement">finstmt.config_manage.statement module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.__init__"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.config_managers"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.config_managers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.get"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.items"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.items</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.keys"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.keys</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.set"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statement.StatementConfigManager.sympy_namespace"><code class="docutils literal notranslate"><span class="pre">StatementConfigManager.sympy_namespace</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.config_manage.html#module-finstmt.config_manage.statements">finstmt.config_manage.statements module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.__init__"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.config_managers"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.config_managers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.dict"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.get"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.items"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.items</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.json"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.keys"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.keys</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.set"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.sympy_namespace"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.sympy_namespace</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update_all"><code class="docutils literal notranslate"><span class="pre">StatementsConfigManager.update_all()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.findata.html">finstmt.findata package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.findata.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.findata.html#module-finstmt.findata.database">finstmt.findata.database module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.findata.html#module-finstmt.findata.statementsbase">finstmt.findata.statementsbase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.findata.html#module-finstmt.findata.database">finstmt.findata.database module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase"><code class="docutils literal notranslate"><span class="pre">FinDataBase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase.__init__"><code class="docutils literal notranslate"><span class="pre">FinDataBase.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase.as_dict"><code class="docutils literal notranslate"><span class="pre">FinDataBase.as_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase.from_series"><code class="docutils literal notranslate"><span class="pre">FinDataBase.from_series()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase.get_sympy_subs_dict"><code class="docutils literal notranslate"><span class="pre">FinDataBase.get_sympy_subs_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase.items_config"><code class="docutils literal notranslate"><span class="pre">FinDataBase.items_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase.prior_statement"><code class="docutils literal notranslate"><span class="pre">FinDataBase.prior_statement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase.to_series"><code class="docutils literal notranslate"><span class="pre">FinDataBase.to_series()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.database.FinDataBase.unextracted_names"><code class="docutils literal notranslate"><span class="pre">FinDataBase.unextracted_names</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.findata.html#module-finstmt.findata.statementsbase">finstmt.findata.statementsbase module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.__init__"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.dates"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase.dates</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.freq"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase.freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.from_df"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase.from_df()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.item_is_empty"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase.item_is_empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.statement_cls"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase.statement_cls</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.statement_name"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase.statement_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.statements"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase.statements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.to_df"><code class="docutils literal notranslate"><span class="pre">FinStatementsBase.to_df()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.findata.html#finstmt.findata.statementsbase.combine_statement_dfs"><code class="docutils literal notranslate"><span class="pre">combine_statement_dfs()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.forecast.html">finstmt.forecast package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="finstmt.forecast.models.html">finstmt.forecast.models package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.average">finstmt.forecast.models.average module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.base">finstmt.forecast.models.base module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.cagr">finstmt.forecast.models.cagr module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.chooser">finstmt.forecast.models.chooser module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.manual">finstmt.forecast.models.manual module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.prophet">finstmt.forecast.models.prophet module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.recent">finstmt.forecast.models.recent module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.trend">finstmt.forecast.models.trend module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.average">finstmt.forecast.models.average module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel"><code class="docutils literal notranslate"><span class="pre">AverageModel</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel.fit"><code class="docutils literal notranslate"><span class="pre">AverageModel.fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel.mean"><code class="docutils literal notranslate"><span class="pre">AverageModel.mean</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel.predict"><code class="docutils literal notranslate"><span class="pre">AverageModel.predict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.average.AverageModel.stderr"><code class="docutils literal notranslate"><span class="pre">AverageModel.stderr</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.base">finstmt.forecast.models.base module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel"><code class="docutils literal notranslate"><span class="pre">ForecastModel</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.__init__"><code class="docutils literal notranslate"><span class="pre">ForecastModel.__init__()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.desired_freq_t_multiplier"><code class="docutils literal notranslate"><span class="pre">ForecastModel.desired_freq_t_multiplier</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.fit"><code class="docutils literal notranslate"><span class="pre">ForecastModel.fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.historical_freq"><code class="docutils literal notranslate"><span class="pre">ForecastModel.historical_freq</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.last_historical_period"><code class="docutils literal notranslate"><span class="pre">ForecastModel.last_historical_period</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.orig_series"><code class="docutils literal notranslate"><span class="pre">ForecastModel.orig_series</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.plot"><code class="docutils literal notranslate"><span class="pre">ForecastModel.plot()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.predict"><code class="docutils literal notranslate"><span class="pre">ForecastModel.predict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.result"><code class="docutils literal notranslate"><span class="pre">ForecastModel.result</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.result_df"><code class="docutils literal notranslate"><span class="pre">ForecastModel.result_df</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.compare_freq_strs"><code class="docutils literal notranslate"><span class="pre">compare_freq_strs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.cagr">finstmt.forecast.models.cagr module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel"><code class="docutils literal notranslate"><span class="pre">CAGRModel</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.cagr"><code class="docutils literal notranslate"><span class="pre">CAGRModel.cagr</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.fit"><code class="docutils literal notranslate"><span class="pre">CAGRModel.fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.last_value"><code class="docutils literal notranslate"><span class="pre">CAGRModel.last_value</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.predict"><code class="docutils literal notranslate"><span class="pre">CAGRModel.predict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.cagr.CAGRModel.stderr"><code class="docutils literal notranslate"><span class="pre">CAGRModel.stderr</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.chooser">finstmt.forecast.models.chooser module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.chooser.get_model"><code class="docutils literal notranslate"><span class="pre">get_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.manual">finstmt.forecast.models.manual module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel"><code class="docutils literal notranslate"><span class="pre">ManualForecastModel</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel.__init__"><code class="docutils literal notranslate"><span class="pre">ManualForecastModel.__init__()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel.fit"><code class="docutils literal notranslate"><span class="pre">ManualForecastModel.fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel.predict"><code class="docutils literal notranslate"><span class="pre">ManualForecastModel.predict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.manual.ManualForecastModel.recent"><code class="docutils literal notranslate"><span class="pre">ManualForecastModel.recent</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.prophet">finstmt.forecast.models.prophet module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel"><code class="docutils literal notranslate"><span class="pre">FBProphetModel</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel.__init__"><code class="docutils literal notranslate"><span class="pre">FBProphetModel.__init__()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel.fit"><code class="docutils literal notranslate"><span class="pre">FBProphetModel.fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel.plot"><code class="docutils literal notranslate"><span class="pre">FBProphetModel.plot()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.prophet.FBProphetModel.predict"><code class="docutils literal notranslate"><span class="pre">FBProphetModel.predict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.recent">finstmt.forecast.models.recent module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.recent.RecentValueModel"><code class="docutils literal notranslate"><span class="pre">RecentValueModel</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.recent.RecentValueModel.fit"><code class="docutils literal notranslate"><span class="pre">RecentValueModel.fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.recent.RecentValueModel.predict"><code class="docutils literal notranslate"><span class="pre">RecentValueModel.predict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.recent.RecentValueModel.recent"><code class="docutils literal notranslate"><span class="pre">RecentValueModel.recent</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.models.html#module-finstmt.forecast.models.trend">finstmt.forecast.models.trend module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel"><code class="docutils literal notranslate"><span class="pre">LinearTrendModel</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.fit"><code class="docutils literal notranslate"><span class="pre">LinearTrendModel.fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.model"><code class="docutils literal notranslate"><span class="pre">LinearTrendModel.model</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.model_result"><code class="docutils literal notranslate"><span class="pre">LinearTrendModel.model_result</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.predict"><code class="docutils literal notranslate"><span class="pre">LinearTrendModel.predict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.config">finstmt.forecast.config module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.dataframe">finstmt.forecast.dataframe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.main">finstmt.forecast.main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.plot">finstmt.forecast.plot module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.statements">finstmt.forecast.statements module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.config">finstmt.forecast.config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig"><code class="docutils literal notranslate"><span class="pre">ForecastConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.__init__"><code class="docutils literal notranslate"><span class="pre">ForecastConfig.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.balance"><code class="docutils literal notranslate"><span class="pre">ForecastConfig.balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.bs_diff_max"><code class="docutils literal notranslate"><span class="pre">ForecastConfig.bs_diff_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.freq"><code class="docutils literal notranslate"><span class="pre">ForecastConfig.freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.make_future_df_kwargs"><code class="docutils literal notranslate"><span class="pre">ForecastConfig.make_future_df_kwargs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.periods"><code class="docutils literal notranslate"><span class="pre">ForecastConfig.periods</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.prophet_kwargs"><code class="docutils literal notranslate"><span class="pre">ForecastConfig.prophet_kwargs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.timeout"><code class="docutils literal notranslate"><span class="pre">ForecastConfig.timeout</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.__init__"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.balance_with"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.balance_with</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.cap"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.cap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.floor"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.floor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.make_forecast"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.make_forecast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.manual_forecasts"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.manual_forecasts</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.method"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.pct_of"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.pct_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.plug"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.plug</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.prophet_kwargs"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.prophet_kwargs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.to_series"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.to_series()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.dataframe">finstmt.forecast.dataframe module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.dataframe.add_cap_and_floor_to_df"><code class="docutils literal notranslate"><span class="pre">add_cap_and_floor_to_df()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.main">finstmt.forecast.main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast"><code class="docutils literal notranslate"><span class="pre">Forecast</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast.__init__"><code class="docutils literal notranslate"><span class="pre">Forecast.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast.fit"><code class="docutils literal notranslate"><span class="pre">Forecast.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast.model"><code class="docutils literal notranslate"><span class="pre">Forecast.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast.name"><code class="docutils literal notranslate"><span class="pre">Forecast.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast.plot"><code class="docutils literal notranslate"><span class="pre">Forecast.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast.predict"><code class="docutils literal notranslate"><span class="pre">Forecast.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast.result"><code class="docutils literal notranslate"><span class="pre">Forecast.result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast.series"><code class="docutils literal notranslate"><span class="pre">Forecast.series</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.main.Forecast.to_manual"><code class="docutils literal notranslate"><span class="pre">Forecast.to_manual()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.plot">finstmt.forecast.plot module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.plot.plot_forecast"><code class="docutils literal notranslate"><span class="pre">plot_forecast()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.forecast.html#module-finstmt.forecast.statements">finstmt.forecast.statements module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements"><code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatements</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements.__init__"><code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatements.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements.forecasts"><code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatements.forecasts</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements.plot"><code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatements.plot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.inc.html">finstmt.inc package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.inc.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.inc.html#module-finstmt.inc.config">finstmt.inc.config module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.inc.html#module-finstmt.inc.data">finstmt.inc.data module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.inc.html#module-finstmt.inc.main">finstmt.inc.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.inc.html#module-finstmt.inc.data">finstmt.inc.data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.__init__"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.cogs"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.cogs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.dep_exp"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.dep_exp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.ebit"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.ebit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.ebt"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.ebt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.effective_tax_rate"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.effective_tax_rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.gain_on_sale_asset"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.gain_on_sale_asset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.gain_on_sale_invest"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.gain_on_sale_invest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.gross_profit"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.gross_profit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.impairment"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.impairment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.int_exp"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.int_exp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.items_config"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.items_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.net_income"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.net_income</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.op_exp"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.op_exp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.other_op_exp"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.other_op_exp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.rd_exp"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.rd_exp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.revenue"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.revenue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.sga"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.sga</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.data.IncomeStatementData.tax_exp"><code class="docutils literal notranslate"><span class="pre">IncomeStatementData.tax_exp</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.inc.html#module-finstmt.inc.main">finstmt.inc.main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements"><code class="docutils literal notranslate"><span class="pre">IncomeStatements</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements.__init__"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements.statement_cls"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.statement_cls</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements.statement_name"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.statement_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.inc.html#finstmt.inc.main.IncomeStatements.statements"><code class="docutils literal notranslate"><span class="pre">IncomeStatements.statements</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.items.html">finstmt.items package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.items.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.items.html#module-finstmt.items.config">finstmt.items.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.items.html#module-finstmt.items.config">finstmt.items.config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig"><code class="docutils literal notranslate"><span class="pre">ItemConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.Config"><code class="docutils literal notranslate"><span class="pre">ItemConfig.Config</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.Config.arbitrary_types_allowed"><code class="docutils literal notranslate"><span class="pre">ItemConfig.Config.arbitrary_types_allowed</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.__init__"><code class="docutils literal notranslate"><span class="pre">ItemConfig.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.display_name"><code class="docutils literal notranslate"><span class="pre">ItemConfig.display_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.expr_str"><code class="docutils literal notranslate"><span class="pre">ItemConfig.expr_str</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.extract_names"><code class="docutils literal notranslate"><span class="pre">ItemConfig.extract_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.force_positive"><code class="docutils literal notranslate"><span class="pre">ItemConfig.force_positive</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.forecast_config"><code class="docutils literal notranslate"><span class="pre">ItemConfig.forecast_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.key"><code class="docutils literal notranslate"><span class="pre">ItemConfig.key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig.primary_name"><code class="docutils literal notranslate"><span class="pre">ItemConfig.primary_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.loaders.html">finstmt.loaders package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.loaders.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.loaders.html#module-finstmt.loaders.capiq">finstmt.loaders.capiq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.loaders.html#module-finstmt.loaders.capiq">finstmt.loaders.capiq module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.loaders.html#finstmt.loaders.capiq.load_capiq_df"><code class="docutils literal notranslate"><span class="pre">load_capiq_df()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="finstmt.resolver.html">finstmt.resolver package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.base">finstmt.resolver.base module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.forecast">finstmt.resolver.forecast module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.history">finstmt.resolver.history module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.solve">finstmt.resolver.solve module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.base">finstmt.resolver.base module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase"><code class="docutils literal notranslate"><span class="pre">ResolverBase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.__init__"><code class="docutils literal notranslate"><span class="pre">ResolverBase.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.all_eqs"><code class="docutils literal notranslate"><span class="pre">ResolverBase.all_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.num_periods"><code class="docutils literal notranslate"><span class="pre">ResolverBase.num_periods</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.set_solve_eqs_and_full_subs_dict"><code class="docutils literal notranslate"><span class="pre">ResolverBase.set_solve_eqs_and_full_subs_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.solve_eqs"><code class="docutils literal notranslate"><span class="pre">ResolverBase.solve_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.subs_dict"><code class="docutils literal notranslate"><span class="pre">ResolverBase.subs_dict</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.sympy_subs_dict"><code class="docutils literal notranslate"><span class="pre">ResolverBase.sympy_subs_dict</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.t"><code class="docutils literal notranslate"><span class="pre">ResolverBase.t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.t_indexed_eqs"><code class="docutils literal notranslate"><span class="pre">ResolverBase.t_indexed_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.base.ResolverBase.to_statements"><code class="docutils literal notranslate"><span class="pre">ResolverBase.to_statements()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.forecast">finstmt.resolver.forecast module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.BalanceSheetBalancedException"><code class="docutils literal notranslate"><span class="pre">BalanceSheetBalancedException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver"><code class="docutils literal notranslate"><span class="pre">ForecastResolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.__init__"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.all_eqs"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.all_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.bs_balance_eqs"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.bs_balance_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.forecast_dates"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.forecast_dates</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.num_periods"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.num_periods</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.plug_configs"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.plug_configs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.plug_keys"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.plug_keys</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.plug_x0"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.plug_x0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.resolve_balance_sheet"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.resolve_balance_sheet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.solve_eqs"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.solve_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.subs_dict"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.subs_dict</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.sympy_subs_dict"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.sympy_subs_dict</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.t_indexed_eqs"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.t_indexed_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.to_statements"><code class="docutils literal notranslate"><span class="pre">ForecastResolver.to_statements()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.PlugResult"><code class="docutils literal notranslate"><span class="pre">PlugResult</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.PlugResult.__init__"><code class="docutils literal notranslate"><span class="pre">PlugResult.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.PlugResult.fun"><code class="docutils literal notranslate"><span class="pre">PlugResult.fun</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.PlugResult.is_timed_out"><code class="docutils literal notranslate"><span class="pre">PlugResult.is_timed_out</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.PlugResult.met_goal"><code class="docutils literal notranslate"><span class="pre">PlugResult.met_goal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.PlugResult.res"><code class="docutils literal notranslate"><span class="pre">PlugResult.res</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.PlugResult.start_time"><code class="docutils literal notranslate"><span class="pre">PlugResult.start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.PlugResult.time_elapsed"><code class="docutils literal notranslate"><span class="pre">PlugResult.time_elapsed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.PlugResult.timeout"><code class="docutils literal notranslate"><span class="pre">PlugResult.timeout</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.forecast.resolve_balance_sheet"><code class="docutils literal notranslate"><span class="pre">resolve_balance_sheet()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.history">finstmt.resolver.history module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.history.StatementsResolver"><code class="docutils literal notranslate"><span class="pre">StatementsResolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.history.StatementsResolver.all_eqs"><code class="docutils literal notranslate"><span class="pre">StatementsResolver.all_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.history.StatementsResolver.num_periods"><code class="docutils literal notranslate"><span class="pre">StatementsResolver.num_periods</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.history.StatementsResolver.solve_eqs"><code class="docutils literal notranslate"><span class="pre">StatementsResolver.solve_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.history.StatementsResolver.subs_dict"><code class="docutils literal notranslate"><span class="pre">StatementsResolver.subs_dict</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.history.StatementsResolver.sympy_subs_dict"><code class="docutils literal notranslate"><span class="pre">StatementsResolver.sympy_subs_dict</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.history.StatementsResolver.t_indexed_eqs"><code class="docutils literal notranslate"><span class="pre">StatementsResolver.t_indexed_eqs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.history.StatementsResolver.to_statements"><code class="docutils literal notranslate"><span class="pre">StatementsResolver.to_statements()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finstmt.resolver.html#module-finstmt.resolver.solve">finstmt.resolver.solve module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.solve.get_solve_eqs_and_full_subs_dict"><code class="docutils literal notranslate"><span class="pre">get_solve_eqs_and_full_subs_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.solve.numpy_solve"><code class="docutils literal notranslate"><span class="pre">numpy_solve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.solve.results_dict_to_sympy_dict"><code class="docutils literal notranslate"><span class="pre">results_dict_to_sympy_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.solve.solve_equations"><code class="docutils literal notranslate"><span class="pre">solve_equations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="finstmt.resolver.html#finstmt.resolver.solve.sympy_dict_to_results_dict"><code class="docutils literal notranslate"><span class="pre">sympy_dict_to_results_dict()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-finstmt.check">
-<span id="finstmt-check-module"></span><h2>finstmt.check module<a class="headerlink" href="#module-finstmt.check" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="submodules">
+<h2 id="submodules">Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-finstmt.check">
+<span id="finstmt-check-module"></span><h2 id="module-finstmt.check">finstmt.check module<a class="headerlink" href="#module-finstmt.check" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
-<dt id="finstmt.check.item_series_is_empty">
-<code class="sig-prename descclassname">finstmt.check.</code><code class="sig-name descname">item_series_is_empty</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/check.html#item_series_is_empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.check.item_series_is_empty" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.check.item_series_is_empty">
+<span class="sig-prename descclassname"><span class="pre">finstmt.check.</span></span><span class="sig-name descname"><span class="pre">item_series_is_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/check.html#item_series_is_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.check.item_series_is_empty" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
-
-</div>
-<div class="section" id="module-finstmt.exc">
-<span id="finstmt-exc-module"></span><h2>finstmt.exc module<a class="headerlink" href="#module-finstmt.exc" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-finstmt.exc">
+<span id="finstmt-exc-module"></span><h2 id="module-finstmt.exc">finstmt.exc module<a class="headerlink" href="#module-finstmt.exc" title="Permalink to this heading">¶</a></h2>
 <dl class="py exception">
-<dt id="finstmt.exc.BalanceSheetNotBalancedException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">BalanceSheetNotBalancedException</code><a class="reference internal" href="../_modules/finstmt/exc.html#BalanceSheetNotBalancedException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.BalanceSheetNotBalancedException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.BalanceSheetNotBalancedException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">BalanceSheetNotBalancedException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#BalanceSheetNotBalancedException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.BalanceSheetNotBalancedException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.CouldNotParseException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">CouldNotParseException</code><a class="reference internal" href="../_modules/finstmt/exc.html#CouldNotParseException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.CouldNotParseException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.CouldNotParseException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">CouldNotParseException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#CouldNotParseException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.CouldNotParseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinstmtException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.FinstmtException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">FinstmtException</code><a class="reference internal" href="../_modules/finstmt/exc.html#FinstmtException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.FinstmtException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.FinstmtException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">FinstmtException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#FinstmtException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.FinstmtException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.ForecastException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">ForecastException</code><a class="reference internal" href="../_modules/finstmt/exc.html#ForecastException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.ForecastException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.ForecastException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">ForecastException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#ForecastException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.ForecastException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinstmtException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.ForecastNotFitException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">ForecastNotFitException</code><a class="reference internal" href="../_modules/finstmt/exc.html#ForecastNotFitException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.ForecastNotFitException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.ForecastNotFitException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">ForecastNotFitException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#ForecastNotFitException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.ForecastNotFitException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.ForecastNotPredictedException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">ForecastNotPredictedException</code><a class="reference internal" href="../_modules/finstmt/exc.html#ForecastNotPredictedException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.ForecastNotPredictedException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.ForecastNotPredictedException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">ForecastNotPredictedException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#ForecastNotPredictedException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.ForecastNotPredictedException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.ImproperManualForecastException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">ImproperManualForecastException</code><a class="reference internal" href="../_modules/finstmt/exc.html#ImproperManualForecastException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.ImproperManualForecastException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.ImproperManualForecastException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">ImproperManualForecastException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#ImproperManualForecastException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.ImproperManualForecastException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.InvalidBalanceConfigException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">InvalidBalanceConfigException</code><a class="reference internal" href="../_modules/finstmt/exc.html#InvalidBalanceConfigException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.InvalidBalanceConfigException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.InvalidBalanceConfigException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">InvalidBalanceConfigException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#InvalidBalanceConfigException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.InvalidBalanceConfigException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.InvalidBalancePlugsException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">InvalidBalancePlugsException</code><a class="reference internal" href="../_modules/finstmt/exc.html#InvalidBalancePlugsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.InvalidBalancePlugsException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.InvalidBalancePlugsException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">InvalidBalancePlugsException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#InvalidBalancePlugsException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.InvalidBalancePlugsException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.InvalidForecastEquationException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">InvalidForecastEquationException</code><a class="reference internal" href="../_modules/finstmt/exc.html#InvalidForecastEquationException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.InvalidForecastEquationException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.ForecastException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.InvalidForecastEquationException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">InvalidForecastEquationException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#InvalidForecastEquationException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.InvalidForecastEquationException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.ForecastException" title="finstmt.exc.ForecastException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.MismatchingDatesException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">MismatchingDatesException</code><a class="reference internal" href="../_modules/finstmt/exc.html#MismatchingDatesException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.MismatchingDatesException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.MismatchingDatesException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">MismatchingDatesException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#MismatchingDatesException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.MismatchingDatesException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinstmtException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.MissingDataException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">MissingDataException</code><a class="reference internal" href="../_modules/finstmt/exc.html#MissingDataException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.MissingDataException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.MissingDataException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">MissingDataException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#MissingDataException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.MissingDataException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinstmtException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.MixedFrequencyException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">MixedFrequencyException</code><a class="reference internal" href="../_modules/finstmt/exc.html#MixedFrequencyException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.MixedFrequencyException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.MixedFrequencyException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">MixedFrequencyException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#MixedFrequencyException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.MixedFrequencyException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinstmtException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.NoSuchItemException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">NoSuchItemException</code><a class="reference internal" href="../_modules/finstmt/exc.html#NoSuchItemException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.NoSuchItemException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.NoSuchItemException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">NoSuchItemException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#NoSuchItemException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.NoSuchItemException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinstmtException</span></code></a></p>
 </dd></dl>
-
 <dl class="py exception">
-<dt id="finstmt.exc.NotACalculatedItemException">
-<em class="property">exception </em><code class="sig-prename descclassname">finstmt.exc.</code><code class="sig-name descname">NotACalculatedItemException</code><a class="reference internal" href="../_modules/finstmt/exc.html#NotACalculatedItemException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finstmt.exc.NotACalculatedItemException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">finstmt.exc.FinstmtException</span></code></a></p>
+<dt class="sig sig-object py" id="finstmt.exc.NotACalculatedItemException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.exc.</span></span><span class="sig-name descname"><span class="pre">NotACalculatedItemException</span></span><a class="reference internal" href="../_modules/finstmt/exc.html#NotACalculatedItemException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.exc.NotACalculatedItemException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.exc.FinstmtException" title="finstmt.exc.FinstmtException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinstmtException</span></code></a></p>
 </dd></dl>
+</section>
+<section id="module-finstmt.logger">
+<span id="finstmt-logger-module"></span><h2 id="module-finstmt.logger">finstmt.logger module<a class="headerlink" href="#module-finstmt.logger" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
 
-</div>
-<div class="section" id="module-finstmt.logger">
-<span id="finstmt-logger-module"></span><h2>finstmt.logger module<a class="headerlink" href="#module-finstmt.logger" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
 
-
-           </div>
-           
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="finstmt.bs.html" class="btn btn-neutral float-right" title="finstmt.bs package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="modules.html" class="btn btn-neutral float-left" title="finstmt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2020, Nick DeRobertis
-
-    </p>
-  </div>
-    
-    
-      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
+          </article>
         </div>
       </div>
-
-    </section>
-
+    </main>
   </div>
-  
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
-  
-    
-    <!-- Theme Analytics -->
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-154145306-1', 'auto');
-    ga('send', 'pageview');
-    </script>
-
-    
-   
-
-</body>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="modules.html" title="finstmt"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> finstmt </span>
+              </div>
+            </a>
+          
+          
+            <a href="finstmt.bs.html" title="finstmt.bs package"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> finstmt.bs package </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2023, Nick DeRobertis.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
 </html>
