@@ -3,10 +3,10 @@ import datetime
 import pandas as pd
 
 from finstmt.bs.config import BALANCE_SHEET_INPUT_ITEMS
-from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.config_manage.statement import StatementConfigManager
 from finstmt.config_manage.statements import StatementsConfigManager
+from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
 
 inc_data_config_mgr = DataConfigManager(INCOME_STATEMENT_INPUT_ITEMS)
 inc_stmt_config_mgr = StatementConfigManager(

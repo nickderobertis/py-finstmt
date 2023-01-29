@@ -37,12 +37,12 @@ class StatementConfigManager(ConfigManagerBase):
         """
         Get the config for a given key
         """
-        # When copying the object, config_managers can be undefined and so would cause a 
+        # When copying the object, config_managers can be undefined and so would cause a
         # recursive loop without this check
         if item_key == "config_managers":
             # Trigger the default Python behavior
             return object.__getattribute__(self, item_key)
-        
+
         try:
             return self.get(item_key)
         except NoSuchItemException:
@@ -50,7 +50,6 @@ class StatementConfigManager(ConfigManagerBase):
 
     def __dir__(self) -> List[str]:
         return self.keys
-
 
     def set(self, item_key: str, config: ItemConfig) -> None:
         """

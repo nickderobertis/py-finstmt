@@ -63,9 +63,9 @@ def test_config_load_cat_annual_capiq_no_adjust(
     json_path = EXPECT_CONFIG_PATH / "no-adjust-cat-annual-capiq.json"
     check_config(stmts.config, json_path)
 
+
 def test_config_attribute_access(
-    annual_capiq_income_stmt: IncomeStatements,
-    annual_capiq_bs_stmt: BalanceSheets
+    annual_capiq_income_stmt: IncomeStatements, annual_capiq_bs_stmt: BalanceSheets
 ):
     dates = annual_capiq_income_stmt.dates
     stmts = FinancialStatements(annual_capiq_income_stmt, annual_capiq_bs_stmt[dates])
