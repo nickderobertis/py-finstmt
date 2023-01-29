@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/nickderobertis/py-finstmt/compare/v1.0.0...v1.0.1) (2023-01-29)
+
+
+### Bug Fixes
+
+* Add same config_managers fix in statements ([07c0fb3](https://github.com/nickderobertis/py-finstmt/commit/07c0fb3956d98b5938bde1b0eefdb6a2ff16b22a))
+
 ## 1.0.0 (2023-01-28)
 
 
