@@ -59,7 +59,7 @@
 </script>
   
   
-    <title>Manipulating Statements &#8212; finstmt 1.0.0 documentation</title>
+    <title>Manipulating Statements &#8212; finstmt 1.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -104,7 +104,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="finstmt 1.0.0 documentation"
+        <a href="../index.html" title="finstmt 1.0.1 documentation"
            class="md-header-nav__button md-logo">
           
             <i class="md-icon">&#xe869</i>
@@ -190,7 +190,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 1.0.0 documentation</a></li>
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 1.0.1 documentation</a></li>
           <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">Examples</a></li>
       </ul>
     </div>
@@ -203,13 +203,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="finstmt 1.0.0 documentation" class="md-nav__button md-logo">
+    <a href="../index.html" title="finstmt 1.0.1 documentation" class="md-nav__button md-logo">
       
         <i class="md-icon">&#xe869</i>
       
     </a>
     <a href="../index.html"
-       title="finstmt 1.0.0 documentation">finstmt</a>
+       title="finstmt 1.0.1 documentation">finstmt</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
@@ -412,7 +412,7 @@ Download the Jupyter notebook for the full experience.</p>
 <span class="n">stmts</span> <span class="o">=</span> <span class="n">FinancialStatements</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="n">bs</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>INFO: Was not able to extract data from the following names: {'Other Liabilities', 'Investments', 'Other Assets', 'Net Debt'}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>INFO: Was not able to extract data from the following names: {'Investments', 'Net Debt', 'Other Assets', 'Other Liabilities'}
 /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
   warnings.warn(
 /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
@@ -433,7 +433,7 @@ Download the Jupyter notebook for the full experience.</p>
   warnings.warn(
 /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
   warnings.warn(
-INFO: Was not able to extract data from the following names: {'EBITDA', 'Net Profit Margin', 'EBITDA Margin', 'Dividend per Share', 'Free Cash Flow margin', 'Gross Margin', 'Revenue Growth', 'EPS Diluted', 'EPS', 'Net Income - Non-Controlling int', 'Profit Margin', 'Preferred Dividends', 'Earnings Before Tax Margin', 'EBIT Margin', 'Gross Profit', 'Shares (weighted, diluted)', 'Net Income - Discontinued ops', 'Net Income Com', 'Shares (weighted)', 'Consolidated Income', 'Shares (basic)'}
+INFO: Was not able to extract data from the following names: {'Net Profit Margin', 'Preferred Dividends', 'Shares (weighted, diluted)', 'EBITDA', 'Consolidated Income', 'Gross Profit', 'Profit Margin', 'EPS', 'Net Income - Non-Controlling int', 'EBIT Margin', 'Free Cash Flow margin', 'EPS Diluted', 'Net Income Com', 'Net Income - Discontinued ops', 'Shares (weighted)', 'Earnings Before Tax Margin', 'EBITDA Margin', 'Shares (basic)', 'Gross Margin', 'Dividend per Share', 'Revenue Growth'}
 </pre></div>
 </div>
 </section>
@@ -3717,7 +3717,7 @@ period, such as FCF.</p>
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
   return pd.Series()
 
-100%|##########| 16/16 [00:00&lt;00:00, 466.81it/s]
+100%|##########| 16/16 [00:00&lt;00:00, 483.57it/s]
 INFO: Forecasting Balance Sheet
 
   0%|          | 0/37 [00:00&lt;?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
@@ -3773,7 +3773,7 @@ INFO: Forecasting Balance Sheet
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
   return pd.Series()
 
-100%|##########| 37/37 [00:00&lt;00:00, 567.83it/s]
+100%|##########| 37/37 [00:00&lt;00:00, 572.04it/s]
 INFO: Balancing balance sheet
 INFO: Balanced in 0.0s
 /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
@@ -3790,7 +3790,7 @@ INFO: Balanced in 0.0s
 dtype: float64
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  54.554 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  54.427 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-manipulating-statements-py">
 <div class="binder-badge docutils container">
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/nickderobertis/py-finstmt/gh-pages?urlpath=lab/tree/notebooks/auto_examples/manipulating_statements.ipynb"><img alt="Launch binder" src="../_images/binder_badge_logo.svg" width="150px"/></a>

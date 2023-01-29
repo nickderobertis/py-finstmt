@@ -76,7 +76,7 @@ Load Financial Statements
 
  .. code-block:: none
 
-    INFO: Was not able to extract data from the following names: {'Other Liabilities', 'Investments', 'Other Assets', 'Net Debt'}
+    INFO: Was not able to extract data from the following names: {'Investments', 'Net Debt', 'Other Assets', 'Other Liabilities'}
     /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
@@ -97,7 +97,7 @@ Load Financial Statements
       warnings.warn(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    INFO: Was not able to extract data from the following names: {'EBITDA', 'Net Profit Margin', 'EBITDA Margin', 'Dividend per Share', 'Free Cash Flow margin', 'Gross Margin', 'Revenue Growth', 'EPS Diluted', 'EPS', 'Net Income - Non-Controlling int', 'Profit Margin', 'Preferred Dividends', 'Earnings Before Tax Margin', 'EBIT Margin', 'Gross Profit', 'Shares (weighted, diluted)', 'Net Income - Discontinued ops', 'Net Income Com', 'Shares (weighted)', 'Consolidated Income', 'Shares (basic)'}
+    INFO: Was not able to extract data from the following names: {'Net Profit Margin', 'Preferred Dividends', 'Shares (weighted, diluted)', 'EBITDA', 'Consolidated Income', 'Gross Profit', 'Profit Margin', 'EPS', 'Net Income - Non-Controlling int', 'EBIT Margin', 'Free Cash Flow margin', 'EPS Diluted', 'Net Income Com', 'Net Income - Discontinued ops', 'Shares (weighted)', 'Earnings Before Tax Margin', 'EBITDA Margin', 'Shares (basic)', 'Gross Margin', 'Dividend per Share', 'Revenue Growth'}
 
 
 
@@ -3516,7 +3516,7 @@ period, such as FCF.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 16/16 [00:00<00:00, 466.81it/s]
+    100%|##########| 16/16 [00:00<00:00, 483.57it/s]
     INFO: Forecasting Balance Sheet
       0%|          | 0/37 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
@@ -3570,7 +3570,7 @@ period, such as FCF.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 37/37 [00:00<00:00, 567.83it/s]
+    100%|##########| 37/37 [00:00<00:00, 572.04it/s]
     INFO: Balancing balance sheet
     INFO: Balanced in 0.0s
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
@@ -3591,7 +3591,7 @@ period, such as FCF.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  54.554 seconds)
+   **Total running time of the script:** ( 0 minutes  54.427 seconds)
 
 
 .. _sphx_glr_download_auto_examples_manipulating_statements.py:
