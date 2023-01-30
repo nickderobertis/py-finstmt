@@ -1,11 +1,9 @@
-from finstmt import BalanceSheets, FinancialStatements, IncomeStatements
+from finstmt import FinancialStatements
 
 
-def test_config_attribute_access(
-    annual_capiq_income_stmt: IncomeStatements, annual_capiq_bs_stmt: BalanceSheets
-):
-    dates = annual_capiq_income_stmt.dates
-    stmts = FinancialStatements(annual_capiq_income_stmt, annual_capiq_bs_stmt[dates])
+def test_config_attribute_access(annual_capiq_stmts: FinancialStatements):
+    stmts = annual_capiq_stmts
+
     # Check reading a config value by attribute access
     assert stmts.config.cash.display_name == "Cash and Cash Equivalents"
 
