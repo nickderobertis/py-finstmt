@@ -1,3 +1,3 @@
-import os
+from pathlib import Path
 
-DATA_PATH = os.path.sep.join(["tests", "sources"])
+DATA_PATH = Path(__file__).parent.parent.parent / "sources"
