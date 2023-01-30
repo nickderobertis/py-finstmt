@@ -8,7 +8,8 @@ matplotlib.use("Agg")
 
 from finstmt import FinancialStatements
 from finstmt.exc import BalanceSheetNotBalancedException
-from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
+from tests.config import GENERATED_PATH
+from tests.integration.config import DEVELOPMENT_MODE
 from tests.integration.expectdata.statements.fcst_capiq_cat_annual import (
     FCST_CAPIQ_CAT_A_INDEX_DATA_DICT,
 )

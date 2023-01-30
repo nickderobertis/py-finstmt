@@ -3,8 +3,7 @@ from pathlib import Path
 
 from finstmt import BalanceSheets, FinancialStatements, IncomeStatements
 from finstmt.config_manage.statements import StatementsConfigManager
-from tests.conftest import DEVELOPMENT_MODE
-from tests.integration.config import EXPECT_CONFIG_PATH
+from tests.integration.config import DEVELOPMENT_MODE, EXPECT_CONFIG_PATH
 
 
 def check_config(config: StatementsConfigManager, json_path: Path):

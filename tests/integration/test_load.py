@@ -5,8 +5,7 @@ import pandas as pd
 from pandas.testing import assert_series_equal
 
 from finstmt import FinancialStatements
-from tests.conftest import DEVELOPMENT_MODE
-from tests.integration.config import EXPECT_STATEMENTS_PATH
+from tests.integration.config import DEVELOPMENT_MODE, EXPECT_STATEMENTS_PATH
 
 # Imported for test development purposes
 from tests.integration.expectdata.statements.load_capiq_cat_annual import (
