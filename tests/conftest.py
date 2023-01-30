@@ -1,14 +1,4 @@
-import os
-from pathlib import Path
-
+from tests.config import GENERATED_PATH
 from tests.fixtures import *  # noqa: F401, F403
 
-DEVELOPMENT_MODE: bool = False
-
-GENERATED_PATH = os.path.sep.join(["tests", "generated"])
-EXPECT_DATA_PATH = Path(__file__).parent / "expectdata"
-EXPECT_CONFIG_PATH = EXPECT_DATA_PATH / "config"
-EXPECT_STATEMENTS_PATH = EXPECT_DATA_PATH / "statements"
-
-if not os.path.exists(GENERATED_PATH):
-    os.makedirs(GENERATED_PATH)
+GENERATED_PATH.mkdir(parents=True, exist_ok=True)

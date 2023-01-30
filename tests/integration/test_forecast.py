@@ -1,5 +1,4 @@
 import os
-import unittest
 from typing import Dict, Optional, Sequence
 
 import matplotlib
@@ -8,33 +7,34 @@ import pandas as pd
 matplotlib.use("Agg")
 
 from finstmt import FinancialStatements
-from finstmt.exc import BalanceSheetNotBalancedException, MismatchingDatesException
-from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
-from tests.expectdata.statements.fcst_capiq_cat_annual import (
+from finstmt.exc import BalanceSheetNotBalancedException
+from tests.config import GENERATED_PATH
+from tests.integration.config import GENERATE_TEST_DATA
+from tests.integration.expectdata.statements.fcst_capiq_cat_annual import (
     FCST_CAPIQ_CAT_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_capiq_cat_quarterly import (
+from tests.integration.expectdata.statements.fcst_capiq_cat_quarterly import (
     FCST_CAPIQ_CAT_Q_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_cat_annual import (
+from tests.integration.expectdata.statements.fcst_stockrow_cat_annual import (
     FCST_STOCKROW_CAT_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_cat_no_balance_annual import (
+from tests.integration.expectdata.statements.fcst_stockrow_cat_no_balance_annual import (
     FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_cat_plug_make_forecast_annual import (
+from tests.integration.expectdata.statements.fcst_stockrow_cat_plug_make_forecast_annual import (
     FCST_STOCKROW_CAT_PLUG_MAKE_FORECAST_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_cat_quarterly import (
+from tests.integration.expectdata.statements.fcst_stockrow_cat_quarterly import (
     FCST_STOCKROW_CAT_Q_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_mar_annual import (
+from tests.integration.expectdata.statements.fcst_stockrow_mar_annual import (
     FCST_STOCKROW_MAR_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_mar_quarterly import (
+from tests.integration.expectdata.statements.fcst_stockrow_mar_quarterly import (
     FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT,
 )
-from tests.test_load import LoadTest
+from tests.integration.test_load import LoadTest
 
 FORECAST_KWARGS = dict(periods=2)
 
@@ -65,7 +65,7 @@ class ForecastTest(LoadTest):
         fcst_kwargs.update(kwargs)
         adjust_forecast_methods(stmts, self.a_adjust_dict)
         fcst = stmts.forecast(**fcst_kwargs)
-        if DEVELOPMENT_MODE:
+        if GENERATE_TEST_DATA:
             fig = fcst.plot()
             out_path = os.path.join(GENERATED_PATH, f"{name}_annual.pdf")
             fig.savefig(out_path)
@@ -85,7 +85,7 @@ class ForecastTest(LoadTest):
         fcst_kwargs.update(kwargs)
         adjust_forecast_methods(stmts, self.q_adjust_dict)
         fcst = stmts.forecast(**fcst_kwargs)
-        if DEVELOPMENT_MODE:
+        if GENERATE_TEST_DATA:
             fig = fcst.plot()
             out_path = os.path.join(GENERATED_PATH, f"{name}_quarterly.pdf")
             fig.savefig(out_path)
