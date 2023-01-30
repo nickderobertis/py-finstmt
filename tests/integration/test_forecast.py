@@ -1,5 +1,4 @@
 import os
-import unittest
 from typing import Dict, Optional, Sequence
 
 import matplotlib
@@ -8,33 +7,33 @@ import pandas as pd
 matplotlib.use("Agg")
 
 from finstmt import FinancialStatements
-from finstmt.exc import BalanceSheetNotBalancedException, MismatchingDatesException
+from finstmt.exc import BalanceSheetNotBalancedException
 from tests.conftest import DEVELOPMENT_MODE, GENERATED_PATH
-from tests.expectdata.statements.fcst_capiq_cat_annual import (
+from tests.integration.expectdata.statements.fcst_capiq_cat_annual import (
     FCST_CAPIQ_CAT_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_capiq_cat_quarterly import (
+from tests.integration.expectdata.statements.fcst_capiq_cat_quarterly import (
     FCST_CAPIQ_CAT_Q_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_cat_annual import (
+from tests.integration.expectdata.statements.fcst_stockrow_cat_annual import (
     FCST_STOCKROW_CAT_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_cat_no_balance_annual import (
+from tests.integration.expectdata.statements.fcst_stockrow_cat_no_balance_annual import (
     FCST_STOCKROW_CAT_NO_BALANCE_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_cat_plug_make_forecast_annual import (
+from tests.integration.expectdata.statements.fcst_stockrow_cat_plug_make_forecast_annual import (
     FCST_STOCKROW_CAT_PLUG_MAKE_FORECAST_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_cat_quarterly import (
+from tests.integration.expectdata.statements.fcst_stockrow_cat_quarterly import (
     FCST_STOCKROW_CAT_Q_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_mar_annual import (
+from tests.integration.expectdata.statements.fcst_stockrow_mar_annual import (
     FCST_STOCKROW_MAR_A_INDEX_DATA_DICT,
 )
-from tests.expectdata.statements.fcst_stockrow_mar_quarterly import (
+from tests.integration.expectdata.statements.fcst_stockrow_mar_quarterly import (
     FCST_STOCKROW_MAR_Q_INDEX_DATA_DICT,
 )
-from tests.test_load import LoadTest
+from tests.integration.test_load import LoadTest
 
 FORECAST_KWARGS = dict(periods=2)
 

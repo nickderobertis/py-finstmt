@@ -5,15 +5,16 @@ import pandas as pd
 from pandas.testing import assert_series_equal
 
 from finstmt import FinancialStatements
-from tests.conftest import DEVELOPMENT_MODE, EXPECT_STATEMENTS_PATH, GENERATED_PATH
+from tests.conftest import DEVELOPMENT_MODE
+from tests.integration.config import EXPECT_STATEMENTS_PATH
 
 # Imported for test development purposes
-from tests.expectdata.statements.load_capiq_cat_annual import (
+from tests.integration.expectdata.statements.load_capiq_cat_annual import (
     LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT,
 )
 
 if DEVELOPMENT_MODE:
-    from tests.utils.gen.data_load import (
+    from tests.integration.utils.gen.data_load import (
         get_keys_for_bs_data_items,
         get_keys_for_inc_data_items,
         print_test_data_def,
