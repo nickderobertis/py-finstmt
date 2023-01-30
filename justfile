@@ -106,3 +106,7 @@ inspect-build:
     @unzip -l dist/*.whl
     @echo "Contents of wheel:"
     @tar -tvf dist/*.tar.gz
+
+update-test-data:
+    FINSTMT_GENERATE_TEST_DATA=true {{run-test}} pytest tests/integration
+    just format

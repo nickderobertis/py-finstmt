@@ -9,7 +9,7 @@ matplotlib.use("Agg")
 from finstmt import FinancialStatements
 from finstmt.exc import BalanceSheetNotBalancedException
 from tests.config import GENERATED_PATH
-from tests.integration.config import DEVELOPMENT_MODE
+from tests.integration.config import GENERATE_TEST_DATA
 from tests.integration.expectdata.statements.fcst_capiq_cat_annual import (
     FCST_CAPIQ_CAT_A_INDEX_DATA_DICT,
 )
@@ -65,7 +65,7 @@ class ForecastTest(LoadTest):
         fcst_kwargs.update(kwargs)
         adjust_forecast_methods(stmts, self.a_adjust_dict)
         fcst = stmts.forecast(**fcst_kwargs)
-        if DEVELOPMENT_MODE:
+        if GENERATE_TEST_DATA:
             fig = fcst.plot()
             out_path = os.path.join(GENERATED_PATH, f"{name}_annual.pdf")
             fig.savefig(out_path)
@@ -85,7 +85,7 @@ class ForecastTest(LoadTest):
         fcst_kwargs.update(kwargs)
         adjust_forecast_methods(stmts, self.q_adjust_dict)
         fcst = stmts.forecast(**fcst_kwargs)
-        if DEVELOPMENT_MODE:
+        if GENERATE_TEST_DATA:
             fig = fcst.plot()
             out_path = os.path.join(GENERATED_PATH, f"{name}_quarterly.pdf")
             fig.savefig(out_path)

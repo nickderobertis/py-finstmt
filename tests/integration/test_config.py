@@ -3,11 +3,11 @@ from pathlib import Path
 
 from finstmt import BalanceSheets, FinancialStatements, IncomeStatements
 from finstmt.config_manage.statements import StatementsConfigManager
-from tests.integration.config import DEVELOPMENT_MODE, EXPECT_CONFIG_PATH
+from tests.integration.config import EXPECT_CONFIG_PATH, GENERATE_TEST_DATA
 
 
 def check_config(config: StatementsConfigManager, json_path: Path):
-    if DEVELOPMENT_MODE:
+    if GENERATE_TEST_DATA:
         json_data = config.json(indent=2)
         json_path.write_text(json_data)
         return

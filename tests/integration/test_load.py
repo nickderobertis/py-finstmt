@@ -5,14 +5,14 @@ import pandas as pd
 from pandas.testing import assert_series_equal
 
 from finstmt import FinancialStatements
-from tests.integration.config import DEVELOPMENT_MODE, EXPECT_STATEMENTS_PATH
+from tests.integration.config import EXPECT_STATEMENTS_PATH, GENERATE_TEST_DATA
 
 # Imported for test development purposes
 from tests.integration.expectdata.statements.load_capiq_cat_annual import (
     LOAD_CAPIQ_CAT_A_INDEX_DATA_DICT,
 )
 
-if DEVELOPMENT_MODE:
+if GENERATE_TEST_DATA:
     from tests.integration.utils.gen.data_load import (
         get_keys_for_bs_data_items,
         get_keys_for_inc_data_items,
@@ -54,7 +54,7 @@ class LoadTest:
             data = self.a_test_data_dict
         if name is None:
             name = self.name
-        if DEVELOPMENT_MODE:
+        if GENERATE_TEST_DATA:
             out_path = os.path.join(EXPECT_STATEMENTS_PATH, f"{name}_annual.py")
             with open(out_path, "w") as f:
                 f.write("import pandas as pd\n\n")
@@ -81,7 +81,7 @@ class LoadTest:
             data = self.q_test_data_dict
         if name is None:
             name = self.name
-        if DEVELOPMENT_MODE:
+        if GENERATE_TEST_DATA:
             out_path = os.path.join(EXPECT_STATEMENTS_PATH, f"{name}_quarterly.py")
             with open(out_path, "w") as f:
                 f.write("import pandas as pd\n\n")
