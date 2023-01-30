@@ -107,6 +107,6 @@ inspect-build:
     @echo "Contents of wheel:"
     @tar -tvf dist/*.tar.gz
 
-update-test-data:
+update-test-snapshots:
     FINSTMT_GENERATE_TEST_DATA=true {{run-test}} pytest tests/integration
     just format
