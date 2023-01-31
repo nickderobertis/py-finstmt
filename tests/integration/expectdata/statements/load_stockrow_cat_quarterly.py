@@ -90,6 +90,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             12758000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Revenue",
     ),
     cogs=pd.Series(
         [
@@ -135,6 +136,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             8758000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Cost of Goods Sold",
     ),
     gross_profit=pd.Series(
         [
@@ -180,6 +182,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             4000000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Gross Profit",
     ),
     rd_exp=pd.Series(
         [
@@ -225,6 +228,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             431000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="R&D Expense",
     ),
     sga=pd.Series(
         [
@@ -270,6 +274,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             1251000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="SG&A Expense",
     ),
     dep_exp=pd.Series(
         [
@@ -315,6 +320,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Depreciation & Amortization Expense",
     ),
     other_op_exp=pd.Series(
         [
@@ -360,6 +366,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Other Operating Expenses",
     ),
     op_exp=pd.Series(
         [
@@ -405,6 +412,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             1980000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Operating Expense",
     ),
     ebit=pd.Series(
         [
@@ -450,6 +458,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             2115000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Earnings Before Interest and Taxes",
     ),
     int_exp=pd.Series(
         [
@@ -495,6 +504,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             103000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Interest Expense",
     ),
     gain_on_sale_invest=pd.Series(
         [
@@ -540,6 +550,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Gain on Sale of Investments",
     ),
     gain_on_sale_asset=pd.Series(
         [
@@ -585,6 +596,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Gain on Sale of Assets",
     ),
     impairment=pd.Series(
         [
@@ -630,6 +642,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Impairment Expense",
     ),
     ebt=pd.Series(
         [
@@ -675,6 +688,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             2012000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Earnings Before Tax",
     ),
     tax_exp=pd.Series(
         [
@@ -720,6 +734,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             518000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Income Tax Expense",
     ),
     net_income=pd.Series(
         [
@@ -765,6 +780,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             1494000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Net Income",
     ),
     cash=pd.Series(
         [
@@ -810,6 +826,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             7906000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Cash and Cash Equivalents",
     ),
     st_invest=pd.Series(
         [
@@ -855,6 +872,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Short-Term Investments",
     ),
     cash_and_st_invest=pd.Series(
         [
@@ -900,6 +918,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             7906000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Cash and Short-Term Investments",
     ),
     receivables=pd.Series(
         [
@@ -945,6 +964,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             31072000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Receivables",
     ),
     inventory=pd.Series(
         [
@@ -990,6 +1010,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             12180000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Inventory",
     ),
     def_tax_st=pd.Series(
         [
@@ -1035,6 +1056,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Deferred Tax Assets, Current",
     ),
     other_current_assets=pd.Series(
         [
@@ -1080,6 +1102,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Other Current Assets",
     ),
     total_current_assets=pd.Series(
         [
@@ -1125,6 +1148,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             39160000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Total Current Assets",
     ),
     gross_ppe=pd.Series(
         [
@@ -1170,6 +1194,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Gross Property, Plant & Equipment",
     ),
     dep=pd.Series(
         [
@@ -1215,6 +1240,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Accumulated Depreciation",
     ),
     net_ppe=pd.Series(
         [
@@ -1260,6 +1286,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             12842000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Net Property, Plant & Equipment",
     ),
     goodwill=pd.Series(
         [
@@ -1305,6 +1332,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             7772000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Goodwill and Intangible Assets",
     ),
     lt_invest=pd.Series(
         [
@@ -1350,6 +1378,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Long-Term Investments",
     ),
     def_tax_lt=pd.Series(
         [
@@ -1395,6 +1424,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             1372000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Deferred Tax Assets, Long-Term",
     ),
     other_lt_assets=pd.Series(
         [
@@ -1440,6 +1470,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Other Long-Term Assets",
     ),
     total_non_current_assets=pd.Series(
         [
@@ -1485,6 +1516,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             38833000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Total Non-Current Assets",
     ),
     total_assets=pd.Series(
         [
@@ -1530,6 +1562,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             77993000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Total Assets",
     ),
     payables=pd.Series(
         [
@@ -1575,6 +1608,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             6141000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Payables",
     ),
     st_debt=pd.Series(
         [
@@ -1620,6 +1654,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             12318000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Short-Term Debt",
     ),
     current_lt_debt=pd.Series(
         [
@@ -1665,6 +1700,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Current Portion of Long-Term Debt",
     ),
     tax_liab_st=pd.Series(
         [
@@ -1710,6 +1746,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Tax Liabilities, Short-Term",
     ),
     other_current_liab=pd.Series(
         [
@@ -1755,6 +1792,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Other Current Liabilities",
     ),
     total_current_liab=pd.Series(
         [
@@ -1800,6 +1838,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             27201000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Total Current Liabilities",
     ),
     lt_debt=pd.Series(
         [
@@ -1845,6 +1884,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             25588000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Long-Term Debt",
     ),
     total_debt=pd.Series(
         [
@@ -1890,6 +1930,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             37906000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Total Debt",
     ),
     deferred_rev=pd.Series(
         [
@@ -1935,6 +1976,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Deferred Revenue",
     ),
     tax_liab_lt=pd.Series(
         [
@@ -1980,6 +2022,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Tax Liabilities, Long-Term",
     ),
     deposit_liab=pd.Series(
         [
@@ -2025,6 +2068,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             1309000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Deposit Liabilities",
     ),
     other_lt_liab=pd.Series(
         [
@@ -2070,6 +2114,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Other Long-Term Liabilities",
     ),
     total_non_current_liab=pd.Series(
         [
@@ -2115,6 +2160,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             35799000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Total Non-Current Liabilities",
     ),
     total_liab=pd.Series(
         [
@@ -2160,6 +2206,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             63000000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Total Liabilities",
     ),
     common_stock=pd.Series(
         [
@@ -2205,6 +2252,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Common Stock",
     ),
     other_income=pd.Series(
         [
@@ -2250,6 +2298,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             -1783000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Other Comprehensive Income",
     ),
     retained_earnings=pd.Series(
         [
@@ -2295,6 +2344,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             34477000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Retained Earnings",
     ),
     minority_interest=pd.Series(
         [
@@ -2340,6 +2390,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Minority Interest",
     ),
     total_equity=pd.Series(
         [
@@ -2385,6 +2436,7 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             14993000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Total Stockholder's Equity",
     ),
     total_liab_and_equity=pd.Series(
         [
@@ -2430,5 +2482,6 @@ LOAD_STOCKROW_CAT_Q_INDEX_DATA_DICT = dict(
             77993000000.0,
         ],
         index=LOAD_STOCKROW_CAT_Q_INDEX,
+        name="Total Liabilities and Equity",
     ),
 )

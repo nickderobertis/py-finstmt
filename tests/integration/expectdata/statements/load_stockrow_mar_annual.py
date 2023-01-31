@@ -30,6 +30,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             20758000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Revenue",
     ),
     cogs=pd.Series(
         [
@@ -45,6 +46,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             17084000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Cost of Goods Sold",
     ),
     gross_profit=pd.Series(
         [
@@ -60,10 +62,12 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             3674000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Gross Profit",
     ),
     rd_exp=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="R&D Expense",
     ),
     sga=pd.Series(
         [
@@ -79,14 +83,17 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             927000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="SG&A Expense",
     ),
     dep_exp=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Depreciation & Amortization Expense",
     ),
     other_op_exp=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Other Operating Expenses",
     ),
     op_exp=pd.Series(
         [
@@ -102,6 +109,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             927000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Operating Expense",
     ),
     ebit=pd.Series(
         [
@@ -117,22 +125,27 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             2366000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Earnings Before Interest and Taxes",
     ),
     int_exp=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Interest Expense",
     ),
     gain_on_sale_invest=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Gain on Sale of Investments",
     ),
     gain_on_sale_asset=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Gain on Sale of Assets",
     ),
     impairment=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Impairment Expense",
     ),
     ebt=pd.Series(
         [
@@ -148,6 +161,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             2345000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Earnings Before Tax",
     ),
     tax_exp=pd.Series(
         [
@@ -163,6 +177,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             438000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Income Tax Expense",
     ),
     net_income=pd.Series(
         [
@@ -178,14 +193,17 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             1907000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Net Income",
     ),
     cash=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Cash and Cash Equivalents",
     ),
     st_invest=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Short-Term Investments",
     ),
     cash_and_st_invest=pd.Series(
         [
@@ -201,6 +219,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             316000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Cash and Short-Term Investments",
     ),
     receivables=pd.Series(
         [
@@ -216,14 +235,17 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             2133000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Receivables",
     ),
     inventory=pd.Series(
         [1444000000.0, 1489000000.0, 11000000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Inventory",
     ),
     def_tax_st=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Deferred Tax Assets, Current",
     ),
     other_current_assets=pd.Series(
         [
@@ -239,6 +261,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Other Current Assets",
     ),
     total_current_assets=pd.Series(
         [
@@ -254,14 +277,17 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             2706000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Total Current Assets",
     ),
     gross_ppe=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Gross Property, Plant & Equipment",
     ),
     dep=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Accumulated Depreciation",
     ),
     net_ppe=pd.Series(
         [
@@ -277,6 +303,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             1956000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Net Property, Plant & Equipment",
     ),
     goodwill=pd.Series(
         [
@@ -292,6 +319,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             17419000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Goodwill and Intangible Assets",
     ),
     lt_invest=pd.Series(
         [
@@ -307,6 +335,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             732000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Long-Term Investments",
     ),
     def_tax_lt=pd.Series(
         [
@@ -322,6 +351,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             171000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Deferred Tax Assets, Long-Term",
     ),
     other_lt_assets=pd.Series(
         [
@@ -337,6 +367,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             587000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Other Long-Term Assets",
     ),
     total_non_current_assets=pd.Series(
         [
@@ -352,6 +383,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             20990000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Total Non-Current Assets",
     ),
     total_assets=pd.Series(
         [
@@ -367,6 +399,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             23696000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Total Assets",
     ),
     payables=pd.Series(
         [
@@ -382,10 +415,12 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Payables",
     ),
     st_debt=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Short-Term Debt",
     ),
     current_lt_debt=pd.Series(
         [
@@ -401,10 +436,12 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             833000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Current Portion of Long-Term Debt",
     ),
     tax_liab_st=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Tax Liabilities, Short-Term",
     ),
     other_current_liab=pd.Series(
         [
@@ -420,6 +457,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             2529000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Other Current Liabilities",
     ),
     total_current_liab=pd.Series(
         [
@@ -435,6 +473,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             6437000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Total Current Liabilities",
     ),
     lt_debt=pd.Series(
         [
@@ -450,6 +489,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             8514000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Long-Term Debt",
     ),
     total_debt=pd.Series(
         [
@@ -465,10 +505,12 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             8514000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Total Debt",
     ),
     deferred_rev=pd.Series(
         [583000000.0, 731000000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Deferred Revenue",
     ),
     tax_liab_lt=pd.Series(
         [
@@ -484,10 +526,12 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Tax Liabilities, Long-Term",
     ),
     deposit_liab=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Deposit Liabilities",
     ),
     other_lt_liab=pd.Series(
         [
@@ -503,6 +547,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             5304000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Other Long-Term Liabilities",
     ),
     total_non_current_liab=pd.Series(
         [
@@ -518,6 +563,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             15034000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Total Non-Current Liabilities",
     ),
     total_liab=pd.Series(
         [
@@ -533,6 +579,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             21471000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Total Liabilities",
     ),
     common_stock=pd.Series(
         [
@@ -548,10 +595,12 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             5000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Common Stock",
     ),
     other_income=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Other Comprehensive Income",
     ),
     retained_earnings=pd.Series(
         [
@@ -567,10 +616,12 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             8982000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Retained Earnings",
     ),
     minority_interest=pd.Series(
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Minority Interest",
     ),
     total_equity=pd.Series(
         [
@@ -586,6 +637,7 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             2225000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Total Stockholder's Equity",
     ),
     total_liab_and_equity=pd.Series(
         [
@@ -601,5 +653,6 @@ LOAD_STOCKROW_MAR_A_INDEX_DATA_DICT = dict(
             23696000000.0,
         ],
         index=LOAD_STOCKROW_MAR_A_INDEX,
+        name="Total Liabilities and Equity",
     ),
 )

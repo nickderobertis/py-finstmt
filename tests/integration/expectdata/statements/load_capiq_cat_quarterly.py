@@ -70,6 +70,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             12758.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Revenue",
     ),
     cogs=pd.Series(
         [
@@ -106,6 +107,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             8569.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Cost of Goods Sold",
     ),
     gross_profit=pd.Series(
         [
@@ -142,6 +144,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             4189.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Gross Profit",
     ),
     rd_exp=pd.Series(
         [
@@ -178,6 +181,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             431.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="R&D Expense",
     ),
     sga=pd.Series(
         [
@@ -214,6 +218,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             1064.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="SG&A Expense",
     ),
     dep_exp=pd.Series(
         [
@@ -250,6 +255,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Depreciation & Amortization Expense",
     ),
     other_op_exp=pd.Series(
         [
@@ -286,6 +292,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             33.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Other Operating Expenses",
     ),
     op_exp=pd.Series(
         [
@@ -322,6 +329,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             1528.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Operating Expense",
     ),
     ebit=pd.Series(
         [
@@ -358,6 +366,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             2063.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Earnings Before Interest and Taxes",
     ),
     int_exp=pd.Series(
         [
@@ -394,6 +403,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             103.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Interest Expense",
     ),
     gain_on_sale_invest=pd.Series(
         [
@@ -430,6 +440,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             2.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Gain on Sale of Investments",
     ),
     gain_on_sale_asset=pd.Series(
         [
@@ -466,6 +477,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Gain on Sale of Assets",
     ),
     impairment=pd.Series(
         [
@@ -502,6 +514,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Impairment Expense",
     ),
     ebt=pd.Series(
         [
@@ -538,6 +551,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             2012.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Earnings Before Tax",
     ),
     tax_exp=pd.Series(
         [
@@ -574,6 +588,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             518.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Income Tax Expense",
     ),
     net_income=pd.Series(
         [
@@ -610,6 +625,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             1494.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Net Income",
     ),
     cash=pd.Series(
         [
@@ -646,6 +662,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             6380.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Cash and Cash Equivalents",
     ),
     st_invest=pd.Series(
         [
@@ -682,6 +699,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Short-Term Investments",
     ),
     cash_and_st_invest=pd.Series(
         [
@@ -718,6 +736,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             6380.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Cash and Short-Term Investments",
     ),
     receivables=pd.Series(
         [
@@ -754,6 +773,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             8167.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Receivables",
     ),
     inventory=pd.Series(
         [
@@ -790,6 +810,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             12180.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Inventory",
     ),
     def_tax_st=pd.Series(
         [
@@ -826,6 +847,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Deferred Tax Assets, Current",
     ),
     other_current_assets=pd.Series(
         [
@@ -862,6 +884,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             27.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Other Current Assets",
     ),
     total_current_assets=pd.Series(
         [
@@ -898,6 +921,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             39160.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Total Current Assets",
     ),
     gross_ppe=pd.Series(
         [
@@ -934,6 +958,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Gross Property, Plant & Equipment",
     ),
     dep=pd.Series(
         [
@@ -970,6 +995,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Accumulated Depreciation",
     ),
     net_ppe=pd.Series(
         [
@@ -1006,6 +1032,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             9131.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Net Property, Plant & Equipment",
     ),
     goodwill=pd.Series(
         [
@@ -1042,6 +1069,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             6142.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Goodwill and Intangible Assets",
     ),
     lt_invest=pd.Series(
         [
@@ -1078,6 +1106,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             1328.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Long-Term Investments",
     ),
     def_tax_lt=pd.Series(
         [
@@ -1114,6 +1143,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             1254.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Deferred Tax Assets, Long-Term",
     ),
     other_lt_assets=pd.Series(
         [
@@ -1150,6 +1180,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             1400.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Other Long-Term Assets",
     ),
     total_non_current_assets=pd.Series(
         [
@@ -1186,6 +1217,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             19255.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Total Non-Current Assets",
     ),
     total_assets=pd.Series(
         [
@@ -1222,6 +1254,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             77993.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Total Assets",
     ),
     payables=pd.Series(
         [
@@ -1258,6 +1291,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             6141.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Payables",
     ),
     st_debt=pd.Series(
         [
@@ -1294,6 +1328,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Short-Term Debt",
     ),
     current_lt_debt=pd.Series(
         [
@@ -1330,6 +1365,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             25.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Current Portion of Long-Term Debt",
     ),
     tax_liab_st=pd.Series(
         [
@@ -1366,6 +1402,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Tax Liabilities, Short-Term",
     ),
     other_current_liab=pd.Series(
         [
@@ -1402,6 +1439,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             3364.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Other Current Liabilities",
     ),
     total_current_liab=pd.Series(
         [
@@ -1438,6 +1476,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             27201.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Total Current Liabilities",
     ),
     lt_debt=pd.Series(
         [
@@ -1474,6 +1513,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             9134.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Long-Term Debt",
     ),
     total_debt=pd.Series(
         [
@@ -1510,6 +1550,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             38607.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Total Debt",
     ),
     deferred_rev=pd.Series(
         [
@@ -1546,6 +1587,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Deferred Revenue",
     ),
     tax_liab_lt=pd.Series(
         [
@@ -1582,6 +1624,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Tax Liabilities, Long-Term",
     ),
     deposit_liab=pd.Series(
         [
@@ -1618,6 +1661,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             0.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Deposit Liabilities",
     ),
     other_lt_liab=pd.Series(
         [
@@ -1654,6 +1698,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             3330.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Other Long-Term Liabilities",
     ),
     total_non_current_liab=pd.Series(
         [
@@ -1690,6 +1735,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             12464.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Total Non-Current Liabilities",
     ),
     total_liab=pd.Series(
         [
@@ -1726,6 +1772,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             63000.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Total Liabilities",
     ),
     common_stock=pd.Series(
         [
@@ -1762,6 +1809,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             5951.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Common Stock",
     ),
     other_income=pd.Series(
         [
@@ -1798,6 +1846,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             -1783.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Other Comprehensive Income",
     ),
     retained_earnings=pd.Series(
         [
@@ -1834,6 +1883,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             34477.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Retained Earnings",
     ),
     minority_interest=pd.Series(
         [
@@ -1870,6 +1920,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             41.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Minority Interest",
     ),
     total_equity=pd.Series(
         [
@@ -1906,6 +1957,7 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             14993.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Total Stockholder's Equity",
     ),
     total_liab_and_equity=pd.Series(
         [
@@ -1942,5 +1994,6 @@ LOAD_CAPIQ_CAT_Q_INDEX_DATA_DICT = dict(
             77993.0,
         ],
         index=LOAD_CAPIQ_CAT_Q_INDEX,
+        name="Total Liabilities and Equity",
     ),
 )
