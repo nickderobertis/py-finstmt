@@ -99,6 +99,17 @@ poetry-all +ARGS:
         just poetry $command $target $args
     done
 
+sync *TARGET:
+    #!/usr/bin/env bash
+    # Handle specific target sync
+    if [ ! -z "{{TARGET}}" ]; then
+        just poetry install {{TARGET}} --all-extras --sync
+        exit 0;
+    fi
+
+    # Sync all
+    just poetry-all install --all-extras --sync
+
 inspect-build:
     rm -rf dist
     poetry build
