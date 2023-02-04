@@ -193,6 +193,16 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         expr_str="gross_profit[t] - op_exp[t]",
     ),
     ItemConfig(
+        "ebitda",
+        "Earnings Before Interest, Taxes, Depreciation and Amortization",
+        extract_names=[
+            "ebitda"
+        ],
+        force_positive=False,
+        forecast_config=ForecastItemConfig(make_forecast=False),
+        expr_str="ebit[t] + dep_exp[t]",
+    ),
+    ItemConfig(
         "int_exp",
         "Interest Expense",
         extract_names=[
