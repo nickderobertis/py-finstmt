@@ -194,9 +194,9 @@ INCOME_STATEMENT_INPUT_ITEMS = [
     ),
     ItemConfig(
         "ebitda",
-        "Earnings Before Interest, Taxes, Depreciation and Amortization",
+        "EBITDA",
         extract_names=[
-            "ebitda"
+            "z_ebitda"
         ],
         force_positive=False,
         forecast_config=ForecastItemConfig(make_forecast=False),

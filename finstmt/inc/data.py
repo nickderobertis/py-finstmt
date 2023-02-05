@@ -21,6 +21,7 @@ class IncomeStatementData(FinDataBase):
 
     op_exp: Optional[float] = None
     ebit: Optional[float] = None
+    # ebitda: Optional[float] = None
     ebt: Optional[float] = None
     net_income: Optional[float] = None
 
@@ -31,6 +32,12 @@ class IncomeStatementData(FinDataBase):
         if self.revenue is None or self.cogs is None:
             return None
         return self.revenue - self.cogs
+
+    @property
+    def ebitda(self) -> Optional[float]:
+        if self.ebit is None or self.dep_exp is None:
+            return None
+        return self.ebit + self.dep_exp
 
     @property
     def effective_tax_rate(self) -> float:
