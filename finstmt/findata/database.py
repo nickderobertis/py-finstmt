@@ -74,7 +74,7 @@ class FinDataBase:
                     if item_config.key in data_dict:
                         # Multiple matches for data item.
                         # First see if data is the same, then just skip
-                        if for_lookup[name] == data_dict[item_config.key]:
+                        if (for_lookup[name] == data_dict[item_config.key]).all():
                             continue
                         # Data is not the same, so take the one which is earliest in extract_names
                         current_match_idx = item_config.extract_names.index(name)
