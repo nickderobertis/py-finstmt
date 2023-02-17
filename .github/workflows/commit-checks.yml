@@ -1,5 +1,5 @@
 name: Run PR lint/format checks and tests
-on: [pull_request]
+on: [push]
 
 jobs:
   test:
