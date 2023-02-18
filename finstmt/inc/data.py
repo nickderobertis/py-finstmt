@@ -21,7 +21,6 @@ class IncomeStatementData(FinDataBase):
 
     op_exp: Optional[float] = None
     ebit: Optional[float] = None
-    # ebitda: Optional[float] = None
     ebt: Optional[float] = None
     net_income: Optional[float] = None
 
