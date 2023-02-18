@@ -69,38 +69,40 @@ class FinDataBase:
                 if item_config.extract_names is None:
                     # Not an extractable item, must be a calculated item
                     continue
-                if name in item_config.extract_names:
-                    # Got a match for series name to allowed names
-                    if item_config.key in data_dict:
-                        # Multiple matches for data item.
-                        # First see if data is the same, then just skip
-                        if (for_lookup[name] == data_dict[item_config.key]).all():
-                            continue
-                        # Data is not the same, so take the one which is earliest in extract_names
-                        current_match_idx = item_config.extract_names.index(name)
-                        existing_match_idx = item_config.extract_names.index(
-                            extracted_name_dict[item_config.key]
+                if name not in item_config.extract_names:
+                    # No match for series name to allowed names
+                    continue
+                # Got a match for series name to allowed names
+                if item_config.key in data_dict:
+                    # Multiple matches for data item.
+                    # First see if data is the same, then just skip
+                    if (for_lookup[name] == data_dict[item_config.key]).all():
+                        continue
+                    # Data is not the same, so take the one which is earliest in extract_names
+                    current_match_idx = item_config.extract_names.index(name)
+                    existing_match_idx = item_config.extract_names.index(
+                        extracted_name_dict[item_config.key]
+                    )
+                    current_match_is_preferred = (
+                        current_match_idx < existing_match_idx
+                    )
+                    if current_match_is_preferred:
+                        warnings.warn(
+                            f"Previously had {item_config.key} "
+                            f'extracted from "{original_name_dict[item_config.key]}". Replacing with '
+                            f'value from "{orig_name}"'
                         )
-                        current_match_is_preferred = (
-                            current_match_idx < existing_match_idx
+                    else:
+                        warnings.warn(
+                            f'Found {item_config.key} from "{orig_name}" but already '
+                            f"had extracted from "
+                            f'"{original_name_dict[item_config.key]}" which has higher priority, '
+                            f'keeping value from "{original_name_dict[item_config.key]}"'
                         )
-                        if current_match_is_preferred:
-                            warnings.warn(
-                                f"Previously had {item_config.key} "
-                                f'extracted from "{original_name_dict[item_config.key]}". Replacing with '
-                                f'value from "{orig_name}"'
-                            )
-                        else:
-                            warnings.warn(
-                                f'Found {item_config.key} from "{orig_name}" but already '
-                                f"had extracted from "
-                                f'"{original_name_dict[item_config.key]}" which has higher priority, '
-                                f'keeping value from "{original_name_dict[item_config.key]}"'
-                            )
-                            continue
-                    data_dict[item_config.key] = for_lookup[name]
-                    extracted_name_dict[item_config.key] = name
-                    original_name_dict[item_config.key] = orig_name
+                        continue
+                data_dict[item_config.key] = for_lookup[name]
+                extracted_name_dict[item_config.key] = name
+                original_name_dict[item_config.key] = orig_name
             if name not in extracted_name_dict.values():
                 unextracted_names.append(orig_name)
         if not data_dict:
