@@ -163,6 +163,15 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         expr_str="rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]",
     ),
     ItemConfig(
+        "ebitda",
+        "EBITDA",
+        extract_names=[
+        ],
+        force_positive=False,
+        forecast_config=ForecastItemConfig(make_forecast=False),
+        expr_str="ebit[t] + dep_exp[t]",
+    ),
+    ItemConfig(
         "ebit",
         "Earnings Before Interest and Taxes",
         extract_names=[
@@ -191,16 +200,6 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         force_positive=False,
         forecast_config=ForecastItemConfig(make_forecast=False),
         expr_str="gross_profit[t] - op_exp[t]",
-    ),
-    ItemConfig(
-        "ebitda",
-        "EBITDA",
-        extract_names=[
-            "z_ebitda"
-        ],
-        force_positive=False,
-        forecast_config=ForecastItemConfig(make_forecast=False),
-        expr_str="ebit[t] + dep_exp[t]",
     ),
     ItemConfig(
         "int_exp",
