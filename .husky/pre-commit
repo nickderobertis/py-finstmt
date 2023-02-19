@@ -1,4 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx lint-staged
+# Workaround to get lint-staged to work outside of main shell
+# (e.g. Git GUIs)
+ASDF_PATH=$(realpath ~/.asdf/shims)
+PATH="$ASDF_PATH:$PATH" npx lint-staged
