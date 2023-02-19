@@ -1,3 +1,4 @@
+'''
 finstmt.config_manage.statements.StatementsConfigManager(
     config_managers={
         'income_statements': finstmt.config_manage.statement.StatementConfigManager(
@@ -15030,3 +15031,4 @@ finstmt.config_manage.statements.StatementsConfigManager(
         )
     }
 )
+'''

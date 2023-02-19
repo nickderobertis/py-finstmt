@@ -26,7 +26,6 @@ class SingleFileTextSnapshotExtension(SingleFileSnapshotExtension):
         exclude: Optional["PropertyFilter"] = None,
         matcher: Optional["PropertyMatcher"] = None,
     ) -> "SerializedData":
-        print("Serializing with", exclude)
         return AmberDataSerializer.serialize(data, exclude=exclude, matcher=matcher)
 
 

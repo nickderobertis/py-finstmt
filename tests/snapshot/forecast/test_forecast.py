@@ -9,7 +9,6 @@ from syrupy import SnapshotAssertion
 
 from finstmt import FinancialStatements
 from finstmt.exc import BalanceSheetNotBalancedException
-from tests.integration.config import GENERATE_TEST_DATA
 from tests.snapshot.forecast.adjust_config import (
     FORECAST_ADJUSTS,
     AdjustDict,

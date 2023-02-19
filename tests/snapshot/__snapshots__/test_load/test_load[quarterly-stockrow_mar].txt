@@ -1,3 +1,4 @@
+'''
 finstmt.combined.statements.FinancialStatements(
     income_statements=finstmt.inc.main.IncomeStatements(
         statements={
@@ -1797,3 +1798,4 @@ finstmt.combined.statements.FinancialStatements(
         }
     )
 )
+'''
