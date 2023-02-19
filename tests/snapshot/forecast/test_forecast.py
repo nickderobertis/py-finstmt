@@ -1,10 +1,12 @@
-from typing import Final
+from typing import Final, Sequence
 
 import matplotlib
+from syrupy import SnapshotAssertion
 
 from finstmt import FinancialStatements
 from tests.snapshot.forecast.adjust_config import (
     FORECAST_ADJUSTS,
+    AdjustDict,
     adjust_forecast_methods,
 )
 from tests.snapshot.forecast.snapshot_format import format_statement_for_snapshot
@@ -19,7 +21,18 @@ def test_forecast_annual_stockrow_cat(
 ):
     stmts = annual_stockrow_stmts_cat
 
-    adjust_forecast_methods(stmts, FORECAST_ADJUSTS["stockrow_cat"])
-    fcst_kwargs = {**FORECAST_KWARGS}
-    fcst = stmts.forecast(**fcst_kwargs)
-    assert format_statement_for_snapshot(fcst, exclude=("gross_ppe", "dep")) == snapshot
+    _forecast_test(
+        stmts, snapshot, FORECAST_ADJUSTS["stockrow_cat"], exclude=("gross_ppe", "dep")
+    )
+
+
+def _forecast_test(
+    stmts: FinancialStatements,
+    snapshot: SnapshotAssertion,
+    adjusts: AdjustDict,
+    exclude: Sequence[str] = tuple(),
+    **fcst_kwargs
+):
+    adjust_forecast_methods(stmts, adjusts)
+    fcst = stmts.forecast(**{**FORECAST_KWARGS, **fcst_kwargs})
+    assert format_statement_for_snapshot(fcst, exclude=exclude) == snapshot
