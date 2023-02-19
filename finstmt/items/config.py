@@ -1,3 +1,4 @@
+from copy import deepcopy
 from dataclasses import dataclass, field
 from typing import Optional, Sequence
 
@@ -31,3 +32,11 @@ class ItemConfig:
 
     class Config:
         arbitrary_types_allowed = True
+
+    def copy(self):
+        return deepcopy(self)
+
+    def __round__(self, n=None) -> "ItemConfig":
+        new_config = self.copy()
+        new_config.forecast_config = round(new_config.forecast_config, n)
+        return new_config

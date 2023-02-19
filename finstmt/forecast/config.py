@@ -1,3 +1,4 @@
+from copy import deepcopy
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Union
 
@@ -73,3 +74,21 @@ class ForecastItemConfig:
             ]
             out_dict.update({"Manual Growth": growth_pcts})
         return pd.Series(out_dict)
+
+    def copy(self):
+        return deepcopy(self)
+
+    def __round__(self, n=None) -> "ForecastItemConfig":
+        new_config = self.copy()
+        if new_config.cap is not None:
+            new_config.cap = round(new_config.cap, n)
+        if new_config.floor is not None:
+            new_config.floor = round(new_config.floor, n)
+        manual_forecast_keys = ["levels", "growth"]
+        for key in manual_forecast_keys:
+            if new_config.manual_forecasts[key]:
+                new_config.manual_forecasts[key] = [
+                    round(val, n) for val in new_config.manual_forecasts[key]
+                ]
+                print("Rounded manual forecasts to", new_config.manual_forecasts[key])
+        return new_config

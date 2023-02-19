@@ -1,7 +1,7 @@
 import operator
 from copy import deepcopy
 from dataclasses import dataclass
-from typing import Callable, List, Set, Tuple
+from typing import Callable, List, Optional, Set, Tuple
 
 import pandas as pd
 
@@ -326,6 +326,12 @@ class FinancialStatements:
         raise NotImplementedError(
             f"cannot divide type {type(other)} by type {type(self)}"
         )
+
+    def __round__(self, n: Optional[int] = None) -> "FinancialStatements":
+        new_statements = self.copy()
+        new_statements.income_statements = round(new_statements.income_statements, n)
+        new_statements.balance_sheets = round(new_statements.balance_sheets, n)
+        return new_statements
 
 
 def _combine_statements(

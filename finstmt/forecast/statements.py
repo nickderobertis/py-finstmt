@@ -74,6 +74,11 @@ class ForecastedFinancialStatements(FinancialStatements):
             fig.delaxes(axes[row][col])
         return fig
 
+    def __round__(self, n=None) -> "ForecastedFinancialStatements":
+        new_fcst = super().__round__(n)
+        new_fcst.forecasts = {k: round(v, n) for k, v in self.forecasts.items()}
+        return new_fcst
+
 
 def _plot_finished(row: int, col: int, max_rows: int, max_cols: int) -> bool:
     return row == max_rows - 1 and col == max_cols - 1
