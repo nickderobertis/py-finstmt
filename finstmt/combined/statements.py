@@ -329,8 +329,8 @@ class FinancialStatements:
 
     def __round__(self, n: Optional[int] = None) -> "FinancialStatements":
         new_statements = self.copy()
-        new_statements.income_statements = round(new_statements.income_statements, n)  # type: ignore[call-overload,assignment]
-        new_statements.balance_sheets = round(new_statements.balance_sheets, n)  # type: ignore[call-overload,assignment]
+        new_statements.income_statements = round(new_statements.income_statements, n)  # type: ignore
+        new_statements.balance_sheets = round(new_statements.balance_sheets, n)  # type: ignore
         return new_statements
 
 

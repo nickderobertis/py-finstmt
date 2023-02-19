@@ -141,7 +141,6 @@ def _x_arr_to_plug_solutions(
 
 
 def _symbolic_to_matrix(exprs: Sequence[Expr], variables: Sequence[Symbol]):
-
     """
     Expr should be in the format of eq.lhs - eq.rhs
 
