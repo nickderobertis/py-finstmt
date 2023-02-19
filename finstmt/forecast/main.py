@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import Dict, Optional, Sequence, Tuple, Union
 
 import matplotlib.pyplot as plt
@@ -5,36 +6,26 @@ import pandas as pd
 
 from finstmt.exc import ForecastNotFitException, ForecastNotPredictedException
 from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
-from finstmt.forecast.models.base import ForecastModel
 from finstmt.forecast.models.chooser import get_model
 from finstmt.forecast.models.manual import ManualForecastModel
 from finstmt.items.config import ItemConfig
 
 
+@dataclass
 class Forecast:
     """
     The main class to represent a forecast of an individual item.
     """
 
-    model: ForecastModel
+    orig_series: pd.Series
+    config: ForecastConfig
+    item_config: ForecastItemConfig
+    base_config: ItemConfig
+    pct_of_series: Optional[pd.Series] = None
+    pct_of_config: Optional[ItemConfig] = None
 
-    def __init__(
-        self,
-        series: pd.Series,
-        config: ForecastConfig,
-        item_config: ForecastItemConfig,
-        base_config: ItemConfig,
-        pct_of_series: Optional[pd.Series] = None,
-        pct_of_config: Optional[ItemConfig] = None,
-    ):
-        self.orig_series = series
-        self.config = config
-        self.item_config = item_config
-        self.base_config = base_config
-        self.pct_of_series = pct_of_series
-        self.pct_of_config = pct_of_config
-
-        self.model = get_model(config, item_config, base_config)
+    def __post_init__(self):
+        self.model = get_model(self.config, self.item_config, self.base_config)
 
     def fit(self):
         self.model.fit(self.series)
