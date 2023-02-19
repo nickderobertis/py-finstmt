@@ -119,5 +119,5 @@ inspect-build:
     @echo "Contents of wheel:"
     @tar -tvf dist/*.tar.gz
 
-update-test-snapshots:
-    {{run-test}} pytest tests/snapshot --snapshot-update
+update-test-snapshots *OPTIONS:
+    {{run-test}} pytest tests/snapshot --snapshot-update {{OPTIONS}}
