@@ -1,0 +1,20 @@
+import re
+from typing import Sequence
+
+import prettyprinter
+
+from finstmt import FinancialStatements
+
+
+def format_statement_for_snapshot(
+    stmts: FinancialStatements, exclude: Sequence[str] = tuple()
+) -> str:
+    formatted_str = prettyprinter.pformat(round(stmts))
+    # TODO: Better support for setting values in finstmt
+    #  This is a hacky way to exclude attributes. If we could copy statements setting new values,
+    #  we could zero out the values we don't want to snapshot.
+    for attr in exclude:
+        # Match the attribute name, equals, and everything until the end of the line
+        pattern = re.compile(rf"\s*{attr}=.*$", re.MULTILINE)
+        formatted_str = pattern.sub("", formatted_str)
+    return formatted_str
