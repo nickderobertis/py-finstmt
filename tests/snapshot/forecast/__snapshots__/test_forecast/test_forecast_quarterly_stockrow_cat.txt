@@ -1,0 +1,1514 @@
+'''
+finstmt.forecast.statements.ForecastedFinancialStatements(
+    income_statements=finstmt.inc.main.IncomeStatements(
+        statements={
+            datetime.datetime(
+                2019,
+                12,
+                31
+            ): finstmt.inc.data.IncomeStatementData(
+                revenue=numpy.float64(12911872667.0),
+                cogs=numpy.float64(9037499726.0),
+                sga=numpy.float64(1259904044.0),
+                int_exp=numpy.float64(117698629.0),
+                tax_exp=numpy.float64(592740808.0),
+                rd_exp=numpy.float64(556705943.0),
+                op_exp=numpy.float64(1816609987.0),
+                ebit=numpy.float64(2057762954.0),
+                ebt=numpy.float64(1940064326.0),
+                net_income=numpy.float64(1347323518.0)
+            ),
+            datetime.datetime(
+                2020,
+                3,
+                31
+            ): finstmt.inc.data.IncomeStatementData(
+                revenue=numpy.float64(13067601174.0),
+                cogs=numpy.float64(9129684387.0),
+                sga=numpy.float64(1268871463.0),
+                int_exp=numpy.float64(118235017.0),
+                tax_exp=numpy.float64(633677726.0),
+                rd_exp=numpy.float64(476757814.0),
+                op_exp=numpy.float64(1745629277.0),
+                ebit=numpy.float64(2192287510.0),
+                ebt=numpy.float64(2074052493.0),
+                net_income=numpy.float64(1440374767.0)
+            )
+        }
+    ),
+    balance_sheets=finstmt.bs.main.BalanceSheets(
+        statements={
+            datetime.datetime(
+                2019,
+                12,
+                31
+            ): finstmt.bs.data.BalanceSheetData(
+                cash=numpy.float64(11716323535.0),
+                receivables=numpy.float64(32121906078.0),
+                inventory=numpy.float64(11817497605.0),
+                goodwill=numpy.float64(8462500000.0),
+                def_tax_lt=numpy.float64(1336374409.0),
+                payables=numpy.float64(6762939214.0),
+                st_debt=numpy.float64(12389396735.0),
+                lt_debt=numpy.float64(25689310938.0),
+                deposit_liab=numpy.float64(1839275000.0),
+                other_income=numpy.float64(-1783000000.0),
+                retained_earnings=numpy.float64(33410292308.0),
+                cash_and_st_invest=numpy.float64(11716323535.0),
+                total_current_assets=numpy.float64(55655727218.0),
+                net_ppe=numpy.float64(12853612568.0),
+                total_non_current_assets=numpy.float64(22652486977.0),
+                total_assets=numpy.float64(78308214195.0),
+                total_current_liab=numpy.float64(19152335950.0),
+                total_debt=numpy.float64(38078707673.0),
+                total_non_current_liab=numpy.float64(27528585938.0),
+                total_liab=numpy.float64(46680921887.0),
+                total_equity=numpy.float64(31627292308.0),
+                total_liab_and_equity=numpy.float64(78308214195.0)
+            ),
+            datetime.datetime(
+                2020,
+                3,
+                31
+            ): finstmt.bs.data.BalanceSheetData(
+                cash=numpy.float64(11717870550.0),
+                receivables=numpy.float64(32509324433.0),
+                inventory=numpy.float64(11966311963.0),
+                goodwill=numpy.float64(8462500000.0),
+                def_tax_lt=numpy.float64(1301673878.0),
+                payables=numpy.float64(6872127632.0),
+                st_debt=numpy.float64(12461220850.0),
+                lt_debt=numpy.float64(25791022998.0),
+                deposit_liab=numpy.float64(1839275000.0),
+                other_income=numpy.float64(-1783000000.0),
+                retained_earnings=numpy.float64(33642269981.0),
+                cash_and_st_invest=numpy.float64(11717870550.0),
+                total_current_assets=numpy.float64(56193506946.0),
+                net_ppe=numpy.float64(12865235637.0),
+                total_non_current_assets=numpy.float64(22629409515.0),
+                total_assets=numpy.float64(78822916461.0),
+                total_current_liab=numpy.float64(19333348482.0),
+                total_debt=numpy.float64(38252243848.0),
+                total_non_current_liab=numpy.float64(27630297998.0),
+                total_liab=numpy.float64(46963646480.0),
+                total_equity=numpy.float64(31859269981.0),
+                total_liab_and_equity=numpy.float64(78822916461.0)
+            )
+        }
+    ),
+    calculate=False,
+    forecasts={
+        'revenue': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    7.898000e+09
+2010-03-31    8.238000e+09
+2010-06-30    1.040900e+10
+2010-09-30    1.113400e+10
+2010-12-31    1.280700e+10
+2011-03-31    1.294900e+10
+2011-06-30    1.423000e+10
+2011-09-30    1.571600e+10
+2011-12-31    1.724300e+10
+2012-03-31    1.598100e+10
+2012-06-30    1.737400e+10
+2012-09-30    1.644500e+10
+2012-12-31    1.607500e+10
+2013-03-31    1.321000e+10
+2013-06-30    1.462100e+10
+2013-09-30    1.342300e+10
+2013-12-31    1.440200e+10
+2014-03-31    1.324100e+10
+2014-06-30    1.415000e+10
+2014-09-30    1.354900e+10
+2014-12-31    1.424400e+10
+2015-03-31    1.270200e+10
+2015-06-30    1.231700e+10
+2015-09-30    1.096200e+10
+2015-12-31    1.103000e+10
+2016-03-31    9.461000e+09
+2016-06-30    1.034200e+10
+2016-09-30    9.160000e+09
+2016-12-31    9.574000e+09
+2017-03-31    9.822000e+09
+2017-06-30    1.133100e+10
+2017-09-30    1.141300e+10
+2017-12-31    1.289600e+10
+2018-03-31    1.285900e+10
+2018-06-30    1.401100e+10
+2018-09-30    1.351000e+10
+2018-12-31    1.434200e+10
+2019-03-31    1.346600e+10
+2019-06-30    1.443200e+10
+2019-09-30    1.275800e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ]
+            )
+        ),
+        'cogs': Forecast(orig_series=2009-12-31    6.090000e+09
+2010-03-31    6.127000e+09
+2010-06-30    7.606000e+09
+2010-09-30    7.979000e+09
+2010-12-31    9.569000e+09
+2011-03-31    9.260000e+09
+2011-06-30    1.051200e+10
+2011-09-30    1.166600e+10
+2011-12-31    1.296600e+10
+2012-03-31    1.144100e+10
+2012-06-30    1.247800e+10
+2012-09-30    1.183600e+10
+2012-12-31    1.209700e+10
+2013-03-31    9.828000e+09
+2013-06-30    1.095800e+10
+2013-09-30    9.952000e+09
+2013-12-31    1.071600e+10
+2014-03-31    9.597000e+09
+2014-06-30    1.035000e+10
+2014-09-30    9.791000e+09
+2014-12-31    1.160400e+10
+2015-03-31    8.910000e+09
+2015-06-30    8.822000e+09
+2015-09-30    8.014000e+09
+2015-12-31    8.387000e+09
+2016-03-31    6.974000e+09
+2016-06-30    7.567000e+09
+2016-09-30    6.674000e+09
+2016-12-31    7.425000e+09
+2017-03-31    6.960000e+09
+2017-06-30    7.978000e+09
+2017-09-30    7.841000e+09
+2017-12-31    9.127000e+09
+2018-03-31    8.732000e+09
+2018-06-30    9.604000e+09
+2018-09-30    9.207000e+09
+2018-12-31    1.017600e+10
+2019-03-31    9.193000e+09
+2019-06-30    1.013300e+10
+2019-09-30    8.758000e+09
+dtype: float64, config=ForecastConfig(periods=2, freq='Q-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=10000), item_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='cogs', display_name='Cost of Goods Sold', extract_names=['cost of revenue', 'cost of goods sold', 'cogs', 'cor'], force_positive=True, forecast_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    7.898000e+09
+2010-03-31    8.238000e+09
+2010-06-30    1.040900e+10
+2010-09-30    1.113400e+10
+2010-12-31    1.280700e+10
+2011-03-31    1.294900e+10
+2011-06-30    1.423000e+10
+2011-09-30    1.571600e+10
+2011-12-31    1.724300e+10
+2012-03-31    1.598100e+10
+2012-06-30    1.737400e+10
+2012-09-30    1.644500e+10
+2012-12-31    1.607500e+10
+2013-03-31    1.321000e+10
+2013-06-30    1.462100e+10
+2013-09-30    1.342300e+10
+2013-12-31    1.440200e+10
+2014-03-31    1.324100e+10
+2014-06-30    1.415000e+10
+2014-09-30    1.354900e+10
+2014-12-31    1.424400e+10
+2015-03-31    1.270200e+10
+2015-06-30    1.231700e+10
+2015-09-30    1.096200e+10
+2015-12-31    1.103000e+10
+2016-03-31    9.461000e+09
+2016-06-30    1.034200e+10
+2016-09-30    9.160000e+09
+2016-12-31    9.574000e+09
+2017-03-31    9.822000e+09
+2017-06-30    1.133100e+10
+2017-09-30    1.141300e+10
+2017-12-31    1.289600e+10
+2018-03-31    1.285900e+10
+2018-06-30    1.401100e+10
+2018-09-30    1.351000e+10
+2018-12-31    1.434200e+10
+2019-03-31    1.346600e+10
+2019-06-30    1.443200e+10
+2019-09-30    1.275800e+10
+dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None)),
+        'rd_exp': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    355000000.0
+2010-03-31    402000000.0
+2010-06-30    450000000.0
+2010-09-30    510000000.0
+2010-12-31    543000000.0
+2011-03-31    525000000.0
+2011-06-30    584000000.0
+2011-09-30    584000000.0
+2011-12-31    604000000.0
+2012-03-31    587000000.0
+2012-06-30    632000000.0
+2012-09-30    634000000.0
+2012-12-31    613000000.0
+2013-03-31    562000000.0
+2013-06-30    548000000.0
+2013-09-30    469000000.0
+2013-12-31    467000000.0
+2014-03-31    508000000.0
+2014-06-30    516000000.0
+2014-09-30    533000000.0
+2014-12-31    823000000.0
+2015-03-31    524000000.0
+2015-06-30    510000000.0
+2015-09-30    513000000.0
+2015-12-31    572000000.0
+2016-03-31    508000000.0
+2016-06-30    468000000.0
+2016-09-30    453000000.0
+2016-12-31    424000000.0
+2017-03-31    425000000.0
+2017-06-30    458000000.0
+2017-09-30    461000000.0
+2017-12-31    498000000.0
+2018-03-31    443000000.0
+2018-06-30    462000000.0
+2018-09-30    479000000.0
+2018-12-31    466000000.0
+2019-03-31    435000000.0
+2019-06-30    441000000.0
+2019-09-30    431000000.0
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='auto'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='rd_exp',
+                display_name='R&D Expense',
+                extract_names=[
+                    'rd expenses',
+                    'rd expense',
+                    'rd exp',
+                    'rd',
+                    'research and development expenses',
+                    'research and development expense',
+                    'research and development exp',
+                    'research and development'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='auto'
+                )
+            )
+        ),
+        'sga': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    9.420000e+08
+2010-03-31    9.320000e+08
+2010-06-30    1.059000e+09
+2010-09-30    1.148000e+09
+2010-12-31    1.109000e+09
+2011-03-31    1.099000e+09
+2011-06-30    1.257000e+09
+2011-09-30    1.360000e+09
+2011-12-31    1.487000e+09
+2012-03-31    1.340000e+09
+2012-06-30    1.517000e+09
+2012-09-30    1.471000e+09
+2012-12-31    1.591000e+09
+2013-03-31    1.390000e+09
+2013-06-30    1.421000e+09
+2013-09-30    1.319000e+09
+2013-12-31    1.417000e+09
+2014-03-31    1.292000e+09
+2014-06-30    1.437000e+09
+2014-09-30    1.446000e+09
+2014-12-31    2.354000e+09
+2015-03-31    1.249000e+09
+2015-06-30    1.318000e+09
+2015-09-30    1.129000e+09
+2015-12-31    1.255000e+09
+2016-03-31    1.088000e+09
+2016-06-30    1.123000e+09
+2016-09-30    9.920000e+08
+2016-12-31    1.180000e+09
+2017-03-31    1.061000e+09
+2017-06-30    1.304000e+09
+2017-09-30    1.254000e+09
+2017-12-31    1.380000e+09
+2018-03-31    1.276000e+09
+2018-06-30    1.440000e+09
+2018-09-30    1.299000e+09
+2018-12-31    1.463000e+09
+2019-03-31    1.319000e+09
+2019-06-30    1.309000e+09
+2019-09-30    1.251000e+09
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='sga',
+                display_name='SG&A Expense',
+                extract_names=[
+                    'sga',
+                    'sga expense',
+                    'sga expenses',
+                    'sga exp',
+                    'selling general and administrative',
+                    'selling general and administrative expense',
+                    'selling general and administrative expenses',
+                    'selling general and administrative exp',
+                    'selling general administrative',
+                    'selling general administrative expense',
+                    'selling general administrative expenses',
+                    'selling general administrative exp',
+                    'selling general and admin',
+                    'selling general and admin expense',
+                    'selling general and admin expenses',
+                    'selling general and admin exp',
+                    'selling general admin',
+                    'selling general admin expense',
+                    'selling general admin expenses',
+                    'selling general admin exp'
+                ]
+            )
+        ),
+        'int_exp': Forecast(orig_series=2009-12-31     88000000.0
+2010-03-31    102000000.0
+2010-06-30     81000000.0
+2010-09-30     85000000.0
+2010-12-31     75000000.0
+2011-03-31     87000000.0
+2011-06-30     90000000.0
+2011-09-30    112000000.0
+2011-12-31    107000000.0
+2012-03-31    113000000.0
+2012-06-30    110000000.0
+2012-09-30    129000000.0
+2012-12-31    115000000.0
+2013-03-31    120000000.0
+2013-06-30    120000000.0
+2013-09-30    116000000.0
+2013-12-31    109000000.0
+2014-03-31    110000000.0
+2014-06-30    120000000.0
+2014-09-30    128000000.0
+2014-12-31    126000000.0
+2015-03-31    129000000.0
+2015-06-30    125000000.0
+2015-09-30    127000000.0
+2015-12-31    126000000.0
+2016-03-31    129000000.0
+2016-06-30    130000000.0
+2016-09-30    126000000.0
+2016-12-31    120000000.0
+2017-03-31    123000000.0
+2017-06-30    121000000.0
+2017-09-30    118000000.0
+2017-12-31    169000000.0
+2018-03-31    101000000.0
+2018-06-30    102000000.0
+2018-09-30    102000000.0
+2018-12-31     99000000.0
+2019-03-31    103000000.0
+2019-06-30    103000000.0
+2019-09-30    103000000.0
+dtype: float64, config=ForecastConfig(periods=2, freq='Q-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=10000), item_config=ForecastItemConfig(method='mean', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='int_exp', display_name='Interest Expense', extract_names=['int', 'int expense', 'int expenses', 'int exp', 'interest', 'interest expense', 'interest expenses', 'interest exp'], force_positive=True, forecast_config=ForecastItemConfig(method='mean', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    3.163100e+10
+2010-03-31    3.017000e+10
+2010-06-30    2.915300e+10
+2010-09-30    2.860800e+10
+2010-12-31    2.841800e+10
+2011-03-31    2.958600e+10
+2011-06-30    3.438200e+10
+2011-09-30    3.428900e+10
+2011-12-31    3.459200e+10
+2012-03-31    3.595300e+10
+2012-06-30    3.931600e+10
+2012-09-30    3.985200e+10
+2012-12-31    4.014300e+10
+2013-03-31    4.048600e+10
+2013-06-30    3.955100e+10
+2013-09-30    3.953700e+10
+2013-12-31    3.775000e+10
+2014-03-31    3.809100e+10
+2014-06-30    4.024300e+10
+2014-09-30    3.928200e+10
+2014-12-31    3.928500e+10
+2015-03-31    3.877500e+10
+2015-06-30    3.832000e+10
+2015-09-30    3.754300e+10
+2015-12-31    3.801300e+10
+2016-03-31    3.836300e+10
+2016-06-30    3.832300e+10
+2016-09-30    3.711000e+10
+2016-12-31    3.678300e+10
+2017-03-31    3.828200e+10
+2017-06-30    3.719200e+10
+2017-09-30    3.592400e+10
+2017-12-31    3.487800e+10
+2018-03-31    3.531500e+10
+2018-06-30    3.616900e+10
+2018-09-30    3.577300e+10
+2018-12-31    3.655300e+10
+2019-03-31    3.578200e+10
+2019-06-30    3.627800e+10
+2019-09-30    3.790600e+10
+dtype: float64, pct_of_config=ItemConfig(key='total_debt', display_name='Total Debt', extract_names=['total debt'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str='st_debt[t] + lt_debt[t]')),
+        'tax_exp': Forecast(orig_series=2009-12-31   -9.100000e+07
+2010-03-31    2.310000e+08
+2010-06-30    2.090000e+08
+2010-09-30    2.950000e+08
+2010-12-31    2.330000e+08
+2011-03-31    5.120000e+08
+2011-06-30    3.180000e+08
+2011-09-30    4.740000e+08
+2011-12-31    4.160000e+08
+2012-03-31    6.890000e+08
+2012-06-30    8.720000e+08
+2012-09-30    7.530000e+08
+2012-12-31    2.140000e+08
+2013-03-31    2.460000e+08
+2013-06-30    3.870000e+08
+2013-09-30    3.100000e+08
+2013-12-31    3.760000e+08
+2014-03-31    4.180000e+08
+2014-06-30    4.190000e+08
+2014-09-30    3.640000e+08
+2014-12-31   -5.090000e+08
+2015-03-31    5.210000e+08
+2015-06-30    3.350000e+08
+2015-09-30    2.180000e+08
+2015-12-31   -1.580000e+08
+2016-03-31    9.200000e+07
+2016-06-30    1.840000e+08
+2016-09-30    9.600000e+07
+2016-12-31   -1.800000e+08
+2017-03-31    9.000000e+07
+2017-06-30    3.610000e+08
+2017-09-30    4.700000e+08
+2017-12-31    2.418000e+09
+2018-03-31    4.720000e+08
+2018-06-30    4.900000e+08
+2018-09-30    4.150000e+08
+2018-12-31    3.210000e+08
+2019-03-31    3.870000e+08
+2019-06-30    5.650000e+08
+2019-09-30    5.180000e+08
+dtype: float64, config=ForecastConfig(periods=2, freq='Q-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=10000), item_config=ForecastItemConfig(method='mean', pct_of='ebt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='tax_exp', display_name='Income Tax Expense', extract_names=['taxes', 'tax', 'tax provision', 'tax expense', 'tax expenses', 'tax exp', 'income tax', 'income tax provision', 'income tax expense', 'income tax expenses', 'income tax exp'], force_positive=False, forecast_config=ForecastItemConfig(method='mean', pct_of='ebt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    1.410000e+08
+2010-03-31    4.640000e+08
+2010-06-30    9.160000e+08
+2010-09-30    1.087000e+09
+2010-12-31    1.201000e+09
+2011-03-31    1.737000e+09
+2011-06-30    1.333000e+09
+2011-09-30    1.615000e+09
+2011-12-31    1.963000e+09
+2012-03-31    2.275000e+09
+2012-06-30    2.571000e+09
+2012-09-30    2.452000e+09
+2012-12-31    9.110000e+08
+2013-03-31    1.126000e+09
+2013-06-30    1.347000e+09
+2013-09-30    1.256000e+09
+2013-12-31    1.379000e+09
+2014-03-31    1.340000e+09
+2014-06-30    1.418000e+09
+2014-09-30    1.381000e+09
+2014-12-31   -9.950000e+08
+2015-03-31    1.766000e+09
+2015-06-30    1.137000e+09
+2015-09-30    7.770000e+08
+2015-12-31   -2.520000e+08
+2016-03-31    3.630000e+08
+2016-06-30    7.340000e+08
+2016-09-30    3.790000e+08
+2016-12-31   -1.351000e+09
+2017-03-31    2.820000e+08
+2017-06-30    1.163000e+09
+2017-09-30    1.529000e+09
+2017-12-31    1.119000e+09
+2018-03-31    2.137000e+09
+2018-06-30    2.197000e+09
+2018-09-30    2.142000e+09
+2018-12-31    1.369000e+09
+2019-03-31    2.268000e+09
+2019-06-30    2.185000e+09
+2019-09-30    2.012000e+09
+dtype: float64, pct_of_config=ItemConfig(key='ebt', display_name='Earnings Before Tax', extract_names=['ebt', 'earnings before taxes', 'earnings before tax', 'earn before tax', 'earn before taxes', 'ebt including unusual items', 'earnings before taxes including unusual items', 'earnings before tax including unusual items', 'earn before tax including unusual items', 'earn before taxes including unusual items', 'ebt inc unusual items', 'earnings before taxes inc unusual items', 'earnings before tax inc unusual items', 'earn before tax inc unusual items', 'earn before taxes inc unusual items', 'ebt incl unusual items', 'earnings before taxes incl unusual items', 'earnings before tax incl unusual items', 'earn before tax incl unusual items', 'earn before taxes incl unusual items', 'pretax income', 'pre tax income', 'income pretax', 'income pre tax'], force_positive=False, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str='ebit[t] - int_exp[t]')),
+        'cash': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    4.867000e+09
+2010-03-31    3.538000e+09
+2010-06-30    3.597000e+09
+2010-09-30    2.265000e+09
+2010-12-31    3.592000e+09
+2011-03-31    4.869000e+09
+2011-06-30    1.071500e+10
+2011-09-30    3.229000e+09
+2011-12-31    3.057000e+09
+2012-03-31    2.864000e+09
+2012-06-30    5.103000e+09
+2012-09-30    5.689000e+09
+2012-12-31    5.490000e+09
+2013-03-31    5.982000e+09
+2013-06-30    6.110000e+09
+2013-09-30    6.357000e+09
+2013-12-31    6.081000e+09
+2014-03-31    5.345000e+09
+2014-06-30    7.927000e+09
+2014-09-30    6.082000e+09
+2014-12-31    7.341000e+09
+2015-03-31    7.563000e+09
+2015-06-30    7.821000e+09
+2015-09-30    6.046000e+09
+2015-12-31    6.460000e+09
+2016-03-31    5.886000e+09
+2016-06-30    6.764000e+09
+2016-09-30    6.113000e+09
+2016-12-31    7.168000e+09
+2017-03-31    9.472000e+09
+2017-06-30    1.023200e+10
+2017-09-30    9.591000e+09
+2017-12-31    8.261000e+09
+2018-03-31    7.888000e+09
+2018-06-30    8.654000e+09
+2018-09-30    8.007000e+09
+2018-12-31    7.857000e+09
+2019-03-31    7.128000e+09
+2019-06-30    7.429000e+09
+2019-09-30    7.906000e+09
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='manual',
+                manual_forecasts={
+                    'levels': [11716323535, 11717870550],
+                    'growth': []
+                },
+                plug=True
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='cash',
+                display_name='Cash and Cash Equivalents',
+                extract_names=[
+                    'cash',
+                    'cash and cash equivalents',
+                    'cash and equivalents',
+                    'cash and equiv',
+                    'cash cash equivalents',
+                    'cash equivalents',
+                    'cash equiv'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='manual',
+                    manual_forecasts={
+                        'levels': [11716323535, 11717870550],
+                        'growth': []
+                    },
+                    plug=True
+                )
+            )
+        ),
+        'receivables': Forecast(orig_series=2009-12-31    2.716200e+10
+2010-03-31    2.707000e+10
+2010-06-30    2.716900e+10
+2010-09-30    2.825000e+10
+2010-12-31    2.884900e+10
+2011-03-31    2.934800e+10
+2011-06-30    2.999700e+10
+2011-09-30    3.003400e+10
+2011-12-31    3.080300e+10
+2012-03-31    3.163200e+10
+2012-06-30    3.258400e+10
+2012-09-30    3.325700e+10
+2012-12-31    3.391100e+10
+2013-03-31    3.416400e+10
+2013-06-30    3.381200e+10
+2013-09-30    3.372400e+10
+2013-12-31    3.349900e+10
+2014-03-31    3.388900e+10
+2014-06-30    3.419000e+10
+2014-09-30    3.317600e+10
+2014-12-31    3.277200e+10
+2015-03-31    3.158800e+10
+2015-06-30    3.141300e+10
+2015-09-30    3.046200e+10
+2015-12-31    3.050700e+10
+2016-03-31    3.085200e+10
+2016-06-30    3.039600e+10
+2016-09-30    2.945300e+10
+2016-12-31    2.908800e+10
+2017-03-31    2.958700e+10
+2017-06-30    2.973200e+10
+2017-09-30    2.983600e+10
+2017-12-31    3.072500e+10
+2018-03-31    3.102900e+10
+2018-06-30    3.129900e+10
+2018-09-30    3.117100e+10
+2018-12-31    3.189900e+10
+2019-03-31    3.171600e+10
+2019-06-30    3.215000e+10
+2019-09-30    3.107200e+10
+dtype: float64, config=ForecastConfig(periods=2, freq='Q-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=10000), item_config=ForecastItemConfig(method='mean', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='receivables', display_name='Receivables', extract_names=['receivables', 'rec', 'accounts receivable', 'ar'], force_positive=True, forecast_config=ForecastItemConfig(method='mean', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    7.898000e+09
+2010-03-31    8.238000e+09
+2010-06-30    1.040900e+10
+2010-09-30    1.113400e+10
+2010-12-31    1.280700e+10
+2011-03-31    1.294900e+10
+2011-06-30    1.423000e+10
+2011-09-30    1.571600e+10
+2011-12-31    1.724300e+10
+2012-03-31    1.598100e+10
+2012-06-30    1.737400e+10
+2012-09-30    1.644500e+10
+2012-12-31    1.607500e+10
+2013-03-31    1.321000e+10
+2013-06-30    1.462100e+10
+2013-09-30    1.342300e+10
+2013-12-31    1.440200e+10
+2014-03-31    1.324100e+10
+2014-06-30    1.415000e+10
+2014-09-30    1.354900e+10
+2014-12-31    1.424400e+10
+2015-03-31    1.270200e+10
+2015-06-30    1.231700e+10
+2015-09-30    1.096200e+10
+2015-12-31    1.103000e+10
+2016-03-31    9.461000e+09
+2016-06-30    1.034200e+10
+2016-09-30    9.160000e+09
+2016-12-31    9.574000e+09
+2017-03-31    9.822000e+09
+2017-06-30    1.133100e+10
+2017-09-30    1.141300e+10
+2017-12-31    1.289600e+10
+2018-03-31    1.285900e+10
+2018-06-30    1.401100e+10
+2018-09-30    1.351000e+10
+2018-12-31    1.434200e+10
+2019-03-31    1.346600e+10
+2019-06-30    1.443200e+10
+2019-09-30    1.275800e+10
+dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None)),
+        'inventory': Forecast(orig_series=2009-12-31    6.360000e+09
+2010-03-31    6.990000e+09
+2010-06-30    7.339000e+09
+2010-09-30    9.006000e+09
+2010-12-31    9.587000e+09
+2011-03-31    1.067600e+10
+2011-06-30    1.135900e+10
+2011-09-30    1.441200e+10
+2011-12-31    1.454400e+10
+2012-03-31    1.651100e+10
+2012-06-30    1.734400e+10
+2012-09-30    1.755000e+10
+2012-12-31    1.554700e+10
+2013-03-31    1.507400e+10
+2013-06-30    1.388900e+10
+2013-09-30    1.339200e+10
+2013-12-31    1.262500e+10
+2014-03-31    1.288800e+10
+2014-06-30    1.305500e+10
+2014-09-30    1.332800e+10
+2014-12-31    1.220500e+10
+2015-03-31    1.209900e+10
+2015-06-30    1.168100e+10
+2015-09-30    1.115000e+10
+2015-12-31    9.700000e+09
+2016-03-31    9.849000e+09
+2016-06-30    9.458000e+09
+2016-09-30    9.478000e+09
+2016-12-31    8.614000e+09
+2017-03-31    9.082000e+09
+2017-06-30    9.388000e+09
+2017-09-30    1.021200e+10
+2017-12-31    1.001800e+10
+2018-03-31    1.094700e+10
+2018-06-30    1.125500e+10
+2018-09-30    1.181400e+10
+2018-12-31    1.152900e+10
+2019-03-31    1.234000e+10
+2019-06-30    1.200700e+10
+2019-09-30    1.218000e+10
+dtype: float64, config=ForecastConfig(periods=2, freq='Q-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=10000), item_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='inventory', display_name='Inventory', extract_names=['inv', 'inventory', 'inventories'], force_positive=True, forecast_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    7.898000e+09
+2010-03-31    8.238000e+09
+2010-06-30    1.040900e+10
+2010-09-30    1.113400e+10
+2010-12-31    1.280700e+10
+2011-03-31    1.294900e+10
+2011-06-30    1.423000e+10
+2011-09-30    1.571600e+10
+2011-12-31    1.724300e+10
+2012-03-31    1.598100e+10
+2012-06-30    1.737400e+10
+2012-09-30    1.644500e+10
+2012-12-31    1.607500e+10
+2013-03-31    1.321000e+10
+2013-06-30    1.462100e+10
+2013-09-30    1.342300e+10
+2013-12-31    1.440200e+10
+2014-03-31    1.324100e+10
+2014-06-30    1.415000e+10
+2014-09-30    1.354900e+10
+2014-12-31    1.424400e+10
+2015-03-31    1.270200e+10
+2015-06-30    1.231700e+10
+2015-09-30    1.096200e+10
+2015-12-31    1.103000e+10
+2016-03-31    9.461000e+09
+2016-06-30    1.034200e+10
+2016-09-30    9.160000e+09
+2016-12-31    9.574000e+09
+2017-03-31    9.822000e+09
+2017-06-30    1.133100e+10
+2017-09-30    1.141300e+10
+2017-12-31    1.289600e+10
+2018-03-31    1.285900e+10
+2018-06-30    1.401100e+10
+2018-09-30    1.351000e+10
+2018-12-31    1.434200e+10
+2019-03-31    1.346600e+10
+2019-06-30    1.443200e+10
+2019-09-30    1.275800e+10
+dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None)),
+        'net_ppe': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    1.238600e+10
+2010-03-31    1.205700e+10
+2010-06-30    1.176300e+10
+2010-09-30    1.206500e+10
+2010-12-31    1.253900e+10
+2011-03-31    1.221900e+10
+2011-06-30    1.243000e+10
+2011-09-30    1.339700e+10
+2011-12-31    1.439500e+10
+2012-03-31    1.457100e+10
+2012-06-30    1.492800e+10
+2012-09-30    1.550900e+10
+2012-12-31    1.646100e+10
+2013-03-31    1.627600e+10
+2013-06-30    1.635200e+10
+2013-09-30    1.658800e+10
+2013-12-31    1.707500e+10
+2014-03-31    1.671600e+10
+2014-06-30    1.669000e+10
+2014-09-30    1.643100e+10
+2014-12-31    1.657700e+10
+2015-03-31    1.627700e+10
+2015-06-30    1.613600e+10
+2015-09-30    1.595500e+10
+2015-12-31    1.609000e+10
+2016-03-31    1.593500e+10
+2016-06-30    1.591600e+10
+2016-09-30    1.568000e+10
+2016-12-31    1.532200e+10
+2017-03-31    1.472700e+10
+2017-06-30    1.442000e+10
+2017-09-30    1.418700e+10
+2017-12-31    1.415500e+10
+2018-03-31    1.391200e+10
+2018-06-30    1.375200e+10
+2018-09-30    1.360700e+10
+2018-12-31    1.357400e+10
+2019-03-31    1.325900e+10
+2019-06-30    1.317200e+10
+2019-09-30    1.284200e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='net_ppe',
+                display_name='Net Property, Plant & Equipment',
+                extract_names=[
+                    'ppe',
+                    'property plant equipment',
+                    'property plant and equipment',
+                    'ppe net',
+                    'property plant equipment net',
+                    'property plant and equipment net',
+                    'net ppe',
+                    'net property plant equipment',
+                    'net property plant and equipment'
+                ],
+                expr_str='gross_ppe[t] - dep[t]'
+            )
+        ),
+        'goodwill': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    2.734000e+09
+2010-03-31    2.772000e+09
+2010-06-30    2.777000e+09
+2010-09-30    3.458000e+09
+2010-12-31    3.419000e+09
+2011-03-31    3.402000e+09
+2011-06-30    3.385000e+09
+2011-09-30    1.230700e+10
+2011-12-31    1.144800e+10
+2012-03-31    1.136800e+10
+2012-06-30    1.155600e+10
+2012-09-30    1.153800e+10
+2012-12-31    1.095800e+10
+2013-03-31    1.071500e+10
+2013-06-30    1.057800e+10
+2013-09-30    1.068600e+10
+2013-12-31    1.055200e+10
+2014-03-31    1.049500e+10
+2014-06-30    1.036700e+10
+2014-09-30    1.001100e+10
+2014-12-31    9.770000e+09
+2015-03-31    9.383000e+09
+2015-06-30    9.413000e+09
+2015-09-30    9.387000e+09
+2015-12-31    9.436000e+09
+2016-03-31    9.451000e+09
+2016-06-30    9.329000e+09
+2016-09-30    9.178000e+09
+2016-12-31    8.369000e+09
+2017-03-31    8.338000e+09
+2017-06-30    8.374000e+09
+2017-09-30    8.371000e+09
+2017-12-31    8.311000e+09
+2018-03-31    8.539000e+09
+2018-06-30    8.288000e+09
+2018-09-30    8.209000e+09
+2018-12-31    8.114000e+09
+2019-03-31    7.998000e+09
+2019-06-30    7.944000e+09
+2019-09-30    7.772000e+09
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='goodwill',
+                display_name='Goodwill and Intangible Assets',
+                extract_names=[
+                    'goodwill',
+                    'goodwill and intangible assets',
+                    'goodwill and intangibles',
+                    'goodwill intangible assets',
+                    'goodwill intangibles',
+                    'goodwill total',
+                    'goodwill and intangible assets total',
+                    'goodwill and intangibles total',
+                    'goodwill intangible assets total',
+                    'goodwill intangibles total'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean'
+                )
+            )
+        ),
+        'lt_invest': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    105000000.0
+2010-03-31    133000000.0
+2010-06-30    154000000.0
+2010-09-30    160000000.0
+2010-12-31    164000000.0
+2011-03-31    140000000.0
+2011-06-30    123000000.0
+2011-09-30    121000000.0
+2011-12-31    133000000.0
+2012-03-31    139000000.0
+2012-06-30    124000000.0
+2012-09-30    199000000.0
+2012-12-31    272000000.0
+2013-03-31    270000000.0
+2013-06-30    288000000.0
+2013-09-30    278000000.0
+2013-12-31    272000000.0
+2014-03-31    266000000.0
+2014-06-30    259000000.0
+2014-09-30    265000000.0
+2014-12-31    257000000.0
+2015-03-31    230000000.0
+2015-06-30    229000000.0
+2015-09-30    231000000.0
+2015-12-31            0.0
+2016-03-31            0.0
+2016-06-30            0.0
+2016-09-30            0.0
+2016-12-31            0.0
+2017-03-31            0.0
+2017-06-30            0.0
+2017-09-30            0.0
+2017-12-31            0.0
+2018-03-31            0.0
+2018-06-30            0.0
+2018-09-30            0.0
+2018-12-31            0.0
+2019-03-31            0.0
+2019-06-30            0.0
+2019-09-30            0.0
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='lt_invest',
+                display_name='Long-Term Investments',
+                extract_names=[
+                    'lt invest',
+                    'lt investments',
+                    'long term invest',
+                    'long term investments',
+                    'longterm invest',
+                    'longterm investments'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
+            )
+        ),
+        'def_tax_lt': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    3.930000e+09
+2010-03-31    3.711000e+09
+2010-06-30    3.505000e+09
+2010-09-30    3.916000e+09
+2010-12-31    3.424000e+09
+2011-03-31    3.307000e+09
+2011-06-30    3.366000e+09
+2011-09-30    1.928000e+09
+2011-12-31    3.737000e+09
+2012-03-31    3.583000e+09
+2012-06-30    3.717000e+09
+2012-09-30    3.506000e+09
+2012-12-31    3.558000e+09
+2013-03-31    3.598000e+09
+2013-06-30    3.693000e+09
+2013-09-30    3.526000e+09
+2013-12-31    2.147000e+09
+2014-03-31    2.101000e+09
+2014-06-30    2.200000e+09
+2014-09-30    2.131000e+09
+2014-12-31    3.143000e+09
+2015-03-31    2.780000e+09
+2015-06-30    2.914000e+09
+2015-09-30    3.005000e+09
+2015-12-31    2.489000e+09
+2016-03-31    2.486000e+09
+2016-06-30    2.536000e+09
+2016-09-30    2.579000e+09
+2016-12-31    2.790000e+09
+2017-03-31    2.940000e+09
+2017-06-30    2.866000e+09
+2017-09-30    2.845000e+09
+2017-12-31    1.693000e+09
+2018-03-31    1.687000e+09
+2018-06-30    1.626000e+09
+2018-09-30    1.288000e+09
+2018-12-31    1.439000e+09
+2019-03-31    1.378000e+09
+2019-06-30    1.473000e+09
+2019-09-30    1.372000e+09
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='def_tax_lt',
+                display_name='Deferred Tax Assets, Long-Term',
+                extract_names=[
+                    'def tax asset long term',
+                    'deferred tax asset long term',
+                    'tax asset long term',
+                    'def tax assets long term',
+                    'deferred tax assets long term',
+                    'tax assets long term',
+                    'def tax asset longterm',
+                    'deferred tax asset longterm',
+                    'tax asset longterm',
+                    'def tax assets longterm',
+                    'deferred tax assets longterm',
+                    'tax assets longterm',
+                    'def tax asset lt',
+                    'deferred tax asset lt',
+                    'tax asset lt',
+                    'def tax assets lt',
+                    'deferred tax assets lt',
+                    'tax assets lt',
+                    'def tax asset',
+                    'deferred tax asset',
+                    'tax asset',
+                    'def tax assets',
+                    'deferred tax assets',
+                    'tax assets',
+                    'long term assets tax deferred',
+                    'lt assets tax deferred',
+                    'lt assets tax def',
+                    'long term assets tax def',
+                    'long term assets deferred tax',
+                    'lt assets deferred tax',
+                    'lt assets def tax',
+                    'long term assets def tax'
+                ]
+            )
+        ),
+        'payables': Forecast(orig_series=2009-12-31    2.993000e+09
+2010-03-31    3.431000e+09
+2010-06-30    3.975000e+09
+2010-09-30    4.970000e+09
+2010-12-31    5.856000e+09
+2011-03-31    5.990000e+09
+2011-06-30    6.858000e+09
+2011-09-30    7.524000e+09
+2011-12-31    8.161000e+09
+2012-03-31    8.360000e+09
+2012-06-30    8.470000e+09
+2012-09-30    7.978000e+09
+2012-12-31    6.753000e+09
+2013-03-31    6.221000e+09
+2013-06-30    6.343000e+09
+2013-09-30    6.280000e+09
+2013-12-31    6.560000e+09
+2014-03-31    6.731000e+09
+2014-06-30    6.860000e+09
+2014-09-30    6.778000e+09
+2014-12-31    6.515000e+09
+2015-03-31    6.328000e+09
+2015-06-30    5.862000e+09
+2015-09-30    5.206000e+09
+2015-12-31    5.023000e+09
+2016-03-31    5.101000e+09
+2016-06-30    5.104000e+09
+2016-09-30    4.713000e+09
+2016-12-31    4.614000e+09
+2017-03-31    5.302000e+09
+2017-06-30    5.778000e+09
+2017-09-30    6.113000e+09
+2017-12-31    6.487000e+09
+2018-03-31    6.938000e+09
+2018-06-30    6.831000e+09
+2018-09-30    6.788000e+09
+2018-12-31    7.051000e+09
+2019-03-31    7.198000e+09
+2019-06-30    7.022000e+09
+2019-09-30    6.141000e+09
+dtype: float64, config=ForecastConfig(periods=2, freq='Q-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=10000), item_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='payables', display_name='Payables', extract_names=['payables', 'accounts payable', 'ap', 'payables and accrued expenses', 'payables and accrued expense', 'payable and accrued expenses', 'payable and accrued expense', 'payables and acc expenses', 'payables and acc expense', 'payable and acc expenses', 'payable and acc expense', 'payables and accrued exps', 'payables and accrued exp', 'payable and accrued exps', 'payable and accrued exp', 'payables and acc exps', 'payables and acc exp', 'payable and acc exps', 'payable and acc exp'], force_positive=True, forecast_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    7.898000e+09
+2010-03-31    8.238000e+09
+2010-06-30    1.040900e+10
+2010-09-30    1.113400e+10
+2010-12-31    1.280700e+10
+2011-03-31    1.294900e+10
+2011-06-30    1.423000e+10
+2011-09-30    1.571600e+10
+2011-12-31    1.724300e+10
+2012-03-31    1.598100e+10
+2012-06-30    1.737400e+10
+2012-09-30    1.644500e+10
+2012-12-31    1.607500e+10
+2013-03-31    1.321000e+10
+2013-06-30    1.462100e+10
+2013-09-30    1.342300e+10
+2013-12-31    1.440200e+10
+2014-03-31    1.324100e+10
+2014-06-30    1.415000e+10
+2014-09-30    1.354900e+10
+2014-12-31    1.424400e+10
+2015-03-31    1.270200e+10
+2015-06-30    1.231700e+10
+2015-09-30    1.096200e+10
+2015-12-31    1.103000e+10
+2016-03-31    9.461000e+09
+2016-06-30    1.034200e+10
+2016-09-30    9.160000e+09
+2016-12-31    9.574000e+09
+2017-03-31    9.822000e+09
+2017-06-30    1.133100e+10
+2017-09-30    1.141300e+10
+2017-12-31    1.289600e+10
+2018-03-31    1.285900e+10
+2018-06-30    1.401100e+10
+2018-09-30    1.351000e+10
+2018-12-31    1.434200e+10
+2019-03-31    1.346600e+10
+2019-06-30    1.443200e+10
+2019-09-30    1.275800e+10
+dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None)),
+        'st_debt': Forecast(orig_series=2009-12-31    9.784000e+09
+2010-03-31    8.622000e+09
+2010-06-30    8.927000e+09
+2010-09-30    8.271000e+09
+2010-12-31    7.981000e+09
+2011-03-31    9.691000e+09
+2011-06-30    8.456000e+09
+2011-09-30    7.508000e+09
+2011-12-31    9.648000e+09
+2012-03-31    1.076200e+10
+2012-06-30    1.205500e+10
+2012-09-30    1.332600e+10
+2012-12-31    1.239100e+10
+2013-03-31    1.324600e+10
+2013-06-30    1.387100e+10
+2013-09-30    1.352200e+10
+2013-12-31    1.103100e+10
+2014-03-31    1.129000e+10
+2014-06-30    1.293600e+10
+2014-09-30    1.110200e+10
+2014-12-31    1.150100e+10
+2015-03-31    1.197200e+10
+2015-06-30    1.087500e+10
+2015-09-30    1.233500e+10
+2015-12-31    1.284400e+10
+2016-03-31    1.389300e+10
+2016-06-30    1.434300e+10
+2016-09-30    1.348800e+10
+2016-12-31    1.396500e+10
+2017-03-31    1.455700e+10
+2017-06-30    1.337700e+10
+2017-09-30    1.108900e+10
+2017-12-31    1.103100e+10
+2018-03-31    1.215000e+10
+2018-06-30    1.247000e+10
+2018-09-30    1.033200e+10
+2018-12-31    1.155300e+10
+2019-03-31    1.154200e+10
+2019-06-30    1.151400e+10
+2019-09-30    1.231800e+10
+dtype: float64, config=ForecastConfig(periods=2, freq='Q-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=10000), item_config=ForecastItemConfig(method='cagr', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='st_debt', display_name='Short-Term Debt', extract_names=['st debt', 'short term debt', 'shortterm debt', 'st borrow', 'short term borrow', 'shortterm borrowst borrowings', 'short term borrowings', 'shortterm borrowings'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    3.163100e+10
+2010-03-31    3.017000e+10
+2010-06-30    2.915300e+10
+2010-09-30    2.860800e+10
+2010-12-31    2.841800e+10
+2011-03-31    2.958600e+10
+2011-06-30    3.438200e+10
+2011-09-30    3.428900e+10
+2011-12-31    3.459200e+10
+2012-03-31    3.595300e+10
+2012-06-30    3.931600e+10
+2012-09-30    3.985200e+10
+2012-12-31    4.014300e+10
+2013-03-31    4.048600e+10
+2013-06-30    3.955100e+10
+2013-09-30    3.953700e+10
+2013-12-31    3.775000e+10
+2014-03-31    3.809100e+10
+2014-06-30    4.024300e+10
+2014-09-30    3.928200e+10
+2014-12-31    3.928500e+10
+2015-03-31    3.877500e+10
+2015-06-30    3.832000e+10
+2015-09-30    3.754300e+10
+2015-12-31    3.801300e+10
+2016-03-31    3.836300e+10
+2016-06-30    3.832300e+10
+2016-09-30    3.711000e+10
+2016-12-31    3.678300e+10
+2017-03-31    3.828200e+10
+2017-06-30    3.719200e+10
+2017-09-30    3.592400e+10
+2017-12-31    3.487800e+10
+2018-03-31    3.531500e+10
+2018-06-30    3.616900e+10
+2018-09-30    3.577300e+10
+2018-12-31    3.655300e+10
+2019-03-31    3.578200e+10
+2019-06-30    3.627800e+10
+2019-09-30    3.790600e+10
+dtype: float64, pct_of_config=ItemConfig(key='total_debt', display_name='Total Debt', extract_names=['total debt'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str='st_debt[t] + lt_debt[t]')),
+        'lt_debt': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    2.184700e+10
+2010-03-31    2.154800e+10
+2010-06-30    2.022600e+10
+2010-09-30    2.033700e+10
+2010-12-31    2.043700e+10
+2011-03-31    1.989500e+10
+2011-06-30    2.592600e+10
+2011-09-30    2.678100e+10
+2011-12-31    2.494400e+10
+2012-03-31    2.519100e+10
+2012-06-30    2.726100e+10
+2012-09-30    2.652600e+10
+2012-12-31    2.775200e+10
+2013-03-31    2.724000e+10
+2013-06-30    2.568000e+10
+2013-09-30    2.601500e+10
+2013-12-31    2.671900e+10
+2014-03-31    2.680100e+10
+2014-06-30    2.730700e+10
+2014-09-30    2.818000e+10
+2014-12-31    2.778400e+10
+2015-03-31    2.680300e+10
+2015-06-30    2.744500e+10
+2015-09-30    2.520800e+10
+2015-12-31    2.516900e+10
+2016-03-31    2.447000e+10
+2016-06-30    2.398000e+10
+2016-09-30    2.362200e+10
+2016-12-31    2.281800e+10
+2017-03-31    2.372500e+10
+2017-06-30    2.381500e+10
+2017-09-30    2.483500e+10
+2017-12-31    2.384700e+10
+2018-03-31    2.316500e+10
+2018-06-30    2.369900e+10
+2018-09-30    2.544100e+10
+2018-12-31    2.500000e+10
+2019-03-31    2.424000e+10
+2019-06-30    2.476400e+10
+2019-09-30    2.558800e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='manual',
+                manual_forecasts={
+                    'levels': [25689310938, 25791022998],
+                    'growth': []
+                },
+                plug=True
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='lt_debt',
+                display_name='Long-Term Debt',
+                extract_names=[
+                    'lt debt',
+                    'long term debt',
+                    'longterm debt',
+                    'lt borrow',
+                    'long term borrow',
+                    'longterm borrow',
+                    'lt borrowings',
+                    'long term borrowings',
+                    'longterm borrowings',
+                    'lt debt total',
+                    'long term debt total',
+                    'longterm debt total',
+                    'lt borrow total',
+                    'long term borrow total',
+                    'longterm borrow total',
+                    'lt borrowings total',
+                    'long term borrowings total',
+                    'longterm borrowings total'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='manual',
+                    manual_forecasts={
+                        'levels': [25689310938, 25791022998],
+                        'growth': []
+                    },
+                    plug=True
+                )
+            )
+        ),
+        'deposit_liab': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    1.217000e+09
+2010-03-31    1.367000e+09
+2010-06-30    1.404000e+09
+2010-09-30    1.470000e+09
+2010-12-31    1.831000e+09
+2011-03-31    1.728000e+09
+2011-06-30    1.823000e+09
+2011-09-30    2.745000e+09
+2011-12-31    2.487000e+09
+2012-03-31    2.921000e+09
+2012-06-30    3.132000e+09
+2012-09-30    3.035000e+09
+2012-12-31    2.638000e+09
+2013-03-31    2.920000e+09
+2013-06-30    2.738000e+09
+2013-09-30    2.699000e+09
+2013-12-31    2.360000e+09
+2014-03-31    2.500000e+09
+2014-06-30    2.344000e+09
+2014-09-30    2.165000e+09
+2014-12-31    1.697000e+09
+2015-03-31    1.636000e+09
+2015-06-30    1.754000e+09
+2015-09-30    1.610000e+09
+2015-12-31    1.146000e+09
+2016-03-31    1.328000e+09
+2016-06-30    1.259000e+09
+2016-09-30    1.161000e+09
+2016-12-31    1.167000e+09
+2017-03-31    1.383000e+09
+2017-06-30    1.533000e+09
+2017-09-30    1.510000e+09
+2017-12-31    1.426000e+09
+2018-03-31    1.399000e+09
+2018-06-30    1.378000e+09
+2018-09-30    1.491000e+09
+2018-12-31    1.243000e+09
+2019-03-31    1.354000e+09
+2019-06-30    1.263000e+09
+2019-09-30    1.309000e+09
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='deposit_liab',
+                display_name='Deposit Liabilities',
+                extract_names=[
+                    'deposit liab',
+                    'deposit liability',
+                    'deposit liabilities'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean'
+                )
+            )
+        ),
+        'other_income': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31   -3.764000e+09
+2010-03-31   -3.886000e+09
+2010-06-30   -4.045000e+09
+2010-09-30   -4.412000e+09
+2010-12-31   -4.051000e+09
+2011-03-31   -3.724000e+09
+2011-06-30   -3.544000e+09
+2011-09-30   -4.019000e+09
+2011-12-31   -6.328000e+09
+2012-03-31   -6.033000e+09
+2012-06-30   -6.150000e+09
+2012-09-30   -5.988000e+09
+2012-12-31   -6.433000e+09
+2013-03-31   -6.669000e+09
+2013-06-30   -6.698000e+09
+2013-09-30   -6.247000e+09
+2013-12-31   -3.898000e+09
+2014-03-31   -3.801000e+09
+2014-06-30   -3.683000e+09
+2014-09-30   -4.357000e+09
+2014-12-31   -6.431000e+09
+2015-03-31   -7.101000e+09
+2015-06-30   -6.729000e+09
+2015-09-30   -6.843000e+09
+2015-12-31   -2.035000e+09
+2016-03-31   -1.493000e+09
+2016-06-30   -1.633000e+09
+2016-09-30   -1.527000e+09
+2016-12-31   -2.039000e+09
+2017-03-31   -1.827000e+09
+2017-06-30   -1.471000e+09
+2017-09-30   -1.233000e+09
+2017-12-31   -1.192000e+09
+2018-03-31   -1.016000e+09
+2018-06-30   -1.496000e+09
+2018-09-30   -1.568000e+09
+2018-12-31   -1.684000e+09
+2019-03-31   -1.588000e+09
+2019-06-30   -1.499000e+09
+2019-09-30   -1.783000e+09
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='other_income',
+                display_name='Other Comprehensive Income',
+                extract_names=[
+                    'other income',
+                    'other comprehensive income',
+                    'other comp income',
+                    'comp income',
+                    'comprehensive income',
+                    'comprehensive income and other',
+                    'comp income and other',
+                    'comp inc and other',
+                    'comprehensive inc and other',
+                    'comprehensive income other',
+                    'comp income other',
+                    'comp inc other',
+                    'comprehensive inc other'
+                ],
+                force_positive=False
+            )
+        ),
+        'retained_earnings': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    1.971100e+10
+2010-03-31    1.994100e+10
+2010-06-30    2.013300e+10
+2010-09-30    2.095500e+10
+2010-12-31    2.138400e+10
+2011-03-31    2.264000e+10
+2011-06-30    2.308100e+10
+2011-09-30    2.425100e+10
+2011-12-31    2.521900e+10
+2012-03-31    2.681500e+10
+2012-06-30    2.784200e+10
+2012-09-30    2.954100e+10
+2012-12-31    2.955800e+10
+2013-03-31    3.043800e+10
+2013-06-30    3.066800e+10
+2013-09-30    3.161400e+10
+2013-12-31    3.185400e+10
+2014-03-31    3.277500e+10
+2014-06-30    3.296100e+10
+2014-09-30    3.397700e+10
+2014-12-31    3.388700e+10
+2015-03-31    3.499800e+10
+2015-06-30    3.482300e+10
+2015-09-30    3.519100e+10
+2015-12-31    2.924600e+10
+2016-03-31    2.951700e+10
+2016-06-30    2.916700e+10
+2016-09-30    2.945000e+10
+2016-12-31    2.737700e+10
+2017-03-31    2.758400e+10
+2017-06-30    2.747100e+10
+2017-09-30    2.853000e+10
+2017-12-31    2.630100e+10
+2018-03-31    2.792900e+10
+2018-06-30    2.865700e+10
+2018-09-30    3.038400e+10
+2018-12-31    3.042700e+10
+2019-03-31    3.243500e+10
+2019-06-30    3.298100e+10
+2019-09-30    3.447700e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='retained_earnings',
+                display_name='Retained Earnings',
+                extract_names=[
+                    're',
+                    'retained earnings',
+                    'retained earnings deficit',
+                    're deficit'
+                ],
+                force_positive=False,
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend'
+                )
+            )
+        )
+    }
+)
+'''
