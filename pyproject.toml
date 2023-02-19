@@ -28,7 +28,7 @@ repository = "https://github.com/nickderobertis/py-finstmt"
 documentation = "https://nickderobertis.github.io/py-finstmt"
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+python = ">=3.8.1,<4.0"
 pandas = "*"
 sympy = "*"
 xlrd = "*"
