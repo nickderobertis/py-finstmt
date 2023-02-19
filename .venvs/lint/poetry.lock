@@ -101,7 +101,7 @@ files = [
 
 [[package]]
 name = "finstmt"
-version = "0.3.2"
+version = "1.0.1"
 description = "Contains classes to work with financial statement data. Can calculate free cash flows and help project financial statements."
 category = "main"
 optional = false
@@ -119,6 +119,7 @@ xlrd = "*"
 
 [package.extras]
 forecast = ["prophet"]
+testing = ["syrupy"]
 
 [package.source]
 type = "directory"

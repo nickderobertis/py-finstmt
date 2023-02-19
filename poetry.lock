@@ -128,7 +128,7 @@ test = ["astroid", "pytest"]
 name = "attrs"
 version = "22.2.0"
 description = "Classes Without Boilerplate"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -172,14 +172,14 @@ files = [
 
 [[package]]
 name = "beautifulsoup4"
-version = "4.11.1"
+version = "4.11.2"
 description = "Screen-scraping library"
 category = "dev"
 optional = false
 python-versions = ">=3.6.0"
 files = [
-    {file = "beautifulsoup4-4.11.1-py3-none-any.whl", hash = "sha256:58d5c3d29f5a36ffeb94f02f0d786cd53014cf9b3b3951d42e0080d8a9498d30"},
-    {file = "beautifulsoup4-4.11.1.tar.gz", hash = "sha256:ad9aa55b65ef2808eb405f46cf74df7fcb7044d5cbc26487f96eb2ef2e436693"},
+    {file = "beautifulsoup4-4.11.2-py3-none-any.whl", hash = "sha256:0e79446b10b3ecb499c1556f7e228a53e64a2bfcebd455f370d8927cb5b59e39"},
+    {file = "beautifulsoup4-4.11.2.tar.gz", hash = "sha256:bc4bdda6717de5a2987436fb8d72f45dc90dd856bdfd512a1314ce90349a0106"},
 ]
 
 [package.dependencies]
@@ -427,6 +427,17 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7
 files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
+]
+
+[[package]]
+name = "colored"
+version = "1.4.4"
+description = "Simple library for color and formatting to terminal"
+category = "main"
+optional = true
+python-versions = "*"
+files = [
+    {file = "colored-1.4.4.tar.gz", hash = "sha256:04ff4d4dd514274fe3b99a21bb52fb96f2688c01e93fba7bef37221e7cb56ce0"},
 ]
 
 [[package]]
@@ -743,7 +754,7 @@ files = [
 name = "exceptiongroup"
 version = "1.1.0"
 description = "Backport of PEP 654 (exception groups)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -836,14 +847,14 @@ files = [
 
 [[package]]
 name = "holidays"
-version = "0.18"
+version = "0.19"
 description = "Generate and work with holidays in Python"
 category = "main"
 optional = true
 python-versions = ">=3.7"
 files = [
-    {file = "holidays-0.18-py3-none-any.whl", hash = "sha256:4a6aa0aee7a95da745a194d99eeba24057adf7fb1e756034e4d276ebafa45a8d"},
-    {file = "holidays-0.18.tar.gz", hash = "sha256:e94d9d3536ff1a2a70d6d2f56cb055eb9a95d0b9a3a5fb81b9e8f9d36e333789"},
+    {file = "holidays-0.19-py3-none-any.whl", hash = "sha256:061d0512a574621de72a9d0e4ca363a1b9427211864203e405081f2d2cd192d0"},
+    {file = "holidays-0.19.tar.gz", hash = "sha256:461028e65c7325f67a8933958f77045a5e41d5373611a56bbc267636d6fce87b"},
 ]
 
 [package.dependencies]
@@ -908,7 +919,7 @@ testing = ["flake8 (<5)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-chec
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1112,14 +1123,14 @@ format-nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-
 
 [[package]]
 name = "jupyter-client"
-version = "8.0.1"
+version = "8.0.2"
 description = "Jupyter protocol implementation and client libraries"
 category = "dev"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "jupyter_client-8.0.1-py3-none-any.whl", hash = "sha256:6016b874fd1111d721bc5bee30624399e876e79e6f395d1a559e6dce9fb2e1ba"},
-    {file = "jupyter_client-8.0.1.tar.gz", hash = "sha256:3f67b1c8b7687e6db09bef10ff97669932b5e6ef6f5a8ee56d444b89022c5007"},
+    {file = "jupyter_client-8.0.2-py3-none-any.whl", hash = "sha256:c53731eb590b68839b0ce04bf46ff8c4f03278f5d9fe5c3b0f268a57cc2bd97e"},
+    {file = "jupyter_client-8.0.2.tar.gz", hash = "sha256:47ac9f586dbcff4d79387ec264faf0fdeb5f14845fa7345fd7d1e378f8096011"},
 ]
 
 [package.dependencies]
@@ -1136,14 +1147,14 @@ test = ["codecov", "coverage", "ipykernel (>=6.14)", "mypy", "paramiko", "pre-co
 
 [[package]]
 name = "jupyter-core"
-version = "5.1.5"
+version = "5.2.0"
 description = "Jupyter core package. A base package on which Jupyter projects rely."
 category = "dev"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "jupyter_core-5.1.5-py3-none-any.whl", hash = "sha256:83064d61bb2a9bc874e8184331c117b3778c2a7e1851f60cb00d273ceb3285ae"},
-    {file = "jupyter_core-5.1.5.tar.gz", hash = "sha256:8e54c48cde1e0c8345f64bcf9658b78044ddf02b273726cea9d9f59be4b02130"},
+    {file = "jupyter_core-5.2.0-py3-none-any.whl", hash = "sha256:4bdc2928c37f6917130c667d8b8708f20aee539d8283c6be72aabd2a4b4c83b0"},
+    {file = "jupyter_core-5.2.0.tar.gz", hash = "sha256:1407cdb4c79ee467696c04b76633fc1884015fa109323365a6372c8e890cc83f"},
 ]
 
 [package.dependencies]
@@ -1182,14 +1193,14 @@ test = ["click", "coverage", "pre-commit", "pytest (>=7.0)", "pytest-asyncio (>=
 
 [[package]]
 name = "jupyter-server"
-version = "2.1.0"
+version = "2.2.0"
 description = "The backend—i.e. core services, APIs, and REST endpoints—to Jupyter web applications."
 category = "dev"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "jupyter_server-2.1.0-py3-none-any.whl", hash = "sha256:90cd6f2bd0581ddd9b2dbe82026a0f4c228a1d95c86e22460efbfdfc931fcf56"},
-    {file = "jupyter_server-2.1.0.tar.gz", hash = "sha256:efaae5e4f0d5f22c7f2f2dc848635036ee74a2df02abed52d30d9d95121ad382"},
+    {file = "jupyter_server-2.2.0-py3-none-any.whl", hash = "sha256:9c79b7227a7e3974856265908da40715ab49b7014ac39478d80b07e164b5a70e"},
+    {file = "jupyter_server-2.2.0.tar.gz", hash = "sha256:f901efcb4adce2370c64dc5942be587bd181119644660a1eb123435c3cd01f95"},
 ]
 
 [package.dependencies]
@@ -2055,7 +2066,7 @@ test = ["appdirs (==1.4.4)", "covdefaults (>=2.2.2)", "pytest (>=7.2)", "pytest-
 name = "pluggy"
 version = "1.0.0"
 description = "plugin and hook calling mechanisms for python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -2275,7 +2286,7 @@ files = [
 name = "pytest"
 version = "7.2.1"
 description = "pytest: simple powerful testing with Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -2799,6 +2810,22 @@ files = [
 mpmath = ">=0.19"
 
 [[package]]
+name = "syrupy"
+version = "3.0.6"
+description = "Pytest Snapshot Test Utility"
+category = "main"
+optional = true
+python-versions = ">=3.7,<4"
+files = [
+    {file = "syrupy-3.0.6-py3-none-any.whl", hash = "sha256:9c18e22264026b34239bcc87ab7cc8d893eb17236ea7dae634217ea4f22a848d"},
+    {file = "syrupy-3.0.6.tar.gz", hash = "sha256:583aa5ca691305c27902c3e29a1ce9da50ff9ab5f184c54b1dc124a16e4a6cf4"},
+]
+
+[package.dependencies]
+colored = ">=1.3.92,<2.0.0"
+pytest = ">=5.1.0,<8.0.0"
+
+[[package]]
 name = "terminado"
 version = "0.17.1"
 description = "Tornado websocket backend for the Xterm.js Javascript terminal emulator library."
@@ -2842,7 +2869,7 @@ test = ["flake8", "isort", "pytest"]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -2894,14 +2921,14 @@ telegram = ["requests"]
 
 [[package]]
 name = "traitlets"
-version = "5.8.1"
+version = "5.9.0"
 description = "Traitlets Python configuration system"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "traitlets-5.8.1-py3-none-any.whl", hash = "sha256:a1ca5df6414f8b5760f7c5f256e326ee21b581742114545b462b35ffe3f04861"},
-    {file = "traitlets-5.8.1.tar.gz", hash = "sha256:32500888f5ff7bbf3b9267ea31748fa657aaf34d56d85e60f91dda7dc7f5785b"},
+    {file = "traitlets-5.9.0-py3-none-any.whl", hash = "sha256:9e6ec080259b9a5940c797d58b613b5e31441c2257b87c2e795c5228ae80d2d8"},
+    {file = "traitlets-5.9.0.tar.gz", hash = "sha256:f6cde21a9c68cf756af02035f72d5a723bf607e862e7be33ece505abf4a3bad9"},
 ]
 
 [package.extras]
@@ -3028,8 +3055,9 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 
 [extras]
 forecast = ["prophet"]
+testing = ["syrupy"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4.0"
-content-hash = "62ec3fc720799d2da4be3fdceff489523db213709dc3f91747959e386ee6267f"
+content-hash = "d1de6ae32c864ff4c4a3aaa13e4692b36f516e6e9a199feb79bf6667815a1b22"
