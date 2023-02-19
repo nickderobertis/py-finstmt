@@ -129,8 +129,8 @@ class Forecast:
         new_fcst.orig_series = round(new_fcst.orig_series, n)
         if new_fcst.pct_of_series is not None:
             new_fcst.pct_of_series = round(new_fcst.pct_of_series, n)
-        new_fcst.item_config = round(new_fcst.item_config, n)
-        new_fcst.base_config = round(new_fcst.base_config, n)
+        new_fcst.item_config = round(new_fcst.item_config, n)  # type: ignore[call-overload]
+        new_fcst.base_config = round(new_fcst.base_config, n)  # type: ignore[call-overload]
         return new_fcst
 
 

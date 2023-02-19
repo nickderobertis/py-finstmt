@@ -75,8 +75,9 @@ class ForecastedFinancialStatements(FinancialStatements):
         return fig
 
     def __round__(self, n=None) -> "ForecastedFinancialStatements":
-        new_fcst = super().__round__(n)
-        new_fcst.forecasts = {k: round(v, n) for k, v in self.forecasts.items()}
+        # TODO: Use new Self type to fix typing of subclass methods
+        new_fcst: "ForecastedFinancialStatements" = super().__round__(n)  # type: ignore[assignment]
+        new_fcst.forecasts = {k: round(v, n) for k, v in self.forecasts.items()}  # type: ignore[call-overload]
         return new_fcst
 
 
