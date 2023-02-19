@@ -7,40 +7,40 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 12,
                 31
             ): finstmt.inc.data.IncomeStatementData(
-                revenue=numpy.float64(12666.0),
-                cogs=numpy.float64(8624.0),
-                sga=numpy.float64(1060.0),
-                int_exp=numpy.float64(30.0),
-                tax_exp=numpy.float64(814.0),
-                rd_exp=numpy.float64(469.0),
-                other_op_exp=numpy.float64(34.0),
-                gain_on_sale_invest=numpy.float64(16.0),
-                gain_on_sale_asset=numpy.float64(9.0),
-                impairment=numpy.float64(38.0),
-                op_exp=numpy.float64(1562.0),
-                ebit=numpy.float64(2480.0),
-                ebt=numpy.float64(2450.0),
-                net_income=numpy.float64(1635.0)
+                revenue=numpy.float64(1267.0),
+                cogs=numpy.float64(862.0),
+                sga=numpy.float64(106.0),
+                int_exp=numpy.float64(3.0),
+                tax_exp=numpy.float64(81.0),
+                rd_exp=numpy.float64(47.0),
+                other_op_exp=numpy.float64(3.0),
+                gain_on_sale_invest=numpy.float64(2.0),
+                gain_on_sale_asset=numpy.float64(1.0),
+                impairment=numpy.float64(4.0),
+                op_exp=numpy.float64(156.0),
+                ebit=numpy.float64(248.0),
+                ebt=numpy.float64(245.0),
+                net_income=numpy.float64(164.0)
             ),
             datetime.datetime(
                 2020,
                 3,
                 31
             ): finstmt.inc.data.IncomeStatementData(
-                revenue=numpy.float64(12574.0),
-                cogs=numpy.float64(8540.0),
-                sga=numpy.float64(1055.0),
-                int_exp=numpy.float64(30.0),
-                tax_exp=numpy.float64(833.0),
-                rd_exp=numpy.float64(408.0),
-                other_op_exp=numpy.float64(34.0),
-                gain_on_sale_invest=numpy.float64(16.0),
-                gain_on_sale_asset=numpy.float64(9.0),
-                impairment=numpy.float64(38.0),
-                op_exp=numpy.float64(1497.0),
-                ebit=numpy.float64(2537.0),
-                ebt=numpy.float64(2507.0),
-                net_income=numpy.float64(1673.0)
+                revenue=numpy.float64(1257.0),
+                cogs=numpy.float64(854.0),
+                sga=numpy.float64(106.0),
+                int_exp=numpy.float64(3.0),
+                tax_exp=numpy.float64(83.0),
+                rd_exp=numpy.float64(41.0),
+                other_op_exp=numpy.float64(3.0),
+                gain_on_sale_invest=numpy.float64(2.0),
+                gain_on_sale_asset=numpy.float64(1.0),
+                impairment=numpy.float64(4.0),
+                op_exp=numpy.float64(150.0),
+                ebit=numpy.float64(254.0),
+                ebt=numpy.float64(251.0),
+                net_income=numpy.float64(167.0)
             )
         }
     ),
@@ -51,83 +51,82 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 12,
                 31
             ): finstmt.bs.data.BalanceSheetData(
-                cash=numpy.float64(26446.0),
-                receivables=numpy.float64(7752.0),
-                inventory=numpy.float64(10590.0),
-                lt_invest=numpy.float64(1328.0),
-                def_tax_st=numpy.float64(710.0),
-                other_current_assets=numpy.float64(49.0),
-                gross_ppe=numpy.float64(7034.0),
-                dep=numpy.float64(3510.0),
-                goodwill=numpy.float64(6577.0),
-                def_tax_lt=numpy.float64(1234.0),
-                other_lt_assets=numpy.float64(964.0),
-                payables=numpy.float64(6517.0),
-                current_lt_debt=numpy.float64(117.0),
-                lt_debt=numpy.float64(9158.0),
-                tax_liab_st=numpy.float64(43.0),
-                other_current_liab=numpy.float64(3834.0),
-                tax_liab_lt=numpy.float64(43.0),
-                other_lt_liab=numpy.float64(3212.0),
-                common_stock=numpy.float64(5983.0),
-                minority_interest=numpy.float64(77.0),
-                other_income=numpy.float64(-304.0),
-                retained_earnings=numpy.float64(30495.0),
-                cash_and_st_invest=numpy.float64(26446.0),
-                total_current_assets=numpy.float64(45548.0),
-                net_ppe=numpy.float64(3524.0),
-                total_non_current_assets=numpy.float64(13627.0),
-                total_assets=numpy.float64(59175.0),
-                total_current_liab=numpy.float64(10512.0),
-                total_debt=numpy.float64(9158.0),
-                total_non_current_liab=numpy.float64(12413.0),
-                total_liab=numpy.float64(22925.0),
-                total_equity=numpy.float64(36250.0),
-                total_liab_and_equity=numpy.float64(59175.0)
+                cash=numpy.float64(2645.0),
+                receivables=numpy.float64(775.0),
+                inventory=numpy.float64(1059.0),
+                lt_invest=numpy.float64(133.0),
+                def_tax_st=numpy.float64(71.0),
+                other_current_assets=numpy.float64(5.0),
+                gross_ppe=numpy.float64(703.0),
+                dep=numpy.float64(351.0),
+                goodwill=numpy.float64(658.0),
+                def_tax_lt=numpy.float64(123.0),
+                other_lt_assets=numpy.float64(96.0),
+                payables=numpy.float64(652.0),
+                current_lt_debt=numpy.float64(12.0),
+                lt_debt=numpy.float64(916.0),
+                tax_liab_st=numpy.float64(4.0),
+                other_current_liab=numpy.float64(383.0),
+                tax_liab_lt=numpy.float64(4.0),
+                other_lt_liab=numpy.float64(321.0),
+                common_stock=numpy.float64(598.0),
+                minority_interest=numpy.float64(8.0),
+                other_income=numpy.float64(-30.0),
+                retained_earnings=numpy.float64(3049.0),
+                cash_and_st_invest=numpy.float64(2645.0),
+                total_current_assets=numpy.float64(4555.0),
+                net_ppe=numpy.float64(352.0),
+                total_non_current_assets=numpy.float64(1363.0),
+                total_assets=numpy.float64(5918.0),
+                total_current_liab=numpy.float64(1051.0),
+                total_debt=numpy.float64(916.0),
+                total_non_current_liab=numpy.float64(1241.0),
+                total_liab=numpy.float64(2293.0),
+                total_equity=numpy.float64(3625.0),
+                total_liab_and_equity=numpy.float64(5918.0)
             ),
             datetime.datetime(
                 2020,
                 3,
                 31
             ): finstmt.bs.data.BalanceSheetData(
-                cash=numpy.float64(26923.0),
-                receivables=numpy.float64(7696.0),
-                inventory=numpy.float64(10438.0),
-                lt_invest=numpy.float64(1328.0),
-                def_tax_st=numpy.float64(710.0),
-                other_current_assets=numpy.float64(49.0),
-                gross_ppe=numpy.float64(7034.0),
-                dep=numpy.float64(3510.0),
-                goodwill=numpy.float64(6577.0),
-                def_tax_lt=numpy.float64(1214.0),
-                other_lt_assets=numpy.float64(964.0),
-                payables=numpy.float64(6488.0),
-                current_lt_debt=numpy.float64(118.0),
-                lt_debt=numpy.float64(9183.0),
-                tax_liab_st=numpy.float64(43.0),
-                other_current_liab=numpy.float64(3834.0),
-                tax_liab_lt=numpy.float64(43.0),
-                other_lt_liab=numpy.float64(3212.0),
-                common_stock=numpy.float64(6035.0),
-                minority_interest=numpy.float64(77.0),
-                other_income=numpy.float64(-97.0),
-                retained_earnings=numpy.float64(30488.0),
-                cash_and_st_invest=numpy.float64(26923.0),
-                total_current_assets=numpy.float64(45816.0),
-                net_ppe=numpy.float64(3524.0),
-                total_non_current_assets=numpy.float64(13607.0),
-                total_assets=numpy.float64(59423.0),
-                total_current_liab=numpy.float64(10483.0),
-                total_debt=numpy.float64(9183.0),
-                total_non_current_liab=numpy.float64(12438.0),
-                total_liab=numpy.float64(22921.0),
-                total_equity=numpy.float64(36503.0),
-                total_liab_and_equity=numpy.float64(59423.0)
+                cash=numpy.float64(2692.0),
+                receivables=numpy.float64(770.0),
+                inventory=numpy.float64(1044.0),
+                lt_invest=numpy.float64(133.0),
+                def_tax_st=numpy.float64(71.0),
+                other_current_assets=numpy.float64(5.0),
+                gross_ppe=numpy.float64(703.0),
+                dep=numpy.float64(351.0),
+                goodwill=numpy.float64(658.0),
+                def_tax_lt=numpy.float64(121.0),
+                other_lt_assets=numpy.float64(96.0),
+                payables=numpy.float64(649.0),
+                current_lt_debt=numpy.float64(12.0),
+                lt_debt=numpy.float64(918.0),
+                tax_liab_st=numpy.float64(4.0),
+                other_current_liab=numpy.float64(383.0),
+                tax_liab_lt=numpy.float64(4.0),
+                other_lt_liab=numpy.float64(321.0),
+                common_stock=numpy.float64(603.0),
+                minority_interest=numpy.float64(8.0),
+                other_income=numpy.float64(-10.0),
+                retained_earnings=numpy.float64(3049.0),
+                cash_and_st_invest=numpy.float64(2692.0),
+                total_current_assets=numpy.float64(4582.0),
+                net_ppe=numpy.float64(352.0),
+                total_non_current_assets=numpy.float64(1361.0),
+                total_assets=numpy.float64(5942.0),
+                total_current_liab=numpy.float64(1048.0),
+                total_debt=numpy.float64(918.0),
+                total_non_current_liab=numpy.float64(1244.0),
+                total_liab=numpy.float64(2292.0),
+                total_equity=numpy.float64(3650.0),
+                total_liab_and_equity=numpy.float64(5942.0)
             )
         }
     ),
-    calculate=False,
-    forecasts={
+    calculate={
         'revenue': finstmt.forecast.main.Forecast(
             orig_series=2012-03-31    15981.0
 2012-06-30    17374.0
@@ -841,7 +840,13 @@ dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={'levels': [26446, 26923], 'growth': []},
+                manual_forecasts={
+                    'levels': [
+                        numpy.float64(26446.338978461208),
+                        numpy.float64(26922.746140585517)
+                    ],
+                    'growth': []
+                },
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -858,7 +863,13 @@ dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={'levels': [26446, 26923], 'growth': []},
+                    manual_forecasts={
+                        'levels': [
+                            numpy.float64(26446.338978461208),
+                            numpy.float64(26922.746140585517)
+                        ],
+                        'growth': []
+                    },
                     plug=True
                 )
             )
@@ -1961,7 +1972,13 @@ dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={'levels': [9158, 9183], 'growth': []},
+                manual_forecasts={
+                    'levels': [
+                        numpy.float64(9158.329770198972),
+                        numpy.float64(9182.724346366625)
+                    ],
+                    'growth': []
+                },
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -1989,7 +2006,13 @@ dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={'levels': [9158, 9183], 'growth': []},
+                    manual_forecasts={
+                        'levels': [
+                            numpy.float64(9158.329770198972),
+                            numpy.float64(9182.724346366625)
+                        ],
+                        'growth': []
+                    },
                     plug=True
                 )
             )

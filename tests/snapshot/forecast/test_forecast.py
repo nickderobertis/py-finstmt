@@ -1,3 +1,11 @@
+"""
+Forecast snapshot tests
+
+Note that the outputted numbers in the snapshot are divided by 10 and rounded
+to make the snapshot consistent across different machines.
+
+When updating snapshots, check the generated folder for PDFs of the plots.
+"""
 import sys
 from pathlib import Path
 from typing import Final, Sequence

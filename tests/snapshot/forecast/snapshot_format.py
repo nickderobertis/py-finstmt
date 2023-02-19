@@ -9,7 +9,7 @@ from finstmt import FinancialStatements
 def format_statement_for_snapshot(
     stmts: FinancialStatements, exclude: Sequence[str] = tuple()
 ) -> str:
-    formatted_str = prettyprinter.pformat(round(stmts))
+    formatted_str = prettyprinter.pformat(round(stmts / 10))
     # TODO: Better support for setting values in finstmt
     #  This is a hacky way to exclude attributes. If we could copy statements setting new values,
     #  we could zero out the values we don't want to snapshot.
