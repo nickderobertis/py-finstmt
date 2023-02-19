@@ -252,7 +252,7 @@ dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}
 2016-12-31    3.678300e+10
 2017-12-31    3.487800e+10
 2018-12-31    3.655300e+10
-dtype: float64, pct_of_config=ItemConfig(key='total_debt', display_name='Total Debt', extract_names=['total debt'], force_positive=True, forecast_config=ForecastItemConfig(method='manual', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [47709942791.0584, 85572751400.97784], 'growth': []}, plug=True, balance_with=None), expr_str='st_debt[t] + lt_debt[t]')),
+dtype: float64, pct_of_config=ItemConfig(key='total_debt', display_name='Total Debt', extract_names=['total debt'], force_positive=True, forecast_config=ForecastItemConfig(method='manual', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [47709942791, 85572751401], 'growth': []}, plug=True, balance_with=None), expr_str='st_debt[t] + lt_debt[t]')),
         'tax_exp': Forecast(orig_series=2009-12-31   -2.700000e+08
 2010-12-31    9.680000e+08
 2011-12-31    1.720000e+09
