@@ -9,6 +9,7 @@ from syrupy import SnapshotAssertion
 
 from finstmt import FinancialStatements
 from finstmt.exc import BalanceSheetNotBalancedException
+from tests.config import GENERATED_PATH
 from tests.snapshot.forecast.adjust_config import (
     FORECAST_ADJUSTS,
     AdjustDict,
@@ -20,7 +21,7 @@ matplotlib.use("Agg")
 
 FORECAST_KWARGS: Final = dict(periods=2)
 
-pdf_path = Path(__file__).parent / "__snapshots__" / "test_forecast_pdfs"
+pdf_path = GENERATED_PATH / "test_forecast_pdfs"
 pdf_path.mkdir(parents=True, exist_ok=True)
 
 
