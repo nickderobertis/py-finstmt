@@ -36,15 +36,15 @@ matplotlib = "*"
 tqdm = "*"
 statsmodels = "*"
 prophet = { version = "*", optional = true }
-syrupy = { version = "*", optional = true }
 
 [tool.poetry.extras]
 forecast = ["prophet"]
-testing = ["syrupy"]
 
 [tool.poetry.group.test.dependencies]
 pytest = "*"
 pytest-cov = "*"
+syrupy = "*"
+prettyprinter = "*"
 
 [tool.poetry.group.dev.dependencies]
 jupyterlab = "*"

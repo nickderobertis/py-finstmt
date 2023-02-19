@@ -119,7 +119,6 @@ xlrd = "*"
 
 [package.extras]
 forecast = ["prophet"]
-testing = ["syrupy (>=4,<5)"]
 
 [package.source]
 type = "directory"
