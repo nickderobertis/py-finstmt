@@ -90,5 +90,4 @@ class ForecastItemConfig:
                 new_config.manual_forecasts[key] = [
                     round(val, n) for val in new_config.manual_forecasts[key]
                 ]
-                print("Rounded manual forecasts to", new_config.manual_forecasts[key])
         return new_config
