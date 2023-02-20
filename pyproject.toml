@@ -36,6 +36,7 @@ matplotlib = "*"
 tqdm = "*"
 statsmodels = "*"
 prophet = { version = "*", optional = true }
+typing-extensions = "*"
 
 [tool.poetry.extras]
 forecast = ["prophet"]

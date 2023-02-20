@@ -24,7 +24,7 @@ def test_add_forecasted_statements_number(
 ):
     fcst = ro_annual_capiq_fcst_stmts
 
-    added: ForecastedFinancialStatements = fcst + 1
+    added = fcst + 1
     assert (added.cash == fcst.cash + 1).all()
     assert (added.forecasts["cash"].series == fcst.forecasts["cash"].series + 1).all()
 
