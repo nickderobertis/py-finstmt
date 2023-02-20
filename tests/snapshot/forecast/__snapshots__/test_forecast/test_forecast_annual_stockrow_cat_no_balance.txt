@@ -96,7 +96,8 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
             )
         }
     ),
-    calculate={
+    calculate=False,
+    forecasts={
         'revenue': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    3.239600e+10
 2010-12-31    4.258800e+10

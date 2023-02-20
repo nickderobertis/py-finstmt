@@ -376,8 +376,20 @@ def _new_statements(
             "not yet implemented to combine two forecasted statements"
         )
     if isinstance(statements, ForecastedFinancialStatements):
-        return ForecastedFinancialStatements(new_inc, new_bs, statements.forecasts)  # type: ignore
+        return ForecastedFinancialStatements(
+            new_inc,
+            new_bs,
+            calculate=statements.calculate,
+            auto_adjust_config=statements.auto_adjust_config,
+            forecasts=statements.forecasts,
+        )
     if isinstance(other_statements, ForecastedFinancialStatements):
-        return ForecastedFinancialStatements(new_inc, new_bs, other_statements.forecasts)  # type: ignore
+        return ForecastedFinancialStatements(
+            new_inc,
+            new_bs,
+            calculate=statements.calculate,
+            auto_adjust_config=statements.auto_adjust_config,
+            forecasts=statements.forecasts,
+        )
 
     return FinancialStatements(new_inc, new_bs)

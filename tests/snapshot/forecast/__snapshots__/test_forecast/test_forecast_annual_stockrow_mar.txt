@@ -98,7 +98,8 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
             )
         }
     ),
-    calculate={
+    calculate=False,
+    forecasts={
         'revenue': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    1.090800e+10
 2010-12-31    1.169100e+10
@@ -392,10 +393,7 @@ dtype: float64,
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
                 manual_forecasts={
-                    'levels': [
-                        numpy.float64(6280581868.665095),
-                        numpy.float64(9373795939.928816)
-                    ],
+                    'levels': [6280581869, 9373795940],
                     'growth': []
                 },
                 plug=True
@@ -432,10 +430,7 @@ dtype: float64,
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
                     manual_forecasts={
-                        'levels': [
-                            numpy.float64(6280581868.665095),
-                            numpy.float64(9373795939.928816)
-                        ],
+                        'levels': [6280581869, 9373795940],
                         'growth': []
                     },
                     plug=True
@@ -1029,10 +1024,7 @@ dtype: float64,
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
                 manual_forecasts={
-                    'levels': [
-                        numpy.float64(9732820044.698414),
-                        numpy.float64(11126120040.225887)
-                    ],
+                    'levels': [9732820045, 11126120040],
                     'growth': []
                 },
                 plug=True
@@ -1063,10 +1055,7 @@ dtype: float64,
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
                     manual_forecasts={
-                        'levels': [
-                            numpy.float64(9732820044.698414),
-                            numpy.float64(11126120040.225887)
-                        ],
+                        'levels': [9732820045, 11126120040],
                         'growth': []
                     },
                     plug=True

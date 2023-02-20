@@ -122,7 +122,8 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
             )
         }
     ),
-    calculate={
+    calculate=False,
+    forecasts={
         'revenue': finstmt.forecast.main.Forecast(
             orig_series=2014-12-31    55184.0
 2015-12-31    47011.0
@@ -580,13 +581,7 @@ dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={
-                    'levels': [
-                        numpy.float64(10459.995672597433),
-                        numpy.float64(10742.59804190024)
-                    ],
-                    'growth': []
-                },
+                manual_forecasts={'levels': [10460, 10743], 'growth': []},
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -603,13 +598,7 @@ dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={
-                        'levels': [
-                            numpy.float64(10459.995672597433),
-                            numpy.float64(10742.59804190024)
-                        ],
-                        'growth': []
-                    },
+                    manual_forecasts={'levels': [10460, 10743], 'growth': []},
                     plug=True
                 )
             )
@@ -1407,13 +1396,7 @@ dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={
-                    'levels': [
-                        numpy.float64(7223.835516037974),
-                        numpy.float64(6912.6771178661575)
-                    ],
-                    'growth': []
-                },
+                manual_forecasts={'levels': [7224, 6913], 'growth': []},
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -1441,13 +1424,7 @@ dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={
-                        'levels': [
-                            numpy.float64(7223.835516037974),
-                            numpy.float64(6912.6771178661575)
-                        ],
-                        'growth': []
-                    },
+                    manual_forecasts={'levels': [7224, 6913], 'growth': []},
                     plug=True
                 )
             )
