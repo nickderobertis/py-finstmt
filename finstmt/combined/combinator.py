@@ -7,6 +7,7 @@ from finstmt.forecast.main import Forecast
 if TYPE_CHECKING:
     from finstmt.bs.main import BalanceSheets
     from finstmt.combined.statements import FinancialStatements
+    from finstmt.forecast.statements import ForecastedFinancialStatements
     from finstmt.inc.main import IncomeStatements
 
 StatementT = TypeVar("StatementT", bound="FinancialStatements")
@@ -64,6 +65,50 @@ class FinancialStatementsCombinator(StatementsCombinator["FinancialStatements"])
     def divide(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
+        income_statements, balance_sheets = _combine_child_statements(
+            statement, other, operator.truediv
+        )
+        return statement.copy(
+            income_statements=income_statements, balance_sheets=balance_sheets
+        )
+
+
+class ForecastedFinancialStatementsCombinator(
+    StatementsCombinator["ForecastedFinancialStatements"]
+):
+    def add(
+        self, statement: "ForecastedFinancialStatements", other: Any
+    ) -> "ForecastedFinancialStatements":
+        income_statements, balance_sheets = _combine_child_statements(
+            statement, other, operator.add
+        )
+        return statement.copy(
+            income_statements=income_statements, balance_sheets=balance_sheets
+        )
+
+    def subtract(
+        self, statement: "ForecastedFinancialStatements", other: Any
+    ) -> "ForecastedFinancialStatements":
+        income_statements, balance_sheets = _combine_child_statements(
+            statement, other, operator.sub
+        )
+        return statement.copy(
+            income_statements=income_statements, balance_sheets=balance_sheets
+        )
+
+    def multiply(
+        self, statement: "ForecastedFinancialStatements", other: Any
+    ) -> "ForecastedFinancialStatements":
+        income_statements, balance_sheets = _combine_child_statements(
+            statement, other, operator.mul
+        )
+        return statement.copy(
+            income_statements=income_statements, balance_sheets=balance_sheets
+        )
+
+    def divide(
+        self, statement: "ForecastedFinancialStatements", other: Any
+    ) -> "ForecastedFinancialStatements":
         income_statements, balance_sheets = _combine_child_statements(
             statement, other, operator.truediv
         )
