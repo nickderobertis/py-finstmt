@@ -3,7 +3,6 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, Protocol, Tuple, TypeVar
 
 from typing_extensions import TypeGuard
 
-from finstmt.findata.statementsbase import FinStatementsBase
 
 if TYPE_CHECKING:
     from finstmt.bs.main import BalanceSheets
@@ -14,7 +13,6 @@ if TYPE_CHECKING:
 
 T = TypeVar("T")
 StatementT = TypeVar("StatementT", bound="FinancialStatements")
-FinStatementsBaseT = TypeVar("FinStatementsBaseT", bound=FinStatementsBase)
 
 
 class StatementsCombinator(Protocol[StatementT]):
@@ -131,8 +129,8 @@ class ForecastedFinancialStatementsCombinator(
 
 def _apply_to_child_statements(
     statements: "FinancialStatements",
-    other: T,
-    func: Callable[[FinStatementsBaseT, T], FinStatementsBaseT],
+    other: Any,
+    func: Callable[[Any, Any], Any],
 ) -> Tuple["IncomeStatements", "BalanceSheets"]:
     from finstmt import FinancialStatements
 
@@ -152,8 +150,8 @@ def _apply_to_child_statements(
 
 def _apply_to_forecasts(
     forecasts: Dict[str, "Forecast"],
-    other: T,
-    func: Callable[["Forecast", T], "Forecast"],
+    other: Any,
+    func: Callable[["Forecast", Any], "Forecast"],
 ) -> Dict[str, "Forecast"]:
     if isinstance(other, (float, int)):
         return {k: func(v, other) for k, v in forecasts.items()}

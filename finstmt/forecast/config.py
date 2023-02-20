@@ -82,32 +82,26 @@ class ForecastItemConfig:
     def copy(self, **updates) -> Self:
         return dataclasses.replace(self, **updates)
 
-    def __round__(self, n=None) -> Self:
-        return _apply_operation_to_item_config(self, n, round)
+    def __round__(self, n: Optional[int] = None) -> "ForecastItemConfig":
+        return _apply_operation_to_item_config(self, n, round)  # type: ignore[misc,arg-type]
 
-    def __add__(self, other: T) -> Self:
+    def __add__(self, other: T) -> "ForecastItemConfig":
         return _apply_operation_to_item_config(self, other, operator.add)
 
-    def __sub__(self, other: T) -> Self:
+    def __sub__(self, other: T) -> "ForecastItemConfig":
         return _apply_operation_to_item_config(self, other, operator.sub)
 
-    def __mul__(self, other: T) -> Self:
+    def __mul__(self, other: T) -> "ForecastItemConfig":
         return _apply_operation_to_item_config(self, other, operator.mul)
 
-    def __truediv__(self, other: T) -> Self:
+    def __truediv__(self, other: T) -> "ForecastItemConfig":
         return _apply_operation_to_item_config(self, other, operator.truediv)
-
-
-ForecastItemConfigCombineData = Union[pd.Series, float]
-ForecastItemConfigCombineDataT = TypeVar(
-    "ForecastItemConfigCombineDataT", bound=ForecastItemConfigCombineData
-)
 
 
 def _apply_operation_to_item_config(
     item_config: ForecastItemConfig,
     other: T,
-    func: Callable[[ForecastItemConfigCombineDataT, T], ForecastItemConfigCombineDataT],
+    func: Callable[[Any, T], Any],
 ) -> ForecastItemConfig:
     updates: Dict[str, Any] = {}
     if item_config.cap is not None:

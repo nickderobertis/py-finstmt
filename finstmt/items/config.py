@@ -36,19 +36,19 @@ class ItemConfig:
     def copy(self, **updates) -> Self:
         return dataclasses.replace(self, **updates)
 
-    def __round__(self, n=None) -> Self:
+    def __round__(self, n=None) -> "ItemConfig":
         return _apply_operation_to_item_config(self, n, round)
 
-    def __add__(self, other: T) -> Self:
+    def __add__(self, other: T) -> "ItemConfig":
         return _apply_operation_to_item_config(self, other, operator.add)
 
-    def __sub__(self, other: T) -> Self:
+    def __sub__(self, other: T) -> "ItemConfig":
         return _apply_operation_to_item_config(self, other, operator.sub)
 
-    def __mul__(self, other: T) -> Self:
+    def __mul__(self, other: T) -> "ItemConfig":
         return _apply_operation_to_item_config(self, other, operator.mul)
 
-    def __truediv__(self, other: T) -> Self:
+    def __truediv__(self, other: T) -> "ItemConfig":
         return _apply_operation_to_item_config(self, other, operator.truediv)
 
 

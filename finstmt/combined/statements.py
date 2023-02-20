@@ -47,7 +47,7 @@ class FinancialStatements:
     balance_sheets: BalanceSheets
     calculate: bool = True
     auto_adjust_config: bool = True
-    _combinator: StatementsCombinator[Self] = FinancialStatementsCombinator()
+    _combinator: StatementsCombinator[Self] = FinancialStatementsCombinator()  # type: ignore[assignment]
 
     def __post_init__(self):
         from finstmt.resolver.history import StatementsResolver

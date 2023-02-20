@@ -128,29 +128,26 @@ class Forecast:
     def copy(self, **updates) -> Self:
         return dataclasses.replace(self, **updates)
 
-    def __round__(self, n: Optional[int] = None) -> Self:
-        return _apply_operation_to_forecast(self, n, round)
+    def __round__(self, n: Optional[int] = None) -> "Forecast":
+        return _apply_operation_to_forecast(self, n, round)  # type: ignore[arg-type]
 
-    def __add__(self, other: T) -> Self:
+    def __add__(self, other: T) -> "Forecast":
         return _apply_operation_to_forecast(self, other, operator.add)
 
-    def __sub__(self, other: T) -> Self:
+    def __sub__(self, other: T) -> "Forecast":
         return _apply_operation_to_forecast(self, other, operator.sub)
 
-    def __mul__(self, other: T) -> Self:
+    def __mul__(self, other: T) -> "Forecast":
         return _apply_operation_to_forecast(self, other, operator.mul)
 
-    def __truediv__(self, other: T) -> Self:
+    def __truediv__(self, other: T) -> "Forecast":
         return _apply_operation_to_forecast(self, other, operator.truediv)
-
-
-ForecastOperationData = Union[pd.Series, ForecastItemConfig, ItemConfig]
 
 
 def _apply_operation_to_forecast(
     forecast: Forecast,
     other: T,
-    func: Callable[[ForecastOperationData, T], ForecastOperationData],
+    func: Callable[[Any, T], Any],
 ) -> Forecast:
     updates: Dict[str, Any] = {}
     updates["orig_series"] = func(
