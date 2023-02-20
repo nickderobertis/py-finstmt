@@ -1,8 +1,8 @@
 from finstmt import FinancialStatements
 
 
-def test_round_statement(annual_capiq_stmts: FinancialStatements):
-    stmts = annual_capiq_stmts
+def test_round_statement(ro_annual_capiq_stmts: FinancialStatements):
+    stmts = ro_annual_capiq_stmts
 
     rounded_whole = round(stmts)
     assert (rounded_whole.cash == round(stmts.cash)).all()
