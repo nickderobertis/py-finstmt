@@ -104,11 +104,11 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
     calculate=False,
     forecasts={
         'revenue': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    55184.0
-2015-12-31    47011.0
-2016-12-31    38537.0
-2017-12-31    45462.0
-2018-12-31    54722.0
+            orig_series=2014-12-31    55.0
+2015-12-31    47.0
+2016-12-31    39.0
+2017-12-31    45.0
+2018-12-31    55.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -131,11 +131,11 @@ dtype: float64,
             )
         ),
         'cogs': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    40718.0
-2015-12-31    33546.0
-2016-12-31    28044.0
-2017-12-31    31260.0
-2018-12-31    36997.0
+            orig_series=2014-12-31    41.0
+2015-12-31    34.0
+2016-12-31    28.0
+2017-12-31    31.0
+2018-12-31    37.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -159,11 +159,11 @@ dtype: float64,
                     pct_of='revenue'
                 )
             ),
-            pct_of_series=2014-12-31    55184.0
-2015-12-31    47011.0
-2016-12-31    38537.0
-2017-12-31    45462.0
-2018-12-31    54722.0
+            pct_of_series=2014-12-31    55.0
+2015-12-31    47.0
+2016-12-31    39.0
+2017-12-31    45.0
+2018-12-31    55.0
 dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
@@ -181,11 +181,11 @@ dtype: float64,
             )
         ),
         'rd_exp': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    2380.0
-2015-12-31    2119.0
-2016-12-31    1853.0
-2017-12-31    1842.0
-2018-12-31    1850.0
+            orig_series=2014-12-31    2.0
+2015-12-31    2.0
+2016-12-31    2.0
+2017-12-31    2.0
+2018-12-31    2.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -213,11 +213,11 @@ dtype: float64,
             )
         ),
         'sga': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    5894.0
-2015-12-31    4363.0
-2016-12-31    4476.0
-2017-12-31    4425.0
-2018-12-31    4806.0
+            orig_series=2014-12-31    6.0
+2015-12-31    4.0
+2016-12-31    4.0
+2017-12-31    4.0
+2018-12-31    5.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -252,11 +252,11 @@ dtype: float64,
             )
         ),
         'other_op_exp': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    44.0
-2015-12-31    27.0
-2016-12-31    78.0
-2017-12-31    19.0
-2018-12-31    89.0
+            orig_series=2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -322,11 +322,11 @@ dtype: float64,
             )
         ),
         'int_exp': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    484.0
-2015-12-31    507.0
-2016-12-31    503.0
-2017-12-31    531.0
-2018-12-31    404.0
+            orig_series=2014-12-31    0.0
+2015-12-31    1.0
+2016-12-31    1.0
+2017-12-31    1.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -354,11 +354,11 @@ dtype: float64,
                     pct_of='total_debt'
                 )
             ),
-            pct_of_series=2014-12-31    39293.0
-2015-12-31    38017.0
-2016-12-31    36784.0
-2017-12-31    34880.0
-2018-12-31    36593.0
+            pct_of_series=2014-12-31    39.0
+2015-12-31    38.0
+2016-12-31    37.0
+2017-12-31    35.0
+2018-12-31    37.0
 dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='total_debt',
@@ -371,11 +371,11 @@ dtype: float64,
             )
         ),
         'gain_on_sale_invest': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31     36.0
-2015-12-31    176.0
-2016-12-31     47.0
-2017-12-31    187.0
-2018-12-31    -29.0
+            orig_series=2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31   -0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -408,11 +408,11 @@ dtype: float64,
             )
         ),
         'impairment': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31      0.0
-2015-12-31      0.0
-2016-12-31    595.0
-2017-12-31      0.0
-2018-12-31      0.0
+            orig_series=2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    1.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -469,11 +469,11 @@ dtype: float64,
             )
         ),
         'tax_exp': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31     692.0
-2015-12-31     916.0
-2016-12-31     192.0
-2017-12-31    3339.0
-2018-12-31    1698.0
+            orig_series=2014-12-31    1.0
+2015-12-31    1.0
+2016-12-31    0.0
+2017-12-31    3.0
+2018-12-31    2.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -505,11 +505,11 @@ dtype: float64,
                     pct_of='ebt'
                 )
             ),
-            pct_of_series=2014-12-31    3160.0
-2015-12-31    3439.0
-2016-12-31     133.0
-2017-12-31    4098.0
-2018-12-31    7846.0
+            pct_of_series=2014-12-31    3.0
+2015-12-31    3.0
+2016-12-31    0.0
+2017-12-31    4.0
+2018-12-31    8.0
 dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='ebt',
@@ -548,11 +548,11 @@ dtype: float64,
             )
         ),
         'cash': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    6317.0
-2015-12-31    5340.0
-2016-12-31    5257.0
-2017-12-31    7381.0
-2018-12-31    6968.0
+            orig_series=2014-12-31    6.0
+2015-12-31    5.0
+2016-12-31    5.0
+2017-12-31    7.0
+2018-12-31    7.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -560,7 +560,7 @@ dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={'levels': [10460, 10743], 'growth': []},
+                manual_forecasts={'levels': [10, 11], 'growth': []},
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -577,17 +577,17 @@ dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={'levels': [10460, 10743], 'growth': []},
+                    manual_forecasts={'levels': [10, 11], 'growth': []},
                     plug=True
                 )
             )
         ),
         'receivables': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    7699.0
-2015-12-31    6677.0
-2016-12-31    5919.0
-2017-12-31    7376.0
-2018-12-31    8714.0
+            orig_series=2014-12-31    8.0
+2015-12-31    7.0
+2016-12-31    6.0
+2017-12-31    7.0
+2018-12-31    9.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -611,11 +611,11 @@ dtype: float64,
                     pct_of='revenue'
                 )
             ),
-            pct_of_series=2014-12-31    55184.0
-2015-12-31    47011.0
-2016-12-31    38537.0
-2017-12-31    45462.0
-2018-12-31    54722.0
+            pct_of_series=2014-12-31    55.0
+2015-12-31    47.0
+2016-12-31    39.0
+2017-12-31    45.0
+2018-12-31    55.0
 dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
@@ -633,11 +633,11 @@ dtype: float64,
             )
         ),
         'inventory': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    12205.0
-2015-12-31     9700.0
-2016-12-31     8614.0
-2017-12-31    10018.0
-2018-12-31    11529.0
+            orig_series=2014-12-31    12.0
+2015-12-31    10.0
+2016-12-31     9.0
+2017-12-31    10.0
+2018-12-31    12.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -656,11 +656,11 @@ dtype: float64,
                     pct_of='revenue'
                 )
             ),
-            pct_of_series=2014-12-31    55184.0
-2015-12-31    47011.0
-2016-12-31    38537.0
-2017-12-31    45462.0
-2018-12-31    54722.0
+            pct_of_series=2014-12-31    55.0
+2015-12-31    47.0
+2016-12-31    39.0
+2017-12-31    45.0
+2018-12-31    55.0
 dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
@@ -678,11 +678,11 @@ dtype: float64,
             )
         ),
         'def_tax_st': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    1644.0
-2015-12-31       0.0
-2016-12-31       0.0
-2017-12-31       0.0
-2018-12-31       0.0
+            orig_series=2014-12-31    2.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -732,11 +732,11 @@ dtype: float64,
             )
         ),
         'other_current_assets': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    27.0
-2015-12-31    14.0
-2016-12-31    23.0
-2017-12-31    48.0
-2018-12-31    19.0
+            orig_series=2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -761,11 +761,11 @@ dtype: float64,
             )
         ),
         'gross_ppe': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    31572.0
-2015-12-31    31977.0
-2016-12-31    31940.0
-2017-12-31    31538.0
-2018-12-31    29781.0
+            orig_series=2014-12-31    32.0
+2015-12-31    32.0
+2016-12-31    32.0
+2017-12-31    32.0
+2018-12-31    30.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -797,11 +797,11 @@ dtype: float64,
             )
         ),
         'dep': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    14995.0
-2015-12-31    15887.0
-2016-12-31    16618.0
-2017-12-31    17383.0
-2018-12-31    16207.0
+            orig_series=2014-12-31    15.0
+2015-12-31    16.0
+2016-12-31    17.0
+2017-12-31    17.0
+2018-12-31    16.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -829,11 +829,11 @@ dtype: float64,
             )
         ),
         'goodwill': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    6677.0
-2015-12-31    6598.0
-2016-12-31    6003.0
-2017-12-31    6183.0
-2018-12-31    6217.0
+            orig_series=2014-12-31    7.0
+2015-12-31    7.0
+2016-12-31    6.0
+2017-12-31    6.0
+2018-12-31    6.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -863,11 +863,11 @@ dtype: float64,
             )
         ),
         'lt_invest': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    257.0
-2015-12-31    246.0
-2016-12-31    249.0
-2017-12-31      0.0
-2018-12-31      0.0
+            orig_series=2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -893,11 +893,11 @@ dtype: float64,
             )
         ),
         'def_tax_lt': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    1267.0
-2015-12-31    2367.0
-2016-12-31    2683.0
-2017-12-31    1569.0
-2018-12-31    1363.0
+            orig_series=2014-12-31    1.0
+2015-12-31    2.0
+2016-12-31    3.0
+2017-12-31    2.0
+2018-12-31    1.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -944,11 +944,11 @@ dtype: float64,
             )
         ),
         'other_lt_assets': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31     528.0
-2015-12-31    1874.0
-2016-12-31    1529.0
-2017-12-31     950.0
-2018-12-31     962.0
+            orig_series=2014-12-31    1.0
+2015-12-31    2.0
+2016-12-31    2.0
+2017-12-31    1.0
+2018-12-31    1.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -980,11 +980,11 @@ dtype: float64,
             )
         ),
         'payables': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    6515.0
-2015-12-31    5023.0
-2016-12-31    4614.0
-2017-12-31    6487.0
-2018-12-31    7051.0
+            orig_series=2014-12-31    7.0
+2015-12-31    5.0
+2016-12-31    5.0
+2017-12-31    6.0
+2018-12-31    7.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1023,11 +1023,11 @@ dtype: float64,
                     pct_of='revenue'
                 )
             ),
-            pct_of_series=2014-12-31    55184.0
-2015-12-31    47011.0
-2016-12-31    38537.0
-2017-12-31    45462.0
-2018-12-31    54722.0
+            pct_of_series=2014-12-31    55.0
+2015-12-31    47.0
+2016-12-31    39.0
+2017-12-31    45.0
+2018-12-31    55.0
 dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
@@ -1045,11 +1045,11 @@ dtype: float64,
             )
         ),
         'st_debt': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31      9.0
-2015-12-31      9.0
-2016-12-31    209.0
-2017-12-31      1.0
-2018-12-31      0.0
+            orig_series=2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1075,11 +1075,11 @@ dtype: float64,
                     pct_of='total_debt'
                 )
             ),
-            pct_of_series=2014-12-31    39293.0
-2015-12-31    38017.0
-2016-12-31    36784.0
-2017-12-31    34880.0
-2018-12-31    36593.0
+            pct_of_series=2014-12-31    39.0
+2015-12-31    38.0
+2016-12-31    37.0
+2017-12-31    35.0
+2018-12-31    37.0
 dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='total_debt',
@@ -1092,11 +1092,11 @@ dtype: float64,
             )
         ),
         'current_lt_debt': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    510.0
-2015-12-31    517.0
-2016-12-31    507.0
-2017-12-31      6.0
-2018-12-31     10.0
+            orig_series=2014-12-31    1.0
+2015-12-31    1.0
+2016-12-31    1.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1164,11 +1164,11 @@ dtype: float64,
                     pct_of='total_debt'
                 )
             ),
-            pct_of_series=2014-12-31    39293.0
-2015-12-31    38017.0
-2016-12-31    36784.0
-2017-12-31    34880.0
-2018-12-31    36593.0
+            pct_of_series=2014-12-31    39.0
+2015-12-31    38.0
+2016-12-31    37.0
+2017-12-31    35.0
+2018-12-31    37.0
 dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='total_debt',
@@ -1181,11 +1181,11 @@ dtype: float64,
             )
         ),
         'tax_liab_st': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    414.0
-2015-12-31      0.0
-2016-12-31      0.0
-2017-12-31      0.0
-2018-12-31      0.0
+            orig_series=2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1331,11 +1331,11 @@ dtype: float64,
             )
         ),
         'other_current_liab': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    4004.0
-2015-12-31    2955.0
-2016-12-31    3377.0
-2017-12-31    3424.0
-2018-12-31    3735.0
+            orig_series=2014-12-31    4.0
+2015-12-31    3.0
+2016-12-31    3.0
+2017-12-31    3.0
+2018-12-31    4.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1363,11 +1363,11 @@ dtype: float64,
             )
         ),
         'lt_debt': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    9408.0
-2015-12-31    8883.0
-2016-12-31    8368.0
-2017-12-31    7492.0
-2018-12-31    7549.0
+            orig_series=2014-12-31    9.0
+2015-12-31    9.0
+2016-12-31    8.0
+2017-12-31    7.0
+2018-12-31    8.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1375,7 +1375,7 @@ dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={'levels': [7224, 6913], 'growth': []},
+                manual_forecasts={'levels': [7, 7], 'growth': []},
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -1403,17 +1403,17 @@ dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={'levels': [7224, 6913], 'growth': []},
+                    manual_forecasts={'levels': [7, 7], 'growth': []},
                     plug=True
                 )
             )
         ),
         'tax_liab_lt': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    414.0
-2015-12-31      0.0
-2016-12-31      0.0
-2017-12-31      0.0
-2018-12-31      0.0
+            orig_series=2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1598,11 +1598,11 @@ dtype: float64,
             )
         ),
         'other_lt_liab': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    2817.0
-2015-12-31    3203.0
-2016-12-31    3184.0
-2017-12-31    3657.0
-2018-12-31    3319.0
+            orig_series=2014-12-31    3.0
+2015-12-31    3.0
+2016-12-31    3.0
+2017-12-31    4.0
+2018-12-31    3.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1678,11 +1678,11 @@ dtype: float64,
             )
         ),
         'common_stock': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    5016.0
-2015-12-31    5238.0
-2016-12-31    5277.0
-2017-12-31    5593.0
-2018-12-31    5827.0
+            orig_series=2014-12-31    5.0
+2015-12-31    5.0
+2016-12-31    5.0
+2017-12-31    6.0
+2018-12-31    6.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1723,11 +1723,11 @@ dtype: float64,
             )
         ),
         'other_income': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31   -6431.0
-2015-12-31   -2035.0
-2016-12-31   -2039.0
-2017-12-31   -1192.0
-2018-12-31   -1684.0
+            orig_series=2014-12-31   -6.0
+2015-12-31   -2.0
+2016-12-31   -2.0
+2017-12-31   -1.0
+2018-12-31   -2.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1761,11 +1761,11 @@ dtype: float64,
             )
         ),
         'retained_earnings': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    33887.0
-2015-12-31    29246.0
-2016-12-31    27377.0
-2017-12-31    26301.0
-2018-12-31    30427.0
+            orig_series=2014-12-31    34.0
+2015-12-31    29.0
+2016-12-31    27.0
+2017-12-31    26.0
+2018-12-31    30.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
@@ -1790,11 +1790,11 @@ dtype: float64,
             )
         ),
         'minority_interest': finstmt.forecast.main.Forecast(
-            orig_series=2014-12-31    80.0
-2015-12-31    76.0
-2016-12-31    76.0
-2017-12-31    69.0
-2018-12-31    41.0
+            orig_series=2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31    0.0
 dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
