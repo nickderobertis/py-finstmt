@@ -90,11 +90,43 @@ def test_subtract_statements(ro_annual_capiq_stmts: FinancialStatements):
     assert (subtracted.cash == stmts.cash - stmts.cash).all()
 
 
+def test_subtract_forecasted_statements(
+    ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
+):
+    fcst = ro_annual_capiq_fcst_stmts
+
+    subtracted = fcst - fcst
+    assert (subtracted.cash == fcst.cash - fcst.cash).all()
+    assert (
+        subtracted.forecasts["cash"].series
+        == fcst.forecasts["cash"].series - fcst.forecasts["cash"].series
+    ).all()
+    assert subtracted.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        val - val
+        for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
+
+
 def test_subtract_statements_number(ro_annual_capiq_stmts: FinancialStatements):
     stmts = ro_annual_capiq_stmts
 
     subtracted = stmts - 1
     assert (subtracted.cash == stmts.cash - 1).all()
+
+
+def test_subtract_forecasted_statements_number(
+    ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
+):
+    fcst = ro_annual_capiq_fcst_stmts
+
+    subtracted = fcst - 1
+    assert (subtracted.cash == fcst.cash - 1).all()
+    assert (
+        subtracted.forecasts["cash"].series == fcst.forecasts["cash"].series - 1
+    ).all()
+    assert subtracted.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        val - 1 for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
 
 
 def test_multiply_statements(ro_annual_capiq_stmts: FinancialStatements):
@@ -104,11 +136,43 @@ def test_multiply_statements(ro_annual_capiq_stmts: FinancialStatements):
     assert (multiplied.cash == stmts.cash * stmts.cash).all()
 
 
+def test_multiply_forecasted_statements(
+    ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
+):
+    fcst = ro_annual_capiq_fcst_stmts
+
+    multiplied = fcst * fcst
+    assert (multiplied.cash == fcst.cash * fcst.cash).all()
+    assert (
+        multiplied.forecasts["cash"].series
+        == fcst.forecasts["cash"].series * fcst.forecasts["cash"].series
+    ).all()
+    assert multiplied.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        val * val
+        for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
+
+
 def test_multiply_statements_number(ro_annual_capiq_stmts: FinancialStatements):
     stmts = ro_annual_capiq_stmts
 
     multiplied = stmts * 2
     assert (multiplied.cash == stmts.cash * 2).all()
+
+
+def test_multiply_forecasted_statements_number(
+    ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
+):
+    fcst = ro_annual_capiq_fcst_stmts
+
+    multiplied = fcst * 2
+    assert (multiplied.cash == fcst.cash * 2).all()
+    assert (
+        multiplied.forecasts["cash"].series == fcst.forecasts["cash"].series * 2
+    ).all()
+    assert multiplied.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        val * 2 for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
 
 
 def test_divide_statements(ro_annual_capiq_stmts: FinancialStatements):
@@ -118,8 +182,34 @@ def test_divide_statements(ro_annual_capiq_stmts: FinancialStatements):
     assert (divided.cash == 1).all()
 
 
+def test_divide_forecasted_statements(
+    ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
+):
+    fcst = ro_annual_capiq_fcst_stmts
+
+    divided = fcst / fcst
+    assert (divided.cash == 1).all()
+    assert (divided.forecasts["cash"].series == 1).all()
+    assert divided.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        1 for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
+
+
 def test_divide_statements_number(ro_annual_capiq_stmts: FinancialStatements):
     stmts = ro_annual_capiq_stmts
 
     divided = stmts / 2
     assert (divided.cash == stmts.cash / 2).all()
+
+
+def test_divide_forecasted_statements_number(
+    ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
+):
+    fcst = ro_annual_capiq_fcst_stmts
+
+    divided = fcst / 2
+    assert (divided.cash == fcst.cash / 2).all()
+    assert (divided.forecasts["cash"].series == fcst.forecasts["cash"].series / 2).all()
+    assert divided.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        val / 2 for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
