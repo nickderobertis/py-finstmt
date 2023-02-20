@@ -1,8 +1,10 @@
-from copy import deepcopy
+import dataclasses
 from dataclasses import dataclass, field
-from typing import Optional, Sequence
+from typing import Any, Callable, Dict, Optional, Self, Sequence, TypeVar
 
 from finstmt.forecast.config import ForecastItemConfig
+
+T = TypeVar("T")
 
 
 @dataclass
@@ -33,10 +35,21 @@ class ItemConfig:
     class Config:
         arbitrary_types_allowed = True
 
-    def copy(self):
-        return deepcopy(self)
+    def copy(self, **updates) -> Self:
+        return dataclasses.replace(self, **updates)
 
     def __round__(self, n=None) -> "ItemConfig":
-        new_config = self.copy()
-        new_config.forecast_config = round(new_config.forecast_config, n)
-        return new_config
+        return _apply_operation_to_item_config(self, n, round)
+
+
+ItemConfigOperationData = ForecastItemConfig
+
+
+def _apply_operation_to_item_config(
+    item_config: ItemConfig,
+    other: T,
+    func: Callable[[ItemConfigOperationData, T], ItemConfigOperationData],
+) -> ItemConfig:
+    updates: Dict[str, Any] = {}
+    updates["forecast_config"] = func(item_config.forecast_config, other)
+    return item_config.copy(**updates)
