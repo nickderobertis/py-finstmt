@@ -12,6 +12,33 @@ def test_round_statement(ro_annual_capiq_stmts: FinancialStatements):
     assert (rounded_decimal.cash == round(stmts.cash, 2)).all()
 
 
+def test_round_forecasted_statements(
+    ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
+):
+    fcst = ro_annual_capiq_fcst_stmts
+
+    rounded_whole = round(fcst)
+    assert (rounded_whole.cash == round(fcst.cash)).all()
+    assert (
+        rounded_whole.forecasts["cash"].series == round(fcst.forecasts["cash"].series)
+    ).all()
+    assert rounded_whole.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        round(val)
+        for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
+
+    rounded_decimal = round(fcst, 2)
+    assert (rounded_decimal.cash == round(fcst.cash, 2)).all()
+    assert (
+        rounded_decimal.forecasts["cash"].series
+        == round(fcst.forecasts["cash"].series, 2)
+    ).all()
+    assert rounded_decimal.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        round(val, 2)
+        for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
+
+
 def test_add_statements(ro_annual_capiq_stmts: FinancialStatements):
     stmts = ro_annual_capiq_stmts
 
