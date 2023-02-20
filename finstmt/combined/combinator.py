@@ -1,8 +1,7 @@
 import operator
-from typing import TYPE_CHECKING, Any, Callable, Protocol, Tuple, TypeVar, Union
+from typing import Any, Callable, Protocol, TYPE_CHECKING, Tuple, TypeVar
 
 from finstmt.findata.statementsbase import FinStatementsBase
-from finstmt.forecast.main import Forecast
 
 if TYPE_CHECKING:
     from finstmt.bs.main import BalanceSheets
@@ -10,11 +9,9 @@ if TYPE_CHECKING:
     from finstmt.forecast.statements import ForecastedFinancialStatements
     from finstmt.inc.main import IncomeStatements
 
+T = TypeVar("T")
 StatementT = TypeVar("StatementT", bound="FinancialStatements")
-StatementCombiningItem = Union[FinStatementsBase, Forecast]
-StatementCombiningItemT = TypeVar(
-    "StatementCombiningItemT", bound=StatementCombiningItem
-)
+FinStatementsBaseT = TypeVar("FinStatementsBaseT", bound=FinStatementsBase)
 
 
 class StatementsCombinator(Protocol[StatementT]):
@@ -35,7 +32,7 @@ class FinancialStatementsCombinator(StatementsCombinator["FinancialStatements"])
     def add(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        income_statements, balance_sheets = _combine_child_statements(
+        income_statements, balance_sheets = _apply_to_child_statements(
             statement, other, operator.add
         )
         return statement.copy(
@@ -45,7 +42,7 @@ class FinancialStatementsCombinator(StatementsCombinator["FinancialStatements"])
     def subtract(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        income_statements, balance_sheets = _combine_child_statements(
+        income_statements, balance_sheets = _apply_to_child_statements(
             statement, other, operator.sub
         )
         return statement.copy(
@@ -55,7 +52,7 @@ class FinancialStatementsCombinator(StatementsCombinator["FinancialStatements"])
     def multiply(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        income_statements, balance_sheets = _combine_child_statements(
+        income_statements, balance_sheets = _apply_to_child_statements(
             statement, other, operator.mul
         )
         return statement.copy(
@@ -65,7 +62,7 @@ class FinancialStatementsCombinator(StatementsCombinator["FinancialStatements"])
     def divide(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        income_statements, balance_sheets = _combine_child_statements(
+        income_statements, balance_sheets = _apply_to_child_statements(
             statement, other, operator.truediv
         )
         return statement.copy(
@@ -79,7 +76,7 @@ class ForecastedFinancialStatementsCombinator(
     def add(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        income_statements, balance_sheets = _combine_child_statements(
+        income_statements, balance_sheets = _apply_to_child_statements(
             statement, other, operator.add
         )
         return statement.copy(
@@ -89,7 +86,7 @@ class ForecastedFinancialStatementsCombinator(
     def subtract(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        income_statements, balance_sheets = _combine_child_statements(
+        income_statements, balance_sheets = _apply_to_child_statements(
             statement, other, operator.sub
         )
         return statement.copy(
@@ -99,7 +96,7 @@ class ForecastedFinancialStatementsCombinator(
     def multiply(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        income_statements, balance_sheets = _combine_child_statements(
+        income_statements, balance_sheets = _apply_to_child_statements(
             statement, other, operator.mul
         )
         return statement.copy(
@@ -109,7 +106,7 @@ class ForecastedFinancialStatementsCombinator(
     def divide(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        income_statements, balance_sheets = _combine_child_statements(
+        income_statements, balance_sheets = _apply_to_child_statements(
             statement, other, operator.truediv
         )
         return statement.copy(
@@ -117,10 +114,10 @@ class ForecastedFinancialStatementsCombinator(
         )
 
 
-def _combine_child_statements(
+def _apply_to_child_statements(
     statements: "FinancialStatements",
-    other: Any,
-    func: Callable[[StatementCombiningItemT, Any], StatementCombiningItemT],
+    other: T,
+    func: Callable[[FinStatementsBaseT, T], FinStatementsBaseT],
 ) -> Tuple["IncomeStatements", "BalanceSheets"]:
     from finstmt import FinancialStatements
 

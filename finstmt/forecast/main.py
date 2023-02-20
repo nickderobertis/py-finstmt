@@ -1,6 +1,6 @@
-from copy import deepcopy
+import dataclasses
 from dataclasses import dataclass
-from typing import Dict, Optional, Sequence, Tuple, Union
+from typing import Any, Callable, Dict, Optional, Sequence, Tuple, TypeVar, Union
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -10,6 +10,8 @@ from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
 from finstmt.forecast.models.chooser import get_model
 from finstmt.forecast.models.manual import ManualForecastModel
 from finstmt.items.config import ItemConfig
+
+T = TypeVar("T")
 
 
 @dataclass
@@ -121,19 +123,30 @@ class Forecast:
         # Percentage of series
         return f"{self.base_config.display_name} % {self.pct_of_config.display_name}"
 
-    def copy(self) -> "Forecast":
-        return deepcopy(self)
+    def copy(self, **updates) -> "Forecast":
+        return dataclasses.replace(self, **updates)
 
     def __round__(self, n: Optional[int] = None) -> "Forecast":
-        new_fcst = self.copy()
-        new_fcst.orig_series = round(new_fcst.orig_series, n)
-        if new_fcst.pct_of_series is not None:
-            new_fcst.pct_of_series = round(new_fcst.pct_of_series, n)
-        if new_fcst.pct_of_config is not None:
-            new_fcst.pct_of_config = round(new_fcst.pct_of_config, n)  # type: ignore[call-overload]
-        new_fcst.item_config = round(new_fcst.item_config, n)  # type: ignore[call-overload]
-        new_fcst.base_config = round(new_fcst.base_config, n)  # type: ignore[call-overload]
-        return new_fcst
+        return _apply_operation_to_forecast(self, n, round)
+
+
+ForecastOperationData = Union[pd.Series, ForecastItemConfig, ItemConfig]
+
+
+def _apply_operation_to_forecast(
+    forecast: Forecast,
+    other: T,
+    func: Callable[[ForecastOperationData, T], ForecastOperationData],
+) -> Forecast:
+    updates: Dict[str, Any] = {}
+    updates["orig_series"] = func(forecast.orig_series, other)
+    if forecast.pct_of_series is not None:
+        updates["pct_of_series"] = func(forecast.pct_of_series, other)
+    if forecast.pct_of_config is not None:
+        updates["pct_of_config"] = func(forecast.pct_of_config, other)
+    updates["item_config"] = func(forecast.item_config, other)
+    updates["base_config"] = func(forecast.base_config, other)
+    return forecast.copy(**updates)
 
 
 def _adjust_to_dict(
