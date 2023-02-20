@@ -1,6 +1,5 @@
 from typing import Optional
 
-import prettyprinter
 import pytest
 from syrupy import SnapshotAssertion
 from syrupy.extensions.amber import AmberDataSerializer
@@ -12,7 +11,11 @@ from syrupy.types import (
     SerializedData,
 )
 
-prettyprinter.install_extras(include=["dataclasses"])
+from tests.snapshot.ext_prettyprinter.dataclasses import (
+    install as install_custom_dataclass_prettyprinter_extension,
+)
+
+install_custom_dataclass_prettyprinter_extension()
 
 
 class SingleFileTextSnapshotExtension(SingleFileSnapshotExtension):

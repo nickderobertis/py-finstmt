@@ -130,7 +130,8 @@ dtype: float64,
                 ]
             )
         ),
-        'cogs': Forecast(orig_series=2009-12-31    2.493100e+10
+        'cogs': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    2.493100e+10
 2010-12-31    3.128100e+10
 2011-12-31    4.440400e+10
 2012-12-31    4.785200e+10
@@ -140,7 +141,31 @@ dtype: float64,
 2016-12-31    2.864000e+10
 2017-12-31    3.190600e+10
 2018-12-31    3.771900e+10
-dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=100000), item_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='cogs', display_name='Cost of Goods Sold', extract_names=['cost of revenue', 'cost of goods sold', 'cogs', 'cor'], force_positive=True, forecast_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    3.239600e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC',
+                bs_diff_max=100000
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend',
+                pct_of='revenue'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='cogs',
+                display_name='Cost of Goods Sold',
+                extract_names=[
+                    'cost of revenue',
+                    'cost of goods sold',
+                    'cogs',
+                    'cor'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend',
+                    pct_of='revenue'
+                )
+            ),
+            pct_of_series=2009-12-31    3.239600e+10
 2010-12-31    4.258800e+10
 2011-12-31    6.013800e+10
 2012-12-31    6.587500e+10
@@ -150,7 +175,22 @@ dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}
 2016-12-31    3.853700e+10
 2017-12-31    4.546200e+10
 2018-12-31    5.472200e+10
-dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None)),
+dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ]
+            )
+        ),
         'rd_exp': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    1.421000e+09
 2010-12-31    1.905000e+09
@@ -234,7 +274,8 @@ dtype: float64,
                 ]
             )
         ),
-        'int_exp': Forecast(orig_series=2009-12-31    389000000.0
+        'int_exp': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    389000000.0
 2010-12-31    343000000.0
 2011-12-31    396000000.0
 2012-12-31    467000000.0
@@ -244,7 +285,35 @@ dtype: float64,
 2016-12-31    505000000.0
 2017-12-31    531000000.0
 2018-12-31    404000000.0
-dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=100000), item_config=ForecastItemConfig(method='mean', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='int_exp', display_name='Interest Expense', extract_names=['int', 'int expense', 'int expenses', 'int exp', 'interest', 'interest expense', 'interest expenses', 'interest exp'], force_positive=True, forecast_config=ForecastItemConfig(method='mean', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    3.163100e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC',
+                bs_diff_max=100000
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean',
+                pct_of='total_debt'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='int_exp',
+                display_name='Interest Expense',
+                extract_names=[
+                    'int',
+                    'int expense',
+                    'int expenses',
+                    'int exp',
+                    'interest',
+                    'interest expense',
+                    'interest expenses',
+                    'interest exp'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean',
+                    pct_of='total_debt'
+                )
+            ),
+            pct_of_series=2009-12-31    3.163100e+10
 2010-12-31    2.841800e+10
 2011-12-31    3.459200e+10
 2012-12-31    4.014300e+10
@@ -254,8 +323,19 @@ dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}
 2016-12-31    3.678300e+10
 2017-12-31    3.487800e+10
 2018-12-31    3.655300e+10
-dtype: float64, pct_of_config=ItemConfig(key='total_debt', display_name='Total Debt', extract_names=['total debt'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str='st_debt[t] + lt_debt[t]')),
-        'tax_exp': Forecast(orig_series=2009-12-31   -2.700000e+08
+dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='total_debt',
+                display_name='Total Debt',
+                extract_names=['total debt'],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    make_forecast=False
+                ),
+                expr_str='st_debt[t] + lt_debt[t]'
+            )
+        ),
+        'tax_exp': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31   -2.700000e+08
 2010-12-31    9.680000e+08
 2011-12-31    1.720000e+09
 2012-12-31    2.528000e+09
@@ -265,7 +345,39 @@ dtype: float64, pct_of_config=ItemConfig(key='total_debt', display_name='Total D
 2016-12-31    1.920000e+08
 2017-12-31    3.339000e+09
 2018-12-31    1.698000e+09
-dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=100000), item_config=ForecastItemConfig(method='mean', pct_of='ebt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='tax_exp', display_name='Income Tax Expense', extract_names=['taxes', 'tax', 'tax provision', 'tax expense', 'tax expenses', 'tax exp', 'income tax', 'income tax provision', 'income tax expense', 'income tax expenses', 'income tax exp'], force_positive=False, forecast_config=ForecastItemConfig(method='mean', pct_of='ebt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    6.250000e+08
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC',
+                bs_diff_max=100000
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean',
+                pct_of='ebt'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='tax_exp',
+                display_name='Income Tax Expense',
+                extract_names=[
+                    'taxes',
+                    'tax',
+                    'tax provision',
+                    'tax expense',
+                    'tax expenses',
+                    'tax exp',
+                    'income tax',
+                    'income tax provision',
+                    'income tax expense',
+                    'income tax expenses',
+                    'income tax exp'
+                ],
+                force_positive=False,
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean',
+                    pct_of='ebt'
+                )
+            ),
+            pct_of_series=2009-12-31    6.250000e+08
 2010-12-31    3.668000e+09
 2011-12-31    6.648000e+09
 2012-12-31    8.209000e+09
@@ -275,7 +387,43 @@ dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}
 2016-12-31    1.250000e+08
 2017-12-31    4.093000e+09
 2018-12-31    7.845000e+09
-dtype: float64, pct_of_config=ItemConfig(key='ebt', display_name='Earnings Before Tax', extract_names=['ebt', 'earnings before taxes', 'earnings before tax', 'earn before tax', 'earn before taxes', 'ebt including unusual items', 'earnings before taxes including unusual items', 'earnings before tax including unusual items', 'earn before tax including unusual items', 'earn before taxes including unusual items', 'ebt inc unusual items', 'earnings before taxes inc unusual items', 'earnings before tax inc unusual items', 'earn before tax inc unusual items', 'earn before taxes inc unusual items', 'ebt incl unusual items', 'earnings before taxes incl unusual items', 'earnings before tax incl unusual items', 'earn before tax incl unusual items', 'earn before taxes incl unusual items', 'pretax income', 'pre tax income', 'income pretax', 'income pre tax'], force_positive=False, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str='ebit[t] - int_exp[t]')),
+dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='ebt',
+                display_name='Earnings Before Tax',
+                extract_names=[
+                    'ebt',
+                    'earnings before taxes',
+                    'earnings before tax',
+                    'earn before tax',
+                    'earn before taxes',
+                    'ebt including unusual items',
+                    'earnings before taxes including unusual items',
+                    'earnings before tax including unusual items',
+                    'earn before tax including unusual items',
+                    'earn before taxes including unusual items',
+                    'ebt inc unusual items',
+                    'earnings before taxes inc unusual items',
+                    'earnings before tax inc unusual items',
+                    'earn before tax inc unusual items',
+                    'earn before taxes inc unusual items',
+                    'ebt incl unusual items',
+                    'earnings before taxes incl unusual items',
+                    'earnings before tax incl unusual items',
+                    'earn before tax incl unusual items',
+                    'earn before taxes incl unusual items',
+                    'pretax income',
+                    'pre tax income',
+                    'income pretax',
+                    'income pre tax'
+                ],
+                force_positive=False,
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    make_forecast=False
+                ),
+                expr_str='ebit[t] - int_exp[t]'
+            )
+        ),
         'cash': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    4.867000e+09
 2010-12-31    3.592000e+09
@@ -298,7 +446,7 @@ dtype: float64,
                 manual_forecasts={
                     'levels': [
                         numpy.float64(9368129050.394783),
-                        numpy.float64(10012396894.55082)
+                        numpy.float64(10012396894.550821)
                     ],
                     'growth': []
                 },
@@ -321,7 +469,7 @@ dtype: float64,
                     manual_forecasts={
                         'levels': [
                             numpy.float64(9368129050.394783),
-                            numpy.float64(10012396894.55082)
+                            numpy.float64(10012396894.550821)
                         ],
                         'growth': []
                     },
@@ -329,7 +477,8 @@ dtype: float64,
                 )
             )
         ),
-        'receivables': Forecast(orig_series=2009-12-31    2.716200e+10
+        'receivables': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    2.716200e+10
 2010-12-31    2.884900e+10
 2011-12-31    3.080300e+10
 2012-12-31    3.391100e+10
@@ -339,7 +488,31 @@ dtype: float64,
 2016-12-31    2.908800e+10
 2017-12-31    3.072500e+10
 2018-12-31    3.189900e+10
-dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=100000), item_config=ForecastItemConfig(method='mean', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='receivables', display_name='Receivables', extract_names=['receivables', 'rec', 'accounts receivable', 'ar'], force_positive=True, forecast_config=ForecastItemConfig(method='mean', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    3.239600e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC',
+                bs_diff_max=100000
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean',
+                pct_of='revenue'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='receivables',
+                display_name='Receivables',
+                extract_names=[
+                    'receivables',
+                    'rec',
+                    'accounts receivable',
+                    'ar'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean',
+                    pct_of='revenue'
+                )
+            ),
+            pct_of_series=2009-12-31    3.239600e+10
 2010-12-31    4.258800e+10
 2011-12-31    6.013800e+10
 2012-12-31    6.587500e+10
@@ -349,8 +522,24 @@ dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}
 2016-12-31    3.853700e+10
 2017-12-31    4.546200e+10
 2018-12-31    5.472200e+10
-dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None)),
-        'inventory': Forecast(orig_series=2009-12-31    6.360000e+09
+dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ]
+            )
+        ),
+        'inventory': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    6.360000e+09
 2010-12-31    9.587000e+09
 2011-12-31    1.454400e+10
 2012-12-31    1.554700e+10
@@ -360,7 +549,26 @@ dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', 
 2016-12-31    8.614000e+09
 2017-12-31    1.001800e+10
 2018-12-31    1.152900e+10
-dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=100000), item_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='inventory', display_name='Inventory', extract_names=['inv', 'inventory', 'inventories'], force_positive=True, forecast_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    3.239600e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC',
+                bs_diff_max=100000
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend',
+                pct_of='revenue'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='inventory',
+                display_name='Inventory',
+                extract_names=['inv', 'inventory', 'inventories'],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend',
+                    pct_of='revenue'
+                )
+            ),
+            pct_of_series=2009-12-31    3.239600e+10
 2010-12-31    4.258800e+10
 2011-12-31    6.013800e+10
 2012-12-31    6.587500e+10
@@ -370,7 +578,22 @@ dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}
 2016-12-31    3.853700e+10
 2017-12-31    4.546200e+10
 2018-12-31    5.472200e+10
-dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None)),
+dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ]
+            )
+        ),
         'net_ppe': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    1.238600e+10
 2010-12-31    1.253900e+10
@@ -539,7 +762,8 @@ dtype: float64,
                 ]
             )
         ),
-        'payables': Forecast(orig_series=2009-12-31    2.993000e+09
+        'payables': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    2.993000e+09
 2010-12-31    5.856000e+09
 2011-12-31    8.161000e+09
 2012-12-31    6.753000e+09
@@ -549,7 +773,46 @@ dtype: float64,
 2016-12-31    4.614000e+09
 2017-12-31    6.487000e+09
 2018-12-31    7.051000e+09
-dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=100000), item_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='payables', display_name='Payables', extract_names=['payables', 'accounts payable', 'ap', 'payables and accrued expenses', 'payables and accrued expense', 'payable and accrued expenses', 'payable and accrued expense', 'payables and acc expenses', 'payables and acc expense', 'payable and acc expenses', 'payable and acc expense', 'payables and accrued exps', 'payables and accrued exp', 'payable and accrued exps', 'payable and accrued exp', 'payables and acc exps', 'payables and acc exp', 'payable and acc exps', 'payable and acc exp'], force_positive=True, forecast_config=ForecastItemConfig(method='trend', pct_of='revenue', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    3.239600e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC',
+                bs_diff_max=100000
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend',
+                pct_of='revenue'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='payables',
+                display_name='Payables',
+                extract_names=[
+                    'payables',
+                    'accounts payable',
+                    'ap',
+                    'payables and accrued expenses',
+                    'payables and accrued expense',
+                    'payable and accrued expenses',
+                    'payable and accrued expense',
+                    'payables and acc expenses',
+                    'payables and acc expense',
+                    'payable and acc expenses',
+                    'payable and acc expense',
+                    'payables and accrued exps',
+                    'payables and accrued exp',
+                    'payable and accrued exps',
+                    'payable and accrued exp',
+                    'payables and acc exps',
+                    'payables and acc exp',
+                    'payable and acc exps',
+                    'payable and acc exp'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend',
+                    pct_of='revenue'
+                )
+            ),
+            pct_of_series=2009-12-31    3.239600e+10
 2010-12-31    4.258800e+10
 2011-12-31    6.013800e+10
 2012-12-31    6.587500e+10
@@ -559,8 +822,24 @@ dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}
 2016-12-31    3.853700e+10
 2017-12-31    4.546200e+10
 2018-12-31    5.472200e+10
-dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', extract_names=['total revenue', 'total rev', 'total sales', 'total sale', 'revenue', 'rev', 'sales', 'sale'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None)),
-        'st_debt': Forecast(orig_series=2009-12-31    9.784000e+09
+dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ]
+            )
+        ),
+        'st_debt': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    9.784000e+09
 2010-12-31    7.981000e+09
 2011-12-31    9.648000e+09
 2012-12-31    1.239100e+10
@@ -570,7 +849,33 @@ dtype: float64, pct_of_config=ItemConfig(key='revenue', display_name='Revenue', 
 2016-12-31    1.396500e+10
 2017-12-31    1.103100e+10
 2018-12-31    1.155300e+10
-dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}, balance=True, timeout=180, bs_diff_max=100000), item_config=ForecastItemConfig(method='cagr', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), base_config=ItemConfig(key='st_debt', display_name='Short-Term Debt', extract_names=['st debt', 'short term debt', 'shortterm debt', 'st borrow', 'short term borrow', 'shortterm borrowst borrowings', 'short term borrowings', 'shortterm borrowings'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of='total_debt', make_forecast=True, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str=None), pct_of_series=2009-12-31    3.163100e+10
+dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC',
+                bs_diff_max=100000
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                pct_of='total_debt'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='st_debt',
+                display_name='Short-Term Debt',
+                extract_names=[
+                    'st debt',
+                    'short term debt',
+                    'shortterm debt',
+                    'st borrow',
+                    'short term borrow',
+                    'shortterm borrowst borrowings',
+                    'short term borrowings',
+                    'shortterm borrowings'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    pct_of='total_debt'
+                )
+            ),
+            pct_of_series=2009-12-31    3.163100e+10
 2010-12-31    2.841800e+10
 2011-12-31    3.459200e+10
 2012-12-31    4.014300e+10
@@ -580,7 +885,17 @@ dtype: float64, config=ForecastConfig(periods=2, freq='A-DEC', prophet_kwargs={}
 2016-12-31    3.678300e+10
 2017-12-31    3.487800e+10
 2018-12-31    3.655300e+10
-dtype: float64, pct_of_config=ItemConfig(key='total_debt', display_name='Total Debt', extract_names=['total debt'], force_positive=True, forecast_config=ForecastItemConfig(method='cagr', pct_of=None, make_forecast=False, prophet_kwargs={}, cap=None, floor=None, manual_forecasts={'levels': [], 'growth': []}, plug=False, balance_with=None), expr_str='st_debt[t] + lt_debt[t]')),
+dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='total_debt',
+                display_name='Total Debt',
+                extract_names=['total debt'],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    make_forecast=False
+                ),
+                expr_str='st_debt[t] + lt_debt[t]'
+            )
+        ),
         'lt_debt': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    2.184700e+10
 2010-12-31    2.043700e+10
@@ -603,7 +918,7 @@ dtype: float64,
                 manual_forecasts={
                     'levels': [
                         numpy.float64(28940344972.139137),
-                        numpy.float64(30205974039.73957)
+                        numpy.float64(30205974039.739567)
                     ],
                     'growth': []
                 },
@@ -637,7 +952,7 @@ dtype: float64,
                     manual_forecasts={
                         'levels': [
                             numpy.float64(28940344972.139137),
-                            numpy.float64(30205974039.73957)
+                            numpy.float64(30205974039.739567)
                         ],
                         'growth': []
                     },
