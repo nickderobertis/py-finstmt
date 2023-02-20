@@ -1,7 +1,7 @@
 import operator
 from copy import deepcopy
 from dataclasses import dataclass
-from typing import Callable, List, Optional, Set, Tuple
+from typing import TYPE_CHECKING, Callable, List, Optional, Set, Tuple
 
 import pandas as pd
 
@@ -13,6 +13,9 @@ from finstmt.forecast.config import ForecastConfig
 from finstmt.inc.main import IncomeStatements
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
+
+if TYPE_CHECKING:
+    from finstmt.forecast.statements import ForecastedFinancialStatements
 
 
 @dataclass
@@ -212,7 +215,7 @@ class FinancialStatements:
             self.net_income + self.non_cash_expenses - self.change("nwc") - self.capex
         )
 
-    def forecast(self, **kwargs) -> "FinancialStatements":
+    def forecast(self, **kwargs) -> "ForecastedFinancialStatements":
         """
         Run a forecast, returning forecasted financial statements
 
