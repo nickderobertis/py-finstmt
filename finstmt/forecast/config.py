@@ -111,16 +111,31 @@ def _apply_operation_to_item_config(
 ) -> ForecastItemConfig:
     updates: Dict[str, Any] = {}
     if item_config.cap is not None:
-        updates["cap"] = func(item_config.cap, other)
+        updates["cap"] = func(item_config.cap, _get_attr_if_needed(other, "cap"))
     if item_config.floor is not None:
-        updates["floor"] = func(item_config.floor, other)
+        updates["floor"] = func(item_config.floor, _get_attr_if_needed(other, "floor"))
     manual_forecast_keys = ["levels", "growth"]
     updates["manual_forecasts"] = {}
     for key in manual_forecast_keys:
         if item_config.manual_forecasts[key]:
             updates["manual_forecasts"][key] = [
-                func(val, other) for val in item_config.manual_forecasts[key]
+                func(val, _get_manual_forecast_key_if_needed(other, key, i))
+                for i, val in enumerate(item_config.manual_forecasts[key])
             ]
         else:
             updates["manual_forecasts"][key] = []
     return item_config.copy(**updates)
+
+
+def _get_attr_if_needed(other: Any, attr: str) -> Any:
+    if isinstance(other, ForecastItemConfig):
+        return getattr(other, attr)
+    else:
+        return other
+
+
+def _get_manual_forecast_key_if_needed(other: Any, key: str, i: int) -> Any:
+    if isinstance(other, ForecastItemConfig):
+        return other.manual_forecasts[key][i]
+    else:
+        return other

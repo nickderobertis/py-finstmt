@@ -153,14 +153,31 @@ def _apply_operation_to_forecast(
     func: Callable[[ForecastOperationData, T], ForecastOperationData],
 ) -> Forecast:
     updates: Dict[str, Any] = {}
-    updates["orig_series"] = func(forecast.orig_series, other)
+    updates["orig_series"] = func(
+        forecast.orig_series, _get_attr_if_needed(other, "orig_series")
+    )
     if forecast.pct_of_series is not None:
-        updates["pct_of_series"] = func(forecast.pct_of_series, other)
+        updates["pct_of_series"] = func(
+            forecast.pct_of_series, _get_attr_if_needed(other, "pct_of_series")
+        )
     if forecast.pct_of_config is not None:
-        updates["pct_of_config"] = func(forecast.pct_of_config, other)
-    updates["item_config"] = func(forecast.item_config, other)
-    updates["base_config"] = func(forecast.base_config, other)
+        updates["pct_of_config"] = func(
+            forecast.pct_of_config, _get_attr_if_needed(other, "pct_of_config")
+        )
+    updates["item_config"] = func(
+        forecast.item_config, _get_attr_if_needed(other, "item_config")
+    )
+    updates["base_config"] = func(
+        forecast.base_config, _get_attr_if_needed(other, "base_config")
+    )
     return forecast.copy(**updates)
+
+
+def _get_attr_if_needed(other: Any, attr: str) -> Any:
+    if isinstance(other, Forecast):
+        return getattr(other, attr)
+    else:
+        return other
 
 
 def _adjust_to_dict(

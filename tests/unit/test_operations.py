@@ -46,6 +46,30 @@ def test_add_statements(ro_annual_capiq_stmts: FinancialStatements):
     assert (added.cash == stmts.cash + stmts.cash).all()
 
 
+def test_add_forecasted_statements(
+    ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
+):
+    fcst = ro_annual_capiq_fcst_stmts
+
+    added = fcst + fcst
+    assert (added.cash == fcst.cash + fcst.cash).all()
+    assert (
+        added.forecasts["cash"].series
+        == fcst.forecasts["cash"].series + fcst.forecasts["cash"].series
+    ).all()
+    assert added.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        val + val
+        for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
+
+
+def test_add_statements_number(ro_annual_capiq_stmts: FinancialStatements):
+    stmts = ro_annual_capiq_stmts
+
+    added = stmts + 1
+    assert (added.cash == stmts.cash + 1).all()
+
+
 def test_add_forecasted_statements_number(
     ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
 ):
@@ -54,13 +78,9 @@ def test_add_forecasted_statements_number(
     added = fcst + 1
     assert (added.cash == fcst.cash + 1).all()
     assert (added.forecasts["cash"].series == fcst.forecasts["cash"].series + 1).all()
-
-
-def test_add_statements_number(ro_annual_capiq_stmts: FinancialStatements):
-    stmts = ro_annual_capiq_stmts
-
-    added = stmts + 1
-    assert (added.cash == stmts.cash + 1).all()
+    assert added.forecasts["cash"].item_config.manual_forecasts["levels"] == [
+        val + 1 for val in fcst.forecasts["cash"].item_config.manual_forecasts["levels"]
+    ]
 
 
 def test_subtract_statements(ro_annual_capiq_stmts: FinancialStatements):

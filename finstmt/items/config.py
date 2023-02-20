@@ -61,5 +61,14 @@ def _apply_operation_to_item_config(
     func: Callable[[ItemConfigOperationData, T], ItemConfigOperationData],
 ) -> ItemConfig:
     updates: Dict[str, Any] = {}
-    updates["forecast_config"] = func(item_config.forecast_config, other)
+    updates["forecast_config"] = func(
+        item_config.forecast_config, _get_attr_if_needed(other, "forecast_config")
+    )
     return item_config.copy(**updates)
+
+
+def _get_attr_if_needed(other: Any, attr: str) -> Any:
+    if isinstance(other, ItemConfig):
+        return getattr(other, attr)
+    else:
+        return other
