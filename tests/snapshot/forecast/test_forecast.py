@@ -1,7 +1,7 @@
 """
 Forecast snapshot tests
 
-Note that the outputted numbers in the snapshot are divided by 100 and rounded
+Note that the outputted numbers in the snapshot are divided by 1000 and rounded
 to make the snapshot consistent across different machines.
 
 When updating snapshots, check the generated folder for PDFs of the plots.
