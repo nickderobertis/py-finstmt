@@ -1,8 +1,11 @@
-from copy import deepcopy
+import dataclasses
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
 
 import pandas as pd
+from typing_extensions import Self
+
+T = TypeVar("T")
 
 
 @dataclass
@@ -75,19 +78,36 @@ class ForecastItemConfig:
             out_dict.update({"Manual Growth": growth_pcts})
         return pd.Series(out_dict)
 
-    def copy(self):
-        return deepcopy(self)
+    def copy(self, **updates) -> Self:
+        return dataclasses.replace(self, **updates)
 
-    def __round__(self, n=None) -> "ForecastItemConfig":
-        new_config = self.copy()
-        if new_config.cap is not None:
-            new_config.cap = round(new_config.cap, n)
-        if new_config.floor is not None:
-            new_config.floor = round(new_config.floor, n)
-        manual_forecast_keys = ["levels", "growth"]
-        for key in manual_forecast_keys:
-            if new_config.manual_forecasts[key]:
-                new_config.manual_forecasts[key] = [
-                    round(val, n) for val in new_config.manual_forecasts[key]
-                ]
-        return new_config
+    def __round__(self, n=None) -> Self:
+        return _apply_operation_to_item_config(self, n, round)
+
+
+ForecastItemConfigCombineData = Union[pd.Series, float]
+ForecastItemConfigCombineDataT = TypeVar(
+    "ForecastItemConfigCombineDataT", bound=ForecastItemConfigCombineData
+)
+
+
+def _apply_operation_to_item_config(
+    item_config: ForecastItemConfig,
+    other: T,
+    func: Callable[[ForecastItemConfigCombineDataT, T], ForecastItemConfigCombineDataT],
+) -> ForecastItemConfig:
+    updates: Dict[str, Any] = {}
+    if item_config.cap is not None:
+        updates["cap"] = func(item_config.cap, other)
+    if item_config.floor is not None:
+        updates["floor"] = func(item_config.floor, other)
+    manual_forecast_keys = ["levels", "growth"]
+    updates["manual_forecasts"] = {}
+    for key in manual_forecast_keys:
+        if item_config.manual_forecasts[key]:
+            updates["manual_forecasts"][key] = [
+                func(val, other) for val in item_config.manual_forecasts[key]
+            ]
+        else:
+            updates["manual_forecasts"][key] = []
+    return item_config.copy(**updates)
