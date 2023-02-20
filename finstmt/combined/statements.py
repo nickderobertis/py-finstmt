@@ -1,6 +1,6 @@
-from copy import deepcopy
+import dataclasses
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, List, Optional, Set
+from typing import List, Optional, Set, TYPE_CHECKING
 
 import pandas as pd
 from typing_extensions import Self
@@ -301,8 +301,8 @@ class FinancialStatements:
                 )
             raise MismatchingDatesException(message)
 
-    def copy(self) -> Self:
-        return deepcopy(self)
+    def copy(self, **updates) -> Self:
+        return dataclasses.replace(self, **updates)
 
     def __add__(self, other) -> Self:
         return self.combinator.add(self, other)

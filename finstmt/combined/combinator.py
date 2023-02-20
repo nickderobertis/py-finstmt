@@ -34,26 +34,42 @@ class FinancialStatementsCombinator(StatementsCombinator["FinancialStatements"])
     def add(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        statements = _combine_child_statements(statement, other, operator.add)
-        return _new_statements(statement, other, *statements)
+        income_statements, balance_sheets = _combine_child_statements(
+            statement, other, operator.add
+        )
+        return statement.copy(
+            income_statements=income_statements, balance_sheets=balance_sheets
+        )
 
     def subtract(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        statements = _combine_child_statements(statement, other, operator.sub)
-        return _new_statements(statement, other, *statements)
+        income_statements, balance_sheets = _combine_child_statements(
+            statement, other, operator.sub
+        )
+        return statement.copy(
+            income_statements=income_statements, balance_sheets=balance_sheets
+        )
 
     def multiply(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        statements = _combine_child_statements(statement, other, operator.mul)
-        return _new_statements(statement, other, *statements)
+        income_statements, balance_sheets = _combine_child_statements(
+            statement, other, operator.mul
+        )
+        return statement.copy(
+            income_statements=income_statements, balance_sheets=balance_sheets
+        )
 
     def divide(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        statements = _combine_child_statements(statement, other, operator.truediv)
-        return _new_statements(statement, other, *statements)
+        income_statements, balance_sheets = _combine_child_statements(
+            statement, other, operator.truediv
+        )
+        return statement.copy(
+            income_statements=income_statements, balance_sheets=balance_sheets
+        )
 
 
 def _combine_child_statements(
@@ -75,38 +91,3 @@ def _combine_child_statements(
         )
 
     return new_inc, new_bs
-
-
-def _new_statements(
-    statements: "FinancialStatements",
-    other_statements: "FinancialStatements",
-    new_inc: "IncomeStatements",
-    new_bs: "BalanceSheets",
-) -> "FinancialStatements":
-    from finstmt import FinancialStatements
-    from finstmt.forecast.statements import ForecastedFinancialStatements
-
-    if isinstance(statements, ForecastedFinancialStatements) and isinstance(
-        other_statements, ForecastedFinancialStatements
-    ):
-        raise NotImplementedError(
-            "not yet implemented to combine two forecasted statements"
-        )
-    if isinstance(statements, ForecastedFinancialStatements):
-        return ForecastedFinancialStatements(
-            new_inc,
-            new_bs,
-            calculate=statements.calculate,
-            auto_adjust_config=statements.auto_adjust_config,
-            forecasts=statements.forecasts,
-        )
-    if isinstance(other_statements, ForecastedFinancialStatements):
-        return ForecastedFinancialStatements(
-            new_inc,
-            new_bs,
-            calculate=statements.calculate,
-            auto_adjust_config=statements.auto_adjust_config,
-            forecasts=statements.forecasts,
-        )
-
-    return FinancialStatements(new_inc, new_bs)
