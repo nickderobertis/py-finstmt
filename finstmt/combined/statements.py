@@ -1,6 +1,6 @@
 import dataclasses
 from dataclasses import dataclass
-from typing import List, Optional, Set, TYPE_CHECKING
+from typing import TYPE_CHECKING, List, Optional, Set
 
 import pandas as pd
 from typing_extensions import Self
@@ -47,7 +47,7 @@ class FinancialStatements:
     balance_sheets: BalanceSheets
     calculate: bool = True
     auto_adjust_config: bool = True
-    combinator: StatementsCombinator[Self] = FinancialStatementsCombinator()
+    _combinator: StatementsCombinator[Self] = FinancialStatementsCombinator()
 
     def __post_init__(self):
         from finstmt.resolver.history import StatementsResolver
@@ -305,25 +305,25 @@ class FinancialStatements:
         return dataclasses.replace(self, **updates)
 
     def __add__(self, other) -> Self:
-        return self.combinator.add(self, other)
+        return self._combinator.add(self, other)
 
     def __radd__(self, other) -> Self:
         return self.__add__(other)
 
     def __sub__(self, other) -> Self:
-        return self.combinator.subtract(self, other)
+        return self._combinator.subtract(self, other)
 
     def __rsub__(self, other) -> Self:
         return (-1 * self) + other
 
     def __mul__(self, other) -> Self:
-        return self.combinator.multiply(self, other)
+        return self._combinator.multiply(self, other)
 
     def __rmul__(self, other) -> Self:
         return self.__mul__(other)
 
     def __truediv__(self, other) -> Self:
-        return self.combinator.divide(self, other)
+        return self._combinator.divide(self, other)
 
     def __rtruediv__(self, other):
         # TODO [#41]: implement right division for statements

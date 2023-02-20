@@ -1,9 +1,11 @@
 import dataclasses
+import operator
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, Optional, Sequence, Tuple, TypeVar, Union
 
 import matplotlib.pyplot as plt
 import pandas as pd
+from typing_extensions import Self
 
 from finstmt.exc import ForecastNotFitException, ForecastNotPredictedException
 from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
@@ -123,11 +125,23 @@ class Forecast:
         # Percentage of series
         return f"{self.base_config.display_name} % {self.pct_of_config.display_name}"
 
-    def copy(self, **updates) -> "Forecast":
+    def copy(self, **updates) -> Self:
         return dataclasses.replace(self, **updates)
 
-    def __round__(self, n: Optional[int] = None) -> "Forecast":
+    def __round__(self, n: Optional[int] = None) -> Self:
         return _apply_operation_to_forecast(self, n, round)
+
+    def __add__(self, other: T) -> Self:
+        return _apply_operation_to_forecast(self, other, operator.add)
+
+    def __sub__(self, other: T) -> Self:
+        return _apply_operation_to_forecast(self, other, operator.sub)
+
+    def __mul__(self, other: T) -> Self:
+        return _apply_operation_to_forecast(self, other, operator.mul)
+
+    def __truediv__(self, other: T) -> Self:
+        return _apply_operation_to_forecast(self, other, operator.truediv)
 
 
 ForecastOperationData = Union[pd.Series, ForecastItemConfig, ItemConfig]

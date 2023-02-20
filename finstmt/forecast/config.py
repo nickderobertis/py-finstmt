@@ -1,4 +1,5 @@
 import dataclasses
+import operator
 from dataclasses import dataclass, field
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
 
@@ -83,6 +84,18 @@ class ForecastItemConfig:
 
     def __round__(self, n=None) -> Self:
         return _apply_operation_to_item_config(self, n, round)
+
+    def __add__(self, other: T) -> Self:
+        return _apply_operation_to_item_config(self, other, operator.add)
+
+    def __sub__(self, other: T) -> Self:
+        return _apply_operation_to_item_config(self, other, operator.sub)
+
+    def __mul__(self, other: T) -> Self:
+        return _apply_operation_to_item_config(self, other, operator.mul)
+
+    def __truediv__(self, other: T) -> Self:
+        return _apply_operation_to_item_config(self, other, operator.truediv)
 
 
 ForecastItemConfigCombineData = Union[pd.Series, float]

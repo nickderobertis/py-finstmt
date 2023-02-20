@@ -5,6 +5,7 @@ from typing import Dict, Optional, Sequence, Tuple
 
 import matplotlib.pyplot as plt
 from matplotlib.axes import Subplot
+from typing_extensions import Self
 
 from finstmt.combined.combinator import ForecastedFinancialStatementsCombinator
 from finstmt.combined.statements import FinancialStatements
@@ -18,7 +19,10 @@ DEFAULT_HEIGHT_PER_ROW = 3
 @dataclass
 class ForecastedFinancialStatements(FinancialStatements):
     forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
-    combinator = ForecastedFinancialStatementsCombinator()
+
+    def __post_init__(self):
+        self._combinator = ForecastedFinancialStatementsCombinator()
+        super().__post_init__()
 
     def plot(
         self,
@@ -76,9 +80,8 @@ class ForecastedFinancialStatements(FinancialStatements):
             fig.delaxes(axes[row][col])
         return fig
 
-    def __round__(self, n=None) -> "ForecastedFinancialStatements":
-        # TODO: Use new Self type to fix typing of subclass methods
-        new_fcst: "ForecastedFinancialStatements" = super().__round__(n)  # type: ignore[assignment]
+    def __round__(self, n=None) -> Self:
+        new_fcst = super().__round__(n)
         new_fcst.forecasts = {k: round(v, n) for k, v in self.forecasts.items()}  # type: ignore[call-overload]
         return new_fcst
 
