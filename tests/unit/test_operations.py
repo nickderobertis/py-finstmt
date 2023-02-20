@@ -1,4 +1,5 @@
 from finstmt import FinancialStatements
+from finstmt.forecast.statements import ForecastedFinancialStatements
 
 
 def test_round_statement(ro_annual_capiq_stmts: FinancialStatements):
@@ -16,6 +17,16 @@ def test_add_statements(ro_annual_capiq_stmts: FinancialStatements):
 
     added = stmts + stmts
     assert (added.cash == stmts.cash + stmts.cash).all()
+
+
+def test_add_forecasted_statements_number(
+    ro_annual_capiq_fcst_stmts: ForecastedFinancialStatements,
+):
+    fcst = ro_annual_capiq_fcst_stmts
+
+    added: ForecastedFinancialStatements = fcst + 1
+    assert (added.cash == fcst.cash + 1).all()
+    assert (added.forecasts["cash"].series == fcst.forecasts["cash"].series + 1).all()
 
 
 def test_add_statements_number(ro_annual_capiq_stmts: FinancialStatements):

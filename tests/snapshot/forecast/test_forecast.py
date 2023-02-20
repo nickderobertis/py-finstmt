@@ -7,7 +7,6 @@ to make the snapshot consistent across different machines.
 When updating snapshots, check the generated folder for PDFs of the plots.
 """
 import sys
-from pathlib import Path
 from typing import Final, Sequence
 
 import matplotlib
@@ -18,7 +17,7 @@ from syrupy import SnapshotAssertion
 from finstmt import FinancialStatements
 from finstmt.exc import BalanceSheetNotBalancedException
 from tests.config import GENERATED_PATH
-from tests.snapshot.forecast.adjust_config import (
+from tests.fixtures.forecast.adjust_config import (
     FORECAST_ADJUSTS,
     AdjustDict,
     adjust_forecast_methods,
