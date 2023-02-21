@@ -3,7 +3,6 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, Protocol, Tuple, TypeVar
 
 from typing_extensions import TypeGuard
 
-
 if TYPE_CHECKING:
     from finstmt.bs.main import BalanceSheets
     from finstmt.combined.statements import FinancialStatements
