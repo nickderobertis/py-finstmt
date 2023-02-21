@@ -21,7 +21,8 @@ check:
     just format-check || ((exit_code++))
     just strip-check || ((exit_code++))
     just lint || ((exit_code++))
-    just test || ((exit_code++))
+    # Use -vv to show full snapshot diff
+    just test -vv || ((exit_code++))
 
     exit $exit_code
 
@@ -99,6 +100,17 @@ poetry-all +ARGS:
         just poetry $command $target $args
     done
 
+sync *TARGET:
+    #!/usr/bin/env bash
+    # Handle specific target sync
+    if [ ! -z "{{TARGET}}" ]; then
+        just poetry install {{TARGET}} --all-extras --sync
+        exit 0;
+    fi
+
+    # Sync all
+    just poetry-all install --all-extras --sync
+
 inspect-build:
     rm -rf dist
     poetry build
@@ -107,6 +119,5 @@ inspect-build:
     @echo "Contents of wheel:"
     @tar -tvf dist/*.tar.gz
 
-update-test-snapshots:
-    FINSTMT_GENERATE_TEST_DATA=true {{run-test}} pytest tests/integration
-    just format
+update-test-snapshots *OPTIONS:
+    {{run-test}} pytest tests/snapshot --snapshot-update {{OPTIONS}}
