@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/nickderobertis/py-finstmt/compare/v1.2.0...v1.2.1) (2023-02-21)
+
+
+### Bug Fixes
+
+* Handle calculated items in determining series names. Fixes fcf usage ([#97](https://github.com/nickderobertis/py-finstmt/issues/97)) ([e069fba](https://github.com/nickderobertis/py-finstmt/commit/e069fba4066c2588b76a727b39fe0d73e068eb09))
+
 ## [1.2.0](https://github.com/nickderobertis/py-finstmt/compare/v1.1.0...v1.2.0) (2023-02-21)
 
 
