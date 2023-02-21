@@ -174,377 +174,13 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
-                            key='ebit',
-                            display_name='Earnings Before Interest and Taxes',
-                            extract_names=[
-                                'ebit',
-                                'earnings before interest and taxes',
-                                'earnings before int and taxes',
-                                'earnings before interest and tax',
-                                'earnings before int and tax',
-                                'earn before interest and taxes',
-                                'earn before int and taxes',
-                                'earn before interest and tax',
-                                'earn before int and tax',
-                                'earnings before interest taxes',
-                                'earnings before int taxes',
-                                'earnings before interest tax',
-                                'earnings before int tax',
-                                'earn before interest taxes',
-                                'earn before int taxes',
-                                'earn before interest tax',
-                                'earn before int tax',
-                                'operating income',
-                                'op income',
-                                'op inc',
-                                'operating inc'
-                            ],
+                            key='ebitda',
+                            display_name='EBITDA',
                             force_positive=False,
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='gross_profit[t] - op_exp[t]'
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='int_exp',
-                            display_name='Interest Expense',
-                            extract_names=[
-                                'int',
-                                'int expense',
-                                'int expenses',
-                                'int exp',
-                                'interest',
-                                'interest expense',
-                                'interest expenses',
-                                'interest exp'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                pct_of='total_debt'
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='gain_on_sale_invest',
-                            display_name='Gain on Sale of Investments',
-                            extract_names=[
-                                'gain loss on sale of invest',
-                                'gain loss sale of invest',
-                                'gain loss sale invest',
-                                'gain on sale of invest',
-                                'gain sale of invest',
-                                'gain sale invest',
-                                'gain loss on sale of investments',
-                                'gain loss sale of investments',
-                                'gain loss sale investments',
-                                'gain on sale of investments',
-                                'gain sale of investments',
-                                'gain sale investments'
-                            ],
-                            force_positive=False
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='gain_on_sale_asset',
-                            display_name='Gain on Sale of Assets',
-                            extract_names=[
-                                'gain loss on sale of assets',
-                                'gain loss sale of assets',
-                                'gain loss sale assets',
-                                'gain on sale of assets',
-                                'gain sale of assets',
-                                'gain sale assets',
-                                'gain loss on sale of asset',
-                                'gain loss sale of asset',
-                                'gain loss sale asset',
-                                'gain on sale of asset',
-                                'gain sale of asset',
-                                'gain sale asset'
-                            ],
-                            force_positive=False
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='impairment',
-                            display_name='Impairment Expense',
-                            extract_names=[
-                                'impairment',
-                                'impairment expense',
-                                'impairment exp',
-                                'impairments',
-                                'impair',
-                                'impair expense',
-                                'impair exp',
-                                'impairment charges',
-                                'impairment charge',
-                                'impair charges',
-                                'impair charge',
-                                'impairment of goodwill',
-                                'impairment expense of goodwill',
-                                'impairment exp of goodwill',
-                                'impairments of goodwill',
-                                'impair of goodwill',
-                                'impair expense of goodwill',
-                                'impair exp of goodwill',
-                                'impairment charges of goodwill',
-                                'impairment charge of goodwill',
-                                'impair charges of goodwill',
-                                'impair charge of goodwill',
-                                'impairment goodwill',
-                                'impairment expense goodwill',
-                                'impairment exp goodwill',
-                                'impairments goodwill',
-                                'impair goodwill',
-                                'impair expense goodwill',
-                                'impair exp goodwill',
-                                'impairment charges goodwill',
-                                'impairment charge goodwill',
-                                'impair charges goodwill',
-                                'impair charge goodwill',
-                                'asset writedown',
-                                'assets writedown',
-                                'asset write down',
-                                'assets write down'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='ebt',
-                            display_name='Earnings Before Tax',
-                            extract_names=[
-                                'ebt',
-                                'earnings before taxes',
-                                'earnings before tax',
-                                'earn before tax',
-                                'earn before taxes',
-                                'ebt including unusual items',
-                                'earnings before taxes including unusual items',
-                                'earnings before tax including unusual items',
-                                'earn before tax including unusual items',
-                                'earn before taxes including unusual items',
-                                'ebt inc unusual items',
-                                'earnings before taxes inc unusual items',
-                                'earnings before tax inc unusual items',
-                                'earn before tax inc unusual items',
-                                'earn before taxes inc unusual items',
-                                'ebt incl unusual items',
-                                'earnings before taxes incl unusual items',
-                                'earnings before tax incl unusual items',
-                                'earn before tax incl unusual items',
-                                'earn before taxes incl unusual items',
-                                'pretax income',
-                                'pre tax income',
-                                'income pretax',
-                                'income pre tax'
-                            ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='ebit[t] - int_exp[t]'
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='tax_exp',
-                            display_name='Income Tax Expense',
-                            extract_names=[
-                                'taxes',
-                                'tax',
-                                'tax provision',
-                                'tax expense',
-                                'tax expenses',
-                                'tax exp',
-                                'income tax',
-                                'income tax provision',
-                                'income tax expense',
-                                'income tax expenses',
-                                'income tax exp'
-                            ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                pct_of='ebt'
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='net_income',
-                            display_name='Net Income',
-                            extract_names=[
-                                'net income',
-                                'net inc',
-                                'earnings',
-                                'earn'
-                            ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='ebt[t] - tax_exp[t]'
-                        )
-                    ]
-                ),
-                datetime.datetime(
-                    2012,
-                    6,
-                    30
-                ): finstmt.config_manage.data.DataConfigManager(
-                    configs=[
-                        finstmt.items.config.ItemConfig(
-                            key='revenue',
-                            display_name='Revenue',
-                            extract_names=[
-                                'total revenue',
-                                'total rev',
-                                'total sales',
-                                'total sale',
-                                'revenue',
-                                'rev',
-                                'sales',
-                                'sale'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='cogs',
-                            display_name='Cost of Goods Sold',
-                            extract_names=[
-                                'cost of revenue',
-                                'cost of goods sold',
-                                'cogs',
-                                'cor'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                pct_of='revenue'
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='gross_profit',
-                            display_name='Gross Profit',
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='revenue[t] - cogs[t]'
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='rd_exp',
-                            display_name='R&D Expense',
-                            extract_names=[
-                                'rd expenses',
-                                'rd expense',
-                                'rd exp',
-                                'rd',
-                                'research and development expenses',
-                                'research and development expense',
-                                'research and development exp',
-                                'research and development'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='sga',
-                            display_name='SG&A Expense',
-                            extract_names=[
-                                'sga',
-                                'sga expense',
-                                'sga expenses',
-                                'sga exp',
-                                'selling general and administrative',
-                                'selling general and administrative expense',
-                                'selling general and administrative expenses',
-                                'selling general and administrative exp',
-                                'selling general administrative',
-                                'selling general administrative expense',
-                                'selling general administrative expenses',
-                                'selling general administrative exp',
-                                'selling general and admin',
-                                'selling general and admin expense',
-                                'selling general and admin expenses',
-                                'selling general and admin exp',
-                                'selling general admin',
-                                'selling general admin expense',
-                                'selling general admin expenses',
-                                'selling general admin exp'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='dep_exp',
-                            display_name='Depreciation & Amortization Expense',
-                            extract_names=[
-                                'da',
-                                'dep amort',
-                                'dep and amort',
-                                'dep',
-                                'depreciation amort',
-                                'depreciation and amort',
-                                'depreciation',
-                                'depreciation amortization',
-                                'depreciation and amortization',
-                                'dep amortization',
-                                'dep and amortization'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='other_op_exp',
-                            display_name='Other Operating Expenses',
-                            extract_names=[
-                                'other operating expenses',
-                                'other operating expense',
-                                'other operating exp',
-                                'other op expenses',
-                                'other op expense',
-                                'other op exp',
-                                'other operating expensesincome',
-                                'other operating expenseincome',
-                                'other operating expincome',
-                                'other op expensesincome',
-                                'other op expenseincome',
-                                'other op expincome',
-                                'other operating expenses income',
-                                'other operating expense income',
-                                'other operating exp income',
-                                'other op expenses income',
-                                'other op expense income',
-                                'other op exp income',
-                                'other operating expensesinc',
-                                'other operating expenseinc',
-                                'other operating expinc',
-                                'other op expensesinc',
-                                'other op expenseinc',
-                                'other op expinc',
-                                'other operating expenses inc',
-                                'other operating expense inc',
-                                'other operating exp inc',
-                                'other op expenses inc',
-                                'other op expense inc',
-                                'other op exp inc',
-                                'other income expenses',
-                                'other income expense',
-                                'other income exps',
-                                'other income exp',
-                                'other inc expenses',
-                                'other inc expense',
-                                'other inc exps',
-                                'other inc exp',
-                                'other expenses income',
-                                'other expense income',
-                                'other exps income',
-                                'other exp income',
-                                'other expenses inc',
-                                'other expense inc',
-                                'other exps inc',
-                                'other exp inc'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='op_exp',
-                            display_name='Operating Expense',
-                            extract_names=[
-                                'op expense',
-                                'op expenses',
-                                'op exp',
-                                'operating expense',
-                                'operating expenses',
-                                'operating exp'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -751,6 +387,388 @@ finstmt.config_manage.statements.StatementsConfigManager(
                 ),
                 datetime.datetime(
                     2012,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='revenue',
+                            display_name='Revenue',
+                            extract_names=[
+                                'total revenue',
+                                'total rev',
+                                'total sales',
+                                'total sale',
+                                'revenue',
+                                'rev',
+                                'sales',
+                                'sale'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='cogs',
+                            display_name='Cost of Goods Sold',
+                            extract_names=[
+                                'cost of revenue',
+                                'cost of goods sold',
+                                'cogs',
+                                'cor'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                pct_of='revenue'
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='gross_profit',
+                            display_name='Gross Profit',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='revenue[t] - cogs[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='rd_exp',
+                            display_name='R&D Expense',
+                            extract_names=[
+                                'rd expenses',
+                                'rd expense',
+                                'rd exp',
+                                'rd',
+                                'research and development expenses',
+                                'research and development expense',
+                                'research and development exp',
+                                'research and development'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='sga',
+                            display_name='SG&A Expense',
+                            extract_names=[
+                                'sga',
+                                'sga expense',
+                                'sga expenses',
+                                'sga exp',
+                                'selling general and administrative',
+                                'selling general and administrative expense',
+                                'selling general and administrative expenses',
+                                'selling general and administrative exp',
+                                'selling general administrative',
+                                'selling general administrative expense',
+                                'selling general administrative expenses',
+                                'selling general administrative exp',
+                                'selling general and admin',
+                                'selling general and admin expense',
+                                'selling general and admin expenses',
+                                'selling general and admin exp',
+                                'selling general admin',
+                                'selling general admin expense',
+                                'selling general admin expenses',
+                                'selling general admin exp'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='dep_exp',
+                            display_name='Depreciation & Amortization Expense',
+                            extract_names=[
+                                'da',
+                                'dep amort',
+                                'dep and amort',
+                                'dep',
+                                'depreciation amort',
+                                'depreciation and amort',
+                                'depreciation',
+                                'depreciation amortization',
+                                'depreciation and amortization',
+                                'dep amortization',
+                                'dep and amortization'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='other_op_exp',
+                            display_name='Other Operating Expenses',
+                            extract_names=[
+                                'other operating expenses',
+                                'other operating expense',
+                                'other operating exp',
+                                'other op expenses',
+                                'other op expense',
+                                'other op exp',
+                                'other operating expensesincome',
+                                'other operating expenseincome',
+                                'other operating expincome',
+                                'other op expensesincome',
+                                'other op expenseincome',
+                                'other op expincome',
+                                'other operating expenses income',
+                                'other operating expense income',
+                                'other operating exp income',
+                                'other op expenses income',
+                                'other op expense income',
+                                'other op exp income',
+                                'other operating expensesinc',
+                                'other operating expenseinc',
+                                'other operating expinc',
+                                'other op expensesinc',
+                                'other op expenseinc',
+                                'other op expinc',
+                                'other operating expenses inc',
+                                'other operating expense inc',
+                                'other operating exp inc',
+                                'other op expenses inc',
+                                'other op expense inc',
+                                'other op exp inc',
+                                'other income expenses',
+                                'other income expense',
+                                'other income exps',
+                                'other income exp',
+                                'other inc expenses',
+                                'other inc expense',
+                                'other inc exps',
+                                'other inc exp',
+                                'other expenses income',
+                                'other expense income',
+                                'other exps income',
+                                'other exp income',
+                                'other expenses inc',
+                                'other expense inc',
+                                'other exps inc',
+                                'other exp inc'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='op_exp',
+                            display_name='Operating Expense',
+                            extract_names=[
+                                'op expense',
+                                'op expenses',
+                                'op exp',
+                                'operating expense',
+                                'operating expenses',
+                                'operating exp'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebit',
+                            display_name='Earnings Before Interest and Taxes',
+                            extract_names=[
+                                'ebit',
+                                'earnings before interest and taxes',
+                                'earnings before int and taxes',
+                                'earnings before interest and tax',
+                                'earnings before int and tax',
+                                'earn before interest and taxes',
+                                'earn before int and taxes',
+                                'earn before interest and tax',
+                                'earn before int and tax',
+                                'earnings before interest taxes',
+                                'earnings before int taxes',
+                                'earnings before interest tax',
+                                'earnings before int tax',
+                                'earn before interest taxes',
+                                'earn before int taxes',
+                                'earn before interest tax',
+                                'earn before int tax',
+                                'operating income',
+                                'op income',
+                                'op inc',
+                                'operating inc'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='gross_profit[t] - op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='int_exp',
+                            display_name='Interest Expense',
+                            extract_names=[
+                                'int',
+                                'int expense',
+                                'int expenses',
+                                'int exp',
+                                'interest',
+                                'interest expense',
+                                'interest expenses',
+                                'interest exp'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                pct_of='total_debt'
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='gain_on_sale_invest',
+                            display_name='Gain on Sale of Investments',
+                            extract_names=[
+                                'gain loss on sale of invest',
+                                'gain loss sale of invest',
+                                'gain loss sale invest',
+                                'gain on sale of invest',
+                                'gain sale of invest',
+                                'gain sale invest',
+                                'gain loss on sale of investments',
+                                'gain loss sale of investments',
+                                'gain loss sale investments',
+                                'gain on sale of investments',
+                                'gain sale of investments',
+                                'gain sale investments'
+                            ],
+                            force_positive=False
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='gain_on_sale_asset',
+                            display_name='Gain on Sale of Assets',
+                            extract_names=[
+                                'gain loss on sale of assets',
+                                'gain loss sale of assets',
+                                'gain loss sale assets',
+                                'gain on sale of assets',
+                                'gain sale of assets',
+                                'gain sale assets',
+                                'gain loss on sale of asset',
+                                'gain loss sale of asset',
+                                'gain loss sale asset',
+                                'gain on sale of asset',
+                                'gain sale of asset',
+                                'gain sale asset'
+                            ],
+                            force_positive=False
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='impairment',
+                            display_name='Impairment Expense',
+                            extract_names=[
+                                'impairment',
+                                'impairment expense',
+                                'impairment exp',
+                                'impairments',
+                                'impair',
+                                'impair expense',
+                                'impair exp',
+                                'impairment charges',
+                                'impairment charge',
+                                'impair charges',
+                                'impair charge',
+                                'impairment of goodwill',
+                                'impairment expense of goodwill',
+                                'impairment exp of goodwill',
+                                'impairments of goodwill',
+                                'impair of goodwill',
+                                'impair expense of goodwill',
+                                'impair exp of goodwill',
+                                'impairment charges of goodwill',
+                                'impairment charge of goodwill',
+                                'impair charges of goodwill',
+                                'impair charge of goodwill',
+                                'impairment goodwill',
+                                'impairment expense goodwill',
+                                'impairment exp goodwill',
+                                'impairments goodwill',
+                                'impair goodwill',
+                                'impair expense goodwill',
+                                'impair exp goodwill',
+                                'impairment charges goodwill',
+                                'impairment charge goodwill',
+                                'impair charges goodwill',
+                                'impair charge goodwill',
+                                'asset writedown',
+                                'assets writedown',
+                                'asset write down',
+                                'assets write down'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebt',
+                            display_name='Earnings Before Tax',
+                            extract_names=[
+                                'ebt',
+                                'earnings before taxes',
+                                'earnings before tax',
+                                'earn before tax',
+                                'earn before taxes',
+                                'ebt including unusual items',
+                                'earnings before taxes including unusual items',
+                                'earnings before tax including unusual items',
+                                'earn before tax including unusual items',
+                                'earn before taxes including unusual items',
+                                'ebt inc unusual items',
+                                'earnings before taxes inc unusual items',
+                                'earnings before tax inc unusual items',
+                                'earn before tax inc unusual items',
+                                'earn before taxes inc unusual items',
+                                'ebt incl unusual items',
+                                'earnings before taxes incl unusual items',
+                                'earnings before tax incl unusual items',
+                                'earn before tax incl unusual items',
+                                'earn before taxes incl unusual items',
+                                'pretax income',
+                                'pre tax income',
+                                'income pretax',
+                                'income pre tax'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] - int_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='tax_exp',
+                            display_name='Income Tax Expense',
+                            extract_names=[
+                                'taxes',
+                                'tax',
+                                'tax provision',
+                                'tax expense',
+                                'tax expenses',
+                                'tax exp',
+                                'income tax',
+                                'income tax provision',
+                                'income tax expense',
+                                'income tax expenses',
+                                'income tax exp'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                pct_of='ebt'
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='net_income',
+                            display_name='Net Income',
+                            extract_names=[
+                                'net income',
+                                'net inc',
+                                'earnings',
+                                'earn'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebt[t] - tax_exp[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2012,
                     9,
                     30
                 ): finstmt.config_manage.data.DataConfigManager(
@@ -918,6 +936,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -1293,6 +1320,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -1664,6 +1700,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -2039,6 +2084,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -2412,6 +2466,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -2783,6 +2846,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -3158,377 +3230,13 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
-                            key='ebit',
-                            display_name='Earnings Before Interest and Taxes',
-                            extract_names=[
-                                'ebit',
-                                'earnings before interest and taxes',
-                                'earnings before int and taxes',
-                                'earnings before interest and tax',
-                                'earnings before int and tax',
-                                'earn before interest and taxes',
-                                'earn before int and taxes',
-                                'earn before interest and tax',
-                                'earn before int and tax',
-                                'earnings before interest taxes',
-                                'earnings before int taxes',
-                                'earnings before interest tax',
-                                'earnings before int tax',
-                                'earn before interest taxes',
-                                'earn before int taxes',
-                                'earn before interest tax',
-                                'earn before int tax',
-                                'operating income',
-                                'op income',
-                                'op inc',
-                                'operating inc'
-                            ],
+                            key='ebitda',
+                            display_name='EBITDA',
                             force_positive=False,
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='gross_profit[t] - op_exp[t]'
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='int_exp',
-                            display_name='Interest Expense',
-                            extract_names=[
-                                'int',
-                                'int expense',
-                                'int expenses',
-                                'int exp',
-                                'interest',
-                                'interest expense',
-                                'interest expenses',
-                                'interest exp'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                pct_of='total_debt'
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='gain_on_sale_invest',
-                            display_name='Gain on Sale of Investments',
-                            extract_names=[
-                                'gain loss on sale of invest',
-                                'gain loss sale of invest',
-                                'gain loss sale invest',
-                                'gain on sale of invest',
-                                'gain sale of invest',
-                                'gain sale invest',
-                                'gain loss on sale of investments',
-                                'gain loss sale of investments',
-                                'gain loss sale investments',
-                                'gain on sale of investments',
-                                'gain sale of investments',
-                                'gain sale investments'
-                            ],
-                            force_positive=False
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='gain_on_sale_asset',
-                            display_name='Gain on Sale of Assets',
-                            extract_names=[
-                                'gain loss on sale of assets',
-                                'gain loss sale of assets',
-                                'gain loss sale assets',
-                                'gain on sale of assets',
-                                'gain sale of assets',
-                                'gain sale assets',
-                                'gain loss on sale of asset',
-                                'gain loss sale of asset',
-                                'gain loss sale asset',
-                                'gain on sale of asset',
-                                'gain sale of asset',
-                                'gain sale asset'
-                            ],
-                            force_positive=False
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='impairment',
-                            display_name='Impairment Expense',
-                            extract_names=[
-                                'impairment',
-                                'impairment expense',
-                                'impairment exp',
-                                'impairments',
-                                'impair',
-                                'impair expense',
-                                'impair exp',
-                                'impairment charges',
-                                'impairment charge',
-                                'impair charges',
-                                'impair charge',
-                                'impairment of goodwill',
-                                'impairment expense of goodwill',
-                                'impairment exp of goodwill',
-                                'impairments of goodwill',
-                                'impair of goodwill',
-                                'impair expense of goodwill',
-                                'impair exp of goodwill',
-                                'impairment charges of goodwill',
-                                'impairment charge of goodwill',
-                                'impair charges of goodwill',
-                                'impair charge of goodwill',
-                                'impairment goodwill',
-                                'impairment expense goodwill',
-                                'impairment exp goodwill',
-                                'impairments goodwill',
-                                'impair goodwill',
-                                'impair expense goodwill',
-                                'impair exp goodwill',
-                                'impairment charges goodwill',
-                                'impairment charge goodwill',
-                                'impair charges goodwill',
-                                'impair charge goodwill',
-                                'asset writedown',
-                                'assets writedown',
-                                'asset write down',
-                                'assets write down'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='ebt',
-                            display_name='Earnings Before Tax',
-                            extract_names=[
-                                'ebt',
-                                'earnings before taxes',
-                                'earnings before tax',
-                                'earn before tax',
-                                'earn before taxes',
-                                'ebt including unusual items',
-                                'earnings before taxes including unusual items',
-                                'earnings before tax including unusual items',
-                                'earn before tax including unusual items',
-                                'earn before taxes including unusual items',
-                                'ebt inc unusual items',
-                                'earnings before taxes inc unusual items',
-                                'earnings before tax inc unusual items',
-                                'earn before tax inc unusual items',
-                                'earn before taxes inc unusual items',
-                                'ebt incl unusual items',
-                                'earnings before taxes incl unusual items',
-                                'earnings before tax incl unusual items',
-                                'earn before tax incl unusual items',
-                                'earn before taxes incl unusual items',
-                                'pretax income',
-                                'pre tax income',
-                                'income pretax',
-                                'income pre tax'
-                            ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='ebit[t] - int_exp[t]'
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='tax_exp',
-                            display_name='Income Tax Expense',
-                            extract_names=[
-                                'taxes',
-                                'tax',
-                                'tax provision',
-                                'tax expense',
-                                'tax expenses',
-                                'tax exp',
-                                'income tax',
-                                'income tax provision',
-                                'income tax expense',
-                                'income tax expenses',
-                                'income tax exp'
-                            ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                pct_of='ebt'
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='net_income',
-                            display_name='Net Income',
-                            extract_names=[
-                                'net income',
-                                'net inc',
-                                'earnings',
-                                'earn'
-                            ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='ebt[t] - tax_exp[t]'
-                        )
-                    ]
-                ),
-                datetime.datetime(
-                    2014,
-                    6,
-                    30
-                ): finstmt.config_manage.data.DataConfigManager(
-                    configs=[
-                        finstmt.items.config.ItemConfig(
-                            key='revenue',
-                            display_name='Revenue',
-                            extract_names=[
-                                'total revenue',
-                                'total rev',
-                                'total sales',
-                                'total sale',
-                                'revenue',
-                                'rev',
-                                'sales',
-                                'sale'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='cogs',
-                            display_name='Cost of Goods Sold',
-                            extract_names=[
-                                'cost of revenue',
-                                'cost of goods sold',
-                                'cogs',
-                                'cor'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                pct_of='revenue'
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='gross_profit',
-                            display_name='Gross Profit',
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='revenue[t] - cogs[t]'
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='rd_exp',
-                            display_name='R&D Expense',
-                            extract_names=[
-                                'rd expenses',
-                                'rd expense',
-                                'rd exp',
-                                'rd',
-                                'research and development expenses',
-                                'research and development expense',
-                                'research and development exp',
-                                'research and development'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='sga',
-                            display_name='SG&A Expense',
-                            extract_names=[
-                                'sga',
-                                'sga expense',
-                                'sga expenses',
-                                'sga exp',
-                                'selling general and administrative',
-                                'selling general and administrative expense',
-                                'selling general and administrative expenses',
-                                'selling general and administrative exp',
-                                'selling general administrative',
-                                'selling general administrative expense',
-                                'selling general administrative expenses',
-                                'selling general administrative exp',
-                                'selling general and admin',
-                                'selling general and admin expense',
-                                'selling general and admin expenses',
-                                'selling general and admin exp',
-                                'selling general admin',
-                                'selling general admin expense',
-                                'selling general admin expenses',
-                                'selling general admin exp'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='dep_exp',
-                            display_name='Depreciation & Amortization Expense',
-                            extract_names=[
-                                'da',
-                                'dep amort',
-                                'dep and amort',
-                                'dep',
-                                'depreciation amort',
-                                'depreciation and amort',
-                                'depreciation',
-                                'depreciation amortization',
-                                'depreciation and amortization',
-                                'dep amortization',
-                                'dep and amortization'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='other_op_exp',
-                            display_name='Other Operating Expenses',
-                            extract_names=[
-                                'other operating expenses',
-                                'other operating expense',
-                                'other operating exp',
-                                'other op expenses',
-                                'other op expense',
-                                'other op exp',
-                                'other operating expensesincome',
-                                'other operating expenseincome',
-                                'other operating expincome',
-                                'other op expensesincome',
-                                'other op expenseincome',
-                                'other op expincome',
-                                'other operating expenses income',
-                                'other operating expense income',
-                                'other operating exp income',
-                                'other op expenses income',
-                                'other op expense income',
-                                'other op exp income',
-                                'other operating expensesinc',
-                                'other operating expenseinc',
-                                'other operating expinc',
-                                'other op expensesinc',
-                                'other op expenseinc',
-                                'other op expinc',
-                                'other operating expenses inc',
-                                'other operating expense inc',
-                                'other operating exp inc',
-                                'other op expenses inc',
-                                'other op expense inc',
-                                'other op exp inc',
-                                'other income expenses',
-                                'other income expense',
-                                'other income exps',
-                                'other income exp',
-                                'other inc expenses',
-                                'other inc expense',
-                                'other inc exps',
-                                'other inc exp',
-                                'other expenses income',
-                                'other expense income',
-                                'other exps income',
-                                'other exp income',
-                                'other expenses inc',
-                                'other expense inc',
-                                'other exps inc',
-                                'other exp inc'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='op_exp',
-                            display_name='Operating Expense',
-                            extract_names=[
-                                'op expense',
-                                'op expenses',
-                                'op exp',
-                                'operating expense',
-                                'operating expenses',
-                                'operating exp'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -3735,6 +3443,388 @@ finstmt.config_manage.statements.StatementsConfigManager(
                 ),
                 datetime.datetime(
                     2014,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='revenue',
+                            display_name='Revenue',
+                            extract_names=[
+                                'total revenue',
+                                'total rev',
+                                'total sales',
+                                'total sale',
+                                'revenue',
+                                'rev',
+                                'sales',
+                                'sale'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='cogs',
+                            display_name='Cost of Goods Sold',
+                            extract_names=[
+                                'cost of revenue',
+                                'cost of goods sold',
+                                'cogs',
+                                'cor'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                pct_of='revenue'
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='gross_profit',
+                            display_name='Gross Profit',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='revenue[t] - cogs[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='rd_exp',
+                            display_name='R&D Expense',
+                            extract_names=[
+                                'rd expenses',
+                                'rd expense',
+                                'rd exp',
+                                'rd',
+                                'research and development expenses',
+                                'research and development expense',
+                                'research and development exp',
+                                'research and development'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='sga',
+                            display_name='SG&A Expense',
+                            extract_names=[
+                                'sga',
+                                'sga expense',
+                                'sga expenses',
+                                'sga exp',
+                                'selling general and administrative',
+                                'selling general and administrative expense',
+                                'selling general and administrative expenses',
+                                'selling general and administrative exp',
+                                'selling general administrative',
+                                'selling general administrative expense',
+                                'selling general administrative expenses',
+                                'selling general administrative exp',
+                                'selling general and admin',
+                                'selling general and admin expense',
+                                'selling general and admin expenses',
+                                'selling general and admin exp',
+                                'selling general admin',
+                                'selling general admin expense',
+                                'selling general admin expenses',
+                                'selling general admin exp'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='dep_exp',
+                            display_name='Depreciation & Amortization Expense',
+                            extract_names=[
+                                'da',
+                                'dep amort',
+                                'dep and amort',
+                                'dep',
+                                'depreciation amort',
+                                'depreciation and amort',
+                                'depreciation',
+                                'depreciation amortization',
+                                'depreciation and amortization',
+                                'dep amortization',
+                                'dep and amortization'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='other_op_exp',
+                            display_name='Other Operating Expenses',
+                            extract_names=[
+                                'other operating expenses',
+                                'other operating expense',
+                                'other operating exp',
+                                'other op expenses',
+                                'other op expense',
+                                'other op exp',
+                                'other operating expensesincome',
+                                'other operating expenseincome',
+                                'other operating expincome',
+                                'other op expensesincome',
+                                'other op expenseincome',
+                                'other op expincome',
+                                'other operating expenses income',
+                                'other operating expense income',
+                                'other operating exp income',
+                                'other op expenses income',
+                                'other op expense income',
+                                'other op exp income',
+                                'other operating expensesinc',
+                                'other operating expenseinc',
+                                'other operating expinc',
+                                'other op expensesinc',
+                                'other op expenseinc',
+                                'other op expinc',
+                                'other operating expenses inc',
+                                'other operating expense inc',
+                                'other operating exp inc',
+                                'other op expenses inc',
+                                'other op expense inc',
+                                'other op exp inc',
+                                'other income expenses',
+                                'other income expense',
+                                'other income exps',
+                                'other income exp',
+                                'other inc expenses',
+                                'other inc expense',
+                                'other inc exps',
+                                'other inc exp',
+                                'other expenses income',
+                                'other expense income',
+                                'other exps income',
+                                'other exp income',
+                                'other expenses inc',
+                                'other expense inc',
+                                'other exps inc',
+                                'other exp inc'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='op_exp',
+                            display_name='Operating Expense',
+                            extract_names=[
+                                'op expense',
+                                'op expenses',
+                                'op exp',
+                                'operating expense',
+                                'operating expenses',
+                                'operating exp'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebit',
+                            display_name='Earnings Before Interest and Taxes',
+                            extract_names=[
+                                'ebit',
+                                'earnings before interest and taxes',
+                                'earnings before int and taxes',
+                                'earnings before interest and tax',
+                                'earnings before int and tax',
+                                'earn before interest and taxes',
+                                'earn before int and taxes',
+                                'earn before interest and tax',
+                                'earn before int and tax',
+                                'earnings before interest taxes',
+                                'earnings before int taxes',
+                                'earnings before interest tax',
+                                'earnings before int tax',
+                                'earn before interest taxes',
+                                'earn before int taxes',
+                                'earn before interest tax',
+                                'earn before int tax',
+                                'operating income',
+                                'op income',
+                                'op inc',
+                                'operating inc'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='gross_profit[t] - op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='int_exp',
+                            display_name='Interest Expense',
+                            extract_names=[
+                                'int',
+                                'int expense',
+                                'int expenses',
+                                'int exp',
+                                'interest',
+                                'interest expense',
+                                'interest expenses',
+                                'interest exp'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                pct_of='total_debt'
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='gain_on_sale_invest',
+                            display_name='Gain on Sale of Investments',
+                            extract_names=[
+                                'gain loss on sale of invest',
+                                'gain loss sale of invest',
+                                'gain loss sale invest',
+                                'gain on sale of invest',
+                                'gain sale of invest',
+                                'gain sale invest',
+                                'gain loss on sale of investments',
+                                'gain loss sale of investments',
+                                'gain loss sale investments',
+                                'gain on sale of investments',
+                                'gain sale of investments',
+                                'gain sale investments'
+                            ],
+                            force_positive=False
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='gain_on_sale_asset',
+                            display_name='Gain on Sale of Assets',
+                            extract_names=[
+                                'gain loss on sale of assets',
+                                'gain loss sale of assets',
+                                'gain loss sale assets',
+                                'gain on sale of assets',
+                                'gain sale of assets',
+                                'gain sale assets',
+                                'gain loss on sale of asset',
+                                'gain loss sale of asset',
+                                'gain loss sale asset',
+                                'gain on sale of asset',
+                                'gain sale of asset',
+                                'gain sale asset'
+                            ],
+                            force_positive=False
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='impairment',
+                            display_name='Impairment Expense',
+                            extract_names=[
+                                'impairment',
+                                'impairment expense',
+                                'impairment exp',
+                                'impairments',
+                                'impair',
+                                'impair expense',
+                                'impair exp',
+                                'impairment charges',
+                                'impairment charge',
+                                'impair charges',
+                                'impair charge',
+                                'impairment of goodwill',
+                                'impairment expense of goodwill',
+                                'impairment exp of goodwill',
+                                'impairments of goodwill',
+                                'impair of goodwill',
+                                'impair expense of goodwill',
+                                'impair exp of goodwill',
+                                'impairment charges of goodwill',
+                                'impairment charge of goodwill',
+                                'impair charges of goodwill',
+                                'impair charge of goodwill',
+                                'impairment goodwill',
+                                'impairment expense goodwill',
+                                'impairment exp goodwill',
+                                'impairments goodwill',
+                                'impair goodwill',
+                                'impair expense goodwill',
+                                'impair exp goodwill',
+                                'impairment charges goodwill',
+                                'impairment charge goodwill',
+                                'impair charges goodwill',
+                                'impair charge goodwill',
+                                'asset writedown',
+                                'assets writedown',
+                                'asset write down',
+                                'assets write down'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebt',
+                            display_name='Earnings Before Tax',
+                            extract_names=[
+                                'ebt',
+                                'earnings before taxes',
+                                'earnings before tax',
+                                'earn before tax',
+                                'earn before taxes',
+                                'ebt including unusual items',
+                                'earnings before taxes including unusual items',
+                                'earnings before tax including unusual items',
+                                'earn before tax including unusual items',
+                                'earn before taxes including unusual items',
+                                'ebt inc unusual items',
+                                'earnings before taxes inc unusual items',
+                                'earnings before tax inc unusual items',
+                                'earn before tax inc unusual items',
+                                'earn before taxes inc unusual items',
+                                'ebt incl unusual items',
+                                'earnings before taxes incl unusual items',
+                                'earnings before tax incl unusual items',
+                                'earn before tax incl unusual items',
+                                'earn before taxes incl unusual items',
+                                'pretax income',
+                                'pre tax income',
+                                'income pretax',
+                                'income pre tax'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] - int_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='tax_exp',
+                            display_name='Income Tax Expense',
+                            extract_names=[
+                                'taxes',
+                                'tax',
+                                'tax provision',
+                                'tax expense',
+                                'tax expenses',
+                                'tax exp',
+                                'income tax',
+                                'income tax provision',
+                                'income tax expense',
+                                'income tax expenses',
+                                'income tax exp'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                pct_of='ebt'
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='net_income',
+                            display_name='Net Income',
+                            extract_names=[
+                                'net income',
+                                'net inc',
+                                'earnings',
+                                'earn'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebt[t] - tax_exp[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2014,
                     9,
                     30
                 ): finstmt.config_manage.data.DataConfigManager(
@@ -3902,6 +3992,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -4277,6 +4376,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -4648,6 +4756,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -5023,377 +5140,13 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
-                            key='ebit',
-                            display_name='Earnings Before Interest and Taxes',
-                            extract_names=[
-                                'ebit',
-                                'earnings before interest and taxes',
-                                'earnings before int and taxes',
-                                'earnings before interest and tax',
-                                'earnings before int and tax',
-                                'earn before interest and taxes',
-                                'earn before int and taxes',
-                                'earn before interest and tax',
-                                'earn before int and tax',
-                                'earnings before interest taxes',
-                                'earnings before int taxes',
-                                'earnings before interest tax',
-                                'earnings before int tax',
-                                'earn before interest taxes',
-                                'earn before int taxes',
-                                'earn before interest tax',
-                                'earn before int tax',
-                                'operating income',
-                                'op income',
-                                'op inc',
-                                'operating inc'
-                            ],
+                            key='ebitda',
+                            display_name='EBITDA',
                             force_positive=False,
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='gross_profit[t] - op_exp[t]'
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='int_exp',
-                            display_name='Interest Expense',
-                            extract_names=[
-                                'int',
-                                'int expense',
-                                'int expenses',
-                                'int exp',
-                                'interest',
-                                'interest expense',
-                                'interest expenses',
-                                'interest exp'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                pct_of='total_debt'
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='gain_on_sale_invest',
-                            display_name='Gain on Sale of Investments',
-                            extract_names=[
-                                'gain loss on sale of invest',
-                                'gain loss sale of invest',
-                                'gain loss sale invest',
-                                'gain on sale of invest',
-                                'gain sale of invest',
-                                'gain sale invest',
-                                'gain loss on sale of investments',
-                                'gain loss sale of investments',
-                                'gain loss sale investments',
-                                'gain on sale of investments',
-                                'gain sale of investments',
-                                'gain sale investments'
-                            ],
-                            force_positive=False
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='gain_on_sale_asset',
-                            display_name='Gain on Sale of Assets',
-                            extract_names=[
-                                'gain loss on sale of assets',
-                                'gain loss sale of assets',
-                                'gain loss sale assets',
-                                'gain on sale of assets',
-                                'gain sale of assets',
-                                'gain sale assets',
-                                'gain loss on sale of asset',
-                                'gain loss sale of asset',
-                                'gain loss sale asset',
-                                'gain on sale of asset',
-                                'gain sale of asset',
-                                'gain sale asset'
-                            ],
-                            force_positive=False
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='impairment',
-                            display_name='Impairment Expense',
-                            extract_names=[
-                                'impairment',
-                                'impairment expense',
-                                'impairment exp',
-                                'impairments',
-                                'impair',
-                                'impair expense',
-                                'impair exp',
-                                'impairment charges',
-                                'impairment charge',
-                                'impair charges',
-                                'impair charge',
-                                'impairment of goodwill',
-                                'impairment expense of goodwill',
-                                'impairment exp of goodwill',
-                                'impairments of goodwill',
-                                'impair of goodwill',
-                                'impair expense of goodwill',
-                                'impair exp of goodwill',
-                                'impairment charges of goodwill',
-                                'impairment charge of goodwill',
-                                'impair charges of goodwill',
-                                'impair charge of goodwill',
-                                'impairment goodwill',
-                                'impairment expense goodwill',
-                                'impairment exp goodwill',
-                                'impairments goodwill',
-                                'impair goodwill',
-                                'impair expense goodwill',
-                                'impair exp goodwill',
-                                'impairment charges goodwill',
-                                'impairment charge goodwill',
-                                'impair charges goodwill',
-                                'impair charge goodwill',
-                                'asset writedown',
-                                'assets writedown',
-                                'asset write down',
-                                'assets write down'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='ebt',
-                            display_name='Earnings Before Tax',
-                            extract_names=[
-                                'ebt',
-                                'earnings before taxes',
-                                'earnings before tax',
-                                'earn before tax',
-                                'earn before taxes',
-                                'ebt including unusual items',
-                                'earnings before taxes including unusual items',
-                                'earnings before tax including unusual items',
-                                'earn before tax including unusual items',
-                                'earn before taxes including unusual items',
-                                'ebt inc unusual items',
-                                'earnings before taxes inc unusual items',
-                                'earnings before tax inc unusual items',
-                                'earn before tax inc unusual items',
-                                'earn before taxes inc unusual items',
-                                'ebt incl unusual items',
-                                'earnings before taxes incl unusual items',
-                                'earnings before tax incl unusual items',
-                                'earn before tax incl unusual items',
-                                'earn before taxes incl unusual items',
-                                'pretax income',
-                                'pre tax income',
-                                'income pretax',
-                                'income pre tax'
-                            ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='ebit[t] - int_exp[t]'
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='tax_exp',
-                            display_name='Income Tax Expense',
-                            extract_names=[
-                                'taxes',
-                                'tax',
-                                'tax provision',
-                                'tax expense',
-                                'tax expenses',
-                                'tax exp',
-                                'income tax',
-                                'income tax provision',
-                                'income tax expense',
-                                'income tax expenses',
-                                'income tax exp'
-                            ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                pct_of='ebt'
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='net_income',
-                            display_name='Net Income',
-                            extract_names=[
-                                'net income',
-                                'net inc',
-                                'earnings',
-                                'earn'
-                            ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='ebt[t] - tax_exp[t]'
-                        )
-                    ]
-                ),
-                datetime.datetime(
-                    2015,
-                    9,
-                    30
-                ): finstmt.config_manage.data.DataConfigManager(
-                    configs=[
-                        finstmt.items.config.ItemConfig(
-                            key='revenue',
-                            display_name='Revenue',
-                            extract_names=[
-                                'total revenue',
-                                'total rev',
-                                'total sales',
-                                'total sale',
-                                'revenue',
-                                'rev',
-                                'sales',
-                                'sale'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='cogs',
-                            display_name='Cost of Goods Sold',
-                            extract_names=[
-                                'cost of revenue',
-                                'cost of goods sold',
-                                'cogs',
-                                'cor'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                pct_of='revenue'
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='gross_profit',
-                            display_name='Gross Profit',
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='revenue[t] - cogs[t]'
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='rd_exp',
-                            display_name='R&D Expense',
-                            extract_names=[
-                                'rd expenses',
-                                'rd expense',
-                                'rd exp',
-                                'rd',
-                                'research and development expenses',
-                                'research and development expense',
-                                'research and development exp',
-                                'research and development'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='sga',
-                            display_name='SG&A Expense',
-                            extract_names=[
-                                'sga',
-                                'sga expense',
-                                'sga expenses',
-                                'sga exp',
-                                'selling general and administrative',
-                                'selling general and administrative expense',
-                                'selling general and administrative expenses',
-                                'selling general and administrative exp',
-                                'selling general administrative',
-                                'selling general administrative expense',
-                                'selling general administrative expenses',
-                                'selling general administrative exp',
-                                'selling general and admin',
-                                'selling general and admin expense',
-                                'selling general and admin expenses',
-                                'selling general and admin exp',
-                                'selling general admin',
-                                'selling general admin expense',
-                                'selling general admin expenses',
-                                'selling general admin exp'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='dep_exp',
-                            display_name='Depreciation & Amortization Expense',
-                            extract_names=[
-                                'da',
-                                'dep amort',
-                                'dep and amort',
-                                'dep',
-                                'depreciation amort',
-                                'depreciation and amort',
-                                'depreciation',
-                                'depreciation amortization',
-                                'depreciation and amortization',
-                                'dep amortization',
-                                'dep and amortization'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='other_op_exp',
-                            display_name='Other Operating Expenses',
-                            extract_names=[
-                                'other operating expenses',
-                                'other operating expense',
-                                'other operating exp',
-                                'other op expenses',
-                                'other op expense',
-                                'other op exp',
-                                'other operating expensesincome',
-                                'other operating expenseincome',
-                                'other operating expincome',
-                                'other op expensesincome',
-                                'other op expenseincome',
-                                'other op expincome',
-                                'other operating expenses income',
-                                'other operating expense income',
-                                'other operating exp income',
-                                'other op expenses income',
-                                'other op expense income',
-                                'other op exp income',
-                                'other operating expensesinc',
-                                'other operating expenseinc',
-                                'other operating expinc',
-                                'other op expensesinc',
-                                'other op expenseinc',
-                                'other op expinc',
-                                'other operating expenses inc',
-                                'other operating expense inc',
-                                'other operating exp inc',
-                                'other op expenses inc',
-                                'other op expense inc',
-                                'other op exp inc',
-                                'other income expenses',
-                                'other income expense',
-                                'other income exps',
-                                'other income exp',
-                                'other inc expenses',
-                                'other inc expense',
-                                'other inc exps',
-                                'other inc exp',
-                                'other expenses income',
-                                'other expense income',
-                                'other exps income',
-                                'other exp income',
-                                'other expenses inc',
-                                'other expense inc',
-                                'other exps inc',
-                                'other exp inc'
-                            ]
-                        ),
-                        finstmt.items.config.ItemConfig(
-                            key='op_exp',
-                            display_name='Operating Expense',
-                            extract_names=[
-                                'op expense',
-                                'op expenses',
-                                'op exp',
-                                'operating expense',
-                                'operating expenses',
-                                'operating exp'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            ),
-                            expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -5600,6 +5353,388 @@ finstmt.config_manage.statements.StatementsConfigManager(
                 ),
                 datetime.datetime(
                     2015,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='revenue',
+                            display_name='Revenue',
+                            extract_names=[
+                                'total revenue',
+                                'total rev',
+                                'total sales',
+                                'total sale',
+                                'revenue',
+                                'rev',
+                                'sales',
+                                'sale'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='cogs',
+                            display_name='Cost of Goods Sold',
+                            extract_names=[
+                                'cost of revenue',
+                                'cost of goods sold',
+                                'cogs',
+                                'cor'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                pct_of='revenue'
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='gross_profit',
+                            display_name='Gross Profit',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='revenue[t] - cogs[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='rd_exp',
+                            display_name='R&D Expense',
+                            extract_names=[
+                                'rd expenses',
+                                'rd expense',
+                                'rd exp',
+                                'rd',
+                                'research and development expenses',
+                                'research and development expense',
+                                'research and development exp',
+                                'research and development'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='sga',
+                            display_name='SG&A Expense',
+                            extract_names=[
+                                'sga',
+                                'sga expense',
+                                'sga expenses',
+                                'sga exp',
+                                'selling general and administrative',
+                                'selling general and administrative expense',
+                                'selling general and administrative expenses',
+                                'selling general and administrative exp',
+                                'selling general administrative',
+                                'selling general administrative expense',
+                                'selling general administrative expenses',
+                                'selling general administrative exp',
+                                'selling general and admin',
+                                'selling general and admin expense',
+                                'selling general and admin expenses',
+                                'selling general and admin exp',
+                                'selling general admin',
+                                'selling general admin expense',
+                                'selling general admin expenses',
+                                'selling general admin exp'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='dep_exp',
+                            display_name='Depreciation & Amortization Expense',
+                            extract_names=[
+                                'da',
+                                'dep amort',
+                                'dep and amort',
+                                'dep',
+                                'depreciation amort',
+                                'depreciation and amort',
+                                'depreciation',
+                                'depreciation amortization',
+                                'depreciation and amortization',
+                                'dep amortization',
+                                'dep and amortization'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='other_op_exp',
+                            display_name='Other Operating Expenses',
+                            extract_names=[
+                                'other operating expenses',
+                                'other operating expense',
+                                'other operating exp',
+                                'other op expenses',
+                                'other op expense',
+                                'other op exp',
+                                'other operating expensesincome',
+                                'other operating expenseincome',
+                                'other operating expincome',
+                                'other op expensesincome',
+                                'other op expenseincome',
+                                'other op expincome',
+                                'other operating expenses income',
+                                'other operating expense income',
+                                'other operating exp income',
+                                'other op expenses income',
+                                'other op expense income',
+                                'other op exp income',
+                                'other operating expensesinc',
+                                'other operating expenseinc',
+                                'other operating expinc',
+                                'other op expensesinc',
+                                'other op expenseinc',
+                                'other op expinc',
+                                'other operating expenses inc',
+                                'other operating expense inc',
+                                'other operating exp inc',
+                                'other op expenses inc',
+                                'other op expense inc',
+                                'other op exp inc',
+                                'other income expenses',
+                                'other income expense',
+                                'other income exps',
+                                'other income exp',
+                                'other inc expenses',
+                                'other inc expense',
+                                'other inc exps',
+                                'other inc exp',
+                                'other expenses income',
+                                'other expense income',
+                                'other exps income',
+                                'other exp income',
+                                'other expenses inc',
+                                'other expense inc',
+                                'other exps inc',
+                                'other exp inc'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='op_exp',
+                            display_name='Operating Expense',
+                            extract_names=[
+                                'op expense',
+                                'op expenses',
+                                'op exp',
+                                'operating expense',
+                                'operating expenses',
+                                'operating exp'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebit',
+                            display_name='Earnings Before Interest and Taxes',
+                            extract_names=[
+                                'ebit',
+                                'earnings before interest and taxes',
+                                'earnings before int and taxes',
+                                'earnings before interest and tax',
+                                'earnings before int and tax',
+                                'earn before interest and taxes',
+                                'earn before int and taxes',
+                                'earn before interest and tax',
+                                'earn before int and tax',
+                                'earnings before interest taxes',
+                                'earnings before int taxes',
+                                'earnings before interest tax',
+                                'earnings before int tax',
+                                'earn before interest taxes',
+                                'earn before int taxes',
+                                'earn before interest tax',
+                                'earn before int tax',
+                                'operating income',
+                                'op income',
+                                'op inc',
+                                'operating inc'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='gross_profit[t] - op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='int_exp',
+                            display_name='Interest Expense',
+                            extract_names=[
+                                'int',
+                                'int expense',
+                                'int expenses',
+                                'int exp',
+                                'interest',
+                                'interest expense',
+                                'interest expenses',
+                                'interest exp'
+                            ],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                pct_of='total_debt'
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='gain_on_sale_invest',
+                            display_name='Gain on Sale of Investments',
+                            extract_names=[
+                                'gain loss on sale of invest',
+                                'gain loss sale of invest',
+                                'gain loss sale invest',
+                                'gain on sale of invest',
+                                'gain sale of invest',
+                                'gain sale invest',
+                                'gain loss on sale of investments',
+                                'gain loss sale of investments',
+                                'gain loss sale investments',
+                                'gain on sale of investments',
+                                'gain sale of investments',
+                                'gain sale investments'
+                            ],
+                            force_positive=False
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='gain_on_sale_asset',
+                            display_name='Gain on Sale of Assets',
+                            extract_names=[
+                                'gain loss on sale of assets',
+                                'gain loss sale of assets',
+                                'gain loss sale assets',
+                                'gain on sale of assets',
+                                'gain sale of assets',
+                                'gain sale assets',
+                                'gain loss on sale of asset',
+                                'gain loss sale of asset',
+                                'gain loss sale asset',
+                                'gain on sale of asset',
+                                'gain sale of asset',
+                                'gain sale asset'
+                            ],
+                            force_positive=False
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='impairment',
+                            display_name='Impairment Expense',
+                            extract_names=[
+                                'impairment',
+                                'impairment expense',
+                                'impairment exp',
+                                'impairments',
+                                'impair',
+                                'impair expense',
+                                'impair exp',
+                                'impairment charges',
+                                'impairment charge',
+                                'impair charges',
+                                'impair charge',
+                                'impairment of goodwill',
+                                'impairment expense of goodwill',
+                                'impairment exp of goodwill',
+                                'impairments of goodwill',
+                                'impair of goodwill',
+                                'impair expense of goodwill',
+                                'impair exp of goodwill',
+                                'impairment charges of goodwill',
+                                'impairment charge of goodwill',
+                                'impair charges of goodwill',
+                                'impair charge of goodwill',
+                                'impairment goodwill',
+                                'impairment expense goodwill',
+                                'impairment exp goodwill',
+                                'impairments goodwill',
+                                'impair goodwill',
+                                'impair expense goodwill',
+                                'impair exp goodwill',
+                                'impairment charges goodwill',
+                                'impairment charge goodwill',
+                                'impair charges goodwill',
+                                'impair charge goodwill',
+                                'asset writedown',
+                                'assets writedown',
+                                'asset write down',
+                                'assets write down'
+                            ]
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebt',
+                            display_name='Earnings Before Tax',
+                            extract_names=[
+                                'ebt',
+                                'earnings before taxes',
+                                'earnings before tax',
+                                'earn before tax',
+                                'earn before taxes',
+                                'ebt including unusual items',
+                                'earnings before taxes including unusual items',
+                                'earnings before tax including unusual items',
+                                'earn before tax including unusual items',
+                                'earn before taxes including unusual items',
+                                'ebt inc unusual items',
+                                'earnings before taxes inc unusual items',
+                                'earnings before tax inc unusual items',
+                                'earn before tax inc unusual items',
+                                'earn before taxes inc unusual items',
+                                'ebt incl unusual items',
+                                'earnings before taxes incl unusual items',
+                                'earnings before tax incl unusual items',
+                                'earn before tax incl unusual items',
+                                'earn before taxes incl unusual items',
+                                'pretax income',
+                                'pre tax income',
+                                'income pretax',
+                                'income pre tax'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] - int_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='tax_exp',
+                            display_name='Income Tax Expense',
+                            extract_names=[
+                                'taxes',
+                                'tax',
+                                'tax provision',
+                                'tax expense',
+                                'tax expenses',
+                                'tax exp',
+                                'income tax',
+                                'income tax provision',
+                                'income tax expense',
+                                'income tax expenses',
+                                'income tax exp'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                pct_of='ebt'
+                            )
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='net_income',
+                            display_name='Net Income',
+                            extract_names=[
+                                'net income',
+                                'net inc',
+                                'earnings',
+                                'earn'
+                            ],
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebt[t] - tax_exp[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2015,
                     12,
                     31
                 ): finstmt.config_manage.data.DataConfigManager(
@@ -5767,6 +5902,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -6142,6 +6286,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -6513,6 +6666,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -6888,6 +7050,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -7259,6 +7430,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -7634,6 +7814,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -8005,6 +8194,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -8380,6 +8578,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -8751,6 +8958,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -9126,6 +9342,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -9497,6 +9722,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -9872,6 +10106,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -10243,6 +10486,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -10618,6 +10870,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -10991,6 +11252,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -11362,6 +11632,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',

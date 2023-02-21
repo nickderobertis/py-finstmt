@@ -174,6 +174,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -548,6 +557,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
@@ -926,6 +944,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -1302,6 +1329,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
                             key='ebit',
                             display_name='Earnings Before Interest and Taxes',
                             extract_names=[
@@ -1676,6 +1712,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='rd_exp[t] + dep_exp[t] + sga[t] + other_op_exp[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='ebitda',
+                            display_name='EBITDA',
+                            force_positive=False,
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='ebit[t] + dep_exp[t]'
                         ),
                         finstmt.items.config.ItemConfig(
                             key='ebit',
