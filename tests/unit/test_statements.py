@@ -6,5 +6,5 @@ def test_series_name(annual_capiq_stmts: FinancialStatements):
 
     # Check Investory Name is set
     assert stmts.inventory.name == "Inventory"
-    # Check Cash & Cash Equivalents Name is set. This item includes spaces and a special character.
-    assert stmts.cash.name == "Cash & Cash Equivalents"
+    # Check Cash and Cash Equivalents Name is set. This item includes spaces
+    assert stmts.cash.name == "Cash and Cash Equivalents"
