@@ -7,7 +7,11 @@ from tqdm import tqdm
 from finstmt.check import item_series_is_empty
 from finstmt.config_manage.data import _key_pct_of_key
 from finstmt.config_manage.statement import StatementConfigManager
-from finstmt.exc import CouldNotParseException, MixedFrequencyException
+from finstmt.exc import (
+    CouldNotParseException,
+    MixedFrequencyException,
+    NoSuchItemException,
+)
 from finstmt.findata.database import FinDataBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
@@ -64,8 +68,18 @@ class FinStatementsBase:
             if pd.isnull(statement_value):
                 statement_value = 0
             data_dict[date] = statement_value
-            # TODO [#10]: set name of series from statement getattr
-        return pd.Series(data_dict)
+        item_config: Optional[ItemConfig] = None
+        # TODO: Proper names in series for calculated items
+        #  As nwc is calculated only, it does not have a corresponding config item and so the best
+        #  we can do is use the item key as the name. We can solve this by moving everything to
+        #  config items rather than properties.
+        try:
+            item_config = self.config.get(item)
+        except NoSuchItemException:
+            pass
+        return pd.Series(
+            data_dict, name=item_config.display_name if item_config else item
+        )
 
     def __getitem__(self, item):
         if not isinstance(item, (list, tuple)):
@@ -291,6 +305,13 @@ class FinStatementsBase:
                 f"cannot divide type {type(other)} to type {type(self)}"
             )
 
+        new_statements = type(self).from_df(
+            new_df, self.config.items, disp_unextracted=False
+        )
+        return new_statements
+
+    def __round__(self, n=None) -> "FinStatementsBase":
+        new_df = round(self.df, n)
         new_statements = type(self).from_df(
             new_df, self.config.items, disp_unextracted=False
         )

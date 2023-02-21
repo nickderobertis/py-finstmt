@@ -49,3 +49,10 @@ you edited, and also check that your commit message is a conventional commit.
 
 If you are not able to commit, it is likely because your commit message is not
 in the conventional commit format.
+
+### Snapshot Testing
+
+This project uses snapshot testing with [syrupy](https://github.com/tophat/syrupy).
+Run `just update-test-snapshots` to update the snapshots. You can also pass it 
+`pytest` arguments, e.g. `just update-test-snapshots -k forecast` to only
+update forecast snapshots.

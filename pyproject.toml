@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "finstmt"
-version = "1.0.1"
+version = "1.2.1"
 description = "Contains classes to work with financial statement data. Can calculate free cash flows and help project financial statements."
 authors = ["Nick DeRobertis <whoopnip@gmail.com>"]
 readme = "README.md"
@@ -28,7 +28,7 @@ repository = "https://github.com/nickderobertis/py-finstmt"
 documentation = "https://nickderobertis.github.io/py-finstmt"
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+python = ">=3.8.1,<4.0"
 pandas = "*"
 sympy = "*"
 xlrd = "*"
@@ -36,6 +36,7 @@ matplotlib = "*"
 tqdm = "*"
 statsmodels = "*"
 prophet = { version = "*", optional = true }
+typing-extensions = "*"
 
 [tool.poetry.extras]
 forecast = ["prophet"]
@@ -43,6 +44,8 @@ forecast = ["prophet"]
 [tool.poetry.group.test.dependencies]
 pytest = "*"
 pytest-cov = "*"
+syrupy = "*"
+prettyprinter = "*"
 
 [tool.poetry.group.dev.dependencies]
 jupyterlab = "*"

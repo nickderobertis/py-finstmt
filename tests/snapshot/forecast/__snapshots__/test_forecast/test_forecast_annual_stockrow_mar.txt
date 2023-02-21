@@ -1,0 +1,1541 @@
+'''
+finstmt.forecast.statements.ForecastedFinancialStatements(
+    income_statements=finstmt.inc.main.IncomeStatements(
+        statements={
+            datetime.datetime(
+                2019,
+                12,
+                31
+            ): finstmt.inc.data.IncomeStatementData(
+                revenue=numpy.float64(20256467.0),
+                cogs=numpy.float64(16173270.0),
+                sga=numpy.float64(835333.0),
+                tax_exp=numpy.float64(995952.0),
+                op_exp=numpy.float64(835333.0),
+                ebit=numpy.float64(3247863.0),
+                ebt=numpy.float64(3247863.0),
+                net_income=numpy.float64(2251911.0)
+            ),
+            datetime.datetime(
+                2020,
+                12,
+                31
+            ): finstmt.inc.data.IncomeStatementData(
+                revenue=numpy.float64(21313770.0),
+                cogs=numpy.float64(16774266.0),
+                sga=numpy.float64(853230.0),
+                tax_exp=numpy.float64(1130390.0),
+                op_exp=numpy.float64(853230.0),
+                ebit=numpy.float64(3686274.0),
+                ebt=numpy.float64(3686274.0),
+                net_income=numpy.float64(2555884.0)
+            )
+        }
+    ),
+    balance_sheets=finstmt.bs.main.BalanceSheets(
+        statements={
+            datetime.datetime(
+                2019,
+                12,
+                31
+            ): finstmt.bs.data.BalanceSheetData(
+                st_invest=numpy.float64(6280582.0),
+                receivables=numpy.float64(2142889.0),
+                lt_invest=numpy.float64(732000.0),
+                other_current_assets=numpy.float64(184800.0),
+                goodwill=numpy.float64(17419000.0),
+                def_tax_lt=numpy.float64(143033.0),
+                other_lt_assets=numpy.float64(587000.0),
+                payables=numpy.float64(502164.0),
+                current_lt_debt=numpy.float64(776111.0),
+                lt_debt=numpy.float64(9732820.0),
+                other_current_liab=numpy.float64(2738275.0),
+                other_lt_liab=numpy.float64(5773794.0),
+                common_stock=numpy.float64(5000.0),
+                retained_earnings=numpy.float64(9989234.0),
+                cash_and_st_invest=numpy.float64(6280582.0),
+                total_current_assets=numpy.float64(8608271.0),
+                net_ppe=numpy.float64(2028094.0),
+                total_non_current_assets=numpy.float64(20909127.0),
+                total_assets=numpy.float64(29517397.0),
+                total_current_liab=numpy.float64(4016550.0),
+                total_debt=numpy.float64(9732820.0),
+                total_non_current_liab=numpy.float64(15506614.0),
+                total_liab=numpy.float64(19523164.0),
+                total_equity=numpy.float64(9994234.0),
+                total_liab_and_equity=numpy.float64(29517397.0)
+            ),
+            datetime.datetime(
+                2020,
+                12,
+                31
+            ): finstmt.bs.data.BalanceSheetData(
+                st_invest=numpy.float64(9373796.0),
+                receivables=numpy.float64(2321277.0),
+                lt_invest=numpy.float64(732000.0),
+                other_current_assets=numpy.float64(184800.0),
+                goodwill=numpy.float64(17419000.0),
+                def_tax_lt=numpy.float64(119640.0),
+                other_lt_assets=numpy.float64(587000.0),
+                payables=numpy.float64(462537.0),
+                current_lt_debt=numpy.float64(887215.0),
+                lt_debt=numpy.float64(11126120.0),
+                other_current_liab=numpy.float64(2964868.0),
+                other_lt_liab=numpy.float64(6285199.0),
+                common_stock=numpy.float64(5000.0),
+                retained_earnings=numpy.float64(11109418.0),
+                cash_and_st_invest=numpy.float64(9373796.0),
+                total_current_assets=numpy.float64(11879873.0),
+                net_ppe=numpy.float64(2102845.0),
+                total_non_current_assets=numpy.float64(20960484.0),
+                total_assets=numpy.float64(32840357.0),
+                total_current_liab=numpy.float64(4314620.0),
+                total_debt=numpy.float64(11126120.0),
+                total_non_current_liab=numpy.float64(17411319.0),
+                total_liab=numpy.float64(21725939.0),
+                total_equity=numpy.float64(11114418.0),
+                total_liab_and_equity=numpy.float64(32840357.0)
+            )
+        }
+    ),
+    calculate=False,
+    forecasts={
+        'revenue': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    10908000.0
+2010-12-31    11691000.0
+2011-12-31    12317000.0
+2012-12-31    11814000.0
+2013-12-31    12784000.0
+2014-12-31    13796000.0
+2015-12-31    14486000.0
+2016-12-31    15407000.0
+2017-12-31    20452000.0
+2018-12-31    20758000.0
+Name: Revenue, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend'
+                )
+            )
+        ),
+        'cogs': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    10287000.0
+2010-12-31    10216000.0
+2011-12-31    11039000.0
+2012-12-31    10190000.0
+2013-12-31    11020000.0
+2014-12-31    11830000.0
+2015-12-31    12363000.0
+2016-12-31    12735000.0
+2017-12-31    16639000.0
+2018-12-31    17084000.0
+Name: Cost of Goods Sold, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend',
+                pct_of='revenue'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='cogs',
+                display_name='Cost of Goods Sold',
+                extract_names=[
+                    'cost of revenue',
+                    'cost of goods sold',
+                    'cogs',
+                    'cor'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend',
+                    pct_of='revenue'
+                )
+            ),
+            pct_of_series=2009-12-31    10908000.0
+2010-12-31    11691000.0
+2011-12-31    12317000.0
+2012-12-31    11814000.0
+2013-12-31    12784000.0
+2014-12-31    13796000.0
+2015-12-31    14486000.0
+2016-12-31    15407000.0
+2017-12-31    20452000.0
+2018-12-31    20758000.0
+Name: Revenue, dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend'
+                )
+            )
+        ),
+        'sga': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    722000.0
+2010-12-31    780000.0
+2011-12-31    752000.0
+2012-12-31    582000.0
+2013-12-31    649000.0
+2014-12-31    659000.0
+2015-12-31    634000.0
+2016-12-31    743000.0
+2017-12-31    921000.0
+2018-12-31    927000.0
+Name: SG&A Expense, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='sga',
+                display_name='SG&A Expense',
+                extract_names=[
+                    'sga',
+                    'sga expense',
+                    'sga expenses',
+                    'sga exp',
+                    'selling general and administrative',
+                    'selling general and administrative expense',
+                    'selling general and administrative expenses',
+                    'selling general and administrative exp',
+                    'selling general administrative',
+                    'selling general administrative expense',
+                    'selling general administrative expenses',
+                    'selling general administrative exp',
+                    'selling general and admin',
+                    'selling general and admin expense',
+                    'selling general and admin expenses',
+                    'selling general and admin exp',
+                    'selling general admin',
+                    'selling general admin expense',
+                    'selling general admin expenses',
+                    'selling general admin exp'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend'
+                )
+            )
+        ),
+        'tax_exp': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31     -65000.0
+2010-12-31      93000.0
+2011-12-31     158000.0
+2012-12-31     278000.0
+2013-12-31     271000.0
+2014-12-31     335000.0
+2015-12-31     396000.0
+2016-12-31     431000.0
+2017-12-31    1523000.0
+2018-12-31     438000.0
+Name: Income Tax Expense, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean',
+                pct_of='ebt'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='tax_exp',
+                display_name='Income Tax Expense',
+                extract_names=[
+                    'taxes',
+                    'tax',
+                    'tax provision',
+                    'tax expense',
+                    'tax expenses',
+                    'tax exp',
+                    'income tax',
+                    'income tax provision',
+                    'income tax expense',
+                    'income tax expenses',
+                    'income tax exp'
+                ],
+                force_positive=False,
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean',
+                    pct_of='ebt'
+                )
+            ),
+            pct_of_series=2009-12-31    -418000.0
+2010-12-31     551000.0
+2011-12-31     356000.0
+2012-12-31     849000.0
+2013-12-31     897000.0
+2014-12-31    1088000.0
+2015-12-31    1255000.0
+2016-12-31    1239000.0
+2017-12-31    2982000.0
+2018-12-31    2345000.0
+Name: Earnings Before Tax, dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='ebt',
+                display_name='Earnings Before Tax',
+                extract_names=[
+                    'ebt',
+                    'earnings before taxes',
+                    'earnings before tax',
+                    'earn before tax',
+                    'earn before taxes',
+                    'ebt including unusual items',
+                    'earnings before taxes including unusual items',
+                    'earnings before tax including unusual items',
+                    'earn before tax including unusual items',
+                    'earn before taxes including unusual items',
+                    'ebt inc unusual items',
+                    'earnings before taxes inc unusual items',
+                    'earnings before tax inc unusual items',
+                    'earn before tax inc unusual items',
+                    'earn before taxes inc unusual items',
+                    'ebt incl unusual items',
+                    'earnings before taxes incl unusual items',
+                    'earnings before tax incl unusual items',
+                    'earn before tax incl unusual items',
+                    'earn before taxes incl unusual items',
+                    'pretax income',
+                    'pre tax income',
+                    'income pretax',
+                    'income pre tax'
+                ],
+                force_positive=False,
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    make_forecast=False
+                ),
+                expr_str='ebit[t] - int_exp[t]'
+            )
+        ),
+        'cash': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    0.0
+2010-12-31    0.0
+2011-12-31    0.0
+2012-12-31    0.0
+2013-12-31    0.0
+2014-12-31    0.0
+2015-12-31    0.0
+2016-12-31    0.0
+2017-12-31    0.0
+2018-12-31    0.0
+Name: Cash and Cash Equivalents, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='cash',
+                display_name='Cash and Cash Equivalents',
+                extract_names=[
+                    'cash',
+                    'cash and cash equivalents',
+                    'cash and equivalents',
+                    'cash and equiv',
+                    'cash cash equivalents',
+                    'cash equivalents',
+                    'cash equiv'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend'
+                )
+            )
+        ),
+        'cash_and_st_invest': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    115000.0
+2010-12-31    505000.0
+2011-12-31    102000.0
+2012-12-31     88000.0
+2013-12-31    126000.0
+2014-12-31    104000.0
+2015-12-31     96000.0
+2016-12-31    858000.0
+2017-12-31    383000.0
+2018-12-31    316000.0
+Name: Cash and Short-Term Investments, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='manual',
+                manual_forecasts={'levels': [6280582, 9373796], 'growth': []},
+                plug=True
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='cash_and_st_invest',
+                display_name='Cash and Short-Term Investments',
+                extract_names=[
+                    'total cash st investments',
+                    'total cash and st investments',
+                    'total cash and shortterm investments',
+                    'total cash and short term investments',
+                    'total cash shortterm investments',
+                    'total cash short term investments',
+                    'total cash st invest',
+                    'total cash and st invest',
+                    'total cash and shortterm invest',
+                    'total cash and short term invest',
+                    'total cash shortterm invest',
+                    'total cash short term invest',
+                    'cash st investments',
+                    'cash and st investments',
+                    'cash and shortterm investments',
+                    'cash and short term investments',
+                    'cash shortterm investments',
+                    'cash short term investments',
+                    'cash st invest',
+                    'cash and st invest',
+                    'cash and shortterm invest',
+                    'cash and short term invest',
+                    'cash shortterm invest',
+                    'cash short term invest'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='manual',
+                    manual_forecasts={
+                        'levels': [6280582, 9373796],
+                        'growth': []
+                    },
+                    plug=True
+                ),
+                expr_str='cash[t] + st_invest[t]'
+            )
+        ),
+        'receivables': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31     838000.0
+2010-12-31     938000.0
+2011-12-31     875000.0
+2012-12-31    1028000.0
+2013-12-31    1081000.0
+2014-12-31    1100000.0
+2015-12-31    1103000.0
+2016-12-31    1695000.0
+2017-12-31    1973000.0
+2018-12-31    2133000.0
+Name: Receivables, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                pct_of='revenue'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='receivables',
+                display_name='Receivables',
+                extract_names=[
+                    'receivables',
+                    'rec',
+                    'accounts receivable',
+                    'ar'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    pct_of='revenue'
+                )
+            ),
+            pct_of_series=2009-12-31    10908000.0
+2010-12-31    11691000.0
+2011-12-31    12317000.0
+2012-12-31    11814000.0
+2013-12-31    12784000.0
+2014-12-31    13796000.0
+2015-12-31    14486000.0
+2016-12-31    15407000.0
+2017-12-31    20452000.0
+2018-12-31    20758000.0
+Name: Revenue, dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend'
+                )
+            )
+        ),
+        'inventory': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    1444000.0
+2010-12-31    1489000.0
+2011-12-31      11000.0
+2012-12-31          0.0
+2013-12-31          0.0
+2014-12-31          0.0
+2015-12-31          0.0
+2016-12-31          0.0
+2017-12-31          0.0
+2018-12-31          0.0
+Name: Inventory, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent',
+                pct_of='revenue'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='inventory',
+                display_name='Inventory',
+                extract_names=['inv', 'inventory', 'inventories'],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent',
+                    pct_of='revenue'
+                )
+            ),
+            pct_of_series=2009-12-31    10908000.0
+2010-12-31    11691000.0
+2011-12-31    12317000.0
+2012-12-31    11814000.0
+2013-12-31    12784000.0
+2014-12-31    13796000.0
+2015-12-31    14486000.0
+2016-12-31    15407000.0
+2017-12-31    20452000.0
+2018-12-31    20758000.0
+Name: Revenue, dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend'
+                )
+            )
+        ),
+        'other_current_assets': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    131000.0
+2010-12-31    123000.0
+2011-12-31     22000.0
+2012-12-31    377000.0
+2013-12-31    342000.0
+2014-12-31    108000.0
+2015-12-31    588000.0
+2016-12-31    149000.0
+2017-12-31      8000.0
+2018-12-31         0.0
+Name: Other Current Assets, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='other_current_assets',
+                display_name='Other Current Assets',
+                extract_names=[
+                    'other current assets',
+                    'other current asset',
+                    'other curr assets',
+                    'other curr asset',
+                    'oca'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean'
+                )
+            )
+        ),
+        'net_ppe': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    1362000.0
+2010-12-31    1307000.0
+2011-12-31    1168000.0
+2012-12-31    1539000.0
+2013-12-31    1543000.0
+2014-12-31    1460000.0
+2015-12-31    1029000.0
+2016-12-31    2335000.0
+2017-12-31    1793000.0
+2018-12-31    1956000.0
+Name: Net Property, Plant & Equipment, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='net_ppe',
+                display_name='Net Property, Plant & Equipment',
+                extract_names=[
+                    'ppe',
+                    'property plant equipment',
+                    'property plant and equipment',
+                    'ppe net',
+                    'property plant equipment net',
+                    'property plant and equipment net',
+                    'net ppe',
+                    'net property plant equipment',
+                    'net property plant and equipment'
+                ],
+                expr_str='gross_ppe[t] - dep[t]'
+            )
+        ),
+        'goodwill': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31     1606000.0
+2010-12-31     1643000.0
+2011-12-31     1721000.0
+2012-12-31     1989000.0
+2013-12-31     2005000.0
+2014-12-31     2245000.0
+2015-12-31     2394000.0
+2016-12-31    16868000.0
+2017-12-31    17751000.0
+2018-12-31    17419000.0
+Name: Goodwill and Intangible Assets, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='goodwill',
+                display_name='Goodwill and Intangible Assets',
+                extract_names=[
+                    'goodwill',
+                    'goodwill and intangible assets',
+                    'goodwill and intangibles',
+                    'goodwill intangible assets',
+                    'goodwill intangibles',
+                    'goodwill total',
+                    'goodwill and intangible assets total',
+                    'goodwill and intangibles total',
+                    'goodwill intangible assets total',
+                    'goodwill intangibles total'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
+            )
+        ),
+        'lt_invest': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    249000.0
+2010-12-31    250000.0
+2011-12-31    265000.0
+2012-12-31    216000.0
+2013-12-31    222000.0
+2014-12-31    224000.0
+2015-12-31    165000.0
+2016-12-31    728000.0
+2017-12-31    734000.0
+2018-12-31    732000.0
+Name: Long-Term Investments, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='lt_invest',
+                display_name='Long-Term Investments',
+                extract_names=[
+                    'lt invest',
+                    'lt investments',
+                    'long term invest',
+                    'long term investments',
+                    'longterm invest',
+                    'longterm investments'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
+            )
+        ),
+        'def_tax_lt': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    1020000.0
+2010-12-31     932000.0
+2011-12-31     873000.0
+2012-12-31     676000.0
+2013-12-31     647000.0
+2014-12-31     819000.0
+2015-12-31     672000.0
+2016-12-31     116000.0
+2017-12-31      93000.0
+2018-12-31     171000.0
+Name: Deferred Tax Assets, Long-Term, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='def_tax_lt',
+                display_name='Deferred Tax Assets, Long-Term',
+                extract_names=[
+                    'def tax asset long term',
+                    'deferred tax asset long term',
+                    'tax asset long term',
+                    'def tax assets long term',
+                    'deferred tax assets long term',
+                    'tax assets long term',
+                    'def tax asset longterm',
+                    'deferred tax asset longterm',
+                    'tax asset longterm',
+                    'def tax assets longterm',
+                    'deferred tax assets longterm',
+                    'tax assets longterm',
+                    'def tax asset lt',
+                    'deferred tax asset lt',
+                    'tax asset lt',
+                    'def tax assets lt',
+                    'deferred tax assets lt',
+                    'tax assets lt',
+                    'def tax asset',
+                    'deferred tax asset',
+                    'tax asset',
+                    'def tax assets',
+                    'deferred tax assets',
+                    'tax assets',
+                    'long term assets tax deferred',
+                    'lt assets tax deferred',
+                    'lt assets tax def',
+                    'long term assets tax def',
+                    'long term assets deferred tax',
+                    'lt assets deferred tax',
+                    'lt assets def tax',
+                    'long term assets def tax'
+                ]
+            )
+        ),
+        'other_lt_assets': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    393000.0
+2010-12-31    205000.0
+2011-12-31    261000.0
+2012-12-31    267000.0
+2013-12-31    332000.0
+2014-12-31    260000.0
+2015-12-31    223000.0
+2016-12-31    477000.0
+2017-12-31    593000.0
+2018-12-31    587000.0
+Name: Other Long-Term Assets, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='other_lt_assets',
+                display_name='Other Long-Term Assets',
+                extract_names=[
+                    'other lt assets',
+                    'other lt asset',
+                    'other longterm assets',
+                    'other longterm asset',
+                    'other long term assets',
+                    'other long term asset',
+                    'lt assets other',
+                    'lt asset other',
+                    'longterm assets other',
+                    'longterm asset other',
+                    'long term assets other',
+                    'long term asset other'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
+            )
+        ),
+        'payables': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    562000.0
+2010-12-31    548000.0
+2011-12-31    569000.0
+2012-12-31    557000.0
+2013-12-31    605000.0
+2014-12-31    593000.0
+2015-12-31    687000.0
+2016-12-31    783000.0
+2017-12-31    767000.0
+2018-12-31         0.0
+Name: Payables, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend',
+                pct_of='revenue'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='payables',
+                display_name='Payables',
+                extract_names=[
+                    'payables',
+                    'accounts payable',
+                    'ap',
+                    'payables and accrued expenses',
+                    'payables and accrued expense',
+                    'payable and accrued expenses',
+                    'payable and accrued expense',
+                    'payables and acc expenses',
+                    'payables and acc expense',
+                    'payable and acc expenses',
+                    'payable and acc expense',
+                    'payables and accrued exps',
+                    'payables and accrued exp',
+                    'payable and accrued exps',
+                    'payable and accrued exp',
+                    'payables and acc exps',
+                    'payables and acc exp',
+                    'payable and acc exps',
+                    'payable and acc exp'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend',
+                    pct_of='revenue'
+                )
+            ),
+            pct_of_series=2009-12-31    10908000.0
+2010-12-31    11691000.0
+2011-12-31    12317000.0
+2012-12-31    11814000.0
+2013-12-31    12784000.0
+2014-12-31    13796000.0
+2015-12-31    14486000.0
+2016-12-31    15407000.0
+2017-12-31    20452000.0
+2018-12-31    20758000.0
+Name: Revenue, dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='revenue',
+                display_name='Revenue',
+                extract_names=[
+                    'total revenue',
+                    'total rev',
+                    'total sales',
+                    'total sale',
+                    'revenue',
+                    'rev',
+                    'sales',
+                    'sale'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend'
+                )
+            )
+        ),
+        'current_lt_debt': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31     64000.0
+2010-12-31    138000.0
+2011-12-31    355000.0
+2012-12-31    407000.0
+2013-12-31      6000.0
+2014-12-31    324000.0
+2015-12-31    300000.0
+2016-12-31    309000.0
+2017-12-31    398000.0
+2018-12-31    833000.0
+Name: Current Portion of Long-Term Debt, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean',
+                pct_of='total_debt'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='current_lt_debt',
+                display_name='Current Portion of Long-Term Debt',
+                extract_names=[
+                    'curr port of lt debt',
+                    'curr port lt debt',
+                    'current port of lt debt',
+                    'current port lt debt',
+                    'curr portion of lt debt',
+                    'curr portion lt debt',
+                    'current portion of lt debt',
+                    'current portion lt debt',
+                    'curr port of longterm debt',
+                    'curr port longterm debt',
+                    'current port of longterm debt',
+                    'current port longterm debt',
+                    'curr portion of longterm debt',
+                    'curr portion longterm debt',
+                    'current portion of longterm debt',
+                    'current portion longterm debt',
+                    'curr port of long term debt',
+                    'curr port long term debt',
+                    'current port of long term debt',
+                    'current port long term debt',
+                    'curr portion of long term debt',
+                    'curr portion long term debt',
+                    'current portion of long term debt',
+                    'current portion long term debt',
+                    'curr port of debt',
+                    'curr port debt',
+                    'current port of debt',
+                    'current port debt',
+                    'curr portion of debt',
+                    'curr portion debt',
+                    'current portion of debt',
+                    'current portion debt',
+                    'curr part of lt debt',
+                    'curr part lt debt',
+                    'current part of lt debt',
+                    'current part lt debt',
+                    'curr part of longterm debt',
+                    'curr part longterm debt',
+                    'current part of longterm debt',
+                    'current part longterm debt',
+                    'curr part of long term debt',
+                    'curr part long term debt',
+                    'current part of long term debt',
+                    'current part long term debt',
+                    'curr part of debt',
+                    'curr part debt',
+                    'current part of debt',
+                    'current part debt'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean',
+                    pct_of='total_debt'
+                )
+            ),
+            pct_of_series=2009-12-31    2234000.0
+2010-12-31    2691000.0
+2011-12-31    1816000.0
+2012-12-31    2528000.0
+2013-12-31    3147000.0
+2014-12-31    3447000.0
+2015-12-31    3807000.0
+2016-12-31    8197000.0
+2017-12-31    7840000.0
+2018-12-31    8514000.0
+Name: Total Debt, dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='total_debt',
+                display_name='Total Debt',
+                extract_names=['total debt'],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    make_forecast=False
+                ),
+                expr_str='st_debt[t] + lt_debt[t]'
+            )
+        ),
+        'other_current_liab': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    1142000.0
+2010-12-31    1037000.0
+2011-12-31    1005000.0
+2012-12-31    1052000.0
+2013-12-31    1295000.0
+2014-12-31     677000.0
+2015-12-31     952000.0
+2016-12-31    1866000.0
+2017-12-31    2121000.0
+2018-12-31    2529000.0
+Name: Other Current Liabilities, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='other_current_liab',
+                display_name='Other Current Liabilities',
+                extract_names=[
+                    'other current liabilities',
+                    'other current liab',
+                    'other curr liabilities',
+                    'other curr liab',
+                    'other liabilities current',
+                    'other liab current',
+                    'other liabilities curr',
+                    'other liab curr'
+                ]
+            )
+        ),
+        'lt_debt': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    2234000.0
+2010-12-31    2691000.0
+2011-12-31    1816000.0
+2012-12-31    2528000.0
+2013-12-31    3147000.0
+2014-12-31    3447000.0
+2015-12-31    3807000.0
+2016-12-31    8197000.0
+2017-12-31    7840000.0
+2018-12-31    8514000.0
+Name: Long-Term Debt, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='manual',
+                manual_forecasts={'levels': [9732820, 11126120], 'growth': []},
+                plug=True
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='lt_debt',
+                display_name='Long-Term Debt',
+                extract_names=[
+                    'lt debt',
+                    'long term debt',
+                    'longterm debt',
+                    'lt borrow',
+                    'long term borrow',
+                    'longterm borrow',
+                    'lt borrowings',
+                    'long term borrowings',
+                    'longterm borrowings',
+                    'lt debt total',
+                    'long term debt total',
+                    'longterm debt total',
+                    'lt borrow total',
+                    'long term borrow total',
+                    'longterm borrow total',
+                    'lt borrowings total',
+                    'long term borrowings total',
+                    'longterm borrowings total'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='manual',
+                    manual_forecasts={
+                        'levels': [9732820, 11126120],
+                        'growth': []
+                    },
+                    plug=True
+                )
+            )
+        ),
+        'deferred_rev': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    583000.0
+2010-12-31    731000.0
+2011-12-31         0.0
+2012-12-31         0.0
+2013-12-31         0.0
+2014-12-31         0.0
+2015-12-31         0.0
+2016-12-31         0.0
+2017-12-31         0.0
+2018-12-31         0.0
+Name: Deferred Revenue, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='deferred_rev',
+                display_name='Deferred Revenue',
+                extract_names=[
+                    'deferred revenue',
+                    'deferred sales',
+                    'def revenue',
+                    'def salesnon current revenue',
+                    'non current sales',
+                    'non current revenue def',
+                    'non current sales def',
+                    'non current revenue deferred',
+                    'non current sales deferred',
+                    'revenue non current',
+                    'sales non current',
+                    'revenue def non current',
+                    'sales def non current',
+                    'revenue deferred non current',
+                    'sales deferred non current',
+                    'def revenue non current',
+                    'def sales non current',
+                    'def revenue def non current',
+                    'def sales def non current',
+                    'def revenue deferred non current',
+                    'def sales deferred non current',
+                    'deferred revenue non current',
+                    'deferred sales non current',
+                    'deferred revenue def non current',
+                    'deferred sales def non current',
+                    'deferred revenue deferred non current',
+                    'deferred sales deferred non current',
+                    'non curr revenue',
+                    'non curr sales',
+                    'non curr revenue def',
+                    'non curr sales def',
+                    'non curr revenue deferred',
+                    'non curr sales deferred',
+                    'revenue non curr',
+                    'sales non curr',
+                    'revenue def non curr',
+                    'sales def non curr',
+                    'revenue deferred non curr',
+                    'sales deferred non curr',
+                    'def revenue non curr',
+                    'def sales non curr',
+                    'def revenue def non curr',
+                    'def sales def non curr',
+                    'def revenue deferred non curr',
+                    'def sales deferred non curr',
+                    'deferred revenue non curr',
+                    'deferred sales non curr',
+                    'deferred revenue def non curr',
+                    'deferred sales def non curr',
+                    'deferred revenue deferred non curr',
+                    'deferred sales deferred non currnoncurrent revenue',
+                    'noncurrent sales',
+                    'noncurrent revenue def',
+                    'noncurrent sales def',
+                    'noncurrent revenue deferred',
+                    'noncurrent sales deferred',
+                    'revenue noncurrent',
+                    'sales noncurrent',
+                    'revenue def noncurrent',
+                    'sales def noncurrent',
+                    'revenue deferred noncurrent',
+                    'sales deferred noncurrent',
+                    'def revenue noncurrent',
+                    'def sales noncurrent',
+                    'def revenue def noncurrent',
+                    'def sales def noncurrent',
+                    'def revenue deferred noncurrent',
+                    'def sales deferred noncurrent',
+                    'deferred revenue noncurrent',
+                    'deferred sales noncurrent',
+                    'deferred revenue def noncurrent',
+                    'deferred sales def noncurrent',
+                    'deferred revenue deferred noncurrent',
+                    'deferred sales deferred noncurrent',
+                    'noncurr revenue',
+                    'noncurr sales',
+                    'noncurr revenue def',
+                    'noncurr sales def',
+                    'noncurr revenue deferred',
+                    'noncurr sales deferred',
+                    'revenue noncurr',
+                    'sales noncurr',
+                    'revenue def noncurr',
+                    'sales def noncurr',
+                    'revenue deferred noncurr',
+                    'sales deferred noncurr',
+                    'def revenue noncurr',
+                    'def sales noncurr',
+                    'def revenue def noncurr',
+                    'def sales def noncurr',
+                    'def revenue deferred noncurr',
+                    'def sales deferred noncurr',
+                    'deferred revenue noncurr',
+                    'deferred sales noncurr',
+                    'deferred revenue def noncurr',
+                    'deferred sales def noncurr',
+                    'deferred revenue deferred noncurr',
+                    'deferred sales deferred noncurr'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
+            )
+        ),
+        'tax_liab_lt': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31      16000.0
+2010-12-31    1020000.0
+2011-12-31     605000.0
+2012-12-31     485000.0
+2013-12-31          0.0
+2014-12-31          0.0
+2015-12-31          0.0
+2016-12-31          0.0
+2017-12-31          0.0
+2018-12-31          0.0
+Name: Tax Liabilities, Long-Term, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='tax_liab_lt',
+                display_name='Tax Liabilities, Long-Term',
+                extract_names=[
+                    'tax liab longterm',
+                    'tax liability longterm',
+                    'tax liabilities longterm',
+                    'tax liab long term',
+                    'tax liability long term',
+                    'tax liabilities long term',
+                    'tax liab lt',
+                    'tax liability lt',
+                    'tax liabilities lt',
+                    'longterm tax liab',
+                    'longterm tax liability',
+                    'longterm tax liabilities',
+                    'long term tax liab',
+                    'long term tax liability',
+                    'long term tax liabilities',
+                    'lt tax liab',
+                    'lt tax liability',
+                    'lt tax liabilities',
+                    'tax liab longterm def',
+                    'tax liability longterm def',
+                    'tax liabilities longterm def',
+                    'tax liab long term def',
+                    'tax liability long term def',
+                    'tax liabilities long term def',
+                    'tax liab lt def',
+                    'tax liability lt def',
+                    'tax liabilities lt def',
+                    'longterm tax liab def',
+                    'longterm tax liability def',
+                    'longterm tax liabilities def',
+                    'long term tax liab def',
+                    'long term tax liability def',
+                    'long term tax liabilities def',
+                    'lt tax liab def',
+                    'lt tax liability def',
+                    'lt tax liabilities def',
+                    'tax liab longterm deferred',
+                    'tax liability longterm deferred',
+                    'tax liabilities longterm deferred',
+                    'tax liab long term deferred',
+                    'tax liability long term deferred',
+                    'tax liabilities long term deferred',
+                    'tax liab lt deferred',
+                    'tax liability lt deferred',
+                    'tax liabilities lt deferred',
+                    'longterm tax liab deferred',
+                    'longterm tax liability deferred',
+                    'longterm tax liabilities deferred',
+                    'long term tax liab deferred',
+                    'long term tax liability deferred',
+                    'long term tax liabilities deferred',
+                    'lt tax liab deferred',
+                    'lt tax liability deferred',
+                    'lt tax liabilities deferred',
+                    'def tax liab longterm',
+                    'def tax liability longterm',
+                    'def tax liabilities longterm',
+                    'def tax liab long term',
+                    'def tax liability long term',
+                    'def tax liabilities long term',
+                    'def tax liab lt',
+                    'def tax liability lt',
+                    'def tax liabilities lt',
+                    'def longterm tax liab',
+                    'def longterm tax liability',
+                    'def longterm tax liabilities',
+                    'def long term tax liab',
+                    'def long term tax liability',
+                    'def long term tax liabilities',
+                    'def lt tax liab',
+                    'def lt tax liability',
+                    'def lt tax liabilities',
+                    'deferred tax liab longterm',
+                    'deferred tax liability longterm',
+                    'deferred tax liabilities longterm',
+                    'deferred tax liab long term',
+                    'deferred tax liability long term',
+                    'deferred tax liabilities long term',
+                    'deferred tax liab lt',
+                    'deferred tax liability lt',
+                    'deferred tax liabilities lt',
+                    'deferred longterm tax liab',
+                    'deferred longterm tax liability',
+                    'deferred longterm tax liabilities',
+                    'deferred long term tax liab',
+                    'deferred long term tax liability',
+                    'deferred long term tax liabilities',
+                    'deferred lt tax liab',
+                    'deferred lt tax liability',
+                    'deferred lt tax liabilities',
+                    'tax liab noncurrent',
+                    'tax liability noncurrent',
+                    'tax liabilities noncurrent',
+                    'noncurrent tax liab',
+                    'noncurrent tax liability',
+                    'noncurrent tax liabilities',
+                    'def tax liab noncurrent',
+                    'def tax liability noncurrent',
+                    'def tax liabilities noncurrent',
+                    'def noncurrent tax liab',
+                    'def noncurrent tax liability',
+                    'def noncurrent tax liabilities',
+                    'deferred tax liab noncurrent',
+                    'deferred tax liability noncurrent',
+                    'deferred tax liabilities noncurrent',
+                    'deferred noncurrent tax liab',
+                    'deferred noncurrent tax liability',
+                    'deferred noncurrent tax liabilities',
+                    'tax liab noncurr',
+                    'tax liability noncurr',
+                    'tax liabilities noncurr',
+                    'noncurr tax liab',
+                    'noncurr tax liability',
+                    'noncurr tax liabilities',
+                    'def tax liab noncurr',
+                    'def tax liability noncurr',
+                    'def tax liabilities noncurr',
+                    'def noncurr tax liab',
+                    'def noncurr tax liability',
+                    'def noncurr tax liabilities',
+                    'deferred tax liab noncurr',
+                    'deferred tax liability noncurr',
+                    'deferred tax liabilities noncurr',
+                    'deferred noncurr tax liab',
+                    'deferred noncurr tax liability',
+                    'deferred noncurr tax liabilities',
+                    'tax liab non current',
+                    'tax liability non current',
+                    'tax liabilities non current',
+                    'non current tax liab',
+                    'non current tax liability',
+                    'non current tax liabilities',
+                    'def tax liab non current',
+                    'def tax liability non current',
+                    'def tax liabilities non current',
+                    'def non current tax liab',
+                    'def non current tax liability',
+                    'def non current tax liabilities',
+                    'deferred tax liab non current',
+                    'deferred tax liability non current',
+                    'deferred tax liabilities non current',
+                    'deferred non current tax liab',
+                    'deferred non current tax liability',
+                    'deferred non current tax liabilities',
+                    'tax liab non curr',
+                    'tax liability non curr',
+                    'tax liabilities non curr',
+                    'non curr tax liab',
+                    'non curr tax liability',
+                    'non curr tax liabilities',
+                    'def tax liab non curr',
+                    'def tax liability non curr',
+                    'def tax liabilities non curr',
+                    'def non curr tax liab',
+                    'def non curr tax liability',
+                    'def non curr tax liabilities',
+                    'deferred tax liab non curr',
+                    'deferred tax liability non curr',
+                    'deferred tax liabilities non curr',
+                    'deferred non curr tax liab',
+                    'deferred non curr tax liability',
+                    'deferred non curr tax liabilities',
+                    'tax liab',
+                    'tax liability',
+                    'tax liabilities'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
+            )
+        ),
+        'other_lt_liab': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    2270000.0
+2010-12-31    2206000.0
+2011-12-31    2317000.0
+2012-12-31    2326000.0
+2013-12-31    2387000.0
+2014-12-31    2548000.0
+2015-12-31    2616000.0
+2016-12-31    4419000.0
+2017-12-31    5429000.0
+2018-12-31    5304000.0
+Name: Other Long-Term Liabilities, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='other_lt_liab',
+                display_name='Other Long-Term Liabilities',
+                extract_names=[
+                    'other lt liabilities',
+                    'other longterm liabilities',
+                    'other long term liabilities',
+                    'other lt liab',
+                    'other longterm liab',
+                    'other long term liab',
+                    'other noncurrent liabilities',
+                    'other non current liabilities',
+                    'other noncurr liabilities',
+                    'other non curr liabilities',
+                    'other noncurrent liab',
+                    'other non current liab',
+                    'other noncurr liab',
+                    'other non curr liab',
+                    'other liabilities lt',
+                    'other liabilities longterm',
+                    'other liabilities long term',
+                    'other liab lt',
+                    'other liab longterm',
+                    'other liab long term',
+                    'other liabilities noncurrent',
+                    'other liabilities non current',
+                    'other liabilities noncurr',
+                    'other liabilities non curr',
+                    'other liab noncurrent',
+                    'other liab non current',
+                    'other liab noncurr',
+                    'other liab non curr',
+                    'lt liabilities other',
+                    'longterm liabilities other',
+                    'long term liabilities other',
+                    'lt liab other',
+                    'longterm liab other',
+                    'long term liab other',
+                    'noncurrent liabilities other',
+                    'non current liabilities other',
+                    'noncurr liabilities other',
+                    'non curr liabilities other',
+                    'noncurrent liab other',
+                    'non current liab other',
+                    'noncurr liab other',
+                    'non curr liab other',
+                    'liabilities lt other',
+                    'liabilities longterm other',
+                    'liabilities long term other',
+                    'liab lt other',
+                    'liab longterm other',
+                    'liab long term other',
+                    'liabilities noncurrent other',
+                    'liabilities non current other',
+                    'liabilities noncurr other',
+                    'liabilities non curr other',
+                    'liab noncurrent other',
+                    'liab non current other',
+                    'liab noncurr other',
+                    'liab non curr other'
+                ]
+            )
+        ),
+        'common_stock': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    5000.0
+2010-12-31    5000.0
+2011-12-31    5000.0
+2012-12-31    5000.0
+2013-12-31    5000.0
+2014-12-31    5000.0
+2015-12-31    5000.0
+2016-12-31    5000.0
+2017-12-31    5000.0
+2018-12-31    5000.0
+Name: Common Stock, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='common_stock',
+                display_name='Common Stock',
+                extract_names=[
+                    'total common stock',
+                    'total stock',
+                    'total common shares',
+                    'total shares',
+                    'common stock',
+                    'stockcommon shares',
+                    'shares',
+                    'net total common stock',
+                    'net total stock',
+                    'net total common shares',
+                    'net total shares',
+                    'net common stock',
+                    'net stocknet common shares',
+                    'net shares',
+                    'total common stock net',
+                    'total stock net',
+                    'total common shares net',
+                    'total shares net',
+                    'common stock net',
+                    'stock netcommon shares net',
+                    'shares net'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean'
+                )
+            )
+        ),
+        'retained_earnings': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    3103000.0
+2010-12-31    3286000.0
+2011-12-31    3212000.0
+2012-12-31    3509000.0
+2013-12-31    3837000.0
+2014-12-31    4286000.0
+2015-12-31    4878000.0
+2016-12-31    6501000.0
+2017-12-31    7242000.0
+2018-12-31    8982000.0
+Name: Retained Earnings, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='retained_earnings',
+                display_name='Retained Earnings',
+                extract_names=[
+                    're',
+                    'retained earnings',
+                    'retained earnings deficit',
+                    're deficit'
+                ],
+                force_positive=False
+            )
+        )
+    }
+)
+'''

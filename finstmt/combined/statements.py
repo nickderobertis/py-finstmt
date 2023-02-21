@@ -1,18 +1,25 @@
-import operator
-from copy import deepcopy
+import dataclasses
 from dataclasses import dataclass
-from typing import Callable, List, Set, Tuple
+from typing import TYPE_CHECKING, List, Optional, Set
 
 import pandas as pd
+from typing_extensions import Self
 
 from finstmt.bs.main import BalanceSheets
 from finstmt.check import item_series_is_empty
+from finstmt.combined.combinator import (
+    FinancialStatementsCombinator,
+    StatementsCombinator,
+)
 from finstmt.config_manage.statements import StatementsConfigManager
 from finstmt.exc import MismatchingDatesException
 from finstmt.forecast.config import ForecastConfig
 from finstmt.inc.main import IncomeStatements
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
+
+if TYPE_CHECKING:
+    from finstmt.forecast.statements import ForecastedFinancialStatements
 
 
 @dataclass
@@ -40,6 +47,7 @@ class FinancialStatements:
     balance_sheets: BalanceSheets
     calculate: bool = True
     auto_adjust_config: bool = True
+    _combinator: StatementsCombinator[Self] = FinancialStatementsCombinator()  # type: ignore[assignment]
 
     def __post_init__(self):
         from finstmt.resolver.history import StatementsResolver
@@ -212,7 +220,7 @@ class FinancialStatements:
             self.net_income + self.non_cash_expenses - self.change("nwc") - self.capex
         )
 
-    def forecast(self, **kwargs) -> "FinancialStatements":
+    def forecast(self, **kwargs) -> "ForecastedFinancialStatements":
         """
         Run a forecast, returning forecasted financial statements
 
@@ -293,33 +301,29 @@ class FinancialStatements:
                 )
             raise MismatchingDatesException(message)
 
-    def copy(self) -> "FinancialStatements":
-        return deepcopy(self)
+    def copy(self, **updates) -> Self:
+        return dataclasses.replace(self, **updates)
 
-    def __add__(self, other):
-        statements = _combine_statements(self, other, operator.add)
-        return _new_statements(self, other, *statements)
+    def __add__(self, other) -> Self:
+        return self._combinator.add(self, other)
 
-    def __radd__(self, other):
+    def __radd__(self, other) -> Self:
         return self.__add__(other)
 
-    def __sub__(self, other):
-        statements = _combine_statements(self, other, operator.sub)
-        return _new_statements(self, other, *statements)
+    def __sub__(self, other) -> Self:
+        return self._combinator.subtract(self, other)
 
-    def __rsub__(self, other):
+    def __rsub__(self, other) -> Self:
         return (-1 * self) + other
 
-    def __mul__(self, other):
-        statements = _combine_statements(self, other, operator.mul)
-        return _new_statements(self, other, *statements)
+    def __mul__(self, other) -> Self:
+        return self._combinator.multiply(self, other)
 
-    def __rmul__(self, other):
+    def __rmul__(self, other) -> Self:
         return self.__mul__(other)
 
-    def __truediv__(self, other):
-        statements = _combine_statements(self, other, operator.truediv)
-        return _new_statements(self, other, *statements)
+    def __truediv__(self, other) -> Self:
+        return self._combinator.divide(self, other)
 
     def __rtruediv__(self, other):
         # TODO [#41]: implement right division for statements
@@ -327,51 +331,8 @@ class FinancialStatements:
             f"cannot divide type {type(other)} by type {type(self)}"
         )
 
-
-def _combine_statements(
-    statements: FinancialStatements,
-    other_statements: FinancialStatements,
-    func: Callable,
-) -> Tuple[IncomeStatements, BalanceSheets]:
-    if isinstance(other_statements, (float, int)):
-        new_inc_df = func(statements.income_statements.df, other_statements)
-        new_inc = IncomeStatements.from_df(
-            new_inc_df,
-            statements.income_statements.config.items,
-            disp_unextracted=False,
-        )
-        new_bs_df = func(statements.balance_sheets.df, other_statements)
-        new_bs = BalanceSheets.from_df(
-            new_bs_df, statements.balance_sheets.config.items, disp_unextracted=False
-        )
-    elif isinstance(other_statements, FinancialStatements):
-        new_inc = func(statements.income_statements, other_statements.income_statements)
-        new_bs = func(statements.balance_sheets, other_statements.balance_sheets)
-    else:
-        raise NotImplementedError(
-            f"cannot {func.__name__} type {type(statements)} to type {type(other_statements)}"
-        )
-
-    return new_inc, new_bs
-
-
-def _new_statements(
-    statements: FinancialStatements,
-    other_statements: FinancialStatements,
-    new_inc: IncomeStatements,
-    new_bs: BalanceSheets,
-) -> FinancialStatements:
-    from finstmt.forecast.statements import ForecastedFinancialStatements
-
-    if isinstance(statements, ForecastedFinancialStatements) and isinstance(
-        other_statements, ForecastedFinancialStatements
-    ):
-        raise NotImplementedError(
-            "not yet implemented to combine two forecasted statements"
-        )
-    if isinstance(statements, ForecastedFinancialStatements):
-        return ForecastedFinancialStatements(new_inc, new_bs, statements.forecasts)  # type: ignore
-    if isinstance(other_statements, ForecastedFinancialStatements):
-        return ForecastedFinancialStatements(new_inc, new_bs, other_statements.forecasts)  # type: ignore
-
-    return FinancialStatements(new_inc, new_bs)
+    def __round__(self, n: Optional[int] = None) -> Self:
+        new_statements = self.copy()
+        new_statements.income_statements = round(new_statements.income_statements, n)  # type: ignore
+        new_statements.balance_sheets = round(new_statements.balance_sheets, n)  # type: ignore
+        return new_statements

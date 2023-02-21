@@ -18,9 +18,9 @@ class FinDataBase:
     Base class for financial statement data. Should not be used directly.
     """
 
-    items_config: Union[List[ItemConfig], DataConfigManager]
-    prior_statement: Optional["FinDataBase"] = None
-    unextracted_names: List[str] = field(default_factory=lambda: [])
+    items_config: Union[List[ItemConfig], DataConfigManager] = field(repr=False)
+    prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
+    unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
