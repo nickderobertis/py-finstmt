@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/nickderobertis/py-finstmt/compare/v1.1.0...v1.2.0) (2023-02-21)
+
+
+### Features
+
+* Set Name of Series from Statement getattr ([#87](https://github.com/nickderobertis/py-finstmt/issues/87)) ([a22bb49](https://github.com/nickderobertis/py-finstmt/commit/a22bb49010c8306f461e5653cd6abda24b14ff8f))
+
 ## [1.1.0](https://github.com/nickderobertis/py-finstmt/compare/v1.0.1...v1.1.0) (2023-02-21)
 
 
