@@ -165,8 +165,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
     ItemConfig(
         "ebitda",
         "EBITDA",
-        extract_names=[
-        ],
+        extract_names=None,
         force_positive=False,
         forecast_config=ForecastItemConfig(make_forecast=False),
         expr_str="ebit[t] + dep_exp[t]",
