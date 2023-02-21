@@ -64,8 +64,7 @@ class FinStatementsBase:
             if pd.isnull(statement_value):
                 statement_value = 0
             data_dict[date] = statement_value
-            # TODO [#10]: set name of series from statement getattr
-        return pd.Series(data_dict)
+        return pd.Series(data_dict, name=self.config.get(item).display_name)
 
     def __getitem__(self, item):
         if not isinstance(item, (list, tuple)):

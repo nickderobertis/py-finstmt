@@ -139,7 +139,7 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
 2019-03-31    13466000.0
 2019-06-30    14432000.0
 2019-09-30    12758000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -201,7 +201,7 @@ dtype: float64,
 2019-03-31     9193000.0
 2019-06-30    10133000.0
 2019-09-30     8758000.0
-dtype: float64,
+Name: Cost of Goods Sold, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -264,7 +264,7 @@ dtype: float64,
 2019-03-31    13466000.0
 2019-06-30    14432000.0
 2019-09-30    12758000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
                 display_name='Revenue',
@@ -321,7 +321,7 @@ dtype: float64,
 2019-03-31    435000.0
 2019-06-30    441000.0
 2019-09-30    431000.0
-dtype: float64,
+Name: R&D Expense, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -388,7 +388,7 @@ dtype: float64,
 2019-03-31    1319000.0
 2019-06-30    1309000.0
 2019-09-30    1251000.0
-dtype: float64,
+Name: SG&A Expense, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -462,7 +462,7 @@ dtype: float64,
 2019-03-31    103000.0
 2019-06-30    103000.0
 2019-09-30    103000.0
-dtype: float64,
+Name: Interest Expense, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -529,7 +529,7 @@ dtype: float64,
 2019-03-31    35782000.0
 2019-06-30    36278000.0
 2019-09-30    37906000.0
-dtype: float64,
+Name: Total Debt, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='total_debt',
                 display_name='Total Debt',
@@ -581,7 +581,7 @@ dtype: float64,
 2019-03-31     387000.0
 2019-06-30     565000.0
 2019-09-30     518000.0
-dtype: float64,
+Name: Income Tax Expense, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -652,7 +652,7 @@ dtype: float64,
 2019-03-31    2268000.0
 2019-06-30    2185000.0
 2019-09-30    2012000.0
-dtype: float64,
+Name: Earnings Before Tax, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='ebt',
                 display_name='Earnings Before Tax',
@@ -730,7 +730,7 @@ dtype: float64,
 2019-03-31     7128000.0
 2019-06-30     7429000.0
 2019-09-30     7906000.0
-dtype: float64,
+Name: Cash and Cash Equivalents, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -806,7 +806,7 @@ dtype: float64,
 2019-03-31    31716000.0
 2019-06-30    32150000.0
 2019-09-30    31072000.0
-dtype: float64,
+Name: Receivables, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -869,7 +869,7 @@ dtype: float64,
 2019-03-31    13466000.0
 2019-06-30    14432000.0
 2019-09-30    12758000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
                 display_name='Revenue',
@@ -926,7 +926,7 @@ dtype: float64,
 2019-03-31    12340000.0
 2019-06-30    12007000.0
 2019-09-30    12180000.0
-dtype: float64,
+Name: Inventory, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -984,7 +984,7 @@ dtype: float64,
 2019-03-31    13466000.0
 2019-06-30    14432000.0
 2019-09-30    12758000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
                 display_name='Revenue',
@@ -1041,7 +1041,7 @@ dtype: float64,
 2019-03-31    13259000.0
 2019-06-30    13172000.0
 2019-09-30    12842000.0
-dtype: float64,
+Name: Net Property, Plant & Equipment, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -1105,7 +1105,7 @@ dtype: float64,
 2019-03-31     7998000.0
 2019-06-30     7944000.0
 2019-09-30     7772000.0
-dtype: float64,
+Name: Goodwill and Intangible Assets, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -1174,7 +1174,7 @@ dtype: float64,
 2019-03-31         0.0
 2019-06-30         0.0
 2019-09-30         0.0
-dtype: float64,
+Name: Long-Term Investments, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -1239,7 +1239,7 @@ dtype: float64,
 2019-03-31    1378000.0
 2019-06-30    1473000.0
 2019-09-30    1372000.0
-dtype: float64,
+Name: Deferred Tax Assets, Long-Term, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -1325,7 +1325,7 @@ dtype: float64,
 2019-03-31    7198000.0
 2019-06-30    7022000.0
 2019-09-30    6141000.0
-dtype: float64,
+Name: Payables, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -1403,7 +1403,7 @@ dtype: float64,
 2019-03-31    13466000.0
 2019-06-30    14432000.0
 2019-09-30    12758000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
                 display_name='Revenue',
@@ -1460,7 +1460,7 @@ dtype: float64,
 2019-03-31    11542000.0
 2019-06-30    11514000.0
 2019-09-30    12318000.0
-dtype: float64,
+Name: Short-Term Debt, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -1525,7 +1525,7 @@ dtype: float64,
 2019-03-31    35782000.0
 2019-06-30    36278000.0
 2019-09-30    37906000.0
-dtype: float64,
+Name: Total Debt, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='total_debt',
                 display_name='Total Debt',
@@ -1577,7 +1577,7 @@ dtype: float64,
 2019-03-31    24240000.0
 2019-06-30    24764000.0
 2019-09-30    25588000.0
-dtype: float64,
+Name: Long-Term Debt, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -1664,7 +1664,7 @@ dtype: float64,
 2019-03-31    1354000.0
 2019-06-30    1263000.0
 2019-09-30    1309000.0
-dtype: float64,
+Name: Deposit Liabilities, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -1726,7 +1726,7 @@ dtype: float64,
 2019-03-31   -1588000.0
 2019-06-30   -1499000.0
 2019-09-30   -1783000.0
-dtype: float64,
+Name: Other Comprehensive Income, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'
@@ -1794,7 +1794,7 @@ dtype: float64,
 2019-03-31    32435000.0
 2019-06-30    32981000.0
 2019-09-30    34477000.0
-dtype: float64,
+Name: Retained Earnings, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='Q-DEC'

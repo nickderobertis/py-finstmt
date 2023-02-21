@@ -109,7 +109,7 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
 2016-12-31    38537000.0
 2017-12-31    45462000.0
 2018-12-31    54722000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -142,7 +142,7 @@ dtype: float64,
 2016-12-31    28640000.0
 2017-12-31    31906000.0
 2018-12-31    37719000.0
-dtype: float64,
+Name: Cost of Goods Sold, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -176,7 +176,7 @@ dtype: float64,
 2016-12-31    38537000.0
 2017-12-31    45462000.0
 2018-12-31    54722000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
                 display_name='Revenue',
@@ -203,7 +203,7 @@ dtype: float64,
 2016-12-31    1853000.0
 2017-12-31    1842000.0
 2018-12-31    1850000.0
-dtype: float64,
+Name: R&D Expense, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -241,7 +241,7 @@ dtype: float64,
 2016-12-31    4383000.0
 2017-12-31    4999000.0
 2018-12-31    5478000.0
-dtype: float64,
+Name: SG&A Expense, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -286,7 +286,7 @@ dtype: float64,
 2016-12-31    505000.0
 2017-12-31    531000.0
 2018-12-31    404000.0
-dtype: float64,
+Name: Interest Expense, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -324,7 +324,7 @@ dtype: float64,
 2016-12-31    36783000.0
 2017-12-31    34878000.0
 2018-12-31    36553000.0
-dtype: float64,
+Name: Total Debt, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='total_debt',
                 display_name='Total Debt',
@@ -346,7 +346,7 @@ dtype: float64,
 2016-12-31     192000.0
 2017-12-31    3339000.0
 2018-12-31    1698000.0
-dtype: float64,
+Name: Income Tax Expense, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -388,7 +388,7 @@ dtype: float64,
 2016-12-31     125000.0
 2017-12-31    4093000.0
 2018-12-31    7845000.0
-dtype: float64,
+Name: Earnings Before Tax, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='ebt',
                 display_name='Earnings Before Tax',
@@ -436,7 +436,7 @@ dtype: float64,
 2016-12-31    7168000.0
 2017-12-31    8261000.0
 2018-12-31    7857000.0
-dtype: float64,
+Name: Cash and Cash Equivalents, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -475,7 +475,7 @@ dtype: float64,
 2016-12-31    29088000.0
 2017-12-31    30725000.0
 2018-12-31    31899000.0
-dtype: float64,
+Name: Receivables, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -509,7 +509,7 @@ dtype: float64,
 2016-12-31    38537000.0
 2017-12-31    45462000.0
 2018-12-31    54722000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
                 display_name='Revenue',
@@ -536,7 +536,7 @@ dtype: float64,
 2016-12-31     8614000.0
 2017-12-31    10018000.0
 2018-12-31    11529000.0
-dtype: float64,
+Name: Inventory, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -565,7 +565,7 @@ dtype: float64,
 2016-12-31    38537000.0
 2017-12-31    45462000.0
 2018-12-31    54722000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
                 display_name='Revenue',
@@ -592,7 +592,7 @@ dtype: float64,
 2016-12-31    15322000.0
 2017-12-31    14155000.0
 2018-12-31    13574000.0
-dtype: float64,
+Name: Net Property, Plant & Equipment, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -627,7 +627,7 @@ dtype: float64,
 2016-12-31     8369000.0
 2017-12-31     8311000.0
 2018-12-31     8114000.0
-dtype: float64,
+Name: Goodwill and Intangible Assets, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -667,7 +667,7 @@ dtype: float64,
 2016-12-31         0.0
 2017-12-31         0.0
 2018-12-31         0.0
-dtype: float64,
+Name: Long-Term Investments, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -703,7 +703,7 @@ dtype: float64,
 2016-12-31    2790000.0
 2017-12-31    1693000.0
 2018-12-31    1439000.0
-dtype: float64,
+Name: Deferred Tax Assets, Long-Term, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -760,7 +760,7 @@ dtype: float64,
 2016-12-31    4614000.0
 2017-12-31    6487000.0
 2018-12-31    7051000.0
-dtype: float64,
+Name: Payables, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -809,7 +809,7 @@ dtype: float64,
 2016-12-31    38537000.0
 2017-12-31    45462000.0
 2018-12-31    54722000.0
-dtype: float64,
+Name: Revenue, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='revenue',
                 display_name='Revenue',
@@ -836,7 +836,7 @@ dtype: float64,
 2016-12-31    13965000.0
 2017-12-31    11031000.0
 2018-12-31    11553000.0
-dtype: float64,
+Name: Short-Term Debt, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -872,7 +872,7 @@ dtype: float64,
 2016-12-31    36783000.0
 2017-12-31    34878000.0
 2018-12-31    36553000.0
-dtype: float64,
+Name: Total Debt, dtype: float64,
             pct_of_config=finstmt.items.config.ItemConfig(
                 key='total_debt',
                 display_name='Total Debt',
@@ -894,7 +894,7 @@ dtype: float64,
 2016-12-31    22818000.0
 2017-12-31    23847000.0
 2018-12-31    25000000.0
-dtype: float64,
+Name: Long-Term Debt, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -940,7 +940,7 @@ dtype: float64,
 2016-12-31    1167000.0
 2017-12-31    1426000.0
 2018-12-31    1243000.0
-dtype: float64,
+Name: Deposit Liabilities, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -973,7 +973,7 @@ dtype: float64,
 2016-12-31   -2039000.0
 2017-12-31   -1192000.0
 2018-12-31   -1684000.0
-dtype: float64,
+Name: Other Comprehensive Income, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
@@ -1012,7 +1012,7 @@ dtype: float64,
 2016-12-31    27377000.0
 2017-12-31    26301000.0
 2018-12-31    30427000.0
-dtype: float64,
+Name: Retained Earnings, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC',
