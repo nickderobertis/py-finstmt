@@ -25,12 +25,12 @@ class DataSource(str, Enum):
 sources = list(DataSource)
 
 
-@pytest.fixture(params=freqs)
+@pytest.fixture(params=freqs, scope="session")
 def data_frequency(request):
     return request.param
 
 
-@pytest.fixture(params=sources)
+@pytest.fixture(params=sources, scope="session")
 def data_source(request):
     return request.param
 
@@ -42,7 +42,7 @@ def _build(income_df: pd.DataFrame, balance_df: pd.DataFrame) -> FinancialStatem
     return stmts
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def statement(data_frequency: DataFrequency, data_source: DataSource):
     if data_frequency == DataFrequency.ANNUAL:
         if data_source == DataSource.CAPIQ:
