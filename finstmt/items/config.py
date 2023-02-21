@@ -1,7 +1,13 @@
+import dataclasses
+import operator
 from dataclasses import dataclass, field
-from typing import Optional, Sequence
+from typing import Any, Callable, Dict, Optional, Sequence, TypeVar
+
+from typing_extensions import Self
 
 from finstmt.forecast.config import ForecastItemConfig
+
+T = TypeVar("T")
 
 
 @dataclass
@@ -29,5 +35,42 @@ class ItemConfig:
 
         return self.extract_names[0]
 
-    class Config:
-        arbitrary_types_allowed = True
+    def copy(self, **updates) -> Self:
+        return dataclasses.replace(self, **updates)
+
+    def __round__(self, n=None) -> "ItemConfig":
+        return _apply_operation_to_item_config(self, n, round)
+
+    def __add__(self, other: T) -> "ItemConfig":
+        return _apply_operation_to_item_config(self, other, operator.add)
+
+    def __sub__(self, other: T) -> "ItemConfig":
+        return _apply_operation_to_item_config(self, other, operator.sub)
+
+    def __mul__(self, other: T) -> "ItemConfig":
+        return _apply_operation_to_item_config(self, other, operator.mul)
+
+    def __truediv__(self, other: T) -> "ItemConfig":
+        return _apply_operation_to_item_config(self, other, operator.truediv)
+
+
+ItemConfigOperationData = ForecastItemConfig
+
+
+def _apply_operation_to_item_config(
+    item_config: ItemConfig,
+    other: T,
+    func: Callable[[ItemConfigOperationData, T], ItemConfigOperationData],
+) -> ItemConfig:
+    updates: Dict[str, Any] = {}
+    updates["forecast_config"] = func(
+        item_config.forecast_config, _get_attr_if_needed(other, "forecast_config")
+    )
+    return item_config.copy(**updates)
+
+
+def _get_attr_if_needed(other: Any, attr: str) -> Any:
+    if isinstance(other, ItemConfig):
+        return getattr(other, attr)
+    else:
+        return other

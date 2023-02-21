@@ -10,7 +10,6 @@ STOCKROW_PATH = os.path.join(DATA_PATH, "stockrow")
 MAR_PATH = os.path.join(STOCKROW_PATH, "MAR")
 
 
-@pytest.fixture
 def annual_stockrow_income_df_mar() -> pd.DataFrame:
     annual_path = os.path.join(MAR_PATH, "annual_income.csv")
     df = pd.read_csv(annual_path, index_col=0)
@@ -18,12 +17,11 @@ def annual_stockrow_income_df_mar() -> pd.DataFrame:
 
 
 @pytest.fixture
-def annual_stockrow_income_stmt_mar(annual_stockrow_income_df_mar) -> IncomeStatements:
-    stmt = IncomeStatements.from_df(annual_stockrow_income_df_mar)
+def annual_stockrow_income_stmt_mar() -> IncomeStatements:
+    stmt = IncomeStatements.from_df(annual_stockrow_income_df_mar())
     return stmt
 
 
-@pytest.fixture
 def annual_stockrow_bs_df_mar() -> pd.DataFrame:
     annual_path = os.path.join(MAR_PATH, "annual_bs.csv")
     df = pd.read_csv(annual_path, index_col=0)
@@ -31,8 +29,8 @@ def annual_stockrow_bs_df_mar() -> pd.DataFrame:
 
 
 @pytest.fixture
-def annual_stockrow_bs_stmt_mar(annual_stockrow_bs_df_mar) -> BalanceSheets:
-    stmt = BalanceSheets.from_df(annual_stockrow_bs_df_mar)
+def annual_stockrow_bs_stmt_mar() -> BalanceSheets:
+    stmt = BalanceSheets.from_df(annual_stockrow_bs_df_mar())
     return stmt
 
 
@@ -46,7 +44,6 @@ def annual_stockrow_stmts_mar(
     return stmts
 
 
-@pytest.fixture
 def quarterly_stockrow_income_df_mar() -> pd.DataFrame:
     quarterly_path = os.path.join(MAR_PATH, "quarterly_income.csv")
     df = pd.read_csv(quarterly_path, index_col=0)
@@ -54,14 +51,11 @@ def quarterly_stockrow_income_df_mar() -> pd.DataFrame:
 
 
 @pytest.fixture
-def quarterly_stockrow_income_stmt_mar(
-    quarterly_stockrow_income_df_mar,
-) -> IncomeStatements:
-    stmt = IncomeStatements.from_df(quarterly_stockrow_income_df_mar)
+def quarterly_stockrow_income_stmt_mar() -> IncomeStatements:
+    stmt = IncomeStatements.from_df(quarterly_stockrow_income_df_mar())
     return stmt
 
 
-@pytest.fixture
 def quarterly_stockrow_bs_df_mar() -> pd.DataFrame:
     quarterly_path = os.path.join(MAR_PATH, "quarterly_bs.csv")
     df = pd.read_csv(quarterly_path, index_col=0)
@@ -69,8 +63,8 @@ def quarterly_stockrow_bs_df_mar() -> pd.DataFrame:
 
 
 @pytest.fixture
-def quarterly_stockrow_bs_stmt_mar(quarterly_stockrow_bs_df_mar) -> BalanceSheets:
-    stmt = BalanceSheets.from_df(quarterly_stockrow_bs_df_mar)
+def quarterly_stockrow_bs_stmt_mar() -> BalanceSheets:
+    stmt = BalanceSheets.from_df(quarterly_stockrow_bs_df_mar())
     return stmt
 
 

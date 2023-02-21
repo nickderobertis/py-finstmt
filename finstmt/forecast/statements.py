@@ -5,7 +5,9 @@ from typing import Dict, Optional, Sequence, Tuple
 
 import matplotlib.pyplot as plt
 from matplotlib.axes import Subplot
+from typing_extensions import Self
 
+from finstmt.combined.combinator import ForecastedFinancialStatementsCombinator
 from finstmt.combined.statements import FinancialStatements
 from finstmt.forecast.main import Forecast
 
@@ -17,6 +19,10 @@ DEFAULT_HEIGHT_PER_ROW = 3
 @dataclass
 class ForecastedFinancialStatements(FinancialStatements):
     forecasts: Dict[str, Forecast] = field(default_factory=lambda: {})
+
+    def __post_init__(self):
+        self._combinator = ForecastedFinancialStatementsCombinator()
+        super().__post_init__()
 
     def plot(
         self,
@@ -73,6 +79,11 @@ class ForecastedFinancialStatements(FinancialStatements):
                 col = 0
             fig.delaxes(axes[row][col])
         return fig
+
+    def __round__(self, n=None) -> Self:
+        new_fcst = super().__round__(n)
+        new_fcst.forecasts = {k: round(v, n) for k, v in self.forecasts.items()}  # type: ignore[call-overload]
+        return new_fcst
 
 
 def _plot_finished(row: int, col: int, max_rows: int, max_cols: int) -> bool:

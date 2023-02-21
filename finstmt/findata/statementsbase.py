@@ -296,6 +296,13 @@ class FinStatementsBase:
         )
         return new_statements
 
+    def __round__(self, n=None) -> "FinStatementsBase":
+        new_df = round(self.df, n)
+        new_statements = type(self).from_df(
+            new_df, self.config.items, disp_unextracted=False
+        )
+        return new_statements
+
 
 def combine_statement_dfs(
     df: pd.DataFrame,

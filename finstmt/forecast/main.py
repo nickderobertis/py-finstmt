@@ -1,40 +1,36 @@
-from typing import Dict, Optional, Sequence, Tuple, Union
+import dataclasses
+import operator
+from dataclasses import dataclass
+from typing import Any, Callable, Dict, Optional, Sequence, Tuple, TypeVar, Union
 
 import matplotlib.pyplot as plt
 import pandas as pd
+from typing_extensions import Self
 
 from finstmt.exc import ForecastNotFitException, ForecastNotPredictedException
 from finstmt.forecast.config import ForecastConfig, ForecastItemConfig
-from finstmt.forecast.models.base import ForecastModel
 from finstmt.forecast.models.chooser import get_model
 from finstmt.forecast.models.manual import ManualForecastModel
 from finstmt.items.config import ItemConfig
 
+T = TypeVar("T")
 
+
+@dataclass
 class Forecast:
     """
     The main class to represent a forecast of an individual item.
     """
 
-    model: ForecastModel
+    orig_series: pd.Series
+    config: ForecastConfig
+    item_config: ForecastItemConfig
+    base_config: ItemConfig
+    pct_of_series: Optional[pd.Series] = None
+    pct_of_config: Optional[ItemConfig] = None
 
-    def __init__(
-        self,
-        series: pd.Series,
-        config: ForecastConfig,
-        item_config: ForecastItemConfig,
-        base_config: ItemConfig,
-        pct_of_series: Optional[pd.Series] = None,
-        pct_of_config: Optional[ItemConfig] = None,
-    ):
-        self.orig_series = series
-        self.config = config
-        self.item_config = item_config
-        self.base_config = base_config
-        self.pct_of_series = pct_of_series
-        self.pct_of_config = pct_of_config
-
-        self.model = get_model(config, item_config, base_config)
+    def __post_init__(self):
+        self.model = get_model(self.config, self.item_config, self.base_config)
 
     def fit(self):
         self.model.fit(self.series)
@@ -128,6 +124,57 @@ class Forecast:
 
         # Percentage of series
         return f"{self.base_config.display_name} % {self.pct_of_config.display_name}"
+
+    def copy(self, **updates) -> Self:
+        return dataclasses.replace(self, **updates)
+
+    def __round__(self, n: Optional[int] = None) -> "Forecast":
+        return _apply_operation_to_forecast(self, n, round)  # type: ignore[arg-type]
+
+    def __add__(self, other: T) -> "Forecast":
+        return _apply_operation_to_forecast(self, other, operator.add)
+
+    def __sub__(self, other: T) -> "Forecast":
+        return _apply_operation_to_forecast(self, other, operator.sub)
+
+    def __mul__(self, other: T) -> "Forecast":
+        return _apply_operation_to_forecast(self, other, operator.mul)
+
+    def __truediv__(self, other: T) -> "Forecast":
+        return _apply_operation_to_forecast(self, other, operator.truediv)
+
+
+def _apply_operation_to_forecast(
+    forecast: Forecast,
+    other: T,
+    func: Callable[[Any, T], Any],
+) -> Forecast:
+    updates: Dict[str, Any] = {}
+    updates["orig_series"] = func(
+        forecast.orig_series, _get_attr_if_needed(other, "orig_series")
+    )
+    if forecast.pct_of_series is not None:
+        updates["pct_of_series"] = func(
+            forecast.pct_of_series, _get_attr_if_needed(other, "pct_of_series")
+        )
+    if forecast.pct_of_config is not None:
+        updates["pct_of_config"] = func(
+            forecast.pct_of_config, _get_attr_if_needed(other, "pct_of_config")
+        )
+    updates["item_config"] = func(
+        forecast.item_config, _get_attr_if_needed(other, "item_config")
+    )
+    updates["base_config"] = func(
+        forecast.base_config, _get_attr_if_needed(other, "base_config")
+    )
+    return forecast.copy(**updates)
+
+
+def _get_attr_if_needed(other: Any, attr: str) -> Any:
+    if isinstance(other, Forecast):
+        return getattr(other, attr)
+    else:
+        return other
 
 
 def _adjust_to_dict(
