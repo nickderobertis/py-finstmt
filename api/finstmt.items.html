@@ -59,7 +59,7 @@
 </script>
   
   
-    <title>finstmt.items package &#8212; finstmt 1.0.1 documentation</title>
+    <title>finstmt.items package &#8212; finstmt 1.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -104,7 +104,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="finstmt 1.0.1 documentation"
+        <a href="../index.html" title="finstmt 1.1.0 documentation"
            class="md-header-nav__button md-logo">
           
             <i class="md-icon">&#xe869</i>
@@ -190,7 +190,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 1.0.1 documentation</a></li>
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 1.1.0 documentation</a></li>
           <li class="md-tabs__item"><a href="modules.html" class="md-tabs__link">finstmt</a></li>
           <li class="md-tabs__item"><a href="finstmt.html" class="md-tabs__link">finstmt package</a></li>
       </ul>
@@ -204,13 +204,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="finstmt 1.0.1 documentation" class="md-nav__button md-logo">
+    <a href="../index.html" title="finstmt 1.1.0 documentation" class="md-nav__button md-logo">
       
         <i class="md-icon">&#xe869</i>
       
     </a>
     <a href="../index.html"
-       title="finstmt 1.0.1 documentation">finstmt</a>
+       title="finstmt 1.1.0 documentation">finstmt</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
@@ -321,13 +321,9 @@
               <ul class="md-nav__list">
         <li class="md-nav__item"><a href="#finstmt.items.config.ItemConfig" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ItemConfig</span></code></a><nav class="md-nav">
               <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#finstmt.items.config.ItemConfig.Config" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ItemConfig.Config</span></code></a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#finstmt.items.config.ItemConfig.Config.arbitrary_types_allowed" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ItemConfig.Config.arbitrary_types_allowed</span></code></a>
-        </li></ul>
-            </nav>
-        </li>
         <li class="md-nav__item"><a href="#finstmt.items.config.ItemConfig.__init__" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ItemConfig.__init__()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.items.config.ItemConfig.copy" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ItemConfig.copy()</span></code></a>
         </li>
         <li class="md-nav__item"><a href="#finstmt.items.config.ItemConfig.display_name" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ItemConfig.display_name</span></code></a>
         </li>
@@ -374,19 +370,19 @@
 <dt class="sig sig-object py" id="finstmt.items.config.ItemConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.items.config.</span></span><span class="sig-name descname"><span class="pre">ItemConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extract_names=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_positive=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forecast_config=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expr_str=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/items/config.html#ItemConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.items.config.ItemConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="py class">
-<dt class="sig sig-object py" id="finstmt.items.config.ItemConfig.Config">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Config</span></span><a class="reference internal" href="../_modules/finstmt/items/config.html#ItemConfig.Config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.items.config.ItemConfig.Config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="finstmt.items.config.ItemConfig.Config.arbitrary_types_allowed">
-<span class="sig-name descname"><span class="pre">arbitrary_types_allowed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#finstmt.items.config.ItemConfig.Config.arbitrary_types_allowed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-</dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="finstmt.items.config.ItemConfig.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extract_names=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_positive=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forecast_config=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expr_str=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.items.config.ItemConfig.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.items.config.ItemConfig.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">updates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/items/config.html#ItemConfig.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.items.config.ItemConfig.copy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="finstmt.items.config.ItemConfig.display_name">
 <span class="sig-name descname"><span class="pre">display_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><a class="headerlink" href="#finstmt.items.config.ItemConfig.display_name" title="Permalink to this definition">¶</a></dt>

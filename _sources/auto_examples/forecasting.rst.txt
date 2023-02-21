@@ -1218,7 +1218,7 @@ run a forecast, then view the results, then adjust as needed.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 16/16 [00:00<00:00, 396.31it/s]
+     94%|#########3| 15/16 [00:00<00:00, 100.42it/s]    100%|##########| 16/16 [00:00<00:00, 106.94it/s]
       0%|          | 0/37 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
@@ -1301,7 +1301,7 @@ run a forecast, then view the results, then adjust as needed.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 37/37 [00:00<00:00, 465.24it/s]
+    100%|##########| 37/37 [00:00<00:00, 400.74it/s]
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -1590,19 +1590,19 @@ Now view the forecast.
         </tr>
         <tr>
           <th>Gross Property, Plant &amp; Equipment</th>
-          <td>-</td>
+          <td>$13,698,894,523</td>
           <td>-</td>
           <td>$13,952,141,611</td>
           <td>-</td>
-          <td>$14,210,070,397</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Accumulated Depreciation</th>
-          <td>$13,698,894,523</td>
+          <td>-</td>
           <td>$13,824,938,203</td>
           <td>-</td>
           <td>$14,080,515,420</td>
-          <td>-</td>
+          <td>$14,210,070,397</td>
         </tr>
         <tr>
           <th>Net Property, Plant &amp; Equipment</th>
@@ -1963,7 +1963,7 @@ Now re-run the forecast.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 16/16 [00:00<00:00, 446.88it/s]
+    100%|##########| 16/16 [00:00<00:00, 399.34it/s]
       0%|          | 0/37 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -2042,7 +2042,7 @@ Now re-run the forecast.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 37/37 [00:00<00:00, 507.49it/s]
+    100%|##########| 37/37 [00:00<00:00, 454.35it/s]
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -2191,7 +2191,7 @@ statements. Then you can view the plots:
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 16/16 [00:00<00:00, 552.57it/s]
+    100%|##########| 16/16 [00:00<00:00, 479.89it/s]
       0%|          | 0/37 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -2270,7 +2270,7 @@ statements. Then you can view the plots:
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 37/37 [00:00<00:00, 504.26it/s]
+    100%|##########| 37/37 [00:00<00:00, 455.07it/s]
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -2495,7 +2495,7 @@ forecast.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  26.860 seconds)
+   **Total running time of the script:** ( 0 minutes  38.977 seconds)
 
 
 .. _sphx_glr_download_auto_examples_forecasting.py:

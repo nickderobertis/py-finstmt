@@ -58,7 +58,7 @@
 </script>
   
   
-    <title>finstmt.forecast.statements &#8212; finstmt 1.0.1 documentation</title>
+    <title>finstmt.forecast.statements &#8212; finstmt 1.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../../../index.html" title="finstmt 1.0.1 documentation"
+        <a href="../../../index.html" title="finstmt 1.1.0 documentation"
            class="md-header-nav__button md-logo">
           
             <i class="md-icon">&#xe869</i>
@@ -187,7 +187,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../../../index.html" class="md-tabs__link">finstmt 1.0.1 documentation</a></li>
+          <li class="md-tabs__item"><a href="../../../index.html" class="md-tabs__link">finstmt 1.1.0 documentation</a></li>
           <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">Module code</a></li>
       </ul>
     </div>
@@ -200,13 +200,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../../../index.html" title="finstmt 1.0.1 documentation" class="md-nav__button md-logo">
+    <a href="../../../index.html" title="finstmt 1.1.0 documentation" class="md-nav__button md-logo">
       
         <i class="md-icon">&#xe869</i>
       
     </a>
     <a href="../../../index.html"
-       title="finstmt 1.0.1 documentation">finstmt</a>
+       title="finstmt 1.1.0 documentation">finstmt</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
@@ -287,7 +287,9 @@
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Subplot</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
+<span class="kn">from</span> <span class="nn">finstmt.combined.combinator</span> <span class="kn">import</span> <span class="n">ForecastedFinancialStatementsCombinator</span>
 <span class="kn">from</span> <span class="nn">finstmt.combined.statements</span> <span class="kn">import</span> <span class="n">FinancialStatements</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.main</span> <span class="kn">import</span> <span class="n">Forecast</span>
 
@@ -299,6 +301,10 @@
 <div class="viewcode-block" id="ForecastedFinancialStatements"><a class="viewcode-back" href="../../../api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ForecastedFinancialStatements</span><span class="p">(</span><span class="n">FinancialStatements</span><span class="p">):</span>
     <span class="n">forecasts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Forecast</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{})</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_combinator</span> <span class="o">=</span> <span class="n">ForecastedFinancialStatementsCombinator</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ForecastedFinancialStatements.plot"><a class="viewcode-back" href="../../../api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -354,7 +360,12 @@
                 <span class="n">row</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">fig</span><span class="o">.</span><span class="n">delaxes</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">fig</span></div></div>
+        <span class="k">return</span> <span class="n">fig</span></div>
+
+    <span class="k">def</span> <span class="fm">__round__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+        <span class="n">new_fcst</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">new_fcst</span><span class="o">.</span><span class="n">forecasts</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">forecasts</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>  <span class="c1"># type: ignore[call-overload]</span>
+        <span class="k">return</span> <span class="n">new_fcst</span></div>
 
 
 <span class="k">def</span> <span class="nf">_plot_finished</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">max_rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">max_cols</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>

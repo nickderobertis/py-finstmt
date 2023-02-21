@@ -9,6 +9,14 @@ finstmt.combined package
 Submodules
 ----------
 
+finstmt.combined.combinator module
+----------------------------------
+
+.. automodule:: finstmt.combined.combinator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 finstmt.combined.statements module
 ----------------------------------
 

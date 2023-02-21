@@ -59,7 +59,7 @@
 </script>
   
   
-    <title>finstmt.forecast package &#8212; finstmt 1.0.1 documentation</title>
+    <title>finstmt.forecast package &#8212; finstmt 1.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -104,7 +104,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="finstmt 1.0.1 documentation"
+        <a href="../index.html" title="finstmt 1.1.0 documentation"
            class="md-header-nav__button md-logo">
           
             <i class="md-icon">&#xe869</i>
@@ -190,7 +190,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 1.0.1 documentation</a></li>
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 1.1.0 documentation</a></li>
           <li class="md-tabs__item"><a href="modules.html" class="md-tabs__link">finstmt</a></li>
           <li class="md-tabs__item"><a href="finstmt.html" class="md-tabs__link">finstmt package</a></li>
       </ul>
@@ -204,13 +204,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="finstmt 1.0.1 documentation" class="md-nav__button md-logo">
+    <a href="../index.html" title="finstmt 1.1.0 documentation" class="md-nav__button md-logo">
       
         <i class="md-icon">&#xe869</i>
       
     </a>
     <a href="../index.html"
-       title="finstmt 1.0.1 documentation">finstmt</a>
+       title="finstmt 1.1.0 documentation">finstmt</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
@@ -349,6 +349,8 @@
         </li>
         <li class="md-nav__item"><a href="#finstmt.forecast.config.ForecastItemConfig.cap" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.cap</span></code></a>
         </li>
+        <li class="md-nav__item"><a href="#finstmt.forecast.config.ForecastItemConfig.copy" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.copy()</span></code></a>
+        </li>
         <li class="md-nav__item"><a href="#finstmt.forecast.config.ForecastItemConfig.floor" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.floor</span></code></a>
         </li>
         <li class="md-nav__item"><a href="#finstmt.forecast.config.ForecastItemConfig.make_forecast" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastItemConfig.make_forecast</span></code></a>
@@ -381,11 +383,23 @@
               <ul class="md-nav__list">
         <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.__init__" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.__init__()</span></code></a>
         </li>
+        <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.base_config" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.base_config</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.config" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.config</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.copy" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.copy()</span></code></a>
+        </li>
         <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.fit" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.fit()</span></code></a>
         </li>
-        <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.model" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.model</span></code></a>
+        <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.item_config" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.item_config</span></code></a>
         </li>
         <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.name" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.name</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.orig_series" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.orig_series</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.pct_of_config" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.pct_of_config</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.pct_of_series" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.pct_of_series</span></code></a>
         </li>
         <li class="md-nav__item"><a href="#finstmt.forecast.main.Forecast.plot" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Forecast.plot()</span></code></a>
         </li>
@@ -603,6 +617,15 @@ total assets and ‘total_assets’ for total liabilities and equity)</p>
 <dt class="sig sig-object py" id="finstmt.forecast.config.ForecastItemConfig.cap">
 <span class="sig-name descname"><span class="pre">cap</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a><span class="pre">,</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.cap" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.forecast.config.ForecastItemConfig.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">updates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/config.html#ForecastItemConfig.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.copy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="finstmt.forecast.config.ForecastItemConfig.floor">
 <span class="sig-name descname"><span class="pre">floor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a><span class="pre">,</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#finstmt.forecast.config.ForecastItemConfig.floor" title="Permalink to this definition">¶</a></dt>
@@ -653,31 +676,60 @@ total assets and ‘total_assets’ for total liabilities and equity)</p>
 <span id="finstmt-forecast-main-module"></span><h2 id="module-finstmt.forecast.main">finstmt.forecast.main module<a class="headerlink" href="#module-finstmt.forecast.main" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="finstmt.forecast.main.Forecast">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.forecast.main.</span></span><span class="sig-name descname"><span class="pre">Forecast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_of_series</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_of_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/main.html#Forecast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.main.Forecast" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.forecast.main.</span></span><span class="sig-name descname"><span class="pre">Forecast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orig_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_of_series</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_of_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/main.html#Forecast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.main.Forecast" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The main class to represent a forecast of an individual item.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_of_series</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_of_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/main.html#Forecast.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.main.Forecast.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orig_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_of_series</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_of_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.forecast.main.Forecast.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.base_config">
+<span class="sig-name descname"><span class="pre">base_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a></em><a class="headerlink" href="#finstmt.forecast.main.Forecast.base_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.config">
+<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#finstmt.forecast.config.ForecastConfig" title="finstmt.forecast.config.ForecastConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastConfig</span></code></a></em><a class="headerlink" href="#finstmt.forecast.main.Forecast.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">updates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/main.html#Forecast.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.main.Forecast.copy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/main.html#Forecast.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.main.Forecast.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.model">
-<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel" title="finstmt.forecast.models.base.ForecastModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastModel</span></code></a></em><a class="headerlink" href="#finstmt.forecast.main.Forecast.model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.item_config">
+<span class="sig-name descname"><span class="pre">item_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#finstmt.forecast.config.ForecastItemConfig" title="finstmt.forecast.config.ForecastItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastItemConfig</span></code></a></em><a class="headerlink" href="#finstmt.forecast.main.Forecast.item_config" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.name">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#finstmt.forecast.main.Forecast.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.orig_series">
+<span class="sig-name descname"><span class="pre">orig_series</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></em><a class="headerlink" href="#finstmt.forecast.main.Forecast.orig_series" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.pct_of_config">
+<span class="sig-name descname"><span class="pre">pct_of_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference internal" href="finstmt.items.html#finstmt.items.config.ItemConfig" title="finstmt.items.config.ItemConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemConfig</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#finstmt.forecast.main.Forecast.pct_of_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.pct_of_series">
+<span class="sig-name descname"><span class="pre">pct_of_series</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#finstmt.forecast.main.Forecast.pct_of_series" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="finstmt.forecast.main.Forecast.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/main.html#Forecast.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.main.Forecast.plot" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="(in Matplotlib v3.6.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="(in Matplotlib v3.7.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -711,7 +763,7 @@ total assets and ‘total_assets’ for total liabilities and equity)</p>
 <span class="sig-prename descclassname"><span class="pre">finstmt.forecast.plot.</span></span><span class="sig-name descname"><span class="pre">plot_forecast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fcst_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/plot.html#plot_forecast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.plot.plot_forecast" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="(in Matplotlib v3.6.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="(in Matplotlib v3.7.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -720,11 +772,11 @@ total assets and ‘total_assets’ for total liabilities and equity)</p>
 <span id="finstmt-forecast-statements-module"></span><h2 id="module-finstmt.forecast.statements">finstmt.forecast.statements module<a class="headerlink" href="#module-finstmt.forecast.statements" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="finstmt.forecast.statements.ForecastedFinancialStatements">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.forecast.statements.</span></span><span class="sig-name descname"><span class="pre">ForecastedFinancialStatements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">income_statements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_sheets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_adjust_config=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forecasts=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/statements.html#ForecastedFinancialStatements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.statements.ForecastedFinancialStatements" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.forecast.statements.</span></span><span class="sig-name descname"><span class="pre">ForecastedFinancialStatements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">income_statements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_sheets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_adjust_config=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_combinator=&lt;finstmt.combined.combinator.FinancialStatementsCombinator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forecasts=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/statements.html#ForecastedFinancialStatements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.statements.ForecastedFinancialStatements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="finstmt.combined.html#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="finstmt.forecast.statements.ForecastedFinancialStatements.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">income_statements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_sheets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_adjust_config=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forecasts=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.forecast.statements.ForecastedFinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">income_statements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_sheets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_adjust_config=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_combinator=&lt;finstmt.combined.combinator.FinancialStatementsCombinator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forecasts=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.forecast.statements.ForecastedFinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="finstmt.forecast.statements.ForecastedFinancialStatements.forecasts">
@@ -735,7 +787,7 @@ total assets and ‘total_assets’ for total liabilities and equity)</p>
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_per_row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/forecast/statements.html#ForecastedFinancialStatements.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.forecast.statements.ForecastedFinancialStatements.plot" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="(in Matplotlib v3.6.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="(in Matplotlib v3.7.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>

@@ -58,7 +58,7 @@
 </script>
   
   
-    <title>Index &#8212; finstmt 1.0.1 documentation</title>
+    <title>Index &#8212; finstmt 1.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/material.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="index.html" title="finstmt 1.0.1 documentation"
+        <a href="index.html" title="finstmt 1.1.0 documentation"
            class="md-header-nav__button md-logo">
           
             <i class="md-icon">&#xe869</i>
@@ -187,7 +187,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">finstmt 1.0.1 documentation</a></li>
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">finstmt 1.1.0 documentation</a></li>
       </ul>
     </div>
   </nav>
@@ -199,13 +199,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="index.html" title="finstmt 1.0.1 documentation" class="md-nav__button md-logo">
+    <a href="index.html" title="finstmt 1.1.0 documentation" class="md-nav__button md-logo">
       
         <i class="md-icon">&#xe869</i>
       
     </a>
     <a href="index.html"
-       title="finstmt 1.0.1 documentation">finstmt</a>
+       title="finstmt 1.1.0 documentation">finstmt</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
@@ -314,6 +314,8 @@
       <ul>
         <li><a href="api/finstmt.bs.html#finstmt.bs.main.BalanceSheets.__init__">(finstmt.bs.main.BalanceSheets method)</a>
 </li>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.StatementsCombinator.__init__">(finstmt.combined.combinator.StatementsCombinator method)</a>
+</li>
         <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.__init__">(finstmt.combined.statements.FinancialStatements method)</a>
 </li>
         <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.__init__">(finstmt.config_manage.data.DataConfigManager method)</a>
@@ -359,6 +361,14 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.FinancialStatementsCombinator.add">add() (finstmt.combined.combinator.FinancialStatementsCombinator method)</a>
+
+      <ul>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.add">(finstmt.combined.combinator.ForecastedFinancialStatementsCombinator method)</a>
+</li>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.StatementsCombinator.add">(finstmt.combined.combinator.StatementsCombinator method)</a>
+</li>
+      </ul></li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.dataframe.add_cap_and_floor_to_df">add_cap_and_floor_to_df() (in module finstmt.forecast.dataframe)</a>
 </li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.all_config_items">all_config_items (finstmt.combined.statements.FinancialStatements property)</a>
@@ -373,8 +383,6 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.Config.arbitrary_types_allowed">arbitrary_types_allowed (finstmt.items.config.ItemConfig.Config attribute)</a>
-</li>
       <li><a href="api/finstmt.findata.html#finstmt.findata.database.FinDataBase.as_dict">as_dict() (finstmt.findata.database.FinDataBase method)</a>
 </li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.auto_adjust_config">auto_adjust_config (finstmt.combined.statements.FinancialStatements attribute)</a>
@@ -409,6 +417,8 @@
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.main.BalanceSheets">BalanceSheets (class in finstmt.bs.main)</a>
 </li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.base_config">base_config (finstmt.forecast.main.Forecast attribute)</a>
+</li>
       <li><a href="api/finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.bs_balance_eqs">bs_balance_eqs (finstmt.resolver.forecast.ForecastResolver property)</a>
 </li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.bs_diff_max">bs_diff_max (finstmt.forecast.config.ForecastConfig attribute)</a>
@@ -441,10 +451,12 @@
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.common_stock">common_stock (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.compare_freq_strs">compare_freq_strs() (in module finstmt.forecast.models.base)</a>
 </li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.config">config (finstmt.forecast.main.Forecast attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.config_dict">config_dict (finstmt.config_manage.data.DataConfigManager property)</a>
 </li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager.update.params.config_keys">config_keys (finstmt.config_manage.statements.StatementsConfigManager.update parameter)</a>
@@ -464,7 +476,15 @@
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.data.DataConfigManager.configs">configs (finstmt.config_manage.data.DataConfigManager attribute)</a>
 </li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.copy">copy() (finstmt.combined.statements.FinancialStatements method)</a>
+
+      <ul>
+        <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.copy">(finstmt.forecast.config.ForecastItemConfig method)</a>
 </li>
+        <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.copy">(finstmt.forecast.main.Forecast method)</a>
+</li>
+        <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.copy">(finstmt.items.config.ItemConfig method)</a>
+</li>
+      </ul></li>
       <li><a href="api/finstmt.html#finstmt.exc.CouldNotParseException">CouldNotParseException</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.current_lt_debt">current_lt_debt (finstmt.bs.data.BalanceSheetData attribute)</a>
@@ -493,12 +513,12 @@
       </ul></li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.def_tax_lt">def_tax_lt (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.def_tax_st">def_tax_st (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.deferred_rev">deferred_rev (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.dep">dep (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.dep_exp">dep_exp (finstmt.inc.data.IncomeStatementData attribute)</a>
@@ -511,6 +531,14 @@
 </li>
       <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.display_name">display_name (finstmt.items.config.ItemConfig attribute)</a>
 </li>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.FinancialStatementsCombinator.divide">divide() (finstmt.combined.combinator.FinancialStatementsCombinator method)</a>
+
+      <ul>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.divide">(finstmt.combined.combinator.ForecastedFinancialStatementsCombinator method)</a>
+</li>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.StatementsCombinator.divide">(finstmt.combined.combinator.StatementsCombinator method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -546,6 +574,8 @@
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.fcf">fcf (finstmt.combined.statements.FinancialStatements property)</a>
 </li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements">FinancialStatements (class in finstmt.combined.statements)</a>
+</li>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.FinancialStatementsCombinator">FinancialStatementsCombinator (class in finstmt.combined.combinator)</a>
 </li>
       <li><a href="api/finstmt.findata.html#finstmt.findata.database.FinDataBase">FinDataBase (class in finstmt.findata.database)</a>
 </li>
@@ -612,6 +642,13 @@
 
       <ul>
         <li><a href="api/finstmt.combined.html#module-finstmt.combined">module</a>
+</li>
+      </ul></li>
+      <li>
+    finstmt.combined.combinator
+
+      <ul>
+        <li><a href="api/finstmt.combined.html#module-finstmt.combined.combinator">module</a>
 </li>
       </ul></li>
       <li>
@@ -761,6 +798,8 @@
         <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.manual">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     finstmt.forecast.models.prophet
 
@@ -768,8 +807,6 @@
         <li><a href="api/finstmt.forecast.models.html#module-finstmt.forecast.models.prophet">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     finstmt.forecast.models.recent
 
@@ -934,6 +971,8 @@
 </li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements">ForecastedFinancialStatements (class in finstmt.forecast.statements)</a>
 </li>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator">ForecastedFinancialStatementsCombinator (class in finstmt.combined.combinator)</a>
+</li>
       <li><a href="api/finstmt.html#finstmt.exc.ForecastException">ForecastException</a>
 </li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig">ForecastItemConfig (class in finstmt.forecast.config)</a>
@@ -1032,10 +1071,12 @@
 </li>
       <li><a href="api/finstmt.resolver.html#finstmt.resolver.forecast.PlugResult.is_timed_out">is_timed_out (finstmt.resolver.forecast.PlugResult property)</a>
 </li>
-      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.item_determinant_keys">item_determinant_keys() (finstmt.config_manage.base.ConfigManagerBase method)</a>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.item_config">item_config (finstmt.forecast.main.Forecast attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.item_determinant_keys">item_determinant_keys() (finstmt.config_manage.base.ConfigManagerBase method)</a>
+</li>
       <li><a href="api/finstmt.combined.html#finstmt.combined.statements.FinancialStatements.item_is_empty">item_is_empty() (finstmt.combined.statements.FinancialStatements method)</a>
 
       <ul>
@@ -1047,8 +1088,6 @@
       <li><a href="api/finstmt.html#finstmt.check.item_series_is_empty">item_series_is_empty() (in module finstmt.check)</a>
 </li>
       <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig">ItemConfig (class in finstmt.items.config)</a>
-</li>
-      <li><a href="api/finstmt.items.html#finstmt.items.config.ItemConfig.Config">ItemConfig.Config (class in finstmt.items.config)</a>
 </li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.base.ConfigManagerBase.items">items (finstmt.config_manage.base.ConfigManagerBase property)</a>
 
@@ -1146,12 +1185,8 @@
 </li>
       <li><a href="api/finstmt.html#finstmt.exc.MixedFrequencyException">MixedFrequencyException</a>
 </li>
-      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.model">model (finstmt.forecast.main.Forecast attribute)</a>
-
-      <ul>
-        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.model">(finstmt.forecast.models.trend.LinearTrendModel attribute)</a>
+      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.model">model (finstmt.forecast.models.trend.LinearTrendModel attribute)</a>
 </li>
-      </ul></li>
       <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.trend.LinearTrendModel.model_result">model_result (finstmt.forecast.models.trend.LinearTrendModel attribute)</a>
 </li>
       <li>
@@ -1175,6 +1210,8 @@
         <li><a href="api/finstmt.clean.html#module-finstmt.clean.name">finstmt.clean.name</a>
 </li>
         <li><a href="api/finstmt.combined.html#module-finstmt.combined">finstmt.combined</a>
+</li>
+        <li><a href="api/finstmt.combined.html#module-finstmt.combined.combinator">finstmt.combined.combinator</a>
 </li>
         <li><a href="api/finstmt.combined.html#module-finstmt.combined.statements">finstmt.combined.statements</a>
 </li>
@@ -1258,6 +1295,16 @@
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.FinancialStatementsCombinator.multiply">multiply() (finstmt.combined.combinator.FinancialStatementsCombinator method)</a>
+
+      <ul>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.multiply">(finstmt.combined.combinator.ForecastedFinancialStatementsCombinator method)</a>
+</li>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.StatementsCombinator.multiply">(finstmt.combined.combinator.StatementsCombinator method)</a>
+</li>
+      </ul></li>
+  </ul></td>
 </tr></table>
 
 <h2 id="N">N</h2>
@@ -1299,14 +1346,18 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/finstmt.inc.html#finstmt.inc.data.IncomeStatementData.op_exp">op_exp (finstmt.inc.data.IncomeStatementData attribute)</a>
 </li>
-      <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.orig_series">orig_series (finstmt.forecast.models.base.ForecastModel attribute)</a>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.orig_series">orig_series (finstmt.forecast.main.Forecast attribute)</a>
+
+      <ul>
+        <li><a href="api/finstmt.forecast.models.html#finstmt.forecast.models.base.ForecastModel.orig_series">(finstmt.forecast.models.base.ForecastModel attribute)</a>
 </li>
+      </ul></li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_current_assets">other_current_assets (finstmt.bs.data.BalanceSheetData attribute)</a>
-</li>
-      <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_current_liab">other_current_liab (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_current_liab">other_current_liab (finstmt.bs.data.BalanceSheetData attribute)</a>
+</li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_income">other_income (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.other_lt_assets">other_lt_assets (finstmt.bs.data.BalanceSheetData attribute)</a>
@@ -1324,6 +1375,10 @@
       <li><a href="api/finstmt.bs.html#finstmt.bs.data.BalanceSheetData.payables">payables (finstmt.bs.data.BalanceSheetData attribute)</a>
 </li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastItemConfig.pct_of">pct_of (finstmt.forecast.config.ForecastItemConfig attribute)</a>
+</li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.pct_of_config">pct_of_config (finstmt.forecast.main.Forecast attribute)</a>
+</li>
+      <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.pct_of_series">pct_of_series (finstmt.forecast.main.Forecast attribute)</a>
 </li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.config.ForecastConfig.periods">periods (finstmt.forecast.config.ForecastConfig attribute)</a>
 </li>
@@ -1345,10 +1400,10 @@
 </li>
       <li><a href="api/finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.plug_keys">plug_keys (finstmt.resolver.forecast.ForecastResolver property)</a>
 </li>
-      <li><a href="api/finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.plug_x0">plug_x0 (finstmt.resolver.forecast.ForecastResolver property)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.plug_x0">plug_x0 (finstmt.resolver.forecast.ForecastResolver property)</a>
+</li>
       <li><a href="api/finstmt.resolver.html#finstmt.resolver.forecast.PlugResult">PlugResult (class in finstmt.resolver.forecast)</a>
 </li>
       <li><a href="api/finstmt.forecast.html#finstmt.forecast.main.Forecast.predict">predict() (finstmt.forecast.main.Forecast method)</a>
@@ -1495,6 +1550,8 @@
         <li><a href="api/finstmt.inc.html#finstmt.inc.main.IncomeStatements.statements">(finstmt.inc.main.IncomeStatements attribute)</a>
 </li>
       </ul></li>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.StatementsCombinator">StatementsCombinator (class in finstmt.combined.combinator)</a>
+</li>
       <li><a href="api/finstmt.config_manage.html#finstmt.config_manage.statements.StatementsConfigManager">StatementsConfigManager (class in finstmt.config_manage.statements)</a>
 </li>
       <li><a href="api/finstmt.resolver.html#finstmt.resolver.history.StatementsResolver">StatementsResolver (class in finstmt.resolver.history)</a>
@@ -1511,6 +1568,14 @@
         <li><a href="api/finstmt.resolver.html#finstmt.resolver.forecast.ForecastResolver.subs_dict">(finstmt.resolver.forecast.ForecastResolver attribute)</a>
 </li>
         <li><a href="api/finstmt.resolver.html#finstmt.resolver.history.StatementsResolver.subs_dict">(finstmt.resolver.history.StatementsResolver attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.FinancialStatementsCombinator.subtract">subtract() (finstmt.combined.combinator.FinancialStatementsCombinator method)</a>
+
+      <ul>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.subtract">(finstmt.combined.combinator.ForecastedFinancialStatementsCombinator method)</a>
+</li>
+        <li><a href="api/finstmt.combined.html#finstmt.combined.combinator.StatementsCombinator.subtract">(finstmt.combined.combinator.StatementsCombinator method)</a>
 </li>
       </ul></li>
       <li><a href="api/finstmt.resolver.html#finstmt.resolver.solve.sympy_dict_to_results_dict">sympy_dict_to_results_dict() (in module finstmt.resolver.solve)</a>

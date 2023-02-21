@@ -59,7 +59,7 @@
 </script>
   
   
-    <title>finstmt.combined package &#8212; finstmt 1.0.1 documentation</title>
+    <title>finstmt.combined package &#8212; finstmt 1.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -104,7 +104,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="finstmt 1.0.1 documentation"
+        <a href="../index.html" title="finstmt 1.1.0 documentation"
            class="md-header-nav__button md-logo">
           
             <i class="md-icon">&#xe869</i>
@@ -190,7 +190,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 1.0.1 documentation</a></li>
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">finstmt 1.1.0 documentation</a></li>
           <li class="md-tabs__item"><a href="modules.html" class="md-tabs__link">finstmt</a></li>
           <li class="md-tabs__item"><a href="finstmt.html" class="md-tabs__link">finstmt package</a></li>
       </ul>
@@ -204,13 +204,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="finstmt 1.0.1 documentation" class="md-nav__button md-logo">
+    <a href="../index.html" title="finstmt 1.1.0 documentation" class="md-nav__button md-logo">
       
         <i class="md-icon">&#xe869</i>
       
     </a>
     <a href="../index.html"
-       title="finstmt 1.0.1 documentation">finstmt</a>
+       title="finstmt 1.1.0 documentation">finstmt</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/nickderobertis/py-finstmt" title="Go to repository" class="md-source" data-md-source="github">
@@ -317,6 +317,48 @@
               <ul class="md-nav__list">
         <li class="md-nav__item"><a href="#submodules" class="md-nav__link">Submodules</a>
         </li>
+        <li class="md-nav__item"><a href="#module-finstmt.combined.combinator" class="md-nav__link">finstmt.combined.combinator module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.FinancialStatementsCombinator" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">FinancialStatementsCombinator</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.FinancialStatementsCombinator.add" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">FinancialStatementsCombinator.add()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.FinancialStatementsCombinator.divide" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">FinancialStatementsCombinator.divide()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.FinancialStatementsCombinator.multiply" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">FinancialStatementsCombinator.multiply()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.FinancialStatementsCombinator.subtract" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">FinancialStatementsCombinator.subtract()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatementsCombinator</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.add" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatementsCombinator.add()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.divide" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatementsCombinator.divide()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.multiply" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatementsCombinator.multiply()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.subtract" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ForecastedFinancialStatementsCombinator.subtract()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.StatementsCombinator" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsCombinator</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.StatementsCombinator.__init__" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsCombinator.__init__()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.StatementsCombinator.add" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsCombinator.add()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.StatementsCombinator.divide" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsCombinator.divide()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.StatementsCombinator.multiply" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsCombinator.multiply()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#finstmt.combined.combinator.StatementsCombinator.subtract" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">StatementsCombinator.subtract()</span></code></a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
         <li class="md-nav__item"><a href="#module-finstmt.combined.statements" class="md-nav__link">finstmt.combined.statements module</a><nav class="md-nav">
               <ul class="md-nav__list">
         <li class="md-nav__item"><a href="#finstmt.combined.statements.FinancialStatements" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a><nav class="md-nav">
@@ -378,11 +420,141 @@
 <section id="submodules">
 <h2 id="submodules">Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </section>
+<section id="module-finstmt.combined.combinator">
+<span id="finstmt-combined-combinator-module"></span><h2 id="module-finstmt.combined.combinator">finstmt.combined.combinator module<a class="headerlink" href="#module-finstmt.combined.combinator" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.FinancialStatementsCombinator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.combined.combinator.</span></span><span class="sig-name descname"><span class="pre">FinancialStatementsCombinator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#FinancialStatementsCombinator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.FinancialStatementsCombinator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.combined.combinator.StatementsCombinator" title="finstmt.combined.combinator.StatementsCombinator"><code class="xref py py-class docutils literal notranslate"><span class="pre">StatementsCombinator</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code>]</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.FinancialStatementsCombinator.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#FinancialStatementsCombinator.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.FinancialStatementsCombinator.add" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.FinancialStatementsCombinator.divide">
+<span class="sig-name descname"><span class="pre">divide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#FinancialStatementsCombinator.divide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.FinancialStatementsCombinator.divide" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.FinancialStatementsCombinator.multiply">
+<span class="sig-name descname"><span class="pre">multiply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#FinancialStatementsCombinator.multiply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.FinancialStatementsCombinator.multiply" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.FinancialStatementsCombinator.subtract">
+<span class="sig-name descname"><span class="pre">subtract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#FinancialStatementsCombinator.subtract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.FinancialStatementsCombinator.subtract" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.ForecastedFinancialStatementsCombinator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.combined.combinator.</span></span><span class="sig-name descname"><span class="pre">ForecastedFinancialStatementsCombinator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#ForecastedFinancialStatementsCombinator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finstmt.combined.combinator.StatementsCombinator" title="finstmt.combined.combinator.StatementsCombinator"><code class="xref py py-class docutils literal notranslate"><span class="pre">StatementsCombinator</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastedFinancialStatements</span></code>]</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#ForecastedFinancialStatementsCombinator.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.add" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements" title="finstmt.forecast.statements.ForecastedFinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastedFinancialStatements</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.divide">
+<span class="sig-name descname"><span class="pre">divide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#ForecastedFinancialStatementsCombinator.divide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.divide" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements" title="finstmt.forecast.statements.ForecastedFinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastedFinancialStatements</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.multiply">
+<span class="sig-name descname"><span class="pre">multiply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#ForecastedFinancialStatementsCombinator.multiply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.multiply" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements" title="finstmt.forecast.statements.ForecastedFinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastedFinancialStatements</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.subtract">
+<span class="sig-name descname"><span class="pre">subtract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#ForecastedFinancialStatementsCombinator.subtract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.ForecastedFinancialStatementsCombinator.subtract" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements" title="finstmt.forecast.statements.ForecastedFinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastedFinancialStatements</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.StatementsCombinator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.combined.combinator.</span></span><span class="sig-name descname"><span class="pre">StatementsCombinator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#StatementsCombinator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.StatementsCombinator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">StatementT</span></code>]</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.StatementsCombinator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.combined.combinator.StatementsCombinator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.StatementsCombinator.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#StatementsCombinator.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.StatementsCombinator.add" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">StatementT</span></code>, bound= FinancialStatements)</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.StatementsCombinator.divide">
+<span class="sig-name descname"><span class="pre">divide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#StatementsCombinator.divide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.StatementsCombinator.divide" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">StatementT</span></code>, bound= FinancialStatements)</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.StatementsCombinator.multiply">
+<span class="sig-name descname"><span class="pre">multiply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#StatementsCombinator.multiply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.StatementsCombinator.multiply" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">StatementT</span></code>, bound= FinancialStatements)</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finstmt.combined.combinator.StatementsCombinator.subtract">
+<span class="sig-name descname"><span class="pre">subtract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/combinator.html#StatementsCombinator.subtract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.combinator.StatementsCombinator.subtract" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">StatementT</span></code>, bound= FinancialStatements)</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+</section>
 <section id="module-finstmt.combined.statements">
 <span id="finstmt-combined-statements-module"></span><h2 id="module-finstmt.combined.statements">finstmt.combined.statements module<a class="headerlink" href="#module-finstmt.combined.statements" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="finstmt.combined.statements.FinancialStatements">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.combined.statements.</span></span><span class="sig-name descname"><span class="pre">FinancialStatements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">income_statements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_sheets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_adjust_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finstmt.combined.statements.</span></span><span class="sig-name descname"><span class="pre">FinancialStatements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">income_statements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_sheets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_adjust_config=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_combinator=&lt;finstmt.combined.combinator.FinancialStatementsCombinator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Main class that holds all the financial statements.</p>
 <dl class="field-list simple">
@@ -408,7 +580,7 @@ net_ppe instead</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="finstmt.combined.statements.FinancialStatements.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">income_statements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_sheets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_adjust_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">income_statements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_sheets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_adjust_config=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_combinator=&lt;finstmt.combined.combinator.FinancialStatementsCombinator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="finstmt.combined.statements.FinancialStatements.all_config_items">
@@ -445,10 +617,10 @@ net_ppe instead</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="finstmt.combined.statements.FinancialStatements.copy">
-<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.copy" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">updates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/finstmt/combined/statements.html#FinancialStatements.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#finstmt.combined.statements.FinancialStatements.copy" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -474,7 +646,7 @@ net_ppe instead</p>
 </div>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#finstmt.combined.statements.FinancialStatements" title="finstmt.combined.statements.FinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialStatements</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="finstmt.forecast.html#finstmt.forecast.statements.ForecastedFinancialStatements" title="finstmt.forecast.statements.ForecastedFinancialStatements"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForecastedFinancialStatements</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
