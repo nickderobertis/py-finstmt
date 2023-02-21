@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/nickderobertis/py-finstmt/compare/v1.0.1...v1.1.0) (2023-02-21)
+
+
+### Features
+
+* Round statements, better str output. Fix operations with forecasted statements. Completely rework snapshot testing ([#94](https://github.com/nickderobertis/py-finstmt/issues/94)) ([e5fe87c](https://github.com/nickderobertis/py-finstmt/commit/e5fe87ce2fdca0951ea4ee8311e5041d7d577b3e))
+
 ## [1.0.1](https://github.com/nickderobertis/py-finstmt/compare/v1.0.0...v1.0.1) (2023-01-29)
 
 
