@@ -1,8 +1,8 @@
 from finstmt import FinancialStatements
 
 
-def test_series_name(annual_capiq_stmts: FinancialStatements):
-    stmts = annual_capiq_stmts
+def test_series_name(ro_annual_capiq_stmts: FinancialStatements):
+    stmts = ro_annual_capiq_stmts
 
     # Check Investory Name is set
     assert stmts.inventory.name == "Inventory"
