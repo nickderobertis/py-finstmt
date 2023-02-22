@@ -101,7 +101,7 @@ files = [
 
 [[package]]
 name = "finstmt"
-version = "1.0.1"
+version = "1.2.1"
 description = "Contains classes to work with financial statement data. Can calculate free cash flows and help project financial statements."
 category = "main"
 optional = false
@@ -115,7 +115,7 @@ pandas = "*"
 statsmodels = "*"
 sympy = "*"
 tqdm = "*"
-typing-extensions = "*"
+typing-extensions = ">=4.0.1"
 xlrd = "*"
 
 [package.extras]
