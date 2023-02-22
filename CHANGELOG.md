@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/nickderobertis/py-finstmt/compare/v1.2.1...v1.2.2) (2023-02-22)
+
+
+### Bug Fixes
+
+* Require typing-extensions >= 4.0.1 for proper self type support ([83a8abf](https://github.com/nickderobertis/py-finstmt/commit/83a8abf297e690fb62581fc6460dcea7bd6371e4))
+
 ## [1.2.1](https://github.com/nickderobertis/py-finstmt/compare/v1.2.0...v1.2.1) (2023-02-21)
 
 
