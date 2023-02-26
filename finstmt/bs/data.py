@@ -46,7 +46,7 @@ class BalanceSheetData(FinDataBase):
     total_equity: Optional[float] = None
     total_liab_and_equity: Optional[float] = None
 
-    items_config = BALANCE_SHEET_INPUT_ITEMS
+    items_config_list = BALANCE_SHEET_INPUT_ITEMS
 
     @property
     def nwc(self):

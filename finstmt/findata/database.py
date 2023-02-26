@@ -51,7 +51,7 @@ class FinDataBase:
         items_config: Optional[Sequence[ItemConfig]] = None,
     ):
         if items_config is None:
-            items_config = cast(Sequence[ItemConfig], cls.items_config)
+            items_config = cast(Sequence[ItemConfig], cls.items_config_list)
 
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
