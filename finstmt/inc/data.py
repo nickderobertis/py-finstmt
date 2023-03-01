@@ -7,19 +7,23 @@ from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
 from finstmt.exc import NoSuchItemException
 from finstmt.config_manage.data import DataConfigManager
 
+from sympy import sympify, symbols, Idx
+
 @dataclass(unsafe_hash=True)
 class IncomeStatementData(FinDataBase):
     data = {}
+    t = symbols("t", cls=Idx)
 
     def __init__(self, *args, **kwargs):
         for key, value in kwargs.items():
             # print(f"{key}: {value}")
             setattr(self, key, value)
-        print("IncomeStatementData init 1", type(self.items_config))
+
+        self.items_config = DataConfigManager(deepcopy(self.items_config))
 
         for item in self.items_config:
             # Check if item wasn't in initial data load but it is in the config. If so, set it to 0
-            if item.key not in self.data.keys() and item.expr_str is None:
+            if item.key not in self.data.keys(): # and item.expr_str is None:
                 setattr(self, item.key, 0)
             if item.force_positive and item.extract_names is not None:
                 # If extracted and need to force positive, take absolute value
@@ -29,12 +33,6 @@ class IncomeStatementData(FinDataBase):
                 positive_value = abs(value)
                 setattr(self, item.key, positive_value)
             
-
-
-        self.items_config = DataConfigManager(deepcopy(self.items_config))
-        print("IncomeStatementData init 2", type(self.items_config))
-
-
     # def __post_init__(self):
     #     print("IncomeStatementData __post_init__ 1", type(self.items_config))
     #     super().__post_init__()
@@ -46,13 +44,29 @@ class IncomeStatementData(FinDataBase):
         """
         Get the Income Statement Value for a given key
         """
-        print(f"Getting {item_key}")
-        if item_key == "items_config":
-            # Trigger the default Python behavior
-            print("Getting items_config")
-            # return object.__getattribute__(self, item_key)
         try:
-            return self.data.get(item_key)
+            if item_key == "items_config":
+                return self.data.get(item_key)
+            
+            if item_key not in self.items_config.keys:
+                return self.data.get(item_key)
+                            
+            expr_str = self.items_config.get(item_key).expr_str
+
+            if expr_str is None:
+                return self.data.get(item_key)
+            else:
+                # print(f"Expression: {item_key} = {expr_str}")
+                ns_syms = self.data.get('items_config').sympy_namespace
+                sym_expr = sympify(expr_str, locals=ns_syms)
+                sub_list = []
+                t = ns_syms["t"]
+                for ns_sym in ns_syms.values():
+                    if ns_sym == t:
+                        continue
+                    if ns_sym[t] in sym_expr.free_symbols:
+                        sub_list.append((ns_sym[t], self.data.get(str(ns_sym))))
+                return sym_expr.subs(sub_list)
         except NoSuchItemException:
             raise AttributeError(item_key)
 
@@ -60,7 +74,6 @@ class IncomeStatementData(FinDataBase):
         return list(self.data.keys()) + ["gross_profit"]
 
     def __setattr__(self, item_key, value):
-        print(f"Setting {item_key}")
         self.data[item_key] = value
 
     # items_config = INCOME_STATEMENT_INPUT_ITEMS
