@@ -5,6 +5,7 @@ import pandas as pd
 
 from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.inc.data import IncomeStatementData
+from finstmt.findata.database import FinDataBase
 
 
 @dataclass
@@ -19,6 +20,8 @@ class IncomeStatements(FinStatementsBase):
     """
 
     statements: Dict[pd.Timestamp, IncomeStatementData]  # type: ignore
+    # statements: Dict[pd.Timestamp, FinDataBase]  # type: ignore
 
     statement_cls = IncomeStatementData  # type: ignore
+    # statement_cls = FinDataBase  # type: ignore
     statement_name = "Income Statement"

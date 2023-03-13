@@ -1,6 +1,6 @@
 import warnings
 from copy import deepcopy
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, make_dataclass, fields
 from typing import Dict, List, Optional, Sequence, Union, cast
 
 import pandas as pd
@@ -10,6 +10,8 @@ from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.exc import CouldNotParseException
 from finstmt.items.config import ItemConfig
+
+from sympy import sympify, symbols, Idx
 
 
 @dataclass
@@ -24,17 +26,24 @@ class FinDataBase:
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
+        
 
-    def __post_init__(self):
-        self.items_config = DataConfigManager(deepcopy(self.items_config))
-        for item in self.items_config:
-            if item.force_positive and item.extract_names is not None:
-                # If extracted and need to force positive, take absolute value
-                value = getattr(self, item.key)
-                if value is None:
-                    continue
-                positive_value = abs(value)
-                setattr(self, item.key, positive_value)
+    # def __post_init__(self):
+    #     print(fields(self))
+
+    #     self.items_config = DataConfigManager(deepcopy(self.items_config))
+    #     for item in self.items_config:
+    #         if item.force_positive and item.extract_names is not None:
+    #             # If extracted and need to force positive, take absolute value
+    #             value = getattr(self, item.key)
+    #             if value is None:
+    #                 continue
+    #             positive_value = abs(value)
+    #             setattr(self, item.key, positive_value)
+
+
+
+
 
     def _repr_html_(self):
         series = self.to_series()
@@ -50,6 +59,7 @@ class FinDataBase:
         prior_statement: Optional["FinDataBase"] = None,
         items_config: Optional[Sequence[ItemConfig]] = None,
     ):
+        print("FROM SERIES")
         if items_config is None:
             items_config = cast(Sequence[ItemConfig], cls.items_config_list)
 
@@ -134,3 +144,38 @@ class FinDataBase:
                 self.prior_statement.get_sympy_subs_dict(t_offset=t_offset - 1)
             )
         return subs_dict
+    
+
+
+#### NEW
+
+    t = symbols("t", cls=Idx)
+
+    # Get item even if attribute exists
+    def __getattribute__(self, key: str):
+        # print("FinDataBase.__getattribute__", key)
+        # return object.__getattribute__(self, key)
+
+        if key == "items_config":
+            return object.__getattribute__(self, key)
+        if key not in self.items_config.keys:
+            return object.__getattribute__(self, key)
+        # return object.__getattribute__(self, key)
+
+
+        expr_str = self.items_config.get(key).expr_str
+
+        if expr_str is None:
+            return object.__getattribute__(self, key)
+        else:
+            # print(f"Expression: {item_key} = {expr_str}")
+            ns_syms = self.items_config.sympy_namespace
+            sym_expr = sympify(expr_str, locals=ns_syms)
+            sub_list = []
+            t = ns_syms["t"]
+            for ns_sym in ns_syms.values():
+                if ns_sym == t:
+                    continue
+                if ns_sym[t] in sym_expr.free_symbols:
+                    sub_list.append((ns_sym[t], object.__getattribute__(self, str(ns_sym))))
+            return sym_expr.subs(sub_list)

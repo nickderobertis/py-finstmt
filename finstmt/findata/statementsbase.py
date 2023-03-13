@@ -116,6 +116,7 @@ class FinStatementsBase:
         """
         DataFrame must have columns as dates and index as names of financial statement items
         """
+        print("FROM DF")
         statements_dict = {}
         dates = list(df.columns)
         dates.sort(key=lambda t: pd.to_datetime(t))
