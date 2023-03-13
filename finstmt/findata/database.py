@@ -59,7 +59,6 @@ class FinDataBase:
         prior_statement: Optional["FinDataBase"] = None,
         items_config: Optional[Sequence[ItemConfig]] = None,
     ):
-        print("FROM SERIES")
         if items_config is None:
             items_config = cast(Sequence[ItemConfig], cls.items_config_list)
 
@@ -168,7 +167,7 @@ class FinDataBase:
         if expr_str is None:
             return object.__getattribute__(self, key)
         else:
-            # print(f"Expression: {item_key} = {expr_str}")
+            # print(f"Expression: {key} = {expr_str}")
             ns_syms = self.items_config.sympy_namespace
             sym_expr = sympify(expr_str, locals=ns_syms)
             sub_list = []
@@ -178,4 +177,5 @@ class FinDataBase:
                     continue
                 if ns_sym[t] in sym_expr.free_symbols:
                     sub_list.append((ns_sym[t], object.__getattribute__(self, str(ns_sym))))
-            return sym_expr.subs(sub_list)
+            # print(sub_list)
+            return float(sym_expr.subs(sub_list))
