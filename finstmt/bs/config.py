@@ -1086,7 +1086,6 @@ BALANCE_SHEET_INPUT_ITEMS = [
         expr_str="receivables[t] + inventory[t] - payables[t]",
         forecast_config=ForecastItemConfig(
             make_forecast=False,
-            balance_with="total_assets",
         ),
     ),
 
