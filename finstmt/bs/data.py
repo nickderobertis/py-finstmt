@@ -24,7 +24,7 @@ class BalanceSheetData(FinDataBase):
             fields=_fields, 
             bases=(FinDataBase, )
             )
-        MyClass.__module__ = "finstmt.inc.data"
+        MyClass.__module__ = "finstmt.bs.data"
         self.__class__ = MyClass
 
 

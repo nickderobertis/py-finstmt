@@ -12,7 +12,7 @@ from finstmt.exc import CouldNotParseException
 from finstmt.items.config import ItemConfig
 
 from sympy import sympify, symbols, Idx
-
+import numpy as np
 
 @dataclass
 class FinDataBase:
@@ -161,6 +161,9 @@ class FinDataBase:
             return object.__getattribute__(self, key)
         # return object.__getattribute__(self, key)
 
+        # if specific value was provided, than return that even if it's a calculated field
+        if object.__getattribute__(self, key) != 0:
+            return object.__getattribute__(self, key)
 
         expr_str = self.items_config.get(key).expr_str
 
@@ -176,6 +179,7 @@ class FinDataBase:
                 if ns_sym == t:
                     continue
                 if ns_sym[t] in sym_expr.free_symbols:
-                    sub_list.append((ns_sym[t], object.__getattribute__(self, str(ns_sym))))
-            # print(sub_list)
-            return float(sym_expr.subs(sub_list))
+                    # sub_list.append((ns_sym[t], object.__getattribute__(self, str(ns_sym))))
+                    sub_list.append((ns_sym[t], self.__getattribute__(str(ns_sym))))
+            # print(key, sub_list)
+            return np.float64(sym_expr.subs(sub_list))
