@@ -198,5 +198,4 @@ def _forecast_test(
         fig = fcst.plot()
         out_path = pdf_path / f"{request.node.name}.pdf"
         fig.savefig(out_path)
-    
     assert format_statement_for_snapshot(fcst, exclude=exclude) == snapshot
