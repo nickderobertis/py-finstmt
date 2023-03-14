@@ -24,6 +24,8 @@ from tests.fixtures.forecast.adjust_config import (
 )
 from tests.snapshot.forecast.snapshot_format import format_statement_for_snapshot
 
+import prettyprinter
+
 matplotlib.use("Agg")
 
 FORECAST_KWARGS: Final = dict(periods=2)
@@ -198,4 +200,8 @@ def _forecast_test(
         fig = fcst.plot()
         out_path = pdf_path / f"{request.node.name}.pdf"
         fig.savefig(out_path)
+
+    with open('output.txt', 'wt') as out:
+        print(format_statement_for_snapshot(fcst, exclude=exclude), file=out)    
+    
     assert format_statement_for_snapshot(fcst, exclude=exclude) == snapshot
