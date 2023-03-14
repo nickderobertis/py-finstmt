@@ -19,11 +19,14 @@ class BalanceSheetData(FinDataBase):
 
     def __init__(self, *args, **kwargs):
         _fields = [(item.key, numpy.float64, 0) for item in self.items_config_list]
-        self.__class__ = make_dataclass(
-            'finstmt.bs.data.BalanceSheetData', 
+        MyClass = make_dataclass(
+            'BalanceSheetData', 
             fields=_fields, 
             bases=(FinDataBase, )
             )
+        MyClass.__module__ = "finstmt.inc.data"
+        self.__class__ = MyClass
+
 
         for key, value in kwargs.items():
             # print(f"{key}: {value}")

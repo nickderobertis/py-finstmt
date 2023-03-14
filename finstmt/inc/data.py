@@ -19,12 +19,14 @@ class IncomeStatementData(FinDataBase):
     t = symbols("t", cls=Idx)
 
     def __init__(self, *args, **kwargs):
-        _fields = [(item.key, numpy.float64, 0) for item in self.items_config_list]
-        self.__class__ = make_dataclass(
-            'finstmt.inc.data.IncomeStatementData', 
+        _fields = [(item.key, numpy.float64, field(default=0, repr=(False if item.key == "gross_profit" else True))) for item in self.items_config_list]
+        MyClass = make_dataclass(
+            'IncomeStatementData', 
             fields=_fields, 
             bases=(FinDataBase, )
             )
+        MyClass.__module__ = "finstmt.inc.data"
+        self.__class__ = MyClass
 
         for key, value in kwargs.items():
             # print(f"{key}: {value}")
