@@ -27,24 +27,6 @@ class FinDataBase:
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
         
-
-    # def __post_init__(self):
-    #     print(fields(self))
-
-    #     self.items_config = DataConfigManager(deepcopy(self.items_config))
-    #     for item in self.items_config:
-    #         if item.force_positive and item.extract_names is not None:
-    #             # If extracted and need to force positive, take absolute value
-    #             value = getattr(self, item.key)
-    #             if value is None:
-    #                 continue
-    #             positive_value = abs(value)
-    #             setattr(self, item.key, positive_value)
-
-
-
-
-
     def _repr_html_(self):
         series = self.to_series()
         df = pd.DataFrame(series)
@@ -143,8 +125,6 @@ class FinDataBase:
                 self.prior_statement.get_sympy_subs_dict(t_offset=t_offset - 1)
             )
         return subs_dict
-    
-
 
 #### NEW
 
@@ -153,16 +133,15 @@ class FinDataBase:
     # Get item even if attribute exists
     def __getattribute__(self, key: str):
         # print("FinDataBase.__getattribute__", key)
-        # return object.__getattribute__(self, key)
 
         if key == "items_config":
             return object.__getattribute__(self, key)
         if key not in self.items_config.keys:
             return object.__getattribute__(self, key)
-        # return object.__getattribute__(self, key)
 
         # if specific value was provided, than return that even if it's a calculated field
         if object.__getattribute__(self, key) != 0:
+            # return np.round(np.float64(object.__getattribute__(self, key)))
             return object.__getattribute__(self, key)
 
         expr_str = self.items_config.get(key).expr_str
@@ -179,7 +158,7 @@ class FinDataBase:
                 if ns_sym == t:
                     continue
                 if ns_sym[t] in sym_expr.free_symbols:
-                    # sub_list.append((ns_sym[t], object.__getattribute__(self, str(ns_sym))))
                     sub_list.append((ns_sym[t], self.__getattribute__(str(ns_sym))))
             # print(key, sub_list)
             return np.float64(sym_expr.subs(sub_list))
+        

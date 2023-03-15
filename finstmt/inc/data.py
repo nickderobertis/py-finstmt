@@ -66,64 +66,7 @@ class IncomeStatementData(FinDataBase):
     def __getattribute__(self, key: str):
         # print("IncomeStatementData.__getattribute__", key)
         return object.__getattribute__(self, key)
-
-        if key == "items_config":
-            return object.__getattribute__(self, key)
-        if key not in self.items_config.keys:
-            return object.__getattribute__(self, key)
-
-        expr_str = self.items_config.get(key).expr_str
-
-        if expr_str is None:
-            return object.__getattribute__(self, key)
-        else:
-            # print(f"Expression: {item_key} = {expr_str}")
-            ns_syms = self.data.get('items_config').sympy_namespace
-            sym_expr = sympify(expr_str, locals=ns_syms)
-            sub_list = []
-            t = ns_syms["t"]
-            for ns_sym in ns_syms.values():
-                if ns_sym == t:
-                    continue
-                if ns_sym[t] in sym_expr.free_symbols:
-                    sub_list.append((ns_sym[t], self.data.get(str(ns_sym))))
-            return sym_expr.subs(sub_list)
         
-
-    # # Get item if attribute doesn't exist
-    # def __getattr__(self, item_key: str):
-    #     """
-    #     Get the Income Statement Value for a given key
-    #     """
-    #     try:
-    #         print("IncomeStatementData.__getattribute__", item_key)
-    #         if item_key == "items_config":
-    #             return object.__getattribute__(self, item_key) # self[item_key]
-            
-    #         if item_key not in self.items_config.keys:
-    #             return getattr(self, item_key) # self[item_key]
-                            
-    #         expr_str = self.items_config.get(item_key).expr_str
-
-    #         if expr_str is None:
-    #             return getattr(self, item_key) # self[item_key]
-    #         else:
-    #             # print(f"Expression: {item_key} = {expr_str}")
-    #             ns_syms = self.items_config.sympy_namespace
-    #             sym_expr = sympify(expr_str, locals=ns_syms)
-    #             sub_list = []
-    #             t = ns_syms["t"]
-    #             for ns_sym in ns_syms.values():
-    #                 if ns_sym == t:
-    #                     continue
-    #                 if ns_sym[t] in sym_expr.free_symbols:
-    #                     sub_list.append((ns_sym[t], object.__getattribute__(self, str(ns_sym))))
-    #             return sym_expr.subs(sub_list)
-    #     except NoSuchItemException:
-    #         raise AttributeError(item_key)
-
-    # def __dir__(self):
-    #     return list(self.data.keys()) + ["gross_profit"]
 
     ###### THIS BREAKS THE DYNAMIC DATACLASS
     # def __setattr__(self, item_key, value):

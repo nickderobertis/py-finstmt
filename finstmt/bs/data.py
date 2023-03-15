@@ -89,28 +89,6 @@ class BalanceSheetData(FinDataBase):
         # print("BalanceSheetData.__getattribute__", key)
         return object.__getattribute__(self, key)
 
-        if key == "items_config":
-            return object.__getattribute__(self, key)
-        if key not in self.items_config.keys:
-            return object.__getattribute__(self, key)
-
-        expr_str = self.items_config.get(key).expr_str
-
-        if expr_str is None:
-            return object.__getattribute__(self, key)
-        else:
-            # print(f"Expression: {item_key} = {expr_str}")
-            ns_syms = self.data.get('items_config').sympy_namespace
-            sym_expr = sympify(expr_str, locals=ns_syms)
-            sub_list = []
-            t = ns_syms["t"]
-            for ns_sym in ns_syms.values():
-                if ns_sym == t:
-                    continue
-                if ns_sym[t] in sym_expr.free_symbols:
-                    sub_list.append((ns_sym[t], self.data.get(str(ns_sym))))
-            return sym_expr.subs(sub_list)
-        
 
     # cash: Optional[float] = 0
     # st_invest: Optional[float] = 0
