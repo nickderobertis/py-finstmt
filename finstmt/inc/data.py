@@ -108,4 +108,3 @@ class IncomeStatementData(FinDataBase):
     #             "cannot calculate effective tax rate is tax expense is None"
     #         )
     #     return self.tax_exp / self.ebt
-
