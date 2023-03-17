@@ -63,7 +63,8 @@ class BalanceSheetData(FinDataBase):
         MyClass = make_dataclass(
             'BalanceSheetData', 
             fields=_fields, 
-            bases=(FinDataBase, )
+            bases=(FinDataBase, ),
+            namespace={'nwc': lambda self: self.receivables + self.inventory - self.payables}
             )
         MyClass.__module__ = "finstmt.bs.data"
         self.__class__ = MyClass
