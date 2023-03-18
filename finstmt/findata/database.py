@@ -23,7 +23,6 @@ class FinDataBase:
     items_config: DataConfigManager = field(repr=False)
     prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
     unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
-
     items_config_list: List[ItemConfig] = field(default_factory=lambda: [], repr=False)
 
 
