@@ -4985,6 +4985,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 ),
@@ -6116,6 +6125,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 ),
@@ -7247,6 +7265,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 ),
@@ -8378,6 +8405,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 ),
@@ -9509,6 +9545,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 ),
@@ -10640,6 +10685,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 ),
@@ -11771,6 +11825,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 ),
@@ -12902,6 +12965,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 ),
@@ -14033,6 +14105,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 ),
@@ -15164,6 +15245,15 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 balance_with='total_assets'
                             ),
                             expr_str='total_liab[t] + total_equity[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='nwc',
+                            display_name='Net Working Capital',
+                            extract_names=['nwc'],
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='receivables[t] + inventory[t] - payables[t]'
                         )
                     ]
                 )
