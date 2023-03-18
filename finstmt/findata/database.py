@@ -25,7 +25,6 @@ class FinDataBase:
     unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
     items_config_list: List[ItemConfig] = field(default_factory=lambda: [], repr=False)
 
-
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
 
