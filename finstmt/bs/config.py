@@ -1076,4 +1076,16 @@ BALANCE_SHEET_INPUT_ITEMS = [
             balance_with="total_assets",
         ),
     ),
+    ItemConfig(
+        "nwc",
+        "Net Working Capital",
+        extract_names=[
+            "nwc",
+        ],
+        expr_str="receivables[t] + inventory[t] - payables[t]",
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+            balance_with="total_assets",
+        ),
+    ),
 ]
