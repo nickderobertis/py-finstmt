@@ -1,17 +1,16 @@
-from dataclasses import dataclass, make_dataclass, field, fields
-from typing import Optional, Dict
 from copy import deepcopy
+from dataclasses import dataclass, field, fields, make_dataclass
+from typing import Dict, List, Optional, Sequence, Union, cast
 
+import numpy
+from sympy import Idx, symbols, sympify
+
+from finstmt.config_manage.data import DataConfigManager
+from finstmt.exc import NoSuchItemException
 from finstmt.findata.database import FinDataBase
 from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
-from finstmt.exc import NoSuchItemException
-from finstmt.config_manage.data import DataConfigManager
-import numpy
-from sympy import sympify, symbols, Idx
-
-from typing import Dict, List, Optional, Sequence, Union, cast
-from finstmt.config_manage.data import DataConfigManager
 from finstmt.items.config import ItemConfig
+
 
 @dataclass(unsafe_hash=True)
 class IncomeStatementData(FinDataBase):

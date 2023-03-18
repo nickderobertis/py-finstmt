@@ -1,16 +1,15 @@
-from dataclasses import dataclass, make_dataclass, field, fields
-from typing import Optional
 from copy import deepcopy
-
-from finstmt.bs.config import BALANCE_SHEET_INPUT_ITEMS
-from finstmt.findata.database import FinDataBase
-
+from dataclasses import dataclass, field, fields, make_dataclass
 from typing import Dict, List, Optional, Sequence, Union, cast
-from finstmt.config_manage.data import DataConfigManager
-from finstmt.items.config import ItemConfig
 
 import numpy
-from sympy import sympify, symbols, Idx
+from sympy import Idx, symbols, sympify
+
+from finstmt.bs.config import BALANCE_SHEET_INPUT_ITEMS
+from finstmt.config_manage.data import DataConfigManager
+from finstmt.findata.database import FinDataBase
+from finstmt.items.config import ItemConfig
+
 
 @dataclass(unsafe_hash=True)
 class BalanceSheetData(FinDataBase):

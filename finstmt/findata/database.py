@@ -1,18 +1,17 @@
 import warnings
 from copy import deepcopy
-from dataclasses import dataclass, field, make_dataclass, fields
+from dataclasses import dataclass, field, fields, make_dataclass
 from typing import Dict, List, Optional, Sequence, Union, cast
 
+import numpy as np
 import pandas as pd
-from sympy import IndexedBase
+from sympy import Idx, IndexedBase, symbols, sympify
 
 from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.exc import CouldNotParseException
 from finstmt.items.config import ItemConfig
 
-from sympy import sympify, symbols, Idx
-import numpy as np
 
 @dataclass
 class FinDataBase:
