@@ -1,23 +1,27 @@
 from copy import deepcopy
-from dataclasses import dataclass, field, fields, make_dataclass
-from typing import Dict, List, Optional, Sequence, Union, cast
+from dataclasses import dataclass, field, make_dataclass
 
 import numpy
-from sympy import Idx, symbols, sympify
+from sympy import Idx, symbols
 
 from finstmt.bs.config import BALANCE_SHEET_INPUT_ITEMS
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.findata.database import FinDataBase
-from finstmt.items.config import ItemConfig
 
 
 @dataclass(unsafe_hash=True)
 class BalanceSheetData(FinDataBase):
-
     t = symbols("t", cls=Idx)
 
     def __init__(self, *args, **kwargs):
-        _fields = [(item.key, numpy.float64, field(default=0, repr=(False if item.key == "nwc" else True))) for item in self.items_config_list]
+        _fields = [
+            (
+                item.key,
+                numpy.float64,
+                field(default=0, repr=(False if item.key == "nwc" else True)),
+            )
+            for item in self.items_config_list
+        ]
         sort_order = {
             "cash": 0,
             "st_invest": 1,
@@ -55,19 +59,20 @@ class BalanceSheetData(FinDataBase):
             "total_non_current_liab": 33,
             "total_liab": 34,
             "total_equity": 35,
-            "total_liab_and_equity": 36,       
-            "nwc": 37     
+            "total_liab_and_equity": 36,
+            "nwc": 37,
         }
         _fields.sort(key=lambda tup: sort_order[tup[0]])
         MyClass = make_dataclass(
-            'BalanceSheetData', 
-            fields=_fields, 
-            bases=(FinDataBase, ),
-            namespace={'nwc': lambda self: self.receivables + self.inventory - self.payables}
-            )
+            "BalanceSheetData",
+            fields=_fields,
+            bases=(FinDataBase,),
+            namespace={
+                "nwc": lambda self: self.receivables + self.inventory - self.payables
+            },
+        )
         MyClass.__module__ = "finstmt.bs.data"
         self.__class__ = MyClass
-
 
         for key, value in kwargs.items():
             # print(f"{key}: {value}")
@@ -88,7 +93,6 @@ class BalanceSheetData(FinDataBase):
     def __getattribute__(self, key: str):
         # print("BalanceSheetData.__getattribute__", key)
         return object.__getattribute__(self, key)
-
 
     # cash: Optional[float] = 0
     # st_invest: Optional[float] = 0

@@ -1,6 +1,6 @@
 import warnings
 from copy import deepcopy
-from dataclasses import dataclass, field, fields, make_dataclass
+from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Sequence, Union, cast
 
 import numpy as np
@@ -25,7 +25,7 @@ class FinDataBase:
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
-        
+
     def _repr_html_(self):
         series = self.to_series()
         df = pd.DataFrame(series)
@@ -125,7 +125,7 @@ class FinDataBase:
             )
         return subs_dict
 
-#### NEW
+    #### NEW
 
     t = symbols("t", cls=Idx)
 
@@ -160,4 +160,3 @@ class FinDataBase:
                     sub_list.append((ns_sym[t], self.__getattribute__(str(ns_sym))))
             # print(key, sub_list)
             return np.float64(sym_expr.subs(sub_list))
-        
