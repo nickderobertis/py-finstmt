@@ -43,7 +43,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -428,7 +429,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -813,7 +815,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -1198,7 +1201,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -1583,7 +1587,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -1968,7 +1973,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -2353,7 +2359,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -2738,7 +2745,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -3123,7 +3131,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -3508,7 +3517,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -3893,7 +3903,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -4278,7 +4289,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -4663,7 +4675,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -5048,7 +5061,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -5433,7 +5447,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -5818,7 +5833,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -6203,7 +6219,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -6588,7 +6605,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -6973,7 +6991,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -7358,7 +7377,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -7743,7 +7763,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -8128,7 +8149,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -8513,7 +8535,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -8898,7 +8921,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -9283,7 +9307,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -9668,7 +9693,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -10053,7 +10079,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -10438,7 +10465,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -10823,7 +10851,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -11208,7 +11237,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -11593,7 +11623,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -11978,7 +12009,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -12363,7 +12395,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -12748,7 +12781,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -13133,7 +13167,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -13518,7 +13553,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -13903,7 +13939,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -14288,7 +14325,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -14673,7 +14711,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -15058,7 +15097,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='revenue[t] - cogs[t]'
+                            expr_str='revenue[t] - cogs[t]',
+                            show_on_statement=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='rd_exp',
@@ -16543,7 +16583,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -17683,7 +17724,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -18823,7 +18865,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -19963,7 +20006,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -21103,7 +21147,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -22243,7 +22288,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -23383,7 +23429,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -24523,7 +24570,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -25663,7 +25711,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -26803,7 +26852,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -27943,7 +27993,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -29083,7 +29134,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -30223,7 +30275,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -31363,7 +31416,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -32503,7 +32557,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -33643,7 +33698,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -34783,7 +34839,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -35923,7 +35980,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -37063,7 +37121,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -38203,7 +38262,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -39343,7 +39403,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -40483,7 +40544,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -41623,7 +41685,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -42763,7 +42826,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -43903,7 +43967,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -45043,7 +45108,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -46183,7 +46249,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -47323,7 +47390,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -48463,7 +48531,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -49603,7 +49672,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -50743,7 +50813,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -51883,7 +51954,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -53023,7 +53095,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -54163,7 +54236,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -55303,7 +55377,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -56443,7 +56518,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -57583,7 +57659,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -58723,7 +58800,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -59863,7 +59941,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 ),
@@ -61003,7 +61082,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='receivables[t] + inventory[t] - payables[t]'
+                            expr_str='receivables[t] + inventory[t] - payables[t]',
+                            show_on_statement=False
                         )
                     ]
                 )
