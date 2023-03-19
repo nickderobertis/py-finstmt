@@ -11,8 +11,6 @@ from finstmt.findata.database import FinDataBase
 
 @dataclass(unsafe_hash=True)
 class BalanceSheetData(FinDataBase):
-    t = symbols("t", cls=Idx)
-
     def __init__(self, *args, **kwargs):
         _fields = [
             (
@@ -67,10 +65,6 @@ class BalanceSheetData(FinDataBase):
             "BalanceSheetData",
             fields=_fields,
             bases=(FinDataBase,),
-            # nwc now in the config file
-            # namespace={
-            #     "nwc": lambda self: self.receivables + self.inventory - self.payables
-            # },
         )
         MyClass.__module__ = "finstmt.bs.data"
         self.__class__ = MyClass
@@ -92,7 +86,6 @@ class BalanceSheetData(FinDataBase):
 
     # Get item even if attribute exists
     def __getattribute__(self, key: str):
-        # print("BalanceSheetData.__getattribute__", key)
         return object.__getattribute__(self, key)
 
     items_config_list = BALANCE_SHEET_INPUT_ITEMS

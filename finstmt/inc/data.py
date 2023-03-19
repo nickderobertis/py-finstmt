@@ -11,8 +11,6 @@ from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
 
 @dataclass(unsafe_hash=True)
 class IncomeStatementData(FinDataBase):
-    t = symbols("t", cls=Idx)
-
     def __init__(self, *args, **kwargs):
         _fields = [
             (
@@ -64,7 +62,6 @@ class IncomeStatementData(FinDataBase):
 
     # Get item even if attribute exists
     def __getattribute__(self, key: str):
-        # print("IncomeStatementData.__getattribute__", key)
         return object.__getattribute__(self, key)
 
     ###### THIS BREAKS THE DYNAMIC DATACLASS
