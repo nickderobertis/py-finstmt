@@ -42,6 +42,7 @@ class FinDataBase:
         prior_statement: Optional["FinDataBase"] = None,
         items_config: Optional[Sequence[ItemConfig]] = None,
     ):
+        # If no item_config was provided, then use the default list
         if items_config is None:
             items_config = cast(Sequence[ItemConfig], cls.items_config_list)
 
