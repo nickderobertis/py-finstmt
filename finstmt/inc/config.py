@@ -38,6 +38,7 @@ INCOME_STATEMENT_INPUT_ITEMS = [
         forecast_config=ForecastItemConfig(
             make_forecast=False,
         ),
+        show_on_statement=False, # historically this was not shown on the statement. adding this here for backwards compatibility, but I think we can remove this.
     ),
     ItemConfig(
         "rd_exp",

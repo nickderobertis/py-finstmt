@@ -18,7 +18,7 @@ class BalanceSheetData(FinDataBase):
             (
                 item.key,
                 numpy.float64,
-                field(default=0, repr=(False if item.key == "nwc" else True)),
+                field(default=0, repr=item.show_on_statement),
             )
             for item in self.items_config_list
         ]
