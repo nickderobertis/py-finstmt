@@ -26,7 +26,6 @@ class FinDataBase:
     items_config_list: List[ItemConfig] = field(default_factory=lambda: [], repr=False)
     t = symbols("t", cls=Idx)
 
-
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
 
