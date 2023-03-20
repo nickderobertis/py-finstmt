@@ -190,43 +190,6 @@ Name: Revenue, dtype: float64,
                 ]
             )
         ),
-        'rd_exp': finstmt.forecast.main.Forecast(
-            orig_series=2009-12-31    1421000.0
-2010-12-31    1905000.0
-2011-12-31    2297000.0
-2012-12-31    2466000.0
-2013-12-31    2046000.0
-2014-12-31    2380000.0
-2015-12-31    2119000.0
-2016-12-31    1853000.0
-2017-12-31    1842000.0
-2018-12-31    1850000.0
-Name: R&D Expense, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='A-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='auto'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='rd_exp',
-                display_name='R&D Expense',
-                extract_names=[
-                    'rd expenses',
-                    'rd expense',
-                    'rd exp',
-                    'rd',
-                    'research and development expenses',
-                    'research and development expense',
-                    'research and development exp',
-                    'research and development'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='auto'
-                )
-            )
-        ),
         'sga': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    3645000.0
 2010-12-31    4248000.0
@@ -419,6 +382,43 @@ Name: Earnings Before Tax, dtype: float64,
                 expr_str='ebit[t] - int_exp[t]'
             )
         ),
+        'rd_exp': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    1421000.0
+2010-12-31    1905000.0
+2011-12-31    2297000.0
+2012-12-31    2466000.0
+2013-12-31    2046000.0
+2014-12-31    2380000.0
+2015-12-31    2119000.0
+2016-12-31    1853000.0
+2017-12-31    1842000.0
+2018-12-31    1850000.0
+Name: R&D Expense, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='auto'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='rd_exp',
+                display_name='R&D Expense',
+                extract_names=[
+                    'rd expenses',
+                    'rd expense',
+                    'rd exp',
+                    'rd',
+                    'research and development expenses',
+                    'research and development expense',
+                    'research and development exp',
+                    'research and development'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='auto'
+                )
+            )
+        ),
         'cash': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    4867000.0
 2010-12-31    3592000.0
@@ -577,38 +577,39 @@ Name: Revenue, dtype: float64,
                 ]
             )
         ),
-        'net_ppe': finstmt.forecast.main.Forecast(
-            orig_series=2009-12-31    12386000.0
-2010-12-31    12539000.0
-2011-12-31    14395000.0
-2012-12-31    16461000.0
-2013-12-31    17075000.0
-2014-12-31    16577000.0
-2015-12-31    16090000.0
-2016-12-31    15322000.0
-2017-12-31    14155000.0
-2018-12-31    13574000.0
-Name: Net Property, Plant & Equipment, dtype: float64,
+        'lt_invest': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    105000.0
+2010-12-31    164000.0
+2011-12-31    133000.0
+2012-12-31    272000.0
+2013-12-31    272000.0
+2014-12-31    257000.0
+2015-12-31         0.0
+2016-12-31         0.0
+2017-12-31         0.0
+2018-12-31         0.0
+Name: Long-Term Investments, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC'
             ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
             base_config=finstmt.items.config.ItemConfig(
-                key='net_ppe',
-                display_name='Net Property, Plant & Equipment',
+                key='lt_invest',
+                display_name='Long-Term Investments',
                 extract_names=[
-                    'ppe',
-                    'property plant equipment',
-                    'property plant and equipment',
-                    'ppe net',
-                    'property plant equipment net',
-                    'property plant and equipment net',
-                    'net ppe',
-                    'net property plant equipment',
-                    'net property plant and equipment'
+                    'lt invest',
+                    'lt investments',
+                    'long term invest',
+                    'long term investments',
+                    'longterm invest',
+                    'longterm investments'
                 ],
-                expr_str='gross_ppe[t] - dep[t]'
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
             )
         ),
         'goodwill': finstmt.forecast.main.Forecast(
@@ -647,41 +648,6 @@ Name: Goodwill and Intangible Assets, dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='mean'
-                )
-            )
-        ),
-        'lt_invest': finstmt.forecast.main.Forecast(
-            orig_series=2009-12-31    105000.0
-2010-12-31    164000.0
-2011-12-31    133000.0
-2012-12-31    272000.0
-2013-12-31    272000.0
-2014-12-31    257000.0
-2015-12-31         0.0
-2016-12-31         0.0
-2017-12-31         0.0
-2018-12-31         0.0
-Name: Long-Term Investments, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='A-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='recent'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='lt_invest',
-                display_name='Long-Term Investments',
-                extract_names=[
-                    'lt invest',
-                    'lt investments',
-                    'long term invest',
-                    'long term investments',
-                    'longterm invest',
-                    'longterm investments'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='recent'
                 )
             )
         ),
@@ -1032,6 +998,40 @@ Name: Retained Earnings, dtype: float64,
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='trend'
                 )
+            )
+        ),
+        'net_ppe': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    12386000.0
+2010-12-31    12539000.0
+2011-12-31    14395000.0
+2012-12-31    16461000.0
+2013-12-31    17075000.0
+2014-12-31    16577000.0
+2015-12-31    16090000.0
+2016-12-31    15322000.0
+2017-12-31    14155000.0
+2018-12-31    13574000.0
+Name: Net Property, Plant & Equipment, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='net_ppe',
+                display_name='Net Property, Plant & Equipment',
+                extract_names=[
+                    'ppe',
+                    'property plant equipment',
+                    'property plant and equipment',
+                    'ppe net',
+                    'property plant equipment net',
+                    'property plant and equipment net',
+                    'net ppe',
+                    'net property plant equipment',
+                    'net property plant and equipment'
+                ],
+                expr_str='gross_ppe[t] - dep[t]'
             )
         )
     }

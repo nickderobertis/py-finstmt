@@ -259,64 +259,6 @@ Name: Revenue, dtype: float64,
                 ]
             )
         ),
-        'rd_exp': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    1.0
-2012-06-30    1.0
-2012-09-30    1.0
-2012-12-31    1.0
-2013-03-31    1.0
-2013-06-30    1.0
-2013-09-30    0.0
-2013-12-31    0.0
-2014-03-31    1.0
-2014-06-30    1.0
-2014-09-30    1.0
-2014-12-31    1.0
-2015-03-31    1.0
-2015-06-30    1.0
-2015-09-30    1.0
-2015-12-31    1.0
-2016-03-31    1.0
-2016-06-30    0.0
-2016-09-30    0.0
-2016-12-31    1.0
-2017-03-31    0.0
-2017-06-30    0.0
-2017-09-30    0.0
-2017-12-31    0.0
-2018-03-31    0.0
-2018-06-30    0.0
-2018-09-30    0.0
-2018-12-31    0.0
-2019-03-31    0.0
-2019-06-30    0.0
-2019-09-30    0.0
-Name: R&D Expense, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='auto'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='rd_exp',
-                display_name='R&D Expense',
-                extract_names=[
-                    'rd expenses',
-                    'rd expense',
-                    'rd exp',
-                    'rd',
-                    'research and development expenses',
-                    'research and development expense',
-                    'research and development exp',
-                    'research and development'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='auto'
-                )
-            )
-        ),
         'sga': finstmt.forecast.main.Forecast(
             orig_series=2012-03-31    1.0
 2012-06-30    1.0
@@ -380,102 +322,6 @@ Name: SG&A Expense, dtype: float64,
                     'selling general admin expenses',
                     'selling general admin exp'
                 ]
-            )
-        ),
-        'other_op_exp': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    0.0
-2012-06-30    0.0
-2012-09-30    0.0
-2012-12-31    0.0
-2013-03-31    0.0
-2013-06-30    0.0
-2013-09-30    0.0
-2013-12-31    0.0
-2014-03-31    0.0
-2014-06-30    0.0
-2014-09-30    0.0
-2014-12-31    0.0
-2015-03-31    0.0
-2015-06-30    0.0
-2015-09-30    0.0
-2015-12-31    0.0
-2016-03-31    0.0
-2016-06-30    0.0
-2016-09-30    0.0
-2016-12-31    0.0
-2017-03-31    0.0
-2017-06-30    0.0
-2017-09-30    0.0
-2017-12-31    0.0
-2018-03-31    0.0
-2018-06-30    0.0
-2018-09-30    0.0
-2018-12-31    0.0
-2019-03-31    0.0
-2019-06-30    0.0
-2019-09-30    0.0
-Name: Other Operating Expenses, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='mean'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='other_op_exp',
-                display_name='Other Operating Expenses',
-                extract_names=[
-                    'other operating expenses',
-                    'other operating expense',
-                    'other operating exp',
-                    'other op expenses',
-                    'other op expense',
-                    'other op exp',
-                    'other operating expensesincome',
-                    'other operating expenseincome',
-                    'other operating expincome',
-                    'other op expensesincome',
-                    'other op expenseincome',
-                    'other op expincome',
-                    'other operating expenses income',
-                    'other operating expense income',
-                    'other operating exp income',
-                    'other op expenses income',
-                    'other op expense income',
-                    'other op exp income',
-                    'other operating expensesinc',
-                    'other operating expenseinc',
-                    'other operating expinc',
-                    'other op expensesinc',
-                    'other op expenseinc',
-                    'other op expinc',
-                    'other operating expenses inc',
-                    'other operating expense inc',
-                    'other operating exp inc',
-                    'other op expenses inc',
-                    'other op expense inc',
-                    'other op exp inc',
-                    'other income expenses',
-                    'other income expense',
-                    'other income exps',
-                    'other income exp',
-                    'other inc expenses',
-                    'other inc expense',
-                    'other inc exps',
-                    'other inc exp',
-                    'other expenses income',
-                    'other expense income',
-                    'other exps income',
-                    'other exp income',
-                    'other expenses inc',
-                    'other expense inc',
-                    'other exps inc',
-                    'other exp inc'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='mean'
-                )
             )
         ),
         'int_exp': finstmt.forecast.main.Forecast(
@@ -577,6 +423,291 @@ Name: Total Debt, dtype: float64,
                     make_forecast=False
                 ),
                 expr_str='st_debt[t] + lt_debt[t]'
+            )
+        ),
+        'tax_exp': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    1.0
+2012-06-30    1.0
+2012-09-30    1.0
+2012-12-31    0.0
+2013-03-31    0.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    1.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31   -0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31   -0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    2.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    0.0
+2019-06-30    1.0
+2019-09-30    1.0
+Name: Income Tax Expense, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean',
+                pct_of='ebt'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='tax_exp',
+                display_name='Income Tax Expense',
+                extract_names=[
+                    'taxes',
+                    'tax',
+                    'tax provision',
+                    'tax expense',
+                    'tax expenses',
+                    'tax exp',
+                    'income tax',
+                    'income tax provision',
+                    'income tax expense',
+                    'income tax expenses',
+                    'income tax exp'
+                ],
+                force_positive=False,
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean',
+                    pct_of='ebt'
+                )
+            ),
+            pct_of_series=2012-03-31    2.0
+2012-06-30    3.0
+2012-09-30    2.0
+2012-12-31    1.0
+2013-03-31    1.0
+2013-06-30    1.0
+2013-09-30    1.0
+2013-12-31    1.0
+2014-03-31    1.0
+2014-06-30    1.0
+2014-09-30    1.0
+2014-12-31    1.0
+2015-03-31    2.0
+2015-06-30    1.0
+2015-09-30    1.0
+2015-12-31   -0.0
+2016-03-31    0.0
+2016-06-30    1.0
+2016-09-30    0.0
+2016-12-31   -1.0
+2017-03-31    0.0
+2017-06-30    1.0
+2017-09-30    2.0
+2017-12-31    1.0
+2018-03-31    2.0
+2018-06-30    2.0
+2018-09-30    2.0
+2018-12-31    1.0
+2019-03-31    2.0
+2019-06-30    2.0
+2019-09-30    2.0
+Name: Earnings Before Tax, dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='ebt',
+                display_name='Earnings Before Tax',
+                extract_names=[
+                    'ebt',
+                    'earnings before taxes',
+                    'earnings before tax',
+                    'earn before tax',
+                    'earn before taxes',
+                    'ebt including unusual items',
+                    'earnings before taxes including unusual items',
+                    'earnings before tax including unusual items',
+                    'earn before tax including unusual items',
+                    'earn before taxes including unusual items',
+                    'ebt inc unusual items',
+                    'earnings before taxes inc unusual items',
+                    'earnings before tax inc unusual items',
+                    'earn before tax inc unusual items',
+                    'earn before taxes inc unusual items',
+                    'ebt incl unusual items',
+                    'earnings before taxes incl unusual items',
+                    'earnings before tax incl unusual items',
+                    'earn before tax incl unusual items',
+                    'earn before taxes incl unusual items',
+                    'pretax income',
+                    'pre tax income',
+                    'income pretax',
+                    'income pre tax'
+                ],
+                force_positive=False,
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    make_forecast=False
+                ),
+                expr_str='ebit[t] - int_exp[t]'
+            )
+        ),
+        'rd_exp': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    1.0
+2012-06-30    1.0
+2012-09-30    1.0
+2012-12-31    1.0
+2013-03-31    1.0
+2013-06-30    1.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    1.0
+2014-06-30    1.0
+2014-09-30    1.0
+2014-12-31    1.0
+2015-03-31    1.0
+2015-06-30    1.0
+2015-09-30    1.0
+2015-12-31    1.0
+2016-03-31    1.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    1.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    0.0
+2019-06-30    0.0
+2019-09-30    0.0
+Name: R&D Expense, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='auto'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='rd_exp',
+                display_name='R&D Expense',
+                extract_names=[
+                    'rd expenses',
+                    'rd expense',
+                    'rd exp',
+                    'rd',
+                    'research and development expenses',
+                    'research and development expense',
+                    'research and development exp',
+                    'research and development'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='auto'
+                )
+            )
+        ),
+        'other_op_exp': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    0.0
+2012-06-30    0.0
+2012-09-30    0.0
+2012-12-31    0.0
+2013-03-31    0.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    0.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31    0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    0.0
+2019-06-30    0.0
+2019-09-30    0.0
+Name: Other Operating Expenses, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='other_op_exp',
+                display_name='Other Operating Expenses',
+                extract_names=[
+                    'other operating expenses',
+                    'other operating expense',
+                    'other operating exp',
+                    'other op expenses',
+                    'other op expense',
+                    'other op exp',
+                    'other operating expensesincome',
+                    'other operating expenseincome',
+                    'other operating expincome',
+                    'other op expensesincome',
+                    'other op expenseincome',
+                    'other op expincome',
+                    'other operating expenses income',
+                    'other operating expense income',
+                    'other operating exp income',
+                    'other op expenses income',
+                    'other op expense income',
+                    'other op exp income',
+                    'other operating expensesinc',
+                    'other operating expenseinc',
+                    'other operating expinc',
+                    'other op expensesinc',
+                    'other op expenseinc',
+                    'other op expinc',
+                    'other operating expenses inc',
+                    'other operating expense inc',
+                    'other operating exp inc',
+                    'other op expenses inc',
+                    'other op expense inc',
+                    'other op exp inc',
+                    'other income expenses',
+                    'other income expense',
+                    'other income exps',
+                    'other income exp',
+                    'other inc expenses',
+                    'other inc expense',
+                    'other inc exps',
+                    'other inc exp',
+                    'other expenses income',
+                    'other expense income',
+                    'other exps income',
+                    'other exp income',
+                    'other expenses inc',
+                    'other expense inc',
+                    'other exps inc',
+                    'other exp inc'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean'
+                )
             )
         ),
         'gain_on_sale_invest': finstmt.forecast.main.Forecast(
@@ -790,137 +921,6 @@ Name: Impairment Expense, dtype: float64,
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='mean'
                 )
-            )
-        ),
-        'tax_exp': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    1.0
-2012-06-30    1.0
-2012-09-30    1.0
-2012-12-31    0.0
-2013-03-31    0.0
-2013-06-30    0.0
-2013-09-30    0.0
-2013-12-31    0.0
-2014-03-31    0.0
-2014-06-30    0.0
-2014-09-30    0.0
-2014-12-31    0.0
-2015-03-31    1.0
-2015-06-30    0.0
-2015-09-30    0.0
-2015-12-31   -0.0
-2016-03-31    0.0
-2016-06-30    0.0
-2016-09-30    0.0
-2016-12-31   -0.0
-2017-03-31    0.0
-2017-06-30    0.0
-2017-09-30    0.0
-2017-12-31    2.0
-2018-03-31    0.0
-2018-06-30    0.0
-2018-09-30    0.0
-2018-12-31    0.0
-2019-03-31    0.0
-2019-06-30    1.0
-2019-09-30    1.0
-Name: Income Tax Expense, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='mean',
-                pct_of='ebt'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='tax_exp',
-                display_name='Income Tax Expense',
-                extract_names=[
-                    'taxes',
-                    'tax',
-                    'tax provision',
-                    'tax expense',
-                    'tax expenses',
-                    'tax exp',
-                    'income tax',
-                    'income tax provision',
-                    'income tax expense',
-                    'income tax expenses',
-                    'income tax exp'
-                ],
-                force_positive=False,
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='mean',
-                    pct_of='ebt'
-                )
-            ),
-            pct_of_series=2012-03-31    2.0
-2012-06-30    3.0
-2012-09-30    2.0
-2012-12-31    1.0
-2013-03-31    1.0
-2013-06-30    1.0
-2013-09-30    1.0
-2013-12-31    1.0
-2014-03-31    1.0
-2014-06-30    1.0
-2014-09-30    1.0
-2014-12-31    1.0
-2015-03-31    2.0
-2015-06-30    1.0
-2015-09-30    1.0
-2015-12-31   -0.0
-2016-03-31    0.0
-2016-06-30    1.0
-2016-09-30    0.0
-2016-12-31   -1.0
-2017-03-31    0.0
-2017-06-30    1.0
-2017-09-30    2.0
-2017-12-31    1.0
-2018-03-31    2.0
-2018-06-30    2.0
-2018-09-30    2.0
-2018-12-31    1.0
-2019-03-31    2.0
-2019-06-30    2.0
-2019-09-30    2.0
-Name: Earnings Before Tax, dtype: float64,
-            pct_of_config=finstmt.items.config.ItemConfig(
-                key='ebt',
-                display_name='Earnings Before Tax',
-                extract_names=[
-                    'ebt',
-                    'earnings before taxes',
-                    'earnings before tax',
-                    'earn before tax',
-                    'earn before taxes',
-                    'ebt including unusual items',
-                    'earnings before taxes including unusual items',
-                    'earnings before tax including unusual items',
-                    'earn before tax including unusual items',
-                    'earn before taxes including unusual items',
-                    'ebt inc unusual items',
-                    'earnings before taxes inc unusual items',
-                    'earnings before tax inc unusual items',
-                    'earn before tax inc unusual items',
-                    'earn before taxes inc unusual items',
-                    'ebt incl unusual items',
-                    'earnings before taxes incl unusual items',
-                    'earnings before tax incl unusual items',
-                    'earn before tax incl unusual items',
-                    'earn before taxes incl unusual items',
-                    'pretax income',
-                    'pre tax income',
-                    'income pretax',
-                    'income pre tax'
-                ],
-                force_positive=False,
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    make_forecast=False
-                ),
-                expr_str='ebit[t] - int_exp[t]'
             )
         ),
         'cash': finstmt.forecast.main.Forecast(
@@ -1181,6 +1181,62 @@ Name: Revenue, dtype: float64,
                     'sales',
                     'sale'
                 ]
+            )
+        ),
+        'lt_invest': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    0.0
+2012-06-30    0.0
+2012-09-30    0.0
+2012-12-31    0.0
+2013-03-31    0.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    0.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31    0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    1.0
+2019-06-30    1.0
+2019-09-30    1.0
+Name: Long-Term Investments, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='lt_invest',
+                display_name='Long-Term Investments',
+                extract_names=[
+                    'lt invest',
+                    'lt investments',
+                    'long term invest',
+                    'long term investments',
+                    'longterm invest',
+                    'longterm investments'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
             )
         ),
         'def_tax_st': finstmt.forecast.main.Forecast(
@@ -1498,62 +1554,6 @@ Name: Goodwill and Intangible Assets, dtype: float64,
                 )
             )
         ),
-        'lt_invest': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    0.0
-2012-06-30    0.0
-2012-09-30    0.0
-2012-12-31    0.0
-2013-03-31    0.0
-2013-06-30    0.0
-2013-09-30    0.0
-2013-12-31    0.0
-2014-03-31    0.0
-2014-06-30    0.0
-2014-09-30    0.0
-2014-12-31    0.0
-2015-03-31    0.0
-2015-06-30    0.0
-2015-09-30    0.0
-2015-12-31    0.0
-2016-03-31    0.0
-2016-06-30    0.0
-2016-09-30    0.0
-2016-12-31    0.0
-2017-03-31    0.0
-2017-06-30    0.0
-2017-09-30    0.0
-2017-12-31    0.0
-2018-03-31    0.0
-2018-06-30    0.0
-2018-09-30    0.0
-2018-12-31    0.0
-2019-03-31    1.0
-2019-06-30    1.0
-2019-09-30    1.0
-Name: Long-Term Investments, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='recent'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='lt_invest',
-                display_name='Long-Term Investments',
-                extract_names=[
-                    'lt invest',
-                    'lt investments',
-                    'long term invest',
-                    'long term investments',
-                    'longterm invest',
-                    'longterm investments'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='recent'
-                )
-            )
-        ),
         'def_tax_lt': finstmt.forecast.main.Forecast(
             orig_series=2012-03-31    2.0
 2012-06-30    2.0
@@ -1810,105 +1810,6 @@ Name: Revenue, dtype: float64,
                 ]
             )
         ),
-        'st_debt': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    1.0
-2012-06-30    1.0
-2012-09-30    1.0
-2012-12-31    1.0
-2013-03-31    1.0
-2013-06-30    0.0
-2013-09-30    0.0
-2013-12-31    0.0
-2014-03-31    0.0
-2014-06-30    0.0
-2014-09-30    0.0
-2014-12-31    0.0
-2015-03-31    0.0
-2015-06-30    0.0
-2015-09-30    0.0
-2015-12-31    0.0
-2016-03-31    0.0
-2016-06-30    0.0
-2016-09-30    0.0
-2016-12-31    0.0
-2017-03-31    0.0
-2017-06-30    0.0
-2017-09-30    0.0
-2017-12-31    0.0
-2018-03-31    0.0
-2018-06-30    0.0
-2018-09-30    0.0
-2018-12-31    0.0
-2019-03-31    0.0
-2019-06-30    0.0
-2019-09-30    0.0
-Name: Short-Term Debt, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                pct_of='total_debt'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='st_debt',
-                display_name='Short-Term Debt',
-                extract_names=[
-                    'st debt',
-                    'short term debt',
-                    'shortterm debt',
-                    'st borrow',
-                    'short term borrow',
-                    'shortterm borrowst borrowings',
-                    'short term borrowings',
-                    'shortterm borrowings'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    pct_of='total_debt'
-                )
-            ),
-            pct_of_series=2012-03-31    36.0
-2012-06-30    39.0
-2012-09-30    40.0
-2012-12-31    40.0
-2013-03-31    40.0
-2013-06-30    40.0
-2013-09-30    40.0
-2013-12-31    38.0
-2014-03-31    38.0
-2014-06-30    40.0
-2014-09-30    39.0
-2014-12-31    39.0
-2015-03-31    39.0
-2015-06-30    38.0
-2015-09-30    38.0
-2015-12-31    38.0
-2016-03-31    38.0
-2016-06-30    38.0
-2016-09-30    37.0
-2016-12-31    37.0
-2017-03-31    38.0
-2017-06-30    37.0
-2017-09-30    36.0
-2017-12-31    35.0
-2018-03-31    35.0
-2018-06-30    36.0
-2018-09-30    36.0
-2018-12-31    37.0
-2019-03-31    37.0
-2019-06-30    37.0
-2019-09-30    39.0
-Name: Total Debt, dtype: float64,
-            pct_of_config=finstmt.items.config.ItemConfig(
-                key='total_debt',
-                display_name='Total Debt',
-                extract_names=['total debt'],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    make_forecast=False
-                ),
-                expr_str='st_debt[t] + lt_debt[t]'
-            )
-        ),
         'current_lt_debt': finstmt.forecast.main.Forecast(
             orig_series=2012-03-31    1.0
 2012-06-30    1.0
@@ -2048,6 +1949,177 @@ Name: Total Debt, dtype: float64,
                     make_forecast=False
                 ),
                 expr_str='st_debt[t] + lt_debt[t]'
+            )
+        ),
+        'st_debt': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    1.0
+2012-06-30    1.0
+2012-09-30    1.0
+2012-12-31    1.0
+2013-03-31    1.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    0.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31    0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    0.0
+2019-06-30    0.0
+2019-09-30    0.0
+Name: Short-Term Debt, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                pct_of='total_debt'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='st_debt',
+                display_name='Short-Term Debt',
+                extract_names=[
+                    'st debt',
+                    'short term debt',
+                    'shortterm debt',
+                    'st borrow',
+                    'short term borrow',
+                    'shortterm borrowst borrowings',
+                    'short term borrowings',
+                    'shortterm borrowings'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    pct_of='total_debt'
+                )
+            ),
+            pct_of_series=2012-03-31    36.0
+2012-06-30    39.0
+2012-09-30    40.0
+2012-12-31    40.0
+2013-03-31    40.0
+2013-06-30    40.0
+2013-09-30    40.0
+2013-12-31    38.0
+2014-03-31    38.0
+2014-06-30    40.0
+2014-09-30    39.0
+2014-12-31    39.0
+2015-03-31    39.0
+2015-06-30    38.0
+2015-09-30    38.0
+2015-12-31    38.0
+2016-03-31    38.0
+2016-06-30    38.0
+2016-09-30    37.0
+2016-12-31    37.0
+2017-03-31    38.0
+2017-06-30    37.0
+2017-09-30    36.0
+2017-12-31    35.0
+2018-03-31    35.0
+2018-06-30    36.0
+2018-09-30    36.0
+2018-12-31    37.0
+2019-03-31    37.0
+2019-06-30    37.0
+2019-09-30    39.0
+Name: Total Debt, dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='total_debt',
+                display_name='Total Debt',
+                extract_names=['total debt'],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    make_forecast=False
+                ),
+                expr_str='st_debt[t] + lt_debt[t]'
+            )
+        ),
+        'lt_debt': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    8.0
+2012-06-30    9.0
+2012-09-30    9.0
+2012-12-31    9.0
+2013-03-31    9.0
+2013-06-30    8.0
+2013-09-30    8.0
+2013-12-31    8.0
+2014-03-31    8.0
+2014-06-30    9.0
+2014-09-30    9.0
+2014-12-31    9.0
+2015-03-31    9.0
+2015-06-30    9.0
+2015-09-30    9.0
+2015-12-31    9.0
+2016-03-31    9.0
+2016-06-30    8.0
+2016-09-30    8.0
+2016-12-31    8.0
+2017-03-31    9.0
+2017-06-30    9.0
+2017-09-30    9.0
+2017-12-31    7.0
+2018-03-31    8.0
+2018-06-30    8.0
+2018-09-30    8.0
+2018-12-31    8.0
+2019-03-31    8.0
+2019-06-30    8.0
+2019-09-30    9.0
+Name: Long-Term Debt, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='manual',
+                manual_forecasts={'levels': [9, 9], 'growth': []},
+                plug=True
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='lt_debt',
+                display_name='Long-Term Debt',
+                extract_names=[
+                    'lt debt',
+                    'long term debt',
+                    'longterm debt',
+                    'lt borrow',
+                    'long term borrow',
+                    'longterm borrow',
+                    'lt borrowings',
+                    'long term borrowings',
+                    'longterm borrowings',
+                    'lt debt total',
+                    'long term debt total',
+                    'longterm debt total',
+                    'lt borrow total',
+                    'long term borrow total',
+                    'longterm borrow total',
+                    'lt borrowings total',
+                    'long term borrowings total',
+                    'longterm borrowings total'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='manual',
+                    manual_forecasts={'levels': [9, 9], 'growth': []},
+                    plug=True
+                )
             )
         ),
         'tax_liab_st': finstmt.forecast.main.Forecast(
@@ -2281,78 +2353,6 @@ Name: Other Current Liabilities, dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='mean'
-                )
-            )
-        ),
-        'lt_debt': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    8.0
-2012-06-30    9.0
-2012-09-30    9.0
-2012-12-31    9.0
-2013-03-31    9.0
-2013-06-30    8.0
-2013-09-30    8.0
-2013-12-31    8.0
-2014-03-31    8.0
-2014-06-30    9.0
-2014-09-30    9.0
-2014-12-31    9.0
-2015-03-31    9.0
-2015-06-30    9.0
-2015-09-30    9.0
-2015-12-31    9.0
-2016-03-31    9.0
-2016-06-30    8.0
-2016-09-30    8.0
-2016-12-31    8.0
-2017-03-31    9.0
-2017-06-30    9.0
-2017-09-30    9.0
-2017-12-31    7.0
-2018-03-31    8.0
-2018-06-30    8.0
-2018-09-30    8.0
-2018-12-31    8.0
-2019-03-31    8.0
-2019-06-30    8.0
-2019-09-30    9.0
-Name: Long-Term Debt, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='manual',
-                manual_forecasts={'levels': [9, 9], 'growth': []},
-                plug=True
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='lt_debt',
-                display_name='Long-Term Debt',
-                extract_names=[
-                    'lt debt',
-                    'long term debt',
-                    'longterm debt',
-                    'lt borrow',
-                    'long term borrow',
-                    'longterm borrow',
-                    'lt borrowings',
-                    'long term borrowings',
-                    'longterm borrowings',
-                    'lt debt total',
-                    'long term debt total',
-                    'longterm debt total',
-                    'lt borrow total',
-                    'long term borrow total',
-                    'longterm borrow total',
-                    'lt borrowings total',
-                    'long term borrowings total',
-                    'longterm borrowings total'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='manual',
-                    manual_forecasts={'levels': [9, 9], 'growth': []},
-                    plug=True
                 )
             )
         ),
@@ -2748,6 +2748,60 @@ Name: Common Stock, dtype: float64,
                 )
             )
         ),
+        'minority_interest': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    1.0
+2012-06-30    0.0
+2012-09-30    0.0
+2012-12-31    0.0
+2013-03-31    0.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    0.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31    0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    0.0
+2019-06-30    0.0
+2019-09-30    0.0
+Name: Minority Interest, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='minority_interest',
+                display_name='Minority Interest',
+                extract_names=[
+                    'minority interest',
+                    'minority int',
+                    'min int',
+                    'min interest'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean'
+                )
+            )
+        ),
         'other_income': finstmt.forecast.main.Forecast(
             orig_series=2012-03-31   -6.0
 2012-06-30   -6.0
@@ -2864,60 +2918,6 @@ Name: Retained Earnings, dtype: float64,
                 force_positive=False,
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='trend'
-                )
-            )
-        ),
-        'minority_interest': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    1.0
-2012-06-30    0.0
-2012-09-30    0.0
-2012-12-31    0.0
-2013-03-31    0.0
-2013-06-30    0.0
-2013-09-30    0.0
-2013-12-31    0.0
-2014-03-31    0.0
-2014-06-30    0.0
-2014-09-30    0.0
-2014-12-31    0.0
-2015-03-31    0.0
-2015-06-30    0.0
-2015-09-30    0.0
-2015-12-31    0.0
-2016-03-31    0.0
-2016-06-30    0.0
-2016-09-30    0.0
-2016-12-31    0.0
-2017-03-31    0.0
-2017-06-30    0.0
-2017-09-30    0.0
-2017-12-31    0.0
-2018-03-31    0.0
-2018-06-30    0.0
-2018-09-30    0.0
-2018-12-31    0.0
-2019-03-31    0.0
-2019-06-30    0.0
-2019-09-30    0.0
-Name: Minority Interest, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='mean'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='minority_interest',
-                display_name='Minority Interest',
-                extract_names=[
-                    'minority interest',
-                    'minority int',
-                    'min int',
-                    'min interest'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='mean'
                 )
             )
         )

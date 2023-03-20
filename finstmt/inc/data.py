@@ -19,25 +19,6 @@ class IncomeStatementData(FinDataBase):
             )
             for item in self.items_config_list
         ]
-        sort_order = {
-            "revenue": 0,
-            "cogs": 1,
-            "gross_profit": 2,
-            "sga": 3,
-            "int_exp": 4,
-            "tax_exp": 5,
-            "rd_exp": 6,
-            "dep_exp": 7,
-            "other_op_exp": 8,
-            "gain_on_sale_invest": 9,
-            "gain_on_sale_asset": 10,
-            "impairment": 11,
-            "op_exp": 12,
-            "ebit": 13,
-            "ebt": 14,
-            "net_income": 15,
-        }
-        _fields.sort(key=lambda tup: sort_order[tup[0]])
         MyClass = make_dataclass(
             "IncomeStatementData", fields=_fields, bases=(FinDataBase,)
         )
