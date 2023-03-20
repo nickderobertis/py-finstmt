@@ -24,6 +24,8 @@ class FinDataBase:
     prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
     unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
     items_config_list: List[ItemConfig] = field(default_factory=lambda: [], repr=False)
+    t = symbols("t", cls=Idx)
+
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
@@ -127,10 +129,6 @@ class FinDataBase:
                 self.prior_statement.get_sympy_subs_dict(t_offset=t_offset - 1)
             )
         return subs_dict
-
-    #### NEW
-
-    t = symbols("t", cls=Idx)
 
     # Get item even if attribute exists
     def __getattribute__(self, key: str):
