@@ -2,7 +2,6 @@ from copy import deepcopy
 from dataclasses import dataclass, field, make_dataclass
 
 import numpy
-from sympy import Idx, symbols
 
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.findata.database import FinDataBase
@@ -11,14 +10,12 @@ from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
 
 @dataclass(unsafe_hash=True)
 class IncomeStatementData(FinDataBase):
-    t = symbols("t", cls=Idx)
-
     def __init__(self, *args, **kwargs):
         _fields = [
             (
                 item.key,
                 numpy.float64,
-                field(default=0, repr=(False if item.key == "gross_profit" else True)),
+                field(default=0, repr=item.show_on_statement),
             )
             for item in self.items_config_list
         ]
@@ -64,7 +61,6 @@ class IncomeStatementData(FinDataBase):
 
     # Get item even if attribute exists
     def __getattribute__(self, key: str):
-        # print("IncomeStatementData.__getattribute__", key)
         return object.__getattribute__(self, key)
 
     ###### THIS BREAKS THE DYNAMIC DATACLASS
