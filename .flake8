@@ -1,2 +1,2 @@
 [flake8]
-exclude = .git,__pycache__,dist,build,docs,docsrc/source/conf.py,lib,.venv,.venvs,venv,lib
+exclude = .git,__pycache__,dist,build,docs,docsrc/source/conf.py,Lib,.venv,.venvs,venv
