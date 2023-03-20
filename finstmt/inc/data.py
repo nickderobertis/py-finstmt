@@ -2,7 +2,6 @@ from copy import deepcopy
 from dataclasses import dataclass, field, make_dataclass
 
 import numpy
-from sympy import Idx, symbols
 
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.findata.database import FinDataBase

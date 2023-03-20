@@ -21,7 +21,7 @@ class ItemConfig:
         default_factory=lambda: ForecastItemConfig()
     )
     expr_str: Optional[str] = None
-    show_on_statement: bool = True # Some properities, e.g., nwc and effective tax rate, may be associated with a statments but we don't necessarily want to display it on the print-out
+    show_on_statement: bool = True  # Some properities, e.g., nwc and effective tax rate, may be associated with a statments but we don't necessarily want to display it on the print-out
 
     # TODO [#19]: add config and logic for whether to take highest priority or add all of matching names
     #
