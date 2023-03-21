@@ -6,7 +6,7 @@ finstmt.combined.statements.FinancialStatements(
                 2009,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(32396000000.0),
                 cogs=numpy.float64(24931000000.0),
                 sga=numpy.float64(3645000000.0),
@@ -22,7 +22,7 @@ finstmt.combined.statements.FinancialStatements(
                 2010,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(42588000000.0),
                 cogs=numpy.float64(31281000000.0),
                 sga=numpy.float64(4248000000.0),
@@ -38,7 +38,7 @@ finstmt.combined.statements.FinancialStatements(
                 2011,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(60138000000.0),
                 cogs=numpy.float64(44404000000.0),
                 sga=numpy.float64(5203000000.0),
@@ -54,7 +54,7 @@ finstmt.combined.statements.FinancialStatements(
                 2012,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(65875000000.0),
                 cogs=numpy.float64(47852000000.0),
                 sga=numpy.float64(5919000000.0),
@@ -70,7 +70,7 @@ finstmt.combined.statements.FinancialStatements(
                 2013,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(55656000000.0),
                 cogs=numpy.float64(41454000000.0),
                 sga=numpy.float64(5547000000.0),
@@ -86,7 +86,7 @@ finstmt.combined.statements.FinancialStatements(
                 2014,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(55184000000.0),
                 cogs=numpy.float64(41342000000.0),
                 sga=numpy.float64(6529000000.0),
@@ -102,7 +102,7 @@ finstmt.combined.statements.FinancialStatements(
                 2015,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(47011000000.0),
                 cogs=numpy.float64(34133000000.0),
                 sga=numpy.float64(4951000000.0),
@@ -118,7 +118,7 @@ finstmt.combined.statements.FinancialStatements(
                 2016,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(38537000000.0),
                 cogs=numpy.float64(28640000000.0),
                 sga=numpy.float64(4383000000.0),
@@ -134,7 +134,7 @@ finstmt.combined.statements.FinancialStatements(
                 2017,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(45462000000.0),
                 cogs=numpy.float64(31906000000.0),
                 sga=numpy.float64(4999000000.0),
@@ -150,7 +150,7 @@ finstmt.combined.statements.FinancialStatements(
                 2018,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(54722000000.0),
                 cogs=numpy.float64(37719000000.0),
                 sga=numpy.float64(5478000000.0),
@@ -170,7 +170,7 @@ finstmt.combined.statements.FinancialStatements(
                 2009,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(4867000000.0),
                 receivables=numpy.float64(27162000000.0),
                 inventory=numpy.float64(6360000000.0),
@@ -199,7 +199,7 @@ finstmt.combined.statements.FinancialStatements(
                 2010,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(3592000000.0),
                 receivables=numpy.float64(28849000000.0),
                 inventory=numpy.float64(9587000000.0),
@@ -228,7 +228,7 @@ finstmt.combined.statements.FinancialStatements(
                 2011,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(3057000000.0),
                 receivables=numpy.float64(30803000000.0),
                 inventory=numpy.float64(14544000000.0),
@@ -257,7 +257,7 @@ finstmt.combined.statements.FinancialStatements(
                 2012,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(5490000000.0),
                 receivables=numpy.float64(33911000000.0),
                 inventory=numpy.float64(15547000000.0),
@@ -286,7 +286,7 @@ finstmt.combined.statements.FinancialStatements(
                 2013,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(6081000000.0),
                 receivables=numpy.float64(33499000000.0),
                 inventory=numpy.float64(12625000000.0),
@@ -315,7 +315,7 @@ finstmt.combined.statements.FinancialStatements(
                 2014,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(7341000000.0),
                 receivables=numpy.float64(32772000000.0),
                 inventory=numpy.float64(12205000000.0),
@@ -344,7 +344,7 @@ finstmt.combined.statements.FinancialStatements(
                 2015,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(6460000000.0),
                 receivables=numpy.float64(30507000000.0),
                 inventory=numpy.float64(9700000000.0),
@@ -372,7 +372,7 @@ finstmt.combined.statements.FinancialStatements(
                 2016,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(7168000000.0),
                 receivables=numpy.float64(29088000000.0),
                 inventory=numpy.float64(8614000000.0),
@@ -400,7 +400,7 @@ finstmt.combined.statements.FinancialStatements(
                 2017,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(8261000000.0),
                 receivables=numpy.float64(30725000000.0),
                 inventory=numpy.float64(10018000000.0),
@@ -428,7 +428,7 @@ finstmt.combined.statements.FinancialStatements(
                 2018,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 cash=numpy.float64(7857000000.0),
                 receivables=numpy.float64(31899000000.0),
                 inventory=numpy.float64(11529000000.0),

@@ -6,7 +6,7 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 2019,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(5249458.0),
                 cogs=numpy.float64(4269560.0),
                 sga=numpy.float64(219154.0),
@@ -20,7 +20,7 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 2020,
                 3,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
+            ): finstmt.findata.database.FinDataBase(
                 revenue=numpy.float64(5319570.0),
                 cogs=numpy.float64(4316609.0),
                 sga=numpy.float64(220658.0),
@@ -38,7 +38,7 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 2019,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 st_invest=numpy.float64(7097693.0),
                 receivables=numpy.float64(2414469.0),
                 lt_invest=numpy.float64(580000.0),
@@ -69,7 +69,7 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 2020,
                 3,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
+            ): finstmt.findata.database.FinDataBase(
                 st_invest=numpy.float64(8006310.0),
                 receivables=numpy.float64(2483874.0),
                 lt_invest=numpy.float64(580000.0),

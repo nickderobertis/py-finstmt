@@ -1,11 +1,11 @@
 import operator
-from typing import Callable, Dict, List, Optional, Sequence, Tuple
+from typing import Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
 from tqdm import tqdm
 
 from finstmt.check import item_series_is_empty
-from finstmt.config_manage.data import _key_pct_of_key
+from finstmt.config_manage.data import DataConfigManager, _key_pct_of_key
 from finstmt.config_manage.statement import StatementConfigManager
 from finstmt.exc import (
     CouldNotParseException,
@@ -32,6 +32,7 @@ class FinStatementsBase:
     statement_cls = FinDataBase  # to be overridden with individual class
     statements: Dict[pd.Timestamp, FinDataBase]
     statement_name: str = "Base"
+    items_config_list: List[ItemConfig]
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
@@ -110,7 +111,7 @@ class FinStatementsBase:
     def from_df(
         cls,
         df: pd.DataFrame,
-        items_config: Optional[Sequence[ItemConfig]] = None,
+        items_config_list: Optional[List[ItemConfig]] = None,
         disp_unextracted: bool = True,
     ):
         """
@@ -121,6 +122,12 @@ class FinStatementsBase:
         dates.sort(key=lambda t: pd.to_datetime(t))
         for col in dates:
             try:
+                if items_config_list is None:
+                    # items_config = cast(Sequence[ItemConfig], cls.items_config_list)
+                    items_config = DataConfigManager(cls.items_config_list.copy())
+                else:
+                    items_config = DataConfigManager(items_config_list.copy())
+
                 statement = cls.statement_cls.from_series(
                     df[col], items_config=items_config
                 )
