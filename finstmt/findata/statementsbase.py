@@ -1,4 +1,5 @@
 import operator
+import traceback
 from typing import Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
@@ -58,9 +59,10 @@ class FinStatementsBase:
     def _repr_html_(self):
         return self._formatted_df._repr_html_()
 
+    # Get longitudenal series for a statement item
     def __getattr__(self, item):
         data_dict = {}
-        for date, statement in super().__getattribute__("statements").items():
+        for date, statement in self.statements.items(): #super().__getattribute__("statements").items():
             try:
                 statement_value = getattr(statement, item)
             except AttributeError:

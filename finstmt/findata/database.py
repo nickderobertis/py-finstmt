@@ -10,6 +10,7 @@ from sympy import Idx, IndexedBase, symbols, sympify
 from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.exc import CouldNotParseException
+from finstmt.findata.statementItem import StatementItem
 
 
 @dataclass
@@ -19,14 +20,13 @@ class FinDataBase:
     """
 
     # items_config: Union[List[ItemConfig], DataConfigManager] = field(repr=False)
+    
     items_config: DataConfigManager = field(repr=False)
     prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
     unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
     # items_config_list: List[ItemConfig] = field(default_factory=lambda: [], repr=False)
-    t = symbols("t", cls=Idx)
 
-    # def __init__(self, *args, **kwargs):
-    #     raise NotImplementedError
+    statement_items: Optional[Dict[str, StatementItem]] = field(default_factory=lambda: {}, repr=False)
 
     def __init__(self, *args, **kwargs):
         _fields = [
@@ -52,7 +52,10 @@ class FinDataBase:
 
         self.items_config = DataConfigManager(deepcopy(self.items_config))
 
+        self.statement_items = {}
+
         for item in self.items_config:
+            self.statement_items[item.key] = StatementItem(item_config=deepcopy(item), value=kwargs.get(item.key, None))
             if item.force_positive and item.extract_names is not None:
                 # If extracted and need to force positive, take absolute value
                 value = getattr(self, item.key)
@@ -78,6 +81,8 @@ class FinDataBase:
         # This should be handled by the statements class now
         # if items_config is None:
         #     items_config = cast(Sequence[ItemConfig], cls.items_config_list)
+
+        print("Loading from Series")
 
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
@@ -170,6 +175,9 @@ class FinDataBase:
         if key not in self.items_config.keys:
             return object.__getattribute__(self, key)
 
+        return self.statement_items[key].get_value(self)
+
+
         # if specific value was provided, than return that even if it's a calculated field
         if object.__getattribute__(self, key) != 0:
             # return np.round(np.float64(object.__getattribute__(self, key)))
@@ -180,8 +188,10 @@ class FinDataBase:
         if expr_str is None:
             return object.__getattribute__(self, key)
         else:
-            # print(f"Expression: {key} = {expr_str}")
+            print(f"Expression: {key} = {expr_str}")
+            return self.statement_items[key].getValue(self)
             ns_syms = self.items_config.sympy_namespace
+            print(ns_syms)
             sym_expr = sympify(expr_str, locals=ns_syms)
             sub_list = []
             t = ns_syms["t"]

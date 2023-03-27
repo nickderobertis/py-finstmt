@@ -1,0 +1,44 @@
+from dataclasses import dataclass
+from typing import Optional
+import numpy as np
+
+from sympy import Idx, symbols, sympify
+# from finstmt.findata.database import FinDataBase
+from finstmt.items.config import ItemConfig
+
+
+@dataclass
+class StatementItem:
+    # statement: FinDataBase
+    item_config: ItemConfig
+    value: Optional[float]
+
+    def __post_init__(self) -> None:
+        if self.item_config.force_positive and self.item_config.extract_names is not None:
+            # If extracted and need to force positive, take absolute value
+            if self.value is None:
+                return
+            positive_value = abs(self.value)
+            self.value = positive_value
+
+    def get_value(self, statement):
+        # if specific value was provided, than return that even if it's a calculated field
+        if self.value != None:
+            return self.value
+
+        expr_str = self.item_config.expr_str
+
+        if expr_str is None:
+            return 0 # self.value # None?
+        else:
+            ns_syms = statement.items_config.sympy_namespace
+            sym_expr = sympify(expr_str, locals=ns_syms)
+            sub_list = []
+            t = ns_syms["t"]
+            for ns_sym in ns_syms.values():
+                if ns_sym == t:
+                    continue
+                if ns_sym[t] in sym_expr.free_symbols:
+                    sub_list.append((ns_sym[t], getattr(statement, str(ns_sym))))
+            # print(sub_list)
+            return np.float64(sym_expr.subs(sub_list))       
