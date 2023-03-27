@@ -177,7 +177,7 @@ class FinDataBase:
         if key not in self.items_config.keys:
             return object.__getattribute__(self, key)
 
-        statement_items: dict = cast(dict, statement_items)
+        statement_items: dict = cast(dict, self.statement_items)
 
         return np.float64(statement_items[key].get_value(self))
 
