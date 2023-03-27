@@ -24,12 +24,12 @@ class StatementItem:
     def get_value(self, statement):
         # if specific value was provided, than return that even if it's a calculated field
         if self.value != None:
-            return self.value
+            return np.float64(self.value)
 
         expr_str = self.item_config.expr_str
 
         if expr_str is None:
-            return 0 # self.value # None?
+            return np.float64(0) # self.value # None?
         else:
             ns_syms = statement.items_config.sympy_namespace
             sym_expr = sympify(expr_str, locals=ns_syms)

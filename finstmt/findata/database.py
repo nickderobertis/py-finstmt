@@ -175,7 +175,7 @@ class FinDataBase:
         if key not in self.items_config.keys:
             return object.__getattribute__(self, key)
 
-        return self.statement_items[key].get_value(self)
+        return np.float64(self.statement_items[key].get_value(self))
 
 
         # if specific value was provided, than return that even if it's a calculated field
