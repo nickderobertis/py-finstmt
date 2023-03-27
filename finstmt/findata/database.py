@@ -1,7 +1,7 @@
 import warnings
 from copy import deepcopy
 from dataclasses import dataclass, field, make_dataclass
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union, cast
 
 import numpy as np
 import pandas as pd
@@ -26,7 +26,7 @@ class FinDataBase:
     unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
     # items_config_list: List[ItemConfig] = field(default_factory=lambda: [], repr=False)
 
-    statement_items: Optional[Dict[str, StatementItem]] = field(
+    statement_items: Optional[Dict] = field(
         default_factory=lambda: {}, repr=False
     )
 
@@ -179,7 +179,9 @@ class FinDataBase:
         if key not in self.items_config.keys:
             return object.__getattribute__(self, key)
 
-        return np.float64(self.statement_items[key].get_value(self))
+        statement_items: dict = cast(dict, statement_items)  
+
+        return np.float64(statement_items[key].get_value(self))
 
         # if specific value was provided, than return that even if it's a calculated field
         if object.__getattribute__(self, key) != 0:
