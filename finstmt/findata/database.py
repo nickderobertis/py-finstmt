@@ -180,28 +180,3 @@ class FinDataBase:
         statement_items: dict = cast(dict, self.statement_items)
 
         return np.float64(statement_items[key].get_value(self))
-
-        # if specific value was provided, than return that even if it's a calculated field
-        if object.__getattribute__(self, key) != 0:
-            # return np.round(np.float64(object.__getattribute__(self, key)))
-            return object.__getattribute__(self, key)
-
-        expr_str = self.items_config.get(key).expr_str
-
-        if expr_str is None:
-            return object.__getattribute__(self, key)
-        else:
-            print(f"Expression: {key} = {expr_str}")
-            return self.statement_items[key].getValue(self)
-            ns_syms = self.items_config.sympy_namespace
-            print(ns_syms)
-            sym_expr = sympify(expr_str, locals=ns_syms)
-            sub_list = []
-            t = ns_syms["t"]
-            for ns_sym in ns_syms.values():
-                if ns_sym == t:
-                    continue
-                if ns_sym[t] in sym_expr.free_symbols:
-                    sub_list.append((ns_sym[t], self.__getattribute__(str(ns_sym))))
-            # print(key, sub_list)
-            return np.float64(sym_expr.subs(sub_list))
