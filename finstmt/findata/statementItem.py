@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 from typing import Optional
-import numpy as np
 
-from sympy import Idx, symbols, sympify
+import numpy as np
+from sympy import sympify
+
 # from finstmt.findata.database import FinDataBase
 from finstmt.items.config import ItemConfig
 
@@ -14,7 +15,10 @@ class StatementItem:
     value: Optional[float]
 
     def __post_init__(self) -> None:
-        if self.item_config.force_positive and self.item_config.extract_names is not None:
+        if (
+            self.item_config.force_positive
+            and self.item_config.extract_names is not None
+        ):
             # If extracted and need to force positive, take absolute value
             if self.value is None:
                 return
@@ -29,7 +33,7 @@ class StatementItem:
         expr_str = self.item_config.expr_str
 
         if expr_str is None:
-            return np.float64(0) # self.value # None?
+            return np.float64(0)  # self.value # None?
         else:
             ns_syms = statement.items_config.sympy_namespace
             sym_expr = sympify(expr_str, locals=ns_syms)
@@ -41,4 +45,4 @@ class StatementItem:
                 if ns_sym[t] in sym_expr.free_symbols:
                     sub_list.append((ns_sym[t], getattr(statement, str(ns_sym))))
             # print(sub_list)
-            return np.float64(sym_expr.subs(sub_list))       
+            return np.float64(sym_expr.subs(sub_list))

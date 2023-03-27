@@ -5,7 +5,7 @@ from typing import Dict, List, Optional, Union
 
 import numpy as np
 import pandas as pd
-from sympy import Idx, IndexedBase, symbols, sympify
+from sympy import IndexedBase, sympify
 
 from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
@@ -20,13 +20,15 @@ class FinDataBase:
     """
 
     # items_config: Union[List[ItemConfig], DataConfigManager] = field(repr=False)
-    
+
     items_config: DataConfigManager = field(repr=False)
     prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
     unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
     # items_config_list: List[ItemConfig] = field(default_factory=lambda: [], repr=False)
 
-    statement_items: Optional[Dict[str, StatementItem]] = field(default_factory=lambda: {}, repr=False)
+    statement_items: Optional[Dict[str, StatementItem]] = field(
+        default_factory=lambda: {}, repr=False
+    )
 
     def __init__(self, *args, **kwargs):
         _fields = [
@@ -55,7 +57,9 @@ class FinDataBase:
         self.statement_items = {}
 
         for item in self.items_config:
-            self.statement_items[item.key] = StatementItem(item_config=deepcopy(item), value=kwargs.get(item.key, None))
+            self.statement_items[item.key] = StatementItem(
+                item_config=deepcopy(item), value=kwargs.get(item.key, None)
+            )
             if item.force_positive and item.extract_names is not None:
                 # If extracted and need to force positive, take absolute value
                 value = getattr(self, item.key)
@@ -176,7 +180,6 @@ class FinDataBase:
             return object.__getattribute__(self, key)
 
         return np.float64(self.statement_items[key].get_value(self))
-
 
         # if specific value was provided, than return that even if it's a calculated field
         if object.__getattribute__(self, key) != 0:
