@@ -26,9 +26,7 @@ class FinDataBase:
     unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
     # items_config_list: List[ItemConfig] = field(default_factory=lambda: [], repr=False)
 
-    statement_items: Optional[Dict] = field(
-        default_factory=lambda: {}, repr=False
-    )
+    statement_items: Optional[Dict] = field(default_factory=lambda: {}, repr=False)
 
     def __init__(self, *args, **kwargs):
         _fields = [
@@ -179,7 +177,7 @@ class FinDataBase:
         if key not in self.items_config.keys:
             return object.__getattribute__(self, key)
 
-        statement_items: dict = cast(dict, statement_items)  
+        statement_items: dict = cast(dict, statement_items)
 
         return np.float64(statement_items[key].get_value(self))
 
