@@ -30,7 +30,6 @@ class FinDataBase:
         self.unextracted_names = kwargs.get("unextracted_names", None)
 
         self.statement_items = {}
-        print(kwargs["data_dict"])
         for item in self.items_config:
             self.statement_items[item.key] = StatementItem(
                 item_config=deepcopy(item),
@@ -45,15 +44,15 @@ class FinDataBase:
         )._repr_html_()
 
     def __repr__(self) -> str:
+        statement_items: dict = cast(dict, self.statement_items)
         return json.dumps(
             {
                 k: v.get_value(self)
-                for (k, v) in self.statement_items.items()
+                for (k, v) in statement_items.items()
                 if v.get_value(self) != 0 and v.item_config.show_on_statement
             },
             indent=2,
         )
-        # return prettyprinter.pprint({k:v.get_value(self) for (k,v) in self.statement_items.items()})
 
     def __dir__(self):
         normal_attrs = [
