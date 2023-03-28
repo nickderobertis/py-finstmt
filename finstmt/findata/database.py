@@ -1,13 +1,12 @@
 import json
 import warnings
 from copy import deepcopy
-from dataclasses import dataclass, field, make_dataclass
+from dataclasses import field
 from typing import Dict, List, Optional, Union, cast
 
 import numpy as np
 import pandas as pd
-import prettyprinter
-from sympy import IndexedBase, sympify
+from sympy import IndexedBase
 
 from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
@@ -29,12 +28,13 @@ class FinDataBase:
         self.items_config = DataConfigManager(deepcopy(kwargs["items_config"]))
         self.prior_statement = kwargs.get("prior_statement", None)
         self.unextracted_names = kwargs.get("unextracted_names", None)
-        
+
         self.statement_items = {}
-        print(kwargs['data_dict'])
+        print(kwargs["data_dict"])
         for item in self.items_config:
             self.statement_items[item.key] = StatementItem(
-                item_config=deepcopy(item), value=(kwargs['data_dict']).get(item.key, None)
+                item_config=deepcopy(item),
+                value=(kwargs["data_dict"]).get(item.key, None),
             )
 
     def _repr_html_(self):
@@ -43,9 +43,16 @@ class FinDataBase:
         return df.applymap(
             lambda x: f"${x:,.0f}" if not x == 0 else " - "
         )._repr_html_()
-    
+
     def __repr__(self) -> str:
-        return json.dumps({k:v.get_value(self) for (k,v) in self.statement_items.items() if v.get_value(self) != 0 and v.item_config.show_on_statement}, indent=2)
+        return json.dumps(
+            {
+                k: v.get_value(self)
+                for (k, v) in self.statement_items.items()
+                if v.get_value(self) != 0 and v.item_config.show_on_statement
+            },
+            indent=2,
+        )
         # return prettyprinter.pprint({k:v.get_value(self) for (k,v) in self.statement_items.items()})
 
     def __dir__(self):
@@ -56,7 +63,6 @@ class FinDataBase:
             "statement_items",
         ]
         return normal_attrs + list(self.statement_items.keys())
-
 
     @classmethod
     def from_series(
@@ -122,7 +128,9 @@ class FinDataBase:
                 series.index,
             )
         return cls(
-            data_dict=data_dict, items_config=items_config, unextracted_names=unextracted_names
+            data_dict=data_dict,
+            items_config=items_config,
+            unextracted_names=unextracted_names,
         )
 
     def to_series(self) -> pd.Series:
