@@ -1,3 +1,4 @@
+import json
 import warnings
 from copy import deepcopy
 from dataclasses import dataclass, field, make_dataclass
@@ -5,6 +6,7 @@ from typing import Dict, List, Optional, Union, cast
 
 import numpy as np
 import pandas as pd
+import prettyprinter
 from sympy import IndexedBase, sympify
 
 from finstmt.clean.name import standardize_names_in_series_index
@@ -13,58 +15,27 @@ from finstmt.exc import CouldNotParseException
 from finstmt.findata.statementItem import StatementItem
 
 
-@dataclass
 class FinDataBase:
     """
     Base class for financial statement data. Should not be used directly.
     """
 
-    # items_config: Union[List[ItemConfig], DataConfigManager] = field(repr=False)
-
     items_config: DataConfigManager = field(repr=False)
     prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
     unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
-    # items_config_list: List[ItemConfig] = field(default_factory=lambda: [], repr=False)
-
     statement_items: Optional[Dict] = field(default_factory=lambda: {}, repr=False)
 
     def __init__(self, *args, **kwargs):
-        _fields = [
-            (
-                item.key,
-                np.float64,
-                field(default=0, repr=item.show_on_statement),
-            )
-            for item in kwargs["items_config"]
-            # for item in self.items_config_list
-        ]
-        _class = make_dataclass(
-            "FinDataBase",
-            fields=_fields,
-            bases=(FinDataBase,),
-        )
-        _class.__module__ = "finstmt.findata.database"
-        self.__class__ = _class
-
-        for key, value in kwargs.items():
-            # print(f"{key}: {value}")
-            setattr(self, key, value)
-
-        self.items_config = DataConfigManager(deepcopy(self.items_config))
-
+        self.items_config = DataConfigManager(deepcopy(kwargs["items_config"]))
+        self.prior_statement = kwargs.get("prior_statement", None)
+        self.unextracted_names = kwargs.get("unextracted_names", None)
+        
         self.statement_items = {}
-
+        print(kwargs['data_dict'])
         for item in self.items_config:
             self.statement_items[item.key] = StatementItem(
-                item_config=deepcopy(item), value=kwargs.get(item.key, None)
+                item_config=deepcopy(item), value=(kwargs['data_dict']).get(item.key, None)
             )
-            if item.force_positive and item.extract_names is not None:
-                # If extracted and need to force positive, take absolute value
-                value = getattr(self, item.key)
-                if value is None:
-                    continue
-                positive_value = abs(value)
-                setattr(self, item.key, positive_value)
 
     def _repr_html_(self):
         series = self.to_series()
@@ -72,6 +43,20 @@ class FinDataBase:
         return df.applymap(
             lambda x: f"${x:,.0f}" if not x == 0 else " - "
         )._repr_html_()
+    
+    def __repr__(self) -> str:
+        return json.dumps({k:v.get_value(self) for (k,v) in self.statement_items.items() if v.get_value(self) != 0 and v.item_config.show_on_statement}, indent=2)
+        # return prettyprinter.pprint({k:v.get_value(self) for (k,v) in self.statement_items.items()})
+
+    def __dir__(self):
+        normal_attrs = [
+            "items_config",
+            "prior_statement",
+            "unextracted_names",
+            "statement_items",
+        ]
+        return normal_attrs + list(self.statement_items.keys())
+
 
     @classmethod
     def from_series(
@@ -80,12 +65,6 @@ class FinDataBase:
         items_config: DataConfigManager,  # Optional[Sequence[ItemConfig]] = None,
         prior_statement: Optional["FinDataBase"] = None,
     ):
-        # This should be handled by the statements class now
-        # if items_config is None:
-        #     items_config = cast(Sequence[ItemConfig], cls.items_config_list)
-
-        print("Loading from Series")
-
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
         data_dict: Dict[str, Union[float, "FinDataBase"]] = {}
@@ -143,7 +122,7 @@ class FinDataBase:
                 series.index,
             )
         return cls(
-            **data_dict, items_config=items_config, unextracted_names=unextracted_names
+            data_dict=data_dict, items_config=items_config, unextracted_names=unextracted_names
         )
 
     def to_series(self) -> pd.Series:
@@ -169,14 +148,6 @@ class FinDataBase:
         return subs_dict
 
     # Get item even if attribute exists
-    def __getattribute__(self, key: str):
-        # print("FinDataBase.__getattribute__", key)
-
-        if key == "items_config":
-            return object.__getattribute__(self, key)
-        if key not in self.items_config.keys:
-            return object.__getattribute__(self, key)
-
+    def __getattr__(self, key: str):
         statement_items: dict = cast(dict, self.statement_items)
-
         return np.float64(statement_items[key].get_value(self))
