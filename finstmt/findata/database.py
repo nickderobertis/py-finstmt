@@ -67,7 +67,8 @@ class FinDataBase:
     def from_series(
         cls,
         series: pd.Series,
-        items_config: DataConfigManager,  # Optional[Sequence[ItemConfig]] = None,
+        # Optional[Sequence[ItemConfig]] = None,
+        items_config: DataConfigManager,
         prior_statement: Optional["FinDataBase"] = None,
     ):
         for_lookup = deepcopy(series)
@@ -146,7 +147,9 @@ class FinDataBase:
         return all_dict
 
     def get_sympy_subs_dict(self, t_offset: int = 0) -> Dict[IndexedBase, float]:
-        subs_dict = self.items_config.eq_subs_dict(self.as_dict(), t_offset=t_offset)  # type: ignore
+        subs_dict = self.items_config.eq_subs_dict(
+            self.as_dict(), t_offset=t_offset
+        )  # type: ignore
         if self.prior_statement is not None:
             # Recursively look up prior statements to fill out historical values
             subs_dict.update(
