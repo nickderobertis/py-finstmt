@@ -75,7 +75,7 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "cash": 10012397.0,
   "receivables": 38900017.0,
   "inventory": 13203298.0,
-  "gross_ppe": 13824938.0,
+  "dep": 13824938.0,
   "goodwill": 8311100.0,
   "def_tax_lt": 1177049.0,
   "payables": 8018535.0,
