@@ -24,7 +24,7 @@ class PeriodFinancialData:
     statement_items: Optional[Dict[str, StatementItem]]
 
     def __init__(
-        self, data_dict, config_manager, prior_statement, unextracted_names
+        self, data_dict, config_manager, unextracted_names, prior_statement=None
     ):
         self.config_manager = DataConfigManager(deepcopy(config_manager))
         self.prior_statement = prior_statement

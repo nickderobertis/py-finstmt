@@ -12,7 +12,7 @@ from finstmt.exc import (
     MixedFrequencyException,
     NoSuchItemException,
 )
-from finstmt.findata.database import FinDataBase
+from finstmt.findata.database import PeriodFinancialData
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
 from finstmt.items.config import ItemConfig
@@ -29,8 +29,8 @@ class FinStatementsBase:
     # Currently I have set type ignore for all the subclass typing
     #
     # See https://github.com/python/mypy/issues/2984#issuecomment-285721489 for more details
-    statement_cls = FinDataBase  # to be overridden with individual class
-    statements: Dict[pd.Timestamp, FinDataBase]
+    statement_cls = PeriodFinancialData  # to be overridden with individual class
+    statements: Dict[pd.Timestamp, PeriodFinancialData]
     statement_name: str = "Base"
     items_config_list: List[ItemConfig]
 
