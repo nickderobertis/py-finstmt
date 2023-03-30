@@ -26,7 +26,7 @@ class PeriodFinancialData:
     unextracted_names: List[str] = field(
         default_factory=lambda: [], repr=False
     )
-    statement_items: Optional[Dict] = field(
+    statement_items: Optional[Dict[str, StatementItem]] = field(
         default_factory=lambda: {}, repr=False
     )
 
