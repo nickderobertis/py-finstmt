@@ -1,7 +1,6 @@
 import json
 import warnings
 from copy import deepcopy
-from dataclasses import field
 from typing import Dict, List, Optional, Union, cast
 
 import numpy as np
@@ -19,29 +18,23 @@ class PeriodFinancialData:
     Base class for financial statement data. Should not be used directly.
     """
 
-    config_manager: DataConfigManager = field(repr=False)
-    prior_statement: Optional["PeriodFinancialData"] = field(
-        default=None, repr=False
-    )
-    unextracted_names: List[str] = field(
-        default_factory=lambda: [], repr=False
-    )
-    statement_items: Optional[Dict[str, StatementItem]] = field(
-        default_factory=lambda: {}, repr=False
-    )
+    config_manager: DataConfigManager
+    prior_statement: Optional["PeriodFinancialData"]
+    unextracted_names: List[str]
+    statement_items: Optional[Dict[str, StatementItem]]
 
-    def __init__(self, *args, **kwargs):
-        self.config_manager = DataConfigManager(
-            deepcopy(kwargs["config_manager"])
-        )
-        self.prior_statement = kwargs.get("prior_statement", None)
-        self.unextracted_names = kwargs.get("unextracted_names", None)
+    def __init__(
+        self, data_dict, config_manager, prior_statement, unextracted_names
+    ):
+        self.config_manager = DataConfigManager(deepcopy(config_manager))
+        self.prior_statement = prior_statement
+        self.unextracted_names = unextracted_names
 
         self.statement_items = {}
         for item in self.config_manager:
             self.statement_items[item.key] = StatementItem(
                 item_config=deepcopy(item),
-                value=(kwargs["data_dict"]).get(item.key, None),
+                value=(data_dict).get(item.key, None),
             )
 
     def _repr_html_(self):
