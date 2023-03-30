@@ -11,7 +11,7 @@ from sympy import IndexedBase
 from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.exc import CouldNotParseException
-from finstmt.findata.statementItem import StatementItem
+from finstmt.findata.statement_item import StatementItem
 
 
 class FinDataBase:
@@ -21,8 +21,12 @@ class FinDataBase:
 
     items_config: DataConfigManager = field(repr=False)
     prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
-    unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
-    statement_items: Optional[Dict] = field(default_factory=lambda: {}, repr=False)
+    unextracted_names: List[str] = field(
+        default_factory=lambda: [], repr=False
+    )
+    statement_items: Optional[Dict] = field(
+        default_factory=lambda: {}, repr=False
+    )
 
     def __init__(self, *args, **kwargs):
         self.items_config = DataConfigManager(deepcopy(kwargs["items_config"]))
@@ -94,8 +98,11 @@ class FinDataBase:
                         # First see if data is the same, then just skip
                         if for_lookup[name] == data_dict[item_config.key]:
                             continue
-                        # Data is not the same, so take the one which is earliest in extract_names
-                        current_match_idx = item_config.extract_names.index(name)
+                        # Data is not the same, so take the one which is
+                        # earliest in extract_names
+                        current_match_idx = item_config.extract_names.index(
+                            name
+                        )
                         existing_match_idx = item_config.extract_names.index(
                             extracted_name_dict[item_config.key]
                         )
@@ -136,7 +143,9 @@ class FinDataBase:
     def to_series(self) -> pd.Series:
         data_dict = {}
         for item_config in self.items_config:
-            data_dict[item_config.display_name] = getattr(self, item_config.key)
+            data_dict[item_config.display_name] = getattr(
+                self, item_config.key
+            )
         return pd.Series(data_dict).fillna(0)
 
     def as_dict(self) -> Dict[str, float]:
@@ -146,12 +155,13 @@ class FinDataBase:
         [all_dict.pop(key) for key in remove_keys]
         return all_dict
 
-    def get_sympy_subs_dict(self, t_offset: int = 0) -> Dict[IndexedBase, float]:
-        subs_dict = self.items_config.eq_subs_dict(
-            self.as_dict(), t_offset=t_offset
-        )  # type: ignore
+    def get_sympy_subs_dict(
+        self, t_offset: int = 0
+    ) -> Dict[IndexedBase, float]:
+        subs_dict = self.items_config.eq_subs_dict(self.as_dict(), t_offset=t_offset)  # type: ignore
         if self.prior_statement is not None:
-            # Recursively look up prior statements to fill out historical values
+            # Recursively look up prior statements to fill out historical
+            # values
             subs_dict.update(
                 self.prior_statement.get_sympy_subs_dict(t_offset=t_offset - 1)
             )
