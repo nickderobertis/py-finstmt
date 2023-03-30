@@ -46,7 +46,9 @@ class FinStatementsBase:
         prior_date = None
         for i, date in enumerate(dates):
             if i != 0:
-                self.statements[date].prior_statement = self.statements[prior_date]
+                self.statements[date].prior_statement = self.statements[
+                    prior_date
+                ]
             prior_date = date
 
         # Create dictionary of individual time period configs to construct the entire statement config
@@ -64,19 +66,24 @@ class FinStatementsBase:
         for (
             date,
             statement,
-        ) in self.statements.items():  # super().__getattribute__("statements").items():
+        ) in (
+            self.statements.items()
+        ):  # super().__getattribute__("statements").items():
             try:
                 statement_value = getattr(statement, item)
             except AttributeError:
-                # Should hit here on the first loop if this is an invalid item. Raise attribute error like normal.
+                # Should hit here on the first loop if this is an invalid item
+                # Raise attribute error like normal.
                 raise AttributeError(item)
             if pd.isnull(statement_value):
                 statement_value = 0
             data_dict[date] = statement_value
         item_config: Optional[ItemConfig] = None
         # TODO: Proper names in series for calculated items
-        #  As nwc is calculated only, it does not have a corresponding config item and so the best
-        #  we can do is use the item key as the name. We can solve this by moving everything to
+        #  As nwc is calculated only, it does not have a corresponding config
+        # item and so the best
+        #  we can do is use the item key as the name. We can solve this by
+        # moving everything to
         #  config items rather than properties.
         try:
             item_config = self.config.get(item)
@@ -128,7 +135,9 @@ class FinStatementsBase:
             try:
                 if items_config_list is None:
                     # items_config = cast(Sequence[ItemConfig], cls.items_config_list)
-                    items_config = DataConfigManager(cls.items_config_list.copy())
+                    items_config = DataConfigManager(
+                        cls.items_config_list.copy()
+                    )
                 else:
                     items_config = DataConfigManager(items_config_list.copy())
 
@@ -199,8 +208,12 @@ class FinStatementsBase:
             pct_of_series = None
             pct_of_config = None
             if item.forecast_config.pct_of is not None:
-                pct_of_series = getattr(statements, item.forecast_config.pct_of)
-                pct_of_config = statements.config.get(item.forecast_config.pct_of)
+                pct_of_series = getattr(
+                    statements, item.forecast_config.pct_of
+                )
+                pct_of_config = statements.config.get(
+                    item.forecast_config.pct_of
+                )
             forecast = Forecast(
                 data,
                 forecast_config,
@@ -215,7 +228,9 @@ class FinStatementsBase:
             if forecast.result is not None:
                 forecast.result.name = item.primary_name
             if item.forecast_config.pct_of is not None:
-                key_pct_of_key = _key_pct_of_key(item.key, item.forecast_config.pct_of)
+                key_pct_of_key = _key_pct_of_key(
+                    item.key, item.forecast_config.pct_of
+                )
                 results[key_pct_of_key] = forecast.result
             else:
                 results[item.key] = forecast.result
@@ -238,7 +253,9 @@ class FinStatementsBase:
         if isinstance(other, (float, int)):
             new_df = self.df + other
         elif isinstance(other, FinStatementsBase):
-            new_df = combine_statement_dfs(self.df, other.df, operation=operator.add)
+            new_df = combine_statement_dfs(
+                self.df, other.df, operation=operator.add
+            )
         else:
             raise NotImplementedError(
                 f"cannot add type {type(other)} to type {type(self)}"
@@ -259,7 +276,9 @@ class FinStatementsBase:
         if isinstance(other, (float, int)):
             new_df = self.df * other
         elif isinstance(other, FinStatementsBase):
-            new_df = combine_statement_dfs(self.df, other.df, operation=operator.mul)
+            new_df = combine_statement_dfs(
+                self.df, other.df, operation=operator.mul
+            )
         else:
             raise NotImplementedError(
                 f"cannot multiply type {type(other)} to type {type(self)}"
@@ -277,7 +296,9 @@ class FinStatementsBase:
         if isinstance(other, (float, int)):
             new_df = self.df - other
         elif isinstance(other, FinStatementsBase):
-            new_df = combine_statement_dfs(self.df, other.df, operation=operator.sub)
+            new_df = combine_statement_dfs(
+                self.df, other.df, operation=operator.sub
+            )
         else:
             raise NotImplementedError(
                 f"cannot subtract type {type(other)} to type {type(self)}"
@@ -332,12 +353,16 @@ class FinStatementsBase:
 def combine_statement_dfs(
     df: pd.DataFrame,
     df2: pd.DataFrame,
-    operation: Callable[[pd.DataFrame, pd.DataFrame], pd.DataFrame] = operator.add,
+    operation: Callable[
+        [pd.DataFrame, pd.DataFrame], pd.DataFrame
+    ] = operator.add,
 ) -> pd.DataFrame:
     common_cols = [col for col in df.columns if col in df2.columns]
     df_unique_cols = [col for col in df.columns if col not in df2.columns]
     df2_unique_cols = [col for col in df2.columns if col not in df.columns]
     common_df = operation(df[common_cols], df2[common_cols])
-    result = pd.concat([common_df, df[df_unique_cols], df2[df2_unique_cols]], axis=1)
+    result = pd.concat(
+        [common_df, df[df_unique_cols], df2[df2_unique_cols]], axis=1
+    )
     cols = sorted(list(result.columns))
     return result[cols]

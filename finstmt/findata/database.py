@@ -19,7 +19,7 @@ class FinDataBase:
     Base class for financial statement data. Should not be used directly.
     """
 
-    items_config: DataConfigManager = field(repr=False)
+    config_manager: DataConfigManager = field(repr=False)
     prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
     unextracted_names: List[str] = field(
         default_factory=lambda: [], repr=False
@@ -29,12 +29,14 @@ class FinDataBase:
     )
 
     def __init__(self, *args, **kwargs):
-        self.items_config = DataConfigManager(deepcopy(kwargs["items_config"]))
+        self.config_manager = DataConfigManager(
+            deepcopy(kwargs["config_manager"])
+        )
         self.prior_statement = kwargs.get("prior_statement", None)
         self.unextracted_names = kwargs.get("unextracted_names", None)
 
         self.statement_items = {}
-        for item in self.items_config:
+        for item in self.config_manager:
             self.statement_items[item.key] = StatementItem(
                 item_config=deepcopy(item),
                 value=(kwargs["data_dict"]).get(item.key, None),
@@ -60,7 +62,7 @@ class FinDataBase:
 
     def __dir__(self):
         normal_attrs = [
-            "items_config",
+            "config_manager",
             "prior_statement",
             "unextracted_names",
             "statement_items",
@@ -71,8 +73,7 @@ class FinDataBase:
     def from_series(
         cls,
         series: pd.Series,
-        # Optional[Sequence[ItemConfig]] = None,
-        items_config: DataConfigManager,
+        config_manager: DataConfigManager,
         prior_statement: Optional["FinDataBase"] = None,
     ):
         for_lookup = deepcopy(series)
@@ -87,7 +88,7 @@ class FinDataBase:
 
         for i, name in enumerate(for_lookup.index):
             orig_name = series.index[i]
-            for item_config in items_config:
+            for item_config in config_manager:
                 if item_config.extract_names is None:
                     # Not an extractable item, must be a calculated item
                     continue
@@ -136,20 +137,20 @@ class FinDataBase:
             )
         return cls(
             data_dict=data_dict,
-            items_config=items_config,
+            config_manager=config_manager,
             unextracted_names=unextracted_names,
         )
 
     def to_series(self) -> pd.Series:
         data_dict = {}
-        for item_config in self.items_config:
+        for item_config in self.config_manager:
             data_dict[item_config.display_name] = getattr(
                 self, item_config.key
             )
         return pd.Series(data_dict).fillna(0)
 
     def as_dict(self) -> Dict[str, float]:
-        remove_keys = ["items_config"]
+        remove_keys = ["config_manager"]
 
         all_dict = deepcopy(self.__dict__)
         [all_dict.pop(key) for key in remove_keys]
@@ -158,7 +159,7 @@ class FinDataBase:
     def get_sympy_subs_dict(
         self, t_offset: int = 0
     ) -> Dict[IndexedBase, float]:
-        subs_dict = self.items_config.eq_subs_dict(self.as_dict(), t_offset=t_offset)  # type: ignore
+        subs_dict = self.config_manager.eq_subs_dict(self.as_dict(), t_offset=t_offset)  # type: ignore
         if self.prior_statement is not None:
             # Recursively look up prior statements to fill out historical
             # values
