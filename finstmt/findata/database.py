@@ -14,13 +14,15 @@ from finstmt.exc import CouldNotParseException
 from finstmt.findata.statement_item import StatementItem
 
 
-class FinDataBase:
+class PeriodFinancialData:
     """
     Base class for financial statement data. Should not be used directly.
     """
 
     config_manager: DataConfigManager = field(repr=False)
-    prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
+    prior_statement: Optional["PeriodFinancialData"] = field(
+        default=None, repr=False
+    )
     unextracted_names: List[str] = field(
         default_factory=lambda: [], repr=False
     )
