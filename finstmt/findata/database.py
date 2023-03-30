@@ -34,7 +34,7 @@ class PeriodFinancialData:
         for item in self.config_manager:
             self.statement_items[item.key] = StatementItem(
                 item_config=deepcopy(item),
-                value=(data_dict).get(item.key, None),
+                value=data_dict.get(item.key, None),
             )
 
     def _repr_html_(self):
