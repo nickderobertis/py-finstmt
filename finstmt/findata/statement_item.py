@@ -1,11 +1,13 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 import numpy as np
 from sympy import sympify
 
-# from finstmt.findata.database import FinDataBase
 from finstmt.items.config import ItemConfig
+
+if TYPE_CHECKING:
+    from finstmt.findata.database import FinDataBase
 
 
 @dataclass
@@ -24,7 +26,7 @@ class StatementItem:
             positive_value = abs(self.value)
             self.value = positive_value
 
-    def get_value(self, statement):
+    def get_value(self, fin_data: "FinDataBase") -> np.float64:
         # if specific value was provided, than return that even if it's a
         # calculated field
         if self.value is not None:
@@ -33,18 +35,16 @@ class StatementItem:
         expr_str = self.item_config.expr_str
 
         if expr_str is None:
-            return np.float64(0)  # self.value # None?
-        else:
-            ns_syms = statement.items_config.sympy_namespace
-            sym_expr = sympify(expr_str, locals=ns_syms)
-            sub_list = []
-            t = ns_syms["t"]
-            for ns_sym in ns_syms.values():
-                if ns_sym == t:
-                    continue
-                if ns_sym[t] in sym_expr.free_symbols:
-                    sub_list.append(
-                        (ns_sym[t], getattr(statement, str(ns_sym)))
-                    )
-            # print(sub_list)
-            return np.float64(sym_expr.subs(sub_list))
+            return np.float64(0)
+
+        ns_syms = fin_data.items_config.sympy_namespace
+        sym_expr = sympify(expr_str, locals=ns_syms)
+        sub_list = []
+        t = ns_syms["t"]
+        for ns_sym in ns_syms.values():
+            if ns_sym == t:
+                continue
+            if ns_sym[t] in sym_expr.free_symbols:
+                sub_list.append((ns_sym[t], getattr(fin_data, str(ns_sym))))
+
+        return np.float64(sym_expr.subs(sub_list))

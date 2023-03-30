@@ -1086,6 +1086,6 @@ BALANCE_SHEET_INPUT_ITEMS = [
         forecast_config=ForecastItemConfig(
             make_forecast=False,
         ),
-        show_on_statement=False,
+        display_verbosity=2,
     ),
 ]
