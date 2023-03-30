@@ -43,6 +43,8 @@ class StatementItem:
                 if ns_sym == t:
                     continue
                 if ns_sym[t] in sym_expr.free_symbols:
-                    sub_list.append((ns_sym[t], getattr(statement, str(ns_sym))))
+                    sub_list.append(
+                        (ns_sym[t], getattr(statement, str(ns_sym)))
+                    )
             # print(sub_list)
             return np.float64(sym_expr.subs(sub_list))
