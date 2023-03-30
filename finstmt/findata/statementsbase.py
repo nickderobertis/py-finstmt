@@ -54,7 +54,7 @@ class FinStatementsBase:
         # Create dictionary of individual time period configs to construct the entire statement config
         configs_dict = {}
         for date, statement in self.statements.items():
-            configs_dict[date] = statement.items_config
+            configs_dict[date] = statement.config_manager
         self.config = StatementConfigManager(configs_dict)
 
     def _repr_html_(self):
@@ -134,15 +134,16 @@ class FinStatementsBase:
         for col in dates:
             try:
                 if items_config_list is None:
-                    # items_config = cast(Sequence[ItemConfig], cls.items_config_list)
-                    items_config = DataConfigManager(
+                    config_manager = DataConfigManager(
                         cls.items_config_list.copy()
                     )
                 else:
-                    items_config = DataConfigManager(items_config_list.copy())
+                    config_manager = DataConfigManager(
+                        items_config_list.copy()
+                    )
 
                 statement = cls.statement_cls.from_series(
-                    df[col], items_config=items_config
+                    df[col], config_manager=config_manager
                 )
             except CouldNotParseException:
                 raise CouldNotParseException(
