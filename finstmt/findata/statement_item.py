@@ -37,7 +37,7 @@ class StatementItem:
         if expr_str is None:
             return np.float64(0)
 
-        ns_syms = fin_data.items_config.sympy_namespace
+        ns_syms = fin_data.config_manager.sympy_namespace
         sym_expr = sympify(expr_str, locals=ns_syms)
         sub_list = []
         t = ns_syms["t"]
