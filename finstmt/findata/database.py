@@ -50,8 +50,7 @@ class PeriodFinancialData:
             {
                 k: v.get_value(self)
                 for (k, v) in statement_items.items()
-                if v.get_value(self) != 0
-                and v.item_config.display_verbosity == 1
+                if v.get_value(self) != 0 and v.item_config.display_verbosity == 1
             },
             indent=2,
         )
@@ -97,9 +96,7 @@ class PeriodFinancialData:
                             continue
                         # Data is not the same, so take the one which is
                         # earliest in extract_names
-                        current_match_idx = item_config.extract_names.index(
-                            name
-                        )
+                        current_match_idx = item_config.extract_names.index(name)
                         existing_match_idx = item_config.extract_names.index(
                             extracted_name_dict[item_config.key]
                         )
@@ -140,9 +137,7 @@ class PeriodFinancialData:
     def to_series(self) -> pd.Series:
         data_dict = {}
         for item_config in self.config_manager:
-            data_dict[item_config.display_name] = getattr(
-                self, item_config.key
-            )
+            data_dict[item_config.display_name] = getattr(self, item_config.key)
         return pd.Series(data_dict).fillna(0)
 
     def as_dict(self) -> Dict[str, float]:
@@ -152,9 +147,7 @@ class PeriodFinancialData:
         [all_dict.pop(key) for key in remove_keys]
         return all_dict
 
-    def get_sympy_subs_dict(
-        self, t_offset: int = 0
-    ) -> Dict[IndexedBase, float]:
+    def get_sympy_subs_dict(self, t_offset: int = 0) -> Dict[IndexedBase, float]:
         subs_dict = self.config_manager.eq_subs_dict(self.as_dict(), t_offset=t_offset)  # type: ignore
         if self.prior_statement is not None:
             # Recursively look up prior statements to fill out historical
