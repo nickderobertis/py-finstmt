@@ -44,7 +44,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='revenue[t] - cogs[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         ),
                         finstmt.items.config.ItemConfig(
                             key='sga',
@@ -421,7 +421,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='revenue[t] - cogs[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         ),
                         finstmt.items.config.ItemConfig(
                             key='sga',
@@ -798,7 +798,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='revenue[t] - cogs[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         ),
                         finstmt.items.config.ItemConfig(
                             key='sga',
@@ -1175,7 +1175,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='revenue[t] - cogs[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         ),
                         finstmt.items.config.ItemConfig(
                             key='sga',
@@ -1552,7 +1552,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='revenue[t] - cogs[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         ),
                         finstmt.items.config.ItemConfig(
                             key='sga',
@@ -3001,7 +3001,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='receivables[t] + inventory[t] - payables[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         )
                     ]
                 ),
@@ -4114,7 +4114,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='receivables[t] + inventory[t] - payables[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         )
                     ]
                 ),
@@ -5227,7 +5227,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='receivables[t] + inventory[t] - payables[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         )
                     ]
                 ),
@@ -6340,7 +6340,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='receivables[t] + inventory[t] - payables[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         )
                     ]
                 ),
@@ -7453,7 +7453,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 make_forecast=False
                             ),
                             expr_str='receivables[t] + inventory[t] - payables[t]',
-                            show_on_statement=False
+                            display_verbosity=2
                         )
                     ]
                 )
