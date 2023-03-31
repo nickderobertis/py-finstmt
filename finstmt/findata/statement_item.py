@@ -7,7 +7,7 @@ from sympy import sympify
 from finstmt.items.config import ItemConfig
 
 if TYPE_CHECKING:
-    from finstmt.findata.database import FinDataBase
+    from finstmt.findata.database import PeriodFinancialData
 
 
 @dataclass
@@ -26,7 +26,7 @@ class StatementItem:
             positive_value = abs(self.value)
             self.value = positive_value
 
-    def get_value(self, fin_data: "FinDataBase") -> np.float64:
+    def get_value(self, fin_data: "PeriodFinancialData") -> np.float64:
         # if specific value was provided, than return that even if it's a
         # calculated field
         if self.value is not None:
