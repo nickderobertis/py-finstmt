@@ -20,16 +20,6 @@ from finstmt.logger import logger
 
 
 class FinStatementsBase:
-    # TODO [#9]: rethink typing for FinStatementsBase considering invariant types
-    #
-    # Was trying to set generic base types in the base class FinStatementsBase
-    # and then in the subclasses, set them to the specific types. But this seems to not
-    # work correctly with mutable collections of the types.
-    #
-    # Currently I have set type ignore for all the subclass typing
-    #
-    # See https://github.com/python/mypy/issues/2984#issuecomment-285721489 for more details
-    statement_cls = PeriodFinancialData  # to be overridden with individual class
     statements: Dict[pd.Timestamp, PeriodFinancialData]
     statement_name: str = "Base"
     items_config_list: List[ItemConfig]
@@ -135,7 +125,7 @@ class FinStatementsBase:
 
         for col in dates:
             try:
-                statement = cls.statement_cls.from_series(
+                statement = PeriodFinancialData.from_series(
                     df[col], config_manager=config_manager
                 )
             except CouldNotParseException:
