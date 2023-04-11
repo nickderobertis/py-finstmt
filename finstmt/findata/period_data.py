@@ -64,6 +64,9 @@ class PeriodFinancialData:
             "prior_statement",
             "unextracted_names",
             "statement_items",
+            "from_series",
+            "to_series",
+            "dict",
         ]
         return normal_attrs + list(self.statement_items.keys())
 
