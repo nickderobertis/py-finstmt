@@ -30,7 +30,7 @@ class PeriodFinancialData:
         unextracted_names: List[str],
         prior_statement: Optional["PeriodFinancialData"] = None,
     ):
-        self.config_manager = DataConfigManager(deepcopy(config_manager))
+        self.config_manager = DataConfigManager(deepcopy(config_manager.configs))
         self.prior_statement = prior_statement
         self.unextracted_names = unextracted_names
 
@@ -78,13 +78,10 @@ class PeriodFinancialData:
     ):
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
-        data_dict: Dict[str, Union[float, "PeriodFinancialData"]] = {}
+        data_dict: Dict[str, float] = {}
         extracted_name_dict: Dict[str, str] = {}
         original_name_dict: Dict[str, str] = {}
         unextracted_names: List[str] = []
-
-        if prior_statement is not None:
-            data_dict["prior_statement"] = prior_statement
 
         for i, name in enumerate(for_lookup.index):
             orig_name = series.index[i]
@@ -137,6 +134,7 @@ class PeriodFinancialData:
             data_dict=data_dict,
             config_manager=config_manager,
             unextracted_names=unextracted_names,
+            prior_statement=prior_statement
         )
 
     def to_series(self) -> pd.Series:
