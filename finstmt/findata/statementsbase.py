@@ -65,12 +65,6 @@ class FinStatementsBase:
                 statement_value = 0
             data_dict[date] = statement_value
         item_config: Optional[ItemConfig] = None
-        # TODO: Proper names in series for calculated items
-        #  As nwc is calculated only, it does not have a corresponding config
-        # item and so the best
-        #  we can do is use the item key as the name. We can solve this by
-        # moving everything to
-        #  config items rather than properties.
         try:
             item_config = self.config.get(item)
         except NoSuchItemException:
