@@ -1,7 +1,7 @@
 import json
 import warnings
 from copy import deepcopy
-from typing import Dict, List, Optional, Union, cast
+from typing import Dict, List, Optional, cast
 
 import numpy as np
 import pandas as pd
