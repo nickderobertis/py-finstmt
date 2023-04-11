@@ -159,4 +159,8 @@ class PeriodFinancialData:
         return subs_dict
 
     def __getattr__(self, key: str):
-        return np.float64(self.statement_items[key].get_value(self))
+        try:
+            statement_item = self.statement_items[key]
+        except KeyError:
+            raise AttributeError(key)
+        return np.float64(statement_item.get_value(self))
