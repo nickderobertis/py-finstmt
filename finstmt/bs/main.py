@@ -4,7 +4,7 @@ from typing import Dict
 import pandas as pd
 
 from finstmt.bs.config import BALANCE_SHEET_INPUT_ITEMS
-from finstmt.findata.database import PeriodFinancialData
+from finstmt.findata.period_data import PeriodFinancialData
 from finstmt.findata.statementsbase import FinStatementsBase
 
 

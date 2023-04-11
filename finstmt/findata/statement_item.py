@@ -7,7 +7,7 @@ from sympy import sympify
 from finstmt.items.config import ItemConfig
 
 if TYPE_CHECKING:
-    from finstmt.findata.database import PeriodFinancialData
+    from finstmt.findata.period_data import PeriodFinancialData
 
 
 @dataclass

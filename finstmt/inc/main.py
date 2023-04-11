@@ -3,7 +3,7 @@ from typing import Dict
 
 import pandas as pd
 
-from finstmt.findata.database import PeriodFinancialData
+from finstmt.findata.period_data import PeriodFinancialData
 from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.inc.config import INCOME_STATEMENT_INPUT_ITEMS
 

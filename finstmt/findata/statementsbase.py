@@ -12,7 +12,7 @@ from finstmt.exc import (
     MixedFrequencyException,
     NoSuchItemException,
 )
-from finstmt.findata.database import PeriodFinancialData
+from finstmt.findata.period_data import PeriodFinancialData
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
 from finstmt.items.config import ItemConfig
