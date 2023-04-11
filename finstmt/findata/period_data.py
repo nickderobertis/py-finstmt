@@ -141,20 +141,20 @@ class PeriodFinancialData:
             data_dict[item_config.display_name] = getattr(self, item_config.key)
         return pd.Series(data_dict).fillna(0)
 
-    def as_dict(self) -> Dict[str, float]:
+    def dict(self) -> Dict[str, float]:
         remove_keys = ["config_manager"]
 
         all_dict = deepcopy(self.__dict__)
         [all_dict.pop(key) for key in remove_keys]
         return all_dict
 
-    def get_sympy_subs_dict(self, t_offset: int = 0) -> Dict[IndexedBase, float]:
-        subs_dict = self.config_manager.eq_subs_dict(self.as_dict(), t_offset=t_offset)  # type: ignore
+    def _get_sympy_subs_dict(self, t_offset: int = 0) -> Dict[IndexedBase, float]:
+        subs_dict = self.config_manager.eq_subs_dict(self.dict(), t_offset=t_offset)
         if self.prior_statement is not None:
             # Recursively look up prior statements to fill out historical
             # values
             subs_dict.update(
-                self.prior_statement.get_sympy_subs_dict(t_offset=t_offset - 1)
+                self.prior_statement._get_sympy_subs_dict(t_offset=t_offset - 1)
             )
         return subs_dict
 
