@@ -1,40 +1,47 @@
+import json
 import warnings
 from copy import deepcopy
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Sequence, Union, cast
+from typing import Dict, List, Optional, cast
 
+import numpy as np
 import pandas as pd
-from sympy import IndexedBase
 
 from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.exc import CouldNotParseException
-from finstmt.items.config import ItemConfig
+from finstmt.findata.statement_item import StatementItem
 
 
-@dataclass
-class FinDataBase:
+class PeriodFinancialData:
     """
     Base class for financial statement data. Should not be used directly.
     """
 
-    items_config: Union[List[ItemConfig], DataConfigManager] = field(repr=False)
-    prior_statement: Optional["FinDataBase"] = field(default=None, repr=False)
-    unextracted_names: List[str] = field(default_factory=lambda: [], repr=False)
+    config_manager: DataConfigManager
+    prior_statement: Optional["PeriodFinancialData"]
+    unextracted_names: List[str]
+    statement_items: Dict[str, StatementItem]
 
-    def __init__(self, *args, **kwargs):
-        raise NotImplementedError
+    # TODO: Set this via user config
+    maximum_display_verbosity = 1
 
-    def __post_init__(self):
-        self.items_config = DataConfigManager(deepcopy(self.items_config))
-        for item in self.items_config:
-            if item.force_positive and item.extract_names is not None:
-                # If extracted and need to force positive, take absolute value
-                value = getattr(self, item.key)
-                if value is None:
-                    continue
-                positive_value = abs(value)
-                setattr(self, item.key, positive_value)
+    def __init__(
+        self,
+        data_dict: Dict[str, float],
+        config_manager: DataConfigManager,
+        unextracted_names: List[str],
+        prior_statement: Optional["PeriodFinancialData"] = None,
+    ):
+        self.config_manager = DataConfigManager(deepcopy(config_manager.configs))
+        self.prior_statement = prior_statement
+        self.unextracted_names = unextracted_names
+
+        self.statement_items = {}
+        for item in self.config_manager:
+            self.statement_items[item.key] = StatementItem(
+                item_config=deepcopy(item),
+                value=data_dict.get(item.key, None),
+            )
 
     def _repr_html_(self):
         series = self.to_series()
@@ -43,29 +50,49 @@ class FinDataBase:
             lambda x: f"${x:,.0f}" if not x == 0 else " - "
         )._repr_html_()
 
+    def __repr__(self) -> str:
+        statement_items: dict = cast(dict, self.statement_items)
+        results = {}
+        for k, v in statement_items.items():
+            val = v.get_value(self)
+            # Some properties, e.g., nwc and effective tax rate, may be associated with a statements, but we don't
+            # necessarily want to display it on the print-out
+            if (val != 0) and (
+                v.item_config.display_verbosity <= self.maximum_display_verbosity
+            ):
+                results[k] = val
+
+        return json.dumps(results, indent=2)
+
+    def __dir__(self):
+        normal_attrs = [
+            "config_manager",
+            "prior_statement",
+            "unextracted_names",
+            "statement_items",
+            "from_series",
+            "to_series",
+            "dict",
+        ]
+        return normal_attrs + list(self.statement_items.keys())
+
     @classmethod
     def from_series(
         cls,
         series: pd.Series,
-        prior_statement: Optional["FinDataBase"] = None,
-        items_config: Optional[Sequence[ItemConfig]] = None,
+        config_manager: DataConfigManager,
+        prior_statement: Optional["PeriodFinancialData"] = None,
     ):
-        if items_config is None:
-            items_config = cast(Sequence[ItemConfig], cls.items_config)
-
         for_lookup = deepcopy(series)
         standardize_names_in_series_index(for_lookup)
-        data_dict: Dict[str, Union[float, "FinDataBase"]] = {}
+        data_dict: Dict[str, float] = {}
         extracted_name_dict: Dict[str, str] = {}
         original_name_dict: Dict[str, str] = {}
         unextracted_names: List[str] = []
 
-        if prior_statement is not None:
-            data_dict["prior_statement"] = prior_statement
-
         for i, name in enumerate(for_lookup.index):
             orig_name = series.index[i]
-            for item_config in items_config:
+            for item_config in config_manager:
                 if item_config.extract_names is None:
                     # Not an extractable item, must be a calculated item
                     continue
@@ -76,7 +103,8 @@ class FinDataBase:
                         # First see if data is the same, then just skip
                         if for_lookup[name] == data_dict[item_config.key]:
                             continue
-                        # Data is not the same, so take the one which is earliest in extract_names
+                        # Data is not the same, so take the one which is
+                        # earliest in extract_names
                         current_match_idx = item_config.extract_names.index(name)
                         existing_match_idx = item_config.extract_names.index(
                             extracted_name_dict[item_config.key]
@@ -110,27 +138,21 @@ class FinDataBase:
                 series.index,
             )
         return cls(
-            **data_dict, items_config=items_config, unextracted_names=unextracted_names
+            data_dict=data_dict,
+            config_manager=config_manager,
+            unextracted_names=unextracted_names,
+            prior_statement=prior_statement,
         )
 
     def to_series(self) -> pd.Series:
         data_dict = {}
-        for item_config in self.items_config:
+        for item_config in self.config_manager:
             data_dict[item_config.display_name] = getattr(self, item_config.key)
         return pd.Series(data_dict).fillna(0)
 
-    def as_dict(self) -> Dict[str, float]:
-        remove_keys = ["items_config"]
-
-        all_dict = deepcopy(self.__dict__)
-        [all_dict.pop(key) for key in remove_keys]
-        return all_dict
-
-    def get_sympy_subs_dict(self, t_offset: int = 0) -> Dict[IndexedBase, float]:
-        subs_dict = self.items_config.eq_subs_dict(self.as_dict(), t_offset=t_offset)  # type: ignore
-        if self.prior_statement is not None:
-            # Recursively look up prior statements to fill out historical values
-            subs_dict.update(
-                self.prior_statement.get_sympy_subs_dict(t_offset=t_offset - 1)
-            )
-        return subs_dict
+    def __getattr__(self, key: str):
+        try:
+            statement_item = self.statement_items[key]
+        except KeyError:
+            raise AttributeError(key)
+        return np.float64(statement_item.get_value(self))

@@ -22,6 +22,14 @@ class ItemConfig:
     )
     expr_str: Optional[str] = None
 
+    # The required verbosity level to display this item in the output
+    # 0: always display
+    # 1: display in the default output
+    # 2: display in verbose output
+    # 3: display in very verbose output
+    # ... and so on
+    display_verbosity: int = 1
+
     # TODO [#19]: add config and logic for whether to take highest priority or add all of matching names
     #
     # When extracting impairment, in Capital IQ data it has Impairment of Goodwill and Asset Writedown,
@@ -64,7 +72,8 @@ def _apply_operation_to_item_config(
 ) -> ItemConfig:
     updates: Dict[str, Any] = {}
     updates["forecast_config"] = func(
-        item_config.forecast_config, _get_attr_if_needed(other, "forecast_config")
+        item_config.forecast_config,
+        _get_attr_if_needed(other, "forecast_config"),
     )
     return item_config.copy(**updates)
 

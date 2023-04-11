@@ -6,34 +6,34 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 2019,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
-                revenue=numpy.float64(57667220.0),
-                cogs=numpy.float64(40454639.0),
-                sga=numpy.float64(5705773.0),
-                int_exp=numpy.float64(598430.0),
-                tax_exp=numpy.float64(3258650.0),
-                rd_exp=numpy.float64(2130504.0),
-                op_exp=numpy.float64(7836277.0),
-                ebit=numpy.float64(9376304.0),
-                ebt=numpy.float64(8777875.0),
-                net_income=numpy.float64(5519225.0)
-            ),
+            ): {
+  "revenue": 57667220.0,
+  "cogs": 40454639.0,
+  "sga": 5705773.0,
+  "int_exp": 598430.0,
+  "tax_exp": 3258650.0,
+  "rd_exp": 2130504.0,
+  "op_exp": 7836277.0,
+  "ebit": 9376304.0,
+  "ebt": 8777875.0,
+  "net_income": 5519225.0
+},
             datetime.datetime(
                 2020,
                 12,
                 31
-            ): finstmt.inc.data.IncomeStatementData(
-                revenue=numpy.float64(60770957.0),
-                cogs=numpy.float64(42291653.0),
-                sga=numpy.float64(5943016.0),
-                int_exp=numpy.float64(1073346.0),
-                tax_exp=numpy.float64(3522685.0),
-                rd_exp=numpy.float64(1973833.0),
-                op_exp=numpy.float64(7916849.0),
-                ebit=numpy.float64(10562455.0),
-                ebt=numpy.float64(9489109.0),
-                net_income=numpy.float64(5966424.0)
-            )
+            ): {
+  "revenue": 60770957.0,
+  "cogs": 42291653.0,
+  "sga": 5943016.0,
+  "int_exp": 1073346.0,
+  "tax_exp": 3522685.0,
+  "rd_exp": 1973833.0,
+  "op_exp": 7916849.0,
+  "ebit": 10562455.0,
+  "ebt": 9489109.0,
+  "net_income": 5966424.0
+}
         }
     ),
     balance_sheets=finstmt.bs.main.BalanceSheets(
@@ -42,58 +42,58 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 2019,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
-                cash=numpy.float64(8828000.0),
-                receivables=numpy.float64(36913288.0),
-                inventory=numpy.float64(12560520.0),
-                goodwill=numpy.float64(8311100.0),
-                def_tax_lt=numpy.float64(7195000.0),
-                payables=numpy.float64(7504926.0),
-                st_debt=numpy.float64(22370630.0),
-                lt_debt=numpy.float64(25339313.0),
-                deposit_liab=numpy.float64(1721200.0),
-                other_income=numpy.float64(-1684000.0),
-                retained_earnings=numpy.float64(32254733.0),
-                cash_and_st_invest=numpy.float64(8828000.0),
-                total_current_assets=numpy.float64(58301808.0),
-                net_ppe=numpy.float64(13698895.0),
-                total_non_current_assets=numpy.float64(29204995.0),
-                total_assets=numpy.float64(87506802.0),
-                total_current_liab=numpy.float64(29875556.0),
-                total_debt=numpy.float64(47709943.0),
-                total_non_current_liab=numpy.float64(27060513.0),
-                total_liab=numpy.float64(56936069.0),
-                total_equity=numpy.float64(30570733.0),
-                total_liab_and_equity=numpy.float64(87506802.0)
-            ),
+            ): {
+  "cash": 8828000.0,
+  "receivables": 36913288.0,
+  "inventory": 12560520.0,
+  "goodwill": 8311100.0,
+  "def_tax_lt": 7195000.0,
+  "payables": 7504926.0,
+  "st_debt": 22370630.0,
+  "lt_debt": 25339313.0,
+  "deposit_liab": 1721200.0,
+  "other_income": -1684000.0,
+  "retained_earnings": 32254733.0,
+  "cash_and_st_invest": 8828000.0,
+  "total_current_assets": 58301808.0,
+  "net_ppe": 13698895.0,
+  "total_non_current_assets": 29204995.0,
+  "total_assets": 87506802.0,
+  "total_current_liab": 29875556.0,
+  "total_debt": 47709943.0,
+  "total_non_current_liab": 27060513.0,
+  "total_liab": 56936069.0,
+  "total_equity": 30570733.0,
+  "total_liab_and_equity": 87506802.0
+},
             datetime.datetime(
                 2020,
                 12,
                 31
-            ): finstmt.bs.data.BalanceSheetData(
-                cash=numpy.float64(9339018.0),
-                receivables=numpy.float64(38900017.0),
-                inventory=numpy.float64(13203298.0),
-                goodwill=numpy.float64(8311100.0),
-                def_tax_lt=numpy.float64(43170000.0),
-                payables=numpy.float64(8018535.0),
-                st_debt=numpy.float64(59889521.0),
-                lt_debt=numpy.float64(25683230.0),
-                deposit_liab=numpy.float64(1721200.0),
-                other_income=numpy.float64(-1684000.0),
-                retained_earnings=numpy.float64(33119885.0),
-                cash_and_st_invest=numpy.float64(9339018.0),
-                total_current_assets=numpy.float64(61442333.0),
-                net_ppe=numpy.float64(13824938.0),
-                total_non_current_assets=numpy.float64(65306038.0),
-                total_assets=numpy.float64(126748371.0),
-                total_current_liab=numpy.float64(67908056.0),
-                total_debt=numpy.float64(85572751.0),
-                total_non_current_liab=numpy.float64(27404430.0),
-                total_liab=numpy.float64(95312486.0),
-                total_equity=numpy.float64(31435885.0),
-                total_liab_and_equity=numpy.float64(126748371.0)
-            )
+            ): {
+  "cash": 9339018.0,
+  "receivables": 38900017.0,
+  "inventory": 13203298.0,
+  "goodwill": 8311100.0,
+  "def_tax_lt": 43170000.0,
+  "payables": 8018535.0,
+  "st_debt": 59889521.0,
+  "lt_debt": 25683230.0,
+  "deposit_liab": 1721200.0,
+  "other_income": -1684000.0,
+  "retained_earnings": 33119885.0,
+  "cash_and_st_invest": 9339018.0,
+  "total_current_assets": 61442333.0,
+  "net_ppe": 13824938.0,
+  "total_non_current_assets": 65306038.0,
+  "total_assets": 126748371.0,
+  "total_current_liab": 67908056.0,
+  "total_debt": 85572751.0,
+  "total_non_current_liab": 27404430.0,
+  "total_liab": 95312486.0,
+  "total_equity": 31435885.0,
+  "total_liab_and_equity": 126748371.0
+}
         }
     ),
     calculate=False,
@@ -188,43 +188,6 @@ Name: Revenue, dtype: float64,
                     'sales',
                     'sale'
                 ]
-            )
-        ),
-        'rd_exp': finstmt.forecast.main.Forecast(
-            orig_series=2009-12-31    1421000.0
-2010-12-31    1905000.0
-2011-12-31    2297000.0
-2012-12-31    2466000.0
-2013-12-31    2046000.0
-2014-12-31    2380000.0
-2015-12-31    2119000.0
-2016-12-31    1853000.0
-2017-12-31    1842000.0
-2018-12-31    1850000.0
-Name: R&D Expense, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='A-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='auto'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='rd_exp',
-                display_name='R&D Expense',
-                extract_names=[
-                    'rd expenses',
-                    'rd expense',
-                    'rd exp',
-                    'rd',
-                    'research and development expenses',
-                    'research and development expense',
-                    'research and development exp',
-                    'research and development'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='auto'
-                )
             )
         ),
         'sga': finstmt.forecast.main.Forecast(
@@ -424,6 +387,43 @@ Name: Earnings Before Tax, dtype: float64,
                 expr_str='ebit[t] - int_exp[t]'
             )
         ),
+        'rd_exp': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    1421000.0
+2010-12-31    1905000.0
+2011-12-31    2297000.0
+2012-12-31    2466000.0
+2013-12-31    2046000.0
+2014-12-31    2380000.0
+2015-12-31    2119000.0
+2016-12-31    1853000.0
+2017-12-31    1842000.0
+2018-12-31    1850000.0
+Name: R&D Expense, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='auto'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='rd_exp',
+                display_name='R&D Expense',
+                extract_names=[
+                    'rd expenses',
+                    'rd expense',
+                    'rd exp',
+                    'rd',
+                    'research and development expenses',
+                    'research and development expense',
+                    'research and development exp',
+                    'research and development'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='auto'
+                )
+            )
+        ),
         'cash': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    4867000.0
 2010-12-31    3592000.0
@@ -582,38 +582,39 @@ Name: Revenue, dtype: float64,
                 ]
             )
         ),
-        'net_ppe': finstmt.forecast.main.Forecast(
-            orig_series=2009-12-31    12386000.0
-2010-12-31    12539000.0
-2011-12-31    14395000.0
-2012-12-31    16461000.0
-2013-12-31    17075000.0
-2014-12-31    16577000.0
-2015-12-31    16090000.0
-2016-12-31    15322000.0
-2017-12-31    14155000.0
-2018-12-31    13574000.0
-Name: Net Property, Plant & Equipment, dtype: float64,
+        'lt_invest': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    105000.0
+2010-12-31    164000.0
+2011-12-31    133000.0
+2012-12-31    272000.0
+2013-12-31    272000.0
+2014-12-31    257000.0
+2015-12-31         0.0
+2016-12-31         0.0
+2017-12-31         0.0
+2018-12-31         0.0
+Name: Long-Term Investments, dtype: float64,
             config=finstmt.forecast.config.ForecastConfig(
                 periods=2,
                 freq='A-DEC'
             ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
             base_config=finstmt.items.config.ItemConfig(
-                key='net_ppe',
-                display_name='Net Property, Plant & Equipment',
+                key='lt_invest',
+                display_name='Long-Term Investments',
                 extract_names=[
-                    'ppe',
-                    'property plant equipment',
-                    'property plant and equipment',
-                    'ppe net',
-                    'property plant equipment net',
-                    'property plant and equipment net',
-                    'net ppe',
-                    'net property plant equipment',
-                    'net property plant and equipment'
+                    'lt invest',
+                    'lt investments',
+                    'long term invest',
+                    'long term investments',
+                    'longterm invest',
+                    'longterm investments'
                 ],
-                expr_str='gross_ppe[t] - dep[t]'
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
             )
         ),
         'goodwill': finstmt.forecast.main.Forecast(
@@ -652,41 +653,6 @@ Name: Goodwill and Intangible Assets, dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='mean'
-                )
-            )
-        ),
-        'lt_invest': finstmt.forecast.main.Forecast(
-            orig_series=2009-12-31    105000.0
-2010-12-31    164000.0
-2011-12-31    133000.0
-2012-12-31    272000.0
-2013-12-31    272000.0
-2014-12-31    257000.0
-2015-12-31         0.0
-2016-12-31         0.0
-2017-12-31         0.0
-2018-12-31         0.0
-Name: Long-Term Investments, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='A-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='recent'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='lt_invest',
-                display_name='Long-Term Investments',
-                extract_names=[
-                    'lt invest',
-                    'lt investments',
-                    'long term invest',
-                    'long term investments',
-                    'longterm invest',
-                    'longterm investments'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='recent'
                 )
             )
         ),
@@ -870,45 +836,6 @@ Name: Long-Term Debt, dtype: float64,
                 ]
             )
         ),
-        'total_debt': finstmt.forecast.main.Forecast(
-            orig_series=2009-12-31    31631000.0
-2010-12-31    28418000.0
-2011-12-31    34592000.0
-2012-12-31    40143000.0
-2013-12-31    37750000.0
-2014-12-31    39285000.0
-2015-12-31    38013000.0
-2016-12-31    36783000.0
-2017-12-31    34878000.0
-2018-12-31    36553000.0
-Name: Total Debt, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='A-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='manual',
-                manual_forecasts={
-                    'levels': [47709943, 85572751],
-                    'growth': []
-                },
-                plug=True
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='total_debt',
-                display_name='Total Debt',
-                extract_names=['total debt'],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='manual',
-                    manual_forecasts={
-                        'levels': [47709943, 85572751],
-                        'growth': []
-                    },
-                    plug=True
-                ),
-                expr_str='st_debt[t] + lt_debt[t]'
-            )
-        ),
         'deposit_liab': finstmt.forecast.main.Forecast(
             orig_series=2009-12-31    1217000.0
 2010-12-31    1831000.0
@@ -1011,6 +938,79 @@ Name: Retained Earnings, dtype: float64,
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='trend'
                 )
+            )
+        ),
+        'net_ppe': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    12386000.0
+2010-12-31    12539000.0
+2011-12-31    14395000.0
+2012-12-31    16461000.0
+2013-12-31    17075000.0
+2014-12-31    16577000.0
+2015-12-31    16090000.0
+2016-12-31    15322000.0
+2017-12-31    14155000.0
+2018-12-31    13574000.0
+Name: Net Property, Plant & Equipment, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(),
+            base_config=finstmt.items.config.ItemConfig(
+                key='net_ppe',
+                display_name='Net Property, Plant & Equipment',
+                extract_names=[
+                    'ppe',
+                    'property plant equipment',
+                    'property plant and equipment',
+                    'ppe net',
+                    'property plant equipment net',
+                    'property plant and equipment net',
+                    'net ppe',
+                    'net property plant equipment',
+                    'net property plant and equipment'
+                ],
+                expr_str='gross_ppe[t] - dep[t]'
+            )
+        ),
+        'total_debt': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    31631000.0
+2010-12-31    28418000.0
+2011-12-31    34592000.0
+2012-12-31    40143000.0
+2013-12-31    37750000.0
+2014-12-31    39285000.0
+2015-12-31    38013000.0
+2016-12-31    36783000.0
+2017-12-31    34878000.0
+2018-12-31    36553000.0
+Name: Total Debt, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='A-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='manual',
+                manual_forecasts={
+                    'levels': [47709943, 85572751],
+                    'growth': []
+                },
+                plug=True
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='total_debt',
+                display_name='Total Debt',
+                extract_names=['total debt'],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='manual',
+                    manual_forecasts={
+                        'levels': [47709943, 85572751],
+                        'growth': []
+                    },
+                    plug=True
+                ),
+                expr_str='st_debt[t] + lt_debt[t]'
             )
         )
     }

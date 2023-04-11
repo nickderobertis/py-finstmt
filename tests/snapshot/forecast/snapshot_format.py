@@ -18,6 +18,11 @@ def format_statement_for_snapshot(
     #  we could zero out the values we don't want to snapshot.
     for attr in (*always_exclude, *exclude):
         # Match the attribute name, equals, and everything until the end of the line
-        pattern = re.compile(rf"\s*{attr}=.*$", re.MULTILINE)
-        formatted_str = pattern.sub("", formatted_str)
+        equals_pattern = re.compile(rf"\s*{attr}=.*$", re.MULTILINE)
+        formatted_str = equals_pattern.sub("", formatted_str)
+
+        # Match the attribute name in quotes, a colon, and everything until the end of the line
+        quotes_pattern = re.compile(rf'\s*"{attr}":.*$', re.MULTILINE)
+        formatted_str = quotes_pattern.sub("", formatted_str)
+
     return formatted_str

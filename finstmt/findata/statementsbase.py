@@ -1,18 +1,18 @@
 import operator
-from typing import Callable, Dict, List, Optional, Sequence, Tuple
+from typing import Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
 from tqdm import tqdm
 
 from finstmt.check import item_series_is_empty
-from finstmt.config_manage.data import _key_pct_of_key
+from finstmt.config_manage.data import DataConfigManager, _key_pct_of_key
 from finstmt.config_manage.statement import StatementConfigManager
 from finstmt.exc import (
     CouldNotParseException,
     MixedFrequencyException,
     NoSuchItemException,
 )
-from finstmt.findata.database import FinDataBase
+from finstmt.findata.period_data import PeriodFinancialData
 from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
 from finstmt.items.config import ItemConfig
@@ -20,18 +20,9 @@ from finstmt.logger import logger
 
 
 class FinStatementsBase:
-    # TODO [#9]: rethink typing for FinStatementsBase considering invariant types
-    #
-    # Was trying to set generic base types in the base class FinStatementsBase
-    # and then in the subclasses, set them to the specific types. But this seems to not
-    # work correctly with mutable collections of the types.
-    #
-    # Currently I have set type ignore for all the subclass typing
-    #
-    # See https://github.com/python/mypy/issues/2984#issuecomment-285721489 for more details
-    statement_cls = FinDataBase  # to be overridden with individual class
-    statements: Dict[pd.Timestamp, FinDataBase]
+    statements: Dict[pd.Timestamp, PeriodFinancialData]
     statement_name: str = "Base"
+    items_config_list: List[ItemConfig]
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
@@ -51,28 +42,29 @@ class FinStatementsBase:
         # Create dictionary of individual time period configs to construct the entire statement config
         configs_dict = {}
         for date, statement in self.statements.items():
-            configs_dict[date] = statement.items_config
+            configs_dict[date] = statement.config_manager
         self.config = StatementConfigManager(configs_dict)
 
     def _repr_html_(self):
         return self._formatted_df._repr_html_()
 
+    # Get longitudenal series for a statement item
     def __getattr__(self, item):
         data_dict = {}
-        for date, statement in super().__getattribute__("statements").items():
+        for (
+            date,
+            statement,
+        ) in self.statements.items():
             try:
                 statement_value = getattr(statement, item)
             except AttributeError:
-                # Should hit here on the first loop if this is an invalid item. Raise attribute error like normal.
+                # Should hit here on the first loop if this is an invalid item
+                # Raise attribute error like normal.
                 raise AttributeError(item)
             if pd.isnull(statement_value):
                 statement_value = 0
             data_dict[date] = statement_value
         item_config: Optional[ItemConfig] = None
-        # TODO: Proper names in series for calculated items
-        #  As nwc is calculated only, it does not have a corresponding config item and so the best
-        #  we can do is use the item key as the name. We can solve this by moving everything to
-        #  config items rather than properties.
         try:
             item_config = self.config.get(item)
         except NoSuchItemException:
@@ -110,7 +102,7 @@ class FinStatementsBase:
     def from_df(
         cls,
         df: pd.DataFrame,
-        items_config: Optional[Sequence[ItemConfig]] = None,
+        items_config_list: Optional[List[ItemConfig]] = None,
         disp_unextracted: bool = True,
     ):
         """
@@ -119,10 +111,16 @@ class FinStatementsBase:
         statements_dict = {}
         dates = list(df.columns)
         dates.sort(key=lambda t: pd.to_datetime(t))
+
+        if items_config_list is None:
+            config_manager = DataConfigManager(cls.items_config_list.copy())
+        else:
+            config_manager = DataConfigManager(items_config_list.copy())
+
         for col in dates:
             try:
-                statement = cls.statement_cls.from_series(
-                    df[col], items_config=items_config
+                statement = PeriodFinancialData.from_series(
+                    df[col], config_manager=config_manager
                 )
             except CouldNotParseException:
                 raise CouldNotParseException(

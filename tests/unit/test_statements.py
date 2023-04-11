@@ -9,4 +9,4 @@ def test_series_name(ro_annual_capiq_stmts: FinancialStatements):
     # Check Cash and Cash Equivalents Name is set. This item includes spaces
     assert stmts.cash.name == "Cash and Cash Equivalents"
     # Check a calculated item name is set
-    assert stmts.nwc.name == "nwc"
+    assert stmts.nwc.name == "Net Working Capital"
