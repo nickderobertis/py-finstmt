@@ -50,15 +50,13 @@ class PeriodFinancialData:
 
     def __repr__(self) -> str:
         statement_items: dict = cast(dict, self.statement_items)
-        return json.dumps(
-            {
-                k: val
-                for (k, v) in statement_items.items()
-                if (val := v.get_value(self) != 0)
-                and (v.item_config.display_verbosity == 1)
-            },
-            indent=2,
-        )
+        results = {}
+        for k, v in statement_items.items():
+            val = v.get_value(self)
+            if (val != 0) and (v.item_config.display_verbosity == 1):
+                results[k] = val
+
+        return json.dumps(results, indent=2)
 
     def __dir__(self):
         normal_attrs = [
@@ -134,7 +132,7 @@ class PeriodFinancialData:
             data_dict=data_dict,
             config_manager=config_manager,
             unextracted_names=unextracted_names,
-            prior_statement=prior_statement
+            prior_statement=prior_statement,
         )
 
     def to_series(self) -> pd.Series:
