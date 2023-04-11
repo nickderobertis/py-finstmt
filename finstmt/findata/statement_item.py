@@ -27,8 +27,7 @@ class StatementItem:
             self.value = positive_value
 
     def get_value(self, fin_data: "PeriodFinancialData") -> np.float64:
-        # if specific value was provided, than return that even if it's a
-        # calculated field
+        # if specific value was provided, then return that even if it's a calculated field
         if self.value is not None:
             return np.float64(self.value)
 
