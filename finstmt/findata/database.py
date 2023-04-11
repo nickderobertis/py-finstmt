@@ -21,10 +21,14 @@ class PeriodFinancialData:
     config_manager: DataConfigManager
     prior_statement: Optional["PeriodFinancialData"]
     unextracted_names: List[str]
-    statement_items: Optional[Dict[str, StatementItem]]
+    statement_items: Dict[str, StatementItem]
 
     def __init__(
-        self, data_dict, config_manager, unextracted_names, prior_statement=None
+        self,
+        data_dict: Dict[str, float],
+        config_manager: DataConfigManager,
+        unextracted_names: List[str],
+        prior_statement: Optional["PeriodFinancialData"] = None,
     ):
         self.config_manager = DataConfigManager(deepcopy(config_manager))
         self.prior_statement = prior_statement
@@ -48,9 +52,10 @@ class PeriodFinancialData:
         statement_items: dict = cast(dict, self.statement_items)
         return json.dumps(
             {
-                k: v.get_value(self)
+                k: val
                 for (k, v) in statement_items.items()
-                if v.get_value(self) != 0 and v.item_config.display_verbosity == 1
+                if (val := v.get_value(self) != 0)
+                and (v.item_config.display_verbosity == 1)
             },
             indent=2,
         )
@@ -158,5 +163,4 @@ class PeriodFinancialData:
         return subs_dict
 
     def __getattr__(self, key: str):
-        statement_items: dict = cast(dict, self.statement_items)
-        return np.float64(statement_items[key].get_value(self))
+        return np.float64(self.statement_items[key].get_value(self))
