@@ -21,7 +21,14 @@ class ItemConfig:
         default_factory=lambda: ForecastItemConfig()
     )
     expr_str: Optional[str] = None
-    display_verbosity: int = 1  # Some properities, e.g., nwc and effective tax rate, may be associated with a statments but we don't necessarily want to display it on the print-out
+
+    # The required verbosity level to display this item in the output
+    # 0: always display
+    # 1: display in the default output
+    # 2: display in verbose output
+    # 3: display in very verbose output
+    # ... and so on
+    display_verbosity: int = 1
 
     # TODO [#19]: add config and logic for whether to take highest priority or add all of matching names
     #

@@ -22,6 +22,9 @@ class PeriodFinancialData:
     unextracted_names: List[str]
     statement_items: Dict[str, StatementItem]
 
+    # TODO: Set this via user config
+    maximum_display_verbosity = 1
+
     def __init__(
         self,
         data_dict: Dict[str, float],
@@ -52,7 +55,11 @@ class PeriodFinancialData:
         results = {}
         for k, v in statement_items.items():
             val = v.get_value(self)
-            if (val != 0) and (v.item_config.display_verbosity == 1):
+            # Some properties, e.g., nwc and effective tax rate, may be associated with a statements, but we don't
+            # necessarily want to display it on the print-out
+            if (val != 0) and (
+                v.item_config.display_verbosity <= self.maximum_display_verbosity
+            ):
                 results[k] = val
 
         return json.dumps(results, indent=2)
