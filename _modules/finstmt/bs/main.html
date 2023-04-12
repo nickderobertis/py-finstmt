@@ -285,7 +285,8 @@
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">finstmt.bs.data</span> <span class="kn">import</span> <span class="n">BalanceSheetData</span>
+<span class="kn">from</span> <span class="nn">finstmt.bs.config</span> <span class="kn">import</span> <span class="n">BALANCE_SHEET_INPUT_ITEMS</span>
+<span class="kn">from</span> <span class="nn">finstmt.findata.period_data</span> <span class="kn">import</span> <span class="n">PeriodFinancialData</span>
 <span class="kn">from</span> <span class="nn">finstmt.findata.statementsbase</span> <span class="kn">import</span> <span class="n">FinStatementsBase</span>
 
 
@@ -300,10 +301,9 @@
 <span class="sd">        &gt;&gt;&gt; bs_data = BalanceSheets.from_df(bs_df)</span>
 <span class="sd">    """</span>
 
-    <span class="n">statements</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">,</span> <span class="n">BalanceSheetData</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
-
-    <span class="n">statement_cls</span> <span class="o">=</span> <span class="n">BalanceSheetData</span>  <span class="c1"># type: ignore</span>
-    <span class="n">statement_name</span> <span class="o">=</span> <span class="s2">"Balance Sheet"</span></div>
+    <span class="n">statements</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">,</span> <span class="n">PeriodFinancialData</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+    <span class="n">statement_name</span> <span class="o">=</span> <span class="s2">"Balance Sheet"</span>
+    <span class="n">items_config_list</span> <span class="o">=</span> <span class="n">BALANCE_SHEET_INPUT_ITEMS</span></div>
 </pre></div>
 
           </article>

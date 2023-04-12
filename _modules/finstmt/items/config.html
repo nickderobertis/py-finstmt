@@ -304,6 +304,14 @@
     <span class="p">)</span>
     <span class="n">expr_str</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
+    <span class="c1"># The required verbosity level to display this item in the output</span>
+    <span class="c1"># 0: always display</span>
+    <span class="c1"># 1: display in the default output</span>
+    <span class="c1"># 2: display in verbose output</span>
+    <span class="c1"># 3: display in very verbose output</span>
+    <span class="c1"># ... and so on</span>
+    <span class="n">display_verbosity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+
     <span class="c1"># TODO [#19]: add config and logic for whether to take highest priority or add all of matching names</span>
     <span class="c1">#</span>
     <span class="c1"># When extracting impairment, in Capital IQ data it has Impairment of Goodwill and Asset Writedown,</span>
@@ -346,7 +354,8 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ItemConfig</span><span class="p">:</span>
     <span class="n">updates</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">updates</span><span class="p">[</span><span class="s2">"forecast_config"</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span>
-        <span class="n">item_config</span><span class="o">.</span><span class="n">forecast_config</span><span class="p">,</span> <span class="n">_get_attr_if_needed</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s2">"forecast_config"</span><span class="p">)</span>
+        <span class="n">item_config</span><span class="o">.</span><span class="n">forecast_config</span><span class="p">,</span>
+        <span class="n">_get_attr_if_needed</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s2">"forecast_config"</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">item_config</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="o">**</span><span class="n">updates</span><span class="p">)</span>
 

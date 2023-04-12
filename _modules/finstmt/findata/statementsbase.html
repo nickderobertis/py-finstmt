@@ -281,20 +281,20 @@
             
   <h1 id="modules-finstmt-findata-statementsbase--page-root">Source code for finstmt.findata.statementsbase</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">operator</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">finstmt.check</span> <span class="kn">import</span> <span class="n">item_series_is_empty</span>
-<span class="kn">from</span> <span class="nn">finstmt.config_manage.data</span> <span class="kn">import</span> <span class="n">_key_pct_of_key</span>
+<span class="kn">from</span> <span class="nn">finstmt.config_manage.data</span> <span class="kn">import</span> <span class="n">DataConfigManager</span><span class="p">,</span> <span class="n">_key_pct_of_key</span>
 <span class="kn">from</span> <span class="nn">finstmt.config_manage.statement</span> <span class="kn">import</span> <span class="n">StatementConfigManager</span>
 <span class="kn">from</span> <span class="nn">finstmt.exc</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CouldNotParseException</span><span class="p">,</span>
     <span class="n">MixedFrequencyException</span><span class="p">,</span>
     <span class="n">NoSuchItemException</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">finstmt.findata.database</span> <span class="kn">import</span> <span class="n">FinDataBase</span>
+<span class="kn">from</span> <span class="nn">finstmt.findata.period_data</span> <span class="kn">import</span> <span class="n">PeriodFinancialData</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.config</span> <span class="kn">import</span> <span class="n">ForecastConfig</span>
 <span class="kn">from</span> <span class="nn">finstmt.forecast.main</span> <span class="kn">import</span> <span class="n">Forecast</span>
 <span class="kn">from</span> <span class="nn">finstmt.items.config</span> <span class="kn">import</span> <span class="n">ItemConfig</span>
@@ -302,18 +302,9 @@
 
 
 <div class="viewcode-block" id="FinStatementsBase"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase">[docs]</a><span class="k">class</span> <span class="nc">FinStatementsBase</span><span class="p">:</span>
-    <span class="c1"># TODO [#9]: rethink typing for FinStatementsBase considering invariant types</span>
-    <span class="c1">#</span>
-    <span class="c1"># Was trying to set generic base types in the base class FinStatementsBase</span>
-    <span class="c1"># and then in the subclasses, set them to the specific types. But this seems to not</span>
-    <span class="c1"># work correctly with mutable collections of the types.</span>
-    <span class="c1">#</span>
-    <span class="c1"># Currently I have set type ignore for all the subclass typing</span>
-    <span class="c1">#</span>
-    <span class="c1"># See https://github.com/python/mypy/issues/2984#issuecomment-285721489 for more details</span>
-    <span class="n">statement_cls</span> <span class="o">=</span> <span class="n">FinDataBase</span>  <span class="c1"># to be overridden with individual class</span>
-    <span class="n">statements</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">,</span> <span class="n">FinDataBase</span><span class="p">]</span>
+    <span class="n">statements</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">,</span> <span class="n">PeriodFinancialData</span><span class="p">]</span>
     <span class="n">statement_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Base"</span>
+    <span class="n">items_config_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ItemConfig</span><span class="p">]</span>
 
 <div class="viewcode-block" id="FinStatementsBase.__init__"><a class="viewcode-back" href="../../../api/finstmt.findata.html#finstmt.findata.statementsbase.FinStatementsBase.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
@@ -333,28 +324,29 @@
         <span class="c1"># Create dictionary of individual time period configs to construct the entire statement config</span>
         <span class="n">configs_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">statement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">statements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">configs_dict</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="n">items_config</span>
+            <span class="n">configs_dict</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="n">config_manager</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">StatementConfigManager</span><span class="p">(</span><span class="n">configs_dict</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatted_df</span><span class="o">.</span><span class="n">_repr_html_</span><span class="p">()</span>
 
+    <span class="c1"># Get longitudenal series for a statement item</span>
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">statement</span> <span class="ow">in</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s2">"statements"</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="p">(</span>
+            <span class="n">date</span><span class="p">,</span>
+            <span class="n">statement</span><span class="p">,</span>
+        <span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">statements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">statement_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-                <span class="c1"># Should hit here on the first loop if this is an invalid item. Raise attribute error like normal.</span>
+                <span class="c1"># Should hit here on the first loop if this is an invalid item</span>
+                <span class="c1"># Raise attribute error like normal.</span>
                 <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">statement_value</span><span class="p">):</span>
                 <span class="n">statement_value</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">data_dict</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="n">statement_value</span>
         <span class="n">item_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ItemConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="c1"># TODO: Proper names in series for calculated items</span>
-        <span class="c1">#  As nwc is calculated only, it does not have a corresponding config item and so the best</span>
-        <span class="c1">#  we can do is use the item key as the name. We can solve this by moving everything to</span>
-        <span class="c1">#  config items rather than properties.</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">item_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">NoSuchItemException</span><span class="p">:</span>
@@ -392,7 +384,7 @@
     <span class="k">def</span> <span class="nf">from_df</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
-        <span class="n">items_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">ItemConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">items_config_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ItemConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">disp_unextracted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
@@ -401,10 +393,16 @@
         <span class="n">statements_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">dates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
         <span class="n">dates</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">items_config_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">config_manager</span> <span class="o">=</span> <span class="n">DataConfigManager</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">items_config_list</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">config_manager</span> <span class="o">=</span> <span class="n">DataConfigManager</span><span class="p">(</span><span class="n">items_config_list</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">statement</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">statement_cls</span><span class="o">.</span><span class="n">from_series</span><span class="p">(</span>
-                    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">items_config</span><span class="o">=</span><span class="n">items_config</span>
+                <span class="n">statement</span> <span class="o">=</span> <span class="n">PeriodFinancialData</span><span class="o">.</span><span class="n">from_series</span><span class="p">(</span>
+                    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">config_manager</span><span class="o">=</span><span class="n">config_manager</span>
                 <span class="p">)</span>
             <span class="k">except</span> <span class="n">CouldNotParseException</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">CouldNotParseException</span><span class="p">(</span>

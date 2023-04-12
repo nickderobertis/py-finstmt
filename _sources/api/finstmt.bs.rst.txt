@@ -17,14 +17,6 @@ finstmt.bs.config module
    :undoc-members:
    :show-inheritance:
 
-finstmt.bs.data module
-----------------------
-
-.. automodule:: finstmt.bs.data
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 finstmt.bs.main module
 ----------------------
 

@@ -76,28 +76,28 @@ Load Financial Statements
 
  .. code-block:: none
 
-    INFO: Was not able to extract data from the following names: {'Other Liabilities', 'Investments', 'Other Assets', 'Net Debt'}
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    INFO: Was not able to extract data from the following names: {'Net Debt', 'Other Assets', 'Investments', 'Other Liabilities'}
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/database.py:88: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/findata/period_data.py:116: UserWarning: Previously had ebit extracted from "Operating Income". Replacing with value from "EBIT"
       warnings.warn(
-    INFO: Was not able to extract data from the following names: {'Net Income - Non-Controlling int', 'Consolidated Income', 'EPS Diluted', 'Profit Margin', 'Gross Margin', 'Shares (weighted)', 'Net Income Com', 'Gross Profit', 'Shares (weighted, diluted)', 'Net Income - Discontinued ops', 'Shares (basic)', 'EBIT Margin', 'EBITDA Margin', 'Free Cash Flow margin', 'EPS', 'Preferred Dividends', 'Earnings Before Tax Margin', 'EBITDA', 'Net Profit Margin', 'Revenue Growth', 'Dividend per Share'}
+    INFO: Was not able to extract data from the following names: {'Profit Margin', 'Net Income Com', 'Revenue Growth', 'Earnings Before Tax Margin', 'Free Cash Flow margin', 'Gross Profit', 'EPS', 'EBITDA', 'Shares (weighted)', 'EBIT Margin', 'Net Income - Discontinued ops', 'EBITDA Margin', 'Gross Margin', 'Consolidated Income', 'Preferred Dividends', 'Net Profit Margin', 'EPS Diluted', 'Shares (basic)', 'Dividend per Share', 'Shares (weighted, diluted)', 'Net Income - Non-Controlling int'}
 
 
 
@@ -197,19 +197,6 @@ View Statements
           <td>$17,003,000,000</td>
         </tr>
         <tr>
-          <th>R&amp;D Expense</th>
-          <td>$1,421,000,000</td>
-          <td>$1,905,000,000</td>
-          <td>$2,297,000,000</td>
-          <td>$2,466,000,000</td>
-          <td>$2,046,000,000</td>
-          <td>$2,380,000,000</td>
-          <td>$2,119,000,000</td>
-          <td>$1,853,000,000</td>
-          <td>$1,842,000,000</td>
-          <td>$1,850,000,000</td>
-        </tr>
-        <tr>
           <th>SG&amp;A Expense</th>
           <td>$3,645,000,000</td>
           <td>$4,248,000,000</td>
@@ -221,6 +208,45 @@ View Statements
           <td>$4,383,000,000</td>
           <td>$4,999,000,000</td>
           <td>$5,478,000,000</td>
+        </tr>
+        <tr>
+          <th>Interest Expense</th>
+          <td>$389,000,000</td>
+          <td>$343,000,000</td>
+          <td>$396,000,000</td>
+          <td>$467,000,000</td>
+          <td>$465,000,000</td>
+          <td>$484,000,000</td>
+          <td>$507,000,000</td>
+          <td>$505,000,000</td>
+          <td>$531,000,000</td>
+          <td>$404,000,000</td>
+        </tr>
+        <tr>
+          <th>Income Tax Expense</th>
+          <td>$-270,000,000</td>
+          <td>$968,000,000</td>
+          <td>$1,720,000,000</td>
+          <td>$2,528,000,000</td>
+          <td>$1,319,000,000</td>
+          <td>$692,000,000</td>
+          <td>$916,000,000</td>
+          <td>$192,000,000</td>
+          <td>$3,339,000,000</td>
+          <td>$1,698,000,000</td>
+        </tr>
+        <tr>
+          <th>R&amp;D Expense</th>
+          <td>$1,421,000,000</td>
+          <td>$1,905,000,000</td>
+          <td>$2,297,000,000</td>
+          <td>$2,466,000,000</td>
+          <td>$2,046,000,000</td>
+          <td>$2,380,000,000</td>
+          <td>$2,119,000,000</td>
+          <td>$1,853,000,000</td>
+          <td>$1,842,000,000</td>
+          <td>$1,850,000,000</td>
         </tr>
         <tr>
           <th>Depreciation &amp; Amortization Expense</th>
@@ -247,45 +273,6 @@ View Statements
           <td>-</td>
           <td>-</td>
           <td>-</td>
-        </tr>
-        <tr>
-          <th>Operating Expense</th>
-          <td>$6,888,000,000</td>
-          <td>$7,344,000,000</td>
-          <td>$8,581,000,000</td>
-          <td>$9,450,000,000</td>
-          <td>$8,574,000,000</td>
-          <td>$10,528,000,000</td>
-          <td>$9,093,000,000</td>
-          <td>$8,735,000,000</td>
-          <td>$9,096,000,000</td>
-          <td>$8,710,000,000</td>
-        </tr>
-        <tr>
-          <th>Earnings Before Interest and Taxes</th>
-          <td>$1,014,000,000</td>
-          <td>$4,011,000,000</td>
-          <td>$7,044,000,000</td>
-          <td>$8,676,000,000</td>
-          <td>$5,573,000,000</td>
-          <td>$3,628,000,000</td>
-          <td>$3,935,000,000</td>
-          <td>$630,000,000</td>
-          <td>$4,624,000,000</td>
-          <td>$8,249,000,000</td>
-        </tr>
-        <tr>
-          <th>Interest Expense</th>
-          <td>$389,000,000</td>
-          <td>$343,000,000</td>
-          <td>$396,000,000</td>
-          <td>$467,000,000</td>
-          <td>$465,000,000</td>
-          <td>$484,000,000</td>
-          <td>$507,000,000</td>
-          <td>$505,000,000</td>
-          <td>$531,000,000</td>
-          <td>$404,000,000</td>
         </tr>
         <tr>
           <th>Gain on Sale of Investments</th>
@@ -327,6 +314,32 @@ View Statements
           <td>-</td>
         </tr>
         <tr>
+          <th>Operating Expense</th>
+          <td>$6,888,000,000</td>
+          <td>$7,344,000,000</td>
+          <td>$8,581,000,000</td>
+          <td>$9,450,000,000</td>
+          <td>$8,574,000,000</td>
+          <td>$10,528,000,000</td>
+          <td>$9,093,000,000</td>
+          <td>$8,735,000,000</td>
+          <td>$9,096,000,000</td>
+          <td>$8,710,000,000</td>
+        </tr>
+        <tr>
+          <th>Earnings Before Interest and Taxes</th>
+          <td>$1,014,000,000</td>
+          <td>$4,011,000,000</td>
+          <td>$7,044,000,000</td>
+          <td>$8,676,000,000</td>
+          <td>$5,573,000,000</td>
+          <td>$3,628,000,000</td>
+          <td>$3,935,000,000</td>
+          <td>$630,000,000</td>
+          <td>$4,624,000,000</td>
+          <td>$8,249,000,000</td>
+        </tr>
+        <tr>
           <th>Earnings Before Tax</th>
           <td>$625,000,000</td>
           <td>$3,668,000,000</td>
@@ -338,19 +351,6 @@ View Statements
           <td>$125,000,000</td>
           <td>$4,093,000,000</td>
           <td>$7,845,000,000</td>
-        </tr>
-        <tr>
-          <th>Income Tax Expense</th>
-          <td>$-270,000,000</td>
-          <td>$968,000,000</td>
-          <td>$1,720,000,000</td>
-          <td>$2,528,000,000</td>
-          <td>$1,319,000,000</td>
-          <td>$692,000,000</td>
-          <td>$916,000,000</td>
-          <td>$192,000,000</td>
-          <td>$3,339,000,000</td>
-          <td>$1,698,000,000</td>
         </tr>
         <tr>
           <th>Net Income</th>
@@ -427,19 +427,6 @@ View Statements
           <td>-</td>
         </tr>
         <tr>
-          <th>Cash and Short-Term Investments</th>
-          <td>$4,867,000,000</td>
-          <td>$3,592,000,000</td>
-          <td>$3,057,000,000</td>
-          <td>$5,490,000,000</td>
-          <td>$6,081,000,000</td>
-          <td>$7,341,000,000</td>
-          <td>$6,460,000,000</td>
-          <td>$7,168,000,000</td>
-          <td>$8,261,000,000</td>
-          <td>$7,857,000,000</td>
-        </tr>
-        <tr>
           <th>Receivables</th>
           <td>$27,162,000,000</td>
           <td>$28,849,000,000</td>
@@ -464,6 +451,19 @@ View Statements
           <td>$8,614,000,000</td>
           <td>$10,018,000,000</td>
           <td>$11,529,000,000</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
+          <td>$105,000,000</td>
+          <td>$164,000,000</td>
+          <td>$133,000,000</td>
+          <td>$272,000,000</td>
+          <td>$272,000,000</td>
+          <td>$257,000,000</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Current</th>
@@ -492,19 +492,6 @@ View Statements
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Current Assets</th>
-          <td>$27,217,000,000</td>
-          <td>$31,810,000,000</td>
-          <td>$37,900,000,000</td>
-          <td>$42,138,000,000</td>
-          <td>$38,335,000,000</td>
-          <td>$38,867,000,000</td>
-          <td>$33,508,000,000</td>
-          <td>$31,967,000,000</td>
-          <td>$36,244,000,000</td>
-          <td>$38,603,000,000</td>
-        </tr>
-        <tr>
           <th>Gross Property, Plant &amp; Equipment</th>
           <td>-</td>
           <td>-</td>
@@ -531,19 +518,6 @@ View Statements
           <td>-</td>
         </tr>
         <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
-          <td>$12,386,000,000</td>
-          <td>$12,539,000,000</td>
-          <td>$14,395,000,000</td>
-          <td>$16,461,000,000</td>
-          <td>$17,075,000,000</td>
-          <td>$16,577,000,000</td>
-          <td>$16,090,000,000</td>
-          <td>$15,322,000,000</td>
-          <td>$14,155,000,000</td>
-          <td>$13,574,000,000</td>
-        </tr>
-        <tr>
           <th>Goodwill and Intangible Assets</th>
           <td>$2,734,000,000</td>
           <td>$3,419,000,000</td>
@@ -555,19 +529,6 @@ View Statements
           <td>$8,369,000,000</td>
           <td>$8,311,000,000</td>
           <td>$8,114,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Investments</th>
-          <td>$105,000,000</td>
-          <td>$164,000,000</td>
-          <td>$133,000,000</td>
-          <td>$272,000,000</td>
-          <td>$272,000,000</td>
-          <td>$257,000,000</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Long-Term</th>
@@ -596,32 +557,6 @@ View Statements
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Assets</th>
-          <td>$32,821,000,000</td>
-          <td>$32,210,000,000</td>
-          <td>$43,318,000,000</td>
-          <td>$46,832,000,000</td>
-          <td>$46,561,000,000</td>
-          <td>$45,814,000,000</td>
-          <td>$44,834,000,000</td>
-          <td>$42,737,000,000</td>
-          <td>$40,718,000,000</td>
-          <td>$39,906,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Assets</th>
-          <td>$60,038,000,000</td>
-          <td>$64,020,000,000</td>
-          <td>$81,218,000,000</td>
-          <td>$88,970,000,000</td>
-          <td>$84,896,000,000</td>
-          <td>$84,681,000,000</td>
-          <td>$78,342,000,000</td>
-          <td>$74,704,000,000</td>
-          <td>$76,962,000,000</td>
-          <td>$78,509,000,000</td>
-        </tr>
-        <tr>
           <th>Payables</th>
           <td>$2,993,000,000</td>
           <td>$5,856,000,000</td>
@@ -633,6 +568,19 @@ View Statements
           <td>$4,614,000,000</td>
           <td>$6,487,000,000</td>
           <td>$7,051,000,000</td>
+        </tr>
+        <tr>
+          <th>Current Portion of Long-Term Debt</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Short-Term Debt</th>
@@ -648,7 +596,20 @@ View Statements
           <td>$11,553,000,000</td>
         </tr>
         <tr>
-          <th>Current Portion of Long-Term Debt</th>
+          <th>Long-Term Debt</th>
+          <td>$21,847,000,000</td>
+          <td>$20,437,000,000</td>
+          <td>$24,944,000,000</td>
+          <td>$27,752,000,000</td>
+          <td>$26,719,000,000</td>
+          <td>$27,784,000,000</td>
+          <td>$25,169,000,000</td>
+          <td>$22,818,000,000</td>
+          <td>$23,847,000,000</td>
+          <td>$25,000,000,000</td>
+        </tr>
+        <tr>
+          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -675,58 +636,6 @@ View Statements
         </tr>
         <tr>
           <th>Other Current Liabilities</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <th>Total Current Liabilities</th>
-          <td>$18,975,000,000</td>
-          <td>$22,020,000,000</td>
-          <td>$28,357,000,000</td>
-          <td>$29,415,000,000</td>
-          <td>$27,297,000,000</td>
-          <td>$27,877,000,000</td>
-          <td>$26,242,000,000</td>
-          <td>$26,132,000,000</td>
-          <td>$26,931,000,000</td>
-          <td>$28,218,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Debt</th>
-          <td>$21,847,000,000</td>
-          <td>$20,437,000,000</td>
-          <td>$24,944,000,000</td>
-          <td>$27,752,000,000</td>
-          <td>$26,719,000,000</td>
-          <td>$27,784,000,000</td>
-          <td>$25,169,000,000</td>
-          <td>$22,818,000,000</td>
-          <td>$23,847,000,000</td>
-          <td>$25,000,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Debt</th>
-          <td>$31,631,000,000</td>
-          <td>$28,418,000,000</td>
-          <td>$34,592,000,000</td>
-          <td>$40,143,000,000</td>
-          <td>$37,750,000,000</td>
-          <td>$39,285,000,000</td>
-          <td>$38,013,000,000</td>
-          <td>$36,783,000,000</td>
-          <td>$34,878,000,000</td>
-          <td>$36,553,000,000</td>
-        </tr>
-        <tr>
-          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -778,33 +687,20 @@ View Statements
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Liabilities</th>
-          <td>$31,763,000,000</td>
-          <td>$30,675,000,000</td>
-          <td>$39,459,000,000</td>
-          <td>$41,973,000,000</td>
-          <td>$36,721,000,000</td>
-          <td>$39,978,000,000</td>
-          <td>$37,215,000,000</td>
-          <td>$35,359,000,000</td>
-          <td>$36,265,000,000</td>
-          <td>$36,211,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Liabilities</th>
-          <td>$50,738,000,000</td>
-          <td>$52,695,000,000</td>
-          <td>$67,816,000,000</td>
-          <td>$71,388,000,000</td>
-          <td>$64,018,000,000</td>
-          <td>$67,855,000,000</td>
-          <td>$63,457,000,000</td>
-          <td>$61,491,000,000</td>
-          <td>$63,196,000,000</td>
-          <td>$64,429,000,000</td>
-        </tr>
-        <tr>
           <th>Common Stock</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>Minority Interest</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -843,17 +739,121 @@ View Statements
           <td>$30,427,000,000</td>
         </tr>
         <tr>
-          <th>Minority Interest</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <th>Cash and Short-Term Investments</th>
+          <td>$4,867,000,000</td>
+          <td>$3,592,000,000</td>
+          <td>$3,057,000,000</td>
+          <td>$5,490,000,000</td>
+          <td>$6,081,000,000</td>
+          <td>$7,341,000,000</td>
+          <td>$6,460,000,000</td>
+          <td>$7,168,000,000</td>
+          <td>$8,261,000,000</td>
+          <td>$7,857,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Assets</th>
+          <td>$27,217,000,000</td>
+          <td>$31,810,000,000</td>
+          <td>$37,900,000,000</td>
+          <td>$42,138,000,000</td>
+          <td>$38,335,000,000</td>
+          <td>$38,867,000,000</td>
+          <td>$33,508,000,000</td>
+          <td>$31,967,000,000</td>
+          <td>$36,244,000,000</td>
+          <td>$38,603,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Property, Plant &amp; Equipment</th>
+          <td>$12,386,000,000</td>
+          <td>$12,539,000,000</td>
+          <td>$14,395,000,000</td>
+          <td>$16,461,000,000</td>
+          <td>$17,075,000,000</td>
+          <td>$16,577,000,000</td>
+          <td>$16,090,000,000</td>
+          <td>$15,322,000,000</td>
+          <td>$14,155,000,000</td>
+          <td>$13,574,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Assets</th>
+          <td>$32,821,000,000</td>
+          <td>$32,210,000,000</td>
+          <td>$43,318,000,000</td>
+          <td>$46,832,000,000</td>
+          <td>$46,561,000,000</td>
+          <td>$45,814,000,000</td>
+          <td>$44,834,000,000</td>
+          <td>$42,737,000,000</td>
+          <td>$40,718,000,000</td>
+          <td>$39,906,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Assets</th>
+          <td>$60,038,000,000</td>
+          <td>$64,020,000,000</td>
+          <td>$81,218,000,000</td>
+          <td>$88,970,000,000</td>
+          <td>$84,896,000,000</td>
+          <td>$84,681,000,000</td>
+          <td>$78,342,000,000</td>
+          <td>$74,704,000,000</td>
+          <td>$76,962,000,000</td>
+          <td>$78,509,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Liabilities</th>
+          <td>$18,975,000,000</td>
+          <td>$22,020,000,000</td>
+          <td>$28,357,000,000</td>
+          <td>$29,415,000,000</td>
+          <td>$27,297,000,000</td>
+          <td>$27,877,000,000</td>
+          <td>$26,242,000,000</td>
+          <td>$26,132,000,000</td>
+          <td>$26,931,000,000</td>
+          <td>$28,218,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Debt</th>
+          <td>$31,631,000,000</td>
+          <td>$28,418,000,000</td>
+          <td>$34,592,000,000</td>
+          <td>$40,143,000,000</td>
+          <td>$37,750,000,000</td>
+          <td>$39,285,000,000</td>
+          <td>$38,013,000,000</td>
+          <td>$36,783,000,000</td>
+          <td>$34,878,000,000</td>
+          <td>$36,553,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Liabilities</th>
+          <td>$31,763,000,000</td>
+          <td>$30,675,000,000</td>
+          <td>$39,459,000,000</td>
+          <td>$41,973,000,000</td>
+          <td>$36,721,000,000</td>
+          <td>$39,978,000,000</td>
+          <td>$37,215,000,000</td>
+          <td>$35,359,000,000</td>
+          <td>$36,265,000,000</td>
+          <td>$36,211,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Liabilities</th>
+          <td>$50,738,000,000</td>
+          <td>$52,695,000,000</td>
+          <td>$67,816,000,000</td>
+          <td>$71,388,000,000</td>
+          <td>$64,018,000,000</td>
+          <td>$67,855,000,000</td>
+          <td>$63,457,000,000</td>
+          <td>$61,491,000,000</td>
+          <td>$63,196,000,000</td>
+          <td>$64,429,000,000</td>
         </tr>
         <tr>
           <th>Total Stockholder's Equity</th>
@@ -880,6 +880,19 @@ View Statements
           <td>$74,704,000,000</td>
           <td>$76,962,000,000</td>
           <td>$78,509,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Working Capital</th>
+          <td>$30,529,000,000</td>
+          <td>$32,580,000,000</td>
+          <td>$37,186,000,000</td>
+          <td>$42,705,000,000</td>
+          <td>$39,564,000,000</td>
+          <td>$38,462,000,000</td>
+          <td>$35,184,000,000</td>
+          <td>$33,088,000,000</td>
+          <td>$34,256,000,000</td>
+          <td>$36,377,000,000</td>
         </tr>
       </tbody>
     </table>
@@ -951,12 +964,20 @@ with them.
           <td>$17,003,000,000</td>
         </tr>
         <tr>
-          <th>R&amp;D Expense</th>
-          <td>$1,850,000,000</td>
-        </tr>
-        <tr>
           <th>SG&amp;A Expense</th>
           <td>$5,478,000,000</td>
+        </tr>
+        <tr>
+          <th>Interest Expense</th>
+          <td>$404,000,000</td>
+        </tr>
+        <tr>
+          <th>Income Tax Expense</th>
+          <td>$1,698,000,000</td>
+        </tr>
+        <tr>
+          <th>R&amp;D Expense</th>
+          <td>$1,850,000,000</td>
         </tr>
         <tr>
           <th>Depreciation &amp; Amortization Expense</th>
@@ -965,18 +986,6 @@ with them.
         <tr>
           <th>Other Operating Expenses</th>
           <td>-</td>
-        </tr>
-        <tr>
-          <th>Operating Expense</th>
-          <td>$8,710,000,000</td>
-        </tr>
-        <tr>
-          <th>Earnings Before Interest and Taxes</th>
-          <td>$8,249,000,000</td>
-        </tr>
-        <tr>
-          <th>Interest Expense</th>
-          <td>$404,000,000</td>
         </tr>
         <tr>
           <th>Gain on Sale of Investments</th>
@@ -991,12 +1000,16 @@ with them.
           <td>-</td>
         </tr>
         <tr>
-          <th>Earnings Before Tax</th>
-          <td>$7,845,000,000</td>
+          <th>Operating Expense</th>
+          <td>$8,710,000,000</td>
         </tr>
         <tr>
-          <th>Income Tax Expense</th>
-          <td>$1,698,000,000</td>
+          <th>Earnings Before Interest and Taxes</th>
+          <td>$8,249,000,000</td>
+        </tr>
+        <tr>
+          <th>Earnings Before Tax</th>
+          <td>$7,845,000,000</td>
         </tr>
         <tr>
           <th>Net Income</th>
@@ -1037,16 +1050,16 @@ with them.
           <td>-</td>
         </tr>
         <tr>
-          <th>Cash and Short-Term Investments</th>
-          <td>$7,857,000,000</td>
-        </tr>
-        <tr>
           <th>Receivables</th>
           <td>$31,899,000,000</td>
         </tr>
         <tr>
           <th>Inventory</th>
           <td>$11,529,000,000</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
+          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Current</th>
@@ -1057,10 +1070,6 @@ with them.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Current Assets</th>
-          <td>$38,603,000,000</td>
-        </tr>
-        <tr>
           <th>Gross Property, Plant &amp; Equipment</th>
           <td>-</td>
         </tr>
@@ -1069,16 +1078,8 @@ with them.
           <td>-</td>
         </tr>
         <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
-          <td>$13,574,000,000</td>
-        </tr>
-        <tr>
           <th>Goodwill and Intangible Assets</th>
           <td>$8,114,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Investments</th>
-          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Long-Term</th>
@@ -1089,23 +1090,23 @@ with them.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Assets</th>
-          <td>$39,906,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Assets</th>
-          <td>$78,509,000,000</td>
-        </tr>
-        <tr>
           <th>Payables</th>
           <td>$7,051,000,000</td>
+        </tr>
+        <tr>
+          <th>Current Portion of Long-Term Debt</th>
+          <td>-</td>
         </tr>
         <tr>
           <th>Short-Term Debt</th>
           <td>$11,553,000,000</td>
         </tr>
         <tr>
-          <th>Current Portion of Long-Term Debt</th>
+          <th>Long-Term Debt</th>
+          <td>$25,000,000,000</td>
+        </tr>
+        <tr>
+          <th>Deferred Revenue</th>
           <td>-</td>
         </tr>
         <tr>
@@ -1114,22 +1115,6 @@ with them.
         </tr>
         <tr>
           <th>Other Current Liabilities</th>
-          <td>-</td>
-        </tr>
-        <tr>
-          <th>Total Current Liabilities</th>
-          <td>$28,218,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Debt</th>
-          <td>$25,000,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Debt</th>
-          <td>$36,553,000,000</td>
-        </tr>
-        <tr>
-          <th>Deferred Revenue</th>
           <td>-</td>
         </tr>
         <tr>
@@ -1145,15 +1130,11 @@ with them.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Liabilities</th>
-          <td>$36,211,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Liabilities</th>
-          <td>$64,429,000,000</td>
-        </tr>
-        <tr>
           <th>Common Stock</th>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>Minority Interest</th>
           <td>-</td>
         </tr>
         <tr>
@@ -1165,8 +1146,40 @@ with them.
           <td>$30,427,000,000</td>
         </tr>
         <tr>
-          <th>Minority Interest</th>
-          <td>-</td>
+          <th>Cash and Short-Term Investments</th>
+          <td>$7,857,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Assets</th>
+          <td>$38,603,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Property, Plant &amp; Equipment</th>
+          <td>$13,574,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Assets</th>
+          <td>$39,906,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Assets</th>
+          <td>$78,509,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Liabilities</th>
+          <td>$28,218,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Debt</th>
+          <td>$36,553,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Liabilities</th>
+          <td>$36,211,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Liabilities</th>
+          <td>$64,429,000,000</td>
         </tr>
         <tr>
           <th>Total Stockholder's Equity</th>
@@ -1175,6 +1188,10 @@ with them.
         <tr>
           <th>Total Liabilities and Equity</th>
           <td>$78,509,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Working Capital</th>
+          <td>$36,377,000,000</td>
         </tr>
       </tbody>
     </table>
@@ -1246,14 +1263,24 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <td>$17,003,000,000</td>
         </tr>
         <tr>
-          <th>R&amp;D Expense</th>
-          <td>$2,119,000,000</td>
-          <td>$1,850,000,000</td>
-        </tr>
-        <tr>
           <th>SG&amp;A Expense</th>
           <td>$4,951,000,000</td>
           <td>$5,478,000,000</td>
+        </tr>
+        <tr>
+          <th>Interest Expense</th>
+          <td>$507,000,000</td>
+          <td>$404,000,000</td>
+        </tr>
+        <tr>
+          <th>Income Tax Expense</th>
+          <td>$916,000,000</td>
+          <td>$1,698,000,000</td>
+        </tr>
+        <tr>
+          <th>R&amp;D Expense</th>
+          <td>$2,119,000,000</td>
+          <td>$1,850,000,000</td>
         </tr>
         <tr>
           <th>Depreciation &amp; Amortization Expense</th>
@@ -1264,21 +1291,6 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <th>Other Operating Expenses</th>
           <td>-</td>
           <td>-</td>
-        </tr>
-        <tr>
-          <th>Operating Expense</th>
-          <td>$9,093,000,000</td>
-          <td>$8,710,000,000</td>
-        </tr>
-        <tr>
-          <th>Earnings Before Interest and Taxes</th>
-          <td>$3,935,000,000</td>
-          <td>$8,249,000,000</td>
-        </tr>
-        <tr>
-          <th>Interest Expense</th>
-          <td>$507,000,000</td>
-          <td>$404,000,000</td>
         </tr>
         <tr>
           <th>Gain on Sale of Investments</th>
@@ -1296,14 +1308,19 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <td>-</td>
         </tr>
         <tr>
+          <th>Operating Expense</th>
+          <td>$9,093,000,000</td>
+          <td>$8,710,000,000</td>
+        </tr>
+        <tr>
+          <th>Earnings Before Interest and Taxes</th>
+          <td>$3,935,000,000</td>
+          <td>$8,249,000,000</td>
+        </tr>
+        <tr>
           <th>Earnings Before Tax</th>
           <td>$3,428,000,000</td>
           <td>$7,845,000,000</td>
-        </tr>
-        <tr>
-          <th>Income Tax Expense</th>
-          <td>$916,000,000</td>
-          <td>$1,698,000,000</td>
         </tr>
         <tr>
           <th>Net Income</th>
@@ -1348,11 +1365,6 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <td>-</td>
         </tr>
         <tr>
-          <th>Cash and Short-Term Investments</th>
-          <td>$6,460,000,000</td>
-          <td>$7,857,000,000</td>
-        </tr>
-        <tr>
           <th>Receivables</th>
           <td>$30,507,000,000</td>
           <td>$31,899,000,000</td>
@@ -1361,6 +1373,11 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <th>Inventory</th>
           <td>$9,700,000,000</td>
           <td>$11,529,000,000</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Current</th>
@@ -1373,11 +1390,6 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Current Assets</th>
-          <td>$33,508,000,000</td>
-          <td>$38,603,000,000</td>
-        </tr>
-        <tr>
           <th>Gross Property, Plant &amp; Equipment</th>
           <td>-</td>
           <td>-</td>
@@ -1388,19 +1400,9 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <td>-</td>
         </tr>
         <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
-          <td>$16,090,000,000</td>
-          <td>$13,574,000,000</td>
-        </tr>
-        <tr>
           <th>Goodwill and Intangible Assets</th>
           <td>$9,436,000,000</td>
           <td>$8,114,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Investments</th>
-          <td>-</td>
-          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Long-Term</th>
@@ -1413,19 +1415,14 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Assets</th>
-          <td>$44,834,000,000</td>
-          <td>$39,906,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Assets</th>
-          <td>$78,342,000,000</td>
-          <td>$78,509,000,000</td>
-        </tr>
-        <tr>
           <th>Payables</th>
           <td>$5,023,000,000</td>
           <td>$7,051,000,000</td>
+        </tr>
+        <tr>
+          <th>Current Portion of Long-Term Debt</th>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Short-Term Debt</th>
@@ -1433,7 +1430,12 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <td>$11,553,000,000</td>
         </tr>
         <tr>
-          <th>Current Portion of Long-Term Debt</th>
+          <th>Long-Term Debt</th>
+          <td>$25,169,000,000</td>
+          <td>$25,000,000,000</td>
+        </tr>
+        <tr>
+          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
         </tr>
@@ -1444,26 +1446,6 @@ Now select multiple periods. Notice how the date format doesn’t matter.
         </tr>
         <tr>
           <th>Other Current Liabilities</th>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <th>Total Current Liabilities</th>
-          <td>$26,242,000,000</td>
-          <td>$28,218,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Debt</th>
-          <td>$25,169,000,000</td>
-          <td>$25,000,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Debt</th>
-          <td>$38,013,000,000</td>
-          <td>$36,553,000,000</td>
-        </tr>
-        <tr>
-          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
         </tr>
@@ -1483,17 +1465,12 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Liabilities</th>
-          <td>$37,215,000,000</td>
-          <td>$36,211,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Liabilities</th>
-          <td>$63,457,000,000</td>
-          <td>$64,429,000,000</td>
-        </tr>
-        <tr>
           <th>Common Stock</th>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>Minority Interest</th>
           <td>-</td>
           <td>-</td>
         </tr>
@@ -1508,9 +1485,49 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <td>$30,427,000,000</td>
         </tr>
         <tr>
-          <th>Minority Interest</th>
-          <td>-</td>
-          <td>-</td>
+          <th>Cash and Short-Term Investments</th>
+          <td>$6,460,000,000</td>
+          <td>$7,857,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Assets</th>
+          <td>$33,508,000,000</td>
+          <td>$38,603,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Property, Plant &amp; Equipment</th>
+          <td>$16,090,000,000</td>
+          <td>$13,574,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Assets</th>
+          <td>$44,834,000,000</td>
+          <td>$39,906,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Assets</th>
+          <td>$78,342,000,000</td>
+          <td>$78,509,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Liabilities</th>
+          <td>$26,242,000,000</td>
+          <td>$28,218,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Debt</th>
+          <td>$38,013,000,000</td>
+          <td>$36,553,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Liabilities</th>
+          <td>$37,215,000,000</td>
+          <td>$36,211,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Liabilities</th>
+          <td>$63,457,000,000</td>
+          <td>$64,429,000,000</td>
         </tr>
         <tr>
           <th>Total Stockholder's Equity</th>
@@ -1521,6 +1538,11 @@ Now select multiple periods. Notice how the date format doesn’t matter.
           <th>Total Liabilities and Equity</th>
           <td>$78,266,000,000</td>
           <td>$78,509,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Working Capital</th>
+          <td>$35,184,000,000</td>
+          <td>$36,377,000,000</td>
         </tr>
       </tbody>
     </table>
@@ -1636,19 +1658,6 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>$17,003</td>
         </tr>
         <tr>
-          <th>R&amp;D Expense</th>
-          <td>$1,421</td>
-          <td>$1,905</td>
-          <td>$2,297</td>
-          <td>$2,466</td>
-          <td>$2,046</td>
-          <td>$2,380</td>
-          <td>$2,119</td>
-          <td>$1,853</td>
-          <td>$1,842</td>
-          <td>$1,850</td>
-        </tr>
-        <tr>
           <th>SG&amp;A Expense</th>
           <td>$3,645</td>
           <td>$4,248</td>
@@ -1660,6 +1669,45 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>$4,383</td>
           <td>$4,999</td>
           <td>$5,478</td>
+        </tr>
+        <tr>
+          <th>Interest Expense</th>
+          <td>$389</td>
+          <td>$343</td>
+          <td>$396</td>
+          <td>$467</td>
+          <td>$465</td>
+          <td>$484</td>
+          <td>$507</td>
+          <td>$505</td>
+          <td>$531</td>
+          <td>$404</td>
+        </tr>
+        <tr>
+          <th>Income Tax Expense</th>
+          <td>$-270</td>
+          <td>$968</td>
+          <td>$1,720</td>
+          <td>$2,528</td>
+          <td>$1,319</td>
+          <td>$692</td>
+          <td>$916</td>
+          <td>$192</td>
+          <td>$3,339</td>
+          <td>$1,698</td>
+        </tr>
+        <tr>
+          <th>R&amp;D Expense</th>
+          <td>$1,421</td>
+          <td>$1,905</td>
+          <td>$2,297</td>
+          <td>$2,466</td>
+          <td>$2,046</td>
+          <td>$2,380</td>
+          <td>$2,119</td>
+          <td>$1,853</td>
+          <td>$1,842</td>
+          <td>$1,850</td>
         </tr>
         <tr>
           <th>Depreciation &amp; Amortization Expense</th>
@@ -1686,45 +1734,6 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>-</td>
           <td>-</td>
           <td>-</td>
-        </tr>
-        <tr>
-          <th>Operating Expense</th>
-          <td>$6,888</td>
-          <td>$7,344</td>
-          <td>$8,581</td>
-          <td>$9,450</td>
-          <td>$8,574</td>
-          <td>$10,528</td>
-          <td>$9,093</td>
-          <td>$8,735</td>
-          <td>$9,096</td>
-          <td>$8,710</td>
-        </tr>
-        <tr>
-          <th>Earnings Before Interest and Taxes</th>
-          <td>$1,014</td>
-          <td>$4,011</td>
-          <td>$7,044</td>
-          <td>$8,676</td>
-          <td>$5,573</td>
-          <td>$3,628</td>
-          <td>$3,935</td>
-          <td>$630</td>
-          <td>$4,624</td>
-          <td>$8,249</td>
-        </tr>
-        <tr>
-          <th>Interest Expense</th>
-          <td>$389</td>
-          <td>$343</td>
-          <td>$396</td>
-          <td>$467</td>
-          <td>$465</td>
-          <td>$484</td>
-          <td>$507</td>
-          <td>$505</td>
-          <td>$531</td>
-          <td>$404</td>
         </tr>
         <tr>
           <th>Gain on Sale of Investments</th>
@@ -1766,6 +1775,32 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>-</td>
         </tr>
         <tr>
+          <th>Operating Expense</th>
+          <td>$6,888</td>
+          <td>$7,344</td>
+          <td>$8,581</td>
+          <td>$9,450</td>
+          <td>$8,574</td>
+          <td>$10,528</td>
+          <td>$9,093</td>
+          <td>$8,735</td>
+          <td>$9,096</td>
+          <td>$8,710</td>
+        </tr>
+        <tr>
+          <th>Earnings Before Interest and Taxes</th>
+          <td>$1,014</td>
+          <td>$4,011</td>
+          <td>$7,044</td>
+          <td>$8,676</td>
+          <td>$5,573</td>
+          <td>$3,628</td>
+          <td>$3,935</td>
+          <td>$630</td>
+          <td>$4,624</td>
+          <td>$8,249</td>
+        </tr>
+        <tr>
           <th>Earnings Before Tax</th>
           <td>$625</td>
           <td>$3,668</td>
@@ -1777,19 +1812,6 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>$125</td>
           <td>$4,093</td>
           <td>$7,845</td>
-        </tr>
-        <tr>
-          <th>Income Tax Expense</th>
-          <td>$-270</td>
-          <td>$968</td>
-          <td>$1,720</td>
-          <td>$2,528</td>
-          <td>$1,319</td>
-          <td>$692</td>
-          <td>$916</td>
-          <td>$192</td>
-          <td>$3,339</td>
-          <td>$1,698</td>
         </tr>
         <tr>
           <th>Net Income</th>
@@ -1866,19 +1888,6 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>-</td>
         </tr>
         <tr>
-          <th>Cash and Short-Term Investments</th>
-          <td>$4,867</td>
-          <td>$3,592</td>
-          <td>$3,057</td>
-          <td>$5,490</td>
-          <td>$6,081</td>
-          <td>$7,341</td>
-          <td>$6,460</td>
-          <td>$7,168</td>
-          <td>$8,261</td>
-          <td>$7,857</td>
-        </tr>
-        <tr>
           <th>Receivables</th>
           <td>$27,162</td>
           <td>$28,849</td>
@@ -1903,6 +1912,19 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>$8,614</td>
           <td>$10,018</td>
           <td>$11,529</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
+          <td>$105</td>
+          <td>$164</td>
+          <td>$133</td>
+          <td>$272</td>
+          <td>$272</td>
+          <td>$257</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Current</th>
@@ -1931,19 +1953,6 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Current Assets</th>
-          <td>$27,217</td>
-          <td>$31,810</td>
-          <td>$37,900</td>
-          <td>$42,138</td>
-          <td>$38,335</td>
-          <td>$38,867</td>
-          <td>$33,508</td>
-          <td>$31,967</td>
-          <td>$36,244</td>
-          <td>$38,603</td>
-        </tr>
-        <tr>
           <th>Gross Property, Plant &amp; Equipment</th>
           <td>-</td>
           <td>-</td>
@@ -1970,19 +1979,6 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>-</td>
         </tr>
         <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
-          <td>$12,386</td>
-          <td>$12,539</td>
-          <td>$14,395</td>
-          <td>$16,461</td>
-          <td>$17,075</td>
-          <td>$16,577</td>
-          <td>$16,090</td>
-          <td>$15,322</td>
-          <td>$14,155</td>
-          <td>$13,574</td>
-        </tr>
-        <tr>
           <th>Goodwill and Intangible Assets</th>
           <td>$2,734</td>
           <td>$3,419</td>
@@ -1994,19 +1990,6 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>$8,369</td>
           <td>$8,311</td>
           <td>$8,114</td>
-        </tr>
-        <tr>
-          <th>Long-Term Investments</th>
-          <td>$105</td>
-          <td>$164</td>
-          <td>$133</td>
-          <td>$272</td>
-          <td>$272</td>
-          <td>$257</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Long-Term</th>
@@ -2035,32 +2018,6 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Assets</th>
-          <td>$32,821</td>
-          <td>$32,210</td>
-          <td>$43,318</td>
-          <td>$46,832</td>
-          <td>$46,561</td>
-          <td>$45,814</td>
-          <td>$44,834</td>
-          <td>$42,737</td>
-          <td>$40,718</td>
-          <td>$39,906</td>
-        </tr>
-        <tr>
-          <th>Total Assets</th>
-          <td>$60,038</td>
-          <td>$64,020</td>
-          <td>$81,218</td>
-          <td>$88,970</td>
-          <td>$84,896</td>
-          <td>$84,681</td>
-          <td>$78,342</td>
-          <td>$74,704</td>
-          <td>$76,962</td>
-          <td>$78,509</td>
-        </tr>
-        <tr>
           <th>Payables</th>
           <td>$2,993</td>
           <td>$5,856</td>
@@ -2072,6 +2029,19 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>$4,614</td>
           <td>$6,487</td>
           <td>$7,051</td>
+        </tr>
+        <tr>
+          <th>Current Portion of Long-Term Debt</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Short-Term Debt</th>
@@ -2087,7 +2057,20 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>$11,553</td>
         </tr>
         <tr>
-          <th>Current Portion of Long-Term Debt</th>
+          <th>Long-Term Debt</th>
+          <td>$21,847</td>
+          <td>$20,437</td>
+          <td>$24,944</td>
+          <td>$27,752</td>
+          <td>$26,719</td>
+          <td>$27,784</td>
+          <td>$25,169</td>
+          <td>$22,818</td>
+          <td>$23,847</td>
+          <td>$25,000</td>
+        </tr>
+        <tr>
+          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -2114,58 +2097,6 @@ It is easy to adjust units by multiplying or dividing the statements.
         </tr>
         <tr>
           <th>Other Current Liabilities</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <th>Total Current Liabilities</th>
-          <td>$18,975</td>
-          <td>$22,020</td>
-          <td>$28,357</td>
-          <td>$29,415</td>
-          <td>$27,297</td>
-          <td>$27,877</td>
-          <td>$26,242</td>
-          <td>$26,132</td>
-          <td>$26,931</td>
-          <td>$28,218</td>
-        </tr>
-        <tr>
-          <th>Long-Term Debt</th>
-          <td>$21,847</td>
-          <td>$20,437</td>
-          <td>$24,944</td>
-          <td>$27,752</td>
-          <td>$26,719</td>
-          <td>$27,784</td>
-          <td>$25,169</td>
-          <td>$22,818</td>
-          <td>$23,847</td>
-          <td>$25,000</td>
-        </tr>
-        <tr>
-          <th>Total Debt</th>
-          <td>$31,631</td>
-          <td>$28,418</td>
-          <td>$34,592</td>
-          <td>$40,143</td>
-          <td>$37,750</td>
-          <td>$39,285</td>
-          <td>$38,013</td>
-          <td>$36,783</td>
-          <td>$34,878</td>
-          <td>$36,553</td>
-        </tr>
-        <tr>
-          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -2217,33 +2148,20 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Liabilities</th>
-          <td>$31,763</td>
-          <td>$30,675</td>
-          <td>$39,459</td>
-          <td>$41,973</td>
-          <td>$36,721</td>
-          <td>$39,978</td>
-          <td>$37,215</td>
-          <td>$35,359</td>
-          <td>$36,265</td>
-          <td>$36,211</td>
-        </tr>
-        <tr>
-          <th>Total Liabilities</th>
-          <td>$50,738</td>
-          <td>$52,695</td>
-          <td>$67,816</td>
-          <td>$71,388</td>
-          <td>$64,018</td>
-          <td>$67,855</td>
-          <td>$63,457</td>
-          <td>$61,491</td>
-          <td>$63,196</td>
-          <td>$64,429</td>
-        </tr>
-        <tr>
           <th>Common Stock</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>Minority Interest</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -2282,17 +2200,121 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>$30,427</td>
         </tr>
         <tr>
-          <th>Minority Interest</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <th>Cash and Short-Term Investments</th>
+          <td>$4,867</td>
+          <td>$3,592</td>
+          <td>$3,057</td>
+          <td>$5,490</td>
+          <td>$6,081</td>
+          <td>$7,341</td>
+          <td>$6,460</td>
+          <td>$7,168</td>
+          <td>$8,261</td>
+          <td>$7,857</td>
+        </tr>
+        <tr>
+          <th>Total Current Assets</th>
+          <td>$27,217</td>
+          <td>$31,810</td>
+          <td>$37,900</td>
+          <td>$42,138</td>
+          <td>$38,335</td>
+          <td>$38,867</td>
+          <td>$33,508</td>
+          <td>$31,967</td>
+          <td>$36,244</td>
+          <td>$38,603</td>
+        </tr>
+        <tr>
+          <th>Net Property, Plant &amp; Equipment</th>
+          <td>$12,386</td>
+          <td>$12,539</td>
+          <td>$14,395</td>
+          <td>$16,461</td>
+          <td>$17,075</td>
+          <td>$16,577</td>
+          <td>$16,090</td>
+          <td>$15,322</td>
+          <td>$14,155</td>
+          <td>$13,574</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Assets</th>
+          <td>$32,821</td>
+          <td>$32,210</td>
+          <td>$43,318</td>
+          <td>$46,832</td>
+          <td>$46,561</td>
+          <td>$45,814</td>
+          <td>$44,834</td>
+          <td>$42,737</td>
+          <td>$40,718</td>
+          <td>$39,906</td>
+        </tr>
+        <tr>
+          <th>Total Assets</th>
+          <td>$60,038</td>
+          <td>$64,020</td>
+          <td>$81,218</td>
+          <td>$88,970</td>
+          <td>$84,896</td>
+          <td>$84,681</td>
+          <td>$78,342</td>
+          <td>$74,704</td>
+          <td>$76,962</td>
+          <td>$78,509</td>
+        </tr>
+        <tr>
+          <th>Total Current Liabilities</th>
+          <td>$18,975</td>
+          <td>$22,020</td>
+          <td>$28,357</td>
+          <td>$29,415</td>
+          <td>$27,297</td>
+          <td>$27,877</td>
+          <td>$26,242</td>
+          <td>$26,132</td>
+          <td>$26,931</td>
+          <td>$28,218</td>
+        </tr>
+        <tr>
+          <th>Total Debt</th>
+          <td>$31,631</td>
+          <td>$28,418</td>
+          <td>$34,592</td>
+          <td>$40,143</td>
+          <td>$37,750</td>
+          <td>$39,285</td>
+          <td>$38,013</td>
+          <td>$36,783</td>
+          <td>$34,878</td>
+          <td>$36,553</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Liabilities</th>
+          <td>$31,763</td>
+          <td>$30,675</td>
+          <td>$39,459</td>
+          <td>$41,973</td>
+          <td>$36,721</td>
+          <td>$39,978</td>
+          <td>$37,215</td>
+          <td>$35,359</td>
+          <td>$36,265</td>
+          <td>$36,211</td>
+        </tr>
+        <tr>
+          <th>Total Liabilities</th>
+          <td>$50,738</td>
+          <td>$52,695</td>
+          <td>$67,816</td>
+          <td>$71,388</td>
+          <td>$64,018</td>
+          <td>$67,855</td>
+          <td>$63,457</td>
+          <td>$61,491</td>
+          <td>$63,196</td>
+          <td>$64,429</td>
         </tr>
         <tr>
           <th>Total Stockholder's Equity</th>
@@ -2319,6 +2341,19 @@ It is easy to adjust units by multiplying or dividing the statements.
           <td>$74,704</td>
           <td>$76,962</td>
           <td>$78,509</td>
+        </tr>
+        <tr>
+          <th>Net Working Capital</th>
+          <td>$30,529</td>
+          <td>$32,580</td>
+          <td>$37,186</td>
+          <td>$42,705</td>
+          <td>$39,564</td>
+          <td>$38,462</td>
+          <td>$35,184</td>
+          <td>$33,088</td>
+          <td>$34,256</td>
+          <td>$36,377</td>
         </tr>
       </tbody>
     </table>
@@ -2427,19 +2462,6 @@ segments, etc.:
           <td>$34,006,000,000</td>
         </tr>
         <tr>
-          <th>R&amp;D Expense</th>
-          <td>$2,842,000,000</td>
-          <td>$3,810,000,000</td>
-          <td>$4,594,000,000</td>
-          <td>$4,932,000,000</td>
-          <td>$4,092,000,000</td>
-          <td>$4,760,000,000</td>
-          <td>$4,238,000,000</td>
-          <td>$3,706,000,000</td>
-          <td>$3,684,000,000</td>
-          <td>$3,700,000,000</td>
-        </tr>
-        <tr>
           <th>SG&amp;A Expense</th>
           <td>$7,290,000,000</td>
           <td>$8,496,000,000</td>
@@ -2451,6 +2473,45 @@ segments, etc.:
           <td>$8,766,000,000</td>
           <td>$9,998,000,000</td>
           <td>$10,956,000,000</td>
+        </tr>
+        <tr>
+          <th>Interest Expense</th>
+          <td>$778,000,000</td>
+          <td>$686,000,000</td>
+          <td>$792,000,000</td>
+          <td>$934,000,000</td>
+          <td>$930,000,000</td>
+          <td>$968,000,000</td>
+          <td>$1,014,000,000</td>
+          <td>$1,010,000,000</td>
+          <td>$1,062,000,000</td>
+          <td>$808,000,000</td>
+        </tr>
+        <tr>
+          <th>Income Tax Expense</th>
+          <td>$-540,000,000</td>
+          <td>$1,936,000,000</td>
+          <td>$3,440,000,000</td>
+          <td>$5,056,000,000</td>
+          <td>$2,638,000,000</td>
+          <td>$1,384,000,000</td>
+          <td>$1,832,000,000</td>
+          <td>$384,000,000</td>
+          <td>$6,678,000,000</td>
+          <td>$3,396,000,000</td>
+        </tr>
+        <tr>
+          <th>R&amp;D Expense</th>
+          <td>$2,842,000,000</td>
+          <td>$3,810,000,000</td>
+          <td>$4,594,000,000</td>
+          <td>$4,932,000,000</td>
+          <td>$4,092,000,000</td>
+          <td>$4,760,000,000</td>
+          <td>$4,238,000,000</td>
+          <td>$3,706,000,000</td>
+          <td>$3,684,000,000</td>
+          <td>$3,700,000,000</td>
         </tr>
         <tr>
           <th>Depreciation &amp; Amortization Expense</th>
@@ -2477,45 +2538,6 @@ segments, etc.:
           <td>-</td>
           <td>-</td>
           <td>-</td>
-        </tr>
-        <tr>
-          <th>Operating Expense</th>
-          <td>$13,776,000,000</td>
-          <td>$14,688,000,000</td>
-          <td>$17,162,000,000</td>
-          <td>$18,900,000,000</td>
-          <td>$17,148,000,000</td>
-          <td>$21,056,000,000</td>
-          <td>$18,186,000,000</td>
-          <td>$17,470,000,000</td>
-          <td>$18,192,000,000</td>
-          <td>$17,420,000,000</td>
-        </tr>
-        <tr>
-          <th>Earnings Before Interest and Taxes</th>
-          <td>$2,028,000,000</td>
-          <td>$8,022,000,000</td>
-          <td>$14,088,000,000</td>
-          <td>$17,352,000,000</td>
-          <td>$11,146,000,000</td>
-          <td>$7,256,000,000</td>
-          <td>$7,870,000,000</td>
-          <td>$1,260,000,000</td>
-          <td>$9,248,000,000</td>
-          <td>$16,498,000,000</td>
-        </tr>
-        <tr>
-          <th>Interest Expense</th>
-          <td>$778,000,000</td>
-          <td>$686,000,000</td>
-          <td>$792,000,000</td>
-          <td>$934,000,000</td>
-          <td>$930,000,000</td>
-          <td>$968,000,000</td>
-          <td>$1,014,000,000</td>
-          <td>$1,010,000,000</td>
-          <td>$1,062,000,000</td>
-          <td>$808,000,000</td>
         </tr>
         <tr>
           <th>Gain on Sale of Investments</th>
@@ -2557,6 +2579,32 @@ segments, etc.:
           <td>-</td>
         </tr>
         <tr>
+          <th>Operating Expense</th>
+          <td>$13,776,000,000</td>
+          <td>$14,688,000,000</td>
+          <td>$17,162,000,000</td>
+          <td>$18,900,000,000</td>
+          <td>$17,148,000,000</td>
+          <td>$21,056,000,000</td>
+          <td>$18,186,000,000</td>
+          <td>$17,470,000,000</td>
+          <td>$18,192,000,000</td>
+          <td>$17,420,000,000</td>
+        </tr>
+        <tr>
+          <th>Earnings Before Interest and Taxes</th>
+          <td>$2,028,000,000</td>
+          <td>$8,022,000,000</td>
+          <td>$14,088,000,000</td>
+          <td>$17,352,000,000</td>
+          <td>$11,146,000,000</td>
+          <td>$7,256,000,000</td>
+          <td>$7,870,000,000</td>
+          <td>$1,260,000,000</td>
+          <td>$9,248,000,000</td>
+          <td>$16,498,000,000</td>
+        </tr>
+        <tr>
           <th>Earnings Before Tax</th>
           <td>$1,250,000,000</td>
           <td>$7,336,000,000</td>
@@ -2568,19 +2616,6 @@ segments, etc.:
           <td>$250,000,000</td>
           <td>$8,186,000,000</td>
           <td>$15,690,000,000</td>
-        </tr>
-        <tr>
-          <th>Income Tax Expense</th>
-          <td>$-540,000,000</td>
-          <td>$1,936,000,000</td>
-          <td>$3,440,000,000</td>
-          <td>$5,056,000,000</td>
-          <td>$2,638,000,000</td>
-          <td>$1,384,000,000</td>
-          <td>$1,832,000,000</td>
-          <td>$384,000,000</td>
-          <td>$6,678,000,000</td>
-          <td>$3,396,000,000</td>
         </tr>
         <tr>
           <th>Net Income</th>
@@ -2657,19 +2692,6 @@ segments, etc.:
           <td>-</td>
         </tr>
         <tr>
-          <th>Cash and Short-Term Investments</th>
-          <td>$9,734,000,000</td>
-          <td>$7,184,000,000</td>
-          <td>$6,114,000,000</td>
-          <td>$10,980,000,000</td>
-          <td>$12,162,000,000</td>
-          <td>$14,682,000,000</td>
-          <td>$12,920,000,000</td>
-          <td>$14,336,000,000</td>
-          <td>$16,522,000,000</td>
-          <td>$15,714,000,000</td>
-        </tr>
-        <tr>
           <th>Receivables</th>
           <td>$54,324,000,000</td>
           <td>$57,698,000,000</td>
@@ -2694,6 +2716,19 @@ segments, etc.:
           <td>$17,228,000,000</td>
           <td>$20,036,000,000</td>
           <td>$23,058,000,000</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
+          <td>$210,000,000</td>
+          <td>$328,000,000</td>
+          <td>$266,000,000</td>
+          <td>$544,000,000</td>
+          <td>$544,000,000</td>
+          <td>$514,000,000</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Current</th>
@@ -2722,19 +2757,6 @@ segments, etc.:
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Current Assets</th>
-          <td>$54,434,000,000</td>
-          <td>$63,620,000,000</td>
-          <td>$75,800,000,000</td>
-          <td>$84,276,000,000</td>
-          <td>$76,670,000,000</td>
-          <td>$77,734,000,000</td>
-          <td>$67,016,000,000</td>
-          <td>$63,934,000,000</td>
-          <td>$72,488,000,000</td>
-          <td>$77,206,000,000</td>
-        </tr>
-        <tr>
           <th>Gross Property, Plant &amp; Equipment</th>
           <td>-</td>
           <td>-</td>
@@ -2761,19 +2783,6 @@ segments, etc.:
           <td>-</td>
         </tr>
         <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
-          <td>$24,772,000,000</td>
-          <td>$25,078,000,000</td>
-          <td>$28,790,000,000</td>
-          <td>$32,922,000,000</td>
-          <td>$34,150,000,000</td>
-          <td>$33,154,000,000</td>
-          <td>$32,180,000,000</td>
-          <td>$30,644,000,000</td>
-          <td>$28,310,000,000</td>
-          <td>$27,148,000,000</td>
-        </tr>
-        <tr>
           <th>Goodwill and Intangible Assets</th>
           <td>$5,468,000,000</td>
           <td>$6,838,000,000</td>
@@ -2785,19 +2794,6 @@ segments, etc.:
           <td>$16,738,000,000</td>
           <td>$16,622,000,000</td>
           <td>$16,228,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Investments</th>
-          <td>$210,000,000</td>
-          <td>$328,000,000</td>
-          <td>$266,000,000</td>
-          <td>$544,000,000</td>
-          <td>$544,000,000</td>
-          <td>$514,000,000</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Long-Term</th>
@@ -2826,32 +2822,6 @@ segments, etc.:
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Assets</th>
-          <td>$65,642,000,000</td>
-          <td>$64,420,000,000</td>
-          <td>$86,636,000,000</td>
-          <td>$93,664,000,000</td>
-          <td>$93,122,000,000</td>
-          <td>$91,628,000,000</td>
-          <td>$89,668,000,000</td>
-          <td>$85,474,000,000</td>
-          <td>$81,436,000,000</td>
-          <td>$79,812,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Assets</th>
-          <td>$120,076,000,000</td>
-          <td>$128,040,000,000</td>
-          <td>$162,436,000,000</td>
-          <td>$177,940,000,000</td>
-          <td>$169,792,000,000</td>
-          <td>$169,362,000,000</td>
-          <td>$156,684,000,000</td>
-          <td>$149,408,000,000</td>
-          <td>$153,924,000,000</td>
-          <td>$157,018,000,000</td>
-        </tr>
-        <tr>
           <th>Payables</th>
           <td>$5,986,000,000</td>
           <td>$11,712,000,000</td>
@@ -2863,6 +2833,19 @@ segments, etc.:
           <td>$9,228,000,000</td>
           <td>$12,974,000,000</td>
           <td>$14,102,000,000</td>
+        </tr>
+        <tr>
+          <th>Current Portion of Long-Term Debt</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Short-Term Debt</th>
@@ -2878,7 +2861,20 @@ segments, etc.:
           <td>$23,106,000,000</td>
         </tr>
         <tr>
-          <th>Current Portion of Long-Term Debt</th>
+          <th>Long-Term Debt</th>
+          <td>$43,694,000,000</td>
+          <td>$40,874,000,000</td>
+          <td>$49,888,000,000</td>
+          <td>$55,504,000,000</td>
+          <td>$53,438,000,000</td>
+          <td>$55,568,000,000</td>
+          <td>$50,338,000,000</td>
+          <td>$45,636,000,000</td>
+          <td>$47,694,000,000</td>
+          <td>$50,000,000,000</td>
+        </tr>
+        <tr>
+          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -2905,58 +2901,6 @@ segments, etc.:
         </tr>
         <tr>
           <th>Other Current Liabilities</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <th>Total Current Liabilities</th>
-          <td>$37,950,000,000</td>
-          <td>$44,040,000,000</td>
-          <td>$56,714,000,000</td>
-          <td>$58,830,000,000</td>
-          <td>$54,594,000,000</td>
-          <td>$55,754,000,000</td>
-          <td>$52,484,000,000</td>
-          <td>$52,264,000,000</td>
-          <td>$53,862,000,000</td>
-          <td>$56,436,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Debt</th>
-          <td>$43,694,000,000</td>
-          <td>$40,874,000,000</td>
-          <td>$49,888,000,000</td>
-          <td>$55,504,000,000</td>
-          <td>$53,438,000,000</td>
-          <td>$55,568,000,000</td>
-          <td>$50,338,000,000</td>
-          <td>$45,636,000,000</td>
-          <td>$47,694,000,000</td>
-          <td>$50,000,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Debt</th>
-          <td>$63,262,000,000</td>
-          <td>$56,836,000,000</td>
-          <td>$69,184,000,000</td>
-          <td>$80,286,000,000</td>
-          <td>$75,500,000,000</td>
-          <td>$78,570,000,000</td>
-          <td>$76,026,000,000</td>
-          <td>$73,566,000,000</td>
-          <td>$69,756,000,000</td>
-          <td>$73,106,000,000</td>
-        </tr>
-        <tr>
-          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -3008,33 +2952,20 @@ segments, etc.:
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Liabilities</th>
-          <td>$63,526,000,000</td>
-          <td>$61,350,000,000</td>
-          <td>$78,918,000,000</td>
-          <td>$83,946,000,000</td>
-          <td>$73,442,000,000</td>
-          <td>$79,956,000,000</td>
-          <td>$74,430,000,000</td>
-          <td>$70,718,000,000</td>
-          <td>$72,530,000,000</td>
-          <td>$72,422,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Liabilities</th>
-          <td>$101,476,000,000</td>
-          <td>$105,390,000,000</td>
-          <td>$135,632,000,000</td>
-          <td>$142,776,000,000</td>
-          <td>$128,036,000,000</td>
-          <td>$135,710,000,000</td>
-          <td>$126,914,000,000</td>
-          <td>$122,982,000,000</td>
-          <td>$126,392,000,000</td>
-          <td>$128,858,000,000</td>
-        </tr>
-        <tr>
           <th>Common Stock</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>Minority Interest</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -3073,17 +3004,121 @@ segments, etc.:
           <td>$60,854,000,000</td>
         </tr>
         <tr>
-          <th>Minority Interest</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <th>Cash and Short-Term Investments</th>
+          <td>$9,734,000,000</td>
+          <td>$7,184,000,000</td>
+          <td>$6,114,000,000</td>
+          <td>$10,980,000,000</td>
+          <td>$12,162,000,000</td>
+          <td>$14,682,000,000</td>
+          <td>$12,920,000,000</td>
+          <td>$14,336,000,000</td>
+          <td>$16,522,000,000</td>
+          <td>$15,714,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Assets</th>
+          <td>$54,434,000,000</td>
+          <td>$63,620,000,000</td>
+          <td>$75,800,000,000</td>
+          <td>$84,276,000,000</td>
+          <td>$76,670,000,000</td>
+          <td>$77,734,000,000</td>
+          <td>$67,016,000,000</td>
+          <td>$63,934,000,000</td>
+          <td>$72,488,000,000</td>
+          <td>$77,206,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Property, Plant &amp; Equipment</th>
+          <td>$24,772,000,000</td>
+          <td>$25,078,000,000</td>
+          <td>$28,790,000,000</td>
+          <td>$32,922,000,000</td>
+          <td>$34,150,000,000</td>
+          <td>$33,154,000,000</td>
+          <td>$32,180,000,000</td>
+          <td>$30,644,000,000</td>
+          <td>$28,310,000,000</td>
+          <td>$27,148,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Assets</th>
+          <td>$65,642,000,000</td>
+          <td>$64,420,000,000</td>
+          <td>$86,636,000,000</td>
+          <td>$93,664,000,000</td>
+          <td>$93,122,000,000</td>
+          <td>$91,628,000,000</td>
+          <td>$89,668,000,000</td>
+          <td>$85,474,000,000</td>
+          <td>$81,436,000,000</td>
+          <td>$79,812,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Assets</th>
+          <td>$120,076,000,000</td>
+          <td>$128,040,000,000</td>
+          <td>$162,436,000,000</td>
+          <td>$177,940,000,000</td>
+          <td>$169,792,000,000</td>
+          <td>$169,362,000,000</td>
+          <td>$156,684,000,000</td>
+          <td>$149,408,000,000</td>
+          <td>$153,924,000,000</td>
+          <td>$157,018,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Liabilities</th>
+          <td>$37,950,000,000</td>
+          <td>$44,040,000,000</td>
+          <td>$56,714,000,000</td>
+          <td>$58,830,000,000</td>
+          <td>$54,594,000,000</td>
+          <td>$55,754,000,000</td>
+          <td>$52,484,000,000</td>
+          <td>$52,264,000,000</td>
+          <td>$53,862,000,000</td>
+          <td>$56,436,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Debt</th>
+          <td>$63,262,000,000</td>
+          <td>$56,836,000,000</td>
+          <td>$69,184,000,000</td>
+          <td>$80,286,000,000</td>
+          <td>$75,500,000,000</td>
+          <td>$78,570,000,000</td>
+          <td>$76,026,000,000</td>
+          <td>$73,566,000,000</td>
+          <td>$69,756,000,000</td>
+          <td>$73,106,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Liabilities</th>
+          <td>$63,526,000,000</td>
+          <td>$61,350,000,000</td>
+          <td>$78,918,000,000</td>
+          <td>$83,946,000,000</td>
+          <td>$73,442,000,000</td>
+          <td>$79,956,000,000</td>
+          <td>$74,430,000,000</td>
+          <td>$70,718,000,000</td>
+          <td>$72,530,000,000</td>
+          <td>$72,422,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Liabilities</th>
+          <td>$101,476,000,000</td>
+          <td>$105,390,000,000</td>
+          <td>$135,632,000,000</td>
+          <td>$142,776,000,000</td>
+          <td>$128,036,000,000</td>
+          <td>$135,710,000,000</td>
+          <td>$126,914,000,000</td>
+          <td>$122,982,000,000</td>
+          <td>$126,392,000,000</td>
+          <td>$128,858,000,000</td>
         </tr>
         <tr>
           <th>Total Stockholder's Equity</th>
@@ -3110,6 +3145,19 @@ segments, etc.:
           <td>$149,408,000,000</td>
           <td>$153,924,000,000</td>
           <td>$157,018,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Working Capital</th>
+          <td>$61,058,000,000</td>
+          <td>$65,160,000,000</td>
+          <td>$74,372,000,000</td>
+          <td>$85,410,000,000</td>
+          <td>$79,128,000,000</td>
+          <td>$76,924,000,000</td>
+          <td>$70,368,000,000</td>
+          <td>$66,176,000,000</td>
+          <td>$68,512,000,000</td>
+          <td>$72,754,000,000</td>
         </tr>
       </tbody>
     </table>
@@ -3185,14 +3233,24 @@ sets of periods in a single statement.
           <td>$17,003,000,000</td>
         </tr>
         <tr>
-          <th>R&amp;D Expense</th>
-          <td>$2,380,000,000</td>
-          <td>$1,850,000,000</td>
-        </tr>
-        <tr>
           <th>SG&amp;A Expense</th>
           <td>$6,529,000,000</td>
           <td>$5,478,000,000</td>
+        </tr>
+        <tr>
+          <th>Interest Expense</th>
+          <td>$484,000,000</td>
+          <td>$404,000,000</td>
+        </tr>
+        <tr>
+          <th>Income Tax Expense</th>
+          <td>$692,000,000</td>
+          <td>$1,698,000,000</td>
+        </tr>
+        <tr>
+          <th>R&amp;D Expense</th>
+          <td>$2,380,000,000</td>
+          <td>$1,850,000,000</td>
         </tr>
         <tr>
           <th>Depreciation &amp; Amortization Expense</th>
@@ -3203,21 +3261,6 @@ sets of periods in a single statement.
           <th>Other Operating Expenses</th>
           <td>-</td>
           <td>-</td>
-        </tr>
-        <tr>
-          <th>Operating Expense</th>
-          <td>$10,528,000,000</td>
-          <td>$8,710,000,000</td>
-        </tr>
-        <tr>
-          <th>Earnings Before Interest and Taxes</th>
-          <td>$3,628,000,000</td>
-          <td>$8,249,000,000</td>
-        </tr>
-        <tr>
-          <th>Interest Expense</th>
-          <td>$484,000,000</td>
-          <td>$404,000,000</td>
         </tr>
         <tr>
           <th>Gain on Sale of Investments</th>
@@ -3235,14 +3278,19 @@ sets of periods in a single statement.
           <td>-</td>
         </tr>
         <tr>
+          <th>Operating Expense</th>
+          <td>$10,528,000,000</td>
+          <td>$8,710,000,000</td>
+        </tr>
+        <tr>
+          <th>Earnings Before Interest and Taxes</th>
+          <td>$3,628,000,000</td>
+          <td>$8,249,000,000</td>
+        </tr>
+        <tr>
           <th>Earnings Before Tax</th>
           <td>$3,144,000,000</td>
           <td>$7,845,000,000</td>
-        </tr>
-        <tr>
-          <th>Income Tax Expense</th>
-          <td>$692,000,000</td>
-          <td>$1,698,000,000</td>
         </tr>
         <tr>
           <th>Net Income</th>
@@ -3287,11 +3335,6 @@ sets of periods in a single statement.
           <td>-</td>
         </tr>
         <tr>
-          <th>Cash and Short-Term Investments</th>
-          <td>$7,341,000,000</td>
-          <td>$7,857,000,000</td>
-        </tr>
-        <tr>
           <th>Receivables</th>
           <td>$32,772,000,000</td>
           <td>$31,899,000,000</td>
@@ -3300,6 +3343,11 @@ sets of periods in a single statement.
           <th>Inventory</th>
           <td>$12,205,000,000</td>
           <td>$11,529,000,000</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
+          <td>$257,000,000</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Current</th>
@@ -3312,11 +3360,6 @@ sets of periods in a single statement.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Current Assets</th>
-          <td>$38,867,000,000</td>
-          <td>$38,603,000,000</td>
-        </tr>
-        <tr>
           <th>Gross Property, Plant &amp; Equipment</th>
           <td>-</td>
           <td>-</td>
@@ -3327,19 +3370,9 @@ sets of periods in a single statement.
           <td>-</td>
         </tr>
         <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
-          <td>$16,577,000,000</td>
-          <td>$13,574,000,000</td>
-        </tr>
-        <tr>
           <th>Goodwill and Intangible Assets</th>
           <td>$9,770,000,000</td>
           <td>$8,114,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Investments</th>
-          <td>$257,000,000</td>
-          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Long-Term</th>
@@ -3352,19 +3385,14 @@ sets of periods in a single statement.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Assets</th>
-          <td>$45,814,000,000</td>
-          <td>$39,906,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Assets</th>
-          <td>$84,681,000,000</td>
-          <td>$78,509,000,000</td>
-        </tr>
-        <tr>
           <th>Payables</th>
           <td>$6,515,000,000</td>
           <td>$7,051,000,000</td>
+        </tr>
+        <tr>
+          <th>Current Portion of Long-Term Debt</th>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Short-Term Debt</th>
@@ -3372,7 +3400,12 @@ sets of periods in a single statement.
           <td>$11,553,000,000</td>
         </tr>
         <tr>
-          <th>Current Portion of Long-Term Debt</th>
+          <th>Long-Term Debt</th>
+          <td>$27,784,000,000</td>
+          <td>$25,000,000,000</td>
+        </tr>
+        <tr>
+          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
         </tr>
@@ -3383,26 +3416,6 @@ sets of periods in a single statement.
         </tr>
         <tr>
           <th>Other Current Liabilities</th>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <th>Total Current Liabilities</th>
-          <td>$27,877,000,000</td>
-          <td>$28,218,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Debt</th>
-          <td>$27,784,000,000</td>
-          <td>$25,000,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Debt</th>
-          <td>$39,285,000,000</td>
-          <td>$36,553,000,000</td>
-        </tr>
-        <tr>
-          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
         </tr>
@@ -3422,17 +3435,12 @@ sets of periods in a single statement.
           <td>-</td>
         </tr>
         <tr>
-          <th>Total Non-Current Liabilities</th>
-          <td>$39,978,000,000</td>
-          <td>$36,211,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Liabilities</th>
-          <td>$67,855,000,000</td>
-          <td>$64,429,000,000</td>
-        </tr>
-        <tr>
           <th>Common Stock</th>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>Minority Interest</th>
           <td>-</td>
           <td>-</td>
         </tr>
@@ -3447,9 +3455,49 @@ sets of periods in a single statement.
           <td>$30,427,000,000</td>
         </tr>
         <tr>
-          <th>Minority Interest</th>
-          <td>-</td>
-          <td>-</td>
+          <th>Cash and Short-Term Investments</th>
+          <td>$7,341,000,000</td>
+          <td>$7,857,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Assets</th>
+          <td>$38,867,000,000</td>
+          <td>$38,603,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Property, Plant &amp; Equipment</th>
+          <td>$16,577,000,000</td>
+          <td>$13,574,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Assets</th>
+          <td>$45,814,000,000</td>
+          <td>$39,906,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Assets</th>
+          <td>$84,681,000,000</td>
+          <td>$78,509,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Current Liabilities</th>
+          <td>$27,877,000,000</td>
+          <td>$28,218,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Debt</th>
+          <td>$39,285,000,000</td>
+          <td>$36,553,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Non-Current Liabilities</th>
+          <td>$39,978,000,000</td>
+          <td>$36,211,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Liabilities</th>
+          <td>$67,855,000,000</td>
+          <td>$64,429,000,000</td>
         </tr>
         <tr>
           <th>Total Stockholder's Equity</th>
@@ -3460,6 +3508,11 @@ sets of periods in a single statement.
           <th>Total Liabilities and Equity</th>
           <td>$84,601,000,000</td>
           <td>$78,509,000,000</td>
+        </tr>
+        <tr>
+          <th>Net Working Capital</th>
+          <td>$38,462,000,000</td>
+          <td>$36,377,000,000</td>
         </tr>
       </tbody>
     </table>
@@ -3516,9 +3569,9 @@ period, such as FCF.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 16/16 [00:00<00:00, 504.95it/s]
+    100%|##########| 16/16 [00:00<00:00, 323.18it/s]
     INFO: Forecasting Balance Sheet
-      0%|          | 0/37 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      0%|          | 0/38 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
@@ -3570,9 +3623,9 @@ period, such as FCF.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 37/37 [00:00<00:00, 579.47it/s]
+    100%|##########| 38/38 [00:00<00:00, 382.51it/s]
     INFO: Balancing balance sheet
-    INFO: Balanced in 0.0s
+    INFO: Balanced in 0.1s
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -3591,7 +3644,7 @@ period, such as FCF.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  51.507 seconds)
+   **Total running time of the script:** ( 1 minutes  17.006 seconds)
 
 
 .. _sphx_glr_download_auto_examples_manipulating_statements.py:

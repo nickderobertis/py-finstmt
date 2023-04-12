@@ -9,10 +9,18 @@ finstmt.findata package
 Submodules
 ----------
 
-finstmt.findata.database module
--------------------------------
+finstmt.findata.period\_data module
+-----------------------------------
 
-.. automodule:: finstmt.findata.database
+.. automodule:: finstmt.findata.period_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+finstmt.findata.statement\_item module
+--------------------------------------
+
+.. automodule:: finstmt.findata.statement_item
    :members:
    :undoc-members:
    :show-inheritance:
