@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/nickderobertis/py-finstmt/compare/v1.2.2...v1.3.0) (2023-04-12)
+
+
+### Features
+
+* Make financial statements easier to configure ([#100](https://github.com/nickderobertis/py-finstmt/issues/100)) ([1625657](https://github.com/nickderobertis/py-finstmt/commit/162565762a2f5b64e01be8ee70eac54fc14814ad)), closes [#1](https://github.com/nickderobertis/py-finstmt/issues/1) [#2](https://github.com/nickderobertis/py-finstmt/issues/2) [#3](https://github.com/nickderobertis/py-finstmt/issues/3)
+
 ## [1.2.2](https://github.com/nickderobertis/py-finstmt/compare/v1.2.1...v1.2.2) (2023-02-22)
 
 
