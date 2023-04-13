@@ -142,18 +142,6 @@ BALANCE_SHEET_INPUT_ITEMS = [
         ),
     ),
     ItemConfig(
-        "lt_invest",
-        "Long-Term Investments",
-        extract_names=[
-            "lt invest",
-            "lt investments",
-            "long term invest",
-            "long term investments",
-            "longterm invest",
-            "longterm investments",
-        ],
-    ),
-    ItemConfig(
         "gross_ppe",
         "Gross Property, Plant & Equipment",
         extract_names=[
@@ -186,6 +174,25 @@ BALANCE_SHEET_INPUT_ITEMS = [
         ],
     ),
     ItemConfig(
+        "net_ppe",
+        "Net Property, Plant & Equipment",
+        extract_names=[
+            "ppe",
+            "property plant equipment",
+            "property plant and equipment",
+            "ppe net",
+            "property plant equipment net",
+            "property plant and equipment net",
+            "net ppe",
+            "net property plant equipment",
+            "net property plant and equipment",
+        ],
+        expr_str="gross_ppe[t] - dep[t]",
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
+    ),
+    ItemConfig(
         "goodwill",
         "Goodwill and Intangible Assets",
         extract_names=[
@@ -204,6 +211,18 @@ BALANCE_SHEET_INPUT_ITEMS = [
         #
         # Morningstar financial statements have Goodwill and then Intangibles other than Goodwill,
         # both of those should be coming into the Goodwill and Intagible Assets variable.
+    ),
+    ItemConfig(
+        "lt_invest",
+        "Long-Term Investments",
+        extract_names=[
+            "lt invest",
+            "lt investments",
+            "long term invest",
+            "long term investments",
+            "longterm invest",
+            "longterm investments",
+        ],
     ),
     ItemConfig(
         "def_tax_lt",
@@ -260,6 +279,31 @@ BALANCE_SHEET_INPUT_ITEMS = [
             "long term assets other",
             "long term asset other",
         ],
+    ),
+    ItemConfig(
+        "total_non_current_assets",
+        "Total Non-Current Assets",
+        extract_names=[
+            "total non current assets",
+            "total noncurrent assets",
+            "total lt assets",
+            "total longterm assets",
+            "total long term assets",
+        ],
+        expr_str="net_ppe[t] + goodwill[t] + lt_invest[t] + def_tax_lt[t] + other_lt_assets[t]",
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+        ),
+    ),
+    ItemConfig(
+        "total_assets",
+        "Total Assets",
+        extract_names=["total assets", "total asset", "assets", "asset"],
+        expr_str="total_current_assets[t] + total_non_current_assets[t]",
+        forecast_config=ForecastItemConfig(
+            make_forecast=False,
+            balance_with="total_liab_and_equity",
+        ),
     ),
     ItemConfig(
         "payables",
@@ -944,50 +988,6 @@ BALANCE_SHEET_INPUT_ITEMS = [
         # TODO [#4]: forecast of retained earnings should be calculated
         #
         # Should be a calculation of retained_earnings[t-1] + net income[t] - dividends[t]
-    ),
-    ItemConfig(
-        "net_ppe",
-        "Net Property, Plant & Equipment",
-        extract_names=[
-            "ppe",
-            "property plant equipment",
-            "property plant and equipment",
-            "ppe net",
-            "property plant equipment net",
-            "property plant and equipment net",
-            "net ppe",
-            "net property plant equipment",
-            "net property plant and equipment",
-        ],
-        expr_str="gross_ppe[t] - dep[t]",
-        forecast_config=ForecastItemConfig(
-            make_forecast=False,
-        ),
-    ),
-    ItemConfig(
-        "total_non_current_assets",
-        "Total Non-Current Assets",
-        extract_names=[
-            "total non current assets",
-            "total noncurrent assets",
-            "total lt assets",
-            "total longterm assets",
-            "total long term assets",
-        ],
-        expr_str="net_ppe[t] + goodwill[t] + lt_invest[t] + def_tax_lt[t] + other_lt_assets[t]",
-        forecast_config=ForecastItemConfig(
-            make_forecast=False,
-        ),
-    ),
-    ItemConfig(
-        "total_assets",
-        "Total Assets",
-        extract_names=["total assets", "total asset", "assets", "asset"],
-        expr_str="total_current_assets[t] + total_non_current_assets[t]",
-        forecast_config=ForecastItemConfig(
-            make_forecast=False,
-            balance_with="total_liab_and_equity",
-        ),
     ),
     ItemConfig(
         "total_current_liab",
