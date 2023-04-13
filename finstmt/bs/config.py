@@ -995,16 +995,6 @@ BALANCE_SHEET_INPUT_ITEMS = [
         ],
     ),
     ItemConfig(
-        "minority_interest",
-        "Minority Interest",
-        extract_names=[
-            "minority interest",
-            "minority int",
-            "min int",
-            "min interest",
-        ],
-    ),
-    ItemConfig(
         "other_income",
         "Other Comprehensive Income",
         extract_names=[
@@ -1037,6 +1027,16 @@ BALANCE_SHEET_INPUT_ITEMS = [
         # TODO [#4]: forecast of retained earnings should be calculated
         #
         # Should be a calculation of retained_earnings[t-1] + net income[t] - dividends[t]
+    ),
+    ItemConfig(
+        "minority_interest",
+        "Minority Interest",
+        extract_names=[
+            "minority interest",
+            "minority int",
+            "min int",
+            "min interest",
+        ],
     ),
     ItemConfig(
         "total_equity",
