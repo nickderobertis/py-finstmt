@@ -46,8 +46,6 @@ class FinancialStatements:
         >>> stmts = FinancialStatements(inc_data, bs_data)
     """
 
-    # income_statements: IncomeStatements
-    # balance_sheets: BalanceSheets
     statements: List[FinStatementsBase]
     calculate: bool = True
     auto_adjust_config: bool = True
@@ -64,16 +62,12 @@ class FinancialStatements:
                 auto_adjust_config=self.auto_adjust_config
             )
             self.statements = new_stmts.statements
-            # self.income_statements = new_stmts.income_statements
-            # self.balance_sheets = new_stmts.balance_sheets
             self._create_config_from_statements()
 
     def _create_config_from_statements(self):
         config_dict = {}
         for stmt_timeseries in self.statements:
             config_dict[stmt_timeseries.statement_name] = stmt_timeseries.config
-        # config_dict["income_statements"] = self.income_statements.config
-        # config_dict["balance_sheets"] = self.balance_sheets.config
         self.config = StatementsConfigManager(config_managers=config_dict)
         if self.auto_adjust_config:
             self._adjust_config_based_on_data()
@@ -163,12 +157,6 @@ class FinancialStatements:
             {stmt_timeseries._repr_html_()}
             """
         return result
-        # return f"""
-        # <h2>Income Statement</h2>
-        # {self.income_statements._repr_html_()}
-        # <h2>Balance Sheet</h2>
-        # {self.balance_sheets._repr_html_()}
-        # """
 
     def __getattr__(self, item):
         for stmt in self.statements:
@@ -177,17 +165,6 @@ class FinancialStatements:
 
         raise AttributeError(item)
 
-        # inc_items = dir(super().__getattribute__("income_statements"))
-        # bs_items = dir(super().__getattribute__("balance_sheets"))
-        # if item not in inc_items + bs_items:
-        #     raise AttributeError(item)
-
-        # if item in inc_items:
-        #     return getattr(self.income_statements, item)
-
-        # # in balance sheet items
-        # return getattr(self.balance_sheets, item)
-
     def __getitem__(self, item):
         print(item)
         stmts_hetrogeneous = []
@@ -195,25 +172,14 @@ class FinancialStatements:
             date_item = pd.to_datetime(item)
             for stmt_timeseries in self.statements:
                 stmts_hetrogeneous.append(FinStatementsBase({date_item: stmt_timeseries[item]}))
-
-            # inc_statement = self.income_statements[item]
-            # inc_statements = IncomeStatements({date_item: inc_statement})
-            # bs = self.balance_sheets[item]
-            # b_sheets = BalanceSheets({date_item: bs})
         else:
             for stmt in self.statements:
                 stmts_hetrogeneous.append(stmt[item])
-            
-            # inc_statements = self.income_statements[item]
-            # b_sheets = self.balance_sheets[item]
 
         return FinancialStatements(stmts_hetrogeneous)
-        # return FinancialStatements(inc_statements, b_sheets)
 
     def __dir__(self):
         normal_attrs = [
-            # "income_statements",
-            # "balance_sheets",
             # "capex",
             # "non_cash_expenses",
             # "fcf",
@@ -227,9 +193,6 @@ class FinancialStatements:
         for stmt in self.statements:
             all_config_items.extend(stmt.config.items)
         
-        # all_config = (
-        #     self.income_statements.config.items + self.balance_sheets.config.items
-        # )
         item_attrs = [config_item.key for config_item in all_config_items]
         return normal_attrs + item_attrs
 
@@ -285,7 +248,6 @@ class FinancialStatements:
 
         all_forecast_dict = {}
         all_results = {}
-        # for stmt in [self.income_statements, self.balance_sheets]:
         for stmt in self.statements:
             forecast_dict, results = stmt._forecast(self, **kwargs)
             all_forecast_dict.update(forecast_dict)
@@ -315,7 +277,6 @@ class FinancialStatements:
         for stmts in self.statements:
             conf_items.extend(stmts.config.items)
         return conf_items
-        # return self.income_statements.config.items + self.balance_sheets.config.items  # type: ignore
 
     @property
     def dates(self) -> List[pd.Timestamp]:
@@ -341,21 +302,6 @@ class FinancialStatements:
                         )
                     raise MismatchingDatesException(message)
 
-        # bs_dates = set(self.balance_sheets.statements.keys())
-        # is_dates = set(self.income_statements.statements.keys())
-        # if bs_dates != is_dates:
-        #     bs_unique = bs_dates.difference(is_dates)
-        #     is_unique = is_dates.difference(bs_dates)
-        #     message = "Got mismatching dates between historical statements. "
-        #     if bs_unique:
-        #         message += (
-        #             f"Balance sheet has {bs_unique} dates not in Income Statement. "
-        #         )
-        #     if is_unique:
-        #         message += (
-        #             f"Income Statement has {is_unique} dates not in Balance Sheet. "
-        #         )
-        #     raise MismatchingDatesException(message)
 
     def copy(self, **updates) -> Self:
         return dataclasses.replace(self, **updates)
@@ -391,8 +337,6 @@ class FinancialStatements:
         new_statements = self.copy()
         for stmt in new_statements.statements:
             stmt = round(stmt, n) # type: ignore
-        # new_statements.income_statements = round(new_statements.income_statements, n)  # type: ignore
-        # new_statements.balance_sheets = round(new_statements.balance_sheets, n)  # type: ignore
         return new_statements
 
 
