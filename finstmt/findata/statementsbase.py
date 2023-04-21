@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import operator
 from typing import Callable, Dict, List, Optional, Tuple
 
@@ -18,14 +19,17 @@ from finstmt.forecast.main import Forecast
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
 
-
+# TODO: Discuss what we think of renaming this something like FinStatementTimeSeries
+# or FinStatementPeriods
+# to emphasise this is a collection of homogeneous financial staements over time
+@dataclass
 class FinStatementsBase:
     statements: Dict[pd.Timestamp, PeriodFinancialData]
-    statement_name: str = "Base"
     items_config_list: List[ItemConfig]
+    statement_name: str = "Base"
 
-    def __init__(self, *args, **kwargs):
-        raise NotImplementedError
+    # def __init__(self, *args, **kwargs):
+    #     raise NotImplementedError
 
     def __post_init__(self):
         self.df = self.to_df()
@@ -94,6 +98,7 @@ class FinStatementsBase:
             "statements",
             "to_df",
             "freq",
+            "dates",
         ]
         item_attrs = dir(list(self.statements.values())[0])
         return normal_attrs + item_attrs
@@ -102,8 +107,10 @@ class FinStatementsBase:
     def from_df(
         cls,
         df: pd.DataFrame,
+        statement_name: str,
         items_config_list: Optional[List[ItemConfig]] = None,
         disp_unextracted: bool = True,
+
     ):
         """
         DataFrame must have columns as dates and index as names of financial statement items
@@ -141,7 +148,7 @@ class FinStatementsBase:
                     f"Was not able to extract data from the following names: {all_unextracted_names}"
                 )
 
-        return cls(statements_dict)
+        return cls(statements_dict, items_config_list, statement_name=statement_name)
 
     def to_df(self) -> pd.DataFrame:
         all_series = []

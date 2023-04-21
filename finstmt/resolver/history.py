@@ -22,28 +22,43 @@ class StatementsResolver(ResolverBase):
         )
 
         all_results = pd.concat(list(new_results.values()), axis=1).T
-        inc_df = self.stmts.income_statements.__class__.from_df(
-            all_results,
-            self.stmts.income_statements.config.items,
-            disp_unextracted=False,
-        )
-        bs_df = self.stmts.balance_sheets.__class__.from_df(
-            all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
-        )
+        stmts = []
+        for stmt in self.stmts.statements:
+            stmt.from_df(
+                all_results, 
+                stmt.statement_name, 
+                stmt.config.items, 
+                disp_unextracted=False
+            )
+            stmts.append(stmt)
 
-        obj = FinancialStatements(inc_df, bs_df, calculate=False, **kwargs)
+        # inc_df = self.stmts.income_statements.__class__.from_df(
+        #     all_results,
+        #     self.stmts.income_statements.config.items,
+        #     disp_unextracted=False,
+        # )
+        # bs_df = self.stmts.balance_sheets.__class__.from_df(
+        #     all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
+        # )
+
+        obj = FinancialStatements(stmts, calculate=False, **kwargs)
         return obj
 
     @property
     def t_indexed_eqs(self) -> List[Eq]:
-        config_managers = [
-            self.stmts.income_statements.config.items,
-            self.stmts.balance_sheets.config.items,
-        ]
+        config_managers = []
+        for stmt in self.stmts.statements:
+            config_managers.append(stmt.config.items)
+
+        # config_managers = [
+        #     self.stmts.income_statements.config.items,
+        #     self.stmts.balance_sheets.config.items,
+        # ]
         all_eqs = []
         for config_manage in config_managers:
             for config in config_manage:
                 lhs = sympify(
+                    # config.key + "[t]", locals=self.stmts.config.sympy_namespace
                     config.key + "[t]", locals=self.stmts.config.sympy_namespace
                 )
                 if config.expr_str is not None:
