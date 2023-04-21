@@ -412,6 +412,13 @@ class FinancialStatements:
 
         stmts = []
         for statment_config in statement_config_list:
-            stmts.append(FinStatementsBase.from_df(df, statment_config.key, statment_config.items_config_list, disp_unextracted=False))
+            stmts.append(
+                FinStatementsBase.from_df(
+                    df,
+                    statment_config.display_name,
+                    statment_config.items_config_list,
+                    disp_unextracted=False
+                )
+            )
 
         return cls(stmts)

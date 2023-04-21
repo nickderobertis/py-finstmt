@@ -131,12 +131,12 @@ class PeriodFinancialData:
                     original_name_dict[item_config.key] = orig_name
             if name not in extracted_name_dict.values():
                 unextracted_names.append(orig_name)
-        if not data_dict:
-            raise CouldNotParseException(
-                "Passed Series did not have any statement items in the index. "
-                "Got index:",
-                series.index,
-            )
+        # if not data_dict:
+        #     raise CouldNotParseException(
+        #         "Passed Series did not have any statement items in the index. "
+        #         "Got index:",
+        #         series.index,
+        #     )
         return cls(
             data_dict=data_dict,
             config_manager=config_manager,
