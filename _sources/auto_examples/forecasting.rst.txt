@@ -426,6 +426,19 @@ View Existing Statements
           <td>-</td>
         </tr>
         <tr>
+          <th>Cash and Short-Term Investments</th>
+          <td>$4,867,000,000</td>
+          <td>$3,592,000,000</td>
+          <td>$3,057,000,000</td>
+          <td>$5,490,000,000</td>
+          <td>$6,081,000,000</td>
+          <td>$7,341,000,000</td>
+          <td>$6,460,000,000</td>
+          <td>$7,168,000,000</td>
+          <td>$8,261,000,000</td>
+          <td>$7,857,000,000</td>
+        </tr>
+        <tr>
           <th>Receivables</th>
           <td>$27,162,000,000</td>
           <td>$28,849,000,000</td>
@@ -450,19 +463,6 @@ View Existing Statements
           <td>$8,614,000,000</td>
           <td>$10,018,000,000</td>
           <td>$11,529,000,000</td>
-        </tr>
-        <tr>
-          <th>Long-Term Investments</th>
-          <td>$105,000,000</td>
-          <td>$164,000,000</td>
-          <td>$133,000,000</td>
-          <td>$272,000,000</td>
-          <td>$272,000,000</td>
-          <td>$257,000,000</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Current</th>
@@ -491,6 +491,19 @@ View Existing Statements
           <td>-</td>
         </tr>
         <tr>
+          <th>Total Current Assets</th>
+          <td>$27,217,000,000</td>
+          <td>$31,810,000,000</td>
+          <td>$37,900,000,000</td>
+          <td>$42,138,000,000</td>
+          <td>$38,335,000,000</td>
+          <td>$38,867,000,000</td>
+          <td>$33,508,000,000</td>
+          <td>$31,967,000,000</td>
+          <td>$36,244,000,000</td>
+          <td>$38,603,000,000</td>
+        </tr>
+        <tr>
           <th>Gross Property, Plant &amp; Equipment</th>
           <td>-</td>
           <td>-</td>
@@ -517,6 +530,19 @@ View Existing Statements
           <td>-</td>
         </tr>
         <tr>
+          <th>Net Property, Plant &amp; Equipment</th>
+          <td>$12,386,000,000</td>
+          <td>$12,539,000,000</td>
+          <td>$14,395,000,000</td>
+          <td>$16,461,000,000</td>
+          <td>$17,075,000,000</td>
+          <td>$16,577,000,000</td>
+          <td>$16,090,000,000</td>
+          <td>$15,322,000,000</td>
+          <td>$14,155,000,000</td>
+          <td>$13,574,000,000</td>
+        </tr>
+        <tr>
           <th>Goodwill and Intangible Assets</th>
           <td>$2,734,000,000</td>
           <td>$3,419,000,000</td>
@@ -528,6 +554,19 @@ View Existing Statements
           <td>$8,369,000,000</td>
           <td>$8,311,000,000</td>
           <td>$8,114,000,000</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
+          <td>$105,000,000</td>
+          <td>$164,000,000</td>
+          <td>$133,000,000</td>
+          <td>$272,000,000</td>
+          <td>$272,000,000</td>
+          <td>$257,000,000</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Long-Term</th>
@@ -556,6 +595,32 @@ View Existing Statements
           <td>-</td>
         </tr>
         <tr>
+          <th>Total Non-Current Assets</th>
+          <td>$32,821,000,000</td>
+          <td>$32,210,000,000</td>
+          <td>$43,318,000,000</td>
+          <td>$46,832,000,000</td>
+          <td>$46,561,000,000</td>
+          <td>$45,814,000,000</td>
+          <td>$44,834,000,000</td>
+          <td>$42,737,000,000</td>
+          <td>$40,718,000,000</td>
+          <td>$39,906,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Assets</th>
+          <td>$60,038,000,000</td>
+          <td>$64,020,000,000</td>
+          <td>$81,218,000,000</td>
+          <td>$88,970,000,000</td>
+          <td>$84,896,000,000</td>
+          <td>$84,681,000,000</td>
+          <td>$78,342,000,000</td>
+          <td>$74,704,000,000</td>
+          <td>$76,962,000,000</td>
+          <td>$78,509,000,000</td>
+        </tr>
+        <tr>
           <th>Payables</th>
           <td>$2,993,000,000</td>
           <td>$5,856,000,000</td>
@@ -567,19 +632,6 @@ View Existing Statements
           <td>$4,614,000,000</td>
           <td>$6,487,000,000</td>
           <td>$7,051,000,000</td>
-        </tr>
-        <tr>
-          <th>Current Portion of Long-Term Debt</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
         </tr>
         <tr>
           <th>Short-Term Debt</th>
@@ -595,20 +647,7 @@ View Existing Statements
           <td>$11,553,000,000</td>
         </tr>
         <tr>
-          <th>Long-Term Debt</th>
-          <td>$21,847,000,000</td>
-          <td>$20,437,000,000</td>
-          <td>$24,944,000,000</td>
-          <td>$27,752,000,000</td>
-          <td>$26,719,000,000</td>
-          <td>$27,784,000,000</td>
-          <td>$25,169,000,000</td>
-          <td>$22,818,000,000</td>
-          <td>$23,847,000,000</td>
-          <td>$25,000,000,000</td>
-        </tr>
-        <tr>
-          <th>Deferred Revenue</th>
+          <th>Current Portion of Long-Term Debt</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -635,6 +674,58 @@ View Existing Statements
         </tr>
         <tr>
           <th>Other Current Liabilities</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>Total Current Liabilities</th>
+          <td>$18,975,000,000</td>
+          <td>$22,020,000,000</td>
+          <td>$28,357,000,000</td>
+          <td>$29,415,000,000</td>
+          <td>$27,297,000,000</td>
+          <td>$27,877,000,000</td>
+          <td>$26,242,000,000</td>
+          <td>$26,132,000,000</td>
+          <td>$26,931,000,000</td>
+          <td>$28,218,000,000</td>
+        </tr>
+        <tr>
+          <th>Long-Term Debt</th>
+          <td>$21,847,000,000</td>
+          <td>$20,437,000,000</td>
+          <td>$24,944,000,000</td>
+          <td>$27,752,000,000</td>
+          <td>$26,719,000,000</td>
+          <td>$27,784,000,000</td>
+          <td>$25,169,000,000</td>
+          <td>$22,818,000,000</td>
+          <td>$23,847,000,000</td>
+          <td>$25,000,000,000</td>
+        </tr>
+        <tr>
+          <th>Total Debt</th>
+          <td>$31,631,000,000</td>
+          <td>$28,418,000,000</td>
+          <td>$34,592,000,000</td>
+          <td>$40,143,000,000</td>
+          <td>$37,750,000,000</td>
+          <td>$39,285,000,000</td>
+          <td>$38,013,000,000</td>
+          <td>$36,783,000,000</td>
+          <td>$34,878,000,000</td>
+          <td>$36,553,000,000</td>
+        </tr>
+        <tr>
+          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -686,20 +777,33 @@ View Existing Statements
           <td>-</td>
         </tr>
         <tr>
-          <th>Common Stock</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <th>Total Non-Current Liabilities</th>
+          <td>$31,763,000,000</td>
+          <td>$30,675,000,000</td>
+          <td>$39,459,000,000</td>
+          <td>$41,973,000,000</td>
+          <td>$36,721,000,000</td>
+          <td>$39,978,000,000</td>
+          <td>$37,215,000,000</td>
+          <td>$35,359,000,000</td>
+          <td>$36,265,000,000</td>
+          <td>$36,211,000,000</td>
         </tr>
         <tr>
-          <th>Minority Interest</th>
+          <th>Total Liabilities</th>
+          <td>$50,738,000,000</td>
+          <td>$52,695,000,000</td>
+          <td>$67,816,000,000</td>
+          <td>$71,388,000,000</td>
+          <td>$64,018,000,000</td>
+          <td>$67,855,000,000</td>
+          <td>$63,457,000,000</td>
+          <td>$61,491,000,000</td>
+          <td>$63,196,000,000</td>
+          <td>$64,429,000,000</td>
+        </tr>
+        <tr>
+          <th>Common Stock</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -738,121 +842,17 @@ View Existing Statements
           <td>$30,427,000,000</td>
         </tr>
         <tr>
-          <th>Cash and Short-Term Investments</th>
-          <td>$4,867,000,000</td>
-          <td>$3,592,000,000</td>
-          <td>$3,057,000,000</td>
-          <td>$5,490,000,000</td>
-          <td>$6,081,000,000</td>
-          <td>$7,341,000,000</td>
-          <td>$6,460,000,000</td>
-          <td>$7,168,000,000</td>
-          <td>$8,261,000,000</td>
-          <td>$7,857,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Current Assets</th>
-          <td>$27,217,000,000</td>
-          <td>$31,810,000,000</td>
-          <td>$37,900,000,000</td>
-          <td>$42,138,000,000</td>
-          <td>$38,335,000,000</td>
-          <td>$38,867,000,000</td>
-          <td>$33,508,000,000</td>
-          <td>$31,967,000,000</td>
-          <td>$36,244,000,000</td>
-          <td>$38,603,000,000</td>
-        </tr>
-        <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
-          <td>$12,386,000,000</td>
-          <td>$12,539,000,000</td>
-          <td>$14,395,000,000</td>
-          <td>$16,461,000,000</td>
-          <td>$17,075,000,000</td>
-          <td>$16,577,000,000</td>
-          <td>$16,090,000,000</td>
-          <td>$15,322,000,000</td>
-          <td>$14,155,000,000</td>
-          <td>$13,574,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Non-Current Assets</th>
-          <td>$32,821,000,000</td>
-          <td>$32,210,000,000</td>
-          <td>$43,318,000,000</td>
-          <td>$46,832,000,000</td>
-          <td>$46,561,000,000</td>
-          <td>$45,814,000,000</td>
-          <td>$44,834,000,000</td>
-          <td>$42,737,000,000</td>
-          <td>$40,718,000,000</td>
-          <td>$39,906,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Assets</th>
-          <td>$60,038,000,000</td>
-          <td>$64,020,000,000</td>
-          <td>$81,218,000,000</td>
-          <td>$88,970,000,000</td>
-          <td>$84,896,000,000</td>
-          <td>$84,681,000,000</td>
-          <td>$78,342,000,000</td>
-          <td>$74,704,000,000</td>
-          <td>$76,962,000,000</td>
-          <td>$78,509,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Current Liabilities</th>
-          <td>$18,975,000,000</td>
-          <td>$22,020,000,000</td>
-          <td>$28,357,000,000</td>
-          <td>$29,415,000,000</td>
-          <td>$27,297,000,000</td>
-          <td>$27,877,000,000</td>
-          <td>$26,242,000,000</td>
-          <td>$26,132,000,000</td>
-          <td>$26,931,000,000</td>
-          <td>$28,218,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Debt</th>
-          <td>$31,631,000,000</td>
-          <td>$28,418,000,000</td>
-          <td>$34,592,000,000</td>
-          <td>$40,143,000,000</td>
-          <td>$37,750,000,000</td>
-          <td>$39,285,000,000</td>
-          <td>$38,013,000,000</td>
-          <td>$36,783,000,000</td>
-          <td>$34,878,000,000</td>
-          <td>$36,553,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Non-Current Liabilities</th>
-          <td>$31,763,000,000</td>
-          <td>$30,675,000,000</td>
-          <td>$39,459,000,000</td>
-          <td>$41,973,000,000</td>
-          <td>$36,721,000,000</td>
-          <td>$39,978,000,000</td>
-          <td>$37,215,000,000</td>
-          <td>$35,359,000,000</td>
-          <td>$36,265,000,000</td>
-          <td>$36,211,000,000</td>
-        </tr>
-        <tr>
-          <th>Total Liabilities</th>
-          <td>$50,738,000,000</td>
-          <td>$52,695,000,000</td>
-          <td>$67,816,000,000</td>
-          <td>$71,388,000,000</td>
-          <td>$64,018,000,000</td>
-          <td>$67,855,000,000</td>
-          <td>$63,457,000,000</td>
-          <td>$61,491,000,000</td>
-          <td>$63,196,000,000</td>
-          <td>$64,429,000,000</td>
+          <th>Minority Interest</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Total Stockholder's Equity</th>
@@ -1081,7 +1081,7 @@ All the assumptions going into the forecast are in
           <td>False</td>
         </tr>
         <tr>
-          <th>Long-Term Investments</th>
+          <th>Net Property, Plant &amp; Equipment</th>
           <td>cagr</td>
           <td>None</td>
           <td>None</td>
@@ -1090,6 +1090,14 @@ All the assumptions going into the forecast are in
         </tr>
         <tr>
           <th>Goodwill and Intangible Assets</th>
+          <td>cagr</td>
+          <td>None</td>
+          <td>None</td>
+          <td>None</td>
+          <td>False</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
           <td>cagr</td>
           <td>None</td>
           <td>None</td>
@@ -1146,14 +1154,6 @@ All the assumptions going into the forecast are in
         </tr>
         <tr>
           <th>Retained Earnings</th>
-          <td>cagr</td>
-          <td>None</td>
-          <td>None</td>
-          <td>None</td>
-          <td>False</td>
-        </tr>
-        <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
           <td>cagr</td>
           <td>None</td>
           <td>None</td>
@@ -1231,8 +1231,20 @@ run a forecast, then view the results, then adjust as needed.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 16/16 [00:00<00:00, 290.87it/s]
+    100%|##########| 16/16 [00:00<00:00, 349.27it/s]
       0%|          | 0/38 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+      self.result_df = past_df.append(future_df).sort_index()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+      self.result_df = past_df.append(future_df).sort_index()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
       self.result_df = past_df.append(future_df).sort_index()
@@ -1288,12 +1300,6 @@ run a forecast, then view the results, then adjust as needed.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
-      return pd.date_range(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
-      self.result_df = past_df.append(future_df).sort_index()
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
-      return pd.Series()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:39: UserWarning: CAGR not an appropriate method for Other Comprehensive Income as y_0 is negative, y_T is negative. Setting to 0 growth (recent value forecast)
       warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
@@ -1308,13 +1314,7 @@ run a forecast, then view the results, then adjust as needed.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-     68%|######8   | 26/38 [00:00<00:00, 258.25it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
-      return pd.date_range(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
-      self.result_df = past_df.append(future_df).sort_index()
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
-      return pd.Series()
-    100%|##########| 38/38 [00:00<00:00, 351.83it/s]
+    100%|##########| 38/38 [00:00<00:00, 409.19it/s]
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -1554,6 +1554,14 @@ Now view the forecast.
           <td>-</td>
         </tr>
         <tr>
+          <th>Cash and Short-Term Investments</th>
+          <td>$8,341,327,471</td>
+          <td>$8,755,400,920</td>
+          <td>$9,198,171,321</td>
+          <td>$9,671,573,612</td>
+          <td>$10,177,696,618</td>
+        </tr>
+        <tr>
           <th>Receivables</th>
           <td>$32,415,938,592</td>
           <td>$32,941,254,423</td>
@@ -1568,14 +1576,6 @@ Now view the forecast.
           <td>$13,781,357,418</td>
           <td>$14,625,995,942</td>
           <td>$15,522,401,082</td>
-        </tr>
-        <tr>
-          <th>Long-Term Investments</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Current</th>
@@ -1594,19 +1594,35 @@ Now view the forecast.
           <td>-</td>
         </tr>
         <tr>
+          <th>Total Current Assets</th>
+          <td>$52,992,861,012</td>
+          <td>$54,682,151,376</td>
+          <td>$56,454,611,986</td>
+          <td>$58,315,132,579</td>
+          <td>$60,268,931,647</td>
+        </tr>
+        <tr>
           <th>Gross Property, Plant &amp; Equipment</th>
           <td>$13,698,894,523</td>
-          <td>-</td>
+          <td>$13,824,938,203</td>
           <td>-</td>
           <td>$14,080,515,420</td>
-          <td>-</td>
+          <td>$14,210,070,397</td>
         </tr>
         <tr>
           <th>Accumulated Depreciation</th>
           <td>-</td>
-          <td>$13,824,938,203</td>
+          <td>-</td>
           <td>$13,952,141,611</td>
           <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>Net Property, Plant &amp; Equipment</th>
+          <td>$13,698,894,523</td>
+          <td>$13,824,938,203</td>
+          <td>$13,952,141,611</td>
+          <td>$14,080,515,420</td>
           <td>$14,210,070,397</td>
         </tr>
         <tr>
@@ -1616,6 +1632,14 @@ Now view the forecast.
           <td>$11,245,168,084</td>
           <td>$12,537,461,160</td>
           <td>$13,978,264,368</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Deferred Tax Assets, Long-Term</th>
@@ -1634,20 +1658,28 @@ Now view the forecast.
           <td>-</td>
         </tr>
         <tr>
+          <th>Total Non-Current Assets</th>
+          <td>$24,046,804,611</td>
+          <td>$25,088,064,457</td>
+          <td>$26,261,847,936</td>
+          <td>$27,580,758,866</td>
+          <td>$29,059,087,638</td>
+        </tr>
+        <tr>
+          <th>Total Assets</th>
+          <td>$77,039,665,624</td>
+          <td>$79,770,215,833</td>
+          <td>$82,716,459,922</td>
+          <td>$85,895,891,445</td>
+          <td>$89,328,019,285</td>
+        </tr>
+        <tr>
           <th>Payables</th>
           <td>$7,681,837,474</td>
           <td>$8,369,114,590</td>
           <td>$9,117,880,879</td>
           <td>$9,933,637,642</td>
           <td>$10,822,378,370</td>
-        </tr>
-        <tr>
-          <th>Current Portion of Long-Term Debt</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
         </tr>
         <tr>
           <th>Short-Term Debt</th>
@@ -1658,15 +1690,7 @@ Now view the forecast.
           <td>$13,140,492,951</td>
         </tr>
         <tr>
-          <th>Long-Term Debt</th>
-          <td>$25,976,778,901</td>
-          <td>$26,381,226,925</td>
-          <td>$26,847,240,522</td>
-          <td>$27,380,905,350</td>
-          <td>$27,989,231,332</td>
-        </tr>
-        <tr>
-          <th>Deferred Revenue</th>
+          <th>Current Portion of Long-Term Debt</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -1683,6 +1707,38 @@ Now view the forecast.
         </tr>
         <tr>
           <th>Other Current Liabilities</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>Total Current Liabilities</th>
+          <td>$19,724,166,615</td>
+          <td>$20,637,629,260</td>
+          <td>$21,642,652,889</td>
+          <td>$22,747,868,402</td>
+          <td>$23,962,871,321</td>
+        </tr>
+        <tr>
+          <th>Long-Term Debt</th>
+          <td>$25,976,778,901</td>
+          <td>$26,381,226,925</td>
+          <td>$26,847,240,522</td>
+          <td>$27,380,905,350</td>
+          <td>$27,989,231,332</td>
+        </tr>
+        <tr>
+          <th>Total Debt</th>
+          <td>$38,019,108,042</td>
+          <td>$38,649,741,596</td>
+          <td>$39,372,012,532</td>
+          <td>$40,195,136,110</td>
+          <td>$41,129,724,283</td>
+        </tr>
+        <tr>
+          <th>Deferred Revenue</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -1714,15 +1770,23 @@ Now view the forecast.
           <td>-</td>
         </tr>
         <tr>
-          <th>Common Stock</th>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
+          <th>Total Non-Current Liabilities</th>
+          <td>$27,222,409,258</td>
+          <td>$27,629,493,205</td>
+          <td>$28,098,148,303</td>
+          <td>$28,634,460,221</td>
+          <td>$29,245,438,895</td>
         </tr>
         <tr>
-          <th>Minority Interest</th>
+          <th>Total Liabilities</th>
+          <td>$46,946,575,873</td>
+          <td>$48,267,122,465</td>
+          <td>$49,740,801,191</td>
+          <td>$51,382,328,623</td>
+          <td>$53,208,310,216</td>
+        </tr>
+        <tr>
+          <th>Common Stock</th>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -1746,76 +1810,12 @@ Now view the forecast.
           <td>$37,803,705,632</td>
         </tr>
         <tr>
-          <th>Cash and Short-Term Investments</th>
-          <td>$8,341,327,471</td>
-          <td>$8,755,400,920</td>
-          <td>$9,198,171,321</td>
-          <td>$9,671,573,612</td>
-          <td>$10,177,696,618</td>
-        </tr>
-        <tr>
-          <th>Total Current Assets</th>
-          <td>$52,992,861,012</td>
-          <td>$54,682,151,376</td>
-          <td>$56,454,611,986</td>
-          <td>$58,315,132,579</td>
-          <td>$60,268,931,647</td>
-        </tr>
-        <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
-          <td>$13,698,894,523</td>
-          <td>$13,824,938,203</td>
-          <td>$13,952,141,611</td>
-          <td>$14,080,515,420</td>
-          <td>$14,210,070,397</td>
-        </tr>
-        <tr>
-          <th>Total Non-Current Assets</th>
-          <td>$24,046,804,611</td>
-          <td>$25,088,064,457</td>
-          <td>$26,261,847,936</td>
-          <td>$27,580,758,866</td>
-          <td>$29,059,087,638</td>
-        </tr>
-        <tr>
-          <th>Total Assets</th>
-          <td>$77,039,665,624</td>
-          <td>$79,770,215,833</td>
-          <td>$82,716,459,922</td>
-          <td>$85,895,891,445</td>
-          <td>$89,328,019,285</td>
-        </tr>
-        <tr>
-          <th>Total Current Liabilities</th>
-          <td>$19,724,166,615</td>
-          <td>$20,637,629,260</td>
-          <td>$21,642,652,889</td>
-          <td>$22,747,868,402</td>
-          <td>$23,962,871,321</td>
-        </tr>
-        <tr>
-          <th>Total Debt</th>
-          <td>$38,019,108,042</td>
-          <td>$38,649,741,596</td>
-          <td>$39,372,012,532</td>
-          <td>$40,195,136,110</td>
-          <td>$41,129,724,283</td>
-        </tr>
-        <tr>
-          <th>Total Non-Current Liabilities</th>
-          <td>$27,222,409,258</td>
-          <td>$27,629,493,205</td>
-          <td>$28,098,148,303</td>
-          <td>$28,634,460,221</td>
-          <td>$29,245,438,895</td>
-        </tr>
-        <tr>
-          <th>Total Liabilities</th>
-          <td>$46,946,575,873</td>
-          <td>$48,267,122,465</td>
-          <td>$49,740,801,191</td>
-          <td>$51,382,328,623</td>
-          <td>$53,208,310,216</td>
+          <th>Minority Interest</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <th>Total Stockholder's Equity</th>
@@ -1984,7 +1984,7 @@ Now re-run the forecast.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 16/16 [00:00<00:00, 335.43it/s]
+    100%|##########| 16/16 [00:00<00:00, 398.93it/s]
       0%|          | 0/38 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -2001,14 +2001,20 @@ Now re-run the forecast.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:39: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
-      warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+      self.result_df = past_df.append(future_df).sort_index()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:39: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
+      warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
@@ -2057,13 +2063,7 @@ Now re-run the forecast.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
-      return pd.date_range(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
-      self.result_df = past_df.append(future_df).sort_index()
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
-      return pd.Series()
-    100%|##########| 38/38 [00:00<00:00, 394.70it/s]
+    100%|##########| 38/38 [00:00<00:00, 464.03it/s]
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -2212,7 +2212,7 @@ statements. Then you can view the plots:
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    100%|##########| 16/16 [00:00<00:00, 445.74it/s]
+    100%|##########| 16/16 [00:00<00:00, 472.75it/s]
       0%|          | 0/38 [00:00<?, ?it/s]/home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -2229,14 +2229,20 @@ statements. Then you can view the plots:
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:39: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
-      warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
+      return pd.date_range(
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+      self.result_df = past_df.append(future_df).sort_index()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+      return pd.Series()
+    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:39: UserWarning: CAGR not an appropriate method for Long-Term Investments as y_T is 0. Setting to 0 growth (recent value forecast)
+      warnings.warn(message)
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
@@ -2285,13 +2291,7 @@ statements. Then you can view the plots:
       self.result_df = past_df.append(future_df).sort_index()
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
       return pd.Series()
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
-      return pd.date_range(
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/cagr.py:94: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
-      self.result_df = past_df.append(future_df).sort_index()
-    /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
-      return pd.Series()
-    100%|##########| 38/38 [00:00<00:00, 423.71it/s]
+    100%|##########| 38/38 [00:00<00:00, 462.42it/s]
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:72: FutureWarning: Argument `closed` is deprecated in favor of `inclusive`.
       return pd.date_range(
     /home/runner/work/py-finstmt/py-finstmt/finstmt/forecast/models/base.py:39: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
@@ -2427,7 +2427,7 @@ forecast.
           <td>False</td>
         </tr>
         <tr>
-          <th>Long-Term Investments</th>
+          <th>Net Property, Plant &amp; Equipment</th>
           <td>cagr</td>
           <td>None</td>
           <td>None</td>
@@ -2436,6 +2436,14 @@ forecast.
         </tr>
         <tr>
           <th>Goodwill and Intangible Assets</th>
+          <td>cagr</td>
+          <td>None</td>
+          <td>None</td>
+          <td>None</td>
+          <td>False</td>
+        </tr>
+        <tr>
+          <th>Long-Term Investments</th>
           <td>cagr</td>
           <td>None</td>
           <td>None</td>
@@ -2498,14 +2506,6 @@ forecast.
           <td>None</td>
           <td>False</td>
         </tr>
-        <tr>
-          <th>Net Property, Plant &amp; Equipment</th>
-          <td>cagr</td>
-          <td>None</td>
-          <td>None</td>
-          <td>None</td>
-          <td>False</td>
-        </tr>
       </tbody>
     </table>
     </div>
@@ -2516,7 +2516,7 @@ forecast.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  47.445 seconds)
+   **Total running time of the script:** ( 0 minutes  44.582 seconds)
 
 
 .. _sphx_glr_download_auto_examples_forecasting.py:
