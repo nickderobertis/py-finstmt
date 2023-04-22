@@ -40,30 +40,30 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 31
             ): {
   "cash": 26.0,
+  "cash_and_st_invest": 26.0,
   "receivables": 8.0,
   "inventory": 11.0,
-  "lt_invest": 1.0,
   "def_tax_st": 1.0,
+  "total_current_assets": 46.0,
   "gross_ppe": 7.0,
   "dep": 4.0,
+  "net_ppe": 4.0,
   "goodwill": 7.0,
+  "lt_invest": 1.0,
   "def_tax_lt": 1.0,
   "other_lt_assets": 1.0,
-  "payables": 7.0,
-  "lt_debt": 9.0,
-  "other_current_liab": 4.0,
-  "other_lt_liab": 3.0,
-  "common_stock": 6.0,
-  "retained_earnings": 30.0,
-  "cash_and_st_invest": 26.0,
-  "total_current_assets": 46.0,
-  "net_ppe": 4.0,
   "total_non_current_assets": 14.0,
   "total_assets": 59.0,
+  "payables": 7.0,
+  "other_current_liab": 4.0,
   "total_current_liab": 11.0,
+  "lt_debt": 9.0,
   "total_debt": 9.0,
+  "other_lt_liab": 3.0,
   "total_non_current_liab": 12.0,
   "total_liab": 23.0,
+  "common_stock": 6.0,
+  "retained_earnings": 30.0,
   "total_equity": 36.0,
   "total_liab_and_equity": 59.0
 },
@@ -73,30 +73,30 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                 31
             ): {
   "cash": 27.0,
+  "cash_and_st_invest": 27.0,
   "receivables": 8.0,
   "inventory": 10.0,
-  "lt_invest": 1.0,
   "def_tax_st": 1.0,
+  "total_current_assets": 46.0,
   "gross_ppe": 7.0,
   "dep": 4.0,
+  "net_ppe": 4.0,
   "goodwill": 7.0,
+  "lt_invest": 1.0,
   "def_tax_lt": 1.0,
   "other_lt_assets": 1.0,
-  "payables": 6.0,
-  "lt_debt": 9.0,
-  "other_current_liab": 4.0,
-  "other_lt_liab": 3.0,
-  "common_stock": 6.0,
-  "retained_earnings": 30.0,
-  "cash_and_st_invest": 27.0,
-  "total_current_assets": 46.0,
-  "net_ppe": 4.0,
   "total_non_current_assets": 14.0,
   "total_assets": 59.0,
+  "payables": 6.0,
+  "other_current_liab": 4.0,
   "total_current_liab": 10.0,
+  "lt_debt": 9.0,
   "total_debt": 9.0,
+  "other_lt_liab": 3.0,
   "total_non_current_liab": 12.0,
   "total_liab": 23.0,
+  "common_stock": 6.0,
+  "retained_earnings": 30.0,
   "total_equity": 37.0,
   "total_liab_and_equity": 59.0
 }
@@ -1183,62 +1183,6 @@ Name: Revenue, dtype: float64,
                 ]
             )
         ),
-        'lt_invest': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    0.0
-2012-06-30    0.0
-2012-09-30    0.0
-2012-12-31    0.0
-2013-03-31    0.0
-2013-06-30    0.0
-2013-09-30    0.0
-2013-12-31    0.0
-2014-03-31    0.0
-2014-06-30    0.0
-2014-09-30    0.0
-2014-12-31    0.0
-2015-03-31    0.0
-2015-06-30    0.0
-2015-09-30    0.0
-2015-12-31    0.0
-2016-03-31    0.0
-2016-06-30    0.0
-2016-09-30    0.0
-2016-12-31    0.0
-2017-03-31    0.0
-2017-06-30    0.0
-2017-09-30    0.0
-2017-12-31    0.0
-2018-03-31    0.0
-2018-06-30    0.0
-2018-09-30    0.0
-2018-12-31    0.0
-2019-03-31    1.0
-2019-06-30    1.0
-2019-09-30    1.0
-Name: Long-Term Investments, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='recent'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='lt_invest',
-                display_name='Long-Term Investments',
-                extract_names=[
-                    'lt invest',
-                    'lt investments',
-                    'long term invest',
-                    'long term investments',
-                    'longterm invest',
-                    'longterm investments'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='recent'
-                )
-            )
-        ),
         'def_tax_st': finstmt.forecast.main.Forecast(
             orig_series=2012-03-31    2.0
 2012-06-30    2.0
@@ -1554,6 +1498,62 @@ Name: Goodwill and Intangible Assets, dtype: float64,
                 )
             )
         ),
+        'lt_invest': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    0.0
+2012-06-30    0.0
+2012-09-30    0.0
+2012-12-31    0.0
+2013-03-31    0.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    0.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31    0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    1.0
+2019-06-30    1.0
+2019-09-30    1.0
+Name: Long-Term Investments, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='recent'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='lt_invest',
+                display_name='Long-Term Investments',
+                extract_names=[
+                    'lt invest',
+                    'lt investments',
+                    'long term invest',
+                    'long term investments',
+                    'longterm invest',
+                    'longterm investments'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='recent'
+                )
+            )
+        ),
         'def_tax_lt': finstmt.forecast.main.Forecast(
             orig_series=2012-03-31    2.0
 2012-06-30    2.0
@@ -1810,6 +1810,105 @@ Name: Revenue, dtype: float64,
                 ]
             )
         ),
+        'st_debt': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    1.0
+2012-06-30    1.0
+2012-09-30    1.0
+2012-12-31    1.0
+2013-03-31    1.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    0.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31    0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    0.0
+2019-06-30    0.0
+2019-09-30    0.0
+Name: Short-Term Debt, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                pct_of='total_debt'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='st_debt',
+                display_name='Short-Term Debt',
+                extract_names=[
+                    'st debt',
+                    'short term debt',
+                    'shortterm debt',
+                    'st borrow',
+                    'short term borrow',
+                    'shortterm borrowst borrowings',
+                    'short term borrowings',
+                    'shortterm borrowings'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    pct_of='total_debt'
+                )
+            ),
+            pct_of_series=2012-03-31    36.0
+2012-06-30    39.0
+2012-09-30    40.0
+2012-12-31    40.0
+2013-03-31    40.0
+2013-06-30    40.0
+2013-09-30    40.0
+2013-12-31    38.0
+2014-03-31    38.0
+2014-06-30    40.0
+2014-09-30    39.0
+2014-12-31    39.0
+2015-03-31    39.0
+2015-06-30    38.0
+2015-09-30    38.0
+2015-12-31    38.0
+2016-03-31    38.0
+2016-06-30    38.0
+2016-09-30    37.0
+2016-12-31    37.0
+2017-03-31    38.0
+2017-06-30    37.0
+2017-09-30    36.0
+2017-12-31    35.0
+2018-03-31    35.0
+2018-06-30    36.0
+2018-09-30    36.0
+2018-12-31    37.0
+2019-03-31    37.0
+2019-06-30    37.0
+2019-09-30    39.0
+Name: Total Debt, dtype: float64,
+            pct_of_config=finstmt.items.config.ItemConfig(
+                key='total_debt',
+                display_name='Total Debt',
+                extract_names=['total debt'],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    make_forecast=False
+                ),
+                expr_str='st_debt[t] + lt_debt[t]'
+            )
+        ),
         'current_lt_debt': finstmt.forecast.main.Forecast(
             orig_series=2012-03-31    1.0
 2012-06-30    1.0
@@ -1949,177 +2048,6 @@ Name: Total Debt, dtype: float64,
                     make_forecast=False
                 ),
                 expr_str='st_debt[t] + lt_debt[t]'
-            )
-        ),
-        'st_debt': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    1.0
-2012-06-30    1.0
-2012-09-30    1.0
-2012-12-31    1.0
-2013-03-31    1.0
-2013-06-30    0.0
-2013-09-30    0.0
-2013-12-31    0.0
-2014-03-31    0.0
-2014-06-30    0.0
-2014-09-30    0.0
-2014-12-31    0.0
-2015-03-31    0.0
-2015-06-30    0.0
-2015-09-30    0.0
-2015-12-31    0.0
-2016-03-31    0.0
-2016-06-30    0.0
-2016-09-30    0.0
-2016-12-31    0.0
-2017-03-31    0.0
-2017-06-30    0.0
-2017-09-30    0.0
-2017-12-31    0.0
-2018-03-31    0.0
-2018-06-30    0.0
-2018-09-30    0.0
-2018-12-31    0.0
-2019-03-31    0.0
-2019-06-30    0.0
-2019-09-30    0.0
-Name: Short-Term Debt, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                pct_of='total_debt'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='st_debt',
-                display_name='Short-Term Debt',
-                extract_names=[
-                    'st debt',
-                    'short term debt',
-                    'shortterm debt',
-                    'st borrow',
-                    'short term borrow',
-                    'shortterm borrowst borrowings',
-                    'short term borrowings',
-                    'shortterm borrowings'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    pct_of='total_debt'
-                )
-            ),
-            pct_of_series=2012-03-31    36.0
-2012-06-30    39.0
-2012-09-30    40.0
-2012-12-31    40.0
-2013-03-31    40.0
-2013-06-30    40.0
-2013-09-30    40.0
-2013-12-31    38.0
-2014-03-31    38.0
-2014-06-30    40.0
-2014-09-30    39.0
-2014-12-31    39.0
-2015-03-31    39.0
-2015-06-30    38.0
-2015-09-30    38.0
-2015-12-31    38.0
-2016-03-31    38.0
-2016-06-30    38.0
-2016-09-30    37.0
-2016-12-31    37.0
-2017-03-31    38.0
-2017-06-30    37.0
-2017-09-30    36.0
-2017-12-31    35.0
-2018-03-31    35.0
-2018-06-30    36.0
-2018-09-30    36.0
-2018-12-31    37.0
-2019-03-31    37.0
-2019-06-30    37.0
-2019-09-30    39.0
-Name: Total Debt, dtype: float64,
-            pct_of_config=finstmt.items.config.ItemConfig(
-                key='total_debt',
-                display_name='Total Debt',
-                extract_names=['total debt'],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    make_forecast=False
-                ),
-                expr_str='st_debt[t] + lt_debt[t]'
-            )
-        ),
-        'lt_debt': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    8.0
-2012-06-30    9.0
-2012-09-30    9.0
-2012-12-31    9.0
-2013-03-31    9.0
-2013-06-30    8.0
-2013-09-30    8.0
-2013-12-31    8.0
-2014-03-31    8.0
-2014-06-30    9.0
-2014-09-30    9.0
-2014-12-31    9.0
-2015-03-31    9.0
-2015-06-30    9.0
-2015-09-30    9.0
-2015-12-31    9.0
-2016-03-31    9.0
-2016-06-30    8.0
-2016-09-30    8.0
-2016-12-31    8.0
-2017-03-31    9.0
-2017-06-30    9.0
-2017-09-30    9.0
-2017-12-31    7.0
-2018-03-31    8.0
-2018-06-30    8.0
-2018-09-30    8.0
-2018-12-31    8.0
-2019-03-31    8.0
-2019-06-30    8.0
-2019-09-30    9.0
-Name: Long-Term Debt, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='manual',
-                manual_forecasts={'levels': [9, 9], 'growth': []},
-                plug=True
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='lt_debt',
-                display_name='Long-Term Debt',
-                extract_names=[
-                    'lt debt',
-                    'long term debt',
-                    'longterm debt',
-                    'lt borrow',
-                    'long term borrow',
-                    'longterm borrow',
-                    'lt borrowings',
-                    'long term borrowings',
-                    'longterm borrowings',
-                    'lt debt total',
-                    'long term debt total',
-                    'longterm debt total',
-                    'lt borrow total',
-                    'long term borrow total',
-                    'longterm borrow total',
-                    'lt borrowings total',
-                    'long term borrowings total',
-                    'longterm borrowings total'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='manual',
-                    manual_forecasts={'levels': [9, 9], 'growth': []},
-                    plug=True
-                )
             )
         ),
         'tax_liab_st': finstmt.forecast.main.Forecast(
@@ -2353,6 +2281,78 @@ Name: Other Current Liabilities, dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='mean'
+                )
+            )
+        ),
+        'lt_debt': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    8.0
+2012-06-30    9.0
+2012-09-30    9.0
+2012-12-31    9.0
+2013-03-31    9.0
+2013-06-30    8.0
+2013-09-30    8.0
+2013-12-31    8.0
+2014-03-31    8.0
+2014-06-30    9.0
+2014-09-30    9.0
+2014-12-31    9.0
+2015-03-31    9.0
+2015-06-30    9.0
+2015-09-30    9.0
+2015-12-31    9.0
+2016-03-31    9.0
+2016-06-30    8.0
+2016-09-30    8.0
+2016-12-31    8.0
+2017-03-31    9.0
+2017-06-30    9.0
+2017-09-30    9.0
+2017-12-31    7.0
+2018-03-31    8.0
+2018-06-30    8.0
+2018-09-30    8.0
+2018-12-31    8.0
+2019-03-31    8.0
+2019-06-30    8.0
+2019-09-30    9.0
+Name: Long-Term Debt, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='manual',
+                manual_forecasts={'levels': [9, 9], 'growth': []},
+                plug=True
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='lt_debt',
+                display_name='Long-Term Debt',
+                extract_names=[
+                    'lt debt',
+                    'long term debt',
+                    'longterm debt',
+                    'lt borrow',
+                    'long term borrow',
+                    'longterm borrow',
+                    'lt borrowings',
+                    'long term borrowings',
+                    'longterm borrowings',
+                    'lt debt total',
+                    'long term debt total',
+                    'longterm debt total',
+                    'lt borrow total',
+                    'long term borrow total',
+                    'longterm borrow total',
+                    'lt borrowings total',
+                    'long term borrowings total',
+                    'longterm borrowings total'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='manual',
+                    manual_forecasts={'levels': [9, 9], 'growth': []},
+                    plug=True
                 )
             )
         ),
@@ -2748,60 +2748,6 @@ Name: Common Stock, dtype: float64,
                 )
             )
         ),
-        'minority_interest': finstmt.forecast.main.Forecast(
-            orig_series=2012-03-31    1.0
-2012-06-30    0.0
-2012-09-30    0.0
-2012-12-31    0.0
-2013-03-31    0.0
-2013-06-30    0.0
-2013-09-30    0.0
-2013-12-31    0.0
-2014-03-31    0.0
-2014-06-30    0.0
-2014-09-30    0.0
-2014-12-31    0.0
-2015-03-31    0.0
-2015-06-30    0.0
-2015-09-30    0.0
-2015-12-31    0.0
-2016-03-31    0.0
-2016-06-30    0.0
-2016-09-30    0.0
-2016-12-31    0.0
-2017-03-31    0.0
-2017-06-30    0.0
-2017-09-30    0.0
-2017-12-31    0.0
-2018-03-31    0.0
-2018-06-30    0.0
-2018-09-30    0.0
-2018-12-31    0.0
-2019-03-31    0.0
-2019-06-30    0.0
-2019-09-30    0.0
-Name: Minority Interest, dtype: float64,
-            config=finstmt.forecast.config.ForecastConfig(
-                periods=2,
-                freq='Q-DEC'
-            ),
-            item_config=finstmt.forecast.config.ForecastItemConfig(
-                method='mean'
-            ),
-            base_config=finstmt.items.config.ItemConfig(
-                key='minority_interest',
-                display_name='Minority Interest',
-                extract_names=[
-                    'minority interest',
-                    'minority int',
-                    'min int',
-                    'min interest'
-                ],
-                forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                    method='mean'
-                )
-            )
-        ),
         'other_income': finstmt.forecast.main.Forecast(
             orig_series=2012-03-31   -6.0
 2012-06-30   -6.0
@@ -2918,6 +2864,60 @@ Name: Retained Earnings, dtype: float64,
                 force_positive=False,
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='trend'
+                )
+            )
+        ),
+        'minority_interest': finstmt.forecast.main.Forecast(
+            orig_series=2012-03-31    1.0
+2012-06-30    0.0
+2012-09-30    0.0
+2012-12-31    0.0
+2013-03-31    0.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    0.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31    0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    0.0
+2019-06-30    0.0
+2019-09-30    0.0
+Name: Minority Interest, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='mean'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='minority_interest',
+                display_name='Minority Interest',
+                extract_names=[
+                    'minority interest',
+                    'minority int',
+                    'min int',
+                    'min interest'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='mean'
                 )
             )
         )
