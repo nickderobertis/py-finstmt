@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/nickderobertis/py-finstmt/compare/v1.3.0...v1.4.0) (2023-04-22)
+
+
+### Features
+
+* Order Balance Sheet items ([#102](https://github.com/nickderobertis/py-finstmt/issues/102)) ([8e1a70a](https://github.com/nickderobertis/py-finstmt/commit/8e1a70a47b70589631faf627418f6c8c538d0dd8))
+
 ## [1.3.0](https://github.com/nickderobertis/py-finstmt/compare/v1.2.2...v1.3.0) (2023-04-12)
 
 
