@@ -25,9 +25,10 @@ class StatementsResolver(ResolverBase):
         stmts = []
         for stmt in self.stmts.statements:
             stmt.from_df(
-                all_results, 
-                stmt.statement_name, 
-                stmt.config.items, 
+                all_results,
+                stmt.statement_name,
+                self.global_sympy_namespace,
+                stmt.config.items,
                 disp_unextracted=False
             )
             stmts.append(stmt)
@@ -41,7 +42,7 @@ class StatementsResolver(ResolverBase):
         #     all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
         # )
 
-        obj = FinancialStatements(stmts, calculate=False, **kwargs)
+        obj = FinancialStatements(stmts, self.global_sympy_namespace, calculate=False, **kwargs)
         return obj
 
     @property

@@ -1,11 +1,13 @@
 import dataclasses
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, List, Optional, Set
+from typing import TYPE_CHECKING, Dict, List, Optional, Set
 
 import pandas as pd
 from typing_extensions import Self
 
-from finstmt.bs.main import BalanceSheets
+from sympy import Idx, IndexedBase, symbols
+
+# from finstmt.bs.main import BalanceSheets
 from finstmt.check import item_series_is_empty
 from finstmt.combined.combinator import (
     FinancialStatementsCombinator,
@@ -15,9 +17,10 @@ from finstmt.config.statement_config import StatementConfig
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.config_manage.statements import StatementsConfigManager
 from finstmt.exc import MismatchingDatesException
+from finstmt.findata.period_data import PeriodFinancialData
 from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
-from finstmt.inc.main import IncomeStatements
+# from finstmt.inc.main import IncomeStatements
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
 
@@ -47,6 +50,7 @@ class FinancialStatements:
     """
 
     statements: List[FinStatementsBase]
+    global_sympy_namespace: Dict[str, IndexedBase]
     calculate: bool = True
     auto_adjust_config: bool = True
     _combinator: StatementsCombinator[Self] = FinancialStatementsCombinator()  # type: ignore[assignment]
@@ -54,15 +58,21 @@ class FinancialStatements:
     def __post_init__(self):
         from finstmt.resolver.history import StatementsResolver
 
+        self.resolve_expressions()
+
         self._create_config_from_statements()
 
         if self.calculate:
-            resolver = StatementsResolver(self)
+            resolver = StatementsResolver(self, self.global_sympy_namespace)
             new_stmts = resolver.to_statements(
                 auto_adjust_config=self.auto_adjust_config
             )
             self.statements = new_stmts.statements
             self._create_config_from_statements()
+
+    def resolve_expressions(self):
+        for statement in self.statements:
+            statement.resolve_expressions(self)
 
     def _create_config_from_statements(self):
         config_dict = {}
@@ -165,18 +175,26 @@ class FinancialStatements:
 
         raise AttributeError(item)
 
+    # get a list of the hetrogeneous statements for a given date
     def __getitem__(self, item):
         print(item)
         stmts_hetrogeneous = []
         if not isinstance(item, (list, tuple)):
             date_item = pd.to_datetime(item)
             for stmt_timeseries in self.statements:
-                stmts_hetrogeneous.append(FinStatementsBase({date_item: stmt_timeseries[item]}))
+                stmts_hetrogeneous.append(
+                    FinStatementsBase(
+                        {date_item: stmt_timeseries[item]},
+                        stmt_timeseries.items_config_list,
+                        stmt_timeseries.statement_name,
+                        stmt_timeseries.global_sympy_namespace
+                    )
+                )
         else:
             for stmt in self.statements:
                 stmts_hetrogeneous.append(stmt[item])
 
-        return FinancialStatements(stmts_hetrogeneous)
+        return FinancialStatements(stmts_hetrogeneous, self.global_sympy_namespace)
 
     def __dir__(self):
         normal_attrs = [
@@ -336,7 +354,7 @@ class FinancialStatements:
     def __round__(self, n: Optional[int] = None) -> Self:
         new_statements = self.copy()
         for stmt in new_statements.statements:
-            stmt = round(stmt, n) # type: ignore
+            stmt = round(stmt, n)  # type: ignore
         return new_statements
 
 
@@ -350,9 +368,17 @@ class FinancialStatements:
         """
         DataFrame must have columns as dates and index as names of financial statement items
         """
-        statements_dict = {}
         dates = list(df.columns)
         dates.sort(key=lambda t: pd.to_datetime(t))
+
+        # Question: Can we store this in a global static variable?
+        t = symbols("t", cls=Idx)
+        global_sympy_namespace = {"t": t}
+        # First loop through and build a namespace
+        for statment_config in statement_config_list:
+            for config in statment_config.items_config_list:
+                expr = IndexedBase(config.key)
+                global_sympy_namespace.update({config.key: expr})
 
         stmts = []
         for statment_config in statement_config_list:
@@ -360,9 +386,10 @@ class FinancialStatements:
                 FinStatementsBase.from_df(
                     df,
                     statment_config.display_name,
+                    global_sympy_namespace,
                     statment_config.items_config_list,
-                    disp_unextracted=False
+                    disp_unextracted=disp_unextracted
                 )
             )
 
-        return cls(stmts)
+        return cls(stmts, global_sympy_namespace)

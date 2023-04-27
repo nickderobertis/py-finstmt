@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 import operator
-from typing import Callable, Dict, List, Optional, Tuple
+from typing import TYPE_CHECKING, Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
+from sympy import IndexedBase
 from tqdm import tqdm
 
 from finstmt.check import item_series_is_empty
@@ -19,6 +20,9 @@ from finstmt.forecast.main import Forecast
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
 
+if TYPE_CHECKING:
+    from finstmt.combined.statements import FinancialStatements
+
 # TODO: Discuss what we think of renaming this something like FinStatementTimeSeries
 # or FinStatementPeriods
 # to emphasise this is a collection of homogeneous financial staements over time
@@ -26,10 +30,8 @@ from finstmt.logger import logger
 class FinStatementsBase:
     statements: Dict[pd.Timestamp, PeriodFinancialData]
     items_config_list: List[ItemConfig]
-    statement_name: str = "Base"
-
-    # def __init__(self, *args, **kwargs):
-    #     raise NotImplementedError
+    statement_name: str
+    global_sympy_namespace: Dict[str, IndexedBase]
 
     def __post_init__(self):
         self.df = self.to_df()
@@ -49,10 +51,14 @@ class FinStatementsBase:
             configs_dict[date] = statement.config_manager
         self.config = StatementConfigManager(configs_dict)
 
+    def resolve_expressions(self, finStmts: 'FinancialStatements'):
+        for (date, statement) in self.statements.items():
+            statement.resolve_expressions(date, finStmts)
+
     def _repr_html_(self):
         return self._formatted_df._repr_html_()
 
-    # Get longitudenal series for a statement item
+    # Get times series for a statement item
     def __getattr__(self, item):
         data_dict = {}
         for (
@@ -108,6 +114,7 @@ class FinStatementsBase:
         cls,
         df: pd.DataFrame,
         statement_name: str,
+        global_sympy_namespace: Dict[str, IndexedBase],
         items_config_list: Optional[List[ItemConfig]] = None,
         disp_unextracted: bool = True,
 
@@ -128,7 +135,7 @@ class FinStatementsBase:
         for col in dates:
             try:
                 statement = PeriodFinancialData.from_series(
-                    df[col], config_manager=config_manager
+                    df[col], config_manager, global_sympy_namespace
                 )
             except CouldNotParseException:
                 raise CouldNotParseException(
@@ -149,8 +156,10 @@ class FinStatementsBase:
                     f"Was not able to extract data from the following names: {all_unextracted_names}"
                 )
 
-        return cls(statements_dict, items_config_list, statement_name=statement_name)
+        return cls(statements_dict, items_config_list, statement_name, global_sympy_namespace)
 
+    # get a dataframe with a column for each date and the rows for each datapoint in the statements
+    # Todo: we could resolve any time-shifted formulas here 
     def to_df(self) -> pd.DataFrame:
         all_series = []
         for date, statement in self.statements.items():
@@ -163,7 +172,8 @@ class FinStatementsBase:
     def _formatted_df(self) -> pd.DataFrame:
         out_df = self.df.copy()
         out_df.columns = [col.strftime("%m/%d/%Y") for col in out_df.columns]
-        return out_df.applymap(lambda x: f"${x:,.0f}" if not x == 0 else " - ")
+        # return out_df.applymap(lambda x: f"${x:,.0f}" if not x == 0 else " - ")
+        return out_df.applymap(lambda x: f"${x}" if not x == 0 else " - ")
 
     def _forecast(
         self, statements, **kwargs

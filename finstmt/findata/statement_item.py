@@ -14,6 +14,7 @@ if TYPE_CHECKING:
 class StatementItem:
     item_config: ItemConfig
     value: Optional[float]
+    calculated_vlaue: Optional[float] = None
 
     def __post_init__(self) -> None:
         if (
@@ -26,7 +27,8 @@ class StatementItem:
             positive_value = abs(self.value)
             self.value = positive_value
 
-    def get_value(self, fin_data: "PeriodFinancialData") -> np.float64:
+    # def get_value(self , fin_data: "PeriodFinancialData") -> np.float64:
+    def get_value(self) -> np.float64:
         # if specific value was provided, then return that even if it's a calculated field
         if self.value is not None:
             return np.float64(self.value)
@@ -36,14 +38,44 @@ class StatementItem:
         if expr_str is None:
             return np.float64(0)
 
-        ns_syms = fin_data.config_manager.sympy_namespace
-        sym_expr = sympify(expr_str, locals=ns_syms)
+        return self.calculated_vlaue
+        # return expr_str
+        # ns_syms = fin_data.config_manager.sympy_namespace
+        # sym_expr = sympify(expr_str, locals=ns_syms)
+        # sub_list = []
+        # t = ns_syms["t"]
+        # for ns_sym in ns_syms.values():
+        #     if ns_sym == t:
+        #         continue
+        #     if ns_sym[t] in sym_expr.free_symbols:
+        #         sub_list.append((ns_sym[t], getattr(fin_data, str(ns_sym))))
+
+        # return np.float64(sym_expr.subs(sub_list))
+
+    def resolve_eq(self, date, finStmts):
+        if not self.item_config.expr_str:  # if expression string is null or empty, don't do anything
+            return
+
+        # ns_syms = self.config_manager.sympy_namespace
+        ns_syms = finStmts.global_sympy_namespace
+        sym_expr = sympify(self.item_config.expr_str, locals=ns_syms)
         sub_list = []
         t = ns_syms["t"]
-        for ns_sym in ns_syms.values():
+        for (key, ns_sym) in ns_syms.items():
             if ns_sym == t:
                 continue
             if ns_sym[t] in sym_expr.free_symbols:
-                sub_list.append((ns_sym[t], getattr(fin_data, str(ns_sym))))
+                series = getattr(finStmts, str(ns_sym))
+                if (self.item_config.key == "non_cash_expenses"):
+                    print(self.item_config.key)
+                    print(str(ns_sym))
+                    print(series)
+                sub_list.append((ns_sym[t], series[date]))
 
-        return np.float64(sym_expr.subs(sub_list))
+        result = np.float64(sym_expr.subs(sub_list))
+        if (self.item_config.key == "non_cash_expenses"):
+            print("Res:", result)
+
+        # return np.float64(sym_expr.subs(sub_list))
+        self.calculated_vlaue = result
+
