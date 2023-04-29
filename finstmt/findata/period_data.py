@@ -178,23 +178,3 @@ class PeriodFinancialData:
         # return np.float64(self.resolve_eq(statement_item.get_value()))
         return statement_item.get_value()
     
-    # Get an equation (most likely from statement items)
-    # and substitute fields possible 
-    def resolve_eq(self, equation, finStmts):
-        # ns_syms = self.config_manager.sympy_namespace
-        ns_syms = self.global_sympy_namespace
-        sym_expr = sympify(equation, locals=ns_syms)
-        sub_list = []
-        t = ns_syms["t"]
-        for (key, ns_sym) in ns_syms.items():
-            if ns_sym == t:
-                continue
-            # If the symbol is not in the this object, leave it as is and pass it up to be resolved by another statement
-            if key not in self.statement_items:
-                continue
-            if ns_sym[t] in sym_expr.free_symbols:
-                sub_list.append((ns_sym[t], getattr(self, str(ns_sym))))
-
-        # return np.float64(sym_expr.subs(sub_list))
-        return sym_expr.subs(sub_list)
-

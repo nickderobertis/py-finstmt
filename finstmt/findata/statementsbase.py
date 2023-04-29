@@ -54,6 +54,8 @@ class FinStatementsBase:
     def resolve_expressions(self, finStmts: 'FinancialStatements'):
         for (date, statement) in self.statements.items():
             statement.resolve_expressions(date, finStmts)
+        self.df = self.to_df()
+
 
     def _repr_html_(self):
         return self._formatted_df._repr_html_()
@@ -172,8 +174,7 @@ class FinStatementsBase:
     def _formatted_df(self) -> pd.DataFrame:
         out_df = self.df.copy()
         out_df.columns = [col.strftime("%m/%d/%Y") for col in out_df.columns]
-        # return out_df.applymap(lambda x: f"${x:,.0f}" if not x == 0 else " - ")
-        return out_df.applymap(lambda x: f"${x}" if not x == 0 else " - ")
+        return out_df.applymap(lambda x: f"${x:,.0f}" if not x == 0 else " - ")
 
     def _forecast(
         self, statements, **kwargs

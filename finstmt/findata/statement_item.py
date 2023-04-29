@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
 import numpy as np
-from sympy import sympify
+from sympy import Indexed, sympify
 
 from finstmt.items.config import ItemConfig
 
@@ -29,6 +29,7 @@ class StatementItem:
 
     # def get_value(self , fin_data: "PeriodFinancialData") -> np.float64:
     def get_value(self) -> np.float64:
+        
         # if specific value was provided, then return that even if it's a calculated field
         if self.value is not None:
             return np.float64(self.value)
@@ -61,21 +62,47 @@ class StatementItem:
         sym_expr = sympify(self.item_config.expr_str, locals=ns_syms)
         sub_list = []
         t = ns_syms["t"]
-        for (key, ns_sym) in ns_syms.items():
-            if ns_sym == t:
+        
+        # for (key, ns_sym) in ns_syms.items():
+        #     if ns_sym == t:
+        #         continue
+        #     if ns_sym[t] in sym_expr.free_symbols:
+        #         series = getattr(finStmts, str(ns_sym))
+        #         sub_list.append((ns_sym[t], series[date]))
+
+        for sym in sym_expr.free_symbols:
+            # free_symbols include everything from the provided namespace as
+            #  well as all symbols in the expression
+            # we will make an assumption that the symbols that we are actually 
+            #   interested in from the provided expresison string must have an
+            #   index
+            # we will skip any items in free_symbols that are not indexed
+            if type(sym) is not Indexed:
                 continue
-            if ns_sym[t] in sym_expr.free_symbols:
-                series = getattr(finStmts, str(ns_sym))
-                if (self.item_config.key == "non_cash_expenses"):
-                    print(self.item_config.key)
-                    print(str(ns_sym))
-                    print(series)
-                sub_list.append((ns_sym[t], series[date]))
+            # get the series for the attribute
+            series = getattr(finStmts, str(sym.base))
+
+            # next we need to determine if the indexed symbol refers to the 
+            #   current period or a different period
+            # We assume that there is only ONE index 
+            idx = sym.indices[0]
+            if idx == t:
+                offset = 0
+            else:
+                offset = idx.args[0]
+
+            series_index_t0 = series.index.get_loc(date)
+            series_index_with_offset = series_index_t0 + offset
+
+            if series_index_with_offset < 0:
+                self.calculated_vlaue = None
+                return
+
+            date_with_offset = series.index[series_index_with_offset]
+            sub_value = series[date_with_offset]
+
+            sub_list.append((sym, sub_value))
 
         result = np.float64(sym_expr.subs(sub_list))
-        if (self.item_config.key == "non_cash_expenses"):
-            print("Res:", result)
-
-        # return np.float64(sym_expr.subs(sub_list))
         self.calculated_vlaue = result
 
