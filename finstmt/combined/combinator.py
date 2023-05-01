@@ -35,12 +35,6 @@ class FinancialStatementsCombinator(StatementsCombinator["FinancialStatements"])
         statements = _apply_to_child_statements(
             statement, other, operator.add
         )
-        # income_statements, balance_sheets = _apply_to_child_statements(
-        #     statement, other, operator.add
-        # )
-        # return statement.copy(
-        #     income_statements=income_statements, balance_sheets=balance_sheets
-        # )
         return statement.copy(
             statements=statements
         )
@@ -82,19 +76,10 @@ class ForecastedFinancialStatementsCombinator(
     def add(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        # income_statements, balance_sheets = _apply_to_child_statements(
-        #     statement, other, operator.add
-        # )
         statements = _apply_to_child_statements(
             statement, other, operator.add
         )
-        # forecasts = _apply_to_forecasts(statement.forecasts, other, operator.add)
         forecasts = _apply_to_forecasts(statement.forecasts, other, operator.add)
-        # return statement.copy(
-        #     income_statements=income_statements,
-        #     balance_sheets=balance_sheets,
-        #     forecasts=forecasts,
-        # )
         return statement.copy(
             statements=statements,
             forecasts=forecasts,
@@ -144,20 +129,15 @@ def _apply_to_child_statements(
     statements: "FinancialStatements",
     other: Any,
     func: Callable[[Any, Any], Any],
-# ) -> Tuple["IncomeStatements", "BalanceSheets"]:
 ) -> List["FinStatementBase"]:
     from finstmt import FinancialStatements
 
     if isinstance(other, (float, int)):
-        # new_inc = func(statements.income_statements, other)
-        # new_bs = func(statements.balance_sheets, other)
         new_stmts = []
         for (left, right) in zip(statements.statements, other):
             new_stmt = func(left, right)
             new_stmts.append()
     elif isinstance(other, FinancialStatements):
-        # new_inc = func(statements.income_statements, other.income_statements)
-        # new_bs = func(statements.balance_sheets, other.balance_sheets)
         new_stmts = []
         for (left, right) in zip(statements.statements, other.statements):
             new_stmt = func(left, right)
@@ -167,7 +147,6 @@ def _apply_to_child_statements(
             f"cannot {func.__name__} type {type(statements)} to type {type(other)}"
         )
 
-    # return new_inc, new_bs
     return new_stmts
 
 
