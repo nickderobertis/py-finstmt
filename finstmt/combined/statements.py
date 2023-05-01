@@ -7,7 +7,6 @@ from typing_extensions import Self
 
 from sympy import Idx, IndexedBase, symbols
 
-# from finstmt.bs.main import BalanceSheets
 from finstmt.check import item_series_is_empty
 from finstmt.combined.combinator import (
     FinancialStatementsCombinator,
@@ -20,7 +19,6 @@ from finstmt.exc import MismatchingDatesException
 from finstmt.findata.period_data import PeriodFinancialData
 from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
-# from finstmt.inc.main import IncomeStatements
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
 
@@ -198,9 +196,6 @@ class FinancialStatements:
 
     def __dir__(self):
         normal_attrs = [
-            # "capex",
-            # "non_cash_expenses",
-            # "fcf",
             "forecast",
             "forecasts",
             "forecast_assumptions",
