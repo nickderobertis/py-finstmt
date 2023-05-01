@@ -124,7 +124,6 @@ class FinStatementsBase:
         """
         DataFrame must have columns as dates and index as names of financial statement items
         """
-        print(statement_name)
         statements_dict = {}
         dates = list(df.columns)
         dates.sort(key=lambda t: pd.to_datetime(t))
@@ -161,11 +160,10 @@ class FinStatementsBase:
         return cls(statements_dict, items_config_list, statement_name, global_sympy_namespace)
 
     # get a dataframe with a column for each date and the rows for each datapoint in the statements
-    # Todo: we could resolve any time-shifted formulas here 
-    def to_df(self) -> pd.DataFrame:
+    def to_df(self, index_as_display_name=True) -> pd.DataFrame:
         all_series = []
         for date, statement in self.statements.items():
-            series = statement.to_series()
+            series = statement.to_series(index_as_display_name)
             series.name = date
             all_series.append(series)
         return pd.concat(all_series, axis=1)
@@ -244,7 +242,7 @@ class FinStatementsBase:
         if isinstance(other, (float, int)):
             new_df = self.df + other
         elif isinstance(other, FinStatementsBase):
-            new_df = combine_statement_dfs(self.df, other.df, operation=operator.add)
+            new_df = combine_statement_dfs(self.to_df(index_as_display_name=False), other.to_df(index_as_display_name=False), operation=operator.add)
         else:
             raise NotImplementedError(
                 f"cannot add type {type(other)} to type {type(self)}"
@@ -254,7 +252,7 @@ class FinStatementsBase:
         #
         # Think about the best way to handle this. This applies to all math dunder methods.
         new_statements = type(self).from_df(
-            new_df, self.config.items, disp_unextracted=False
+            new_df, self.statement_name, self.global_sympy_namespace, self.config.items, disp_unextracted=False
         )
         return new_statements
 
@@ -339,7 +337,7 @@ def combine_statement_dfs(
     df: pd.DataFrame,
     df2: pd.DataFrame,
     operation: Callable[[pd.DataFrame, pd.DataFrame], pd.DataFrame] = operator.add,
-) -> pd.DataFrame:
+) -> pd.DataFrame:    
     common_cols = [col for col in df.columns if col in df2.columns]
     df_unique_cols = [col for col in df.columns if col not in df2.columns]
     df2_unique_cols = [col for col in df2.columns if col not in df.columns]

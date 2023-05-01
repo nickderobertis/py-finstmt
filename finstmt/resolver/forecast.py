@@ -18,6 +18,7 @@ from finstmt.exc import (
     InvalidForecastEquationException,
     MissingDataException,
 )
+from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.main import Forecast
 from finstmt.forecast.statements import ForecastedFinancialStatements
 from finstmt.items.config import ItemConfig
@@ -105,26 +106,43 @@ class ForecastResolver(ResolverBase):
                 )
 
         all_results = pd.concat(list(new_results.values()), axis=1).T
-        inc_df = self.stmts.income_statements.__class__.from_df(
-            all_results,
-            self.stmts.income_statements.config.items,
-            disp_unextracted=False,
-        )
-        bs_df = self.stmts.balance_sheets.__class__.from_df(
-            all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
-        )
+
+        stmt_dfs = []
+        for stmt in self.stmts.statements:
+            stmt_df = FinStatementsBase.from_df(
+                all_results,
+                stmt.statement_name,
+                self.global_sympy_namespace,
+                stmt.config.items,
+                disp_unextracted=False
+            )
+            stmt_dfs.append(stmt_df)
+
+        # inc_df = self.stmts.income_statements.__class__.from_df(
+        #     all_results,
+        #     self.stmts.income_statements.config.items,
+        #     disp_unextracted=False,
+        # )
+        # bs_df = self.stmts.balance_sheets.__class__.from_df(
+        #     all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
+        # )
 
         # type ignore added because for some reason mypy is not picking up structure
         # correctly since it is a dataclass
-        obj = ForecastedFinancialStatements(inc_df, bs_df, forecasts=self.forecast_dict, calculate=False)  # type: ignore
+        # obj = ForecastedFinancialStatements(inc_df, bs_df, forecasts=self.forecast_dict, calculate=False)  # type: ignore
+        obj = ForecastedFinancialStatements(stmt_dfs, self.global_sympy_namespace, forecasts=self.forecast_dict, calculate=False)  # type: ignore
         return obj
 
     @property
     def t_indexed_eqs(self) -> List[Eq]:
-        config_managers = [
-            self.stmts.income_statements.config.items,
-            self.stmts.balance_sheets.config.items,
-        ]
+        config_managers = []
+        for stmt in self.stmts.statements:
+            config_managers.append(stmt.config.items)
+
+        # config_managers = [
+        #     self.stmts.income_statements.config.items,
+        #     self.stmts.balance_sheets.config.items,
+        # ]
         all_eqs = []
         for config_manage in config_managers:
             for config in config_manage:

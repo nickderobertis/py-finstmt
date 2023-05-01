@@ -63,7 +63,7 @@ class FinancialStatements:
         self._create_config_from_statements()
 
         if self.calculate:
-            resolver = StatementsResolver(self, self.global_sympy_namespace)
+            resolver = StatementsResolver(self)
             new_stmts = resolver.to_statements(
                 auto_adjust_config=self.auto_adjust_config
             )
@@ -272,10 +272,10 @@ class FinancialStatements:
             all_results.update(results)
 
         resolver = ForecastResolver(
-            self, all_forecast_dict, all_results, bs_diff_max, timeout, balance=balance
+            self,  all_forecast_dict, all_results, bs_diff_max, timeout, balance=balance
         )
-        obj = resolver.to_statements()
 
+        obj = resolver.to_statements()
         return obj
 
     @property

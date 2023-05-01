@@ -59,7 +59,6 @@ class StatementsResolver(ResolverBase):
         for config_manage in config_managers:
             for config in config_manage:
                 lhs = sympify(
-                    # config.key + "[t]", locals=self.stmts.config.sympy_namespace
                     config.key + "[t]", locals=self.stmts.config.sympy_namespace
                 )
                 if config.expr_str is not None:

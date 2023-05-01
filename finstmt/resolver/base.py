@@ -13,10 +13,9 @@ class ResolverBase:
     def __init__(
             self,
             stmts: FinancialStatements,
-            global_sympy_namespace: Dict[str, IndexedBase]
     ):
         self.stmts = stmts
-        self.global_sympy_namespace = global_sympy_namespace
+        self.global_sympy_namespace = stmts.global_sympy_namespace
 
         self.set_solve_eqs_and_full_subs_dict()
 

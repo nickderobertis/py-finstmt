@@ -164,10 +164,14 @@ class PeriodFinancialData:
 
     # Return a series of all the items in the current period
     # Any formulas that refer to other items from this statement should be solved by the time thie formula returns
-    def to_series(self) -> pd.Series:
+    def to_series(self, index_as_display_name=True) -> pd.Series:
         data_dict = {}
         for item_config in self.config_manager:
-            data_dict[item_config.display_name] = getattr(self, item_config.key)
+            if index_as_display_name:
+                data_dict[item_config.display_name] = getattr(self, item_config.key)
+            else:
+                data_dict[item_config.extract_names[0] if item_config.extract_names is not None else item_config.key] = getattr(self, item_config.key)
+
         return pd.Series(data_dict).fillna(0)
 
     def __getattr__(self, key: str):
