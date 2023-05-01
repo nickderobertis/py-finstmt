@@ -22,24 +22,25 @@ class StatementsResolver(ResolverBase):
         )
 
         all_results = pd.concat(list(new_results.values()), axis=1).T
-        inc_df = self.stmts.income_statements.__class__.from_df(
-            all_results,
-            self.stmts.income_statements.config.items,
-            disp_unextracted=False,
-        )
-        bs_df = self.stmts.balance_sheets.__class__.from_df(
-            all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
-        )
+        stmts = []
+        for stmt in self.stmts.statements:
+            stmt.from_df(
+                all_results,
+                stmt.statement_name,
+                self.global_sympy_namespace,
+                stmt.config.items,
+                disp_unextracted=False
+            )
+            stmts.append(stmt)
 
-        obj = FinancialStatements(inc_df, bs_df, calculate=False, **kwargs)
+        obj = FinancialStatements(stmts, self.global_sympy_namespace, calculate=False, **kwargs)
         return obj
 
     @property
     def t_indexed_eqs(self) -> List[Eq]:
-        config_managers = [
-            self.stmts.income_statements.config.items,
-            self.stmts.balance_sheets.config.items,
-        ]
+        config_managers = []
+        for stmt in self.stmts.statements:
+            config_managers.append(stmt.config.items)
         all_eqs = []
         for config_manage in config_managers:
             for config in config_manage:

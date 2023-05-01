@@ -39,7 +39,7 @@ def sympy_dict_to_results_dict(
         if key not in new_results:
             # Pct of item, skip it, don't need in final results
             continue
-        new_results[key].iloc[t] = float(val)
+        new_results[key].iloc[t] = val  # float(val)
     return new_results
 
 

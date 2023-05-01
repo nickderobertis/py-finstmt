@@ -10,8 +10,12 @@ class ResolverBase:
     solve_eqs: List[Eq]
     subs_dict: Dict[IndexedBase, float]
 
-    def __init__(self, stmts: FinancialStatements):
+    def __init__(
+            self,
+            stmts: FinancialStatements,
+    ):
         self.stmts = stmts
+        self.global_sympy_namespace = stmts.global_sympy_namespace
 
         self.set_solve_eqs_and_full_subs_dict()
 
