@@ -68,7 +68,6 @@ class PeriodFinancialData:
         results = {}
         for k, v in statement_items.items():
             val = v.get_value()
-            # val = v.get_value(self)
             # Some properties, e.g., nwc and effective tax rate, may be associated with a statements, but we don't
             # necessarily want to display it on the print-out
             if (val != 0) and (
@@ -77,7 +76,6 @@ class PeriodFinancialData:
                 results[k] = val
 
         return json.dumps(str(results), indent=2)
-        # return json.dumps(results, indent=2)
 
     def __dir__(self):
         normal_attrs = [
@@ -147,12 +145,6 @@ class PeriodFinancialData:
                     original_name_dict[item_config.key] = orig_name
             if name not in extracted_name_dict.values():
                 unextracted_names.append(orig_name)
-        # if not data_dict:
-        #     raise CouldNotParseException(
-        #         "Passed Series did not have any statement items in the index. "
-        #         "Got index:",
-        #         series.index,
-        #     )
         return cls(
             data_dict=data_dict,
             config_manager=config_manager,
