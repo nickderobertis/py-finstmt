@@ -33,15 +33,6 @@ class StatementsResolver(ResolverBase):
             )
             stmts.append(stmt)
 
-        # inc_df = self.stmts.income_statements.__class__.from_df(
-        #     all_results,
-        #     self.stmts.income_statements.config.items,
-        #     disp_unextracted=False,
-        # )
-        # bs_df = self.stmts.balance_sheets.__class__.from_df(
-        #     all_results, self.stmts.balance_sheets.config.items, disp_unextracted=False
-        # )
-
         obj = FinancialStatements(stmts, self.global_sympy_namespace, calculate=False, **kwargs)
         return obj
 
@@ -50,11 +41,6 @@ class StatementsResolver(ResolverBase):
         config_managers = []
         for stmt in self.stmts.statements:
             config_managers.append(stmt.config.items)
-
-        # config_managers = [
-        #     self.stmts.income_statements.config.items,
-        #     self.stmts.balance_sheets.config.items,
-        # ]
         all_eqs = []
         for config_manage in config_managers:
             for config in config_manage:
