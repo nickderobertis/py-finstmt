@@ -249,7 +249,7 @@ class FinStatementsBase:
         #
         # Think about the best way to handle this. This applies to all math dunder methods.
         new_statements = type(self).from_df(
-            new_df, self.statement_name, self.config.items, disp_unextracted=False
+            new_df, self.statement_name, self.items_config_list, disp_unextracted=False
         )
         return new_statements
 
@@ -267,7 +267,7 @@ class FinStatementsBase:
             )
 
         new_statements = type(self).from_df(
-            new_df, self.config.items, disp_unextracted=False
+            new_df, self.statement_name, self.items_config_list, disp_unextracted=False
         )
         return new_statements
 
@@ -285,7 +285,7 @@ class FinStatementsBase:
             )
 
         new_statements = type(self).from_df(
-            new_df, self.config.items, disp_unextracted=False
+            new_df, self.statement_name, self.items_config_list, disp_unextracted=False
         )
         return new_statements
 
@@ -305,7 +305,7 @@ class FinStatementsBase:
             )
 
         new_statements = type(self).from_df(
-            new_df, self.config.items, disp_unextracted=False
+            new_df, self.statement_name, self.items_config_list, disp_unextracted=False
         )
         return new_statements
 
@@ -318,14 +318,14 @@ class FinStatementsBase:
             )
 
         new_statements = type(self).from_df(
-            new_df, self.config.items, disp_unextracted=False
+            new_df, self.statement_name, self.items_config_list, disp_unextracted=False
         )
         return new_statements
 
     def __round__(self, n=None) -> "FinStatementsBase":
         new_df = round(self.df, n)
         new_statements = type(self).from_df(
-            new_df, self.config.items, disp_unextracted=False
+            new_df, self.statement_name, self.items_config_list, disp_unextracted=False
         )
         return new_statements
 
