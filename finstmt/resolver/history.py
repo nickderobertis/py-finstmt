@@ -27,13 +27,12 @@ class StatementsResolver(ResolverBase):
             stmt.from_df(
                 all_results,
                 stmt.statement_name,
-                self.global_sympy_namespace,
                 stmt.config.items,
                 disp_unextracted=False
             )
             stmts.append(stmt)
 
-        obj = FinancialStatements(stmts, self.global_sympy_namespace, calculate=False, **kwargs)
+        obj = FinancialStatements(stmts, calculate=False, **kwargs)
         return obj
 
     @property

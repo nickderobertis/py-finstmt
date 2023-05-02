@@ -112,7 +112,6 @@ class ForecastResolver(ResolverBase):
             stmt_df = FinStatementsBase.from_df(
                 all_results,
                 stmt.statement_name,
-                self.global_sympy_namespace,
                 stmt.config.items,
                 disp_unextracted=False
             )
@@ -121,7 +120,7 @@ class ForecastResolver(ResolverBase):
         # type ignore added because for some reason mypy is not picking up structure
         # correctly since it is a dataclass
         # obj = ForecastedFinancialStatements(inc_df, bs_df, forecasts=self.forecast_dict, calculate=False)  # type: ignore
-        obj = ForecastedFinancialStatements(stmt_dfs, self.global_sympy_namespace, forecasts=self.forecast_dict, calculate=False)  # type: ignore
+        obj = ForecastedFinancialStatements(stmt_dfs, forecasts=self.forecast_dict, calculate=False)  # type: ignore
         return obj
 
     @property

@@ -48,7 +48,7 @@ class FinancialStatements:
     """
 
     statements: List[FinStatementsBase]
-    global_sympy_namespace: Dict[str, IndexedBase]
+    global_sympy_namespace: Dict[str, IndexedBase] = None
     calculate: bool = True
     auto_adjust_config: bool = True
     _combinator: StatementsCombinator[Self] = FinancialStatementsCombinator()  # type: ignore[assignment]
