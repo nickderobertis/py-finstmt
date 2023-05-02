@@ -1451,7 +1451,36 @@ INCOME_STATEMENT_CONFIG = StatementConfig(
         ),
     ]
 )
+METRICS_STATEMENT_CONFIG = StatementConfig(
+    "metrics",
+    "Metrics",
+    [
+        ItemConfig(
+            "capex",
+            "Capex",
+            expr_str="net_ppe[t-1] - net_ppe[t] + dep[t]",
+            forecast_config=ForecastItemConfig(
+                make_forecast=False,
+            ),
+        ),
+        ItemConfig(
+            "non_cash_expenses",
+            "None Cash Expense",
+            expr_str="dep[t] + gain_on_sale_invest[t] + gain_on_sale_asset[t] + impairment[t]",
+            forecast_config=ForecastItemConfig(
+                make_forecast=False,
+            ),
+        ),
+        ItemConfig(
+            "fcf",
+            "Free Cash Flow",
+            expr_str="net_income[t] + non_cash_expenses[t] + nwc[t-1] - nwc[t] - capex[t]",
+            forecast_config=ForecastItemConfig(
+                make_forecast=False,
+            ),
+        ),
 
+    ]
 
 STATEMENT_CONFIGS = [
     BALANCE_SHEET_CONFIG,
