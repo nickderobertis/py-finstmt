@@ -128,9 +128,9 @@ def _apply_to_child_statements(
 
     if isinstance(other, (float, int)):
         new_stmts = []
-        for (left, right) in zip(statements.statements, other):
-            new_stmt = func(left, right)
-            new_stmts.append()
+        for statement in statements.statements:
+            new_stmt = func(statement, other)
+            new_stmts.append(new_stmt)
     elif isinstance(other, FinancialStatements):
         new_stmts = []
         for (left, right) in zip(statements.statements, other.statements):
