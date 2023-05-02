@@ -3,7 +3,8 @@ import os
 import pandas as pd
 import pytest
 
-from finstmt import BalanceSheets, FinancialStatements, IncomeStatements
+from finstmt import FinancialStatements
+from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.exc import MismatchingDatesException
 from finstmt.loaders.capiq import load_capiq_df
 from tests.fixtures.data.common import DATA_PATH
@@ -19,8 +20,8 @@ def annual_capiq_income_df() -> pd.DataFrame:
 
 
 @pytest.fixture(scope="session")
-def annual_capiq_income_stmt() -> IncomeStatements:
-    stmt = IncomeStatements.from_df(annual_capiq_income_df())
+def annual_capiq_income_stmt() -> FinStatementsBase:
+    stmt = FinStatementsBase.from_df(annual_capiq_income_df(), "Income Statement")
     return stmt
 
 
@@ -32,8 +33,8 @@ def annual_capiq_bs_df() -> pd.DataFrame:
 
 
 @pytest.fixture(scope="session")
-def annual_capiq_bs_stmt() -> BalanceSheets:
-    stmt = BalanceSheets.from_df(annual_capiq_bs_df())
+def annual_capiq_bs_stmt() -> FinStatementsBase:
+    stmt = FinStatementsBase.from_df(annual_capiq_bs_df(), "Balance Sheet")
     return stmt
 
 
@@ -73,8 +74,8 @@ def quarterly_capiq_income_df() -> pd.DataFrame:
 
 
 @pytest.fixture
-def quarterly_capiq_income_stmt() -> IncomeStatements:
-    stmt = IncomeStatements.from_df(quarterly_capiq_income_df())
+def quarterly_capiq_income_stmt() -> FinStatementsBase:
+    stmt = FinStatementsBase.from_df(quarterly_capiq_income_df(), "Income Statement")
     return stmt
 
 
@@ -86,8 +87,8 @@ def quarterly_capiq_bs_df() -> pd.DataFrame:
 
 
 @pytest.fixture
-def quarterly_capiq_bs_stmt() -> BalanceSheets:
-    stmt = BalanceSheets.from_df(quarterly_capiq_bs_df())
+def quarterly_capiq_bs_stmt() -> FinStatementsBase:
+    stmt = FinStatementsBase.from_df(quarterly_capiq_bs_df(), "Balance Sheet")
     return stmt
 
 

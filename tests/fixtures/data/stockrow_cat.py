@@ -3,7 +3,8 @@ import os
 import pandas as pd
 import pytest
 
-from finstmt import BalanceSheets, FinancialStatements, IncomeStatements
+from finstmt import FinancialStatements
+from finstmt.findata.statementsbase import FinStatementsBase
 from tests.fixtures.data.common import DATA_PATH
 
 STOCKROW_PATH = os.path.join(DATA_PATH, "stockrow")
@@ -17,8 +18,8 @@ def annual_stockrow_income_df_cat() -> pd.DataFrame:
 
 
 @pytest.fixture
-def annual_stockrow_income_stmt_cat() -> IncomeStatements:
-    stmt = IncomeStatements.from_df(annual_stockrow_income_df_cat())
+def annual_stockrow_income_stmt_cat() -> FinStatementsBase:
+    stmt = FinStatementsBase.from_df(annual_stockrow_income_df_cat())
     return stmt
 
 
@@ -29,8 +30,8 @@ def annual_stockrow_bs_df_cat() -> pd.DataFrame:
 
 
 @pytest.fixture
-def annual_stockrow_bs_stmt_cat() -> BalanceSheets:
-    stmt = BalanceSheets.from_df(annual_stockrow_bs_df_cat())
+def annual_stockrow_bs_stmt_cat() -> FinStatementsBase:
+    stmt = FinStatementsBase.from_df(annual_stockrow_bs_df_cat(), "Balance Sheet")
     return stmt
 
 
@@ -51,8 +52,8 @@ def quarterly_stockrow_income_df_cat() -> pd.DataFrame:
 
 
 @pytest.fixture
-def quarterly_stockrow_income_stmt_cat() -> IncomeStatements:
-    stmt = IncomeStatements.from_df(quarterly_stockrow_income_df_cat())
+def quarterly_stockrow_income_stmt_cat() -> FinStatementsBase:
+    stmt = FinStatementsBase.from_df(quarterly_stockrow_income_df_cat(), "Income Statement")
     return stmt
 
 
@@ -63,8 +64,8 @@ def quarterly_stockrow_bs_df_cat() -> pd.DataFrame:
 
 
 @pytest.fixture
-def quarterly_stockrow_bs_stmt_cat() -> BalanceSheets:
-    stmt = BalanceSheets.from_df(quarterly_stockrow_bs_df_cat())
+def quarterly_stockrow_bs_stmt_cat() -> FinStatementsBase:
+    stmt = FinStatementsBase.from_df(quarterly_stockrow_bs_df_cat(), "Balance Sheet")
     return stmt
 
 
