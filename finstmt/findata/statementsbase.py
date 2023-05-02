@@ -97,7 +97,7 @@ class FinStatementsBase:
             all_series.append(series)
         df = pd.concat(all_series, axis=1)
 
-        return self.from_df(df, self.statement_name, self.items_config_list disp_unextracted=False)
+        return self.from_df(df, self.statement_name, self.items_config_list, disp_unextracted=False)
 
     def __dir__(self):
         normal_attrs = [
