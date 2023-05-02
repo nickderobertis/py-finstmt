@@ -41,7 +41,7 @@ def annual_stockrow_stmts_mar(
     annual_stockrow_income_stmt_mar, annual_stockrow_bs_stmt_mar
 ) -> FinancialStatements:
     stmts = FinancialStatements(
-        annual_stockrow_income_stmt_mar, annual_stockrow_bs_stmt_mar
+        [annual_stockrow_income_stmt_mar, annual_stockrow_bs_stmt_mar]
     )
     return stmts
 
@@ -75,6 +75,6 @@ def quarterly_stockrow_stmts_mar(
     quarterly_stockrow_income_stmt_mar, quarterly_stockrow_bs_stmt_mar
 ) -> FinancialStatements:
     stmts = FinancialStatements(
-        quarterly_stockrow_income_stmt_mar, quarterly_stockrow_bs_stmt_mar
+        [quarterly_stockrow_income_stmt_mar, quarterly_stockrow_bs_stmt_mar]
     )
     return stmts

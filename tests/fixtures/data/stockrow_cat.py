@@ -41,7 +41,7 @@ def annual_stockrow_stmts_cat(
     annual_stockrow_income_stmt_cat, annual_stockrow_bs_stmt_cat
 ) -> FinancialStatements:
     stmts = FinancialStatements(
-        annual_stockrow_income_stmt_cat, annual_stockrow_bs_stmt_cat
+        [annual_stockrow_income_stmt_cat, annual_stockrow_bs_stmt_cat]
     )
     return stmts
 
@@ -75,6 +75,6 @@ def quarterly_stockrow_stmts_cat(
     quarterly_stockrow_income_stmt_cat, quarterly_stockrow_bs_stmt_cat
 ) -> FinancialStatements:
     stmts = FinancialStatements(
-        quarterly_stockrow_income_stmt_cat, quarterly_stockrow_bs_stmt_cat
+        [quarterly_stockrow_income_stmt_cat, quarterly_stockrow_bs_stmt_cat]
     )
     return stmts
