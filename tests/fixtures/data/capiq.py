@@ -58,14 +58,14 @@ def _annual_capiq_stmts(
 def annual_capiq_stmts(
     annual_capiq_income_stmt, annual_capiq_bs_stmt
 ) -> FinancialStatements:
-    return _annual_capiq_stmts([annual_capiq_income_stmt, annual_capiq_bs_stmt])
+    return _annual_capiq_stmts(annual_capiq_income_stmt, annual_capiq_bs_stmt)
 
 
 @pytest.fixture(scope="session")
 def ro_annual_capiq_stmts(
     annual_capiq_income_stmt, annual_capiq_bs_stmt
 ) -> FinancialStatements:
-    return _annual_capiq_stmts([annual_capiq_income_stmt, annual_capiq_bs_stmt])
+    return _annual_capiq_stmts(annual_capiq_income_stmt, annual_capiq_bs_stmt)
 
 
 def quarterly_capiq_income_df() -> pd.DataFrame:
