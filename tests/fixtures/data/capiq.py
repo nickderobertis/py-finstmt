@@ -8,7 +8,7 @@ from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.exc import MismatchingDatesException
 from finstmt.loaders.capiq import load_capiq_df
 from tests.fixtures.data.common import DATA_PATH
-from finstmt.config.statement_config import BALANCE_SHEET_INPUT_CONFIG, INCOME_STATEMENT_CONFIG
+from finstmt.config.statement_config import BALANCE_SHEET_CONFIG, INCOME_STATEMENT_CONFIG
 
 
 CAPIQ_PATH = os.path.join(DATA_PATH, "capiq")
@@ -36,7 +36,7 @@ def annual_capiq_bs_df() -> pd.DataFrame:
 
 @pytest.fixture(scope="session")
 def annual_capiq_bs_stmt() -> FinStatementsBase:
-    stmt = FinStatementsBase.from_df(annual_capiq_bs_df(), BALANCE_SHEET_INPUT_CONFIG.display_name, BALANCE_SHEET_INPUT_CONFIG.items_config_list)
+    stmt = FinStatementsBase.from_df(annual_capiq_bs_df(), BALANCE_SHEET_CONFIG.display_name, BALANCE_SHEET_CONFIG.items_config_list)
     return stmt
 
 
@@ -90,7 +90,7 @@ def quarterly_capiq_bs_df() -> pd.DataFrame:
 
 @pytest.fixture
 def quarterly_capiq_bs_stmt() -> FinStatementsBase:
-    stmt = FinStatementsBase.from_df(quarterly_capiq_bs_df(), BALANCE_SHEET_INPUT_CONFIG.display_name, BALANCE_SHEET_INPUT_CONFIG.items_config_list)
+    stmt = FinStatementsBase.from_df(quarterly_capiq_bs_df(), BALANCE_SHEET_CONFIG.display_name, BALANCE_SHEET_CONFIG.items_config_list)
     return stmt
 
 
