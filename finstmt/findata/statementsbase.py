@@ -31,7 +31,6 @@ class FinStatementsBase:
     statements: Dict[pd.Timestamp, PeriodFinancialData]
     items_config_list: List[ItemConfig]
     statement_name: str
-    global_sympy_namespace: Dict[str, IndexedBase]
 
     def __post_init__(self):
         self.df = self.to_df()
@@ -55,7 +54,6 @@ class FinStatementsBase:
         for (date, statement) in self.statements.items():
             statement.resolve_expressions(date, finStmts)
         self.df = self.to_df()
-
 
     def _repr_html_(self):
         return self._formatted_df._repr_html_()
@@ -116,7 +114,6 @@ class FinStatementsBase:
         cls,
         df: pd.DataFrame,
         statement_name: str,
-        global_sympy_namespace: Dict[str, IndexedBase],
         items_config_list: Optional[List[ItemConfig]] = None,
         disp_unextracted: bool = True,
 
@@ -136,7 +133,7 @@ class FinStatementsBase:
         for col in dates:
             try:
                 statement = PeriodFinancialData.from_series(
-                    df[col], config_manager, global_sympy_namespace
+                    df[col], config_manager
                 )
             except CouldNotParseException:
                 raise CouldNotParseException(
@@ -157,7 +154,7 @@ class FinStatementsBase:
                     f"Was not able to extract data from the following names: {all_unextracted_names}"
                 )
 
-        return cls(statements_dict, items_config_list, statement_name, global_sympy_namespace)
+        return cls(statements_dict, items_config_list, statement_name)
 
     # get a dataframe with a column for each date and the rows for each datapoint in the statements
     def to_df(self, index_as_display_name=True) -> pd.DataFrame:
@@ -252,7 +249,7 @@ class FinStatementsBase:
         #
         # Think about the best way to handle this. This applies to all math dunder methods.
         new_statements = type(self).from_df(
-            new_df, self.statement_name, self.global_sympy_namespace, self.config.items, disp_unextracted=False
+            new_df, self.statement_name, self.config.items, disp_unextracted=False
         )
         return new_statements
 

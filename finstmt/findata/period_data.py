@@ -25,7 +25,6 @@ class PeriodFinancialData:
     prior_statement: Optional["PeriodFinancialData"]
     unextracted_names: List[str]
     statement_items: Dict[str, StatementItem]
-    global_sympy_namespace: Dict[str, IndexedBase]
 
     # TODO: Set this via user config
     maximum_display_verbosity = 1
@@ -35,13 +34,11 @@ class PeriodFinancialData:
         data_dict: Dict[str, float],
         config_manager: DataConfigManager,
         unextracted_names: List[str],
-        global_sympy_namespace: Dict[str, IndexedBase],
         prior_statement: Optional["PeriodFinancialData"] = None,
     ):
         self.config_manager = DataConfigManager(deepcopy(config_manager.configs))
         self.prior_statement = prior_statement
         self.unextracted_names = unextracted_names
-        self.global_sympy_namespace = global_sympy_namespace
 
         self.statement_items = {}
         for item in self.config_manager:
@@ -94,7 +91,6 @@ class PeriodFinancialData:
         cls,
         series: pd.Series,
         config_manager: DataConfigManager,
-        global_sympy_namespace: Dict[str, IndexedBase],
         prior_statement: Optional["PeriodFinancialData"] = None,
     ):
         for_lookup = deepcopy(series)
@@ -149,7 +145,6 @@ class PeriodFinancialData:
             data_dict=data_dict,
             config_manager=config_manager,
             unextracted_names=unextracted_names,
-            global_sympy_namespace=global_sympy_namespace,
             prior_statement=prior_statement
 
         )

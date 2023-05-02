@@ -36,8 +36,8 @@ def data_source(request):
 
 
 def _build(income_df: pd.DataFrame, balance_df: pd.DataFrame) -> FinancialStatements:
-    income_stmt = IncomeStatements.from_df(income_df)
-    bs_stmt = BalanceSheets.from_df(balance_df)
+    income_stmt = FinStatementsBase.from_df(income_df)
+    bs_stmt = FinStatementsBase.from_df(balance_df)
     stmts = FinancialStatements(income_stmt, bs_stmt)
     return stmts
 
@@ -71,9 +71,9 @@ def statement(data_frequency: DataFrequency, data_source: DataSource):
     else:
         raise NotImplementedError
 
-    income_stmt = IncomeStatements.from_df(inc_df)
-    bs_stmt = BalanceSheets.from_df(bs_df)
+    income_stmt = FinStatementsBase.from_df(inc_df)
+    bs_stmt = FinStatementsBase.from_df(bs_df)
     # Fix for capiq annual date mismatch
     dates = income_stmt.dates
-    stmts = FinancialStatements(income_stmt, bs_stmt[dates])
+    stmts = FinancialStatements([income_stmt, bs_stmt[dates]])
     return stmts

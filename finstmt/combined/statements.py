@@ -56,6 +56,15 @@ class FinancialStatements:
     def __post_init__(self):
         from finstmt.resolver.history import StatementsResolver
 
+        # initialize global sympy namespace
+        t = symbols("t", cls=Idx)
+        self.global_sympy_namespace = {"t": t}
+        # First loop through and build a namespace
+        for stmt in self.statements:
+            for config in stmt.items_config_list:
+                expr = IndexedBase(config.key)
+                self.global_sympy_namespace.update({config.key: expr})
+
         self.resolve_expressions()
 
         self._create_config_from_statements()
@@ -184,8 +193,7 @@ class FinancialStatements:
                     FinStatementsBase(
                         {date_item: stmt_timeseries[item]},
                         stmt_timeseries.items_config_list,
-                        stmt_timeseries.statement_name,
-                        stmt_timeseries.global_sympy_namespace
+                        stmt_timeseries.statement_name
                     )
                 )
         else:
@@ -366,25 +374,15 @@ class FinancialStatements:
         dates = list(df.columns)
         dates.sort(key=lambda t: pd.to_datetime(t))
 
-        # Question: Can we store this in a global static variable?
-        t = symbols("t", cls=Idx)
-        global_sympy_namespace = {"t": t}
-        # First loop through and build a namespace
-        for statment_config in statement_config_list:
-            for config in statment_config.items_config_list:
-                expr = IndexedBase(config.key)
-                global_sympy_namespace.update({config.key: expr})
-
         stmts = []
         for statment_config in statement_config_list:
             stmts.append(
                 FinStatementsBase.from_df(
                     df,
                     statment_config.display_name,
-                    global_sympy_namespace,
                     statment_config.items_config_list,
                     disp_unextracted=disp_unextracted
                 )
             )
 
-        return cls(stmts, global_sympy_namespace)
+        return cls(stmts)
