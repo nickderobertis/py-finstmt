@@ -516,10 +516,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'depreciation and amortization',
                                 'dep amortization',
                                 'dep and amortization'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='other_op_exp',
@@ -609,10 +606,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'gain sale of asset',
                                 'gain sale asset'
                             ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            force_positive=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='impairment',
@@ -893,10 +887,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'depreciation and amortization',
                                 'dep amortization',
                                 'dep and amortization'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='other_op_exp',
@@ -986,10 +977,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'gain sale of asset',
                                 'gain sale asset'
                             ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            force_positive=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='impairment',
@@ -1270,10 +1258,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'depreciation and amortization',
                                 'dep amortization',
                                 'dep and amortization'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='other_op_exp',
@@ -1363,10 +1348,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'gain sale of asset',
                                 'gain sale asset'
                             ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            force_positive=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='impairment',
@@ -1647,10 +1629,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'depreciation and amortization',
                                 'dep amortization',
                                 'dep and amortization'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='other_op_exp',
@@ -1740,10 +1719,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'gain sale of asset',
                                 'gain sale asset'
                             ],
-                            force_positive=False,
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            force_positive=False
                         ),
                         finstmt.items.config.ItemConfig(
                             key='impairment',
@@ -3037,10 +3013,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'shortterm invest',
                                 'short term invest',
                                 'st invest'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='cash_and_st_invest',
@@ -3719,10 +3692,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'deferred sales def noncurr',
                                 'deferred revenue deferred noncurr',
                                 'deferred sales deferred noncurr'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='tax_liab_lt',
@@ -3902,10 +3872,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'deposit liab',
                                 'deposit liability',
                                 'deposit liabilities'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='other_lt_liab',
@@ -4150,10 +4117,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'shortterm invest',
                                 'short term invest',
                                 'st invest'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='cash_and_st_invest',
@@ -4832,10 +4796,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'deferred sales def noncurr',
                                 'deferred revenue deferred noncurr',
                                 'deferred sales deferred noncurr'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='tax_liab_lt',
@@ -5015,10 +4976,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'deposit liab',
                                 'deposit liability',
                                 'deposit liabilities'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='other_lt_liab',
@@ -5263,10 +5221,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'shortterm invest',
                                 'short term invest',
                                 'st invest'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='cash_and_st_invest',
@@ -5945,10 +5900,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'deferred sales def noncurr',
                                 'deferred revenue deferred noncurr',
                                 'deferred sales deferred noncurr'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='tax_liab_lt',
@@ -6128,10 +6080,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'deposit liab',
                                 'deposit liability',
                                 'deposit liabilities'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='other_lt_liab',
@@ -6376,10 +6325,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'shortterm invest',
                                 'short term invest',
                                 'st invest'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='cash_and_st_invest',
@@ -7058,10 +7004,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'deferred sales def noncurr',
                                 'deferred revenue deferred noncurr',
                                 'deferred sales deferred noncurr'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='tax_liab_lt',
@@ -7241,10 +7184,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                                 'deposit liab',
                                 'deposit liability',
                                 'deposit liabilities'
-                            ],
-                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
-                                make_forecast=False
-                            )
+                            ]
                         ),
                         finstmt.items.config.ItemConfig(
                             key='other_lt_liab',
