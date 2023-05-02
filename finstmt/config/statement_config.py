@@ -40,6 +40,9 @@ BALANCE_SHEET_CONFIG = StatementConfig(
                 "short term invest",
                 "st invest",
             ],
+            forecast_config=ForecastItemConfig(
+                make_forecast=False
+            )
         ),
         ItemConfig(
             "cash_and_st_invest",
@@ -700,6 +703,9 @@ BALANCE_SHEET_CONFIG = StatementConfig(
                 "deferred revenue deferred noncurr",
                 "deferred sales deferred noncurr",
             ],
+            forecast_config=ForecastItemConfig(
+                make_forecast=False
+            )
         ),
         ItemConfig(
             "tax_liab_lt",
@@ -880,6 +886,9 @@ BALANCE_SHEET_CONFIG = StatementConfig(
                 "deposit liability",
                 "deposit liabilities",
             ],
+            forecast_config=ForecastItemConfig(
+                make_forecast=False
+            )
         ),
         ItemConfig(
             "other_lt_liab",
@@ -1225,6 +1234,9 @@ INCOME_STATEMENT_CONFIG = StatementConfig(
                 "dep amortization",
                 "dep and amortization",
             ],
+            forecast_config=ForecastItemConfig(
+                make_forecast=False
+            )
         ),
         ItemConfig(
             "other_op_exp",
@@ -1315,6 +1327,9 @@ INCOME_STATEMENT_CONFIG = StatementConfig(
                 "gain sale asset",
             ],
             force_positive=False,
+            forecast_config=ForecastItemConfig(
+                make_forecast=False
+            )
         ),
         ItemConfig(
             "impairment",
