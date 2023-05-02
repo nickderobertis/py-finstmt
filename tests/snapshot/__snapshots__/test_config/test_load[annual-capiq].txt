@@ -1,7 +1,7 @@
 '''
 finstmt.config_manage.statements.StatementsConfigManager(
     config_managers={
-        'income_statements': finstmt.config_manage.statement.StatementConfigManager(
+        'Income Statement': finstmt.config_manage.statement.StatementConfigManager(
             config_managers={
                 datetime.datetime(
                     2014,
@@ -1890,7 +1890,7 @@ finstmt.config_manage.statements.StatementsConfigManager(
                 )
             }
         ),
-        'balance_sheets': finstmt.config_manage.statement.StatementConfigManager(
+        'Balance Sheet': finstmt.config_manage.statement.StatementConfigManager(
             config_managers={
                 datetime.datetime(
                     2014,
