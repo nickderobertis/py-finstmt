@@ -42,31 +42,31 @@ class FinancialStatementsCombinator(StatementsCombinator["FinancialStatements"])
     def subtract(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        income_statements, balance_sheets = _apply_to_child_statements(
+        statements = _apply_to_child_statements(
             statement, other, operator.sub
         )
         return statement.copy(
-            income_statements=income_statements, balance_sheets=balance_sheets
+            statements=statements
         )
 
     def multiply(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        income_statements, balance_sheets = _apply_to_child_statements(
+        statements = _apply_to_child_statements(
             statement, other, operator.mul
         )
         return statement.copy(
-            income_statements=income_statements, balance_sheets=balance_sheets
+            statements=statements
         )
 
     def divide(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        income_statements, balance_sheets = _apply_to_child_statements(
+        statements = _apply_to_child_statements(
             statement, other, operator.truediv
         )
         return statement.copy(
-            income_statements=income_statements, balance_sheets=balance_sheets
+            statements=statements
         )
 
 
@@ -88,40 +88,34 @@ class ForecastedFinancialStatementsCombinator(
     def subtract(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        income_statements, balance_sheets = _apply_to_child_statements(
+        statements = _apply_to_child_statements(
             statement, other, operator.sub
         )
         forecasts = _apply_to_forecasts(statement.forecasts, other, operator.sub)
         return statement.copy(
-            income_statements=income_statements,
-            balance_sheets=balance_sheets,
-            forecasts=forecasts,
+            statements=statements, forecasts=forecasts,
         )
 
     def multiply(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        income_statements, balance_sheets = _apply_to_child_statements(
+        statements = _apply_to_child_statements(
             statement, other, operator.mul
         )
         forecasts = _apply_to_forecasts(statement.forecasts, other, operator.mul)
         return statement.copy(
-            income_statements=income_statements,
-            balance_sheets=balance_sheets,
-            forecasts=forecasts,
+            statements=statements, forecasts=forecasts,
         )
 
     def divide(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        income_statements, balance_sheets = _apply_to_child_statements(
+        statements = _apply_to_child_statements(
             statement, other, operator.truediv
         )
         forecasts = _apply_to_forecasts(statement.forecasts, other, operator.truediv)
         return statement.copy(
-            income_statements=income_statements,
-            balance_sheets=balance_sheets,
-            forecasts=forecasts,
+            statements=statements, forecasts=forecasts,
         )
 
 
