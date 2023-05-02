@@ -1289,6 +1289,9 @@ INCOME_STATEMENT_CONFIG = StatementConfig(
                 "other exps inc",
                 "other exp inc",
             ],
+            forecast_config=ForecastItemConfig(
+                make_forecast=False
+            )
         ),
         ItemConfig(
             "gain_on_sale_invest",
@@ -1307,6 +1310,9 @@ INCOME_STATEMENT_CONFIG = StatementConfig(
                 "gain sale of investments",
                 "gain sale investments",
             ],
+            forecast_config=ForecastItemConfig(
+                make_forecast=False
+            ),
             force_positive=False,
         ),
         ItemConfig(
@@ -1373,6 +1379,9 @@ INCOME_STATEMENT_CONFIG = StatementConfig(
                 "asset write down",
                 "assets write down",
             ],
+            forecast_config=ForecastItemConfig(
+                make_forecast=False
+            ),
         ),
         ItemConfig(
             "op_exp",
