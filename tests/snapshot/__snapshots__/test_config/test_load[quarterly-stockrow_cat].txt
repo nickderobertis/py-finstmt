@@ -59060,6 +59060,1370 @@ finstmt.config_manage.statements.StatementsConfigManager(
                     ]
                 )
             }
+        ),
+        'Metrics': finstmt.config_manage.statement.StatementConfigManager(
+            config_managers={
+                datetime.datetime(
+                    2009,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2010,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2010,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2010,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2010,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2011,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2011,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2011,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2011,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2012,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2012,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2012,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2012,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2013,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2013,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2013,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2013,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2014,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2014,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2014,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2014,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2015,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2015,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2015,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2015,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2016,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2016,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2016,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2016,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2017,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2017,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2017,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2017,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2018,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2018,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2018,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2018,
+                    12,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2019,
+                    3,
+                    31
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2019,
+                    6,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                ),
+                datetime.datetime(
+                    2019,
+                    9,
+                    30
+                ): finstmt.config_manage.data.DataConfigManager(
+                    configs=[
+                        finstmt.items.config.ItemConfig(
+                            key='capex',
+                            display_name='Capex',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_ppe[t] - net_ppe[t-1] + dep[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='non_cash_expenses',
+                            display_name='None Cash Expense',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='dep[t] + gain_on_sale_invest[t] + '
+                                'gain_on_sale_asset[t] + impairment[t]'
+                        ),
+                        finstmt.items.config.ItemConfig(
+                            key='fcf',
+                            display_name='Free Cash Flow',
+                            forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                                make_forecast=False
+                            ),
+                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
+                                'nwc[t-1] - capex[t]'
+                        )
+                    ]
+                )
+            }
         )
     }
 )
