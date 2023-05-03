@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import operator
 from typing import TYPE_CHECKING, Callable, Dict, List, Optional, Tuple
 
@@ -29,7 +29,7 @@ if TYPE_CHECKING:
 @dataclass
 class FinStatementsBase:
     statements: Dict[pd.Timestamp, PeriodFinancialData]
-    items_config_list: List[ItemConfig]
+    items_config_list: List[ItemConfig] = field(repr=False)
     statement_name: str
 
     def __post_init__(self):
