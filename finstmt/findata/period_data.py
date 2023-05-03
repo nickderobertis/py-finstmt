@@ -72,7 +72,7 @@ class PeriodFinancialData:
             ):
                 results[k] = val
 
-        return json.dumps(str(results), indent=2)
+        return json.dumps(results, indent=2)
 
     def __dir__(self):
         normal_attrs = [
