@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 class StatementItem:
     item_config: ItemConfig
     value: Optional[float]
-    calculated_vlaue: Optional[float] = None
+    calculated_value: Optional[float] = None
 
     def __post_init__(self) -> None:
         if (
@@ -32,12 +32,10 @@ class StatementItem:
         if self.value is not None:
             return np.float64(self.value)
 
-        expr_str = self.item_config.expr_str
-
-        if expr_str is None:
+        if self.item_config.expr_str is None:
             return np.float64(0)
 
-        return self.calculated_vlaue
+        return self.calculated_value
 
     def resolve_eq(self, date, finStmts):
         if not self.item_config.expr_str:  # if expression string is null or empty, don't do anything
@@ -73,7 +71,7 @@ class StatementItem:
             series_index_with_offset = series_index_t0 + offset
 
             if series_index_with_offset < 0:
-                self.calculated_vlaue = None
+                self.calculated_value = None
                 return
 
             date_with_offset = series.index[int(series_index_with_offset)]
@@ -82,5 +80,5 @@ class StatementItem:
             sub_list.append((sym, sub_value))
 
         result = np.float64(sym_expr.subs(sub_list))
-        self.calculated_vlaue = result
+        self.calculated_value = result
 

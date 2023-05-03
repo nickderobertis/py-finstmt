@@ -12,6 +12,8 @@ from finstmt.config_manage.data import DataConfigManager
 from finstmt.exc import CouldNotParseException
 from finstmt.findata.statement_item import StatementItem
 
+import math
+
 if TYPE_CHECKING:
     from finstmt.combined.statements import FinancialStatements
 
@@ -67,10 +69,15 @@ class PeriodFinancialData:
             val = v.get_value()
             # Some properties, e.g., nwc and effective tax rate, may be associated with a statements, but we don't
             # necessarily want to display it on the print-out
-            if (val != 0) and (
-                v.item_config.display_verbosity <= self.maximum_display_verbosity
-            ):
-                results[k] = val
+            if (val == 0):
+                continue
+            if (val is None):
+                continue
+            if (v.item_config.display_verbosity <= self.maximum_display_verbosity):
+                continue
+            if (math.isnan(val)):
+                continue
+            results[k] = val
 
         return json.dumps(results, indent=2)
 
