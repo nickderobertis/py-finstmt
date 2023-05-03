@@ -76,7 +76,7 @@ class StatementItem:
                 self.calculated_vlaue = None
                 return
 
-            date_with_offset = series.index[series_index_with_offset]
+            date_with_offset = series.index[int(series_index_with_offset)]
             sub_value = series[date_with_offset]
 
             sub_list.append((sym, sub_value))

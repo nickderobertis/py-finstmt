@@ -1458,7 +1458,7 @@ METRICS_STATEMENT_CONFIG = StatementConfig(
         ItemConfig(
             "capex",
             "Capex",
-            expr_str="net_ppe[t-1] - net_ppe[t] + dep[t]",
+            expr_str="net_ppe[t] - net_ppe[t-1] + dep[t]",
             forecast_config=ForecastItemConfig(
                 make_forecast=False,
             ),
@@ -1474,7 +1474,7 @@ METRICS_STATEMENT_CONFIG = StatementConfig(
         ItemConfig(
             "fcf",
             "Free Cash Flow",
-            expr_str="net_income[t] + non_cash_expenses[t] + nwc[t-1] - nwc[t] - capex[t]",
+            expr_str="net_income[t] + non_cash_expenses[t] + nwc[t] - nwc[t-1] - capex[t]",
             forecast_config=ForecastItemConfig(
                 make_forecast=False,
             ),
