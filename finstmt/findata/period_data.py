@@ -73,7 +73,7 @@ class PeriodFinancialData:
                 continue
             if (val is None):
                 continue
-            if (v.item_config.display_verbosity <= self.maximum_display_verbosity):
+            if (v.item_config.display_verbosity > self.maximum_display_verbosity):
                 continue
             if (math.isnan(val)):
                 continue

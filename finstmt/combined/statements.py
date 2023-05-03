@@ -1,5 +1,5 @@
 import dataclasses
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Dict, List, Optional, Set
 
 import pandas as pd
@@ -48,7 +48,7 @@ class FinancialStatements:
     """
 
     statements: List[FinStatementsBase]
-    global_sympy_namespace: Dict[str, IndexedBase] = None
+    global_sympy_namespace: Dict[str, IndexedBase] = field(default=None, repr=False)
     calculate: bool = True
     auto_adjust_config: bool = True
     _combinator: StatementsCombinator[Self] = FinancialStatementsCombinator()  # type: ignore[assignment]
