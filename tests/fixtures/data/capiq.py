@@ -99,5 +99,6 @@ def quarterly_capiq_bs_stmt() -> FinStatementsBase:
 def quarterly_capiq_stmts(
     quarterly_capiq_income_stmt, quarterly_capiq_bs_stmt
 ) -> FinancialStatements:
-    stmts = FinancialStatements(quarterly_capiq_income_stmt, quarterly_capiq_bs_stmt)
+    metrics_stmt = FinStatementsBase.from_df(quarterly_capiq_income_df()[0:1], METRICS_STATEMENT_CONFIG.display_name, METRICS_STATEMENT_CONFIG.items_config_list)
+    stmts = FinancialStatements([quarterly_capiq_income_stmt, quarterly_capiq_bs_stmt, metrics_stmt])
     return stmts
