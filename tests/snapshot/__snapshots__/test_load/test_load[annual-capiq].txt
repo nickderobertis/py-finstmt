@@ -1,12 +1,13 @@
 '''
 finstmt.combined.statements.FinancialStatements(
-    income_statements=finstmt.inc.main.IncomeStatements(
-        statements={
-            datetime.datetime(
-                2014,
-                12,
-                31
-            ): {
+    statements=[
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(
+                    2014,
+                    12,
+                    31
+                ): {
   "revenue": 55184.0,
   "cogs": 40718.0,
   "sga": 5894.0,
@@ -20,11 +21,11 @@ finstmt.combined.statements.FinancialStatements(
   "ebt": 3160.0,
   "net_income": 2452.0
 },
-            datetime.datetime(
-                2015,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2015,
+                    12,
+                    31
+                ): {
   "revenue": 47011.0,
   "cogs": 33546.0,
   "sga": 4363.0,
@@ -38,11 +39,11 @@ finstmt.combined.statements.FinancialStatements(
   "ebt": 3439.0,
   "net_income": 2512.0
 },
-            datetime.datetime(
-                2016,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2016,
+                    12,
+                    31
+                ): {
   "revenue": 38537.0,
   "cogs": 28044.0,
   "sga": 4476.0,
@@ -57,11 +58,11 @@ finstmt.combined.statements.FinancialStatements(
   "ebt": 133.0,
   "net_income": -67.0
 },
-            datetime.datetime(
-                2017,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2017,
+                    12,
+                    31
+                ): {
   "revenue": 45462.0,
   "cogs": 31260.0,
   "sga": 4425.0,
@@ -75,11 +76,11 @@ finstmt.combined.statements.FinancialStatements(
   "ebt": 4098.0,
   "net_income": 754.0
 },
-            datetime.datetime(
-                2018,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2018,
+                    12,
+                    31
+                ): {
   "revenue": 54722.0,
   "cogs": 36997.0,
   "sga": 4806.0,
@@ -93,15 +94,16 @@ finstmt.combined.statements.FinancialStatements(
   "ebt": 7846.0,
   "net_income": 6147.0
 }
-        }
-    ),
-    balance_sheets=finstmt.bs.main.BalanceSheets(
-        statements={
-            datetime.datetime(
-                2014,
-                12,
-                31
-            ): {
+            },
+            statement_name='Income Statement'
+        ),
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(
+                    2014,
+                    12,
+                    31
+                ): {
   "cash": 6317.0,
   "cash_and_st_invest": 6317.0,
   "receivables": 7699.0,
@@ -137,11 +139,11 @@ finstmt.combined.statements.FinancialStatements(
   "total_equity": 16826.0,
   "total_liab_and_equity": 84681.0
 },
-            datetime.datetime(
-                2015,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2015,
+                    12,
+                    31
+                ): {
   "cash": 5340.0,
   "cash_and_st_invest": 5340.0,
   "receivables": 6677.0,
@@ -174,11 +176,11 @@ finstmt.combined.statements.FinancialStatements(
   "total_equity": 14885.0,
   "total_liab_and_equity": 78342.0
 },
-            datetime.datetime(
-                2016,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2016,
+                    12,
+                    31
+                ): {
   "cash": 5257.0,
   "cash_and_st_invest": 5257.0,
   "receivables": 5919.0,
@@ -211,11 +213,11 @@ finstmt.combined.statements.FinancialStatements(
   "total_equity": 13213.0,
   "total_liab_and_equity": 74704.0
 },
-            datetime.datetime(
-                2017,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2017,
+                    12,
+                    31
+                ): {
   "cash": 7381.0,
   "cash_and_st_invest": 7381.0,
   "receivables": 7376.0,
@@ -247,11 +249,11 @@ finstmt.combined.statements.FinancialStatements(
   "total_equity": 13766.0,
   "total_liab_and_equity": 76962.0
 },
-            datetime.datetime(
-                2018,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2018,
+                    12,
+                    31
+                ): {
   "cash": 6968.0,
   "cash_and_st_invest": 6968.0,
   "receivables": 8714.0,
@@ -282,7 +284,57 @@ finstmt.combined.statements.FinancialStatements(
   "total_equity": 14080.0,
   "total_liab_and_equity": 78509.0
 }
-        }
-    )
+            },
+            statement_name='Balance Sheet'
+        ),
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(
+                    2014,
+                    12,
+                    31
+                ): {
+  "non_cash_expenses": 15031.0
+},
+                datetime.datetime(
+                    2015,
+                    12,
+                    31
+                ): {
+  "capex": 15400.0,
+  "non_cash_expenses": 16063.0,
+  "fcf": 1140.0
+},
+                datetime.datetime(
+                    2016,
+                    12,
+                    31
+                ): {
+  "capex": 15850.0,
+  "non_cash_expenses": 17260.0,
+  "fcf": -92.0
+},
+                datetime.datetime(
+                    2017,
+                    12,
+                    31
+                ): {
+  "capex": 16216.0,
+  "non_cash_expenses": 17570.0,
+  "fcf": 3096.0
+},
+                datetime.datetime(
+                    2018,
+                    12,
+                    31
+                ): {
+  "capex": 15626.0,
+  "non_cash_expenses": 16178.0,
+  "fcf": 8984.0
+}
+            },
+            statement_name='Metrics'
+        )
+    ]
 )
 '''
