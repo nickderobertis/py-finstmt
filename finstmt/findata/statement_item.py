@@ -17,19 +17,22 @@ class StatementItem:
     calculated_value: Optional[float] = None
 
     def __post_init__(self) -> None:
-        if (
-            self.item_config.force_positive
-            and self.item_config.extract_names is not None
-        ):
-            # If extracted and need to force positive, take absolute value
-            if self.value is None:
-                return
+        # if self.item_config.key == "total_non_current_assets":
+        #     print(f"StatementItem.__post_init__ {self.value}")
+
+        # If extracted and need to force positive, take absolute value
+        if self.value is None:
+            return
+
+        if self.item_config.force_positive:
             positive_value = abs(self.value)
             self.value = positive_value
 
     def get_value(self) -> np.float64:        
         # if specific value was provided, then return that even if it's a calculated field
-        if self.value is not None:
+        # if self.item_config.key == "total_non_current_assets":
+        #     print(f"StatementItem.get_value {self.value}")
+        if (self.value is not None) and (not np.isnan(self.value)):
             return np.float64(self.value)
 
         if self.item_config.expr_str is None:
@@ -46,6 +49,11 @@ class StatementItem:
         sub_list = []
         t = ns_syms["t"]
         
+        # if self.item_config.key == "total_non_current_assets":
+        #     print(f"################ {self.item_config.key} {date}")
+        #     print(f"###### {self.item_config.expr_str}")
+        #     print(f"###### {sym_expr.free_symbols}")
+
         for sym in sym_expr.free_symbols:
             # free_symbols include everything from the provided namespace as
             #  well as all symbols in the expression
@@ -74,11 +82,20 @@ class StatementItem:
                 self.calculated_value = None
                 return
 
+            # if self.item_config.key == "total_non_current_assets":
+            #     print(f"### {sym.base}")
+            #     print(series)
+
             date_with_offset = series.index[int(series_index_with_offset)]
             sub_value = series[date_with_offset]
 
             sub_list.append((sym, sub_value))
 
+        # if self.item_config.key == "total_non_current_assets":
+        #     print(f"### {sub_list}")
         result = np.float64(sym_expr.subs(sub_list))
+        # if self.item_config.key == "total_non_current_assets":
+        #     print(f"### {result}")
+
         self.calculated_value = result
 

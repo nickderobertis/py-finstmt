@@ -66,6 +66,7 @@ class FinancialStatements:
                 self.global_sympy_namespace.update({config.key: expr})
 
         self.resolve_expressions()
+        # self.resolve_expressions() # HACK to force re-calc incase any didn't complete first time 
 
         self._create_config_from_statements()
 
@@ -184,7 +185,6 @@ class FinancialStatements:
 
     # get a list of the hetrogeneous statements for a given date
     def __getitem__(self, item):
-        print(item)
         stmts_hetrogeneous = []
         if not isinstance(item, (list, tuple)):
             date_item = pd.to_datetime(item)

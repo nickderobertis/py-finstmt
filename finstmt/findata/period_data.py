@@ -44,9 +44,14 @@ class PeriodFinancialData:
 
         self.statement_items = {}
         for item in self.config_manager:
+            item_value = data_dict.get(item.key, None)
+
+            # if item.key == "total_non_current_assets":
+            #     print(f"PeriodFinancialData.__init__ {item.key} {item_value}")
+
             self.statement_items[item.key] = StatementItem(
                 item_config=deepcopy(item),
-                value=data_dict.get(item.key, None),
+                value=item_value,
             )
 
     # after all statement items have been established do a second loop and solve any equations that we can
@@ -146,6 +151,8 @@ class PeriodFinancialData:
                     data_dict[item_config.key] = for_lookup[name]
                     extracted_name_dict[item_config.key] = name
                     original_name_dict[item_config.key] = orig_name
+                    # if item_config.key == "total_non_current_assets":
+                    # print(f"%%%%%%%%%%%% {item_config.key} {name} {data_dict[item_config.key]}")
             if name not in extracted_name_dict.values():
                 unextracted_names.append(orig_name)
         return cls(
@@ -166,7 +173,16 @@ class PeriodFinancialData:
             else:
                 data_dict[item_config.extract_names[0] if item_config.extract_names is not None else item_config.key] = getattr(self, item_config.key)
 
-        return pd.Series(data_dict).fillna(0)
+        # return pd.Series(data_dict).fillna(0)
+        # Maybe Filling NA shuold be a display level functionality
+        # Because when copying a statment, having a value of None/Nan is meaningful
+        # it means the value WASN'T explicitly provided
+        # If it is 0, it means the value was explicitly provided and when copying the 0
+        #  the 0 will persit and supercede and calculation logic
+        # if "total_non_current_assets" in data_dict:
+        #     print(f"PeriodFinancialData.to_series {data_dict.total_non_current_assets}")
+
+        return pd.Series(data_dict)  
 
     def __getattr__(self, key: str):
         try:
