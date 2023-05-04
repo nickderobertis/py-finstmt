@@ -82,7 +82,7 @@ class PeriodFinancialData:
                 continue
             if (round(val) == 0):
                 continue
-            results[k] = round(val)
+            results[k] = float(round(val))
 
         return json.dumps(results, indent=2)
 
