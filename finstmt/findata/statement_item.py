@@ -30,8 +30,8 @@ class StatementItem:
 
     def get_value(self) -> np.float64:        
         # if specific value was provided, then return that even if it's a calculated field
-        # if self.item_config.key == "total_non_current_assets":
-        #     print(f"StatementItem.get_value {self.value}")
+        # if self.item_config.key == "fcf":
+        #     print(f"StatementItem.get_value {self.value} {self.calculated_value}")
         if (self.value is not None) and (not np.isnan(self.value)):
             return np.float64(self.value)
 

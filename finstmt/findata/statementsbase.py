@@ -71,8 +71,8 @@ class FinStatementsBase:
                 # Should hit here on the first loop if this is an invalid item
                 # Raise attribute error like normal.
                 raise AttributeError(item)
-            if pd.isnull(statement_value):
-                statement_value = 0
+            # if pd.isnull(statement_value):
+            #     statement_value = 0
             data_dict[date] = statement_value
         item_config: Optional[ItemConfig] = None
         try:
