@@ -1474,7 +1474,7 @@ METRICS_STATEMENT_CONFIG = StatementConfig(
         ItemConfig(
             "fcf",
             "Free Cash Flow",
-            expr_str="net_income[t] + non_cash_expenses[t] + nwc[t] - nwc[t-1] - capex[t]",
+            expr_str="net_income[t] + non_cash_expenses[t] - (nwc[t] - nwc[t-1]) - capex[t]",
             forecast_config=ForecastItemConfig(
                 make_forecast=False,
             ),
