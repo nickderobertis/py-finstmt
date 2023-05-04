@@ -74,13 +74,13 @@ class PeriodFinancialData:
             val = v.get_value()
             # Some properties, e.g., nwc and effective tax rate, may be associated with a statements, but we don't
             # necessarily want to display it on the print-out
-            if (val == 0):
-                continue
             if (val is None):
                 continue
             if (v.item_config.display_verbosity > self.maximum_display_verbosity):
                 continue
             if (math.isnan(val)):
+                continue
+            if (round(val) == 0):
                 continue
             results[k] = round(val)
 
