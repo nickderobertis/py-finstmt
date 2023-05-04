@@ -59092,8 +59092,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59126,8 +59126,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59160,8 +59160,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59194,8 +59194,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59228,8 +59228,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59262,8 +59262,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59296,8 +59296,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59330,8 +59330,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59364,8 +59364,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59398,8 +59398,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59432,8 +59432,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59466,8 +59466,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59500,8 +59500,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59534,8 +59534,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59568,8 +59568,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59602,8 +59602,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59636,8 +59636,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59670,8 +59670,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59704,8 +59704,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59738,8 +59738,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59772,8 +59772,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59806,8 +59806,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59840,8 +59840,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59874,8 +59874,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59908,8 +59908,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59942,8 +59942,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -59976,8 +59976,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60010,8 +60010,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60044,8 +60044,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60078,8 +60078,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60112,8 +60112,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60146,8 +60146,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60180,8 +60180,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60214,8 +60214,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60248,8 +60248,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60282,8 +60282,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60316,8 +60316,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60350,8 +60350,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60384,8 +60384,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 ),
@@ -60418,8 +60418,8 @@ finstmt.config_manage.statements.StatementsConfigManager(
                             forecast_config=finstmt.forecast.config.ForecastItemConfig(
                                 make_forecast=False
                             ),
-                            expr_str='net_income[t] + non_cash_expenses[t] + nwc[t] - '
-                                'nwc[t-1] - capex[t]'
+                            expr_str='net_income[t] + non_cash_expenses[t] - (nwc[t] - '
+                                'nwc[t-1]) - capex[t]'
                         )
                     ]
                 )
