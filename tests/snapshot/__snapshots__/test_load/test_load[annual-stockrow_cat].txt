@@ -466,7 +466,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 153000000.0,
-  "fcf": 4598000000.0
+  "fcf": 496000000.0
 },
                 datetime.datetime(
                     2011,
@@ -474,7 +474,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 1856000000.0,
-  "fcf": 7678000000.0
+  "fcf": -1534000000.0
 },
                 datetime.datetime(
                     2012,
@@ -482,7 +482,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 2066000000.0,
-  "fcf": 9134000000.0
+  "fcf": -1904000000.0
 },
                 datetime.datetime(
                     2013,
@@ -490,7 +490,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 614000000.0,
-  "fcf": 34000000.0
+  "fcf": 6316000000.0
 },
                 datetime.datetime(
                     2014,
@@ -498,7 +498,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -498000000.0,
-  "fcf": 1848000000.0
+  "fcf": 4052000000.0
 },
                 datetime.datetime(
                     2015,
@@ -506,7 +506,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -487000000.0,
-  "fcf": -279000000.0
+  "fcf": 6277000000.0
 },
                 datetime.datetime(
                     2016,
@@ -514,7 +514,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -768000000.0,
-  "fcf": -1395000000.0
+  "fcf": 2797000000.0
 },
                 datetime.datetime(
                     2017,
@@ -522,7 +522,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -1167000000.0,
-  "fcf": 3089000000.0
+  "fcf": 753000000.0
 },
                 datetime.datetime(
                     2018,
@@ -530,7 +530,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -581000000.0,
-  "fcf": 8849000000.0
+  "fcf": 4607000000.0
 }
             },
             statement_name='Metrics'

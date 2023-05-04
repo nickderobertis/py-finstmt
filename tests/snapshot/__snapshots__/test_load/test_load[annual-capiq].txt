@@ -303,7 +303,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 15400.0,
   "non_cash_expenses": 16063.0,
-  "fcf": 1140.0
+  "fcf": 5210.0
 },
                 datetime.datetime(
                     2016,
@@ -312,7 +312,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 15850.0,
   "non_cash_expenses": 17260.0,
-  "fcf": -92.0
+  "fcf": 2778.0
 },
                 datetime.datetime(
                     2017,
@@ -321,7 +321,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 16216.0,
   "non_cash_expenses": 17570.0,
-  "fcf": 3096.0
+  "fcf": 1120.0
 },
                 datetime.datetime(
                     2018,
@@ -330,7 +330,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 15626.0,
   "non_cash_expenses": 16178.0,
-  "fcf": 8984.0
+  "fcf": 4414.0
 }
             },
             statement_name='Metrics'

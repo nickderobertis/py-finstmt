@@ -1681,7 +1681,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -2739.0,
   "non_cash_expenses": -1.0,
-  "fcf": 5166.0
+  "fcf": 3708.0
 },
                 datetime.datetime(
                     2012,
@@ -1690,7 +1690,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 385.0,
   "non_cash_expenses": 276.0,
-  "fcf": 1625.0
+  "fcf": 1555.0
 },
                 datetime.datetime(
                     2012,
@@ -1699,7 +1699,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 17715.0,
   "non_cash_expenses": 14056.0,
-  "fcf": -3836.0
+  "fcf": -2088.0
 },
                 datetime.datetime(
                     2013,
@@ -1708,7 +1708,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -3607.0,
   "non_cash_expenses": 1.0,
-  "fcf": 4663.0
+  "fcf": 4313.0
 },
                 datetime.datetime(
                     2013,
@@ -1717,7 +1717,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -40.0,
   "non_cash_expenses": -1.0,
-  "fcf": -773.0
+  "fcf": 2771.0
 },
                 datetime.datetime(
                     2013,
@@ -1725,7 +1725,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 38.0,
-  "fcf": -261.0
+  "fcf": 2077.0
 },
                 datetime.datetime(
                     2013,
@@ -1734,7 +1734,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 18464.0,
   "non_cash_expenses": 14261.0,
-  "fcf": -4454.0
+  "fcf": -1946.0
 },
                 datetime.datetime(
                     2014,
@@ -1743,7 +1743,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -4302.0,
   "non_cash_expenses": 14.0,
-  "fcf": 5503.0
+  "fcf": 4973.0
 },
                 datetime.datetime(
                     2014,
@@ -1751,7 +1751,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -195.0,
-  "fcf": 726.0
+  "fcf": 1662.0
 },
                 datetime.datetime(
                     2014,
@@ -1760,7 +1760,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -228.0,
   "non_cash_expenses": 21.0,
-  "fcf": 1271.0
+  "fcf": 1261.0
 },
                 datetime.datetime(
                     2014,
@@ -1769,7 +1769,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 19222.0,
   "non_cash_expenses": 14996.0,
-  "fcf": -4273.0
+  "fcf": -2665.0
 },
                 datetime.datetime(
                     2015,
@@ -1778,7 +1778,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -4421.0,
   "non_cash_expenses": 124.0,
-  "fcf": 5726.0
+  "fcf": 5854.0
 },
                 datetime.datetime(
                     2015,
@@ -1787,7 +1787,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -186.0,
   "non_cash_expenses": 1.0,
-  "fcf": 668.0
+  "fcf": 1310.0
 },
                 datetime.datetime(
                     2015,
@@ -1796,7 +1796,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -154.0,
   "non_cash_expenses": 31.0,
-  "fcf": 441.0
+  "fcf": 1047.0
 },
                 datetime.datetime(
                     2015,
@@ -1805,7 +1805,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 20161.0,
   "non_cash_expenses": 15907.0,
-  "fcf": -5695.0
+  "fcf": -3001.0
 },
                 datetime.datetime(
                     2016,
@@ -1813,7 +1813,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -4422.0,
-  "fcf": 4871.0
+  "fcf": 4515.0
 },
                 datetime.datetime(
                     2016,
@@ -1822,7 +1822,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -236.0,
   "non_cash_expenses": 31.0,
-  "fcf": -94.0
+  "fcf": 1728.0
 },
                 datetime.datetime(
                     2016,
@@ -1831,7 +1831,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -238.0,
   "non_cash_expenses": 9.0,
-  "fcf": 436.0
+  "fcf": 624.0
 },
                 datetime.datetime(
                     2016,
@@ -1840,7 +1840,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 20746.0,
   "non_cash_expenses": 17220.0,
-  "fcf": -5305.0
+  "fcf": -4089.0
 },
                 datetime.datetime(
                     2017,
@@ -1848,7 +1848,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -4895.0,
-  "fcf": 5428.0
+  "fcf": 4746.0
 },
                 datetime.datetime(
                     2017,
@@ -1857,7 +1857,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -356.0,
   "non_cash_expenses": 85.0,
-  "fcf": 1176.0
+  "fcf": 1310.0
 },
                 datetime.datetime(
                     2017,
@@ -1866,7 +1866,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -220.0,
   "non_cash_expenses": 36.0,
-  "fcf": 1833.0
+  "fcf": 797.0
 },
                 datetime.datetime(
                     2017,
@@ -1875,7 +1875,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 21687.0,
   "non_cash_expenses": 17449.0,
-  "fcf": -5341.0
+  "fcf": -5733.0
 },
                 datetime.datetime(
                     2018,
@@ -1884,7 +1884,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -4669.0,
   "non_cash_expenses": -2.0,
-  "fcf": 7262.0
+  "fcf": 5402.0
 },
                 datetime.datetime(
                     2018,
@@ -1893,7 +1893,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -242.0,
   "non_cash_expenses": 7.0,
-  "fcf": 2465.0
+  "fcf": 1447.0
 },
                 datetime.datetime(
                     2018,
@@ -1902,7 +1902,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -138.0,
   "non_cash_expenses": 13.0,
-  "fcf": 2421.0
+  "fcf": 1335.0
 },
                 datetime.datetime(
                     2018,
@@ -1911,7 +1911,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": 20675.0,
   "non_cash_expenses": 16174.0,
-  "fcf": -3150.0
+  "fcf": -3756.0
 },
                 datetime.datetime(
                     2019,
@@ -1920,7 +1920,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -4013.0,
   "non_cash_expenses": 39.0,
-  "fcf": 6764.0
+  "fcf": 5102.0
 },
                 datetime.datetime(
                     2019,
@@ -1929,7 +1929,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -234.0,
   "non_cash_expenses": 14.0,
-  "fcf": 1733.0
+  "fcf": 2003.0
 },
                 datetime.datetime(
                     2019,
@@ -1938,7 +1938,7 @@ finstmt.combined.statements.FinancialStatements(
                 ): {
   "capex": -196.0,
   "non_cash_expenses": 2.0,
-  "fcf": 2010.0
+  "fcf": 1374.0
 }
             },
             statement_name='Metrics'

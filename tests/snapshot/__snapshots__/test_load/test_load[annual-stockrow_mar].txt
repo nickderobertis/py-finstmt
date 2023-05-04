@@ -467,7 +467,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -55000000.0,
-  "fcf": 672000000.0
+  "fcf": 354000000.0
 },
                 datetime.datetime(
                     2011,
@@ -475,7 +475,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -139000000.0,
-  "fcf": -1225000000.0
+  "fcf": 1899000000.0
 },
                 datetime.datetime(
                     2012,
@@ -483,7 +483,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 371000000.0,
-  "fcf": 354000000.0
+  "fcf": 46000000.0
 },
                 datetime.datetime(
                     2013,
@@ -491,7 +491,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 4000000.0,
-  "fcf": 627000000.0
+  "fcf": 617000000.0
 },
                 datetime.datetime(
                     2014,
@@ -499,7 +499,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -83000000.0,
-  "fcf": 867000000.0
+  "fcf": 805000000.0
 },
                 datetime.datetime(
                     2015,
@@ -507,7 +507,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -431000000.0,
-  "fcf": 1199000000.0
+  "fcf": 1381000000.0
 },
                 datetime.datetime(
                     2016,
@@ -515,7 +515,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 1306000000.0,
-  "fcf": -2000000.0
+  "fcf": -994000000.0
 },
                 datetime.datetime(
                     2017,
@@ -523,7 +523,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -542000000.0,
-  "fcf": 2295000000.0
+  "fcf": 1707000000.0
 },
                 datetime.datetime(
                     2018,
@@ -531,7 +531,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 163000000.0,
-  "fcf": 2671000000.0
+  "fcf": 817000000.0
 }
             },
             statement_name='Metrics'

@@ -1809,7 +1809,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -23000000.0,
-  "fcf": 336000000.0
+  "fcf": -124000000.0
 },
                 datetime.datetime(
                     2010,
@@ -1817,7 +1817,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -4000000.0,
-  "fcf": 121000000.0
+  "fcf": 125000000.0
 },
                 datetime.datetime(
                     2010,
@@ -1825,7 +1825,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -8000000.0,
-  "fcf": 20000000.0
+  "fcf": 162000000.0
 },
                 datetime.datetime(
                     2010,
@@ -1833,7 +1833,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -20000000.0,
-  "fcf": 186000000.0
+  "fcf": 200000000.0
 },
                 datetime.datetime(
                     2011,
@@ -1841,7 +1841,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 105000000.0,
-  "fcf": -78000000.0
+  "fcf": 70000000.0
 },
                 datetime.datetime(
                     2011,
@@ -1849,7 +1849,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 71000000.0,
-  "fcf": 20000000.0
+  "fcf": 108000000.0
 },
                 datetime.datetime(
                     2011,
@@ -1857,7 +1857,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -3000000.0,
-  "fcf": -436000000.0
+  "fcf": 84000000.0
 },
                 datetime.datetime(
                     2011,
@@ -1865,7 +1865,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -312000000.0,
-  "fcf": -732000000.0
+  "fcf": 1638000000.0
 },
                 datetime.datetime(
                     2012,
@@ -1873,7 +1873,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 199000000.0,
-  "fcf": -119000000.0
+  "fcf": -71000000.0
 },
                 datetime.datetime(
                     2012,
@@ -1881,7 +1881,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 16000000.0,
-  "fcf": 201000000.0
+  "fcf": 53000000.0
 },
                 datetime.datetime(
                     2012,
@@ -1889,7 +1889,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 38000000.0,
-  "fcf": 31000000.0
+  "fcf": 179000000.0
 },
                 datetime.datetime(
                     2012,
@@ -1897,7 +1897,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 118000000.0,
-  "fcf": 302000000.0
+  "fcf": -176000000.0
 },
                 datetime.datetime(
                     2013,
@@ -1905,7 +1905,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 35000000.0,
-  "fcf": 105000000.0
+  "fcf": 97000000.0
 },
                 datetime.datetime(
                     2013,
@@ -1913,7 +1913,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 60000000.0,
-  "fcf": 103000000.0
+  "fcf": 135000000.0
 },
                 datetime.datetime(
                     2013,
@@ -1921,7 +1921,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -145000000.0,
-  "fcf": 210000000.0
+  "fcf": 400000000.0
 },
                 datetime.datetime(
                     2013,
@@ -1929,7 +1929,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 54000000.0,
-  "fcf": 147000000.0
+  "fcf": 47000000.0
 },
                 datetime.datetime(
                     2014,
@@ -1937,7 +1937,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 26000000.0,
-  "fcf": 99000000.0
+  "fcf": 193000000.0
 },
                 datetime.datetime(
                     2014,
@@ -1945,7 +1945,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 78000000.0,
-  "fcf": 141000000.0
+  "fcf": 87000000.0
 },
                 datetime.datetime(
                     2014,
@@ -1953,7 +1953,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 89000000.0,
-  "fcf": 83000000.0
+  "fcf": 123000000.0
 },
                 datetime.datetime(
                     2014,
@@ -1961,7 +1961,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -276000000.0,
-  "fcf": 544000000.0
+  "fcf": 402000000.0
 },
                 datetime.datetime(
                     2015,
@@ -1969,7 +1969,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -14000000.0,
-  "fcf": 257000000.0
+  "fcf": 185000000.0
 },
                 datetime.datetime(
                     2015,
@@ -1977,7 +1977,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -459000000.0,
-  "fcf": 778000000.0
+  "fcf": 620000000.0
 },
                 datetime.datetime(
                     2015,
@@ -1985,7 +1985,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -2000000.0,
-  "fcf": 152000000.0
+  "fcf": 272000000.0
 },
                 datetime.datetime(
                     2015,
@@ -1993,7 +1993,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 44000000.0,
-  "fcf": 113000000.0
+  "fcf": 203000000.0
 },
                 datetime.datetime(
                     2016,
@@ -2001,7 +2001,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 13000000.0,
-  "fcf": 222000000.0
+  "fcf": 190000000.0
 },
                 datetime.datetime(
                     2016,
@@ -2009,7 +2009,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 14000000.0,
-  "fcf": 196000000.0
+  "fcf": 270000000.0
 },
                 datetime.datetime(
                     2016,
@@ -2017,7 +2017,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 1355000000.0,
-  "fcf": -752000000.0
+  "fcf": -1818000000.0
 },
                 datetime.datetime(
                     2016,
@@ -2025,7 +2025,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -76000000.0,
-  "fcf": 364000000.0
+  "fcf": 332000000.0
 },
                 datetime.datetime(
                     2017,
@@ -2033,7 +2033,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -226000000.0,
-  "fcf": 665000000.0
+  "fcf": 529000000.0
 },
                 datetime.datetime(
                     2017,
@@ -2041,7 +2041,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -7000000.0,
-  "fcf": 465000000.0
+  "fcf": 527000000.0
 },
                 datetime.datetime(
                     2017,
@@ -2049,7 +2049,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -208000000.0,
-  "fcf": 753000000.0
+  "fcf": 633000000.0
 },
                 datetime.datetime(
                     2017,
@@ -2057,7 +2057,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -101000000.0,
-  "fcf": 291000000.0
+  "fcf": 139000000.0
 },
                 datetime.datetime(
                     2018,
@@ -2065,7 +2065,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -2000000.0,
-  "fcf": 479000000.0
+  "fcf": 365000000.0
 },
                 datetime.datetime(
                     2018,
@@ -2073,7 +2073,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 167000000.0,
-  "fcf": 651000000.0
+  "fcf": 349000000.0
 },
                 datetime.datetime(
                     2018,
@@ -2081,7 +2081,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 9000000.0,
-  "fcf": 487000000.0
+  "fcf": 501000000.0
 },
                 datetime.datetime(
                     2018,
@@ -2089,7 +2089,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": -11000000.0,
-  "fcf": 308000000.0
+  "fcf": 348000000.0
 },
                 datetime.datetime(
                     2019,
@@ -2097,7 +2097,7 @@ finstmt.combined.statements.FinancialStatements(
                     31
                 ): {
   "capex": 5000000.0,
-  "fcf": 273000000.0
+  "fcf": 467000000.0
 },
                 datetime.datetime(
                     2019,
@@ -2105,7 +2105,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": -16000000.0,
-  "fcf": 472000000.0
+  "fcf": 24000000.0
 },
                 datetime.datetime(
                     2019,
@@ -2113,7 +2113,7 @@ finstmt.combined.statements.FinancialStatements(
                     30
                 ): {
   "capex": 15000000.0,
-  "fcf": 1251000000.0
+  "fcf": -507000000.0
 }
             },
             statement_name='Metrics'
