@@ -82,7 +82,7 @@ class PeriodFinancialData:
                 continue
             if (math.isnan(val)):
                 continue
-            results[k] = val
+            results[k] = round(val)
 
         return json.dumps(results, indent=2)
 
