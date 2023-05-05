@@ -47,8 +47,6 @@ class PeriodFinancialData:
                 seed_value=item_value,
             )
 
-    # after all statement items have been established do a second loop and solve any equations that we can
-    # repeat this step on the higher levels
     def resolve_expressions(self, date, finStmts: "FinancialStatements"):
         for statement_item in self.statement_items.values():
             statement_item.resolve_eq(date, finStmts)
@@ -56,6 +54,7 @@ class PeriodFinancialData:
     def _repr_html_(self):
         series = self.to_series()
         df = pd.DataFrame(series)
+        # TODO: introduce verbosity check here
         return df.applymap(
             lambda x: f"${x:,.0f}" if not x == 0 else " - "
         )._repr_html_()
