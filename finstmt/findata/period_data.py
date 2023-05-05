@@ -47,7 +47,7 @@ class PeriodFinancialData:
 
             self.statement_items[item.key] = StatementItem(
                 item_config=deepcopy(item),
-                value=item_value,
+                seed_value=item_value,
             )
 
     # after all statement items have been established do a second loop and solve any equations that we can
@@ -67,7 +67,7 @@ class PeriodFinancialData:
         statement_items: dict = cast(dict, self.statement_items)
         results = {}
         for k, v in statement_items.items():
-            val = v.get_value()
+            val = v.value
             # Some properties, e.g., nwc and effective tax rate, may be associated with a statements, but we don't
             # necessarily want to display it on the print-out
             if val is None:
@@ -188,5 +188,5 @@ class PeriodFinancialData:
             statement_item = self.statement_items[key]
         except KeyError:
             raise AttributeError(key)
-        # return np.float64(self.resolve_eq(statement_item.get_value()))
-        return statement_item.get_value()
+        # return np.float64(self.resolve_eq(statement_item.value))
+        return statement_item.value
