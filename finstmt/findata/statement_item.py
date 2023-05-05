@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 class StatementItem:
     item_config: ItemConfig
     value: Optional[float]
-    calculated_value: Optional[float] = None
+    calculated_value: Optional[np.float64] = None
 
     def __post_init__(self) -> None:
         # if self.item_config.key == "total_non_current_assets":
@@ -28,7 +28,7 @@ class StatementItem:
             positive_value = abs(self.value)
             self.value = positive_value
 
-    def get_value(self) -> np.float64:        
+    def get_value(self) -> Optional[np.float64]:        
         # if specific value was provided, then return that even if it's a calculated field
         # if self.item_config.key == "fcf":
         #     print(f"StatementItem.get_value {self.value} {self.calculated_value}")

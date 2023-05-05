@@ -8,7 +8,7 @@ from finstmt.items.config import ItemConfig
 class StatementConfig:
     key: str
     display_name: str
-    items_config_list: Optional[List[ItemConfig]] = None
+    items_config_list: List[ItemConfig]
 
 
 BALANCE_SHEET_CONFIG = StatementConfig(

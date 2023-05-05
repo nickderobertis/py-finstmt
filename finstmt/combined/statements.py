@@ -48,7 +48,7 @@ class FinancialStatements:
     """
 
     statements: List[FinStatementsBase]
-    global_sympy_namespace: Dict[str, IndexedBase] = field(default=None, repr=False)
+    global_sympy_namespace: Dict[str, IndexedBase] = field(init=False, repr=False)
     calculate: bool = True
     auto_adjust_config: bool = True
     _combinator: StatementsCombinator[Self] = FinancialStatementsCombinator()  # type: ignore[assignment]
@@ -360,12 +360,11 @@ class FinancialStatements:
             stmt = round(stmt, n)  # type: ignore
         return new_statements
 
-
     @classmethod
     def from_df(
         cls,
         df: pd.DataFrame,
-        statement_config_list: Optional[List[StatementConfig]] = None,
+        statement_config_list: List[StatementConfig],
         disp_unextracted: bool = True,
     ):
         """

@@ -154,7 +154,7 @@ class FinStatementsBase:
                     f"Was not able to extract data from the following names: {all_unextracted_names}"
                 )
 
-        return cls(statements_dict, items_config_list, statement_name)
+        return cls(statements_dict, config_manager.items, statement_name)
 
     # get a dataframe with a column for each date and the rows for each datapoint in the statements
     def to_df(self, index_as_display_name=True) -> pd.DataFrame:

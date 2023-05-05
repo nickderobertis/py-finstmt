@@ -3,13 +3,13 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, List, Protocol, Tuple, Ty
 
 from typing_extensions import TypeGuard
 
+
 if TYPE_CHECKING:
-    from finstmt.bs.main import BalanceSheets
+    from finstmt.findata.statementsbase import FinStatementsBase
     from finstmt.combined.statements import FinancialStatements
     from finstmt.forecast.main import Forecast
     from finstmt.forecast.statements import ForecastedFinancialStatements
-    from finstmt.inc.main import IncomeStatements
-
+    
 T = TypeVar("T")
 StatementT = TypeVar("StatementT", bound="FinancialStatements")
 
@@ -123,7 +123,7 @@ def _apply_to_child_statements(
     statements: "FinancialStatements",
     other: Any,
     func: Callable[[Any, Any], Any],
-) -> List["FinStatementBase"]:
+) -> List["FinStatementsBase"]:
     from finstmt import FinancialStatements
 
     if isinstance(other, (float, int)):
