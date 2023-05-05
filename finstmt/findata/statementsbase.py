@@ -112,6 +112,22 @@ class FinStatementsBase:
         return normal_attrs + item_attrs
 
     @classmethod
+    def from_dict(
+        cls,
+        dict: dict,
+        statement_name: str,
+        items_config_list: Optional[List[ItemConfig]] = None,
+        disp_unextracted: bool = True,
+    ):
+        df = pd.DataFrame(dict)
+        return cls.from_df(
+            df,
+            statement_name,
+            items_config_list,
+            disp_unextracted,
+        )
+
+    @classmethod
     def from_df(
         cls,
         df: pd.DataFrame,
