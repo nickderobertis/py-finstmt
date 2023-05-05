@@ -1,15 +1,14 @@
 import operator
-from typing import TYPE_CHECKING, Any, Callable, Dict, List, Protocol, Tuple, TypeVar
+from typing import TYPE_CHECKING, Any, Callable, Dict, List, Protocol, TypeVar
 
 from typing_extensions import TypeGuard
 
-
 if TYPE_CHECKING:
-    from finstmt.findata.statementsbase import FinStatementsBase
     from finstmt.combined.statements import FinancialStatements
+    from finstmt.findata.statementsbase import FinStatementsBase
     from finstmt.forecast.main import Forecast
     from finstmt.forecast.statements import ForecastedFinancialStatements
-    
+
 T = TypeVar("T")
 StatementT = TypeVar("StatementT", bound="FinancialStatements")
 
@@ -32,42 +31,26 @@ class FinancialStatementsCombinator(StatementsCombinator["FinancialStatements"])
     def add(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        statements = _apply_to_child_statements(
-            statement, other, operator.add
-        )
-        return statement.copy(
-            statements=statements
-        )
+        statements = _apply_to_child_statements(statement, other, operator.add)
+        return statement.copy(statements=statements)
 
     def subtract(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        statements = _apply_to_child_statements(
-            statement, other, operator.sub
-        )
-        return statement.copy(
-            statements=statements
-        )
+        statements = _apply_to_child_statements(statement, other, operator.sub)
+        return statement.copy(statements=statements)
 
     def multiply(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        statements = _apply_to_child_statements(
-            statement, other, operator.mul
-        )
-        return statement.copy(
-            statements=statements
-        )
+        statements = _apply_to_child_statements(statement, other, operator.mul)
+        return statement.copy(statements=statements)
 
     def divide(
         self, statement: "FinancialStatements", other: Any
     ) -> "FinancialStatements":
-        statements = _apply_to_child_statements(
-            statement, other, operator.truediv
-        )
-        return statement.copy(
-            statements=statements
-        )
+        statements = _apply_to_child_statements(statement, other, operator.truediv)
+        return statement.copy(statements=statements)
 
 
 class ForecastedFinancialStatementsCombinator(
@@ -76,9 +59,7 @@ class ForecastedFinancialStatementsCombinator(
     def add(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        statements = _apply_to_child_statements(
-            statement, other, operator.add
-        )
+        statements = _apply_to_child_statements(statement, other, operator.add)
         forecasts = _apply_to_forecasts(statement.forecasts, other, operator.add)
         return statement.copy(
             statements=statements,
@@ -88,34 +69,31 @@ class ForecastedFinancialStatementsCombinator(
     def subtract(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        statements = _apply_to_child_statements(
-            statement, other, operator.sub
-        )
+        statements = _apply_to_child_statements(statement, other, operator.sub)
         forecasts = _apply_to_forecasts(statement.forecasts, other, operator.sub)
         return statement.copy(
-            statements=statements, forecasts=forecasts,
+            statements=statements,
+            forecasts=forecasts,
         )
 
     def multiply(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        statements = _apply_to_child_statements(
-            statement, other, operator.mul
-        )
+        statements = _apply_to_child_statements(statement, other, operator.mul)
         forecasts = _apply_to_forecasts(statement.forecasts, other, operator.mul)
         return statement.copy(
-            statements=statements, forecasts=forecasts,
+            statements=statements,
+            forecasts=forecasts,
         )
 
     def divide(
         self, statement: "ForecastedFinancialStatements", other: Any
     ) -> "ForecastedFinancialStatements":
-        statements = _apply_to_child_statements(
-            statement, other, operator.truediv
-        )
+        statements = _apply_to_child_statements(statement, other, operator.truediv)
         forecasts = _apply_to_forecasts(statement.forecasts, other, operator.truediv)
         return statement.copy(
-            statements=statements, forecasts=forecasts,
+            statements=statements,
+            forecasts=forecasts,
         )
 
 
@@ -133,7 +111,7 @@ def _apply_to_child_statements(
             new_stmts.append(new_stmt)
     elif isinstance(other, FinancialStatements):
         new_stmts = []
-        for (left, right) in zip(statements.statements, other.statements):
+        for left, right in zip(statements.statements, other.statements):
             new_stmt = func(left, right)
             new_stmts.append(new_stmt)
     else:

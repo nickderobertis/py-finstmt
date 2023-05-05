@@ -71,11 +71,21 @@ def statement(data_frequency: DataFrequency, data_source: DataSource):
     else:
         raise NotImplementedError
 
-    income_stmt = FinStatementsBase.from_df(inc_df, INCOME_STATEMENT_CONFIG.display_name, INCOME_STATEMENT_CONFIG.items_config_list)
-    bs_stmt = FinStatementsBase.from_df(bs_df, BALANCE_SHEET_CONFIG.display_name, BALANCE_SHEET_CONFIG.items_config_list)
+    income_stmt = FinStatementsBase.from_df(
+        inc_df,
+        INCOME_STATEMENT_CONFIG.display_name,
+        INCOME_STATEMENT_CONFIG.items_config_list,
+    )
+    bs_stmt = FinStatementsBase.from_df(
+        bs_df, BALANCE_SHEET_CONFIG.display_name, BALANCE_SHEET_CONFIG.items_config_list
+    )
 
     # metrics statement is all calculated fields
-    metrics_stmt = FinStatementsBase.from_df(inc_df[0:1], METRICS_STATEMENT_CONFIG.display_name, METRICS_STATEMENT_CONFIG.items_config_list)
+    metrics_stmt = FinStatementsBase.from_df(
+        inc_df[0:1],
+        METRICS_STATEMENT_CONFIG.display_name,
+        METRICS_STATEMENT_CONFIG.items_config_list,
+    )
 
     # Fix for capiq annual date mismatch
     dates = income_stmt.dates

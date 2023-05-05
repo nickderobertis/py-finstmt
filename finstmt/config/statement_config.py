@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List
+
 from finstmt.forecast.config import ForecastItemConfig
 from finstmt.items.config import ItemConfig
 
@@ -1093,7 +1094,7 @@ BALANCE_SHEET_CONFIG = StatementConfig(
             ),
             display_verbosity=2,
         ),
-    ]
+    ],
 )
 INCOME_STATEMENT_CONFIG = StatementConfig(
     "inc",
@@ -1224,7 +1225,7 @@ INCOME_STATEMENT_CONFIG = StatementConfig(
                 "depreciation and amortization",
                 "dep amortization",
                 "dep and amortization",
-            ]
+            ],
         ),
         ItemConfig(
             "other_op_exp",
@@ -1276,7 +1277,7 @@ INCOME_STATEMENT_CONFIG = StatementConfig(
                 "other expense inc",
                 "other exps inc",
                 "other exp inc",
-            ]
+            ],
         ),
         ItemConfig(
             "gain_on_sale_invest",
@@ -1449,7 +1450,7 @@ INCOME_STATEMENT_CONFIG = StatementConfig(
             forecast_config=ForecastItemConfig(make_forecast=False),
             expr_str="ebt[t] - tax_exp[t]",
         ),
-    ]
+    ],
 )
 METRICS_STATEMENT_CONFIG = StatementConfig(
     "metrics",
@@ -1479,12 +1480,11 @@ METRICS_STATEMENT_CONFIG = StatementConfig(
                 make_forecast=False,
             ),
         ),
-
-    ]
+    ],
 )
 
 STATEMENT_CONFIGS = [
     BALANCE_SHEET_CONFIG,
     INCOME_STATEMENT_CONFIG,
-    METRICS_STATEMENT_CONFIG
+    METRICS_STATEMENT_CONFIG,
 ]

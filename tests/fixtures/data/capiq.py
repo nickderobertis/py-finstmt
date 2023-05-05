@@ -4,12 +4,15 @@ import pandas as pd
 import pytest
 
 from finstmt import FinancialStatements
-from finstmt.findata.statementsbase import FinStatementsBase
+from finstmt.config.statement_config import (
+    BALANCE_SHEET_CONFIG,
+    INCOME_STATEMENT_CONFIG,
+    METRICS_STATEMENT_CONFIG,
+)
 from finstmt.exc import MismatchingDatesException
+from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.loaders.capiq import load_capiq_df
 from tests.fixtures.data.common import DATA_PATH
-from finstmt.config.statement_config import BALANCE_SHEET_CONFIG, INCOME_STATEMENT_CONFIG, METRICS_STATEMENT_CONFIG
-
 
 CAPIQ_PATH = os.path.join(DATA_PATH, "capiq")
 
@@ -23,7 +26,11 @@ def annual_capiq_income_df() -> pd.DataFrame:
 
 @pytest.fixture(scope="session")
 def annual_capiq_income_stmt() -> FinStatementsBase:
-    stmt = FinStatementsBase.from_df(annual_capiq_income_df(), INCOME_STATEMENT_CONFIG.display_name, INCOME_STATEMENT_CONFIG.items_config_list)
+    stmt = FinStatementsBase.from_df(
+        annual_capiq_income_df(),
+        INCOME_STATEMENT_CONFIG.display_name,
+        INCOME_STATEMENT_CONFIG.items_config_list,
+    )
     return stmt
 
 
@@ -36,22 +43,35 @@ def annual_capiq_bs_df() -> pd.DataFrame:
 
 @pytest.fixture(scope="session")
 def annual_capiq_bs_stmt() -> FinStatementsBase:
-    stmt = FinStatementsBase.from_df(annual_capiq_bs_df(), BALANCE_SHEET_CONFIG.display_name, BALANCE_SHEET_CONFIG.items_config_list)
+    stmt = FinStatementsBase.from_df(
+        annual_capiq_bs_df(),
+        BALANCE_SHEET_CONFIG.display_name,
+        BALANCE_SHEET_CONFIG.items_config_list,
+    )
     return stmt
+
 
 def _annual_capiq_stmts(
     annual_capiq_income_stmt, annual_capiq_bs_stmt
 ) -> FinancialStatements:
     dates = annual_capiq_income_stmt.dates
     # metrics statement is all calculated fields
-    metrics_stmt = FinStatementsBase.from_df(annual_capiq_income_df()[0:1], METRICS_STATEMENT_CONFIG.display_name, METRICS_STATEMENT_CONFIG.items_config_list)
+    metrics_stmt = FinStatementsBase.from_df(
+        annual_capiq_income_df()[0:1],
+        METRICS_STATEMENT_CONFIG.display_name,
+        METRICS_STATEMENT_CONFIG.items_config_list,
+    )
     try:
-        stmts = FinancialStatements([annual_capiq_income_stmt, annual_capiq_bs_stmt, metrics_stmt])
+        stmts = FinancialStatements(
+            [annual_capiq_income_stmt, annual_capiq_bs_stmt, metrics_stmt]
+        )
     except MismatchingDatesException:
         pass
     else:
         assert False
-    stmts = FinancialStatements([annual_capiq_income_stmt, annual_capiq_bs_stmt[dates], metrics_stmt])
+    stmts = FinancialStatements(
+        [annual_capiq_income_stmt, annual_capiq_bs_stmt[dates], metrics_stmt]
+    )
     return stmts
 
 
@@ -78,7 +98,11 @@ def quarterly_capiq_income_df() -> pd.DataFrame:
 
 @pytest.fixture
 def quarterly_capiq_income_stmt() -> FinStatementsBase:
-    stmt = FinStatementsBase.from_df(quarterly_capiq_income_df(), INCOME_STATEMENT_CONFIG.display_name, INCOME_STATEMENT_CONFIG.items_config_list)
+    stmt = FinStatementsBase.from_df(
+        quarterly_capiq_income_df(),
+        INCOME_STATEMENT_CONFIG.display_name,
+        INCOME_STATEMENT_CONFIG.items_config_list,
+    )
     return stmt
 
 
@@ -91,7 +115,11 @@ def quarterly_capiq_bs_df() -> pd.DataFrame:
 
 @pytest.fixture
 def quarterly_capiq_bs_stmt() -> FinStatementsBase:
-    stmt = FinStatementsBase.from_df(quarterly_capiq_bs_df(), BALANCE_SHEET_CONFIG.display_name, BALANCE_SHEET_CONFIG.items_config_list)
+    stmt = FinStatementsBase.from_df(
+        quarterly_capiq_bs_df(),
+        BALANCE_SHEET_CONFIG.display_name,
+        BALANCE_SHEET_CONFIG.items_config_list,
+    )
     return stmt
 
 
@@ -99,6 +127,12 @@ def quarterly_capiq_bs_stmt() -> FinStatementsBase:
 def quarterly_capiq_stmts(
     quarterly_capiq_income_stmt, quarterly_capiq_bs_stmt
 ) -> FinancialStatements:
-    metrics_stmt = FinStatementsBase.from_df(quarterly_capiq_income_df()[0:1], METRICS_STATEMENT_CONFIG.display_name, METRICS_STATEMENT_CONFIG.items_config_list)
-    stmts = FinancialStatements([quarterly_capiq_income_stmt, quarterly_capiq_bs_stmt, metrics_stmt])
+    metrics_stmt = FinStatementsBase.from_df(
+        quarterly_capiq_income_df()[0:1],
+        METRICS_STATEMENT_CONFIG.display_name,
+        METRICS_STATEMENT_CONFIG.items_config_list,
+    )
+    stmts = FinancialStatements(
+        [quarterly_capiq_income_stmt, quarterly_capiq_bs_stmt, metrics_stmt]
+    )
     return stmts

@@ -1,18 +1,14 @@
 import json
+import math
 import warnings
 from copy import deepcopy
 from typing import TYPE_CHECKING, Dict, List, Optional, cast
 
-import numpy as np
 import pandas as pd
-from sympy import IndexedBase, sympify
 
 from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
-from finstmt.exc import CouldNotParseException
 from finstmt.findata.statement_item import StatementItem
-
-import math
 
 if TYPE_CHECKING:
     from finstmt.combined.statements import FinancialStatements
@@ -74,13 +70,13 @@ class PeriodFinancialData:
             val = v.get_value()
             # Some properties, e.g., nwc and effective tax rate, may be associated with a statements, but we don't
             # necessarily want to display it on the print-out
-            if (val is None):
+            if val is None:
                 continue
-            if (v.item_config.display_verbosity > self.maximum_display_verbosity):
+            if v.item_config.display_verbosity > self.maximum_display_verbosity:
                 continue
-            if (math.isnan(val)):
+            if math.isnan(val):
                 continue
-            if (round(val) == 0):
+            if round(val) == 0:
                 continue
             results[k] = float(round(val))
 
@@ -159,8 +155,7 @@ class PeriodFinancialData:
             data_dict=data_dict,
             config_manager=config_manager,
             unextracted_names=unextracted_names,
-            prior_statement=prior_statement
-
+            prior_statement=prior_statement,
         )
 
     # Return a series of all the items in the current period
@@ -171,7 +166,11 @@ class PeriodFinancialData:
             if index_as_display_name:
                 data_dict[item_config.display_name] = getattr(self, item_config.key)
             else:
-                data_dict[item_config.extract_names[0] if item_config.extract_names is not None else item_config.key] = getattr(self, item_config.key)
+                data_dict[
+                    item_config.extract_names[0]
+                    if item_config.extract_names is not None
+                    else item_config.key
+                ] = getattr(self, item_config.key)
 
         # return pd.Series(data_dict).fillna(0)
         # Maybe Filling NA shuold be a display level functionality
@@ -182,7 +181,7 @@ class PeriodFinancialData:
         # if "total_non_current_assets" in data_dict:
         #     print(f"PeriodFinancialData.to_series {data_dict.total_non_current_assets}")
 
-        return pd.Series(data_dict)  
+        return pd.Series(data_dict)
 
     def __getattr__(self, key: str):
         try:
@@ -191,4 +190,3 @@ class PeriodFinancialData:
             raise AttributeError(key)
         # return np.float64(self.resolve_eq(statement_item.get_value()))
         return statement_item.get_value()
-    

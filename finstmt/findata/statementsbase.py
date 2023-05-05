@@ -1,9 +1,8 @@
-from dataclasses import dataclass, field
 import operator
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
-from sympy import IndexedBase
 from tqdm import tqdm
 
 from finstmt.check import item_series_is_empty
@@ -22,6 +21,7 @@ from finstmt.logger import logger
 
 if TYPE_CHECKING:
     from finstmt.combined.statements import FinancialStatements
+
 
 # TODO: Discuss what we think of renaming this something like FinStatementTimeSeries
 # or FinStatementPeriods
@@ -50,8 +50,8 @@ class FinStatementsBase:
             configs_dict[date] = statement.config_manager
         self.config = StatementConfigManager(configs_dict)
 
-    def resolve_expressions(self, finStmts: 'FinancialStatements'):
-        for (date, statement) in self.statements.items():
+    def resolve_expressions(self, finStmts: "FinancialStatements"):
+        for date, statement in self.statements.items():
             statement.resolve_expressions(date, finStmts)
         self.df = self.to_df()
 
@@ -97,7 +97,9 @@ class FinStatementsBase:
             all_series.append(series)
         df = pd.concat(all_series, axis=1)
 
-        return self.from_df(df, self.statement_name, self.items_config_list, disp_unextracted=False)
+        return self.from_df(
+            df, self.statement_name, self.items_config_list, disp_unextracted=False
+        )
 
     def __dir__(self):
         normal_attrs = [
@@ -116,7 +118,6 @@ class FinStatementsBase:
         statement_name: str,
         items_config_list: Optional[List[ItemConfig]] = None,
         disp_unextracted: bool = True,
-
     ):
         """
         DataFrame must have columns as dates and index as names of financial statement items
@@ -132,9 +133,7 @@ class FinStatementsBase:
 
         for col in dates:
             try:
-                statement = PeriodFinancialData.from_series(
-                    df[col], config_manager
-                )
+                statement = PeriodFinancialData.from_series(df[col], config_manager)
             except CouldNotParseException:
                 raise CouldNotParseException(
                     "Passed DataFrame did not have any statement items in the index. "
@@ -240,7 +239,11 @@ class FinStatementsBase:
         if isinstance(other, (float, int)):
             new_df = self.df + other
         elif isinstance(other, FinStatementsBase):
-            new_df = combine_statement_dfs(self.to_df(index_as_display_name=False), other.to_df(index_as_display_name=False), operation=operator.add)
+            new_df = combine_statement_dfs(
+                self.to_df(index_as_display_name=False),
+                other.to_df(index_as_display_name=False),
+                operation=operator.add,
+            )
         else:
             raise NotImplementedError(
                 f"cannot add type {type(other)} to type {type(self)}"
@@ -335,7 +338,7 @@ def combine_statement_dfs(
     df: pd.DataFrame,
     df2: pd.DataFrame,
     operation: Callable[[pd.DataFrame, pd.DataFrame], pd.DataFrame] = operator.add,
-) -> pd.DataFrame:    
+) -> pd.DataFrame:
     common_cols = [col for col in df.columns if col in df2.columns]
     df_unique_cols = [col for col in df.columns if col not in df2.columns]
     df2_unique_cols = [col for col in df2.columns if col not in df.columns]

@@ -7,7 +7,7 @@ from sympy import Indexed, sympify
 from finstmt.items.config import ItemConfig
 
 if TYPE_CHECKING:
-    from finstmt.findata.period_data import PeriodFinancialData
+    pass
 
 
 @dataclass
@@ -28,7 +28,7 @@ class StatementItem:
             positive_value = abs(self.value)
             self.value = positive_value
 
-    def get_value(self) -> Optional[np.float64]:        
+    def get_value(self) -> Optional[np.float64]:
         # if specific value was provided, then return that even if it's a calculated field
         # if self.item_config.key == "fcf":
         #     print(f"StatementItem.get_value {self.value} {self.calculated_value}")
@@ -41,14 +41,16 @@ class StatementItem:
         return self.calculated_value
 
     def resolve_eq(self, date, finStmts):
-        if not self.item_config.expr_str:  # if expression string is null or empty, don't do anything
+        if (
+            not self.item_config.expr_str
+        ):  # if expression string is null or empty, don't do anything
             return
 
         ns_syms = finStmts.global_sympy_namespace
         sym_expr = sympify(self.item_config.expr_str, locals=ns_syms)
         sub_list = []
         t = ns_syms["t"]
-        
+
         # if self.item_config.key == "total_non_current_assets":
         #     print(f"################ {self.item_config.key} {date}")
         #     print(f"###### {self.item_config.expr_str}")
@@ -57,7 +59,7 @@ class StatementItem:
         for sym in sym_expr.free_symbols:
             # free_symbols include everything from the provided namespace as
             #  well as all symbols in the expression
-            # we will make an assumption that the symbols that we are actually 
+            # we will make an assumption that the symbols that we are actually
             #   interested in from the provided expresison string must have an
             #   index
             # we will skip any items in free_symbols that are not indexed
@@ -66,9 +68,9 @@ class StatementItem:
             # get the series for the attribute
             series = getattr(finStmts, str(sym.base))
 
-            # next we need to determine if the indexed symbol refers to the 
+            # next we need to determine if the indexed symbol refers to the
             #   current period or a different period
-            # We assume that there is only ONE index 
+            # We assume that there is only ONE index
             idx = sym.indices[0]
             if idx == t:
                 offset = 0
@@ -98,4 +100,3 @@ class StatementItem:
         #     print(f"### {result}")
 
         self.calculated_value = result
-

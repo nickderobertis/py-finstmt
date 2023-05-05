@@ -3,9 +3,8 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Dict, List, Optional, Set
 
 import pandas as pd
-from typing_extensions import Self
-
 from sympy import Idx, IndexedBase, symbols
+from typing_extensions import Self
 
 from finstmt.check import item_series_is_empty
 from finstmt.combined.combinator import (
@@ -13,10 +12,8 @@ from finstmt.combined.combinator import (
     StatementsCombinator,
 )
 from finstmt.config.statement_config import StatementConfig
-from finstmt.config_manage.data import DataConfigManager
 from finstmt.config_manage.statements import StatementsConfigManager
 from finstmt.exc import MismatchingDatesException
-from finstmt.findata.period_data import PeriodFinancialData
 from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.items.config import ItemConfig
@@ -66,7 +63,7 @@ class FinancialStatements:
                 self.global_sympy_namespace.update({config.key: expr})
 
         self.resolve_expressions()
-        # self.resolve_expressions() # HACK to force re-calc incase any didn't complete first time 
+        # self.resolve_expressions() # HACK to force re-calc incase any didn't complete first time
 
         self._create_config_from_statements()
 
@@ -193,7 +190,7 @@ class FinancialStatements:
                     FinStatementsBase(
                         {date_item: stmt_timeseries[item]},
                         stmt_timeseries.items_config_list,
-                        stmt_timeseries.statement_name
+                        stmt_timeseries.statement_name,
                     )
                 )
         else:
@@ -213,7 +210,7 @@ class FinancialStatements:
         all_config_items = []
         for stmt in self.statements:
             all_config_items.extend(stmt.config.items)
-        
+
         item_attrs = [config_item.key for config_item in all_config_items]
         return normal_attrs + item_attrs
 
@@ -275,7 +272,7 @@ class FinancialStatements:
             all_results.update(results)
 
         resolver = ForecastResolver(
-            self,  all_forecast_dict, all_results, bs_diff_max, timeout, balance=balance
+            self, all_forecast_dict, all_results, bs_diff_max, timeout, balance=balance
         )
 
         obj = resolver.to_statements()
@@ -314,15 +311,10 @@ class FinancialStatements:
                     stmts2_unique = stmts2_dates.difference(stmts1_dates)
                     message = "Got mismatching dates between historical statements. "
                     if stmts1_unique:
-                        message += (
-                            f"Balance sheet has {stmts1_unique} dates not in Income Statement. "
-                        )
+                        message += f"Balance sheet has {stmts1_unique} dates not in Income Statement. "
                     if stmts2_unique:
-                        message += (
-                            f"Income Statement has {stmts2_unique} dates not in Balance Sheet. "
-                        )
+                        message += f"Income Statement has {stmts2_unique} dates not in Balance Sheet. "
                     raise MismatchingDatesException(message)
-
 
     def copy(self, **updates) -> Self:
         return dataclasses.replace(self, **updates)
@@ -380,7 +372,7 @@ class FinancialStatements:
                     df,
                     statment_config.display_name,
                     statment_config.items_config_list,
-                    disp_unextracted=disp_unextracted
+                    disp_unextracted=disp_unextracted,
                 )
             )
 

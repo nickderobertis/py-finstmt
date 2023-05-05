@@ -113,7 +113,7 @@ class ForecastResolver(ResolverBase):
                 all_results,
                 stmt.statement_name,
                 stmt.config.items,
-                disp_unextracted=False
+                disp_unextracted=False,
             )
             stmt_dfs.append(stmt_df)
 

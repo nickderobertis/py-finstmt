@@ -11,8 +11,8 @@ class ResolverBase:
     subs_dict: Dict[IndexedBase, float]
 
     def __init__(
-            self,
-            stmts: FinancialStatements,
+        self,
+        stmts: FinancialStatements,
     ):
         self.stmts = stmts
         self.global_sympy_namespace = stmts.global_sympy_namespace
