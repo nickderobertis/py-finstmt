@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 import numpy as np
 from sympy import Indexed, sympify
@@ -24,7 +24,8 @@ class StatementItem:
 
     @property
     def value(self) -> Optional[np.float64]:
-        # if specific value was provided, then return that even if it's a calculated field
+        # if specific value was provided, then return that even if it's a
+        # calculated field
         if (self.seed_value is not None) and (not np.isnan(self.seed_value)):
             return np.float64(self.seed_value)
 
