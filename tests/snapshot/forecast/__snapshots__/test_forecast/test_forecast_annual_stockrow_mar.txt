@@ -1,12 +1,13 @@
 '''
 finstmt.forecast.statements.ForecastedFinancialStatements(
-    income_statements=finstmt.inc.main.IncomeStatements(
-        statements={
-            datetime.datetime(
-                2019,
-                12,
-                31
-            ): {
+    statements=[
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(
+                    2019,
+                    12,
+                    31
+                ): {
   "revenue": 20256467.0,
   "cogs": 16173270.0,
   "sga": 835333.0,
@@ -16,11 +17,11 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "ebt": 3247863.0,
   "net_income": 2251911.0
 },
-            datetime.datetime(
-                2020,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2020,
+                    12,
+                    31
+                ): {
   "revenue": 21313770.0,
   "cogs": 16774266.0,
   "sga": 853230.0,
@@ -30,15 +31,16 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "ebt": 3686274.0,
   "net_income": 2555884.0
 }
-        }
-    ),
-    balance_sheets=finstmt.bs.main.BalanceSheets(
-        statements={
-            datetime.datetime(
-                2019,
-                12,
-                31
-            ): {
+            },
+            statement_name='Income Statement'
+        ),
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(
+                    2019,
+                    12,
+                    31
+                ): {
   "st_invest": 6280582.0,
   "cash_and_st_invest": 6280582.0,
   "receivables": 2142889.0,
@@ -65,11 +67,11 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "total_equity": 9994234.0,
   "total_liab_and_equity": 29517397.0
 },
-            datetime.datetime(
-                2020,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2020,
+                    12,
+                    31
+                ): {
   "st_invest": 9373796.0,
   "cash_and_st_invest": 9373796.0,
   "receivables": 2321277.0,
@@ -96,8 +98,10 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "total_equity": 11114418.0,
   "total_liab_and_equity": 32840357.0
 }
-        }
-    ),
+            },
+            statement_name='Balance Sheet'
+        )
+    ],
     calculate=False,
     forecasts={
         'revenue': finstmt.forecast.main.Forecast(

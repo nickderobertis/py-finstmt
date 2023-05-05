@@ -1,12 +1,13 @@
 '''
 finstmt.forecast.statements.ForecastedFinancialStatements(
-    income_statements=finstmt.inc.main.IncomeStatements(
-        statements={
-            datetime.datetime(
-                2019,
-                12,
-                31
-            ): {
+    statements=[
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(
+                    2019,
+                    12,
+                    31
+                ): {
   "revenue": 55.0,
   "cogs": 36.0,
   "sga": 5.0,
@@ -17,11 +18,11 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "ebt": 12.0,
   "net_income": 5.0
 },
-            datetime.datetime(
-                2020,
-                12,
-                31
-            ): {
+                datetime.datetime(
+                    2020,
+                    12,
+                    31
+                ): {
   "revenue": 55.0,
   "cogs": 35.0,
   "sga": 4.0,
@@ -32,20 +33,21 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "ebt": 13.0,
   "net_income": 5.0
 }
-        }
-    ),
-    balance_sheets=finstmt.bs.main.BalanceSheets(
-        statements={
-            datetime.datetime(
-                2019,
-                12,
-                31
-            ): {
-  "cash": 10.0,
-  "cash_and_st_invest": 10.0,
+            },
+            statement_name='Income Statement'
+        ),
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(
+                    2019,
+                    12,
+                    31
+                ): {
+  "cash": 7.0,
+  "cash_and_st_invest": 7.0,
   "receivables": 8.0,
   "inventory": 12.0,
-  "total_current_assets": 31.0,
+  "total_current_assets": 28.0,
   "gross_ppe": 31.0,
   "dep": 16.0,
   "net_ppe": 15.0,
@@ -53,30 +55,30 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "def_tax_lt": 1.0,
   "other_lt_assets": 1.0,
   "total_non_current_assets": 24.0,
-  "total_assets": 55.0,
+  "total_assets": 52.0,
   "payables": 8.0,
   "other_current_liab": 3.0,
   "total_current_liab": 11.0,
-  "lt_debt": 7.0,
-  "total_debt": 7.0,
+  "lt_debt": 10.0,
+  "total_debt": 10.0,
   "other_lt_liab": 3.0,
-  "total_non_current_liab": 11.0,
-  "total_liab": 22.0,
+  "total_non_current_liab": 14.0,
+  "total_liab": 25.0,
   "common_stock": 6.0,
   "retained_earnings": 26.0,
   "total_equity": 33.0,
-  "total_liab_and_equity": 55.0
+  "total_liab_and_equity": 58.0
 },
-            datetime.datetime(
-                2020,
-                12,
-                31
-            ): {
-  "cash": 11.0,
-  "cash_and_st_invest": 11.0,
+                datetime.datetime(
+                    2020,
+                    12,
+                    31
+                ): {
+  "cash": 8.0,
+  "cash_and_st_invest": 8.0,
   "receivables": 8.0,
   "inventory": 12.0,
-  "total_current_assets": 31.0,
+  "total_current_assets": 28.0,
   "gross_ppe": 31.0,
   "dep": 16.0,
   "net_ppe": 15.0,
@@ -84,23 +86,46 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "def_tax_lt": 1.0,
   "other_lt_assets": 1.0,
   "total_non_current_assets": 24.0,
-  "total_assets": 55.0,
+  "total_assets": 52.0,
   "payables": 8.0,
   "other_current_liab": 3.0,
   "total_current_liab": 12.0,
-  "lt_debt": 7.0,
-  "total_debt": 7.0,
+  "lt_debt": 10.0,
+  "total_debt": 10.0,
   "other_lt_liab": 3.0,
-  "total_non_current_liab": 10.0,
-  "total_liab": 22.0,
+  "total_non_current_liab": 13.0,
+  "total_liab": 25.0,
   "common_stock": 6.0,
   "other_income": 1.0,
   "retained_earnings": 26.0,
   "total_equity": 33.0,
-  "total_liab_and_equity": 55.0
+  "total_liab_and_equity": 58.0
 }
-        }
-    ),
+            },
+            statement_name='Balance Sheet'
+        ),
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(
+                    2019,
+                    12,
+                    31
+                ): {
+  "non_cash_expenses": 16.0
+},
+                datetime.datetime(
+                    2020,
+                    12,
+                    31
+                ): {
+  "capex": 16.0,
+  "non_cash_expenses": 16.0,
+  "fcf": 6.0
+}
+            },
+            statement_name='Metrics'
+        )
+    ],
     calculate=False,
     forecasts={
         'revenue': finstmt.forecast.main.Forecast(
@@ -560,7 +585,7 @@ Name: Cash and Cash Equivalents, dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={'levels': [10, 11], 'growth': []},
+                manual_forecasts={'levels': [7, 8], 'growth': []},
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -577,7 +602,7 @@ Name: Cash and Cash Equivalents, dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={'levels': [10, 11], 'growth': []},
+                    manual_forecasts={'levels': [7, 8], 'growth': []},
                     plug=True
                 )
             )
@@ -1375,7 +1400,7 @@ Name: Long-Term Debt, dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={'levels': [7, 7], 'growth': []},
+                manual_forecasts={'levels': [10, 10], 'growth': []},
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -1403,7 +1428,7 @@ Name: Long-Term Debt, dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={'levels': [7, 7], 'growth': []},
+                    manual_forecasts={'levels': [10, 10], 'growth': []},
                     plug=True
                 )
             )
