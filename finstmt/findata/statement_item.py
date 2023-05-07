@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+import math
 from typing import Optional
 
 import numpy as np
@@ -26,7 +27,7 @@ class StatementItem:
     def value(self) -> Optional[np.float64]:
         # if specific value was provided, then return that even if it's a
         # calculated field
-        if (self.seed_value is not None) and (not np.isnan(self.seed_value)):
+        if (self.seed_value is not None) and (not math.isnan(self.seed_value)):
             return np.float64(self.seed_value)
 
         if self.item_config.expr_str is None:

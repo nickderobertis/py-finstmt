@@ -214,26 +214,6 @@ class FinancialStatements:
         item_attrs = [config_item.key for config_item in all_config_items]
         return normal_attrs + item_attrs
 
-    # @property
-    # def capex(self) -> pd.Series:
-    #     return self.change("net_ppe") + self.dep
-
-    # @property
-    # def non_cash_expenses(self) -> pd.Series:
-    #     # TODO [#5]: add stock-based compensation and use in non-cash expenses calculation
-    #     return (
-    #         self.dep
-    #         + self.gain_on_sale_invest
-    #         + self.gain_on_sale_asset
-    #         + self.impairment
-    #     )
-
-    # @property
-    # def fcf(self) -> pd.Series:
-    #     return (
-    #         self.net_income + self.non_cash_expenses - self.change("nwc") - self.capex
-    #     )
-
     def forecast(self, **kwargs) -> "ForecastedFinancialStatements":
         """
         Run a forecast, returning forecasted financial statements

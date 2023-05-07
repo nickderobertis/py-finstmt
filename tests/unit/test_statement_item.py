@@ -33,7 +33,7 @@ def test_calculated_field():
     assert finstmts.equity[0] == 1000
 
 
-def test_nest_calculated_fields():
+def test_nested_calculated_fields():
     config = [
         ItemConfig(
             key="cash",

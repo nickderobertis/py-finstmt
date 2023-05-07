@@ -36,7 +36,7 @@ class ForecastItemConfig:
     """
     The main configuration for a single item forecast
 
-    method: 'auto' currently only supported method, runs forecast with prophet
+    method: 'auto' currently only supported method, runs forecast with prophet TODO: This still accurate?
     pct_of: key of financial statement item to forecast this as a percentage of
     make_forecast: whether to forecast
     prophet_kwargs: kwargs to pass to prophet model
