@@ -248,6 +248,8 @@ class ForecastResolver(ResolverBase):
         for config in self.plug_configs:
             x_arrs.append(self.results[config.key].values)
             plug_keys.append(config.key)
+        if len(x_arrs) == 0:  # No plugs
+            return []
         x0 = np.concatenate(x_arrs) / PLUG_SCALE
         return x0
 

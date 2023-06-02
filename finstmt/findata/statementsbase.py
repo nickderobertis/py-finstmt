@@ -3,6 +3,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
+from sympy import Eq, Indexed, IndexedBase, sympify
 from tqdm import tqdm
 
 from finstmt.check import item_series_is_empty
@@ -18,6 +19,7 @@ from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
+from finstmt.resolver.solve import numpy_solve
 
 if TYPE_CHECKING:
     from finstmt.combined.statements import FinancialStatements
@@ -50,10 +52,37 @@ class FinStatementsBase:
             configs_dict[date] = statement.config_manager
         self.config = StatementConfigManager(configs_dict)
 
-    def resolve_expressions(self, finStmts: "FinancialStatements"):
-        for date, statement in self.statements.items():
-            statement.resolve_expressions(date, finStmts)
-        self.df = self.to_df()
+    def has_negative_time_index(self, symbols):
+        for sym in symbols:
+            if type(sym) is Indexed and sym.indices[0] < 0:
+                return True
+        return False
+
+    # Get the expression strings (which will include seed values, if
+    # they exist) from all statements and substitute the t index with
+    # and number for each statement
+    # If the resulting index of an item in an expression is less than 0, than don't include
+    # the statement item in the list of eqns to be solved
+    def get_expressions(self, global_sympy_namespace: Dict[str, IndexedBase]):  #  finStmts: "FinancialStatements"):
+        eqns = []
+
+        for idx, period in enumerate(self.statements):
+            period_expressions = self.statements[period].get_t_indexed_expression_strings()
+            for (lhs_str, rhs_str) in period_expressions:
+                lhs = sympify(lhs_str, locals=global_sympy_namespace).subs(global_sympy_namespace['t'], idx)
+                rhs = sympify(rhs_str, locals=global_sympy_namespace).subs(global_sympy_namespace['t'], idx)
+                if self.has_negative_time_index(rhs.free_symbols):
+                    continue
+                eqns.append(Eq(lhs, rhs))
+
+        return eqns
+        # for date, statement in self.statements.items():
+        #     statement.resolve_expressions(date, finStmts)
+        # self.df = self.to_df()
+
+    def update_statement_item_calculated_value(self, statement_item_key, period_index, statement_item_value):
+        list(self.statements.values())[period_index].update_statement_item_calculated_value(statement_item_key, statement_item_value)
+
 
     def _repr_html_(self):
         return self._formatted_df._repr_html_()

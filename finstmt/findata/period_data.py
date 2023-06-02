@@ -47,9 +47,21 @@ class PeriodFinancialData:
                 seed_value=item_value,
             )
 
-    def resolve_expressions(self, date, finStmts: "FinancialStatements"):
+    # get a list of all the expressions for the statement items
+    # the rhs will be the seed value if available, otherwise it will tbe the expression str
+    def get_t_indexed_expression_strings(self):
+        expresion_strings = []
         for statement_item in self.statement_items.values():
-            statement_item.resolve_eq(date, finStmts)
+            expresion_strings.append(statement_item.get_expression_string())
+        return expresion_strings
+    
+    def update_statement_item_calculated_value(self, statement_item_key, statement_item_value):
+        if str(statement_item_key) in self.statement_items:
+            self.statement_items[str(statement_item_key)].update_statement_item_calculated_value(statement_item_value)
+
+    # def resolve_expressions(self, date, finStmts: "FinancialStatements"):
+    #     for statement_item in self.statement_items.values():
+    #         statement_item.resolve_eq(date, finStmts)
 
     def _repr_html_(self):
         series = self.to_series()

@@ -18,6 +18,7 @@ from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.forecast.config import ForecastConfig
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
+from finstmt.resolver.solve import numpy_solve
 
 if TYPE_CHECKING:
     from finstmt.forecast.statements import ForecastedFinancialStatements
@@ -63,7 +64,6 @@ class FinancialStatements:
                 self.global_sympy_namespace.update({config.key: expr})
 
         self.resolve_expressions()
-        # self.resolve_expressions() # HACK to force re-calc incase any didn't complete first time
 
         self._create_config_from_statements()
 
@@ -76,8 +76,27 @@ class FinancialStatements:
             self._create_config_from_statements()
 
     def resolve_expressions(self):
+        eqns = []
         for statement in self.statements:
-            statement.resolve_expressions(self)
+            eqns.extend(statement.get_expressions(self.global_sympy_namespace))
+
+        all_to_solve = {}
+        for eqn in eqns:
+            expr = eqn.rhs - eqn.lhs
+            all_to_solve[eqn.lhs] = expr
+
+        to_solve_for = list(all_to_solve.keys())
+        solve_exprs = list(all_to_solve.values())
+
+        res = numpy_solve(solve_exprs, to_solve_for)
+
+        for k, v in res.items():
+            statement_item_key = k.base
+            period_index = k.indices[0]
+            statement_item_value = v
+            for stmt in self.statements:
+                stmt.update_statement_item_calculated_value(statement_item_key, period_index, statement_item_value)
+
 
     def _create_config_from_statements(self):
         config_dict = {}
