@@ -48,7 +48,6 @@ class StatementItem:
     # If this field is a calculated field, then update the calculated statement idem
     # This will be done by solving all calculated fields simultaneously
     def update_statement_item_calculated_value(self, statement_item_value):
-        print(f"Updating Calculated Field {self.item_config.key}: {statement_item_value}")
         if self.item_config.expr_str is None:
             return
         self.calculated_value = statement_item_value
