@@ -1,0 +1,170 @@
+'''
+finstmt.forecast.statements.ForecastedFinancialStatements(
+    statements=[
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(2019, 12, 31): {},
+                datetime.datetime(2020, 3, 31): {}
+            },
+            statement_name='Balance Sheet'
+        ),
+        finstmt.findata.statementsbase.FinStatementsBase(
+            statements={
+                datetime.datetime(2019, 12, 31): {},
+                datetime.datetime(2020, 3, 31): {}
+            },
+            statement_name='Income Statement'
+        )
+    ],
+    calculate=False,
+    forecasts={
+        'cash': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    0.0
+2010-03-31    0.0
+2010-06-30    0.0
+2010-09-30    0.0
+2010-12-31    0.0
+2011-03-31    0.0
+2011-06-30    0.0
+2011-09-30    0.0
+2011-12-31    0.0
+2012-03-31    0.0
+2012-06-30    0.0
+2012-09-30    0.0
+2012-12-31    0.0
+2013-03-31    0.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    0.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31    0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    0.0
+2019-06-30    0.0
+2019-09-30    0.0
+Name: Cash and Cash Equivalents, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='trend'
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='cash',
+                display_name='Cash and Cash Equivalents',
+                extract_names=[
+                    'cash',
+                    'cash and cash equivalents',
+                    'cash and equivalents',
+                    'cash and equiv',
+                    'cash cash equivalents',
+                    'cash equivalents',
+                    'cash equiv'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='trend'
+                )
+            )
+        ),
+        'lt_debt': finstmt.forecast.main.Forecast(
+            orig_series=2009-12-31    0.0
+2010-03-31    0.0
+2010-06-30    0.0
+2010-09-30    0.0
+2010-12-31    0.0
+2011-03-31    0.0
+2011-06-30    0.0
+2011-09-30    0.0
+2011-12-31    0.0
+2012-03-31    0.0
+2012-06-30    0.0
+2012-09-30    0.0
+2012-12-31    0.0
+2013-03-31    0.0
+2013-06-30    0.0
+2013-09-30    0.0
+2013-12-31    0.0
+2014-03-31    0.0
+2014-06-30    0.0
+2014-09-30    0.0
+2014-12-31    0.0
+2015-03-31    0.0
+2015-06-30    0.0
+2015-09-30    0.0
+2015-12-31    0.0
+2016-03-31    0.0
+2016-06-30    0.0
+2016-09-30    0.0
+2016-12-31    0.0
+2017-03-31    0.0
+2017-06-30    0.0
+2017-09-30    0.0
+2017-12-31    0.0
+2018-03-31    0.0
+2018-06-30    0.0
+2018-09-30    0.0
+2018-12-31    0.0
+2019-03-31    0.0
+2019-06-30    0.0
+2019-09-30    0.0
+Name: Long-Term Debt, dtype: float64,
+            config=finstmt.forecast.config.ForecastConfig(
+                periods=2,
+                freq='Q-DEC'
+            ),
+            item_config=finstmt.forecast.config.ForecastItemConfig(
+                method='manual',
+                manual_forecasts={'levels': [0, 0], 'growth': []},
+                plug=True
+            ),
+            base_config=finstmt.items.config.ItemConfig(
+                key='lt_debt',
+                display_name='Long-Term Debt',
+                extract_names=[
+                    'lt debt',
+                    'long term debt',
+                    'longterm debt',
+                    'lt borrow',
+                    'long term borrow',
+                    'longterm borrow',
+                    'lt borrowings',
+                    'long term borrowings',
+                    'longterm borrowings',
+                    'lt debt total',
+                    'long term debt total',
+                    'longterm debt total',
+                    'lt borrow total',
+                    'long term borrow total',
+                    'longterm borrow total',
+                    'lt borrowings total',
+                    'long term borrowings total',
+                    'longterm borrowings total'
+                ],
+                forecast_config=finstmt.forecast.config.ForecastItemConfig(
+                    method='manual',
+                    manual_forecasts={'levels': [0, 0], 'growth': []},
+                    plug=True
+                )
+            )
+        )
+    }
+)
+'''
