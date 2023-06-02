@@ -28,7 +28,7 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "tax_exp": 1.0,
   "op_exp": 1.0,
   "ebit": 3.0,
-  "ebt": 2.0,
+  "ebt": 3.0,
   "net_income": 2.0
 }
             },
@@ -41,12 +41,12 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
                     12,
                     31
                 ): {
-  "cash": 21.0,
-  "cash_and_st_invest": 21.0,
+  "cash": 26.0,
+  "cash_and_st_invest": 26.0,
   "receivables": 8.0,
   "inventory": 11.0,
   "def_tax_st": 1.0,
-  "total_current_assets": 40.0,
+  "total_current_assets": 46.0,
   "gross_ppe": 7.0,
   "dep": 4.0,
   "net_ppe": 4.0,
@@ -55,31 +55,31 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "def_tax_lt": 1.0,
   "other_lt_assets": 1.0,
   "total_non_current_assets": 14.0,
-  "total_assets": 54.0,
+  "total_assets": 59.0,
   "payables": 7.0,
   "other_current_liab": 4.0,
   "total_current_liab": 11.0,
-  "lt_debt": 14.0,
-  "total_debt": 14.0,
+  "lt_debt": 9.0,
+  "total_debt": 9.0,
   "other_lt_liab": 3.0,
-  "total_non_current_liab": 17.0,
-  "total_liab": 28.0,
+  "total_non_current_liab": 12.0,
+  "total_liab": 23.0,
   "common_stock": 6.0,
   "retained_earnings": 30.0,
   "total_equity": 36.0,
-  "total_liab_and_equity": 64.0
+  "total_liab_and_equity": 59.0
 },
                 datetime.datetime(
                     2020,
                     3,
                     31
                 ): {
-  "cash": 22.0,
-  "cash_and_st_invest": 22.0,
+  "cash": 27.0,
+  "cash_and_st_invest": 27.0,
   "receivables": 8.0,
   "inventory": 10.0,
   "def_tax_st": 1.0,
-  "total_current_assets": 41.0,
+  "total_current_assets": 46.0,
   "gross_ppe": 7.0,
   "dep": 4.0,
   "net_ppe": 4.0,
@@ -88,19 +88,19 @@ finstmt.forecast.statements.ForecastedFinancialStatements(
   "def_tax_lt": 1.0,
   "other_lt_assets": 1.0,
   "total_non_current_assets": 14.0,
-  "total_assets": 54.0,
+  "total_assets": 59.0,
   "payables": 6.0,
   "other_current_liab": 4.0,
-  "total_current_liab": 11.0,
-  "lt_debt": 14.0,
-  "total_debt": 14.0,
+  "total_current_liab": 10.0,
+  "lt_debt": 9.0,
+  "total_debt": 9.0,
   "other_lt_liab": 3.0,
-  "total_non_current_liab": 17.0,
-  "total_liab": 28.0,
+  "total_non_current_liab": 12.0,
+  "total_liab": 23.0,
   "common_stock": 6.0,
   "retained_earnings": 30.0,
   "total_equity": 37.0,
-  "total_liab_and_equity": 64.0
+  "total_liab_and_equity": 59.0
 }
             },
             statement_name='Balance Sheet'
@@ -987,7 +987,7 @@ Name: Cash and Cash Equivalents, dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={'levels': [21, 22], 'growth': []},
+                manual_forecasts={'levels': [26, 27], 'growth': []},
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -1004,7 +1004,7 @@ Name: Cash and Cash Equivalents, dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={'levels': [21, 22], 'growth': []},
+                    manual_forecasts={'levels': [26, 27], 'growth': []},
                     plug=True
                 )
             )
@@ -2348,7 +2348,7 @@ Name: Long-Term Debt, dtype: float64,
             ),
             item_config=finstmt.forecast.config.ForecastItemConfig(
                 method='manual',
-                manual_forecasts={'levels': [14, 14], 'growth': []},
+                manual_forecasts={'levels': [9, 9], 'growth': []},
                 plug=True
             ),
             base_config=finstmt.items.config.ItemConfig(
@@ -2376,7 +2376,7 @@ Name: Long-Term Debt, dtype: float64,
                 ],
                 forecast_config=finstmt.forecast.config.ForecastItemConfig(
                     method='manual',
-                    manual_forecasts={'levels': [14, 14], 'growth': []},
+                    manual_forecasts={'levels': [9, 9], 'growth': []},
                     plug=True
                 )
             )
