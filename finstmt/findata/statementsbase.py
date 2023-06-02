@@ -69,6 +69,8 @@ class FinStatementsBase:
         for idx, period in enumerate(self.statements):
             period_expressions = self.statements[period].get_t_indexed_expression_strings()
             for (lhs_str, rhs_str) in period_expressions:
+                if rhs_str is None:
+                    continue
                 lhs = sympify(lhs_str, locals=global_sympy_namespace).subs(global_sympy_namespace['t'], idx)
                 rhs = sympify(rhs_str, locals=global_sympy_namespace).subs(global_sympy_namespace['t'], idx)
                 if self.has_negative_time_index(rhs.free_symbols):
