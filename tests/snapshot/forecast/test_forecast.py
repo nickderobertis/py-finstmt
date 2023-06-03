@@ -146,7 +146,7 @@ def test_forecast_quarterly_stockrow_mar(
     stmts = quarterly_stockrow_stmts_mar
     stmts.config.update("cash", ["forecast_config", "plug"], False)
     # I don't think this is valid any more. Cash is a plug and cash_and_st_invest is a calculated field
-    # stmts.config.update("cash_and_st_invest", ["forecast_config", "plug"], True) 
+    # stmts.config.update("cash_and_st_invest", ["forecast_config", "plug"], True)
 
     _forecast_test(
         stmts,
@@ -174,7 +174,7 @@ def test_forecast_quarterly_capiq_cat(
     quarterly_capiq_stmts: FinancialStatements, snapshot, request
 ):
     stmts = quarterly_capiq_stmts
-
+    print("REQUEST:", request)
     _forecast_test(
         stmts,
         snapshot,

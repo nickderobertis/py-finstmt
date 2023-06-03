@@ -1,5 +1,3 @@
-
-
 from finstmt.combined.statements import FinancialStatements
 from finstmt.findata.statementsbase import FinStatementsBase
 from finstmt.items.config import ItemConfig
@@ -24,11 +22,7 @@ def test_calculated_field():
         }
     }
 
-    stmt_timeseries = FinStatementsBase.from_dict(
-        dict,
-        "Test Statment",
-        config
-    )
+    stmt_timeseries = FinStatementsBase.from_dict(dict, "Test Statment", config)
     finstmts = FinancialStatements([stmt_timeseries])
     assert finstmts.equity[0] == 1000
 
@@ -57,11 +51,7 @@ def test_nested_calculated_fields():
         }
     }
 
-    stmt_timeseries = FinStatementsBase.from_dict(
-        dict,
-        "Test Statment",
-        config
-    )
+    stmt_timeseries = FinStatementsBase.from_dict(dict, "Test Statment", config)
     finstmts = FinancialStatements([stmt_timeseries])
     assert finstmts.equity[0] == 1000
 
@@ -91,10 +81,6 @@ def test_nested_calculated_fields_out_of_order():
         }
     }
 
-    stmt_timeseries = FinStatementsBase.from_dict(
-        dict,
-        "Test Statment",
-        config
-    )
+    stmt_timeseries = FinStatementsBase.from_dict(dict, "Test Statment", config)
     finstmts = FinancialStatements([stmt_timeseries])
     assert finstmts.equity[0] == 1000

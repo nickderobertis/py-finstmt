@@ -10,9 +10,6 @@ from finstmt.clean.name import standardize_names_in_series_index
 from finstmt.config_manage.data import DataConfigManager
 from finstmt.findata.statement_item import StatementItem
 
-if TYPE_CHECKING:
-    from finstmt.combined.statements import FinancialStatements
-
 
 class PeriodFinancialData:
     """
@@ -54,10 +51,14 @@ class PeriodFinancialData:
         for statement_item in self.statement_items.values():
             expresion_strings.append(statement_item.get_expression_string())
         return expresion_strings
-    
-    def update_statement_item_calculated_value(self, statement_item_key, statement_item_value):
+
+    def update_statement_item_calculated_value(
+        self, statement_item_key, statement_item_value
+    ):
         if str(statement_item_key) in self.statement_items:
-            self.statement_items[str(statement_item_key)].update_statement_item_calculated_value(statement_item_value)
+            self.statement_items[
+                str(statement_item_key)
+            ].update_statement_item_calculated_value(statement_item_value)
 
     # def resolve_expressions(self, date, finStmts: "FinancialStatements"):
     #     for statement_item in self.statement_items.values():

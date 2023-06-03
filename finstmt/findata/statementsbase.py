@@ -19,10 +19,6 @@ from finstmt.forecast.config import ForecastConfig
 from finstmt.forecast.main import Forecast
 from finstmt.items.config import ItemConfig
 from finstmt.logger import logger
-from finstmt.resolver.solve import numpy_solve
-
-if TYPE_CHECKING:
-    from finstmt.combined.statements import FinancialStatements
 
 
 # TODO: Discuss what we think of renaming this something like FinStatementTimeSeries
@@ -63,16 +59,24 @@ class FinStatementsBase:
     # and number for each statement
     # If the resulting index of an item in an expression is less than 0, than don't include
     # the statement item in the list of eqns to be solved
-    def get_expressions(self, global_sympy_namespace: Dict[str, IndexedBase]):  #  finStmts: "FinancialStatements"):
+    def get_expressions(
+        self, global_sympy_namespace: Dict[str, IndexedBase]
+    ):  #  finStmts: "FinancialStatements"):
         eqns = []
 
         for idx, period in enumerate(self.statements):
-            period_expressions = self.statements[period].get_t_indexed_expression_strings()
-            for (lhs_str, rhs_str) in period_expressions:
+            period_expressions = self.statements[
+                period
+            ].get_t_indexed_expression_strings()
+            for lhs_str, rhs_str in period_expressions:
                 if rhs_str is None:
                     continue
-                lhs = sympify(lhs_str, locals=global_sympy_namespace).subs(global_sympy_namespace['t'], idx)
-                rhs = sympify(rhs_str, locals=global_sympy_namespace).subs(global_sympy_namespace['t'], idx)
+                lhs = sympify(lhs_str, locals=global_sympy_namespace).subs(
+                    global_sympy_namespace["t"], idx
+                )
+                rhs = sympify(rhs_str, locals=global_sympy_namespace).subs(
+                    global_sympy_namespace["t"], idx
+                )
                 if self.has_negative_time_index(rhs.free_symbols):
                     continue
                 eqns.append(Eq(lhs, rhs))
@@ -82,9 +86,16 @@ class FinStatementsBase:
         #     statement.resolve_expressions(date, finStmts)
         # self.df = self.to_df()
 
-    def update_statement_item_calculated_value(self, statement_item_key, period_index, statement_item_value):
-        list(self.statements.values())[period_index].update_statement_item_calculated_value(statement_item_key, statement_item_value)
-
+    def update_statement_item_calculated_value(
+        self, statement_item_key, period_index, statement_item_value
+    ):
+        if period_index >= len(self.statements):
+            return
+        list(self.statements.values())[
+            period_index
+        ].update_statement_item_calculated_value(
+            statement_item_key, statement_item_value
+        )
 
     def _repr_html_(self):
         return self._formatted_df._repr_html_()

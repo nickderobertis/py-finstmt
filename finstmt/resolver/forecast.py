@@ -148,7 +148,7 @@ class ForecastResolver(ResolverBase):
                         locals=self.stmts.config.sympy_namespace,
                     )
                 else:
-                    rhs = lhs # If my understanding is correct, this means this item is not a calculated item and nothing will be done
+                    rhs = lhs  # If my understanding is correct, this means this item is not a calculated item and nothing will be done
                 if not rhs == lhs:
                     eq = Eq(lhs, rhs)
                     all_eqs.append(eq)

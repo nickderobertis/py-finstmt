@@ -95,8 +95,9 @@ class FinancialStatements:
             period_index = k.indices[0]
             statement_item_value = v
             for stmt in self.statements:
-                stmt.update_statement_item_calculated_value(statement_item_key, period_index, statement_item_value)
-
+                stmt.update_statement_item_calculated_value(
+                    statement_item_key, period_index, statement_item_value
+                )
 
     def _create_config_from_statements(self):
         config_dict = {}

@@ -20,7 +20,7 @@ class ResolverBase:
         self.set_solve_eqs_and_full_subs_dict()
 
     # TODO: I need to better understand what's happening here.
-    # I think I might have relplicates similar functionality in 
+    # I think I might have relplicates similar functionality in
     # the FinancialStatements class
     def set_solve_eqs_and_full_subs_dict(self):
         self.solve_eqs, self.subs_dict = get_solve_eqs_and_full_subs_dict(
